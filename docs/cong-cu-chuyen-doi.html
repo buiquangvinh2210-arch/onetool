@@ -1,13 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chuyển đổi file online — CSV JSON, Document | OneTool</title>
   <meta name="description" content="Chuyển CSV sang JSON và ngược lại, convert document — công cụ chuyển đổi dữ liệu nhanh trên trình duyệt." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/site.css?v=20260824b" />
   <link rel="stylesheet" href="assets/css/components.css?v=20260824b" />
   <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260824b" />
@@ -29,13 +26,10 @@
 </div></section>
 </main>
 <div id="site-footer"></div>
-<script src="assets/js/catalog.js"></script>
+<script src="assets/js/catalog.js" defer></script>
 <script src="assets/js/layout.js" defer></script>
-<script src="assets/js/core.js"></script>
-<script src="assets/js/site.js"></script>
-<script>
-renderCategoryChips(document.getElementById("catFilter"), "cong-cu-chuyen-doi");
-renderToolGrid(document.getElementById("catTools"), { categorySeo: "cong-cu-chuyen-doi" });
-</script>
+<script src="assets/js/core.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+<script>document.addEventListener("DOMContentLoaded", function () { renderCategoryChips(document.getElementById("catFilter"), "cong-cu-chuyen-doi"); renderToolGrid(document.getElementById("catTools"), { categorySeo: "cong-cu-chuyen-doi" }); });</script>
 </body>
 </html>
