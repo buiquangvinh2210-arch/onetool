@@ -347,8 +347,8 @@
     </div>
   </div>
 </header>
-<div class="nav-drawer" id="navDrawer" aria-hidden="true">
-  <div class="nav-drawer-backdrop" id="navDrawerBackdrop" tabindex="-1"></div>
+<div class="nav-drawer" id="navDrawer" aria-hidden="true" inert>
+  <div class="nav-drawer-backdrop" id="navDrawerBackdrop"></div>
   <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
     <div class="nav-drawer-head">
       <a class="logo" href="${homeHref()}">

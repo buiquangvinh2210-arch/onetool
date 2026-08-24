@@ -45,6 +45,8 @@
     const open = !drawer.classList.contains("is-open");
     drawer.classList.toggle("is-open", open);
     drawer.setAttribute("aria-hidden", open ? "false" : "true");
+    if (open) drawer.removeAttribute("inert");
+    else drawer.setAttribute("inert", "");
     mobileMenuToggle?.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("nav-drawer-open", open);
     mainNav?.classList.remove("open");
@@ -55,6 +57,7 @@
     if (!drawer?.classList.contains("is-open")) return;
     drawer.classList.remove("is-open");
     drawer.setAttribute("aria-hidden", "true");
+    drawer.setAttribute("inert", "");
     mobileMenuToggle?.setAttribute("aria-expanded", "false");
     document.body.classList.remove("nav-drawer-open");
   }
