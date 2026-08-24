@@ -175,6 +175,21 @@
 }
 .protocol-banner.is-on { display: block; }
 
+/* Reserve space for JS-rendered grids to reduce CLS on hub pages. */
+#homeToolRows,
+#allTools,
+#catTools {
+  min-height: 960px;
+}
+
+@media (max-width: 900px) {
+  #homeToolRows,
+  #allTools,
+  #catTools {
+    min-height: 1320px;
+  }
+}
+
 /* Overlay khi Whisper chạy — tránh tưởng trang trắng */
 .ot-ai-overlay {
   position: fixed;

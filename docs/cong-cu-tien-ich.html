@@ -6,8 +6,11 @@
   <title>Công cụ tiện ích online — QR, JSON, Base64, Dev tools | OneTool</title>
   <meta name="description" content="Tạo mã QR, format JSON, encode Base64, UUID, hash SHA — bộ tiện ích developer và văn phòng miễn phí." />
   <link rel="stylesheet" href="assets/css/site.css?v=20260824b" />
-  <link rel="stylesheet" href="assets/css/components.css?v=20260824b" />
-  <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260824b" />
+  <link rel="stylesheet" href="assets/css/shell-critical.css?v=20260824a" />
+  <link rel="preload" href="assets/css/ot-shell.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/ot-shell.css?v=20260824b"></noscript>
+  <link rel="preload" href="assets/css/components.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="assets/css/components.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/components.css?v=20260824b"></noscript>
   <script>window.OT_BASE = ".";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
@@ -26,10 +29,10 @@
 </div></section>
 </main>
 <div id="site-footer"></div>
-<script src="assets/js/catalog.js" defer></script>
-<script src="assets/js/layout.js" defer></script>
-<script src="assets/js/core.js" defer></script>
-<script src="assets/js/site.js" defer></script>
-<script>document.addEventListener("DOMContentLoaded", function () { renderCategoryChips(document.getElementById("catFilter"), "cong-cu-tien-ich"); renderToolGrid(document.getElementById("catTools"), { categorySeo: "cong-cu-tien-ich" }); });</script>
+<script src="assets/js/catalog.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/site.js"></script>
+<script>renderCategoryChips(document.getElementById("catFilter"), "cong-cu-tien-ich"); renderToolGrid(document.getElementById("catTools"), { categorySeo: "cong-cu-tien-ich" });</script>
 </body>
 </html>
