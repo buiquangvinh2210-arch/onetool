@@ -18,7 +18,17 @@ export default {
     }
 
     if (request.method === "GET") {
-      return json({ ok: true, service: "onetool-groq-proxy-cf" }, 200, cors);
+      const key = String(env.GROQ_API_KEY || "").trim();
+      return json(
+        {
+          ok: true,
+          service: "onetool-groq-proxy-cf",
+          hasGroqKey: key.startsWith("gsk_"),
+          keyHint: key ? (key.startsWith("gsk_") ? "ok" : "invalid_prefix") : "missing"
+        },
+        200,
+        cors
+      );
     }
 
     if (request.method !== "POST") {
@@ -29,10 +39,13 @@ export default {
       return json({ error: "Origin không được phép." }, 403, cors);
     }
 
-    const key = (env.GROQ_API_KEY || "").trim();
+    const key = String(env.GROQ_API_KEY || env.GROQ_KEY || "").trim();
     if (!key.startsWith("gsk_")) {
       return json(
-        { error: "Chưa cấu hình GROQ_API_KEY trên Worker (wrangler secret put GROQ_API_KEY)." },
+        {
+          error:
+            "Chưa có GROQ_API_KEY trên Cloudflare Worker. Vào Workers → onetool-whisper → Settings → Variables and Secrets → Add → Secret, Name=GROQ_API_KEY, dán key gsk_... rồi Save."
+        },
         500,
         cors
       );
