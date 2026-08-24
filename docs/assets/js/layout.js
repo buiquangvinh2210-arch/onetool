@@ -6,15 +6,36 @@
   const homeHref = () => (base === "." || base === "" ? "./" : `${base}/`);
   const asset = (p) => href(`assets/${p}`);
 
-  // Skin + tool chrome CSS (once)
-  ["css/skins.css", "css/tool-chrome.css", "css/chrome.css", "css/readability.css", "css/mobile.css?v=20260824a", "css/dark-tools.css?v=20260824a"].forEach((file) => {
-    if (!document.querySelector(`link[href*="${file.replace(/\//g, "/")}"]`)) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = asset(file);
-      document.head.appendChild(link);
-    }
-  });
+  // Shell CSS: ưu tiên nạp sớm trong <head> (ot-shell.css). Chỉ inject fallback nếu thiếu.
+  const shellHref = asset("css/ot-shell.css?v=20260824b");
+  if (!document.querySelector('link[href*="ot-shell.css"]')) {
+    const legacy = [
+      "css/skins.css",
+      "css/tool-chrome.css",
+      "css/chrome.css",
+      "css/readability.css",
+      "css/mobile.css?v=20260824a",
+      "css/dark-tools.css?v=20260824a"
+    ];
+    legacy.forEach((file) => {
+      if (!document.querySelector(`link[href*="${file.split("?")[0]}"]`)) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = asset(file);
+        document.head.appendChild(link);
+      }
+    });
+    const shell = document.createElement("link");
+    shell.rel = "stylesheet";
+    shell.href = shellHref;
+    document.head.appendChild(shell);
+  }
+
+  function markChromeReady() {
+    const root = document.documentElement;
+    root.classList.add("ot-ready");
+    root.classList.remove("ot-pending");
+  }
 
   // Favicon
   if (!document.querySelector('link[rel="icon"]')) {
@@ -617,7 +638,11 @@
     injectCategorySeoBody();
     injectCategoryJsonLd();
     injectToolSeoBody();
+    requestAnimationFrame(function () {
+      requestAnimationFrame(markChromeReady);
+    });
   } catch (err) {
     console.error("[OneTool layout]", err);
+    markChromeReady();
   }
 })();

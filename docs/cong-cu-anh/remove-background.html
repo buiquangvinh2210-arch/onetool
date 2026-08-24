@@ -7,12 +7,14 @@
   <meta name="description" content="Xóa nền ảnh AI trên trình duyệt, xem preview ngay, xuất PNG trong suốt." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/site.css" />
-  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"></noscript>
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260824b" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b" />
   <link rel="stylesheet" href="../assets/css/tools/remove-background.css" />
   <script>window.OT_BASE = "..";</script>
-</head>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block}@media(max-width:900px){#site-header{min-height:56px}}</style></head>
 <body>
 <div id="site-header"></div>
 <main role="main">
@@ -20,7 +22,7 @@
   <div class="rb-page">
     <header class="rb-intro">
       <h1>Xóa nền ảnh</h1>
-      <p>Tách chủ thể, xuất PNG trong suốt — chạy ngay trên trình duyệt.</p>
+      <p>Tách chủ thể bằng AI (IS-Net), làm mượt cạnh, xuất PNG trong suốt.</p>
     </header>
 
     <div id="protocolBanner" class="protocol-banner">Cần chạy qua HTTP (IIS / Live Server).</div>
@@ -82,7 +84,7 @@
 <script src="../assets/js/layout.js"></script>
 <script src="../assets/js/core.js"></script>
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/tools/image.js?v=20260822b"></script>
+<script src="../assets/js/tools/image.js?v=20260824c"></script>
 <script>
 (function () {
   if (location.protocol === "file:") {

@@ -12,5 +12,8 @@ docs/.groq-key
 docs/.groq-key.txt
 docs/api/web.secrets.config
 docs/App_Data/feedback.jsonl
+workers/node_modules/
+workers/package-lock.json
+workers/.deploy-paths.json
 .env
 .env.*

@@ -23,6 +23,8 @@
 
   if (!els.form) return;
 
+  const LS_KEY = "ot_feedback_local";
+
   function setStatus(msg, kind) {
     if (!els.status) return;
     els.status.textContent = msg || "";
@@ -53,13 +55,30 @@
     }
   }
 
+  function loadLocal() {
+    try {
+      return JSON.parse(localStorage.getItem(LS_KEY) || "[]");
+    } catch {
+      return [];
+    }
+  }
+
+  function saveLocal(items) {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(items.slice(0, 50)));
+    } catch (_) {}
+  }
+
   function renderItems(items) {
     if (!els.list) return;
     const rows = Array.isArray(items) ? items : [];
     if (els.count) els.count.textContent = String(rows.length);
     if (!rows.length) {
       els.list.innerHTML = "";
-      if (els.empty) els.empty.hidden = false;
+      if (els.empty) {
+        els.empty.hidden = false;
+        els.empty.textContent = "Chưa có góp ý nào — hãy là người đầu tiên!";
+      }
       return;
     }
     if (els.empty) els.empty.hidden = true;
@@ -83,18 +102,19 @@
   async function loadComments() {
     try {
       const res = await fetch(proxy, { method: "GET", credentials: "same-origin" });
-      const data = await res.json();
-      if (data && data.ok) renderItems(data.items);
-    } catch {
-      if (els.empty) {
-        els.empty.hidden = false;
-        els.empty.textContent = "Chưa tải được danh sách góp ý.";
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.ok && Array.isArray(data.items) && data.items.length) {
+          renderItems(data.items);
+          return;
+        }
       }
-    }
+    } catch (_) {}
+    renderItems(loadLocal());
   }
 
   async function sendViaWebhook(payload) {
-    if (!webhook || /YOUR_|script\.google\.com\/macros\/s\/XXXX/i.test(webhook)) {
+    if (!webhook || /YOUR_|XXXX/i.test(webhook)) {
       throw new Error("Chưa cấu hình feedbackWebhook");
     }
     const res = await fetch(webhook, {
@@ -103,14 +123,13 @@
       body: JSON.stringify(payload),
       redirect: "follow"
     });
-    // Apps Script thường redirect; cố đọc JSON nếu có
     const text = await res.text();
     try {
       const data = JSON.parse(text);
       if (data && data.ok === false) throw new Error(data.error || "Webhook lỗi");
       return data;
     } catch (e) {
-      if (e.message && e.message !== "Webhook lỗi" && !/JSON/.test(e.message)) throw e;
+      if (e.message && !/JSON|Unexpected/.test(e.message)) throw e;
       if (res.ok || res.type === "opaqueredirect") return { ok: true };
       throw new Error("Webhook HTTP " + res.status);
     }
@@ -146,6 +165,15 @@
     return data;
   }
 
+  async function notifyEmailChannels(payload) {
+    if (webhook && !/YOUR_|XXXX/i.test(webhook)) {
+      await sendViaWebhook(payload);
+      return { ok: true };
+    }
+    await sendViaFormSubmit(payload);
+    return { ok: true };
+  }
+
   els.form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = (els.name?.value || "").trim();
@@ -167,16 +195,25 @@
     els.submit.disabled = true;
     setStatus("Đang gửi góp ý…", "");
 
+    const localItem = {
+      id: "local-" + Date.now().toString(36),
+      name,
+      message,
+      createdAt: new Date().toISOString()
+    };
+
     try {
-      const res = await fetch(proxy, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        body: JSON.stringify({ name, email, message, website })
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || "Không gửi được. Thử lại sau.");
+      let data = { ok: false, emailSent: false };
+      try {
+        const res = await fetch(proxy, {
+          method: "POST",
+          credentials: "same-origin",
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          body: JSON.stringify({ name, email, message, website })
+        });
+        if (res.ok) data = await res.json().catch(() => ({ ok: true }));
+      } catch (_) {
+        /* GitHub Pages: ashx không tồn tại — gửi mail phía client */
       }
 
       let mailNote = "";
@@ -186,48 +223,36 @@
         mailNote = " Đã gửi thông báo tới " + notifyEmail + ".";
       } else if (data.needsActivation) {
         mailNote =
-          " Góp ý đã lưu. Mở Gmail " +
-          notifyEmail +
-          " (cả Spam) → tìm mail FormSubmit → bấm Activate Form. Sau đó gửi lại góp ý.";
+          " Mở Gmail " + notifyEmail + " (cả Spam) → FormSubmit → Activate Form, rồi gửi lại.";
         mailKind = "err";
       } else {
-        // Thử webhook Apps Script rồi FormSubmit phía trình duyệt
-        let sent = false;
         try {
-          if (webhook && !/YOUR_|XXXX/i.test(webhook)) {
-            await sendViaWebhook({ name, email, message, id: data.id });
-            sent = true;
-            mailNote = " Đã gửi thông báo tới " + notifyEmail + ".";
-          }
-        } catch (_) { /* fall through */ }
-
-        if (!sent) {
-          try {
-            await sendViaFormSubmit({ name, email, message, id: data.id });
-            sent = true;
-            mailNote = " Đã gửi thông báo tới " + notifyEmail + ".";
-          } catch (mailErr) {
-            if (mailErr.needsActivation) {
-              mailNote =
-                " Góp ý đã lưu. Mở Gmail " +
-                notifyEmail +
-                " (cả mục Spam) → mail từ FormSubmit → bấm «Activate Form». Rồi thử gửi lại.";
-              mailKind = "err";
-            } else {
-              mailNote =
-                " Góp ý đã lưu trên site nhưng CHƯA tới email. Kiểm tra Spam hoặc cấu hình feedbackWebhook (Google Apps Script). Chi tiết: " +
-                (mailErr.message || "lỗi");
-              mailKind = "err";
-            }
+          await notifyEmailChannels({ name, email, message, id: data.id || localItem.id });
+          mailNote = " Đã gửi thông báo tới " + notifyEmail + ".";
+        } catch (mailErr) {
+          if (mailErr.needsActivation) {
+            mailNote =
+              " Mở Gmail " + notifyEmail + " (Spam) → mail FormSubmit → bấm Activate Form.";
+            mailKind = "err";
+          } else {
+            mailNote =
+              " Chưa gửi được email. Cấu hình feedbackWebhook (Google Apps Script) — xem workers/README.md. (" +
+              (mailErr.message || "lỗi") +
+              ")";
+            mailKind = "err";
           }
         }
       }
+
+      const local = loadLocal();
+      local.unshift(localItem);
+      saveLocal(local);
 
       setStatus("Cảm ơn bạn! Góp ý đã được ghi nhận." + mailNote, mailKind);
       els.form.reset();
       await loadComments();
       if (typeof showToast === "function") {
-        showToast(mailKind === "ok" ? "Đã gửi góp ý!" : "Đã lưu — kiểm tra kích hoạt email", mailKind === "ok" ? "success" : "error");
+        showToast(mailKind === "ok" ? "Đã gửi góp ý!" : "Đã lưu — kiểm tra email", mailKind === "ok" ? "success" : "error");
       }
     } catch (err) {
       setStatus(err.message || "Lỗi gửi góp ý.", "err");

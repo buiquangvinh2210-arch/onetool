@@ -1,7 +1,5 @@
-# IIS (onetool.vn) — đã sẵn sàng
+# IIS (tuỳ chọn)
 
-- API: `http://onetool.vn/api/whisper.ashx` → `{"ok":true,"service":"onetool-groq-proxy-iis"}`
-- Trang: `http://onetool.vn/cong-cu/media/audio-to-text.html`
-- User: chọn file → Nhận dạng (không dán key)
+Khi chạy site trên IIS: `/api/whisper.ashx`
 
-Key nằm ở `api/web.secrets.config` hoặc `.groq-key` (không commit Git).
+Khi chạy trên **GitHub Pages**: dùng Cloudflare Worker — xem `../../workers/README.md`

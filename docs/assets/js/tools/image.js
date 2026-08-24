@@ -134,8 +134,9 @@ window.OTImage = (function () {
   async function loadImgly() {
     if (imglyMod) return imglyMod;
     const urls = [
+      "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.8/+esm",
       "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm",
-      "https://esm.sh/@imgly/background-removal@1.5.5"
+      "https://esm.sh/@imgly/background-removal@1.5.8"
     ];
     let lastErr;
     for (const u of urls) {
@@ -150,7 +151,7 @@ window.OTImage = (function () {
   }
 
   async function removeBackgroundImgly(file, onProgress) {
-    onProgress?.("Đang tải model xóa nền…");
+    onProgress?.("Đang tải model AI (lần đầu có thể mất ~30s)…");
     const mod = await loadImgly();
     const removeBg =
       mod.removeBackground ||
@@ -158,30 +159,146 @@ window.OTImage = (function () {
       (typeof mod.default === "function" ? mod.default : null);
     if (!removeBg) throw new Error("API xóa nền không hợp lệ.");
 
-    onProgress?.("Đang xóa nền…");
+    onProgress?.("Đang xóa nền (chất lượng cao)…");
     const publicPaths = [
+      "https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.5.8/dist/",
       "https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.5.5/dist/",
+      "https://staticimgly.com/@imgly/background-removal-data/1.5.8/dist/",
       "https://staticimgly.com/@imgly/background-removal-data/1.5.5/dist/"
     ];
+    // isnet_fp16 = medium (~80MB, cân bằng); isnet = full quality nếu máy đủ mạnh
+    const models = ["isnet_fp16", "medium", "isnet_quint8", "small"];
     let lastErr;
     for (const publicPath of publicPaths) {
-      try {
-        const blob = await removeBg(file, {
-          publicPath,
-          debug: false,
-          output: { format: "image/png", quality: 0.92 },
-          progress: (_key, current, total) => {
-            if (!total) return;
-            const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
-            onProgress?.(`Đang xóa nền… ${pct}%`);
-          }
-        });
-        if (blob instanceof Blob && blob.size > 0) return blob;
-      } catch (e) {
-        lastErr = e;
+      for (const model of models) {
+        try {
+          const blob = await removeBg(file, {
+            publicPath,
+            debug: false,
+            device: "gpu",
+            model,
+            output: { format: "image/png", quality: 1, type: "foreground" },
+            progress: (_key, current, total) => {
+              if (!total) return;
+              const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
+              onProgress?.(`Đang xóa nền… ${pct}%`);
+            }
+          });
+          if (blob instanceof Blob && blob.size > 0) return blob;
+        } catch (e) {
+          lastErr = e;
+        }
       }
     }
     throw lastErr || new Error("Model không trả về ảnh PNG.");
+  }
+
+  /** Làm mượt cạnh alpha bằng Canvas blur (ổn định hơn tự viết kernel). */
+  function softenMaskCanvas(maskCanvas, blurPx) {
+    const w = maskCanvas.width;
+    const h = maskCanvas.height;
+    const soft = document.createElement("canvas");
+    soft.width = w;
+    soft.height = h;
+    const sctx = soft.getContext("2d");
+    sctx.filter = `blur(${Math.max(0.6, blurPx)}px)`;
+    sctx.drawImage(maskCanvas, 0, 0);
+    sctx.filter = "none";
+    return soft;
+  }
+
+  /**
+   * Hậu xử lý PNG: mượt cạnh, cắt nền mờ sót, giảm halo màu nền trên mép.
+   */
+  async function refineCutoutBlob(blob) {
+    const url = URL.createObjectURL(blob);
+    try {
+      const img = await new Promise((resolve, reject) => {
+        const i = new Image();
+        i.onload = () => resolve(i);
+        i.onerror = reject;
+        i.src = url;
+      });
+      const w = img.naturalWidth;
+      const h = img.naturalHeight;
+      if (w < 2 || h < 2) return blob;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true, alpha: true });
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0);
+
+      // Tách alpha → blur → gán lại
+      const image = ctx.getImageData(0, 0, w, h);
+      const d = image.data;
+      const n = w * h;
+
+      const alphaCanvas = document.createElement("canvas");
+      alphaCanvas.width = w;
+      alphaCanvas.height = h;
+      const actx = alphaCanvas.getContext("2d");
+      const aImg = actx.createImageData(w, h);
+      for (let i = 0; i < n; i++) {
+        const a = d[i * 4 + 3];
+        const p = i * 4;
+        aImg.data[p] = aImg.data[p + 1] = aImg.data[p + 2] = 255;
+        aImg.data[p + 3] = a;
+      }
+      actx.putImageData(aImg, 0, 0);
+      const blurPx = Math.max(0.8, Math.min(2.5, Math.min(w, h) / 450));
+      const softMask = softenMaskCanvas(alphaCanvas, blurPx);
+      const softData = softMask.getContext("2d").getImageData(0, 0, w, h).data;
+
+      for (let i = 0; i < n; i++) {
+        let a = softData[i * 4 + 3];
+        // Cắt nền sót / nham nhở; giữ soft-edge tóc
+        a = Math.round(smoothstep(18, 210, a) * 255);
+        const o = i * 4;
+        const prevA = d[o + 3] / 255;
+        d[o + 3] = a;
+
+        // Giảm halo: kéo RGB về phía đã “đậm” hơn khi alpha thấp
+        if (a > 10 && a < 245 && prevA > 0.05) {
+          const t = a / 255;
+          const inv = 1 / Math.max(prevA, 0.25);
+          d[o] = Math.min(255, Math.round(d[o] * inv * t));
+          d[o + 1] = Math.min(255, Math.round(d[o + 1] * inv * t));
+          d[o + 2] = Math.min(255, Math.round(d[o + 2] * inv * t));
+        }
+      }
+
+      // Loại đốm nền cô lập
+      const snap = new Uint8ClampedArray(n);
+      for (let i = 0; i < n; i++) snap[i] = d[i * 4 + 3];
+      for (let y = 1; y < h - 1; y++) {
+        for (let x = 1; x < w - 1; x++) {
+          const i = y * w + x;
+          if (snap[i] < 50) continue;
+          let near = 0;
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              if (!dx && !dy) continue;
+              if (snap[(y + dy) * w + (x + dx)] > 90) near++;
+            }
+          }
+          if (near <= 1) d[i * 4 + 3] = 0;
+        }
+      }
+
+      ctx.putImageData(image, 0, 0);
+      return OT.canvasToBlob(canvas, "image/png");
+    } catch (_) {
+      return blob;
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  function smoothstep(edge0, edge1, x) {
+    const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+    return t * t * (3 - 2 * t);
   }
 
   async function loadMediaPipeSegmenter(onProgress) {
@@ -272,7 +389,6 @@ window.OTImage = (function () {
     return n ? sum / n : 0;
   }
 
-  /** Chọn mask "người" — ưu tiên vùng giữa ảnh có confidence cao. */
   function extractPersonMask(result) {
     const candidates = [];
 
@@ -303,7 +419,6 @@ window.OTImage = (function () {
       const m = result.categoryMask;
       const u8 = m.getAsUint8Array();
       const data = new Float32Array(u8.length);
-      // Selfie category: thường 0=bg, >0=người — cũng thử đảo
       for (let i = 0; i < u8.length; i++) data[i] = u8[i] > 0 ? 1 : 0;
       const mean = centerMean(data, m.width, m.height, false);
       const meanInv = centerMean(data, m.width, m.height, true);
@@ -318,20 +433,37 @@ window.OTImage = (function () {
     return best;
   }
 
-  /**
-   * MediaPipe: vẽ ảnh gốc → mask alpha → destination-in.
-   * Không segment trên canvas xuất (tránh WebGL làm mất RGB → bóng trắng).
-   */
+  function sampleMaskBilinear(data, mw, mh, u, v, invert) {
+    const x = u * (mw - 1);
+    const y = v * (mh - 1);
+    const x0 = Math.floor(x);
+    const y0 = Math.floor(y);
+    const x1 = Math.min(mw - 1, x0 + 1);
+    const y1 = Math.min(mh - 1, y0 + 1);
+    const fx = x - x0;
+    const fy = y - y0;
+    const read = (ix, iy) => {
+      let t = data[iy * mw + ix];
+      if (t > 1) t /= 255;
+      if (invert) t = 1 - t;
+      return t;
+    };
+    const a = read(x0, y0);
+    const b = read(x1, y0);
+    const c = read(x0, y1);
+    const d = read(x1, y1);
+    return a * (1 - fx) * (1 - fy) + b * fx * (1 - fy) + c * (1 - fx) * fy + d * fx * fy;
+  }
+
   async function removeBackgroundMediaPipe(file, onProgress) {
     onProgress?.("Đang chuẩn bị ảnh…");
     const img = await OT.loadImage(file);
-    const maxEdge = 1280;
+    const maxEdge = 1600;
     const edge = Math.max(img.naturalWidth, img.naturalHeight);
     const scale = edge > maxEdge ? maxEdge / edge : 1;
     const w = Math.max(1, Math.round(img.naturalWidth * scale));
     const h = Math.max(1, Math.round(img.naturalHeight * scale));
 
-    // Canvas riêng chỉ để inference
     const infer = document.createElement("canvas");
     infer.width = w;
     infer.height = h;
@@ -362,23 +494,17 @@ window.OTImage = (function () {
       throw new Error("Không tách được chủ thể. Thử ảnh chân dung rõ người.");
     }
 
-    // Mask canvas: trắng + alpha = độ tin cậy người
     const maskCanvas = document.createElement("canvas");
     maskCanvas.width = w;
     maskCanvas.height = h;
     const mctx = maskCanvas.getContext("2d");
     const mid = mctx.createImageData(w, h);
     const md = mid.data;
+
     for (let y = 0; y < h; y++) {
       for (let x = 0; x < w; x++) {
-        const mx = Math.min(person.w - 1, Math.floor((x / w) * person.w));
-        const my = Math.min(person.h - 1, Math.floor((y / h) * person.h));
-        let t = person.data[my * person.w + mx];
-        if (t > 1) t /= 255;
-        if (person.invert) t = 1 - t;
-        if (t < 0.2) t = 0;
-        else if (t > 0.75) t = 1;
-        else t = (t - 0.2) / 0.55;
+        let t = sampleMaskBilinear(person.data, person.w, person.h, x / (w - 1 || 1), y / (h - 1 || 1), person.invert);
+        t = smoothstep(0.18, 0.72, t);
         const a = Math.round(Math.max(0, Math.min(1, t)) * 255);
         const i = (y * w + x) * 4;
         md[i] = 255;
@@ -388,8 +514,8 @@ window.OTImage = (function () {
       }
     }
     mctx.putImageData(mid, 0, 0);
+    const softMask = softenMaskCanvas(maskCanvas, 1.4);
 
-    // Canvas kết quả: ảnh gốc + destination-in (giữ màu người, bỏ nền)
     const out = document.createElement("canvas");
     out.width = w;
     out.height = h;
@@ -397,13 +523,12 @@ window.OTImage = (function () {
     ctx.clearRect(0, 0, w, h);
     ctx.drawImage(img, 0, 0, w, h);
     ctx.globalCompositeOperation = "destination-in";
-    ctx.drawImage(maskCanvas, 0, 0);
+    ctx.drawImage(softMask, 0, 0);
     ctx.globalCompositeOperation = "source-over";
 
     return OT.canvasToBlob(out, "image/png");
   }
 
-  /** Kiểm tra nhanh: bóng trắng gần như chỉ có pixel trắng/trong suốt. */
   async function looksLikeWhiteSilhouette(blob) {
     try {
       const url = URL.createObjectURL(blob);
@@ -439,29 +564,32 @@ window.OTImage = (function () {
     if (location.protocol === "file:") {
       throw new Error("Xóa nền cần chạy qua HTTP (IIS / Live Server).");
     }
-    if (file.size > 8 * 1024 * 1024) {
-      throw new Error("Ảnh quá lớn (tối đa 8MB).");
+    if (file.size > 12 * 1024 * 1024) {
+      throw new Error("Ảnh quá lớn (tối đa 12MB).");
     }
 
     const t0 = performance.now();
     let blob = null;
-    let engine = "mediapipe";
+    let engine = "imgly";
 
-    // MediaPipe trước (ổn định, nhanh) — đã sửa destination-in
+    // imgly IS-Net trước — cạnh tóc/sản phẩm tốt hơn selfie MediaPipe
     try {
-      blob = await removeBackgroundMediaPipe(file, onProgress);
+      blob = await removeBackgroundImgly(file, onProgress);
       if (await looksLikeWhiteSilhouette(blob)) {
         throw new Error("Kết quả mask lỗi (silhouette).");
       }
     } catch (e) {
-      console.warn("[remove-bg] MediaPipe failed:", e);
-      onProgress?.("Thử model chính xác hơn…");
-      engine = "imgly";
-      blob = await removeBackgroundImgly(file, onProgress);
+      console.warn("[remove-bg] imgly failed:", e);
+      onProgress?.("Chuyển sang model dự phòng…");
+      engine = "mediapipe";
+      blob = await removeBackgroundMediaPipe(file, onProgress);
       if (await looksLikeWhiteSilhouette(blob)) {
         throw new Error("Xóa nền thất bại — thử ảnh khác hoặc Ctrl+F5.");
       }
     }
+
+    onProgress?.("Đang làm mượt cạnh…");
+    blob = await refineCutoutBlob(blob);
 
     const sec = ((performance.now() - t0) / 1000).toFixed(1);
     onProgress?.(`Xong trong ~${sec}s`);

@@ -33,7 +33,13 @@ window.OTAudioCloud = (function () {
         localStorage.removeItem(LS_PROXY);
       }
     } catch (_) {}
-    return resolveProxy(window.OT_CONFIG?.whisperProxy || "/api/whisper.ashx");
+
+    const cfg = window.OT_CONFIG || {};
+    const cloud = String(cfg.whisperCloud || "").trim();
+    if (cloud && !/YOUR_|XXXX|CHANGEME/i.test(cloud)) {
+      return resolveProxy(cloud);
+    }
+    return resolveProxy(cfg.whisperProxy || "/api/whisper.ashx");
   }
 
   function setProxy(v) {
@@ -171,8 +177,10 @@ window.OTAudioCloud = (function () {
     try {
       data = JSON.parse(raw);
     } catch (_) {
-      if (res.status === 404) {
-        throw new Error("Chưa có /api/whisper.ashx trên IIS.");
+      if (res.status === 404 || res.status === 405) {
+        throw new Error(
+          "API nhận dạng chưa sẵn sàng trên host này. Deploy Cloudflare Worker (workers/README.md) và điền whisperCloud trong ot-config.js."
+        );
       }
       throw new Error(raw.slice(0, 200) || "Phản hồi không hợp lệ.");
     }
