@@ -143,10 +143,10 @@ window.OTImage = (function () {
   }
 
   const BG_TIER = {
-    desktop: { maxEdge: 2048, maxMb: 12, models: ["isnet_fp16", "medium", "isnet_quint8", "small"], device: "gpu", refine: true },
-    "desktop-low": { maxEdge: 1600, maxMb: 10, models: ["isnet_quint8", "medium", "small"], device: "gpu", refine: true },
-    mobile: { maxEdge: 1024, maxMb: 8, models: ["small"], device: "cpu", refine: false },
-    "mobile-low": { maxEdge: 768, maxMb: 6, models: ["small"], device: "cpu", refine: false }
+    desktop: { maxEdge: 1600, maxMb: 12, models: ["isnet_fp16", "isnet_quint8"], refine: true },
+    "desktop-low": { maxEdge: 1280, maxMb: 10, models: ["isnet_quint8", "isnet_fp16"], refine: true },
+    mobile: { maxEdge: 896, maxMb: 8, models: ["isnet_quint8"], refine: true },
+    "mobile-low": { maxEdge: 720, maxMb: 6, models: ["isnet_quint8"], refine: true }
   };
 
   function bgConfig(tier) {
@@ -186,13 +186,31 @@ window.OTImage = (function () {
     throw lastErr || new Error("Không tải được model xóa nền.");
   }
 
+  async function resolveImglyPublicPath() {
+    const candidates = [
+      "https://staticimgly.com/@imgly/background-removal-data/1.5.8/dist/",
+      "https://staticimgly.com/@imgly/background-removal-data/1.5.5/dist/"
+    ];
+    for (const publicPath of candidates) {
+      try {
+        const res = await fetch(publicPath + "resources.json", { method: "GET" });
+        if (res.ok) return publicPath;
+      } catch (_) {}
+    }
+    return candidates[0];
+  }
+
+  function withTimeout(promise, ms, label) {
+    let t;
+    const timeout = new Promise((_, reject) => {
+      t = setTimeout(() => reject(new Error(label || "Hết thời gian chờ model.")), ms);
+    });
+    return Promise.race([promise, timeout]).finally(() => clearTimeout(t));
+  }
+
   async function removeBackgroundImgly(file, onProgress, tier = "desktop") {
     const cfg = bgConfig(tier);
-    onProgress?.(
-      tier.startsWith("mobile")
-        ? "Đang tải model nhẹ cho điện thoại (lần đầu ~30–60s)…"
-        : "Đang tải model AI (lần đầu có thể mất ~30s)…"
-    );
+    onProgress?.("Đang tải model xóa nền (lần đầu có thể mất ~30s)…");
     const mod = await loadImgly();
     const removeBg =
       mod.removeBackground ||
@@ -200,21 +218,18 @@ window.OTImage = (function () {
       (typeof mod.default === "function" ? mod.default : null);
     if (!removeBg) throw new Error("API xóa nền không hợp lệ.");
 
-    onProgress?.(tier.startsWith("mobile") ? "Đang xóa nền trên thiết bị di động…" : "Đang xóa nền (chất lượng cao)…");
-    const publicPaths = [
-      "https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.5.8/dist/",
-      "https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.5.5/dist/",
-      "https://staticimgly.com/@imgly/background-removal-data/1.5.8/dist/",
-      "https://staticimgly.com/@imgly/background-removal-data/1.5.5/dist/"
-    ];
-    const models = cfg.models;
-    const devices = tier.startsWith("mobile") ? ["cpu", "gpu"] : ["gpu", "cpu"];
+    const publicPath = await resolveImglyPublicPath();
+    const models = cfg.models.filter((m) => m === "isnet" || m === "isnet_fp16" || m === "isnet_quint8");
+    const hasWebGpu = typeof navigator !== "undefined" && !!navigator.gpu;
+    const devices = tier.startsWith("mobile") || !hasWebGpu ? ["cpu"] : ["gpu", "cpu"];
     let lastErr;
-    for (const publicPath of publicPaths) {
-      for (const model of models) {
-        for (const device of devices) {
-          try {
-            const blob = await removeBg(file, {
+
+    for (const model of models) {
+      for (const device of devices) {
+        try {
+          onProgress?.(device === "cpu" ? "Đang xóa nền…" : "Đang xóa nền (GPU)…");
+          const blob = await withTimeout(
+            removeBg(file, {
               publicPath,
               debug: false,
               device,
@@ -225,11 +240,13 @@ window.OTImage = (function () {
                 const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
                 onProgress?.(`Đang xóa nền… ${pct}%`);
               }
-            });
-            if (blob instanceof Blob && blob.size > 0) return blob;
-          } catch (e) {
-            lastErr = e;
-          }
+            }),
+            90000,
+            "Model quá lâu — thử cách khác."
+          );
+          if (blob instanceof Blob && blob.size > 0) return blob;
+        } catch (e) {
+          lastErr = e;
         }
       }
     }
@@ -544,27 +561,31 @@ window.OTImage = (function () {
       throw new Error("Không tách được chủ thể. Thử ảnh chân dung rõ người.");
     }
 
+    const srcMask = document.createElement("canvas");
+    srcMask.width = person.w;
+    srcMask.height = person.h;
+    const sctx = srcMask.getContext("2d");
+    const sid = sctx.createImageData(person.w, person.h);
+    const sd = sid.data;
+    for (let i = 0; i < person.data.length; i++) {
+      let t = person.data[i];
+      if (t > 1) t /= 255;
+      if (person.invert) t = 1 - t;
+      const p = i * 4;
+      sd[p] = sd[p + 1] = sd[p + 2] = 255;
+      sd[p + 3] = Math.round(Math.max(0, Math.min(1, t)) * 255);
+    }
+    sctx.putImageData(sid, 0, 0);
+
     const maskCanvas = document.createElement("canvas");
     maskCanvas.width = w;
     maskCanvas.height = h;
     const mctx = maskCanvas.getContext("2d");
-    const mid = mctx.createImageData(w, h);
-    const md = mid.data;
-
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        let t = sampleMaskBilinear(person.data, person.w, person.h, x / (w - 1 || 1), y / (h - 1 || 1), person.invert);
-        t = smoothstep(0.18, 0.72, t);
-        const a = Math.round(Math.max(0, Math.min(1, t)) * 255);
-        const i = (y * w + x) * 4;
-        md[i] = 255;
-        md[i + 1] = 255;
-        md[i + 2] = 255;
-        md[i + 3] = a;
-      }
-    }
-    mctx.putImageData(mid, 0, 0);
-    const softMask = softenMaskCanvas(maskCanvas, 1.4);
+    mctx.imageSmoothingEnabled = true;
+    mctx.imageSmoothingQuality = "high";
+    mctx.drawImage(srcMask, 0, 0, w, h);
+    const blurPx = Math.max(1.8, Math.min(w, h) / 220);
+    const softMask = softenMaskCanvas(maskCanvas, blurPx);
 
     const out = document.createElement("canvas");
     out.width = w;
@@ -633,7 +654,6 @@ window.OTImage = (function () {
     const t0 = performance.now();
     let blob = null;
     let engine = "mediapipe";
-    const mobile = tier.startsWith("mobile");
 
     async function tryMediaPipe() {
       const out = await removeBackgroundMediaPipe(workFile, onProgress, tier);
@@ -647,26 +667,14 @@ window.OTImage = (function () {
       return out;
     }
 
-    if (mobile) {
-      try {
-        blob = await tryMediaPipe();
-        engine = "mediapipe";
-      } catch (e) {
-        console.warn("[remove-bg] mediapipe mobile failed:", e);
-        onProgress?.("Thử cách khác…");
-        blob = await tryImgly();
-        engine = "imgly";
-      }
-    } else {
-      try {
-        blob = await tryImgly();
-        engine = "imgly";
-      } catch (e) {
-        console.warn("[remove-bg] imgly failed:", e);
-        onProgress?.("Chuyển sang model dự phòng…");
-        blob = await tryMediaPipe();
-        engine = "mediapipe";
-      }
+    try {
+      blob = await tryImgly();
+      engine = "imgly";
+    } catch (e) {
+      console.warn("[remove-bg] imgly failed:", e);
+      onProgress?.("Chuyển sang model dự phòng…");
+      blob = await tryMediaPipe();
+      engine = "mediapipe";
     }
 
     if (cfg.refine) {

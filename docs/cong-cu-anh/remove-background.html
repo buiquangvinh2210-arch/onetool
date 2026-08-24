@@ -22,10 +22,8 @@
   <div class="rb-page">
     <header class="rb-intro">
       <h1>Xóa nền ảnh</h1>
-      <p>Tách nền ảnh, làm mượt cạnh, xuất PNG trong suốt. Điện thoại dùng model nhẹ hơn máy tính.</p>
+      <p>Tách nền ảnh, làm mượt cạnh, xuất PNG trong suốt.</p>
     </header>
-
-    <div id="protocolBanner" class="protocol-banner">Cần chạy qua HTTP (IIS / Live Server).</div>
 
     <div class="rb-board" id="board">
       <div class="upload-zone" id="uploadZone" data-kind="image" role="button" tabindex="0">
@@ -84,13 +82,9 @@
 <script src="../assets/js/layout.js"></script>
 <script src="../assets/js/core.js"></script>
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/tools/image.js?v=20260824e"></script>
+<script src="../assets/js/tools/image.js?v=20260824g"></script>
 <script>
 (function () {
-  if (location.protocol === "file:") {
-    document.getElementById("protocolBanner")?.classList.add("is-on");
-  }
-
   const isMobile =
     /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
     (navigator.maxTouchPoints > 0 && window.matchMedia("(max-width: 900px)").matches);
@@ -192,7 +186,6 @@
   els.runBtn.onclick = async () => {
     try {
       if (location.protocol === "file:") {
-        document.getElementById("protocolBanner")?.classList.add("is-on");
         throw new Error("Cần chạy local server (HTTP).");
       }
       if (!file) throw new Error("Chọn ảnh.");
