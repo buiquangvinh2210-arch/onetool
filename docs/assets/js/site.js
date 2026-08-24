@@ -177,11 +177,13 @@
       return `<a class="tool-card home-tool-card" href="${toolHref(t)}">
         <div class="tool-card-icon" aria-hidden="true">${t.icon}</div>
         <div class="tool-card-body">
-          <span class="tool-card-category">${cat.icon} ${cat.name}</span>
+          <div class="tool-card-top">
+            <span class="tool-card-category">${cat.icon} ${cat.name}</span>
+            <span class="credit-badge badge-free">Miễn phí</span>
+          </div>
           <h3 class="tool-card-title">${t.name}</h3>
           <p class="tool-card-desc">${t.desc}</p>
           <div class="tool-card-footer">
-            <span class="credit-badge badge-free">Miễn phí</span>
             <span class="btn btn-primary btn-sm">Mở tool →</span>
           </div>
         </div>
@@ -245,11 +247,13 @@
       return `<a class="tool-card" href="${toolHref(t)}">
         <div class="tool-card-icon" aria-hidden="true">${t.icon}</div>
         <div class="tool-card-body">
-          <span class="tool-card-category">${cat.icon} ${cat.name}</span>
+          <div class="tool-card-top">
+            <span class="tool-card-category">${cat.icon} ${cat.name}</span>
+            <span class="credit-badge badge-free">Miễn phí</span>
+          </div>
           <h3 class="tool-card-title">${t.name}</h3>
           <p class="tool-card-desc">${t.desc}</p>
           <div class="tool-card-footer">
-            <span class="credit-badge badge-free">Miễn phí</span>
             <span class="btn btn-primary btn-sm">Mở tool →</span>
           </div>
         </div>

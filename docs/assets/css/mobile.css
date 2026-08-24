@@ -799,6 +799,12 @@
 
   .cat-tools-section .tool-card-footer {
     margin-top: 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .cat-tools-section .credit-badge {
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .cat-tools-section .category-filter {
