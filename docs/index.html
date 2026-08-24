@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi" data-theme="light">
 <head>
   <meta charset="utf-8" />
@@ -111,16 +111,16 @@
 
 </main>
 <div id="site-footer"></div>
-<script src="assets/js/catalog.js" defer></script>
+<script src="assets/js/catalog.js"></script>
 <script src="assets/js/layout.js" defer></script>
-<script src="assets/js/core.js" defer></script>
-<script src="assets/js/site.js" defer></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/site.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
   if (window.OTCatalog && typeof renderHomeShowcase === "function") {
     renderHomeShowcase(document.getElementById("homeToolRows"));
   }
-});
+})();
 </script>
 </body>
 </html>
