@@ -7,16 +7,21 @@
   <meta name="description" content="Tạo mã QR từ link website hoặc văn bản, xem trước và tải PNG để in. Miễn phí, chạy trên trình duyệt." />
   <meta name="robots" content="index,follow" />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260824b" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" />
-  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260824a" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260824b"></noscript>
   <link rel="stylesheet" href="../assets/css/tools/qr-generator.css" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
 @media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
 <body>
 <div id="site-header"></div>
 <main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
 <section class="tool-workspace tool-workspace--doc">
   <div class="qr-page">
     <header class="qr-intro">
@@ -62,12 +67,13 @@
 </section>
 </main>
 <div id="site-footer"></div>
-<script src="../assets/js/catalog.js"></script>
-<script src="../assets/js/layout.js"></script>
-<script src="../assets/js/core.js"></script>
-<script src="../assets/js/site.js"></script>
-<script src="../assets/js/tools/utils.js?v=20260824a"></script>
+<script src="../assets/js/catalog.js" defer></script>
+<script src="../assets/js/layout.js" defer></script>
+<script src="../assets/js/core.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/tools/utils.js?v=20260824a" defer></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 (function () {
   let lastBlob = null;
   const els = {
@@ -141,6 +147,7 @@
     els.status.className = "qr-status is-ok";
   }, true);
 })();
+});
 </script>
 </body>
 </html>

@@ -347,7 +347,7 @@
     </div>
   </div>
 </header>
-<div class="nav-drawer" id="navDrawer" aria-hidden="true" inert>
+<div class="nav-drawer" id="navDrawer" aria-hidden="true">
   <div class="nav-drawer-backdrop" id="navDrawerBackdrop"></div>
   <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
     <div class="nav-drawer-head">
@@ -448,7 +448,7 @@
 
   function injectToolCrumb() {
     const isTool = meta.cat !== "home" && meta.cat !== "hub" && !String(meta.tool).endsWith("-index");
-    if (!isTool || document.getElementById("otCrumb")) return;
+    if (!isTool) return;
 
     const cat = window.OTCatalog?.catBySlug?.(meta.cat);
     const tool = window.OTCatalog?.toolBySlug?.(meta.tool);
@@ -458,9 +458,15 @@
 
     document.querySelectorAll(".breadcrumb, .rb-crumb, .at-crumb, .ir-crumb").forEach((el) => el.remove());
 
-    const nav = document.createElement("nav");
+    let nav = document.getElementById("otCrumb");
+    if (!nav) {
+      nav = document.createElement("nav");
+      nav.id = "otCrumb";
+      const main = document.querySelector("main");
+      if (main) main.prepend(nav);
+      else return;
+    }
     nav.className = "ot-crumb-wrap";
-    nav.id = "otCrumb";
     nav.setAttribute("aria-label", "Breadcrumb");
     nav.innerHTML = `
       <div class="ot-crumb">
@@ -472,16 +478,15 @@
         <span class="sep" aria-hidden="true">/</span>
         <span class="now">${esc(toolLabel)}</span>
       </div>`;
-
-    const main = document.querySelector("main");
-    if (main) main.prepend(nav);
   }
 
   function injectToolSeoBody() {
     const isTool = meta.cat !== "home" && meta.cat !== "hub" && !String(meta.tool).endsWith("-index");
     if (!isTool || !window.OTCatalog) return;
     const main = document.querySelector("main");
-    if (!main || document.getElementById("toolSeo")) return;
+    if (!main) return;
+    const existing = document.getElementById("toolSeo");
+    if (existing && (existing.dataset.static === "1" || existing.childElementCount > 0)) return;
 
     const tool = OTCatalog.toolBySlug(meta.tool);
     const copy = OTCatalog.seo[meta.tool];
@@ -514,15 +519,21 @@
       })
       .join("");
 
-    const section = document.createElement("section");
-    section.className = "tool-seo";
-    section.id = "toolSeo";
-    section.innerHTML = `
+    const html = `
       <div class="tool-seo-wrap">
         ${blocks}
         ${more ? `<section class="tool-seo-block"><h2>Công cụ khác trên OneTool</h2>
           <ul class="tool-seo-more">${more}</ul></section>` : ""}
       </div>`;
+    if (existing) {
+      existing.classList.add("tool-seo");
+      existing.innerHTML = html;
+      return;
+    }
+    const section = document.createElement("section");
+    section.className = "tool-seo";
+    section.id = "toolSeo";
+    section.innerHTML = html;
     main.appendChild(section);
   }
 

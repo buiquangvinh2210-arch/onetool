@@ -6,16 +6,21 @@
   <title>Chuyển audio/video thành văn bản tiếng Việt + SRT | OneTool</title>
   <meta name="description" content="Nhận dạng giọng nói từ MP3, WAV, MP4 thành văn bản và phụ đề SRT. Hỗ trợ tiếng Việt, miễn phí trên trình duyệt." />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260824b" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" />
-  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260824a" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260824b"></noscript>
   <link rel="stylesheet" href="../assets/css/tools/audio-to-text.css?v=20260822n" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
 @media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
 <body>
 <div id="site-header"></div>
 <main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
 <section class="tool-workspace tool-workspace--doc">
   <div class="at-top">
     <div class="at-title-row">
@@ -33,7 +38,7 @@
     <div class="at-shell">
       <aside class="at-side">
         <p class="at-side-label">Nguồn</p>
-        <div class="upload-zone" id="uploadZone" data-kind="media" role="button" tabindex="0">
+        <div class="upload-zone" id="uploadZone" data-kind="media">
           <input type="file" id="fileInput" accept="audio/*,video/*,.mp3,.wav,.m4a,.ogg,.webm,.mp4,.mkv,.mov" hidden />
           <div class="upload-placeholder">
             <span class="upload-icon upload-icon--media">AUDIO</span>
@@ -74,15 +79,45 @@
     </div>
   </div>
 </section>
+
+<section class="tool-seo" id="toolSeo" data-static="1">
+  <div class="tool-seo-wrap">
+    <section class="tool-seo-block">
+      <h2>Audio/Video → Text là gì?</h2>
+      <p>Đây là công cụ <strong>chuyển giọng nói thành văn bản</strong> từ file ghi âm hoặc video. OneTool hỗ trợ tiếng Việt, xuất <strong>TXT</strong> để biên tập và <strong>SRT</strong> để gắn phụ đề.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Cách chuyển audio thành văn bản</h2>
+      <p>Thả file MP3, WAV, M4A hoặc MP4, chọn ngôn ngữ (tiếng Việt / English / tự nhận diện), bấm <strong>Nhận dạng</strong>. Khi xong, sao chép nội dung hoặc tải TXT và SRT.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Dùng transcript để làm gì</h2>
+      <ul>
+        <li><strong>Phụ đề video</strong> gắn SRT vào CapCut, Premiere hoặc YouTube.</li>
+        <li><strong>Biên bản họp</strong> sửa chính tả rồi gửi team.</li>
+        <li><strong>Podcast / phỏng vấn</strong> lấy quote và viết bài từ bản ghi.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công cụ khác trên OneTool</h2>
+      <ul class="tool-seo-more">
+        <li><a class="tool-seo-card" href="video-convert.html"><span class="tool-seo-card-icon" aria-hidden="true">🎬</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Nén / Convert video</strong><span class="tool-seo-card-sapo">Nén MP4, đổi WebM hoặc tách MP3.</span></span></a></li>
+        <li><a class="tool-seo-card" href="../cong-cu-pdf/pdf-merge.html"><span class="tool-seo-card-icon" aria-hidden="true">📄</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Gộp PDF</strong><span class="tool-seo-card-sapo">Ghép nhiều file PDF thành một.</span></span></a></li>
+        <li><a class="tool-seo-card" href="../cong-cu-anh/image-convert.html"><span class="tool-seo-card-icon" aria-hidden="true">🖼️</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Convert ảnh</strong><span class="tool-seo-card-sapo">Đổi JPG, PNG, WebP ngay trên trình duyệt.</span></span></a></li>
+      </ul>
+    </section>
+  </div>
+</section>
 </main>
 <div id="site-footer"></div>
-<script src="../assets/js/catalog.js"></script>
-<script src="../assets/js/layout.js"></script>
-<script src="../assets/js/core.js"></script>
-<script src="../assets/js/site.js"></script>
-<script src="../assets/js/ot-config.js"></script>
-<script src="../assets/js/tools/audio-cloud.js"></script>
+<script src="../assets/js/catalog.js" defer></script>
+<script src="../assets/js/layout.js" defer></script>
+<script src="../assets/js/core.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/ot-config.js" defer></script>
+<script src="../assets/js/tools/audio-cloud.js" defer></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 (function () {
   try {
     if (location.protocol === "file:") document.getElementById("protocolBanner")?.classList.add("is-on");
@@ -167,6 +202,7 @@
     console.error(err);
   }
 })();
+});
 </script>
 </body>
 </html>

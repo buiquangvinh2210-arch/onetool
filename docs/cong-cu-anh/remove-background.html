@@ -6,16 +6,21 @@
   <title>Xóa nền ảnh AI online miễn phí | OneTool</title>
   <meta name="description" content="Xóa nền ảnh AI trên trình duyệt, xem preview ngay, xuất PNG trong suốt." />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260824b" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" />
-  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260824a" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260824b" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260824b"></noscript>
   <link rel="stylesheet" href="../assets/css/tools/remove-background.css" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
 @media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
 <body>
 <div id="site-header"></div>
 <main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
 <section class="tool-workspace tool-workspace--doc">
   <div class="rb-page">
     <header class="rb-intro">
@@ -24,7 +29,7 @@
     </header>
 
     <div class="rb-board" id="board">
-      <div class="upload-zone" id="uploadZone" data-kind="image" role="button" tabindex="0">
+      <div class="upload-zone" id="uploadZone" data-kind="image">
         <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp" hidden />
         <div class="upload-placeholder" id="uploadPlaceholder">
           <p class="rb-drop-kicker">Thả ảnh vào đây</p>
@@ -76,12 +81,13 @@
 </section>
 </main>
 <div id="site-footer"></div>
-<script src="../assets/js/catalog.js"></script>
-<script src="../assets/js/layout.js"></script>
-<script src="../assets/js/core.js"></script>
-<script src="../assets/js/site.js"></script>
-<script src="../assets/js/tools/image.js?v=20260824g"></script>
+<script src="../assets/js/catalog.js" defer></script>
+<script src="../assets/js/layout.js" defer></script>
+<script src="../assets/js/core.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/tools/image.js?v=20260824g" defer></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 (function () {
   const isMobile =
     /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
@@ -216,6 +222,7 @@
     }
   };
 })();
+});
 </script>
 </body>
 </html>
