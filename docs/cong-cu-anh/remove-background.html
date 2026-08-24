@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xóa nền ảnh AI online miễn phí | OneTool</title>
+  <meta name="description" content="Xóa nền ảnh AI trên trình duyệt, xem preview ngay, xuất PNG trong suốt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/tools/remove-background.css" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="rb-page">
+    <header class="rb-intro">
+      <h1>Xóa nền ảnh</h1>
+      <p>Tách chủ thể, xuất PNG trong suốt — chạy ngay trên trình duyệt.</p>
+    </header>
+
+    <div id="protocolBanner" class="protocol-banner">Cần chạy qua HTTP (IIS / Live Server).</div>
+
+    <div class="rb-board" id="board">
+      <div class="upload-zone" id="uploadZone" data-kind="image" role="button" tabindex="0">
+        <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp" hidden />
+        <div class="upload-placeholder" id="uploadPlaceholder">
+          <p class="rb-drop-kicker">Thả ảnh vào đây</p>
+          <p class="rb-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · JPG PNG WebP · tối đa 8&nbsp;MB</p>
+        </div>
+      </div>
+
+      <div class="rb-work">
+        <figure class="rb-shot">
+          <figcaption>
+            <span>Gốc</span>
+            <button type="button" class="rb-text-btn" id="changeBtn">Đổi ảnh</button>
+          </figcaption>
+          <div class="rb-frame" id="sourceBox">
+            <img id="sourceImg" alt="Ảnh gốc" />
+          </div>
+          <p id="sourceMeta" class="rb-file"></p>
+        </figure>
+
+        <div class="rb-mid">
+          <button type="button" class="rb-run" id="runBtn" disabled>Xóa nền</button>
+        </div>
+
+        <figure class="rb-shot">
+          <figcaption>
+            <span>PNG</span>
+            <span id="status" class="rb-status">Chờ xử lý</span>
+          </figcaption>
+          <div id="preview" class="rb-frame rb-frame--out" data-bg="check">
+            <div class="rb-wait" id="resultEmpty">Kết quả hiện ở đây</div>
+          </div>
+          <div class="rb-out-bar" id="outBar" hidden>
+            <div class="rb-bg-toggle" id="bgToggle">
+              <button type="button" data-bg="check" class="is-on">Caro</button>
+              <button type="button" data-bg="light">Sáng</button>
+              <button type="button" data-bg="dark">Tối</button>
+            </div>
+            <div class="result-actions">
+              <button type="button" class="rb-text-btn" id="copyResultBtn" disabled>Sao chép</button>
+              <button type="button" class="rb-text-btn rb-text-btn--strong" id="downloadResultBtn" disabled>Tải PNG</button>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="rb-progress" id="otProgress" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/image.js?v=20260822b"></script>
+<script>
+(function () {
+  if (location.protocol === "file:") {
+    document.getElementById("protocolBanner")?.classList.add("is-on");
+  }
+
+  let file = null;
+  let sourceUrl = null;
+  let lastBlob = null;
+
+  const els = {
+    board: document.getElementById("board"),
+    zone: document.getElementById("uploadZone"),
+    sourceImg: document.getElementById("sourceImg"),
+    sourceMeta: document.getElementById("sourceMeta"),
+    runBtn: document.getElementById("runBtn"),
+    status: document.getElementById("status"),
+    preview: document.getElementById("preview"),
+    input: document.getElementById("fileInput"),
+    outBar: document.getElementById("outBar"),
+    bgToggle: document.getElementById("bgToggle")
+  };
+
+  function waitMarkup() {
+    return '<div class="rb-wait" id="resultEmpty">Kết quả hiện ở đây</div>';
+  }
+
+  function revokeSource() {
+    if (sourceUrl) URL.revokeObjectURL(sourceUrl);
+    sourceUrl = null;
+  }
+
+  function clearResult() {
+    lastBlob = null;
+    els.board.classList.remove("is-done");
+    if (els.outBar) els.outBar.hidden = true;
+    els.preview.querySelectorAll("img").forEach((img) => {
+      if (img.src?.startsWith("blob:")) URL.revokeObjectURL(img.src);
+      img.remove();
+    });
+    if (!els.preview.querySelector(".rb-wait")) els.preview.innerHTML = waitMarkup();
+    document.getElementById("copyResultBtn").disabled = true;
+    document.getElementById("downloadResultBtn").disabled = true;
+  }
+
+  function showSource(f) {
+    revokeSource();
+    file = f;
+    sourceUrl = URL.createObjectURL(f);
+    els.sourceImg.src = sourceUrl;
+    els.sourceMeta.textContent = f.name + " · " + OT.formatBytes(f.size);
+    els.board.classList.add("has-file");
+    els.zone.classList.add("has-file");
+    els.runBtn.disabled = false;
+    els.status.textContent = "Chờ xử lý";
+    clearResult();
+  }
+
+  OT.bindUploadZone({
+    onFiles: (files) => {
+      const f = files?.[0];
+      if (!f) return;
+      if (!f.type.startsWith("image/")) {
+        showToast?.("Chọn file ảnh.", "error");
+        return;
+      }
+      if (f.size > 8 * 1024 * 1024) {
+        showToast?.("Ảnh tối đa 8MB.", "error");
+        return;
+      }
+      showSource(f);
+    }
+  });
+
+  document.getElementById("changeBtn")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    els.input?.click();
+  });
+
+  els.bgToggle?.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-bg]");
+    if (!btn) return;
+    els.preview.dataset.bg = btn.dataset.bg;
+    els.bgToggle.querySelectorAll("button").forEach((b) => b.classList.toggle("is-on", b === btn));
+  });
+
+  document.getElementById("copyResultBtn")?.addEventListener("click", async (e) => {
+    if (!lastBlob) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    try {
+      const type = lastBlob.type || "image/png";
+      await navigator.clipboard.write([new ClipboardItem({ [type]: lastBlob })]);
+      showToast?.("Đã sao chép PNG.", "success");
+    } catch {
+      showToast?.("Không sao chép được ảnh — hãy tải PNG.", "error");
+    }
+  }, true);
+
+  els.runBtn.onclick = async () => {
+    try {
+      if (location.protocol === "file:") {
+        document.getElementById("protocolBanner")?.classList.add("is-on");
+        throw new Error("Cần chạy local server (HTTP).");
+      }
+      if (!file) throw new Error("Chọn ảnh.");
+      OT.setBusy(els.runBtn, true, "Đang…");
+      els.status.textContent = "Đang xử lý";
+      els.preview.classList.add("is-busy");
+      clearResult();
+      const empty = document.getElementById("resultEmpty");
+      if (empty) empty.textContent = "Đang tách nền…";
+
+      const r = await OTImage.removeBackground(file, {
+        onProgress: (msg) => { els.status.textContent = msg; }
+      });
+
+      lastBlob = r.blob || null;
+      OT.showResult(r);
+      els.board.classList.add("is-done");
+      if (els.outBar) els.outBar.hidden = false;
+      els.status.textContent = "Xong";
+      showToast?.("Đã xóa nền!", "success");
+    } catch (e) {
+      els.status.textContent = e.message || String(e);
+      if (!els.preview.querySelector(".rb-wait")) els.preview.innerHTML = waitMarkup();
+      const empty = document.getElementById("resultEmpty");
+      if (empty) empty.textContent = "Lỗi — thử ảnh khác.";
+      console.error(e);
+    } finally {
+      els.preview.classList.remove("is-busy");
+      OT.setBusy(els.runBtn, false);
+    }
+  };
+})();
+</script>
+</body>
+</html>

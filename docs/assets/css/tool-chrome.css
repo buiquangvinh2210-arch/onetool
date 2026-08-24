@@ -1,0 +1,195 @@
+/* Breadcrumb + chrome dùng chung cho mọi trang tool */
+
+body[data-tool]:not([data-tool$="-index"]) .breadcrumb,
+body[data-tool]:not([data-tool$="-index"]) .rb-crumb,
+body[data-tool]:not([data-tool$="-index"]) .at-crumb,
+body[data-tool]:not([data-tool$="-index"]) .ir-crumb {
+  display: none !important;
+}
+
+.ot-crumb-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.15rem 1.5rem 0.85rem;
+}
+
+.ot-crumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.45rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.ot-crumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.ot-crumb a:hover {
+  color: var(--primary);
+}
+.ot-crumb .sep {
+  opacity: 0.35;
+  user-select: none;
+}
+.ot-crumb .now {
+  color: var(--text);
+  font-weight: 650;
+}
+
+/* —— Giao diện doc tools thống nhất (PDF, chuyển đổi, tiện ích…) —— */
+body[data-tool]:not([data-tool$="-index"]) .tool-workspace--doc {
+  background:
+    radial-gradient(ellipse 80% 55% at 0% -5%, rgba(124, 58, 237, 0.08), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 100% 0%, rgba(99, 102, 241, 0.06), transparent 50%),
+    linear-gradient(180deg, #f8f7ff 0%, #f4f2fa 100%) !important;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-workspace--doc .container {
+  max-width: 1180px;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .doc-hero {
+  grid-template-columns: 1fr minmax(220px, 280px);
+  gap: 1.25rem;
+  margin-bottom: 1.35rem;
+  padding-top: 0.35rem;
+  align-items: start;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .doc-hero h1 {
+  font-size: clamp(1.55rem, 2.8vw, 2rem) !important;
+  margin: 0 0 0.5rem !important;
+  letter-spacing: -0.03em;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .doc-hero .lede {
+  font-size: 0.95rem !important;
+  margin: 0 !important;
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .doc-hero-card {
+  display: block !important;
+  border-radius: 14px;
+  padding: 1.1rem 1.15rem;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  box-shadow: 0 8px 28px rgba(124, 58, 237, 0.06);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .doc-hero-card h2 {
+  margin: 0 0 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary-dark);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .doc-hero-card ol {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .doc-hero-card li {
+  margin: 0.35rem 0;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .doc-pills span {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(124, 58, 237, 0.1);
+  color: var(--text);
+  font-size: 0.74rem;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-workspace-grid {
+  grid-template-columns: minmax(0, 420px) 1fr;
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-panel {
+  border-radius: 16px !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-left: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-top: none !important;
+  box-shadow: 0 10px 36px rgba(15, 23, 42, 0.06) !important;
+  overflow: hidden;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-panel-header {
+  padding: 0.85rem 1.15rem !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-panel-header h2 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-panel-badge {
+  font-size: 0.62rem;
+  padding: 0.22rem 0.6rem;
+  background: var(--primary) !important;
+  box-shadow: none;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-panel-body {
+  padding: 1.1rem 1.15rem !important;
+  gap: 0.75rem !important;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .upload-zone {
+  min-height: 168px !important;
+  border-radius: 14px !important;
+  background: linear-gradient(180deg, #faf9ff 0%, #f5f3ff 100%) !important;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .result-panel {
+  min-height: 380px;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .result-panel .tool-panel-body #preview,
+body[data-tool]:not([data-tool$="-index"]) .result-panel .tool-panel-body pre {
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #fafafa;
+  font-size: 0.875rem;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .file-list .file-chip {
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  background: #fff;
+  border-color: rgba(124, 58, 237, 0.1);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .file-chip-icon {
+  width: 42px;
+  height: 42px;
+  font-size: 0.62rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.18);
+}
+
+@media (max-width: 900px) {
+  body[data-tool]:not([data-tool$="-index"]) .doc-hero,
+  body[data-tool]:not([data-tool$="-index"]) .tool-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-tool]:not([data-tool$="-index"]) .doc-hero-card {
+    order: -1;
+  }
+}

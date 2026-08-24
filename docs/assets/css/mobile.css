@@ -1,0 +1,838 @@
+/* OneTool — mobile layout: gọn, cân đối, không tràn màn hình */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 100%;
+    scroll-padding-top: calc(var(--header-height) + 0.5rem);
+  }
+
+  body {
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+  }
+
+  /* ── Header ── */
+  :root {
+    --header-height: 56px;
+    --header-main-h: 56px;
+  }
+
+  .header-inner {
+    min-height: 56px !important;
+    height: 56px !important;
+    gap: 0.5rem !important;
+    overflow: visible;
+  }
+
+  .site-header,
+  .header-shell {
+    overflow: visible;
+  }
+
+  .logo--rich .logo-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.05rem;
+    border-radius: 11px;
+  }
+
+  .logo-stack strong {
+    font-size: 1rem !important;
+  }
+
+  .logo-stack small,
+  .logo-tagline {
+    font-size: 0.6875rem !important;
+  }
+
+  .site-header.is-scrolled::before {
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06) !important;
+  }
+
+  .header-actions .btn-icon,
+  .mobile-menu-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* ── Breadcrumb tool ── */
+  .ot-crumb-wrap {
+    padding: 0.5rem 1rem 0.4rem !important;
+  }
+
+  /* ── Nút chung — gọn, không phóng to ── */
+  .btn {
+    padding: 0.5rem 0.85rem !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .btn-lg {
+    padding: 0.52rem 0.85rem !important;
+    font-size: 0.8125rem !important;
+  }
+
+  .btn-sm {
+    padding: 0.32rem 0.6rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .btn-block {
+    padding-top: 0.55rem !important;
+    padding-bottom: 0.55rem !important;
+  }
+
+  /* ── Trang chủ: hero ── */
+  .home-hero {
+    padding: 1.15rem 0 0.85rem !important;
+  }
+
+  .home-badge {
+    margin-bottom: 0.65rem;
+    padding: 0.28rem 0.65rem 0.28rem 0.38rem;
+    font-size: 0.75rem !important;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(1.35rem, 5.8vw, 1.85rem) !important;
+    margin-bottom: 0.6rem !important;
+    line-height: 1.18 !important;
+  }
+
+  .home-hero-lead {
+    font-size: 0.9375rem !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .home-hero-points {
+    gap: 0.35rem 0.5rem;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .home-hero-points li {
+    font-size: 0.8125rem !important;
+    padding: 0.28rem 0.55rem;
+  }
+
+  .home-actions {
+    gap: 0.5rem;
+    margin-bottom: 1rem !important;
+  }
+
+  .home-actions .btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .home-stats {
+    gap: 0.85rem 1.25rem;
+  }
+
+  .home-stat strong {
+    font-size: 1.15rem !important;
+  }
+
+  .home-stat span {
+    font-size: 0.75rem !important;
+  }
+
+  .home-visual {
+    display: none !important;
+  }
+
+  .home-hero-inner {
+    gap: 0 !important;
+  }
+
+  .home-hero-points {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: stretch;
+    gap: 0.35rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .home-hero-points li {
+    flex: 1 1 calc(50% - 0.2rem) !important;
+    width: auto !important;
+    text-align: center;
+    padding: 0.22rem 0.45rem !important;
+    font-size: 0.6875rem !important;
+  }
+
+  .home-hero-points li:last-child {
+    flex: 1 1 100% !important;
+  }
+
+  .home-actions {
+    flex-direction: row !important;
+    margin-bottom: 0.85rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .home-actions .btn,
+  .home-actions .btn.btn-lg {
+    width: auto !important;
+    flex: 1 1 calc(50% - 0.25rem) !important;
+    padding: 0.48rem 0.55rem !important;
+    font-size: 0.8125rem !important;
+    min-height: 0 !important;
+    border-radius: 10px !important;
+  }
+
+  .home-actions .btn-outline {
+    background: rgba(255, 255, 255, 0.92);
+    border-width: 1.5px;
+  }
+
+  .home-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.35rem !important;
+    padding: 0.55rem 0.65rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    text-align: center;
+    margin-top: 0.15rem;
+  }
+
+  .home-stat strong {
+    font-size: 0.9375rem !important;
+  }
+
+  .home-stat span {
+    font-size: 0.6875rem !important;
+  }
+
+  /* ── Footer mobile ── */
+  .site-footer {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .site-footer .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1.125rem !important;
+    padding-right: 1.125rem !important;
+    box-sizing: border-box;
+  }
+
+  .footer-cta-band {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-cta-inner {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 1.125rem 0 !important;
+    gap: 0.75rem !important;
+  }
+
+  .footer-cta-copy {
+    min-width: 0;
+  }
+
+  .footer-cta-inner h3 {
+    font-size: 1.05rem !important;
+    line-height: 1.35 !important;
+    margin: 0 0 0.25rem !important;
+  }
+
+  .footer-cta-desc {
+    font-size: 0.8125rem !important;
+    line-height: 1.45 !important;
+    margin: 0 !important;
+    color: rgba(255, 255, 255, 0.58) !important;
+  }
+
+  .footer-cta-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.7rem 1rem !important;
+    font-size: 0.9375rem !important;
+    border-radius: 12px !important;
+  }
+
+  .footer-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: unset !important;
+    padding: 1.25rem 0 0.5rem !important;
+    gap: 1.125rem !important;
+  }
+
+  .footer-nav {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.25rem;
+    width: 100%;
+  }
+
+  .footer-col--site {
+    grid-column: 1 / -1;
+    padding-top: 0.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-col--site .footer-links--inline {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem 1rem !important;
+  }
+
+  .footer-brand {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 0.65rem;
+    row-gap: 0.35rem;
+    width: 100%;
+  }
+
+  .footer-logo {
+    grid-row: 1 / span 2;
+  }
+
+  .footer-brand-desc {
+    display: none !important;
+  }
+
+  .footer-brand > p.footer-brand-desc {
+    display: none !important;
+  }
+
+  .footer-social {
+    margin: 0 !important;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .footer-col h4 {
+    margin: 0 0 0.5rem !important;
+    font-size: 0.6875rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .footer-links {
+    gap: 0.45rem !important;
+  }
+
+  .footer-links a {
+    font-size: 0.8125rem !important;
+    line-height: 1.4 !important;
+    padding: 0.15rem 0;
+    display: block;
+  }
+
+  .footer-bottom {
+    width: 100% !important;
+    grid-column: unset !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: left !important;
+    padding: 0.85rem 0 calc(0.85rem + env(safe-area-inset-bottom, 0)) !important;
+    margin-top: 0.25rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 0.35rem 0.75rem !important;
+  }
+
+  .footer-copy,
+  .footer-tagline {
+    font-size: 0.75rem !important;
+    margin: 0 !important;
+  }
+
+  /* Breadcrumb gọn */
+  .ot-crumb-wrap {
+    display: none !important;
+  }
+
+  /* Showcase danh mục */
+  .home-showcase {
+    padding: 1.5rem 0 1.5rem !important;
+    margin-top: 0.35rem;
+    border-top: 1px solid rgba(124, 58, 237, 0.08);
+  }
+
+  .home-cat-row {
+    margin-bottom: 1.65rem !important;
+  }
+
+  .home-cat-row:first-child {
+    margin-top: 0.15rem;
+  }
+
+  .home-cat-row-head {
+    margin-bottom: 0.75rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom-width: 1px !important;
+  }
+
+  .home-cat-row-title {
+    font-size: 0.8125rem !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  .home-cat-row-all {
+    font-size: 0.72rem !important;
+  }
+
+  .home-cat-row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+
+  .home-cat-row-grid .tool-card {
+    padding: 0.85rem !important;
+    border-radius: 14px !important;
+    gap: 0.65rem !important;
+  }
+
+  .home-cat-row-grid .tool-card-icon {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1.2rem !important;
+  }
+
+  .home-cat-row-grid .tool-card-title {
+    font-size: 0.9375rem !important;
+  }
+
+  .home-cat-row-grid .tool-card-desc {
+    font-size: 0.8125rem !important;
+    margin-bottom: 0.5rem !important;
+    display: block !important;
+    overflow: visible !important;
+    -webkit-line-clamp: unset !important;
+  }
+
+  /* Sections */
+  .home-section {
+    padding: 1.35rem 0 !important;
+  }
+
+  .home-section-head {
+    margin-bottom: 0.85rem !important;
+  }
+
+  .home-section-head h2 {
+    font-size: 1.2rem !important;
+  }
+
+  .home-steps {
+    grid-template-columns: 1fr !important;
+    gap: 0.55rem !important;
+  }
+
+  .home-step {
+    padding: 0.85rem 0.9rem !important;
+    border-radius: 12px !important;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.65rem;
+    align-items: start;
+  }
+
+  .home-step-num {
+    grid-row: 1 / span 2;
+    width: 26px;
+    height: 26px;
+    margin-bottom: 0 !important;
+    font-size: 0.72rem !important;
+  }
+
+  .home-step h3 {
+    font-size: 0.9rem !important;
+    margin: 0 0 0.15rem !important;
+  }
+
+  .home-step p {
+    grid-column: 2;
+    font-size: 0.8125rem !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Trust — 2 cột compact */
+  .home-trust {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.45rem !important;
+  }
+
+  .home-trust-item {
+    padding: 0.65rem 0.55rem !important;
+    border-radius: 12px !important;
+    text-align: left !important;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.45rem;
+    align-items: center;
+  }
+
+  .home-trust-item em {
+    grid-row: 1 / span 2;
+    font-size: 1.15rem !important;
+    margin: 0 !important;
+  }
+
+  .home-trust-item strong {
+    font-size: 0.8125rem !important;
+    display: block;
+  }
+
+  .home-trust-item span {
+    grid-column: 2;
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .home-cta {
+    padding: 1.25rem 0 1.5rem !important;
+  }
+
+  .home-cta-box {
+    padding: 1rem 1.1rem !important;
+    gap: 0.75rem !important;
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .home-cta-box h2 {
+    font-size: 1.1rem !important;
+  }
+
+  /* ── Tool workspace chung ── */
+  .section {
+    padding: 1.75rem 0 !important;
+  }
+
+  .tool-workspace {
+    padding-top: 0.35rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  .tool-workspace--doc > .container,
+  .tool-workspace--doc .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .tool-workspace--doc .doc-hero {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+    margin-bottom: 0.85rem !important;
+    padding-top: 0.65rem !important;
+  }
+
+  .tool-workspace--doc .doc-hero h1 {
+    font-size: clamp(1.35rem, 5vw, 1.75rem) !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .tool-workspace--doc .lede {
+    font-size: 0.9375rem !important;
+    margin-bottom: 0.85rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .tool-workspace--doc .doc-hero-card {
+    padding: 0.85rem 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  .tool-workspace--doc .doc-hero-card h2 {
+    font-size: 0.875rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .tool-workspace--doc .doc-hero-card li {
+    font-size: 0.8125rem !important;
+    margin: 0.35rem 0 !important;
+  }
+
+  .tool-panel.result-panel {
+    min-height: 260px !important;
+    max-height: min(72vh, 720px) !important;
+  }
+
+  .result-panel .tool-panel-body,
+  .tool-workspace--doc .result-panel .tool-panel-body {
+    overflow-y: auto !important;
+    overscroll-behavior: auto !important;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tool-workspace--doc #preview,
+  .transcript-preview,
+  body[data-tool="audio-to-text"] .at-transcript {
+    overscroll-behavior: auto !important;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body[data-tool="video-convert"] .vc-result {
+    overscroll-behavior: auto !important;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tool-panel-header {
+    padding: 0.75rem 1rem !important;
+  }
+
+  .tool-panel-body .result-actions {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.5rem 0 !important;
+  }
+
+  .tool-panel-body .result-actions .btn {
+    width: auto;
+    flex: 1 1 auto;
+    justify-content: center;
+    min-height: 0 !important;
+    margin: 0;
+    padding: 0.32rem 0.6rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 999px;
+  }
+
+  .tool-workspace-grid {
+    gap: 0.65rem !important;
+  }
+
+  .tool-panel {
+    border-radius: 14px !important;
+  }
+
+  .tool-panel-body {
+    padding: 0.75rem !important;
+  }
+
+  /* Studio tools */
+  body[data-tool] [class*="-page"] {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  body[data-tool] [class*="-intro"] {
+    margin-bottom: 0.85rem !important;
+  }
+
+  body[data-tool] [class*="-intro"] h1 {
+    font-size: clamp(1.35rem, 5vw, 1.75rem) !important;
+  }
+
+  body[data-tool] [class*="-intro"] p {
+    font-size: 0.9375rem !important;
+  }
+
+  body[data-tool] [class*="-studio"] {
+    gap: 0.65rem !important;
+  }
+
+  body[data-tool] [class*="-panel"] {
+    min-height: 0 !important;
+    border-radius: 14px !important;
+  }
+
+  body[data-tool] [class*="-panel-head"] {
+    padding: 0.65rem 0.75rem !important;
+  }
+
+  body[data-tool] .dev-body,
+  body[data-tool] .b64-body,
+  body[data-tool] .jt-body,
+  body[data-tool] .cd-body,
+  body[data-tool] .tool-panel-body {
+    padding: 0.65rem 0.75rem 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  body[data-tool] .dev-editor,
+  body[data-tool] .dev-out,
+  body[data-tool] .b64-editor,
+  body[data-tool] .b64-out,
+  body[data-tool] .jt-editor,
+  body[data-tool] .jt-out,
+  body[data-tool] .cd-editor,
+  body[data-tool] .cd-out,
+  body[data-tool] .at-transcript {
+    min-height: 140px !important;
+  }
+
+  .file-chip--image #changeFileBtn {
+    min-height: 0 !important;
+    align-self: center;
+    flex-shrink: 0;
+  }
+  body[data-tool]:not([data-tool$="-index"]) .doc-hero-card {
+    display: none !important;
+}
+  body[data-tool] [class*="-mode"] {
+    max-width: 100%;
+  }
+.doc-hero-card{
+  display: none !important;
+}
+  body[data-tool] [class*="-mode"] button {
+    padding: 0.32rem 0.55rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* SEO block cuối trang */
+  .tool-seo {
+    padding: 1.25rem 0 2rem !important;
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+  }
+
+  .tool-seo-wrap {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .tool-seo-block {
+    padding: 1rem 1.05rem !important;
+    background: var(--surface, #fff);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 0.75rem;
+  }
+
+  .tool-seo-block + .tool-seo-block {
+    margin-top: 0 !important;
+  }
+
+  .tool-seo-block h2 {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .tool-seo-block p,
+  .tool-seo-block li {
+    font-size: 0.875rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .tool-seo-more {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+    padding: 0 !important;
+  }
+
+  /* ── Audio → Text: styles in audio-to-text.css?v=20260822h ── */
+
+  /* Category pages */
+  .cat-hero {
+    padding: 1rem 0 0.85rem !important;
+  }
+
+  .cat-hero h1 {
+    font-size: clamp(1.35rem, 5vw, 1.75rem) !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .cat-hero-lead {
+    font-size: 0.9375rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .cat-tools-section {
+    padding-top: 0.75rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .cat-tools-section .tool-grid {
+    gap: 0.85rem !important;
+  }
+
+  .cat-tools-section .tool-card {
+    padding: 1rem 1.05rem !important;
+    gap: 0.85rem !important;
+    border-radius: 14px !important;
+    align-items: flex-start;
+    scroll-margin-top: calc(var(--header-height) + 0.75rem);
+  }
+
+  .cat-tools-section .tool-card-icon {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.3rem !important;
+    border-radius: 11px !important;
+  }
+
+  .cat-tools-section .tool-card-title {
+    font-size: 0.9375rem !important;
+    margin: 0.15rem 0 0.25rem !important;
+  }
+
+  .cat-tools-section .tool-card-desc {
+    display: block !important;
+    overflow: visible !important;
+    -webkit-line-clamp: unset !important;
+    margin-bottom: 0.55rem !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .cat-tools-section .tool-card-footer .btn {
+    display: none !important;
+  }
+
+  .cat-tools-section .tool-card-footer {
+    margin-top: 0 !important;
+  }
+
+  .cat-tools-section .category-filter {
+    margin-bottom: 1rem !important;
+  }
+
+  .cat-seo {
+    padding: 1.25rem 0 2rem !important;
+  }
+
+  .cat-seo-wrap {
+    gap: 0.75rem !important;
+  }
+
+  .cat-seo-block {
+    padding: 1rem 1.05rem !important;
+  }
+
+  .cat-seo-block h2 {
+    font-size: 1.05rem !important;
+  }
+
+  .cat-seo-block p {
+    font-size: 0.875rem !important;
+    line-height: 1.6 !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-trust {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-nav {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vs/
+*.user
+*.suo
+
+# Local notes / secrets (không commit API key)
+*.local
+docs/assets/js/local-secrets.js
+docs/.groq-key
+docs/.groq-key.txt
+docs/api/web.secrets.config
+docs/App_Data/feedback.jsonl
+.env
+.env.*

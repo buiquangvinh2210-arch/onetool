@@ -1,0 +1,232 @@
+body[data-tool="convert-data"] {
+  --cd-ink: #16121c;
+  --cd-muted: #6b6578;
+  --cd-line: rgba(88, 60, 140, 0.12);
+  --cd-soft: rgba(124, 58, 237, 0.07);
+}
+
+body[data-tool="convert-data"] .tool-workspace {
+  padding: 0 0 2rem !important;
+  background:
+    radial-gradient(ellipse 85% 50% at 5% -8%, rgba(124, 58, 237, 0.1), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 100% 0%, rgba(219, 39, 119, 0.06), transparent 50%),
+    linear-gradient(180deg, #f8f7fc 0%, #f3f0f9 100%) !important;
+}
+
+body[data-tool="convert-data"] .cd-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body[data-tool="convert-data"] .cd-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 1.5rem;
+}
+
+body[data-tool="convert-data"] .cd-intro h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--cd-ink);
+}
+
+body[data-tool="convert-data"] .cd-intro p {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--cd-muted);
+  line-height: 1.55;
+}
+
+body[data-tool="convert-data"] .cd-studio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+body[data-tool="convert-data"] .cd-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--cd-line);
+  border-radius: 16px;
+  box-shadow: 0 10px 36px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
+body[data-tool="convert-data"] .cd-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--cd-line);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+body[data-tool="convert-data"] .cd-panel-head h2 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--cd-ink);
+}
+
+body[data-tool="convert-data"] .cd-mode {
+  display: inline-flex;
+  padding: 0.2rem;
+  border-radius: 999px;
+  background: var(--cd-soft);
+  border: 1px solid var(--cd-line);
+  gap: 0.15rem;
+}
+
+body[data-tool="convert-data"] .cd-mode button {
+  border: none;
+  background: transparent;
+  color: var(--cd-muted);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+body[data-tool="convert-data"] .cd-mode button.is-on {
+  background: #fff;
+  color: var(--primary-dark);
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.14);
+}
+
+body[data-tool="convert-data"] .cd-meta {
+  font-size: 0.75rem;
+  color: var(--cd-muted);
+  font-weight: 500;
+}
+
+body[data-tool="convert-data"] .cd-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem 1rem;
+  min-height: 0;
+}
+
+body[data-tool="convert-data"] .cd-editor {
+  flex: 1;
+  min-height: 280px;
+  width: 100%;
+  resize: vertical;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--cd-line);
+  border-radius: 12px;
+  background: #fafafa;
+  color: var(--cd-ink);
+  font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+body[data-tool="convert-data"] .cd-editor:focus {
+  outline: none;
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  background: #fff;
+}
+
+body[data-tool="convert-data"] .cd-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+body[data-tool="convert-data"] .cd-text-btn {
+  border: 1px solid var(--cd-line);
+  background: #fff;
+  color: var(--cd-muted);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+body[data-tool="convert-data"] .cd-text-btn:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  color: var(--primary);
+  background: var(--cd-soft);
+}
+
+body[data-tool="convert-data"] .cd-run {
+  margin-top: 0.15rem;
+}
+
+body[data-tool="convert-data"] .cd-out {
+  flex: 1;
+  min-height: 280px;
+  margin: 0;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--cd-line);
+  border-radius: 12px;
+  background: #fafafa;
+  color: var(--cd-ink);
+  font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: auto;
+  user-select: text;
+}
+
+body[data-tool="convert-data"] .cd-out.is-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cd-muted);
+  font-family: var(--font);
+  font-size: 0.875rem;
+}
+
+body[data-tool="convert-data"] .cd-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+body[data-tool="convert-data"] .cd-status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--cd-muted);
+}
+
+body[data-tool="convert-data"] .cd-status.is-ok {
+  color: #059669;
+}
+
+body[data-tool="convert-data"] .cd-status.is-err {
+  color: #dc2626;
+}
+
+body[data-tool="convert-data"] input[type="file"] {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  body[data-tool="convert-data"] .cd-studio {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-tool="convert-data"] .cd-panel {
+    min-height: auto;
+  }
+}

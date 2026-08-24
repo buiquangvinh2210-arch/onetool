@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chuyển CSV sang JSON và JSON sang CSV online | OneTool</title>
+  <meta name="description" content="Đổi CSV ↔ JSON ngay trên trình duyệt. Dán dữ liệu hoặc mở file, tải kết quả — miễn phí, không đăng nhập." />
+  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/tools/convert-data.css" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="cd-page">
+    <header class="cd-intro">
+      <h1>Chuyển CSV ↔ JSON</h1>
+      <p>Dán dữ liệu hoặc mở file — xử lý ngay trên trình duyệt, không upload lên server.</p>
+    </header>
+    <div class="cd-studio">
+      <div class="cd-panel">
+        <div class="cd-panel-head">
+          <h2>Dữ liệu nguồn</h2>
+          <div class="cd-mode" id="modeTabs" role="tablist" aria-label="Chiều chuyển đổi">
+            <button type="button" class="is-on" data-mode="csv-json" role="tab" aria-selected="true">CSV → JSON</button>
+            <button type="button" data-mode="json-csv" role="tab" aria-selected="false">JSON → CSV</button>
+          </div>
+        </div>
+        <div class="cd-body">
+          <span class="cd-meta" id="inputMeta">Chưa có dữ liệu</span>
+          <textarea id="inputText" class="cd-editor" spellcheck="false" placeholder="Dán CSV hoặc JSON vào đây…"></textarea>
+          <div class="cd-toolbar">
+            <button type="button" class="cd-text-btn" id="openFileBtn">Mở file</button>
+            <button type="button" class="cd-text-btn" id="sampleBtn">Dán mẫu</button>
+            <button type="button" class="cd-text-btn" id="clearBtn">Xóa</button>
+            <input type="file" id="fileInput" accept=".csv,.json,text/csv,application/json" />
+          </div>
+          <button type="button" class="btn btn-primary btn-block cd-run" id="runBtn">Chuyển đổi</button>
+        </div>
+      </div>
+      <div class="cd-panel result-panel">
+        <div class="cd-panel-head">
+          <h2>Kết quả</h2>
+          <div class="cd-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải file</button>
+          </div>
+        </div>
+        <div class="cd-body">
+          <p id="status" class="cd-status">Kết quả hiện ở đây sau khi chuyển đổi.</p>
+          <pre id="preview" class="cd-out is-empty">Chưa có kết quả</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>
+(function () {
+  const SAMPLE_CSV = "name,email,role\nAn,an@example.com,dev\nBình,binh@example.com,design";
+  const SAMPLE_JSON = '[\n  {"name":"An","email":"an@example.com","role":"dev"},\n  {"name":"Bình","email":"binh@example.com","role":"design"}\n]';
+  let mode = "csv-json";
+  const els = {
+    input: document.getElementById("inputText"),
+    meta: document.getElementById("inputMeta"),
+    status: document.getElementById("status"),
+    preview: document.getElementById("preview"),
+    fileInput: document.getElementById("fileInput"),
+    tabs: document.getElementById("modeTabs")
+  };
+  function setMode(next) {
+    mode = next;
+    els.tabs.querySelectorAll("button[data-mode]").forEach((btn) => {
+      const on = btn.dataset.mode === mode;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    els.input.placeholder = mode === "csv-json"
+      ? "Dán CSV — dòng đầu là tên cột…"
+      : "Dán JSON — mảng object hoặc một object…";
+    updateMeta();
+  }
+  function normalizeCsv(raw) { return String(raw || "").replace(/^\uFEFF/, "").trim(); }
+  function parseJsonRows(raw) {
+    let parsed;
+    try { parsed = JSON.parse(raw); }
+    catch (e) { throw new Error("JSON không hợp lệ — kiểm tra dấu ngoặc và dấu phẩy."); }
+    if (Array.isArray(parsed)) {
+      if (!parsed.length) throw new Error("Mảng JSON đang trống.");
+      if (!parsed.every((row) => row && typeof row === "object" && !Array.isArray(row))) {
+        throw new Error("Mỗi phần tử JSON phải là object (dòng dữ liệu).");
+      }
+      return parsed;
+    }
+    if (parsed && typeof parsed === "object") return [parsed];
+    throw new Error("JSON phải là mảng object hoặc một object.");
+  }
+  function updateMeta() {
+    const text = els.input.value.trim();
+    if (!text) { els.meta.textContent = "Chưa có dữ liệu"; return; }
+    if (mode === "csv-json") {
+      const lines = normalizeCsv(text).split("\n").filter((l) => l.trim());
+      const rows = Math.max(0, lines.length - 1);
+      els.meta.textContent = rows + " dòng dữ liệu · " + lines.length + " dòng (kể header)";
+    } else {
+      try { els.meta.textContent = parseJsonRows(text).length + " bản ghi JSON"; }
+      catch { els.meta.textContent = "JSON chưa hợp lệ"; }
+    }
+  }
+  function clearResult(resetStatus) {
+    els.preview.textContent = "Chưa có kết quả";
+    els.preview.classList.add("is-empty");
+    document.getElementById("copyResultBtn").disabled = true;
+    document.getElementById("downloadResultBtn").disabled = true;
+    if (resetStatus) {
+      els.status.textContent = "Kết quả hiện ở đây sau khi chuyển đổi.";
+      els.status.className = "cd-status";
+    }
+  }
+  function runConvert() {
+    const btn = document.getElementById("runBtn");
+    try {
+      const input = els.input.value;
+      if (!input.trim()) throw new Error("Dán dữ liệu hoặc mở file trước.");
+      OT.setBusy(btn, true, "Đang chuyển…");
+      els.status.textContent = "Đang xử lý…";
+      els.status.className = "cd-status";
+      let out, name, ct;
+      if (mode === "csv-json") {
+        const csv = normalizeCsv(input);
+        if (!csv.includes(",")) throw new Error("CSV cần dấu phẩy ngăn cột — kiểm tra định dạng.");
+        const rows = OT.csvToJson(csv);
+        if (!rows.length) throw new Error("CSV không có dòng dữ liệu (chỉ header hoặc trống).");
+        out = JSON.stringify(rows, null, 2);
+        name = "data.json";
+        ct = "application/json";
+      } else {
+        out = OT.jsonToCsv(parseJsonRows(input.trim()));
+        name = "data.csv";
+        ct = "text/csv;charset=utf-8";
+      }
+      els.preview.classList.remove("is-empty");
+      OT.showResult({ text: out, fileName: name, contentType: ct });
+      els.status.textContent = mode === "csv-json"
+        ? "Đã chuyển CSV → JSON · " + out.split("\n").length + " dòng."
+        : "Đã chuyển JSON → CSV — sẵn sàng tải.";
+      els.status.className = "cd-status is-ok";
+    } catch (e) {
+      els.status.textContent = e.message || String(e);
+      els.status.className = "cd-status is-err";
+      clearResult(false);
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  }
+  els.tabs?.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-mode]");
+    if (btn) setMode(btn.dataset.mode);
+  });
+  els.input?.addEventListener("input", updateMeta);
+  document.getElementById("sampleBtn")?.addEventListener("click", () => {
+    els.input.value = mode === "csv-json" ? SAMPLE_CSV : SAMPLE_JSON;
+    updateMeta(); clearResult(true);
+  });
+  document.getElementById("clearBtn")?.addEventListener("click", () => {
+    els.input.value = ""; updateMeta(); clearResult(true);
+  });
+  document.getElementById("openFileBtn")?.addEventListener("click", () => els.fileInput?.click());
+  els.fileInput?.addEventListener("change", async () => {
+    const file = els.fileInput.files?.[0];
+    els.fileInput.value = "";
+    if (!file) return;
+    try {
+      els.input.value = (await file.text()).replace(/^\uFEFF/, "");
+      const ext = (file.name.split(".").pop() || "").toLowerCase();
+      if (ext === "csv") setMode("csv-json");
+      else if (ext === "json") setMode("json-csv");
+      updateMeta(); clearResult(true);
+      els.status.textContent = "Đã mở «" + file.name + "» — bấm Chuyển đổi.";
+      els.status.className = "cd-status is-ok";
+    } catch {
+      els.status.textContent = "Không đọc được file.";
+      els.status.className = "cd-status is-err";
+    }
+  });
+  document.getElementById("runBtn").onclick = runConvert;
+  setMode("csv-json");
+})();
+</script>
+</body>
+</html>

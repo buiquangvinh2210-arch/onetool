@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /404.html
+Disallow: /cong-cu/index.html
+Disallow: /cong-cu-anh/index.html
+Disallow: /cong-cu-pdf/index.html
+Disallow: /cong-cu-media/index.html
+Disallow: /cong-cu-chuyen-doi/index.html
+Disallow: /cong-cu-tien-ich/index.html
+
+Sitemap: https://onetool.vn/sitemap.xml

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nén video MP4 online miễn phí — đổi WebM, tách MP3 | OneTool</title>
+  <meta name="description" content="Nén MP4, chuyển WebM hoặc tách MP3 ngay trên trình duyệt. Miễn phí, không đăng nhập, file không rời máy bạn." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/tools/video-convert.css?v=20260824" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="vc-top">
+    <div class="vc-title-row">
+      <div>
+        <h1 id="vcTitle">Video</h1>
+        <p id="vcLead"></p>
+      </div>
+      <div class="vc-meta" id="vcMeta"></div>
+    </div>
+  </div>
+
+  <div id="protocolBanner" class="protocol-banner container"></div>
+
+  <div class="vc-studio">
+    <div class="vc-shell">
+      <aside class="vc-side">
+        <p class="vc-side-label" id="vcLblSource"></p>
+        <div class="upload-zone" id="uploadZone" data-kind="media" role="button" tabindex="0">
+          <input type="file" id="fileInput" accept="video/*,.mp4,.mkv,.mov,.webm,.avi,.m4v,.mpeg,.mpg" hidden />
+          <div class="upload-placeholder">
+            <span class="upload-icon upload-icon--media">VIDEO</span>
+            <p><strong id="vcDropTitle"></strong></p>
+            <p class="text-muted"><span id="vcDropOr"></span> <button type="button" class="link-btn" id="browseBtn"></button></p>
+          </div>
+        </div>
+
+        <div class="vc-field">
+          <label for="vcMode" id="vcLblMode"></label>
+          <select id="vcMode" class="form-control">
+            <option value="mp4-balance">mp4-balance</option>
+            <option value="mp4-compress">mp4-compress</option>
+            <option value="mp4-strong">mp4-strong</option>
+            <option value="webm">webm</option>
+            <option value="mp3">mp3</option>
+          </select>
+        </div>
+
+        <div class="vc-field">
+          <label for="vcScale" id="vcLblScale"></label>
+          <select id="vcScale" class="form-control">
+            <option value="original">original</option>
+            <option value="1080">1080</option>
+            <option value="720">720</option>
+            <option value="480">480</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="runBtn"></button>
+        <p class="vc-note" id="vcNote"></p>
+      </aside>
+
+      <div class="vc-main">
+        <div class="vc-main-bar">
+          <div>
+            <h2 id="vcLblResult"></h2>
+            <p id="status"></p>
+          </div>
+          <div class="vc-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled></button>
+          </div>
+        </div>
+        <div class="vc-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="vc-result" id="resultBox">
+          <div class="vc-empty" id="resultEmpty">
+            <span class="vc-empty-icon" aria-hidden="true">&#9654;</span>
+            <p id="vcEmptyText"></p>
+          </div>
+          <div class="vc-preview-wrap hidden" id="previewWrap">
+            <video id="resultVideo" controls playsinline></video>
+            <audio id="resultAudio" controls class="hidden"></audio>
+          </div>
+          <div class="vc-stats hidden" id="statsBox">
+            <div><span class="hint" id="vcLblBefore"></span><strong id="statBefore">-</strong></div>
+            <div><span class="hint" id="vcLblAfter"></span><strong id="statAfter">-</strong></div>
+            <div><span class="hint" id="vcLblSaved"></span><strong id="statSaved">-</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script type="module" src="../assets/js/tools/video-convert-ui.js?v=20260824j"></script>
+</body>
+</html>

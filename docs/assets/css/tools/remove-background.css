@@ -1,0 +1,323 @@
+body[data-tool="remove-background"] {
+  --rb-ink: #16121c;
+  --rb-muted: #7a7388;
+  --rb-line: rgba(40, 24, 70, 0.1);
+}
+
+body[data-tool="remove-background"] [hidden] {
+  display: none !important;
+}
+
+/* Header CTA "Đổi ảnh" trùng nghĩa với tool này — ẩn cho đỡ rối */
+body[data-tool="remove-background"] .header-actions > a.btn-primary {
+  display: none !important;
+}
+
+body[data-tool="remove-background"] .tool-workspace {
+  padding: 0 0 2rem !important;
+  background: #f6f4f9 !important;
+}
+
+body[data-tool="remove-background"] .rb-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem 0;
+}
+
+body[data-tool="remove-background"] .rb-intro {
+  text-align: center;
+  margin: 0 auto 1.75rem;
+  max-width: 28rem;
+}
+body[data-tool="remove-background"] .rb-intro h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.15rem);
+  font-weight: 760;
+  letter-spacing: -0.04em;
+  color: var(--rb-ink);
+}
+body[data-tool="remove-background"] .rb-intro p {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--rb-muted);
+}
+
+body[data-tool="remove-background"] .rb-board {
+  position: relative;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 16px 40px rgba(50, 30, 90, 0.06);
+  overflow: hidden;
+}
+
+body[data-tool="remove-background"] .upload-zone {
+  min-height: 340px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+}
+body[data-tool="remove-background"] .upload-zone::before { display: none; }
+body[data-tool="remove-background"] .upload-zone:hover,
+body[data-tool="remove-background"] .upload-zone.dragover {
+  background: rgba(124, 58, 237, 0.035);
+}
+body[data-tool="remove-background"] .upload-icon { display: none; }
+body[data-tool="remove-background"] .rb-drop-kicker {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--rb-ink);
+}
+body[data-tool="remove-background"] .rb-drop-sub {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  color: var(--rb-muted);
+}
+body[data-tool="remove-background"] .upload-zone.has-file,
+body[data-tool="remove-background"] .rb-work {
+  display: none;
+}
+body[data-tool="remove-background"] .rb-board.has-file .upload-zone {
+  display: none !important;
+}
+body[data-tool="remove-background"] .rb-board.has-file .rb-work {
+  display: grid;
+}
+body[data-tool="remove-background"] #fileList {
+  display: none !important;
+}
+
+body[data-tool="remove-background"] .rb-work {
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  min-height: 420px;
+}
+
+body[data-tool="remove-background"] .rb-shot {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1rem 1.15rem 1.1rem;
+}
+body[data-tool="remove-background"] .rb-shot figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rb-muted);
+}
+
+body[data-tool="remove-background"] .rb-text-btn {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--primary);
+  cursor: pointer;
+}
+body[data-tool="remove-background"] .rb-text-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+body[data-tool="remove-background"] .rb-text-btn--strong { color: var(--rb-ink); }
+
+body[data-tool="remove-background"] .rb-status {
+  font-size: 0.78rem;
+  font-weight: 550;
+  letter-spacing: 0;
+  text-transform: none;
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body[data-tool="remove-background"] #status.status-err { color: #b42318; }
+
+body[data-tool="remove-background"] .rb-frame {
+  flex: 1;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f1f6;
+  border-radius: 14px;
+  overflow: hidden;
+}
+body[data-tool="remove-background"] .rb-frame img {
+  max-width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  display: block;
+}
+
+body[data-tool="remove-background"] .rb-file {
+  margin: 0.65rem 0 0;
+  font-size: 0.78rem;
+  color: var(--rb-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-tool="remove-background"] .rb-mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.15rem;
+}
+body[data-tool="remove-background"] .rb-run {
+  width: 88px;
+  height: 88px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gradient-brand, linear-gradient(135deg, #7c3aed, #6d28d9));
+  color: #fff;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(109, 40, 217, 0.32);
+}
+body[data-tool="remove-background"] .rb-run:hover:not(:disabled) {
+  transform: scale(1.04);
+}
+body[data-tool="remove-background"] .rb-run:disabled {
+  opacity: 0.45;
+  cursor: default;
+  box-shadow: none;
+}
+body[data-tool="remove-background"] .rb-run.is-busy {
+  opacity: 0.85;
+}
+
+body[data-tool="remove-background"] .rb-frame--out {
+  background: #f3f1f6;
+}
+body[data-tool="remove-background"] .rb-board.is-done .rb-frame--out[data-bg="check"] {
+  background-color: #f8fafc;
+  background-image:
+    linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+    linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
+    linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+body[data-tool="remove-background"] .rb-board.is-done .rb-frame--out[data-bg="light"] { background: #fff; }
+body[data-tool="remove-background"] .rb-board.is-done .rb-frame--out[data-bg="dark"] { background: #1c1822; }
+
+body[data-tool="remove-background"] .rb-wait {
+  font-size: 0.88rem;
+  color: #b0a9bc;
+}
+body[data-tool="remove-background"] .rb-frame--out.is-busy {
+  opacity: 0.55;
+}
+
+body[data-tool="remove-background"] .rb-out-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-top: 0.65rem;
+}
+body[data-tool="remove-background"] .rb-bg-toggle {
+  display: flex;
+  gap: 0.65rem;
+}
+body[data-tool="remove-background"] .rb-bg-toggle button {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.75rem;
+  color: var(--rb-muted);
+  cursor: pointer;
+}
+body[data-tool="remove-background"] .rb-bg-toggle button.is-on {
+  color: var(--rb-ink);
+  font-weight: 700;
+}
+body[data-tool="remove-background"] .result-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+body[data-tool="remove-background"] .rb-progress {
+  height: 2px;
+  background: transparent;
+}
+body[data-tool="remove-background"] .rb-progress > span,
+body[data-tool="remove-background"] .ot-progress > span {
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #7c3aed;
+  transition: width 0.25s ease;
+}
+
+body[data-tool="remove-background"] .protocol-banner {
+  display: none;
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+}
+body[data-tool="remove-background"] .protocol-banner.is-on { display: block; }
+
+
+[data-theme="dark"] body[data-tool="remove-background"] .tool-workspace,
+html[data-theme="dark"] body[data-tool="remove-background"] .tool-workspace {
+  background: #141119 !important;
+}
+[data-theme="dark"] body[data-tool="remove-background"],
+html[data-theme="dark"] body[data-tool="remove-background"] {
+  --rb-ink: #f3eefc;
+  --rb-muted: #9b93ab;
+}
+[data-theme="dark"] body[data-tool="remove-background"] .rb-board,
+html[data-theme="dark"] body[data-tool="remove-background"] .rb-board {
+  background: #1c1824;
+}
+[data-theme="dark"] body[data-tool="remove-background"] .rb-frame,
+html[data-theme="dark"] body[data-tool="remove-background"] .rb-frame {
+  background: #141119;
+}
+
+@media (max-width: 800px) {
+  body[data-tool="remove-background"] .rb-work {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  body[data-tool="remove-background"] .rb-mid {
+    padding: 0 1rem 0.25rem;
+  }
+  body[data-tool="remove-background"] .rb-run {
+    width: 100%;
+    height: 48px;
+    border-radius: 12px;
+  }
+  body[data-tool="remove-background"] .rb-frame {
+    min-height: 220px;
+  }
+  body[data-tool="remove-background"] .rb-frame img {
+    max-height: 260px;
+  }
+}

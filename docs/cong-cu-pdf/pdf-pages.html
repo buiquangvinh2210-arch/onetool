@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xoay và xóa trang PDF online miễn phí | OneTool</title>
+  <meta name="description" content="Xoay trang PDF 90°, 180°, 270° hoặc xóa trang không cần. Thao tác trên trình duyệt, miễn phí." />
+  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="container">
+    <header class="doc-hero">
+      <div class="doc-hero-copy">
+        <p class="eyebrow">Công cụ · PDF</p>
+        <h1>Xoay / Xóa trang PDF</h1>
+        <p class="lede">Xoay 90/180/270° hoặc xóa trang không cần.</p>
+        <div class="doc-pills"><span>Xoay</span><span>Xóa trang</span></div>
+      </div>
+      <aside class="doc-hero-card"><h2>Cách dùng</h2><ol><li><strong>1.</strong> Upload</li><li><strong>2.</strong> Chọn thao tác</li><li><strong>3.</strong> Tải về</li></ol></aside>
+    </header>
+    <div class="tool-workspace-grid">
+      <div class="tool-panel">
+        <div class="tool-panel-header"><h2>Input</h2><span class="tool-panel-badge">Bước 1</span></div>
+        <div class="tool-panel-body">
+          <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
+            <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+            <div class="upload-placeholder">
+              <span class="upload-icon">PDF</span>
+              <p><strong>Kéo thả PDF</strong></p>
+              <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+            </div>
+          </div>
+          <label class="hint" style="display:block;margin-top:1rem">Góc xoay</label>
+          <select id="degrees" class="form-control">
+            <option value="0">Không xoay</option>
+            <option value="90">90°</option>
+            <option value="180">180°</option>
+            <option value="270">270°</option>
+          </select>
+          <label class="hint" style="display:block;margin-top:.75rem">Trang xoay (để trống = tất cả)</label>
+          <input id="rotatePages" class="form-control" placeholder="VD: 1,3-5" />
+          <label class="hint" style="display:block;margin-top:.75rem">Trang cần xóa</label>
+          <input id="deletePages" class="form-control" placeholder="VD: 2,4" />
+          <button type="button" class="btn btn-primary btn-block" id="runBtn" style="margin-top:1rem">Xử lý</button>
+        </div>
+      </div>
+      <div class="tool-panel result-panel">
+        <div class="tool-panel-header"><h2>Kết quả</h2><span class="tool-panel-badge">Bước 2</span></div>
+        <div class="tool-panel-body">
+          <p id="status" class="hint">Xử lý trên trình duyệt — file không rời máy bạn.</p>
+          <div class="result-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải file</button>
+          </div>
+          <pre id="preview" class="form-control" style="min-height:140px;white-space:pre-wrap"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/pdf.js"></script>
+<script>
+let file = null;
+OT.bindUploadZone({ onFiles: f => { file = f[0]; document.getElementById("status").textContent = file.name; } });
+document.getElementById("runBtn").onclick = async () => {
+  const status = document.getElementById("status");
+  try {
+    if (!file) throw new Error("Chọn PDF.");
+    status.textContent = "Đang xử lý…";
+    const degrees = parseInt(document.getElementById("degrees").value, 10) || 0;
+    const bytes = await OTPdf.rotateOrDelete(file, {
+      degrees,
+      rotatePages: document.getElementById("rotatePages").value.trim() || null,
+      deletePages: document.getElementById("deletePages").value.trim() || null
+    });
+    OT.showResult({ bytes, fileName: OT.nameWithSuffix(file.name, "-edited", ".pdf"), contentType: "application/pdf" });
+  } catch (e) {
+    status.textContent = e.message;
+  }
+};
+</script>
+</body>
+</html>

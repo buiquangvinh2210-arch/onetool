@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convert PDF sang TXT online miễn phí | OneTool</title>
+  <meta name="description" content="Chuyển PDF thành văn bản trên trình duyệt. Phù hợp trích nội dung tài liệu nhanh, miễn phí." />
+  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="container">
+    <header class="doc-hero">
+      <div class="doc-hero-copy">
+        <p class="eyebrow">Công cụ · Converter</p>
+        <h1>Convert Document</h1>
+        <p class="lede">PDF → TXT (text layer). File scan sẽ ra ít nội dung.</p>
+        <div class="doc-pills"><span>PDF→TXT</span></div>
+      </div>
+      <aside class="doc-hero-card"><h2>Cách dùng</h2><ol><li><strong>1.</strong> Upload PDF</li><li><strong>2.</strong> Chuyển</li><li><strong>3.</strong> Tải TXT</li></ol></aside>
+    </header>
+    <div class="tool-workspace-grid">
+      <div class="tool-panel">
+        <div class="tool-panel-header"><h2>Input</h2><span class="tool-panel-badge">Bước 1</span></div>
+        <div class="tool-panel-body">
+          <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
+            <input type="file" id="fileInput" accept="application/pdf,.pdf,.txt,text/plain" hidden />
+            <div class="upload-placeholder">
+              <span class="upload-icon">DOC</span>
+              <p><strong>Kéo thả PDF hoặc TXT</strong></p>
+              <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="runBtn" style="margin-top:1rem">PDF / TXT → TXT</button>
+        </div>
+      </div>
+      <div class="tool-panel result-panel">
+        <div class="tool-panel-header"><h2>Kết quả</h2><span class="tool-panel-badge">Bước 2</span></div>
+        <div class="tool-panel-body">
+          <p id="status" class="hint">Xử lý trên trình duyệt — file không rời máy bạn.</p>
+          <div class="result-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải file</button>
+          </div>
+          <pre id="preview" class="form-control" style="min-height:140px;white-space:pre-wrap"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/pdf.js"></script>
+<script>
+let file = null;
+OT.bindUploadZone({ onFiles: f => { file = f[0]; document.getElementById("status").textContent = file.name; } });
+document.getElementById("runBtn").onclick = async () => {
+  const status = document.getElementById("status");
+  try {
+    if (!file) throw new Error("Chọn file.");
+    status.textContent = "Đang chuyển…";
+    let text;
+    if (file.name.toLowerCase().endsWith(".txt") || file.type === "text/plain") text = await file.text();
+    else {
+      const out = await OTPdf.toText(file);
+      text = typeof out === "string" ? out : out.text;
+    }
+    OT.showResult({ text, fileName: OT.nameWithSuffix(file.name, "", ".txt"), contentType: "text/plain;charset=utf-8" });
+  } catch (e) {
+    status.textContent = e.message;
+  }
+};
+</script>
+</body>
+</html>

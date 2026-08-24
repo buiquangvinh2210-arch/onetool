@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nén PDF online miễn phí — giảm dung lượng file | OneTool</title>
+  <meta name="description" content="Giảm dung lượng PDF, xem phần trăm tiết kiệm rồi tải về. Xử lý trên trình duyệt, không upload server." />
+  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="container">
+    <header class="doc-hero">
+      <div class="doc-hero-copy">
+        <p class="eyebrow">Công cụ · PDF</p>
+        <h1>Nén PDF</h1>
+        <p class="lede">Chọn mức nén — xem % đã giảm rồi tải về.</p>
+        <div class="doc-pills"><span>3 mức</span><span>So sánh dung lượng</span></div>
+      </div>
+      <aside class="doc-hero-card"><h2>Cách dùng</h2><ol><li><strong>1.</strong> Upload</li><li><strong>2.</strong> Chọn mức</li><li><strong>3.</strong> Tải về</li></ol></aside>
+    </header>
+    <div class="tool-workspace-grid">
+      <div class="tool-panel">
+        <div class="tool-panel-header"><h2>Input</h2><span class="tool-panel-badge">Bước 1</span></div>
+        <div class="tool-panel-body">
+          <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
+            <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+            <div class="upload-placeholder">
+              <span class="upload-icon">PDF</span>
+              <p><strong>Kéo thả PDF</strong></p>
+              <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+            </div>
+          </div>
+          <div style="margin-top:1rem">
+            <label class="chip" style="display:flex;gap:.5rem;padding:.75rem;margin-bottom:.5rem;cursor:pointer"><input type="radio" name="level" value="light"/> <span><strong>Ít nén</strong> — giữ chi tiết nhất</span></label>
+            <label class="chip chip--active" style="display:flex;gap:.5rem;padding:.75rem;margin-bottom:.5rem;cursor:pointer"><input type="radio" name="level" value="medium" checked/> <span><strong>Khuyến nghị</strong> — cân bằng</span></label>
+            <label class="chip" style="display:flex;gap:.5rem;padding:.75rem;cursor:pointer"><input type="radio" name="level" value="strong"/> <span><strong>Nén mạnh</strong> — file nhỏ nhất</span></label>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="runBtn" style="margin-top:1rem">Nén PDF</button>
+          <p class="hint" style="margin-top:.75rem">Mức khuyến nghị/mạnh render trang thành JPEG (chữ có thể thành ảnh).</p>
+        </div>
+      </div>
+      <div class="tool-panel result-panel">
+        <div class="tool-panel-header"><h2>Kết quả</h2><span class="tool-panel-badge">Bước 2</span></div>
+        <div class="tool-panel-body">
+          <p id="status" class="hint">Xử lý trên trình duyệt — file không rời máy bạn.</p>
+          <div class="result-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải file</button>
+          </div>
+          <pre id="preview" class="form-control" style="min-height:140px;white-space:pre-wrap"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/pdf.js"></script>
+<script>
+let file = null;
+OT.bindUploadZone({ onFiles: f => { file = f[0]; } });
+document.getElementById("runBtn").onclick = async () => {
+  const btn = document.getElementById("runBtn");
+  try {
+    if (!file) throw new Error("Chọn PDF.");
+    const level = document.querySelector("input[name=level]:checked")?.value || "medium";
+    OT.setBusy(btn, true, "Đang nén…");
+    OT.setProgress(12);
+    OT.setStatus("Đang nén — có thể mất vài chục giây…");
+    const { bytes, meta } = await OTPdf.compress(file, level);
+    const info = `${meta.note}\nTrước: ${OT.formatBytes(meta.beforeBytes)}\nSau: ${OT.formatBytes(meta.afterBytes)}\nGiảm: ${meta.savedPercent}%`;
+    OT.showResult({
+      bytes,
+      fileName: OT.nameWithSuffix(file.name, "-compressed-" + meta.level, ".pdf"),
+      contentType: "application/pdf",
+      text: info
+    });
+    document.getElementById("preview").textContent = info;
+  } catch (e) {
+    OT.setStatus(e.message || "Lỗi", "err");
+  } finally {
+    OT.setBusy(btn, false);
+  }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tạo mã QR online miễn phí — URL và văn bản, tải PNG | OneTool</title>
+  <meta name="description" content="Tạo mã QR từ link website hoặc văn bản, xem trước và tải PNG để in. Miễn phí, chạy trên trình duyệt." />
+  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/tools/qr-generator.css" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="qr-page">
+    <header class="qr-intro">
+      <h1>Tạo mã QR</h1>
+      <p>Nhập link hoặc văn bản — xem trước ngay, tải PNG về máy. Không upload lên server.</p>
+    </header>
+    <div class="qr-card result-panel">
+      <div class="qr-grid">
+        <div class="qr-form">
+          <label class="qr-label" for="qrContent">Nội dung mã QR</label>
+          <input type="text" id="qrContent" class="qr-input" maxlength="2000" placeholder="https://example.com hoặc văn bản bất kỳ" autocomplete="off" />
+          <div class="qr-presets" id="qrPresets">
+            <button type="button" class="qr-preset" data-fill="https://">Link web</button>
+            <button type="button" class="qr-preset" data-fill="tel:">Số điện thoại</button>
+            <button type="button" class="qr-preset" data-fill="mailto:">Email</button>
+            <button type="button" class="qr-preset" data-fill="WIFI:T:WPA;S:TenWiFi;P:matkhau;;">WiFi</button>
+          </div>
+          <div class="qr-size">
+            <label class="qr-label" for="qrSize">Kích thước ảnh</label>
+            <input type="range" id="qrSize" min="256" max="768" step="64" value="512" />
+            <div class="qr-size-meta">
+              <span>Nhỏ</span>
+              <span id="qrSizeVal">512 px</span>
+              <span>Lớn</span>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="runBtn">Tạo mã QR</button>
+          <div class="qr-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép ảnh</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải PNG</button>
+          </div>
+        </div>
+        <div class="qr-preview-wrap">
+          <div class="qr-frame" id="qrFrame">
+            <div class="qr-empty" id="qrEmpty">Mã QR hiện ở đây<br />sau khi bạn bấm Tạo</div>
+            <div id="preview" hidden></div>
+          </div>
+          <p id="status" class="qr-status">Sẵn sàng — nhập nội dung rồi bấm Tạo mã QR.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/utils.js?v=20260824a"></script>
+<script>
+(function () {
+  let lastBlob = null;
+  const els = {
+    content: document.getElementById("qrContent"),
+    size: document.getElementById("qrSize"),
+    sizeVal: document.getElementById("qrSizeVal"),
+    status: document.getElementById("status"),
+    preview: document.getElementById("preview"),
+    empty: document.getElementById("qrEmpty"),
+    copyBtn: document.getElementById("copyResultBtn"),
+    downloadBtn: document.getElementById("downloadResultBtn")
+  };
+  els.size?.addEventListener("input", () => {
+    if (els.sizeVal) els.sizeVal.textContent = els.size.value + " px";
+  });
+  document.getElementById("qrPresets")?.addEventListener("click", (e) => {
+    const btn = e.target.closest(".qr-preset");
+    if (!btn) return;
+    els.content.value = btn.dataset.fill || "";
+    els.content.focus();
+  });
+  function showPreview(blob) {
+    lastBlob = blob;
+    const url = URL.createObjectURL(blob);
+    els.preview.innerHTML = `<img alt="Mã QR" src="${url}" />`;
+    els.preview.hidden = false;
+    els.empty.hidden = true;
+    els.copyBtn.disabled = false;
+    els.downloadBtn.disabled = false;
+    OT.setLastResult?.({ blob, fileName: "qrcode.png", contentType: "image/png" });
+  }
+  document.getElementById("runBtn").onclick = async () => {
+    const btn = document.getElementById("runBtn");
+    try {
+      const content = els.content.value.trim();
+      if (!content) throw new Error("Nhập URL hoặc văn bản trước.");
+      const size = parseInt(els.size.value, 10) || 512;
+      OT.setBusy(btn, true, "Đang tạo…");
+      els.status.textContent = "Đang tạo mã QR…";
+      els.status.className = "qr-status";
+      const blob = await OTUtils.makeQrPng(content, size);
+      showPreview(blob);
+      els.status.textContent = "Xong — tải PNG hoặc sao chép ảnh.";
+      els.status.className = "qr-status is-ok";
+      showToast?.("Đã tạo mã QR!", "success");
+    } catch (e) {
+      els.status.textContent = e.message || String(e);
+      els.status.className = "qr-status is-err";
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  };
+  els.copyBtn?.addEventListener("click", async (e) => {
+    e.preventDefault();
+    if (!lastBlob) return;
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": lastBlob })]);
+      els.status.textContent = "Đã sao chép ảnh vào clipboard.";
+      els.status.className = "qr-status is-ok";
+      showToast?.("Đã sao chép!", "success");
+    } catch {
+      els.status.textContent = "Không sao chép được — hãy tải PNG.";
+      els.status.className = "qr-status is-err";
+    }
+  }, true);
+  els.downloadBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!lastBlob) return;
+    OT.downloadBlob(lastBlob, "qrcode.png");
+    els.status.textContent = "Đang tải qrcode.png…";
+    els.status.className = "qr-status is-ok";
+  }, true);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+/* Category landing pages — SEO */
+
+.cat-hero {
+  padding: 2.5rem 0 2rem;
+  background: linear-gradient(165deg, rgba(248, 247, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 55%, rgba(237, 233, 254, 0.35) 100%);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="dark"] .cat-hero {
+  background: linear-gradient(165deg, rgba(19, 16, 31, 0.98), rgba(13, 10, 22, 0.95));
+}
+
+.cat-hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.cat-hero h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.cat-hero-lead {
+  margin: 0;
+  max-width: 58ch;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.cat-tools-section {
+  padding-top: 2rem;
+}
+
+.cat-seo {
+  padding: 2.5rem 0 3.5rem;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+}
+
+.cat-seo-wrap {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.cat-seo-block {
+  padding: 1.25rem 1.35rem;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.cat-seo-block h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.cat-seo-block p {
+  margin: 0 0 0.5rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-size: 0.92rem;
+}
+
+.cat-seo-block p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .cat-seo-wrap {
+    grid-template-columns: 1fr 1fr;
+  }
+}

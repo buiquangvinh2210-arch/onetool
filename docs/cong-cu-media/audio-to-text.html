@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chuyển audio/video thành văn bản tiếng Việt + SRT | OneTool</title>
+  <meta name="description" content="Nhận dạng giọng nói từ MP3, WAV, MP4 thành văn bản và phụ đề SRT. Hỗ trợ tiếng Việt, miễn phí trên trình duyệt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/tools/audio-to-text.css?v=20260822n" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="at-top">
+    <div class="at-title-row">
+      <div>
+        <h1>Audio / Video → Text</h1>
+        <p>Chuyển giọng nói thành văn bản tiếng Việt, xuất TXT và phụ đề SRT.</p>
+      </div>
+      <div class="at-meta">MP3 · WAV · MP4 · tối đa 25&nbsp;MB</div>
+    </div>
+  </div>
+
+  <div id="protocolBanner" class="protocol-banner container">Cần chạy qua HTTP (IIS / Live Server).</div>
+
+  <div class="at-studio">
+    <div class="at-shell">
+      <aside class="at-side">
+        <p class="at-side-label">Nguồn</p>
+        <div class="upload-zone" id="uploadZone" data-kind="media" role="button" tabindex="0">
+          <input type="file" id="fileInput" accept="audio/*,video/*,.mp3,.wav,.m4a,.ogg,.webm,.mp4,.mkv,.mov" hidden />
+          <div class="upload-placeholder">
+            <span class="upload-icon upload-icon--media">AUDIO</span>
+            <p><strong>Thả file vào đây</strong></p>
+            <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+          </div>
+        </div>
+        <div class="at-field">
+          <label for="lang">Ngôn ngữ</label>
+          <select id="lang" class="form-control">
+            <option value="vietnamese" selected>Tiếng Việt</option>
+            <option value="english">English</option>
+            <option value="auto">Tự nhận diện</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Nhận dạng</button>
+        <p class="at-note">
+          <span class="at-note-desk">Kết quả hiện bên phải — có thể sao chép hoặc tải về.</span>
+          <span class="at-note-mob">Kết quả hiện ngay bên dưới — sao chép hoặc tải TXT/SRT.</span>
+        </p>
+      </aside>
+
+      <div class="at-main">
+        <div class="at-main-bar">
+          <div>
+            <h2>Bản ghi</h2>
+            <p id="status">Chưa có nội dung</p>
+          </div>
+          <div class="at-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải TXT</button>
+            <button type="button" class="btn btn-outline btn-sm" id="downloadSrtBtn" disabled>Tải SRT</button>
+          </div>
+        </div>
+        <div class="at-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <pre id="preview" class="at-transcript"></pre>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/ot-config.js"></script>
+<script src="../assets/js/tools/audio-cloud.js"></script>
+<script>
+(function () {
+  try {
+    if (location.protocol === "file:") document.getElementById("protocolBanner")?.classList.add("is-on");
+    if (!window.OT?.bindUploadZone) {
+      document.getElementById("status").textContent = "Lỗi tải script. Thử Ctrl+F5.";
+      return;
+    }
+
+    let file = null;
+    let lastSrt = "";
+    let lastTxtName = "transcript.txt";
+    let lastSrtName = "transcript.srt";
+    const previewEl = document.getElementById("preview");
+    const statusEl = document.getElementById("status");
+    const progressBar = document.getElementById("progressBar");
+    const progressFill = document.getElementById("progressFill");
+
+    function setProgress(pct) {
+      if (!progressBar || !progressFill) return;
+      const n = Math.max(0, Math.min(100, Number(pct) || 0));
+      progressFill.style.width = n + "%";
+      progressBar.classList.toggle("is-on", n > 0 && n < 100);
+      if (n >= 100) setTimeout(() => { progressFill.style.width = "0%"; progressBar.classList.remove("is-on"); }, 400);
+    }
+
+    OT.bindUploadZone({ onFiles: (f) => {
+      file = f[0] || null;
+      if (statusEl && !file) statusEl.textContent = "Chưa có nội dung";
+    } });
+
+    document.getElementById("downloadSrtBtn")?.addEventListener("click", () => {
+      if (!lastSrt) return;
+      OT.downloadText(lastSrt, lastSrtName, "application/x-subrip;charset=utf-8");
+    });
+
+    document.getElementById("runBtn").onclick = async () => {
+      const btn = document.getElementById("runBtn");
+      const srtBtn = document.getElementById("downloadSrtBtn");
+      try {
+        if (location.protocol === "file:") throw new Error("Cần chạy qua HTTP (IIS hoặc Live Server).");
+        if (!file) throw new Error("Chọn file audio hoặc video trước.");
+        if (!window.OTAudioCloud?.transcribe) throw new Error("Thiếu script nhận dạng. Thử Ctrl+F5.");
+
+        OT.setBusy(btn, true, "Đang xử lý…");
+        if (srtBtn) srtBtn.disabled = true;
+        lastSrt = "";
+        previewEl.textContent = "";
+        setProgress(5);
+
+        const language = document.getElementById("lang").value;
+        const onProgress = (msg, pct) => {
+          if (statusEl) statusEl.textContent = msg;
+          OT.setStatus(msg);
+          if (pct != null) setProgress(pct);
+        };
+
+        const result = await OTAudioCloud.transcribe(file, { language, onProgress });
+        lastSrt = result.srt || "";
+        lastTxtName = result.fileNameTxt || "transcript.txt";
+        lastSrtName = result.fileNameSrt || "transcript.srt";
+        if (srtBtn) srtBtn.disabled = !lastSrt;
+
+        const preview = (result.text || "").trim() || "(Không có nội dung.)";
+        OT.showResult({
+          text: preview,
+          fileName: lastTxtName,
+          contentType: "text/plain;charset=utf-8"
+        });
+        previewEl.textContent = preview;
+        if (statusEl) statusEl.textContent = "Hoàn tất";
+        setProgress(100);
+      } catch (e) {
+        if (statusEl) statusEl.textContent = e.message || String(e);
+        OT.setStatus(e.message || String(e), "err");
+        setProgress(0);
+        console.error(e);
+      } finally {
+        OT.setBusy(btn, false);
+      }
+    };
+  } catch (err) {
+    console.error(err);
+  }
+})();
+</script>
+</body>
+</html>

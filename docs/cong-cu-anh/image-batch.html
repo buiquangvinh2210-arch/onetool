@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xử lý hàng loạt ảnh online — convert, resize, nén | OneTool</title>
+  <meta name="description" content="Convert, resize hoặc nén nhiều ảnh cùng lúc trên trình duyệt. Phù hợp catalog sản phẩm và album — miễn phí, file không upload server." />
+  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="container">
+    <header class="doc-hero">
+      <div class="doc-hero-copy">
+        <p class="eyebrow">Công cụ · Ảnh</p>
+        <h1>Batch Processing</h1>
+        <p class="lede">Convert / resize / nén nhiều ảnh — tải từng file kết quả.</p>
+        <div class="doc-pills"><span>Nhiều ảnh</span><span>Convert</span><span>Nén</span></div>
+      </div>
+      <aside class="doc-hero-card"><h2>Cách dùng</h2><ol><li><strong>1.</strong> Chọn nhiều ảnh</li><li><strong>2.</strong> Chọn chế độ</li><li><strong>3.</strong> Tải lần lượt</li></ol></aside>
+    </header>
+    <div class="tool-workspace-grid">
+      <div class="tool-panel">
+        <div class="tool-panel-header"><h2>Input</h2><span class="tool-panel-badge">Bước 1</span></div>
+        <div class="tool-panel-body">
+          <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
+            <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp" multiple hidden />
+            <div class="upload-placeholder">
+              <span class="upload-icon">BATCH</span>
+              <p><strong>Kéo thả nhiều ảnh</strong></p>
+              <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+            </div>
+          </div>
+          <label class="hint" style="display:block;margin-top:1rem">Chế độ</label>
+          <select id="mode" class="form-control">
+            <option value="compress">Nén</option>
+            <option value="convert">Convert PNG</option>
+            <option value="resize">Resize rộng 1200px</option>
+          </select>
+          <button type="button" class="btn btn-primary btn-block" id="runBtn" style="margin-top:1rem">Xử lý batch</button>
+        </div>
+      </div>
+      <div class="tool-panel result-panel">
+        <div class="tool-panel-header"><h2>Kết quả</h2><span class="tool-panel-badge">Bước 2</span></div>
+        <div class="tool-panel-body">
+          <p id="status" class="hint">Xử lý trên trình duyệt — file không rời máy bạn.</p>
+          <div class="result-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải file</button>
+          </div>
+          <pre id="preview" class="form-control" style="min-height:140px;white-space:pre-wrap"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/image.js"></script>
+<script>
+let files = [];
+OT.bindUploadZone({ multiple: true, onFiles: f => { files = f; document.getElementById("status").textContent = files.length + " ảnh."; } });
+document.getElementById("runBtn").onclick = async () => {
+  const status = document.getElementById("status");
+  try {
+    if (!files.length) throw new Error("Chọn ảnh.");
+    const mode = document.getElementById("mode").value;
+    status.textContent = "Đang xử lý " + files.length + " ảnh…";
+    const opts = mode === "resize" ? { width: 1200, keepAspect: true } : mode === "convert" ? { format: "png" } : { quality: 0.7, format: "jpg" };
+    const results = await OTImage.batch(files, mode, opts);
+    for (const r of results) { OT.downloadBlob(r.blob, r.fileName); }
+    OT.showResult({ text: "Đã tải " + results.length + " file.", fileName: "batch-done.txt" });
+  } catch (e) {
+    status.textContent = e.message;
+  }
+};
+</script>
+</body>
+</html>

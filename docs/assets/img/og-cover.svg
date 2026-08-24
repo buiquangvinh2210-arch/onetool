@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="OneTool">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1038"/>
+      <stop offset="55%" stop-color="#3b1d6e"/>
+      <stop offset="100%" stop-color="#0e7490"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="80" y="250" fill="#fff" font-family="Arial, sans-serif" font-size="88" font-weight="700">OneTool</text>
+  <text x="80" y="330" fill="#e9d5ff" font-family="Arial, sans-serif" font-size="36">Công cå PDF, £nh, video online miÅn phí</text>
+  <text x="80" y="420" fill="#a5f3fc" font-family="Arial, sans-serif" font-size="28">Xí lý trên trình duyÇt · Không c§n ng nh­p</text>
+</svg>

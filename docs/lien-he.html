@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liên hệ & Góp ý — OneTool</title>
+  <meta name="description" content="Góp ý, báo lỗi hoặc đề xuất công cụ mới cho OneTool. Để lại bình luận trên trang — chúng tôi đọc và cải thiện liên tục." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <script>window.OT_BASE = ".";</script>
+  <script src="assets/js/ot-config.js"></script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="page-hero"><div class="container">
+  <span class="section-eyebrow">Liên hệ</span>
+  <h1>Đóng góp ý kiến</h1>
+  <p>Viết góp ý như bình luận bên dưới — báo lỗi, đề xuất tính năng hoặc chia sẻ trải nghiệm. Chúng tôi nhận mọi ý kiến để OneTool tốt hơn.</p>
+</div></section>
+
+<section class="section section--tight"><div class="container fb-layout">
+  <div class="fb-board">
+    <div class="fb-board-head">
+      <h2>Bảng góp ý</h2>
+      <span class="fb-count"><strong id="fbCount">0</strong> ý kiến</span>
+    </div>
+
+    <form class="fb-form" id="feedbackForm" autocomplete="on">
+      <p class="fb-form-label">Viết góp ý của bạn</p>
+      <div class="fb-form-row">
+        <div class="fb-field">
+          <label for="fbName">Tên <span aria-hidden="true">*</span></label>
+          <input type="text" id="fbName" name="name" class="form-control" maxlength="80" required placeholder="Tên hiển thị" />
+        </div>
+        <div class="fb-field">
+          <label for="fbEmail">Email <span class="fb-opt">(tuỳ chọn)</span></label>
+          <input type="email" id="fbEmail" name="email" class="form-control" maxlength="120" placeholder="Để chúng tôi phản hồi nếu cần" />
+        </div>
+      </div>
+      <div class="fb-field">
+        <label for="fbMessage">Nội dung <span aria-hidden="true">*</span></label>
+        <textarea id="fbMessage" name="message" class="form-control fb-textarea" maxlength="2000" rows="4" required placeholder="Mô tả lỗi, đề xuất công cụ mới, hoặc góp ý giao diện…"></textarea>
+      </div>
+      <input type="hidden" id="fbWebsite" name="website" value="" tabindex="-1" autocomplete="off" />
+      <div class="fb-form-foot">
+        <p class="fb-hint">Góp ý công khai tên + nội dung. Email chỉ dùng nội bộ, không hiện trên bảng.</p>
+        <button type="submit" class="btn btn-primary" id="fbSubmit">Gửi góp ý</button>
+      </div>
+      <p class="fb-status" id="fbStatus" role="status"></p>
+    </form>
+
+    <div class="fb-list" id="fbList" aria-live="polite"></div>
+    <p class="fb-empty" id="fbEmpty">Chưa có góp ý nào — hãy là người đầu tiên!</p>
+  </div>
+
+  <aside class="ot-contact" aria-label="Thông tin liên hệ">
+    <div class="ot-contact-top">
+      <span class="ot-contact-badge">OneTool</span>
+      <h2>Liên hệ</h2>
+      <p>Gửi góp ý qua form bên cạnh. Số điện thoại chỉ để tham khảo.</p>
+    </div>
+    <div class="ot-contact-phone">
+      <span class="ot-contact-label">Điện thoại</span>
+      <p class="ot-contact-number">0982 945 576</p>
+    </div>
+    <div class="ot-contact-rows">
+      <div class="ot-contact-row">
+        <span class="ot-contact-label">Email</span>
+        <span class="ot-contact-value">onetools27@gmail.com</span>
+      </div>
+      <div class="ot-contact-row">
+        <span class="ot-contact-label">Website</span>
+        <span class="ot-contact-value">onetool.vn</span>
+      </div>
+      <div class="ot-contact-row">
+        <span class="ot-contact-label">Chi phí</span>
+        <span class="ot-contact-value ot-contact-value--ok">Miễn phí</span>
+      </div>
+    </div>
+  </aside>
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/catalog.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/tools/feedback-ui.js"></script>
+</body>
+</html>

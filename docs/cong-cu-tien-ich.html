@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Công cụ tiện ích online — QR, JSON, Base64, Dev tools | OneTool</title>
+  <meta name="description" content="Tạo mã QR, format JSON, encode Base64, UUID, hash SHA — bộ tiện ích developer và văn phòng miễn phí." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <script>window.OT_BASE = ".";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="cat-hero"><div class="container">
+  <span class="cat-hero-eyebrow">Danh mục công cụ</span>
+  <h1>🔧 Tiện ích</h1>
+  <p class="cat-hero-lead">QR code, JSON formatter, Base64, UUID, hash SHA — tiện ích developer và văn phòng.</p>
+</div></section>
+<section class="section cat-tools-section"><div class="container">
+  <div class="category-filter" id="catFilter" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem"></div>
+  <div id="catTools"></div>
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/catalog.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+renderCategoryChips(document.getElementById("catFilter"), "cong-cu-tien-ich");
+renderToolGrid(document.getElementById("catTools"), { categorySeo: "cong-cu-tien-ich" });
+</script>
+</body>
+</html>

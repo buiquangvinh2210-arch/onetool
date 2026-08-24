@@ -1,0 +1,236 @@
+/* OneTool — typography toàn site: tăng cỡ chữ, dễ đọc hơn */
+
+html {
+  font-size: 112.5%;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+/* ── Header & điều hướng ── */
+.main-nav a,
+.nav-dropdown-trigger,
+.nav-dropdown-panel a,
+.mobile-nav a {
+  font-size: 0.9375rem !important;
+}
+
+.logo-stack small,
+.logo-tagline,
+.logo--rich .logo-tagline {
+  font-size: 0.8125rem !important;
+}
+
+.header-actions .btn,
+.header-actions .btn-sm {
+  font-size: 0.9375rem !important;
+}
+
+.nav-drawer-tool,
+.nav-drawer-cat,
+.nav-mega-link,
+.nav-mega-link span {
+  font-size: 0.9375rem !important;
+}
+
+.ot-crumb,
+.ot-crumb-wrap {
+  font-size: 0.875rem !important;
+}
+
+/* ── Nút & form ── */
+.btn {
+  font-size: 0.9375rem;
+}
+
+.btn-sm {
+  font-size: 0.875rem !important;
+}
+
+.form-group label,
+.hint,
+.text-muted,
+label.hint {
+  font-size: 0.875rem !important;
+}
+
+.form-control,
+textarea.form-control,
+select.form-control,
+input.form-control {
+  font-size: 1rem !important;
+  line-height: 1.6;
+}
+
+/* ── Tool workspace (layout doc cũ) ── */
+.doc-hero .eyebrow {
+  font-size: 0.8125rem !important;
+}
+
+.doc-hero .lede,
+.doc-hero-card li,
+.doc-hero-card h2 {
+  font-size: 1rem !important;
+}
+
+.doc-pills span {
+  font-size: 0.875rem !important;
+}
+
+.tool-panel-header h2 {
+  font-size: 1rem !important;
+}
+
+.tool-panel-badge {
+  font-size: 0.8125rem !important;
+}
+
+.tool-panel-body,
+.tool-panel-body p,
+.tool-panel-body label,
+#status {
+  font-size: 0.9375rem !important;
+}
+
+.tool-panel-body pre,
+.tool-panel-body .form-control {
+  font-size: 0.9375rem !important;
+  line-height: 1.65 !important;
+}
+
+/* ── Studio tools: Base64, JSON, Dev, QR, Convert… ── */
+body[data-tool] [class*="-intro"] p {
+  font-size: 1.0625rem !important;
+  line-height: 1.65 !important;
+}
+
+body[data-tool] [class*="-panel-head"] h2 {
+  font-size: 0.9375rem !important;
+}
+
+body[data-tool] [class*="-mode"] button,
+body[data-tool] [class*="-submode"] button {
+  font-size: 0.8125rem !important;
+}
+
+body[data-tool] [class*="-meta"],
+body[data-tool] [class*="-status"],
+body[data-tool] [class*="-options"],
+body[data-tool] [class*="-options"] label,
+body[data-tool] [class*="-text-btn"],
+body[data-tool] [class*="-field"] label,
+body[data-tool] [class*="-file-chip"] {
+  font-size: 0.875rem !important;
+}
+
+body[data-tool] [class*="-field"] select,
+body[data-tool] [class*="-field"] input[type="number"] {
+  font-size: 0.9375rem !important;
+}
+
+body[data-tool] [class*="-editor"],
+body[data-tool] [class*="-out"],
+body[data-tool] pre#preview {
+  font-size: 0.9375rem !important;
+  line-height: 1.65 !important;
+}
+
+/* ── Trang chủ ── */
+.home-badge {
+  font-size: 0.875rem !important;
+}
+
+.home-hero-lead {
+  font-size: 1.0625rem !important;
+}
+
+.home-hero-points li {
+  font-size: 0.9375rem !important;
+}
+
+.home-stat span,
+.home-category-head p,
+.tool-card-desc,
+.tool-card-cat,
+.tool-card-meta,
+.home-cta-box p {
+  font-size: 0.9375rem !important;
+}
+
+.tool-card-title {
+  font-size: 1.0625rem !important;
+}
+
+.home-category-link {
+  font-size: 0.9375rem !important;
+}
+
+/* ── Trang danh mục ── */
+.cat-hero-lead,
+.cat-hero-eyebrow,
+.cat-seo-block p,
+.tool-seo-block p,
+.tool-seo-block li,
+.tool-seo-card-sapo,
+.tool-seo-card-title {
+  font-size: 1rem !important;
+}
+
+.cat-seo-block h2,
+.tool-seo-block h2 {
+  font-size: 1.125rem !important;
+}
+
+.tools-hub-card p {
+  font-size: 0.9375rem !important;
+}
+
+/* ── SEO / nội dung cuối trang tool ── */
+.tool-seo-block,
+.tool-seo-wrap {
+  line-height: 1.75 !important;
+}
+
+/* ── Footer ── */
+.site-footer,
+.site-footer a,
+.site-footer p,
+.footer-col p,
+.footer-col a {
+  font-size: 0.9375rem !important;
+}
+
+.footer-col h3 {
+  font-size: 1rem !important;
+}
+
+/* ── Toast & chip ── */
+.toast,
+.file-chip,
+.file-chip span,
+.status-line {
+  font-size: 0.9375rem !important;
+}
+
+/* ── Bảng admin (nếu có) ── */
+.data-table {
+  font-size: 0.9375rem !important;
+}
+
+.data-table th {
+  font-size: 0.8125rem !important;
+}

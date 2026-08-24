@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resize ảnh online — đổi kích thước pixel miễn phí | OneTool</title>
+  <meta name="description" content="Resize ảnh theo pixel, preset avatar/banner, giữ tỉ lệ, xuất JPG PNG WebP trên trình duyệt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/tools/image-resize.css" />
+  <script>window.OT_BASE = "..";</script>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<section class="tool-workspace tool-workspace--doc">
+  <div class="ir-page">
+    <header class="ir-intro">
+      <h1>Resize ảnh</h1>
+      <p>Đổi kích thước theo pixel, preset hoặc % — giữ tỉ lệ, xuất JPG / PNG / WebP.</p>
+    </header>
+
+    <div class="ir-studio">
+      <div class="ir-shell" id="shell">
+        <div class="ir-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="image" role="button" tabindex="0">
+            <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp" hidden />
+            <div class="upload-placeholder">
+              <p class="ir-drop-kicker">Thả ảnh vào đây</p>
+              <p class="ir-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · JPG PNG WebP · tối đa 10&nbsp;MB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ir-work">
+          <aside class="ir-side">
+            <div class="ir-file-bar">
+              <div>
+                <strong id="fileName">-</strong>
+                <span id="fileMeta">-</span>
+              </div>
+              <button type="button" class="ir-text-btn" id="changeBtn">Đổi ảnh</button>
+            </div>
+
+            <div>
+              <p class="ir-label">Preset</p>
+              <div class="ir-presets" id="presetGrid">
+                <button type="button" class="ir-preset" data-w="512" data-h="512">Avatar<em>512 × 512</em></button>
+                <button type="button" class="ir-preset" data-w="1080" data-h="1080">Instagram<em>1080 × 1080</em></button>
+                <button type="button" class="ir-preset" data-w="1280" data-h="720">YouTube<em>1280 × 720</em></button>
+                <button type="button" class="ir-preset" data-w="1920" data-h="1080">Banner<em>1920 × 1080</em></button>
+                <button type="button" class="ir-preset" data-w="820" data-h="312">FB Cover<em>820 × 312</em></button>
+                <button type="button" class="ir-preset" data-w="1080" data-h="1920">Story<em>1080 × 1920</em></button>
+              </div>
+            </div>
+
+            <div>
+              <p class="ir-label">Thu phóng</p>
+              <div class="ir-scale" id="scaleBtns">
+                <button type="button" data-scale="25">25%</button>
+                <button type="button" data-scale="50">50%</button>
+                <button type="button" data-scale="75">75%</button>
+                <button type="button" data-scale="100" class="is-on">100%</button>
+              </div>
+            </div>
+
+            <div>
+              <p class="ir-label">Kích thước (px)</p>
+              <div class="ir-dims">
+                <label>Rộng<input id="w" class="form-control" type="number" min="1" max="8000" /></label>
+                <label>Cao<input id="h" class="form-control" type="number" min="1" max="8000" /></label>
+              </div>
+              <label class="ir-check" style="margin-top:0.55rem">
+                <input type="checkbox" id="keep" checked /> Giữ tỉ lệ
+              </label>
+            </div>
+
+            <div class="ir-field">
+              <label class="ir-label" for="format">Định dạng xuất</label>
+              <select id="format" class="form-control">
+                <option value="jpg">JPG — nhẹ, ảnh chụp</option>
+                <option value="png">PNG — nét, nền trong suốt</option>
+                <option value="webp">WebP — web hiện đại</option>
+              </select>
+            </div>
+
+            <div class="ir-quality" id="qualityWrap">
+              <label class="ir-label" for="quality">Chất lượng</label>
+              <input type="range" id="quality" min="40" max="100" value="92" />
+              <div class="ir-quality-meta"><span>Nhỏ hơn</span><span id="qualityVal">92%</span></div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" id="runBtn">Resize</button>
+          </aside>
+
+          <div class="ir-main">
+            <div class="ir-main-bar">
+              <div>
+                <h2>So sánh</h2>
+                <p id="status">Chọn kích thước rồi bấm Resize</p>
+              </div>
+              <div class="ir-actions result-actions">
+                <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+                <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải ảnh</button>
+              </div>
+            </div>
+            <div class="ir-compare">
+              <figure class="ir-shot">
+                <figcaption>
+                  <span>Gốc</span>
+                  <span class="ir-dim-tag" id="origDim">-</span>
+                </figcaption>
+                <div class="ir-frame">
+                  <img id="sourceImg" alt="Ảnh gốc" />
+                </div>
+              </figure>
+              <figure class="ir-shot">
+                <figcaption>
+                  <span>Kết quả</span>
+                  <span class="ir-dim-tag" id="outDim">-</span>
+                </figcaption>
+                <div id="preview" class="ir-frame">
+                  <div class="ir-wait" id="resultEmpty">Bấm Resize để xem</div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/image.js?v=20260822d"></script>
+<script>
+(function () {
+  let file = null;
+  let sourceUrl = null;
+  let origW = 0;
+  let origH = 0;
+  let lastBlob = null;
+  let syncing = false;
+  let fitMode = "pad";
+  let presetActive = false;
+
+  const els = {
+    shell: document.getElementById("shell"),
+    zone: document.getElementById("uploadZone"),
+    sourceImg: document.getElementById("sourceImg"),
+    fileName: document.getElementById("fileName"),
+    fileMeta: document.getElementById("fileMeta"),
+    origDim: document.getElementById("origDim"),
+    outDim: document.getElementById("outDim"),
+    w: document.getElementById("w"),
+    h: document.getElementById("h"),
+    keep: document.getElementById("keep"),
+    format: document.getElementById("format"),
+    quality: document.getElementById("quality"),
+    qualityVal: document.getElementById("qualityVal"),
+    qualityWrap: document.getElementById("qualityWrap"),
+    status: document.getElementById("status"),
+    preview: document.getElementById("preview"),
+    input: document.getElementById("fileInput")
+  };
+
+  function waitMarkup() {
+    return '<div class="ir-wait" id="resultEmpty">Bấm Resize để xem</div>';
+  }
+
+  function revokeSource() {
+    if (sourceUrl) URL.revokeObjectURL(sourceUrl);
+    sourceUrl = null;
+  }
+
+  function resolveFitMode() {
+    if (!els.keep.checked) return "stretch";
+    if (presetActive) return "cover";
+    if (els.w.value && els.h.value) return "pad";
+    return "contain";
+  }
+
+  function clearPresetActive() {
+    document.querySelectorAll(".ir-preset.is-on").forEach((b) => b.classList.remove("is-on"));
+    presetActive = false;
+  }
+
+  function clearScaleActive() {
+    document.querySelectorAll("#scaleBtns button.is-on").forEach((b) => b.classList.remove("is-on"));
+  }
+
+  function applyScale(pct) {
+    if (!origW) return;
+    els.w.value = Math.max(1, Math.round(origW * pct / 100));
+    els.h.value = Math.max(1, Math.round(origH * pct / 100));
+    clearPresetActive();
+  }
+
+  function syncFromWidth() {
+    if (syncing || !els.keep.checked || !origW) return;
+    syncing = true;
+    const w = parseInt(els.w.value, 10) || origW;
+    els.h.value = Math.max(1, Math.round(origH * (w / origW)));
+    syncing = false;
+    clearPresetActive();
+    clearScaleActive();
+  }
+
+  function syncFromHeight() {
+    if (syncing || !els.keep.checked || !origH) return;
+    syncing = true;
+    const h = parseInt(els.h.value, 10) || origH;
+    els.w.value = Math.max(1, Math.round(origW * (h / origH)));
+    syncing = false;
+    clearPresetActive();
+    clearScaleActive();
+  }
+
+  function clearResult() {
+    lastBlob = null;
+    els.outDim.textContent = "-";
+    els.preview.querySelectorAll("img").forEach((img) => {
+      if (img.src?.startsWith("blob:")) URL.revokeObjectURL(img.src);
+      img.remove();
+    });
+    if (!els.preview.querySelector(".ir-wait")) els.preview.innerHTML = waitMarkup();
+    document.getElementById("copyResultBtn").disabled = true;
+    document.getElementById("downloadResultBtn").disabled = true;
+  }
+
+  function defaultFormat(name) {
+    const ext = (name.split(".").pop() || "").toLowerCase();
+    if (ext === "png") return "png";
+    if (ext === "webp") return "webp";
+    return "jpg";
+  }
+
+  function toggleQuality() {
+    const isPng = els.format.value === "png";
+    els.qualityWrap.hidden = isPng;
+  }
+
+  async function showSource(f) {
+    revokeSource();
+    file = f;
+    sourceUrl = URL.createObjectURL(f);
+    els.sourceImg.src = sourceUrl;
+    els.fileName.textContent = f.name;
+    els.fileMeta.textContent = OT.formatBytes(f.size);
+    els.shell.classList.add("has-file");
+    els.zone.classList.add("has-file");
+
+    const img = await OT.loadImage(f);
+    origW = img.naturalWidth;
+    origH = img.naturalHeight;
+    els.w.value = origW;
+    els.h.value = origH;
+    els.origDim.textContent = origW + " × " + origH;
+    els.format.value = defaultFormat(f.name);
+    toggleQuality();
+    clearPresetActive();
+    clearScaleActive();
+    document.querySelector('#scaleBtns [data-scale="100"]')?.classList.add("is-on");
+    els.status.textContent = "Chọn preset hoặc nhập kích thước, rồi bấm Resize.";
+    clearResult();
+  }
+
+  OT.bindUploadZone({
+    onFiles: (files) => {
+      const f = files?.[0];
+      if (!f) return;
+      if (!f.type.startsWith("image/")) {
+        showToast?.("Chọn file ảnh.", "error");
+        return;
+      }
+      if (f.size > 10 * 1024 * 1024) {
+        showToast?.("Ảnh tối đa 10MB.", "error");
+        return;
+      }
+      showSource(f);
+    }
+  });
+
+  document.getElementById("changeBtn")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    els.input?.click();
+  });
+
+  els.w?.addEventListener("input", syncFromWidth);
+  els.h?.addEventListener("input", syncFromHeight);
+  els.keep?.addEventListener("change", () => {
+    if (els.keep.checked) syncFromWidth();
+  });
+  els.format?.addEventListener("change", toggleQuality);
+  els.quality?.addEventListener("input", () => {
+    if (els.qualityVal) els.qualityVal.textContent = els.quality.value + "%";
+  });
+
+  document.getElementById("presetGrid")?.addEventListener("click", (e) => {
+    const btn = e.target.closest(".ir-preset");
+    if (!btn) return;
+    els.w.value = btn.dataset.w;
+    els.h.value = btn.dataset.h;
+    els.keep.checked = true;
+    presetActive = true;
+    fitMode = "cover";
+    clearPresetActive();
+    btn.classList.add("is-on");
+    clearScaleActive();
+    clearResult();
+  });
+
+  document.getElementById("scaleBtns")?.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-scale]");
+    if (!btn) return;
+    applyScale(parseInt(btn.dataset.scale, 10));
+    clearScaleActive();
+    btn.classList.add("is-on");
+    clearResult();
+  });
+
+  document.getElementById("copyResultBtn")?.addEventListener("click", async (e) => {
+    if (!lastBlob) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    try {
+      const type = lastBlob.type || "image/png";
+      await navigator.clipboard.write([new ClipboardItem({ [type]: lastBlob })]);
+      showToast?.("Đã sao chép ảnh.", "success");
+    } catch {
+      showToast?.("Không sao chép được — hãy tải ảnh.", "error");
+    }
+  }, true);
+
+  document.getElementById("runBtn").onclick = async () => {
+    const btn = document.getElementById("runBtn");
+    try {
+      if (!file) throw new Error("Chọn ảnh trước.");
+      const width = parseInt(els.w.value, 10) || 0;
+      const height = parseInt(els.h.value, 10) || 0;
+      if (!width && !height) throw new Error("Nhập rộng hoặc cao.");
+      if (width > 8000 || height > 8000) throw new Error("Tối đa 8000 px mỗi cạnh.");
+
+      OT.setBusy(btn, true, "Đang resize…");
+      els.status.textContent = "Đang xử lý…";
+      clearResult();
+
+      const fmt = els.format.value;
+      const q = (parseInt(els.quality.value, 10) || 92) / 100;
+      fitMode = resolveFitMode();
+      const r = await OTImage.resize(file, {
+        width: width || undefined,
+        height: height || undefined,
+        keepAspect: els.keep.checked,
+        fitMode,
+        quality: fmt === "png" ? undefined : q
+      }, fmt);
+
+      lastBlob = r.blob;
+      OT.showResult(r);
+      els.outDim.textContent = r.width + " × " + r.height + " · " + OT.formatBytes(r.blob.size);
+      els.status.textContent = "Xong — " + origW + "×" + origH + " → " + r.width + "×" + r.height;
+      showToast?.("Đã resize!", "success");
+    } catch (e) {
+      els.status.textContent = e.message || String(e);
+      console.error(e);
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  };
+
+  toggleQuality();
+})();
+</script>
+</body>
+</html>
