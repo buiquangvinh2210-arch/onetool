@@ -1,12 +1,10 @@
 (function () {
   "use strict";
 
-  const proxy =
-    (window.OT_CONFIG && window.OT_CONFIG.feedbackProxy) || "/api/feedback.ashx";
   const notifyEmail =
     (window.OT_CONFIG && window.OT_CONFIG.feedbackEmail) || "onetools27@gmail.com";
-  const webhook =
-    (window.OT_CONFIG && window.OT_CONFIG.feedbackWebhook) || "";
+  const proxy =
+    (window.OT_CONFIG && window.OT_CONFIG.feedbackProxy) || "/api/feedback.ashx";
 
   const els = {
     form: document.getElementById("feedbackForm"),
@@ -15,124 +13,15 @@
     message: document.getElementById("fbMessage"),
     honey: document.getElementById("fbWebsite"),
     submit: document.getElementById("fbSubmit"),
-    status: document.getElementById("fbStatus"),
-    list: document.getElementById("fbList"),
-    empty: document.getElementById("fbEmpty"),
-    count: document.getElementById("fbCount")
+    status: document.getElementById("fbStatus")
   };
 
   if (!els.form) return;
-
-  const LS_KEY = "ot_feedback_local";
 
   function setStatus(msg, kind) {
     if (!els.status) return;
     els.status.textContent = msg || "";
     els.status.className = "fb-status" + (kind ? " is-" + kind : "");
-  }
-
-  function esc(s) {
-    return String(s ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-  }
-
-  function formatTime(iso) {
-    try {
-      const d = new Date(iso);
-      if (Number.isNaN(d.getTime())) return "";
-      return d.toLocaleString("vi-VN", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-    } catch {
-      return "";
-    }
-  }
-
-  function loadLocal() {
-    try {
-      return JSON.parse(localStorage.getItem(LS_KEY) || "[]");
-    } catch {
-      return [];
-    }
-  }
-
-  function saveLocal(items) {
-    try {
-      localStorage.setItem(LS_KEY, JSON.stringify(items.slice(0, 50)));
-    } catch (_) {}
-  }
-
-  function renderItems(items) {
-    if (!els.list) return;
-    const rows = Array.isArray(items) ? items : [];
-    if (els.count) els.count.textContent = String(rows.length);
-    if (!rows.length) {
-      els.list.innerHTML = "";
-      if (els.empty) {
-        els.empty.hidden = false;
-        els.empty.textContent = "Chưa có góp ý nào — hãy là người đầu tiên!";
-      }
-      return;
-    }
-    if (els.empty) els.empty.hidden = true;
-    els.list.innerHTML = rows
-      .map((it) => {
-        const initial = (it.name || "?").trim().charAt(0).toUpperCase();
-        return `<article class="fb-item">
-          <div class="fb-avatar" aria-hidden="true">${esc(initial)}</div>
-          <div class="fb-item-body">
-            <header class="fb-item-head">
-              <strong class="fb-item-name">${esc(it.name || "Ẩn danh")}</strong>
-              <time datetime="${esc(it.createdAt || "")}">${esc(formatTime(it.createdAt))}</time>
-            </header>
-            <p class="fb-item-msg">${esc(it.message || "")}</p>
-          </div>
-        </article>`;
-      })
-      .join("");
-  }
-
-  async function loadComments() {
-    try {
-      const res = await fetch(proxy, { method: "GET", credentials: "same-origin" });
-      if (res.ok) {
-        const data = await res.json();
-        if (data && data.ok && Array.isArray(data.items) && data.items.length) {
-          renderItems(data.items);
-          return;
-        }
-      }
-    } catch (_) {}
-    renderItems(loadLocal());
-  }
-
-  async function sendViaWebhook(payload) {
-    if (!webhook || /YOUR_|XXXX/i.test(webhook)) {
-      throw new Error("Chưa cấu hình feedbackWebhook");
-    }
-    const res = await fetch(webhook, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload),
-      redirect: "follow"
-    });
-    const text = await res.text();
-    try {
-      const data = JSON.parse(text);
-      if (data && data.ok === false) throw new Error(data.error || "Webhook lỗi");
-      return data;
-    } catch (e) {
-      if (e.message && !/JSON|Unexpected/.test(e.message)) throw e;
-      if (res.ok || res.type === "opaqueredirect") return { ok: true };
-      throw new Error("Webhook HTTP " + res.status);
-    }
   }
 
   async function sendViaFormSubmit(payload) {
@@ -150,28 +39,19 @@
         _subject: "[OneTool] Góp ý từ " + payload.name,
         _template: "table",
         _captcha: "false",
-        id: payload.id || "",
         source: location.href
       })
     });
     const data = await res.json().catch(() => ({}));
     const msg = String(data.message || "");
     if (/Activation|Activate Form/i.test(msg) || data.success === "false" || data.success === false) {
-      const err = new Error(msg || "Cần kích hoạt FormSubmit");
+      const err = new Error(
+        "Mở Gmail " + notifyEmail + " (cả Spam) → mail FormSubmit → bấm Activate Form, rồi gửi lại."
+      );
       err.needsActivation = true;
       throw err;
     }
-    if (!res.ok) throw new Error(msg || data.error || "FormSubmit lỗi " + res.status);
-    return data;
-  }
-
-  async function notifyEmailChannels(payload) {
-    if (webhook && !/YOUR_|XXXX/i.test(webhook)) {
-      await sendViaWebhook(payload);
-      return { ok: true };
-    }
-    await sendViaFormSubmit(payload);
-    return { ok: true };
+    if (!res.ok) throw new Error(msg || data.error || "Không gửi được email.");
   }
 
   els.form.addEventListener("submit", async (e) => {
@@ -191,19 +71,12 @@
       els.message?.focus();
       return;
     }
+    if (website) return;
 
     els.submit.disabled = true;
-    setStatus("Đang gửi góp ý…", "");
-
-    const localItem = {
-      id: "local-" + Date.now().toString(36),
-      name,
-      message,
-      createdAt: new Date().toISOString()
-    };
+    setStatus("Đang gửi…", "");
 
     try {
-      let data = { ok: false, emailSent: false };
       try {
         const res = await fetch(proxy, {
           method: "POST",
@@ -211,55 +84,26 @@
           headers: { "Content-Type": "application/json; charset=utf-8" },
           body: JSON.stringify({ name, email, message, website })
         });
-        if (res.ok) data = await res.json().catch(() => ({ ok: true }));
-      } catch (_) {
-        /* GitHub Pages: ashx không tồn tại — gửi mail phía client */
-      }
-
-      let mailNote = "";
-      let mailKind = "ok";
-
-      if (data.emailSent) {
-        mailNote = " Đã gửi thông báo tới " + notifyEmail + ".";
-      } else if (data.needsActivation) {
-        mailNote =
-          " Mở Gmail " + notifyEmail + " (cả Spam) → FormSubmit → Activate Form, rồi gửi lại.";
-        mailKind = "err";
-      } else {
-        try {
-          await notifyEmailChannels({ name, email, message, id: data.id || localItem.id });
-          mailNote = " Đã gửi thông báo tới " + notifyEmail + ".";
-        } catch (mailErr) {
-          if (mailErr.needsActivation) {
-            mailNote =
-              " Mở Gmail " + notifyEmail + " (Spam) → mail FormSubmit → bấm Activate Form.";
-            mailKind = "err";
-          } else {
-            mailNote =
-              " Chưa gửi được email. Cấu hình feedbackWebhook (Google Apps Script) — xem workers/README.md. (" +
-              (mailErr.message || "lỗi") +
-              ")";
-            mailKind = "err";
+        if (res.ok) {
+          const data = await res.json().catch(() => ({}));
+          if (data.emailSent) {
+            setStatus("Cảm ơn bạn! Đã gửi tới " + notifyEmail + ".", "ok");
+            els.form.reset();
+            if (typeof showToast === "function") showToast("Đã gửi góp ý!", "success");
+            return;
           }
         }
-      }
+      } catch (_) {}
 
-      const local = loadLocal();
-      local.unshift(localItem);
-      saveLocal(local);
-
-      setStatus("Cảm ơn bạn! Góp ý đã được ghi nhận." + mailNote, mailKind);
+      await sendViaFormSubmit({ name, email, message });
+      setStatus("Cảm ơn bạn! Đã gửi tới " + notifyEmail + ".", "ok");
       els.form.reset();
-      await loadComments();
-      if (typeof showToast === "function") {
-        showToast(mailKind === "ok" ? "Đã gửi góp ý!" : "Đã lưu — kiểm tra email", mailKind === "ok" ? "success" : "error");
-      }
+      if (typeof showToast === "function") showToast("Đã gửi góp ý!", "success");
     } catch (err) {
       setStatus(err.message || "Lỗi gửi góp ý.", "err");
+      if (typeof showToast === "function") showToast("Chưa gửi được", "error");
     } finally {
       els.submit.disabled = false;
     }
   });
-
-  loadComments();
 })();

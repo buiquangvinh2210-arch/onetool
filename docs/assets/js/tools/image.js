@@ -145,8 +145,8 @@ window.OTImage = (function () {
   const BG_TIER = {
     desktop: { maxEdge: 2048, maxMb: 12, models: ["isnet_fp16", "medium", "isnet_quint8", "small"], device: "gpu", refine: true },
     "desktop-low": { maxEdge: 1600, maxMb: 10, models: ["isnet_quint8", "medium", "small"], device: "gpu", refine: true },
-    mobile: { maxEdge: 1280, maxMb: 6, models: ["isnet_quint8", "small"], device: "cpu", refine: false },
-    "mobile-low": { maxEdge: 960, maxMb: 4, models: ["small", "isnet_quint8"], device: "cpu", refine: false }
+    mobile: { maxEdge: 1024, maxMb: 8, models: ["small"], device: "cpu", refine: false },
+    "mobile-low": { maxEdge: 768, maxMb: 6, models: ["small"], device: "cpu", refine: false }
   };
 
   function bgConfig(tier) {
@@ -229,12 +229,9 @@ window.OTImage = (function () {
             if (blob instanceof Blob && blob.size > 0) return blob;
           } catch (e) {
             lastErr = e;
-            if (tier.startsWith("mobile")) break;
           }
         }
-        if (tier.startsWith("mobile") && lastErr) break;
       }
-      if (tier.startsWith("mobile") && lastErr) break;
     }
     throw lastErr || new Error("Model không trả về ảnh PNG.");
   }
@@ -347,12 +344,12 @@ window.OTImage = (function () {
     return t * t * (3 - 2 * t);
   }
 
-  async function loadMediaPipeSegmenter(onProgress) {
+  async function loadMediaPipeSegmenter(onProgress, preferCpu = false) {
     if (mpSegmenter) return mpSegmenter;
     if (mpLoading) return mpLoading;
 
     mpLoading = (async () => {
-      onProgress?.("Đang tải MediaPipe…");
+      onProgress?.("Đang tải model xóa nền…");
       const urls = [
         "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/+esm",
         "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/+esm"
@@ -368,30 +365,32 @@ window.OTImage = (function () {
         }
       }
       if (!mod?.FilesetResolver || !mod?.ImageSegmenter) {
-        throw lastErr || new Error("Không tải được MediaPipe.");
+        throw lastErr || new Error("Không tải được model xóa nền.");
       }
 
       const wasmPath = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm";
       const vision = await mod.FilesetResolver.forVisionTasks(wasmPath);
-      onProgress?.("Đang khởi tạo model…");
+      onProgress?.("Đang khởi tạo…");
 
       const modelUrl =
         "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite";
 
-      const opts = {
-        baseOptions: { modelAssetPath: modelUrl, delegate: "GPU" },
-        runningMode: "IMAGE",
-        outputCategoryMask: true,
-        outputConfidenceMasks: true
-      };
-
-      try {
-        mpSegmenter = await mod.ImageSegmenter.createFromOptions(vision, opts);
-      } catch (_) {
-        opts.baseOptions.delegate = "CPU";
-        mpSegmenter = await mod.ImageSegmenter.createFromOptions(vision, opts);
+      const delegates = preferCpu ? ["CPU", "GPU"] : ["GPU", "CPU"];
+      lastErr = null;
+      for (const delegate of delegates) {
+        try {
+          mpSegmenter = await mod.ImageSegmenter.createFromOptions(vision, {
+            baseOptions: { modelAssetPath: modelUrl, delegate },
+            runningMode: "IMAGE",
+            outputCategoryMask: true,
+            outputConfidenceMasks: true
+          });
+          return mpSegmenter;
+        } catch (e) {
+          lastErr = e;
+        }
       }
-      return mpSegmenter;
+      throw lastErr || new Error("Không khởi tạo được model.");
     })().catch((e) => {
       mpLoading = null;
       throw e;
@@ -514,20 +513,25 @@ window.OTImage = (function () {
     infer.width = w;
     infer.height = h;
     infer.getContext("2d").drawImage(img, 0, 0, w, h);
-    const bitmap = await createImageBitmap(infer);
+    let input = infer;
+    try {
+      if (typeof createImageBitmap === "function") input = await createImageBitmap(infer);
+    } catch (_) {
+      input = infer;
+    }
 
-    const segmenter = await loadMediaPipeSegmenter(onProgress);
+    const segmenter = await loadMediaPipeSegmenter(onProgress, tier.startsWith("mobile"));
     onProgress?.("Đang tách chủ thể…");
 
     const result = await new Promise((resolve, reject) => {
       try {
-        segmenter.segment(bitmap, (res) => resolve(res));
+        segmenter.segment(input, (res) => resolve(res));
       } catch (e) {
         reject(e);
       }
     });
     try {
-      bitmap.close?.();
+      input.close?.();
     } catch (_) {}
 
     const person = extractPersonMask(result);
@@ -628,26 +632,40 @@ window.OTImage = (function () {
 
     const t0 = performance.now();
     let blob = null;
-    let engine = "imgly";
+    let engine = "mediapipe";
+    const mobile = tier.startsWith("mobile");
 
-    // imgly IS-Net trước — cạnh tóc/sản phẩm tốt hơn selfie MediaPipe
-    try {
-      blob = await removeBackgroundImgly(workFile, onProgress, tier);
-      if (await looksLikeWhiteSilhouette(blob)) {
-        throw new Error("Kết quả mask lỗi (silhouette).");
+    async function tryMediaPipe() {
+      const out = await removeBackgroundMediaPipe(workFile, onProgress, tier);
+      if (await looksLikeWhiteSilhouette(out)) throw new Error("mask lỗi");
+      return out;
+    }
+
+    async function tryImgly() {
+      const out = await removeBackgroundImgly(workFile, onProgress, tier);
+      if (await looksLikeWhiteSilhouette(out)) throw new Error("mask lỗi");
+      return out;
+    }
+
+    if (mobile) {
+      try {
+        blob = await tryMediaPipe();
+        engine = "mediapipe";
+      } catch (e) {
+        console.warn("[remove-bg] mediapipe mobile failed:", e);
+        onProgress?.("Thử cách khác…");
+        blob = await tryImgly();
+        engine = "imgly";
       }
-    } catch (e) {
-      console.warn("[remove-bg] imgly failed:", e);
-      if (tier.startsWith("mobile")) {
-        throw new Error(
-          "Không xử lý được trên điện thoại — thử ảnh nhỏ hơn (<2MB), đóng tab khác rồi thử lại."
-        );
-      }
-      onProgress?.("Chuyển sang model dự phòng…");
-      engine = "mediapipe";
-      blob = await removeBackgroundMediaPipe(workFile, onProgress, tier);
-      if (await looksLikeWhiteSilhouette(blob)) {
-        throw new Error("Xóa nền thất bại — thử ảnh khác hoặc Ctrl+F5.");
+    } else {
+      try {
+        blob = await tryImgly();
+        engine = "imgly";
+      } catch (e) {
+        console.warn("[remove-bg] imgly failed:", e);
+        onProgress?.("Chuyển sang model dự phòng…");
+        blob = await tryMediaPipe();
+        engine = "mediapipe";
       }
     }
 

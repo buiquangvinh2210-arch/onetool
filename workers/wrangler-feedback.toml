@@ -1,0 +1,8 @@
+name = "onetool-feedback"
+main = "feedback-proxy.js"
+compatibility_date = "2024-09-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://onetool.vn,https://www.onetool.vn,http://onetool.vn,http://www.onetool.vn"
+GITHUB_REPO = "REPLACE_OWNER/REPLACE_REPO"
+GITHUB_BRANCH = "master"

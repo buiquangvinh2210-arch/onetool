@@ -11,7 +11,5 @@ window.OT_CONFIG = {
   whisperProxy: "/api/whisper.ashx",
 
   feedbackProxy: "/api/feedback.ashx",
-  feedbackEmail: "onetools27@gmail.com",
-  /* Google Apps Script — docs/api/feedback-mail.gs */
-  feedbackWebhook: ""
+  feedbackEmail: "onetools27@gmail.com"
 };

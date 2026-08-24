@@ -50,15 +50,15 @@ whisperCloud: "https://onetool-whisper.<account>.workers.dev",
 
 Commit + push GitHub → Audio → Text chạy được.
 
-## 3. Góp ý / email (không cần IIS)
+## 3. Góp ý (không cần cấu hình)
 
-1. Mở https://script.google.com bằng `onetools27@gmail.com`
-2. New project → dán `docs/api/feedback-mail.gs` → Deploy → Web app (Anyone)
-3. Copy URL → dán vào `ot-config.js`:
+Form trên `lien-he.html` gửi email qua FormSubmit tới `onetools27@gmail.com`. Không có bảng bình luận công khai (GitHub Pages không lưu được cho máy khác nếu không có dịch vụ ngoài).
 
-```js
-feedbackWebhook: "https://script.google.com/macros/s/XXXX/exec",
-```
+Lần đầu: mở Gmail → mail FormSubmit → **Activate Form**.
+
+## 4. Góp ý trên IIS local
+
+Dùng `feedback.ashx` — lưu file `docs/App_Data/feedback.jsonl`, không cần Apps Script.
 
 ## Sơ đồ
 
@@ -66,7 +66,5 @@ feedbackWebhook: "https://script.google.com/macros/s/XXXX/exec",
 Người dùng → onetool.vn (GitHub Pages: HTML/JS)
                 │
                 ├─ Audio → Text  → Cloudflare Worker → Groq
-                └─ Góp ý        → Google Apps Script → Gmail
+                └─ Góp ý        → FormSubmit → Gmail
 ```
-
-IIS không bắt buộc khi đã có Worker + Apps Script.
