@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi" data-theme="light">
 <head>
   <meta charset="utf-8" />
@@ -8,13 +8,15 @@
   <meta name="robots" content="index,follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="../assets/css/site.css?v=20260824b" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824b" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260824b"></noscript>
   <link rel="preload" href="../assets/css/ot-shell.css?v=20260824b" as="style" />
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824b" />
   <script>window.OT_BASE = "..";</script>
-  <style id="ot-fouc">#site-header{min-height:72px;display:block}@media(max-width:900px){#site-header{min-height:56px}}</style></head>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
 <body>
 <div id="site-header"></div>
 <main role="main">
@@ -61,10 +63,10 @@
 </section>
 </main>
 <div id="site-footer"></div>
-<script src="../assets/js/catalog.js"></script>
-<script src="../assets/js/layout.js"></script>
-<script src="../assets/js/core.js"></script>
-<script src="../assets/js/site.js"></script>
+<script src="../assets/js/catalog.js" defer></script>
+<script src="../assets/js/layout.js" defer></script>
+<script src="../assets/js/core.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
 <script src="../assets/js/tools/pdf.js"></script>
 <script>
 let file = null;

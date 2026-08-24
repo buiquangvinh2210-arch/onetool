@@ -8,12 +8,11 @@
   <meta name="keywords" content="đổi ảnh online, convert ảnh, gộp pdf, nén pdf, xóa nền, audio to text, whisper, onetool" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"></noscript>
-  <link rel="stylesheet" href="assets/css/site.css?v=20260824b" />
-  <link rel="stylesheet" href="assets/css/components.css?v=20260824b" />
-  <link rel="preload" href="assets/css/ot-shell.css?v=20260824b" as="style" />
-  <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260824b" />
-  <link rel="stylesheet" href="assets/css/home.css?v=20260824b" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="assets/css/site.css?v=20260824c" />
+  <link rel="stylesheet" href="assets/css/home.css?v=20260824c" />
+  <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260824c" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/ot-shell.css?v=20260824c"></noscript>
+  <link rel="stylesheet" href="assets/css/components.css?v=20260824c" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/components.css?v=20260824c"></noscript>
   <script>window.OT_BASE = ".";</script>
   <script>
   (function () {
@@ -23,7 +22,12 @@
     }
   })();
   </script>
-  <style id="ot-fouc">#site-header{min-height:72px;display:block}@media(max-width:900px){#site-header{min-height:56px}}</style>
+  <style id="ot-fouc">
+#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+.home-hero{min-height:420px}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}.home-hero{min-height:360px}}
+</style>
 </head>
 <body>
 <div id="site-header"></div>
@@ -107,16 +111,16 @@
 
 </main>
 <div id="site-footer"></div>
-<script src="assets/js/catalog.js"></script>
-<script src="assets/js/layout.js"></script>
-<script src="assets/js/core.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/catalog.js" defer></script>
+<script src="assets/js/layout.js" defer></script>
+<script src="assets/js/core.js" defer></script>
+<script src="assets/js/site.js" defer></script>
 <script>
-(function () {
-  if (window.OTCatalog) {
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.OTCatalog && typeof renderHomeShowcase === "function") {
     renderHomeShowcase(document.getElementById("homeToolRows"));
   }
-})();
+});
 </script>
 </body>
 </html>

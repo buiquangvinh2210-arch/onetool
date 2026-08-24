@@ -49,11 +49,11 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
     retryCompress: "Đang nén lại với bitrate thấp hơn…",
     webmFallback: "WebM: thử lại ở 480p…",
     webmFail: "Trình duyệt không hỗ trợ ghi WebM — dùng Chrome/Edge hoặc chọn MP4.",
-    hintBalance: "Chất lượng cao — ưu tiên hình đẹp, file có thể gần bằng gốc.",
+    hintBalance: "Chất lượng cao — ưu tiên hình đẹp. Video dài có thể mất 1–3 phút.",
     hintCompress: "Cân bằng — giảm dung lượng vừa phải, chất lượng vẫn ổn.",
-    hintStrong: "Nén mạnh — file nhỏ nhất, chi tiết giảm rõ.",
+    hintStrong: "Nén mạnh — file nhỏ nhất, chi tiết giảm rõ. Nhanh hơn các chế độ khác.",
     hintWebm: "WebM — ghi bằng trình duyệt, mất ~thời lượng video.",
-    hintMp3: "Chỉ lấy audio MP3, bỏ hình.",
+    hintMp3: "Chỉ lấy audio MP3, bỏ hình. Rất nhanh.",
     savedPct: (p) => `${p}%`,
     modeMp4Balance: "MP4 cân bằng (chất lượng tốt)",
     modeMp4Compress: "Nén MP4 (nhỏ hơn)",
@@ -367,7 +367,7 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
       args.push("-vf", `scale=-2:${h}:flags=${flags}`);
     }
 
-    const mp4Quality = ["-c:v", "libx264", "-preset", "veryfast", "-movflags", "+faststart"];
+    const mp4Quality = ["-c:v", "libx264", "-preset", "ultrafast", "-movflags", "+faststart"];
     const mp4Fast = ["-c:v", "libx264", "-preset", "ultrafast", "-movflags", "+faststart"];
 
     if (mode === "mp3") {
@@ -566,12 +566,16 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
     setProgress(18);
 
     const info = (await probeVideoInfo(inputFile)) || {};
+    let useScale = scale;
+    if (useScale === "original" && info.height > 1080 && mode !== "mp3") {
+      useScale = "1080";
+    }
     const bitrates = isSizeCompressMode(mode)
-      ? calcBitrates(inputFile.size, info.durationSec, mode, scale)
+      ? calcBitrates(inputFile.size, info.durationSec, mode, useScale)
       : null;
     const meta = { ...info, bitrates };
 
-    const args = buildArgs(mode, scale, names.input, names.output, meta);
+    const args = buildArgs(mode, useScale, names.input, names.output, meta);
     let blob = await encodeOnce(inst, args, names.output, mime);
     setProgress(92);
 
