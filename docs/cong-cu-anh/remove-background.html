@@ -22,7 +22,7 @@
   <div class="rb-page">
     <header class="rb-intro">
       <h1>Xóa nền ảnh</h1>
-      <p>Tách chủ thể bằng AI (IS-Net), làm mượt cạnh, xuất PNG trong suốt.</p>
+      <p>Tách nền ảnh, làm mượt cạnh, xuất PNG trong suốt. Trên điện thoại nên dùng ảnh &lt; 2MB để tránh treo trình duyệt.</p>
     </header>
 
     <div id="protocolBanner" class="protocol-banner">Cần chạy qua HTTP (IIS / Live Server).</div>
@@ -84,12 +84,17 @@
 <script src="../assets/js/layout.js"></script>
 <script src="../assets/js/core.js"></script>
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/tools/image.js?v=20260824c"></script>
+<script src="../assets/js/tools/image.js?v=20260824d"></script>
 <script>
 (function () {
   if (location.protocol === "file:") {
     document.getElementById("protocolBanner")?.classList.add("is-on");
   }
+
+  const isMobile =
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+    (navigator.maxTouchPoints > 0 && window.matchMedia("(max-width: 900px)").matches);
+  const maxBytes = isMobile ? 6 * 1024 * 1024 : 8 * 1024 * 1024;
 
   let file = null;
   let sourceUrl = null;
@@ -151,8 +156,8 @@
         showToast?.("Chọn file ảnh.", "error");
         return;
       }
-      if (f.size > 8 * 1024 * 1024) {
-        showToast?.("Ảnh tối đa 8MB.", "error");
+      if (f.size > maxBytes) {
+        showToast?.(isMobile ? "Ảnh tối đa 6MB trên điện thoại." : "Ảnh tối đa 8MB.", "error");
         return;
       }
       showSource(f);

@@ -21,11 +21,14 @@ GitHub Pages không chạy `.ashx`. Worker Cloudflare proxy sang Groq (miễn ph
 3. Đặt tên: `onetool-whisper` → Deploy
 4. **Edit code** → xóa hết → dán nội dung file `workers/groq-whisper-proxy.js` → **Deploy**
 5. **Settings** → **Variables and Secrets** → Add  
-   - Type: **Secret**  
+   - Type: **Secret** (Encrypt)  
    - Name: `GROQ_API_KEY`  
-   - Value: key Groq `gsk_...`
-6. Copy URL Worker: `https://onetool-whisper.<account>.workers.dev`
-7. Mở URL đó trên trình duyệt → phải thấy `{"ok":true,"service":"onetool-groq-proxy-cf"}`
+   - Value: key Groq `gsk_...` → **Save**
+6. **Edit code** → dán lại `workers/groq-whisper-proxy.js` → **Deploy** (bắt buộc sau khi thêm biến)
+7. Mở URL Worker → phải thấy `"hasGroqKey":true`
+
+> **Lỗi “Chưa cấu hình GROQ_API_KEY” dù đã thêm Text trên dashboard?**  
+> Biến Text trên UI đôi khi không gắn vào runtime. Chạy `workers\deploy-worker.bat` → đăng nhập Cloudflare → `secret put GROQ_API_KEY` → deploy. Cách này chắc chắn hơn.
 
 ### Cách B — Wrangler CLI (nếu đã cài Node.js)
 

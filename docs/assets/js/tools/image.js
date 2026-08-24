@@ -131,6 +131,42 @@ window.OTImage = (function () {
   let mpLoading = null;
   let imglyMod = null;
 
+  function deviceTier() {
+    const ua = navigator.userAgent || "";
+    const mobile =
+      /Android|iPhone|iPad|iPod|Mobile/i.test(ua) ||
+      (navigator.maxTouchPoints > 0 && window.matchMedia("(max-width: 900px)").matches);
+    const mem = typeof navigator.deviceMemory === "number" ? navigator.deviceMemory : null;
+    if (mobile) return mem && mem <= 3 ? "mobile-low" : "mobile";
+    if (mem && mem <= 4) return "desktop-low";
+    return "desktop";
+  }
+
+  const BG_TIER = {
+    desktop: { maxEdge: 2048, maxMb: 12, models: ["isnet_fp16", "medium", "isnet_quint8", "small"], device: "gpu", refine: true },
+    "desktop-low": { maxEdge: 1600, maxMb: 10, models: ["isnet_quint8", "medium", "small"], device: "gpu", refine: true },
+    mobile: { maxEdge: 1280, maxMb: 6, models: ["isnet_quint8", "small"], device: "cpu", refine: false },
+    "mobile-low": { maxEdge: 960, maxMb: 4, models: ["small", "isnet_quint8"], device: "cpu", refine: false }
+  };
+
+  function bgConfig(tier) {
+    return BG_TIER[tier] || BG_TIER.mobile;
+  }
+
+  /** Thu nhỏ ảnh trước khi chạy AI — tránh crash tab trên mobile. */
+  async function prepareFileForBgRemoval(file, tier) {
+    const cfg = bgConfig(tier);
+    const img = await OT.loadImage(file);
+    const edge = Math.max(img.naturalWidth, img.naturalHeight);
+    if (edge <= cfg.maxEdge) return file;
+    onProgressHint?.(`Thu nhỏ ảnh xuống ~${cfg.maxEdge}px để xử lý ổn định…`);
+    const { canvas } = await drawToCanvas(file, { maxW: cfg.maxEdge, maxH: cfg.maxEdge });
+    const blob = await OT.canvasToBlob(canvas, "image/jpeg", 0.9);
+    return new File([blob], file.name.replace(/\.\w+$/, "") + ".jpg", { type: "image/jpeg" });
+  }
+
+  let onProgressHint = null;
+
   async function loadImgly() {
     if (imglyMod) return imglyMod;
     const urls = [
@@ -150,8 +186,13 @@ window.OTImage = (function () {
     throw lastErr || new Error("Không tải được model xóa nền.");
   }
 
-  async function removeBackgroundImgly(file, onProgress) {
-    onProgress?.("Đang tải model AI (lần đầu có thể mất ~30s)…");
+  async function removeBackgroundImgly(file, onProgress, tier = "desktop") {
+    const cfg = bgConfig(tier);
+    onProgress?.(
+      tier.startsWith("mobile")
+        ? "Đang tải model nhẹ cho điện thoại (lần đầu ~30–60s)…"
+        : "Đang tải model AI (lần đầu có thể mất ~30s)…"
+    );
     const mod = await loadImgly();
     const removeBg =
       mod.removeBackground ||
@@ -159,36 +200,41 @@ window.OTImage = (function () {
       (typeof mod.default === "function" ? mod.default : null);
     if (!removeBg) throw new Error("API xóa nền không hợp lệ.");
 
-    onProgress?.("Đang xóa nền (chất lượng cao)…");
+    onProgress?.(tier.startsWith("mobile") ? "Đang xóa nền trên thiết bị di động…" : "Đang xóa nền (chất lượng cao)…");
     const publicPaths = [
       "https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.5.8/dist/",
       "https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.5.5/dist/",
       "https://staticimgly.com/@imgly/background-removal-data/1.5.8/dist/",
       "https://staticimgly.com/@imgly/background-removal-data/1.5.5/dist/"
     ];
-    // isnet_fp16 = medium (~80MB, cân bằng); isnet = full quality nếu máy đủ mạnh
-    const models = ["isnet_fp16", "medium", "isnet_quint8", "small"];
+    const models = cfg.models;
+    const devices = tier.startsWith("mobile") ? ["cpu", "gpu"] : ["gpu", "cpu"];
     let lastErr;
     for (const publicPath of publicPaths) {
       for (const model of models) {
-        try {
-          const blob = await removeBg(file, {
-            publicPath,
-            debug: false,
-            device: "gpu",
-            model,
-            output: { format: "image/png", quality: 1, type: "foreground" },
-            progress: (_key, current, total) => {
-              if (!total) return;
-              const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
-              onProgress?.(`Đang xóa nền… ${pct}%`);
-            }
-          });
-          if (blob instanceof Blob && blob.size > 0) return blob;
-        } catch (e) {
-          lastErr = e;
+        for (const device of devices) {
+          try {
+            const blob = await removeBg(file, {
+              publicPath,
+              debug: false,
+              device,
+              model,
+              output: { format: "image/png", quality: 1, type: "foreground" },
+              progress: (_key, current, total) => {
+                if (!total) return;
+                const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
+                onProgress?.(`Đang xóa nền… ${pct}%`);
+              }
+            });
+            if (blob instanceof Blob && blob.size > 0) return blob;
+          } catch (e) {
+            lastErr = e;
+            if (tier.startsWith("mobile")) break;
+          }
         }
+        if (tier.startsWith("mobile") && lastErr) break;
       }
+      if (tier.startsWith("mobile") && lastErr) break;
     }
     throw lastErr || new Error("Model không trả về ảnh PNG.");
   }
@@ -455,10 +501,10 @@ window.OTImage = (function () {
     return a * (1 - fx) * (1 - fy) + b * fx * (1 - fy) + c * (1 - fx) * fy + d * fx * fy;
   }
 
-  async function removeBackgroundMediaPipe(file, onProgress) {
+  async function removeBackgroundMediaPipe(file, onProgress, tier = "desktop") {
     onProgress?.("Đang chuẩn bị ảnh…");
     const img = await OT.loadImage(file);
-    const maxEdge = 1600;
+    const maxEdge = tier.startsWith("mobile") ? bgConfig(tier).maxEdge : 1600;
     const edge = Math.max(img.naturalWidth, img.naturalHeight);
     const scale = edge > maxEdge ? maxEdge / edge : 1;
     const w = Math.max(1, Math.round(img.naturalWidth * scale));
@@ -564,9 +610,21 @@ window.OTImage = (function () {
     if (location.protocol === "file:") {
       throw new Error("Xóa nền cần chạy qua HTTP (IIS / Live Server).");
     }
-    if (file.size > 12 * 1024 * 1024) {
-      throw new Error("Ảnh quá lớn (tối đa 12MB).");
+
+    const tier = deviceTier();
+    const cfg = bgConfig(tier);
+    onProgressHint = (msg) => onProgress?.(msg);
+
+    if (file.size > cfg.maxMb * 1024 * 1024) {
+      throw new Error(
+        tier.startsWith("mobile")
+          ? `Ảnh quá lớn trên điện thoại (tối đa ${cfg.maxMb}MB). Thử ảnh nhỏ hơn hoặc resize trước.`
+          : `Ảnh quá lớn (tối đa ${cfg.maxMb}MB).`
+      );
     }
+
+    const workFile = await prepareFileForBgRemoval(file, tier);
+    onProgressHint = null;
 
     const t0 = performance.now();
     let blob = null;
@@ -574,22 +632,29 @@ window.OTImage = (function () {
 
     // imgly IS-Net trước — cạnh tóc/sản phẩm tốt hơn selfie MediaPipe
     try {
-      blob = await removeBackgroundImgly(file, onProgress);
+      blob = await removeBackgroundImgly(workFile, onProgress, tier);
       if (await looksLikeWhiteSilhouette(blob)) {
         throw new Error("Kết quả mask lỗi (silhouette).");
       }
     } catch (e) {
       console.warn("[remove-bg] imgly failed:", e);
+      if (tier.startsWith("mobile")) {
+        throw new Error(
+          "Không xử lý được trên điện thoại — thử ảnh nhỏ hơn (<2MB), đóng tab khác rồi thử lại."
+        );
+      }
       onProgress?.("Chuyển sang model dự phòng…");
       engine = "mediapipe";
-      blob = await removeBackgroundMediaPipe(file, onProgress);
+      blob = await removeBackgroundMediaPipe(workFile, onProgress, tier);
       if (await looksLikeWhiteSilhouette(blob)) {
         throw new Error("Xóa nền thất bại — thử ảnh khác hoặc Ctrl+F5.");
       }
     }
 
-    onProgress?.("Đang làm mượt cạnh…");
-    blob = await refineCutoutBlob(blob);
+    if (cfg.refine) {
+      onProgress?.("Đang làm mượt cạnh…");
+      blob = await refineCutoutBlob(blob);
+    }
 
     const sec = ((performance.now() - t0) / 1000).toFixed(1);
     onProgress?.(`Xong trong ~${sec}s`);
@@ -597,7 +662,8 @@ window.OTImage = (function () {
       blob,
       fileName: OT.nameWithSuffix(file.name, "-no-bg", ".png"),
       contentType: "image/png",
-      engine
+      engine,
+      tier
     };
   }
 

@@ -42,7 +42,17 @@ if errorlevel 1 (
 )
 
 echo.
-echo [4/5] Deploy worker...
+echo [4/5] Dat secret GROQ_API_KEY (bat buoc — dashboard Text thuong khong gan duoc)...
+echo Dan key gsk_... roi Enter:
+call "%CD%\node_modules\.bin\wrangler.cmd" secret put GROQ_API_KEY
+if errorlevel 1 (
+  echo LOI secret put
+  pause
+  exit /b 1
+)
+
+echo.
+echo [5/5] Deploy worker...
 call "%CD%\node_modules\.bin\wrangler.cmd" deploy
 if errorlevel 1 (
   echo LOI deploy
@@ -51,15 +61,15 @@ if errorlevel 1 (
 )
 
 echo.
-echo [5/5] Dat secret GROQ_API_KEY...
-echo Dan key gsk_... roi Enter:
-call "%CD%\node_modules\.bin\wrangler.cmd" secret put GROQ_API_KEY
-
+echo Kiem tra:
+curl.exe -s "https://onetool-whisper.buiquangvinh2210.workers.dev/"
+echo.
+echo.
+echo Phai thay: "hasGroqKey":true
+echo Neu van false — chay lai secret put roi deploy.
 echo.
 echo ========================================
-echo  XONG. Copy URL workers.dev o tren
-echo  Dan vao docs\assets\js\ot-config.js:
-echo    whisperCloud: "https://onetool-whisper.XXXX.workers.dev"
-echo  Roi commit + push GitHub.
+echo  XONG. URL: https://onetool-whisper.buiquangvinh2210.workers.dev
+echo  ot-config.js da co whisperCloud — chi can Ctrl+F5 tren site.
 echo ========================================
 pause
