@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word/Excel to PDF online — Convert DOCX XLSX sang PDF miễn phí | OneTool</title>
+  <meta name="description" content="Convert Word (DOCX) và Excel (XLSX) sang PDF ngay trên trình duyệt. Nhanh, giữ nội dung rõ, miễn phí — file không rời máy bạn." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/tools/pdf-to-word.css?v=20260825b" />
+  <link rel="stylesheet" href="../assets/css/tools/office-to-pdf.css?v=20260825a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="pw-top">
+    <div class="pw-title-row">
+      <div>
+        <h1>Word/Excel → PDF · Sang PDF</h1>
+        <p class="pw-lead">Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ — xử lý nhanh trên máy bạn.</p>
+      </div>
+      <div class="pw-meta">
+        <span>DOCX</span>
+        <span>XLSX</span>
+        <span>PDF</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pw-studio">
+    <div class="pw-shell">
+      <aside class="pw-side">
+        <p class="pw-side-label">Nguồn</p>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="fileInput" accept=".docx,.xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv" hidden />
+          <div class="upload-placeholder">
+            <span class="upload-icon otp-office">DOC</span>
+            <p><strong>Thả Word / Excel vào đây</strong></p>
+            <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+          </div>
+        </div>
+
+        <div class="pw-field">
+          <label for="pageSize">Khổ giấy</label>
+          <select id="pageSize" class="form-control">
+            <option value="a4" selected>A4 (chuẩn Việt Nam)</option>
+            <option value="letter">Letter (US)</option>
+          </select>
+        </div>
+
+        <div class="pw-field">
+          <label for="orientation">Hướng trang</label>
+          <select id="orientation" class="form-control">
+            <option value="auto" selected>Tự động (Word dọc · Excel ngang)</option>
+            <option value="portrait">Dọc (Portrait)</option>
+            <option value="landscape">Ngang (Landscape)</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Chuyển sang PDF</button>
+        <p class="pw-note">Hỗ trợ .docx, .xlsx, .xls, .csv. Lần đầu có thể tải font tiếng Việt (~vài giây). File .doc cũ: lưu thành .docx rồi convert.</p>
+      </aside>
+
+      <div class="pw-main">
+        <div class="pw-main-bar">
+          <div>
+            <h2>Kết quả</h2>
+            <p id="status">Chọn Word hoặc Excel rồi bấm chuyển — xem trước và tải PDF.</p>
+          </div>
+          <div class="pw-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải PDF</button>
+          </div>
+        </div>
+        <div class="pw-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="pw-result">
+          <div class="pw-empty" id="resultEmpty">
+            <div class="pw-empty-visual" aria-hidden="true"></div>
+            <p>File PDF sẽ hiện ở đây sau khi convert.</p>
+          </div>
+          <div class="pw-file-chip" id="fileChip">
+            <span class="pw-file-chip-icon otp-pdf">PDF</span>
+            <div>
+              <strong id="fileChipName">document.pdf</strong>
+              <span id="fileChipMeta">sẵn sàng tải</span>
+            </div>
+          </div>
+          <div class="pw-stats" id="stats">
+            <div class="pw-stat"><strong id="statKind">—</strong><span>Loại</span></div>
+            <div class="pw-stat"><strong id="statSheets">—</strong><span>Sheet / Trang</span></div>
+            <div class="pw-stat"><strong id="statSize">—</strong><span>Dung lượng</span></div>
+          </div>
+          <div class="otp-preview-html" id="previewHtml" aria-label="Xem trước nội dung"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js?v=20260825a"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/office-to-pdf.js?v=20260825g" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let file = null;
+
+  const empty = document.getElementById("resultEmpty");
+  const previewHtml = document.getElementById("previewHtml");
+  const stats = document.getElementById("stats");
+  const fileChip = document.getElementById("fileChip");
+  const progressBar = document.getElementById("progressBar");
+  const progressFill = document.getElementById("progressFill");
+
+  function setProgress(pct) {
+    const n = Math.max(0, Math.min(100, pct | 0));
+    progressBar.classList.toggle("is-on", n > 0 && n < 100);
+    progressBar.setAttribute("aria-hidden", n > 0 && n < 100 ? "false" : "true");
+    progressFill.style.width = n + "%";
+    if (typeof OT.setProgress === "function") OT.setProgress(n);
+  }
+
+  OT.bindUploadZone({
+    onFiles: function (files) {
+      file = files[0] || null;
+      if (!file) return;
+      if (file.size > OTOfficeToPdf.MAX_BYTES) {
+        OT.setStatus("File hơi lớn — dùng bản dưới 40 MB.", "err");
+        file = null;
+        return;
+      }
+      const kind = OTOfficeToPdf.detectKind(file);
+      if (kind === "doc-legacy") {
+        OT.setStatus("File .doc cũ — hãy Lưu thành .docx rồi chọn lại.", "err");
+        file = null;
+        return;
+      }
+      if (!kind) {
+        OT.setStatus("Chỉ nhận .docx, .xlsx, .xls hoặc .csv.", "err");
+        file = null;
+      }
+    }
+  });
+
+  document.getElementById("runBtn").onclick = async function () {
+    const btn = document.getElementById("runBtn");
+    try {
+      if (!file) throw new Error("Chọn file Word hoặc Excel trước.");
+      if (!window.OTOfficeToPdf) throw new Error("Script chưa sẵn sàng — thử Ctrl+F5.");
+
+      OT.setBusy(btn, true, "Đang convert…");
+      setProgress(6);
+      empty.style.display = "none";
+
+      const pageSize = document.getElementById("pageSize").value || "a4";
+      const oriSel = document.getElementById("orientation").value;
+      const orientation = oriSel === "auto" ? undefined : oriSel;
+
+      const result = await OTOfficeToPdf.convert(file, {
+        pageSize: pageSize,
+        orientation: orientation,
+        onProgress: function (msg, pct) {
+          OT.setStatus(msg || "Đang xử lý…");
+          if (typeof pct === "number") setProgress(pct);
+        }
+      });
+
+      document.getElementById("statKind").textContent =
+        result.meta.kind === "docx" ? "Word" : "Excel";
+      document.getElementById("statSheets").textContent =
+        (result.meta.kind === "xlsx" ? result.meta.sheets + " sheet · " : "") +
+        (result.meta.pageCount || "?") +
+        " trang";
+      document.getElementById("statSize").textContent = OT.formatBytes(result.meta.size);
+
+      document.getElementById("fileChipName").textContent = result.fileName;
+      document.getElementById("fileChipMeta").textContent =
+        OT.formatBytes(result.blob.size) + " · sẵn sàng tải";
+
+      fileChip.classList.add("is-on");
+      stats.classList.add("is-on");
+      previewHtml.innerHTML = result.previewHtml || "";
+      previewHtml.classList.add("is-on");
+
+      OT.showResult({
+        blob: result.blob,
+        fileName: result.fileName,
+        contentType: "application/pdf",
+        text: result.previewText || ""
+      });
+
+      setProgress(100);
+      OT.setStatus("Xong — PDF sẵn sàng tải.", "ok");
+      setTimeout(function () { setProgress(0); }, 400);
+    } catch (e) {
+      OT.setStatus(e.message || "Không convert được — thử file khác.", "err");
+      setProgress(0);
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  };
+
+  if (window.OTOfficeToPdf && typeof OTOfficeToPdf.warmup === "function") {
+    const idle = window.requestIdleCallback || function (cb) { setTimeout(cb, 900); };
+    idle(function () { OTOfficeToPdf.warmup(); }, { timeout: 2500 });
+  }
+});
+</script>
+</body>
+</html>

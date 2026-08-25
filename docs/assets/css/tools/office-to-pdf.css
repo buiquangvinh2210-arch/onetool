@@ -1,0 +1,82 @@
+/* Word/Excel → PDF — bổ sung trên studio pw-* */
+
+.otp-preview-html {
+  display: none;
+  flex: 1;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #fcfcfd;
+  overflow: auto;
+  max-height: min(48vh, 420px);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #1e1b2e;
+}
+
+.otp-preview-html.is-on {
+  display: block;
+}
+
+.otp-preview-html h1,
+.otp-preview-html h2,
+.otp-preview-html h3 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  margin: 0.85em 0 0.4em;
+  line-height: 1.25;
+}
+
+.otp-preview-html h1 { font-size: 1.15rem; }
+.otp-preview-html h2 { font-size: 1.02rem; }
+.otp-preview-html p { margin: 0 0 0.55em; }
+
+.otp-preview-html table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.otp-preview-html th,
+.otp-preview-html td {
+  border: 1px solid #e2e8f0;
+  padding: 0.3rem 0.4rem;
+  word-break: break-word;
+}
+
+.otp-preview-html th {
+  background: #f1f5f9;
+}
+
+.otp-preview-html .otp-doc-head {
+  display: none;
+}
+
+.otp-preview-html img {
+  max-width: 100%;
+  height: auto;
+}
+
+.pw-file-chip-icon.otp-pdf {
+  background: #dc2626;
+}
+
+.pw-side .upload-icon.otp-office {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+[data-theme="dark"] .otp-preview-html {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+[data-theme="dark"] .otp-preview-html th {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .otp-preview-html th,
+[data-theme="dark"] .otp-preview-html td {
+  border-color: rgba(255, 255, 255, 0.1);
+}

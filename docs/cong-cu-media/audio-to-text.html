@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chuyển audio/video thành văn bản tiếng Việt + SRT | OneTool</title>
-  <meta name="description" content="Nhận dạng giọng nói từ MP3, WAV, MP4 thành văn bản và phụ đề SRT. Hỗ trợ tiếng Việt, miễn phí trên trình duyệt." />
+  <meta name="description" content="Nhận dạng giọng nói từ MP3, WAV, MP4, MOV thành văn bản và phụ đề SRT. Hỗ trợ tiếng Việt, miễn phí trên trình duyệt." />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260824d" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260824d" />
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824d" />
@@ -22,10 +22,10 @@
   <div class="at-top">
     <div class="at-title-row">
       <div>
-        <h1>Audio / Video → Text</h1>
+        <h1>Audio to Text · Giọng nói thành chữ</h1>
         <p>Chuyển giọng nói thành văn bản tiếng Việt, xuất TXT và phụ đề SRT.</p>
       </div>
-      <div class="at-meta">MP3 · WAV · MP4 · tối đa 512&nbsp;MB</div>
+      <div class="at-meta">MP3 · WAV · MP4 · MOV · tối đa 512&nbsp;MB</div>
     </div>
   </div>
 
@@ -36,7 +36,7 @@
       <aside class="at-side">
         <p class="at-side-label">Nguồn</p>
         <div class="upload-zone" id="uploadZone" data-kind="media">
-          <input type="file" id="fileInput" accept="audio/*,video/*,.mp3,.wav,.m4a,.ogg,.webm,.mp4,.mkv,.mov" hidden />
+          <input type="file" id="fileInput" accept="audio/*,video/*,.mp3,.wav,.m4a,.ogg,.webm,.mp4,.mkv,.mov,.m4v,video/quicktime,video/mp4" hidden />
           <div class="upload-placeholder">
             <span class="upload-icon upload-icon--media">AUDIO</span>
             <p><strong>Thả file vào đây</strong></p>
@@ -80,12 +80,12 @@
 <section class="tool-seo" id="toolSeo" data-static="1">
   <div class="tool-seo-wrap">
     <section class="tool-seo-block">
-      <h2>Audio/Video → Text là gì?</h2>
-      <p>Đây là công cụ <strong>chuyển giọng nói thành văn bản</strong> từ file ghi âm hoặc video. OneTool hỗ trợ tiếng Việt, xuất <strong>TXT</strong> để biên tập và <strong>SRT</strong> để gắn phụ đề.</p>
+      <h2>Audio to Text · Giọng nói thành chữ là gì?</h2>
+      <p><strong>Audio to Text</strong> giúp convert giọng nói thành văn bản từ file ghi âm hoặc video. OneTool hỗ trợ tiếng Việt, xuất <strong>TXT</strong> để biên tập và <strong>SRT</strong> để gắn phụ đề.</p>
     </section>
     <section class="tool-seo-block">
-      <h2>Cách chuyển audio thành văn bản</h2>
-      <p>Thả file MP3, WAV, M4A hoặc MP4, chọn ngôn ngữ (tiếng Việt / English / tự nhận diện), bấm <strong>Nhận dạng</strong>. Khi xong, sao chép nội dung hoặc tải TXT và SRT.</p>
+      <h2>Cách convert audio thành văn bản</h2>
+      <p>Thả file MP3, WAV, M4A, MP4 hoặc MOV, chọn ngôn ngữ (tiếng Việt / English / tự nhận diện), bấm <strong>Nhận dạng</strong>. Khi xong, sao chép nội dung hoặc tải TXT và SRT.</p>
     </section>
     <section class="tool-seo-block">
       <h2>Dùng transcript để làm gì</h2>
@@ -98,9 +98,9 @@
     <section class="tool-seo-block">
       <h2>Công cụ khác trên OneTool</h2>
       <ul class="tool-seo-more">
-        <li><a class="tool-seo-card" href="video-convert.html"><span class="tool-seo-card-icon" aria-hidden="true">🎬</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Nén / Convert video</strong><span class="tool-seo-card-sapo">Nén MP4, đổi WebM hoặc tách MP3.</span></span></a></li>
-        <li><a class="tool-seo-card" href="../cong-cu-pdf/pdf-merge.html"><span class="tool-seo-card-icon" aria-hidden="true">📄</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Gộp PDF</strong><span class="tool-seo-card-sapo">Ghép nhiều file PDF thành một.</span></span></a></li>
-        <li><a class="tool-seo-card" href="../cong-cu-anh/image-convert.html"><span class="tool-seo-card-icon" aria-hidden="true">🖼️</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Convert ảnh</strong><span class="tool-seo-card-sapo">Đổi JPG, PNG, WebP ngay trên trình duyệt.</span></span></a></li>
+        <li><a class="tool-seo-card" href="video-convert.html"><span class="tool-seo-card-icon" aria-hidden="true">🎬</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Compress Video · Nén video</strong><span class="tool-seo-card-sapo">Nén MP4, convert WebM hoặc tách MP3.</span></span></a></li>
+        <li><a class="tool-seo-card" href="../cong-cu-pdf/pdf-to-word.html"><span class="tool-seo-card-icon" aria-hidden="true">📄</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">PDF to Word · Sang DOCX</strong><span class="tool-seo-card-sapo">Convert PDF sang Word chỉnh sửa được.</span></span></a></li>
+        <li><a class="tool-seo-card" href="../cong-cu-anh/image-convert.html"><span class="tool-seo-card-icon" aria-hidden="true">🖼️</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Convert Ảnh · Đổi định dạng</strong><span class="tool-seo-card-sapo">Convert JPG, PNG, WebP trên trình duyệt.</span></span></a></li>
       </ul>
     </section>
   </div>
@@ -112,7 +112,7 @@
 <script src="../assets/js/core.js"></script>
 <script src="../assets/js/site.js"></script>
 <script src="../assets/js/ot-config.js" defer></script>
-<script src="../assets/js/tools/audio-cloud.js?v=20260825a" defer></script>
+<script src="../assets/js/tools/audio-cloud.js?v=20260825h" defer></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 (function () {

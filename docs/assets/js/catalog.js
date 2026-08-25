@@ -4,7 +4,7 @@ window.OTCatalog = {
       slug: "media",
       seo: "cong-cu-media",
       name: "Media & AI",
-      desc: "Audio/Video → text, nén và convert video",
+      desc: "Audio to Text, nén & convert video",
       icon: "🎙️",
       seoTitle: "Công cụ Media & AI online — Audio/Video sang văn bản, nén video | OneTool",
       seoDescription: "Chuyển audio/video thành văn bản, nén MP4, đổi WebM, tách MP3 — chạy trên trình duyệt, miễn phí.",
@@ -14,7 +14,7 @@ window.OTCatalog = {
       slug: "pdf-tools",
       seo: "cong-cu-pdf",
       name: "Công cụ PDF",
-      desc: "Gộp, tách, nén, xoay và chuyển đổi PDF",
+      desc: "Gộp, tách, nén, PDF to Word, Word/Excel → PDF",
       icon: "📄",
       seoTitle: "Công cụ PDF online miễn phí — Gộp, tách, nén PDF | OneTool",
       seoDescription: "Gộp PDF, tách trang, nén dung lượng, xoay và convert PDF sang TXT/ảnh — xử lý 100% trên trình duyệt, không cần đăng ký.",
@@ -24,7 +24,7 @@ window.OTCatalog = {
       slug: "images",
       seo: "cong-cu-anh",
       name: "Công cụ Ảnh",
-      desc: "Convert, resize, xóa nền, batch ảnh",
+      desc: "Convert ảnh, Resize, xóa nền AI, batch",
       icon: "🖼️",
       seoTitle: "Công cụ ảnh online — Convert, resize, xóa nền AI | OneTool",
       seoDescription: "Đổi định dạng JPG PNG WebP, resize ảnh, xóa nền AI, xử lý batch — miễn phí, chạy trên trình duyệt, bảo mật file.",
@@ -34,7 +34,7 @@ window.OTCatalog = {
       slug: "file-converter",
       seo: "cong-cu-chuyen-doi",
       name: "Chuyển đổi file",
-      desc: "Document, image, data",
+      desc: "Convert Document, convert ảnh, CSV sang JSON",
       icon: "🔄",
       seoTitle: "Chuyển đổi file online — CSV JSON, Document | OneTool",
       seoDescription: "Chuyển CSV sang JSON và ngược lại, convert document — công cụ chuyển đổi dữ liệu nhanh trên trình duyệt.",
@@ -44,7 +44,7 @@ window.OTCatalog = {
       slug: "utilities",
       seo: "cong-cu-tien-ich",
       name: "Tiện ích",
-      desc: "QR, JSON, Base64 và developer tools",
+      desc: "Tạo QR Code, JSON Formatter, Base64, Dev Tools",
       icon: "🔧",
       seoTitle: "Công cụ tiện ích online — QR, JSON, Base64, Dev tools | OneTool",
       seoDescription: "Tạo mã QR, format JSON, encode Base64, UUID, hash SHA — bộ tiện ích developer và văn phòng miễn phí.",
@@ -52,100 +52,110 @@ window.OTCatalog = {
     }
   ],
   tools: [
-    { slug: "audio-to-text", name: "Audio/Video → Text", desc: "Chuyển audio hoặc video thành văn bản + SRT.", icon: "🎙️", cat: "media", featured: true },
-    { slug: "video-convert", name: "Nén / Convert video", desc: "Nén MP4, đổi WebM, tách MP3 — xử lý ngay trên trình duyệt.", icon: "🎬", cat: "media", featured: true },
+    { slug: "audio-to-text", name: "Audio to Text · Giọng nói thành chữ", desc: "Convert audio/video thành văn bản tiếng Việt + phụ đề SRT.", icon: "🎙️", cat: "media", featured: true },
+    { slug: "video-convert", name: "Compress Video · Nén video", desc: "Nén MP4, convert WebM, tách MP3 — ngay trên máy bạn.", icon: "🎬", cat: "media", featured: true },
 
-    { slug: "pdf-merge", name: "Gộp PDF", desc: "Gộp nhiều file PDF thành một file duy nhất.", icon: "📎", cat: "pdf-tools", featured: true },
-    { slug: "pdf-split", name: "Tách PDF", desc: "Tách PDF theo trang hoặc khoảng trang.", icon: "✂️", cat: "pdf-tools", featured: true },
-    { slug: "pdf-compress", name: "Nén PDF", desc: "Giảm dung lượng PDF — xem % tiết kiệm và tải về.", icon: "🗜️", cat: "pdf-tools", featured: true },
-    { slug: "pdf-pages", name: "Xoay / Xóa trang PDF", desc: "Xoay trang 90°/180°/270° hoặc xóa trang.", icon: "🔄", cat: "pdf-tools" },
-    { slug: "pdf-convert", name: "Convert PDF", desc: "PDF → TXT (OCR scan) hoặc PNG từng trang / ZIP.", icon: "📤", cat: "pdf-tools" },
+    { slug: "pdf-merge", name: "Merge PDF · Gộp file", desc: "Gộp nhiều PDF thành một tài liệu, sắp xếp thứ tự dễ dàng.", icon: "📎", cat: "pdf-tools", featured: true },
+    { slug: "pdf-split", name: "Split PDF · Tách trang", desc: "Tách PDF theo từng trang hoặc khoảng trang bạn chọn.", icon: "✂️", cat: "pdf-tools", featured: true },
+    { slug: "pdf-compress", name: "Compress PDF · Nén PDF", desc: "Nén PDF giảm dung lượng — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true },
+    { slug: "pdf-pages", name: "Rotate PDF · Xoay & xóa trang", desc: "Xoay trang bị lệch 90°/180°/270° hoặc xóa trang thừa.", icon: "🔄", cat: "pdf-tools" },
+    { slug: "pdf-to-word", name: "PDF to Word · Sang DOCX", desc: "Convert PDF sang Word chỉnh sửa được — kể cả bản scan.", icon: "📄", cat: "pdf-tools", featured: true },
+    { slug: "office-to-pdf", name: "Word/Excel → PDF · Sang PDF", desc: "Convert DOCX & XLSX sang PDF nhanh, sạch để gửi hoặc in.", icon: "📑", cat: "pdf-tools", featured: true },
+    { slug: "pdf-convert", name: "Convert PDF · Sang TXT & ảnh", desc: "Convert PDF sang TXT (OCR) hoặc PNG từng trang / ZIP.", icon: "📤", cat: "pdf-tools" },
 
-    { slug: "image-convert", name: "Convert ảnh", desc: "Đổi định dạng JPG, PNG, WebP, GIF, BMP.", icon: "🖼️", cat: "images", featured: true },
-    { slug: "image-resize", name: "Resize ảnh", desc: "Đổi kích thước theo pixel hoặc preset.", icon: "📐", cat: "images", featured: true },
-    { slug: "remove-background", name: "Xóa nền ảnh", desc: "Xóa nền bằng AI trên trình duyệt, xuất PNG.", icon: "✂️", cat: "images", featured: true },
-    { slug: "image-batch", name: "Batch Processing", desc: "Xử lý nhiều ảnh: convert / resize / nén.", icon: "📦", cat: "images" },
+    { slug: "image-convert", name: "Convert Ảnh · Đổi định dạng", desc: "Convert JPG, PNG, WebP, GIF, BMP nhanh chóng.", icon: "🖼️", cat: "images", featured: true },
+    { slug: "image-resize", name: "Resize Ảnh · Đổi kích thước", desc: "Resize theo pixel hoặc preset — giữ tỉ lệ ảnh.", icon: "📐", cat: "images", featured: true },
+    { slug: "remove-background", name: "Remove Background · Xóa nền AI", desc: "Xóa nền ảnh bằng AI, xuất PNG trong suốt.", icon: "✂️", cat: "images", featured: true },
+    { slug: "image-batch", name: "Batch Ảnh · Xử lý hàng loạt", desc: "Convert, resize hoặc nén nhiều ảnh cùng lúc.", icon: "📦", cat: "images" },
 
-    { slug: "convert-document", name: "Convert Document", desc: "PDF → TXT trên trình duyệt.", icon: "📝", cat: "file-converter" },
-    { slug: "convert-image", name: "Convert Image", desc: "Hub chuyển đổi ảnh — mở Convert ảnh.", icon: "🖼️", cat: "file-converter", hub: "image-convert" },
-    { slug: "convert-data", name: "CSV ↔ JSON", desc: "Chuyển CSV sang JSON và ngược lại trên trình duyệt.", icon: "📊", cat: "file-converter", featured: true },
+    { slug: "convert-document", name: "Convert Document · PDF sang TXT", desc: "Convert PDF thành văn bản TXT để copy hoặc tìm kiếm.", icon: "📝", cat: "file-converter" },
+    { slug: "convert-image", name: "Convert Image · Đổi ảnh nhanh", desc: "Lối tắt mở công cụ Convert Ảnh.", icon: "🖼️", cat: "file-converter", hub: "image-convert" },
+    { slug: "convert-data", name: "CSV to JSON · Đổi dữ liệu", desc: "Convert CSV sang JSON và JSON sang CSV trong vài giây.", icon: "📊", cat: "file-converter", featured: true },
 
-    { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ URL hoặc văn bản, tải PNG.", icon: "📱", cat: "utilities", featured: true },
-    { slug: "json-tools", name: "Công cụ JSON", desc: "Format, minify và kiểm tra JSON trên trình duyệt.", icon: "{ }", cat: "utilities", featured: true },
-    { slug: "base64-tools", name: "Base64", desc: "Encode/decode UTF-8, URL-safe, file ↔ Base64.", icon: "🔤", cat: "utilities" },
-    { slug: "developer-tools", name: "Developer Tools", desc: "UUID v4, SHA-256/384/512, slugify VI, timestamp.", icon: "🛠️", cat: "utilities" }
+    { slug: "qr-generator", name: "QR Code · Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true },
+    { slug: "json-tools", name: "JSON Formatter · Làm đẹp JSON", desc: "Format, minify và kiểm tra JSON hợp lệ.", icon: "{ }", cat: "utilities", featured: true },
+    { slug: "base64-tools", name: "Base64 · Mã hóa / giải mã", desc: "Encode/decode Base64 — tiếng Việt, URL-safe, file.", icon: "🔤", cat: "utilities" },
+    { slug: "developer-tools", name: "Dev Tools · UUID & Hash", desc: "UUID, SHA hash, slugify tiếng Việt, Unix timestamp.", icon: "🛠️", cat: "utilities" }
   ],
 
   origin: "https://onetool.vn",
 
   pageMeta: {
     "remove-background": {
-      title: "Xóa nền ảnh AI online miễn phí — xuất PNG trong suốt | OneTool",
-      desc: "Xóa nền ảnh chân dung và sản phẩm ngay trên trình duyệt. Tải PNG trong suốt, miễn phí, không cần đăng nhập, file không rời máy bạn."
+      title: "Remove Background online — Xóa nền ảnh AI miễn phí | OneTool",
+      desc: "Remove background / xóa nền ảnh AI trên trình duyệt. Tải PNG trong suốt, miễn phí, không cần đăng nhập."
     },
     "image-convert": {
-      title: "Convert ảnh JPG PNG WebP online miễn phí | OneTool",
-      desc: "Đổi định dạng ảnh JPG, PNG, WebP, GIF, BMP trên trình duyệt. Kéo thả, chọn format, tải về ngay — miễn phí, không đăng nhập."
+      title: "Convert Ảnh online — JPG PNG WebP miễn phí | OneTool",
+      desc: "Convert ảnh JPG, PNG, WebP, GIF, BMP trên trình duyệt. Kéo thả, chọn format, tải về ngay — miễn phí."
     },
     "image-resize": {
-      title: "Resize ảnh online — đổi kích thước pixel miễn phí | OneTool",
-      desc: "Thu nhỏ hoặc phóng to ảnh theo pixel hoặc preset. Giữ tỉ lệ, xuất JPG/PNG/WebP — xử lý trên trình duyệt, miễn phí."
+      title: "Resize Ảnh online — Đổi kích thước pixel miễn phí | OneTool",
+      desc: "Resize ảnh theo pixel hoặc preset. Giữ tỉ lệ, xuất JPG/PNG/WebP — xử lý trên trình duyệt, miễn phí."
     },
     "image-batch": {
-      title: "Xử lý hàng loạt ảnh online — convert, resize, nén | OneTool",
-      desc: "Convert, resize hoặc nén nhiều ảnh cùng lúc trên trình duyệt. Phù hợp catalog sản phẩm và album — miễn phí, file không upload server."
+      title: "Batch Convert Ảnh online — convert, resize, nén hàng loạt | OneTool",
+      desc: "Batch convert / resize / nén nhiều ảnh cùng lúc trên trình duyệt. Phù hợp catalog sản phẩm — miễn phí."
     },
     "audio-to-text": {
-      title: "Chuyển audio/video thành văn bản tiếng Việt + SRT | OneTool",
-      desc: "Nhận dạng giọng nói từ MP3, WAV, MP4 thành văn bản và phụ đề SRT. Hỗ trợ tiếng Việt, miễn phí trên trình duyệt."
+      title: "Audio to Text online — Convert giọng nói thành văn bản + SRT | OneTool",
+      desc: "Audio to Text / video to text tiếng Việt. Convert MP3, WAV, MP4, MOV thành văn bản và phụ đề SRT — miễn phí trên trình duyệt."
     },
     "video-convert": {
-      title: "Nén video MP4 online miễn phí — đổi WebM, tách MP3 | OneTool",
-      desc: "Nén MP4, chuyển WebM hoặc tách MP3 ngay trên trình duyệt. So sánh dung lượng trước/sau, miễn phí, file không rời máy bạn."
+      title: "Compress Video online — Nén MP4, Convert WebM, tách MP3 | OneTool",
+      desc: "Compress video / nén MP4 online, convert WebM hoặc tách MP3 ngay trên trình duyệt. Miễn phí, file không rời máy bạn."
     },
     "pdf-merge": {
-      title: "Gộp PDF online miễn phí — ghép nhiều file thành một | OneTool",
-      desc: "Gộp nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về. Xử lý trên trình duyệt, không cần đăng ký."
+      title: "Merge PDF online miễn phí — Gộp nhiều PDF thành một | OneTool",
+      desc: "Merge PDF / gộp PDF online. Ghép nhiều file thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí trên trình duyệt."
     },
     "pdf-split": {
-      title: "Tách PDF online miễn phí — cắt theo trang hoặc khoảng | OneTool",
-      desc: "Tách PDF theo từng trang hoặc khoảng trang (ví dụ 1-3,5). Tải file mới ngay trên trình duyệt, miễn phí."
+      title: "Split PDF online — Tách PDF theo trang miễn phí | OneTool",
+      desc: "Split PDF / tách PDF theo trang hoặc khoảng (ví dụ 1-3,5). Tải file mới ngay trên trình duyệt, miễn phí."
     },
     "pdf-compress": {
-      title: "Nén PDF online miễn phí — giảm dung lượng file | OneTool",
-      desc: "Giảm dung lượng PDF, xem phần trăm tiết kiệm rồi tải về. Xử lý trên trình duyệt, không upload server."
+      title: "Compress PDF online — Nén PDF giảm dung lượng miễn phí | OneTool",
+      desc: "Compress PDF / nén PDF online, xem % tiết kiệm rồi tải về. Xử lý trên trình duyệt, không upload server."
     },
     "pdf-pages": {
-      title: "Xoay và xóa trang PDF online miễn phí | OneTool",
-      desc: "Xoay trang PDF 90°, 180°, 270° hoặc xóa trang không cần. Thao tác trên trình duyệt, miễn phí."
+      title: "Rotate PDF online — Xoay và xóa trang PDF miễn phí | OneTool",
+      desc: "Rotate PDF / xoay trang 90°, 180°, 270° hoặc xóa trang không cần. Thao tác trên trình duyệt, miễn phí."
     },
     "pdf-convert": {
-      title: "Convert PDF sang TXT hoặc PNG online miễn phí | OneTool",
-      desc: "Xuất PDF thành văn bản (OCR bản scan) hoặc ảnh PNG từng trang / ZIP. Chạy trên trình duyệt, miễn phí."
+      title: "Convert PDF online — PDF sang TXT hoặc PNG miễn phí | OneTool",
+      desc: "Convert PDF sang TXT (OCR scan) hoặc PNG từng trang / ZIP. Chạy trên trình duyệt, miễn phí."
+    },
+    "pdf-to-word": {
+      title: "PDF to Word online miễn phí — Convert PDF sang Word DOCX | OneTool",
+      desc: "Convert PDF to Word (DOCX) online. Giữ đoạn văn, OCR PDF scan tiếng Việt — miễn phí, không upload server."
+    },
+    "office-to-pdf": {
+      title: "Word/Excel to PDF online — Convert DOCX XLSX sang PDF | OneTool",
+      desc: "Convert Word (DOCX) và Excel (XLSX) sang PDF online miễn phí. Nhanh, rõ nội dung — xử lý trên trình duyệt, không upload server."
     },
     "convert-document": {
-      title: "Convert PDF sang TXT online miễn phí | OneTool",
-      desc: "Chuyển PDF thành văn bản trên trình duyệt. Phù hợp trích nội dung tài liệu nhanh, miễn phí."
+      title: "Convert Document online — PDF sang TXT miễn phí | OneTool",
+      desc: "Convert Document / convert PDF sang TXT trên trình duyệt. Phù hợp trích nội dung tài liệu nhanh, miễn phí."
     },
     "convert-data": {
-      title: "Chuyển CSV sang JSON và JSON sang CSV online | OneTool",
-      desc: "Đổi CSV ↔ JSON ngay trên trình duyệt. Dán dữ liệu hoặc mở file, tải kết quả — miễn phí, không đăng nhập."
+      title: "CSV to JSON online — Convert JSON sang CSV miễn phí | OneTool",
+      desc: "CSV to JSON / JSON to CSV ngay trên trình duyệt. Dán dữ liệu hoặc mở file, tải kết quả — miễn phí."
     },
     "qr-generator": {
-      title: "Tạo mã QR online miễn phí — URL và văn bản, tải PNG | OneTool",
-      desc: "Tạo mã QR từ link website hoặc văn bản, xem trước và tải PNG để in. Miễn phí, chạy trên trình duyệt."
+      title: "QR Code Generator online miễn phí — tạo mã QR tải PNG | OneTool",
+      desc: "QR Code Generator từ link hoặc văn bản, xem trước và tải PNG để in. Miễn phí trên trình duyệt."
     },
     "json-tools": {
-      title: "Format JSON online — làm đẹp, minify và kiểm tra | OneTool",
-      desc: "Format, thu gọn và kiểm tra JSON hợp lệ. Dán text hoặc mở file .json, sao chép kết quả — miễn phí trên trình duyệt."
+      title: "JSON Formatter online — Format minify JSON miễn phí | OneTool",
+      desc: "JSON Formatter: format, minify và kiểm tra JSON hợp lệ. Dán text hoặc mở file .json — miễn phí."
     },
     "base64-tools": {
-      title: "Encode Decode Base64 UTF-8 online — tiếng Việt, file, ảnh | OneTool",
-      desc: "Encode/decode Base64 hỗ trợ tiếng Việt, URL-safe và Data URL. Mở file hoặc dán chuỗi, xem preview ảnh — miễn phí."
+      title: "Base64 Encode Decode online — UTF-8, file, ảnh | OneTool",
+      desc: "Base64 Encode/Decode hỗ trợ tiếng Việt, URL-safe và Data URL. Mở file hoặc dán chuỗi — miễn phí."
     },
     "developer-tools": {
-      title: "UUID, Hash SHA, Slugify tiếng Việt, Timestamp online | OneTool",
-      desc: "Tạo UUID v4, hash SHA-256/384/512, slugify tiếng Việt và chuyển Unix timestamp. Công cụ developer miễn phí trên trình duyệt."
+      title: "Developer Tools online — UUID, SHA hash, slugify | OneTool",
+      desc: "Developer Tools: UUID v4, SHA-256/384/512, slugify tiếng Việt, Unix timestamp — miễn phí."
     }
   },
 
@@ -280,7 +290,7 @@ window.OTCatalog = {
     "audio-to-text": {
       keywords: "audio to text, chuyển giọng nói thành văn bản, phụ đề srt tiếng việt",
       howto: [
-        "Thả file audio hoặc video (MP3, WAV, MP4…).",
+        "Thả file audio hoặc video (MP3, WAV, MP4, MOV…).",
         "Chọn ngôn ngữ nhận dạng.",
         "Sao chép văn bản, tải TXT hoặc phụ đề SRT."
       ],
@@ -471,6 +481,66 @@ window.OTCatalog = {
           title: "Cách chuyển PDF sang text hoặc ảnh",
           paras: [
             "Chọn file, chọn kiểu xuất, tải kết quả. PDF tạo từ Word/máy tính thường lấy chữ tốt; PDF scan ảnh cần OCR riêng."
+          ]
+        }
+      ]
+    },
+    "pdf-to-word": {
+      keywords: "pdf to word, pdf sang word, convert pdf to word, pdf to docx, chuyển pdf thành word online miễn phí",
+      howto: [
+        "Thả hoặc chọn file PDF.",
+        "Chọn chế độ OCR (tự động khuyến nghị).",
+        "Bấm chuyển sang Word và tải file .docx."
+      ],
+      sections: [
+        {
+          title: "PDF sang Word là gì?",
+          paras: [
+            "**PDF → Word** chuyển tài liệu PDF thành file **DOCX** có thể chỉnh sửa trong Microsoft Word hoặc Google Docs. OneTool giữ cấu trúc đoạn văn và nhận diện tiêu đề theo cỡ chữ."
+          ]
+        },
+        {
+          title: "Cách chuyển PDF sang Word online",
+          paras: [
+            "Upload PDF, chọn OCR tự động nếu là bản scan, bấm chuyển đổi rồi tải DOCX. Toàn bộ xử lý chạy trên trình duyệt — file không gửi lên server."
+          ]
+        },
+        {
+          title: "Khi nào nên dùng OCR?",
+          list: [
+            { title: "PDF từ Word/Excel", text: "thường đủ lớp chữ — OCR tắt hoặc tự động là đủ." },
+            { title: "PDF scan / ảnh chụp", text: "bật OCR (tiếng Việt + Anh) để đọc chữ trong ảnh." },
+            { title: "Bảng phức tạp / layout thiết kế", text: "chữ vẫn lấy được nhưng bố cục có thể khác bản gốc." }
+          ]
+        }
+      ]
+    },
+    "office-to-pdf": {
+      keywords: "word to pdf, excel to pdf, convert docx to pdf, xlsx sang pdf, word sang pdf online miễn phí, excel sang pdf",
+      howto: [
+        "Thả file Word (.docx) hoặc Excel (.xlsx).",
+        "Chọn khổ giấy A4 và hướng trang (hoặc để tự động).",
+        "Bấm chuyển sang PDF và tải về."
+      ],
+      sections: [
+        {
+          title: "Word/Excel sang PDF là gì?",
+          paras: [
+            "**Word/Excel → PDF** giúp **convert DOCX hoặc XLSX sang PDF** để gửi email, nộp hồ sơ hoặc in ấn — nội dung cố định, mở được mọi máy."
+          ]
+        },
+        {
+          title: "Cách convert Word Excel to PDF online",
+          paras: [
+            "Chọn file .docx hoặc .xlsx, chọn khổ A4 (khuyến nghị), bấm chuyển đổi rồi tải PDF. Toàn bộ chạy trên trình duyệt — file không upload server."
+          ]
+        },
+        {
+          title: "Mẹo dùng nhanh",
+          list: [
+            { title: "Word (.docx)", text: "giữ tiêu đề, đoạn văn và bảng cơ bản tốt nhất." },
+            { title: "Excel (.xlsx)", text: "mặc định xoay ngang (landscape) để bảng rộng dễ đọc." },
+            { title: "File .doc cũ", text: "mở Word → Lưu thành .docx rồi convert." }
           ]
         }
       ]

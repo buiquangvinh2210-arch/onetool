@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF sang Word online miễn phí — chuyển PDF → DOCX chính xác | OneTool</title>
+  <meta name="description" content="Chuyển PDF sang Word (DOCX) ngay trên trình duyệt. Giữ đoạn văn, tiêu đề; OCR PDF scan tiếng Việt. Miễn phí, file không rời máy bạn." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/tools/pdf-to-word.css?v=20260825b" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="pw-top">
+    <div class="pw-title-row">
+      <div>
+        <h1>PDF to Word · Sang DOCX</h1>
+        <p class="pw-lead">Convert PDF sang Word (.docx) chỉnh sửa được — giữ đoạn văn & tiêu đề, tự nhận dạng bản scan.</p>
+      </div>
+      <div class="pw-meta">
+        <span>DOCX</span>
+        <span>Tiếng Việt</span>
+        <span>Nhanh · chính xác</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pw-studio">
+    <div class="pw-shell">
+      <aside class="pw-side">
+        <p class="pw-side-label">Nguồn</p>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+          <div class="upload-placeholder">
+            <span class="upload-icon">PDF</span>
+            <p><strong>Thả PDF vào đây</strong></p>
+            <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+          </div>
+        </div>
+
+        <div class="pw-field">
+          <label for="ocrMode">Bản scan / ảnh chữ</label>
+          <select id="ocrMode" class="form-control">
+            <option value="auto" selected>Tự động (khuyến nghị)</option>
+            <option value="on">Luôn nhận dạng ảnh chữ</option>
+            <option value="off">Chỉ lấy chữ có sẵn trong PDF</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Chuyển sang Word</button>
+        <p class="pw-note">Riêng tư trên máy bạn. PDF chữ thường chuyển gần như tức thì; bản scan cần thêm vài giây mỗi trang.</p>
+      </aside>
+
+      <div class="pw-main">
+        <div class="pw-main-bar">
+          <div>
+            <h2>Kết quả</h2>
+            <p id="status">Chọn PDF rồi bấm chuyển — xem trước văn bản và tải DOCX.</p>
+          </div>
+          <div class="pw-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép chữ</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải Word</button>
+          </div>
+        </div>
+        <div class="pw-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="pw-result">
+          <div class="pw-empty" id="resultEmpty">
+            <div class="pw-empty-visual" aria-hidden="true"></div>
+            <p>File Word sẽ hiện ở đây sau khi chuyển đổi.</p>
+          </div>
+          <div class="pw-file-chip" id="fileChip">
+            <span class="pw-file-chip-icon">DOCX</span>
+            <div>
+              <strong id="fileChipName">document.docx</strong>
+              <span id="fileChipMeta">sẵn sàng tải</span>
+            </div>
+          </div>
+          <div class="pw-stats" id="stats">
+            <div class="pw-stat"><strong id="statPages">—</strong><span>Trang</span></div>
+            <div class="pw-stat"><strong id="statChars">—</strong><span>Ký tự</span></div>
+            <div class="pw-stat"><strong id="statOcr">—</strong><span>Scan</span></div>
+          </div>
+          <pre class="pw-preview" id="preview" aria-label="Xem trước văn bản"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js?v=20260825a"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/tools/pdf.js?v=20260822" defer></script>
+<script src="../assets/js/tools/pdf-to-word.js?v=20260825b" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let file = null;
+  let lastText = "";
+
+  const empty = document.getElementById("resultEmpty");
+  const preview = document.getElementById("preview");
+  const stats = document.getElementById("stats");
+  const fileChip = document.getElementById("fileChip");
+  const progressBar = document.getElementById("progressBar");
+  const progressFill = document.getElementById("progressFill");
+
+  function setProgress(pct) {
+    const n = Math.max(0, Math.min(100, pct | 0));
+    progressBar.classList.toggle("is-on", n > 0 && n < 100);
+    progressBar.setAttribute("aria-hidden", n > 0 && n < 100 ? "false" : "true");
+    progressFill.style.width = n + "%";
+    if (typeof OT.setProgress === "function") OT.setProgress(n);
+  }
+
+  OT.bindUploadZone({
+    onFiles: function (files) {
+      file = files[0] || null;
+      if (file && file.size > OTPdfToWord.MAX_BYTES) {
+        OT.setStatus("File quá lớn (tối đa 80 MB).", "err");
+        file = null;
+      }
+    }
+  });
+
+  document.getElementById("runBtn").onclick = async function () {
+    const btn = document.getElementById("runBtn");
+    try {
+      if (!file) throw new Error("Chọn file PDF trước.");
+      if (!window.OTPdfToWord) throw new Error("Script chưa sẵn sàng — thử Ctrl+F5.");
+
+      OT.setBusy(btn, true, "Đang chuyển…");
+      setProgress(6);
+      OT.setStatus("Đang đọc PDF…");
+
+      empty.style.display = "none";
+      const ocr = document.getElementById("ocrMode").value;
+
+      const result = await OTPdfToWord.convert(file, {
+        ocr: ocr,
+        maxPages: OTPdfToWord.MAX_PAGES,
+        onProgress: function (info) {
+          const pct = 8 + Math.round((info.page / info.total) * 78);
+          setProgress(pct);
+          OT.setStatus(
+            info.phase === "ocr"
+              ? "Đang nhận dạng trang " + info.page + "/" + info.total + "…"
+              : "Đang đọc trang " + info.page + "/" + info.total + "…"
+          );
+        }
+      });
+
+      setProgress(92);
+      OT.setStatus("Đang tạo file Word…");
+
+      lastText = result.meta.preview || "";
+      document.getElementById("statPages").textContent =
+        result.meta.pageCount + (result.meta.truncated ? "+" : "");
+      document.getElementById("statChars").textContent =
+        result.meta.charCount.toLocaleString("vi-VN");
+      document.getElementById("statOcr").textContent = result.meta.ocrUsed ? "Có" : "Không";
+
+      document.getElementById("fileChipName").textContent = result.fileName;
+      document.getElementById("fileChipMeta").textContent =
+        OT.formatBytes(result.blob.size) + " · sẵn sàng tải";
+
+      fileChip.classList.add("is-on");
+      stats.classList.add("is-on");
+      preview.textContent = lastText || "(Không có xem trước)";
+      preview.classList.add("is-on");
+
+      OT.showResult({
+        blob: result.blob,
+        fileName: result.fileName,
+        contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        text: lastText
+      });
+
+      setProgress(100);
+      var note = "Xong — " + result.meta.pageCount + " trang đã sẵn sàng tải.";
+      if (result.meta.ocrUsed) note = "Xong — đã nhận dạng bản scan · " + result.meta.pageCount + " trang.";
+      if (result.meta.truncated) note += " (xử lý " + result.meta.pageCount + "/" + result.meta.totalPages + " trang đầu)";
+      OT.setStatus(note, "ok");
+      setTimeout(function () { setProgress(0); }, 400);
+    } catch (e) {
+      OT.setStatus(e.message || "Không chuyển được — thử file khác hoặc chế độ nhận dạng khác.", "err");
+      setProgress(0);
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  };
+
+  document.getElementById("copyResultBtn").addEventListener("click", async function () {
+    if (!lastText) return;
+    try {
+      await navigator.clipboard.writeText(lastText);
+      OT.setStatus("Đã sao chép.", "ok");
+    } catch (_) {
+      OT.setStatus("Không sao chép được — hãy chọn và copy thủ công.", "err");
+    }
+  });
+
+  if (window.OTPdfToWord && typeof OTPdfToWord.warmup === "function") {
+    const idle = window.requestIdleCallback || function (cb) { setTimeout(cb, 900); };
+    idle(function () { OTPdfToWord.warmup(); }, { timeout: 2500 });
+  }
+});
+</script>
+</body>
+</html>
