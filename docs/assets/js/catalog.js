@@ -4,11 +4,11 @@ window.OTCatalog = {
       slug: "media",
       seo: "cong-cu-media",
       name: "Media & AI",
-      desc: "Audio to Text, nén & convert video",
+      desc: "Tải TikTok, Audio to Text, nén & convert video",
       icon: "🎙️",
-      seoTitle: "Công cụ Media & AI online — Audio/Video sang văn bản, nén video | OneTool",
-      seoDescription: "Chuyển audio/video thành văn bản, nén MP4, đổi WebM, tách MP3 — chạy trên trình duyệt, miễn phí.",
-      seoKeywords: "audio to text, nén video online, convert video mp4, video sang mp3, webm online"
+      seoTitle: "Công cụ Media & AI online — Tải TikTok, Audio/Video sang văn bản | OneTool",
+      seoDescription: "Tải video TikTok HD, chuyển audio/video thành văn bản, nén MP4, đổi WebM, tách MP3 — chạy trên trình duyệt, miễn phí.",
+      seoKeywords: "tải video tiktok, audio to text, nén video online, convert video mp4, video sang mp3, webm online"
     },
     {
       slug: "pdf-tools",
@@ -52,6 +52,7 @@ window.OTCatalog = {
     }
   ],
   tools: [
+    { slug: "tiktok-download", name: "TikTok Download · Tải video TikTok", desc: "Tải MP4 HD không watermark từ link — kể cả video app không cho lưu.", icon: "🎵", cat: "media", featured: true },
     { slug: "audio-to-text", name: "Audio to Text · Giọng nói thành chữ", desc: "Convert audio/video thành văn bản tiếng Việt + phụ đề SRT.", icon: "🎙️", cat: "media", featured: true },
     { slug: "video-convert", name: "Compress Video · Nén video", desc: "Nén MP4, convert WebM, tách MP3 — ngay trên máy bạn.", icon: "🎬", cat: "media", featured: true },
 
@@ -96,6 +97,10 @@ window.OTCatalog = {
     "image-batch": {
       title: "Batch Convert Ảnh online — convert, resize, nén hàng loạt | OneTool",
       desc: "Batch convert / resize / nén nhiều ảnh cùng lúc trên trình duyệt. Phù hợp catalog sản phẩm — miễn phí."
+    },
+    "tiktok-download": {
+      title: "Tải video TikTok không watermark — HD online miễn phí | OneTool",
+      desc: "Dán link TikTok để tải MP4 HD không watermark, MP3 và slideshow. Miễn phí — kể cả video app không cho tải."
     },
     "audio-to-text": {
       title: "Audio to Text online — Convert giọng nói thành văn bản + SRT | OneTool",
@@ -283,6 +288,36 @@ window.OTCatalog = {
           list: [
             { title: "Shop online", text: "đưa ảnh về cùng kích thước và WebP trước khi đăng." },
             { title: "Ảnh sự kiện", text: "nén hàng loạt để gửi khách nhanh." }
+          ]
+        }
+      ]
+    },
+    "tiktok-download": {
+      keywords: "tải video tiktok, tiktok download, tải tiktok không watermark, tải mp4 tiktok hd",
+      howto: [
+        "Mở TikTok → Chia sẻ → Sao chép liên kết.",
+        "Dán link vào OneTool và bấm Lấy video.",
+        "Chọn MP4 HD (không watermark) hoặc MP3 để tải về."
+      ],
+      sections: [
+        {
+          title: "Tải video TikTok không watermark là gì?",
+          paras: [
+            "**TikTok Download** lấy file MP4 chất lượng cao từ link công khai — kể cả khi app tắt nút tải. Ưu tiên bản **HD không watermark**, hỗ trợ MP3 và ảnh slideshow."
+          ]
+        },
+        {
+          title: "Cách tải video TikTok online",
+          paras: [
+            "Sao chép liên kết video → dán vào ô Link TikTok → bấm **Lấy video** → chọn **MP4 HD** để tải. Dùng được link tiktok.com, vt.tiktok.com và vm.tiktok.com."
+          ]
+        },
+        {
+          title: "Lưu ý khi tải",
+          list: [
+            { title: "Quyền sử dụng", text: "chỉ tải nội dung bạn có quyền (video của bạn / được phép)." },
+            { title: "Video riêng tư", text: "link private hoặc hết hạn có thể không lấy được." },
+            { title: "Nén sau khi tải", text: "dùng Compress Video nếu cần giảm dung lượng." }
           ]
         }
       ]
@@ -727,10 +762,10 @@ window.OTCatalog = {
 
   categorySeo: {
     "cong-cu-media": {
-      intro: "Bộ công cụ **Media & AI**: chuyển audio/video thành văn bản, nén MP4, đổi WebM và tách MP3 — xử lý trên trình duyệt, file không rời máy bạn.",
+      intro: "Bộ công cụ **Media & AI**: tải TikTok HD, chuyển audio/video thành văn bản, nén MP4, đổi WebM và tách MP3.",
       sections: [
-        { title: "Audio/Video → Text là gì?", paras: ["Công nghệ **speech-to-text** nhận diện giọng nói trong file MP3, WAV, MP4… và xuất ra văn bản hoặc file phụ đề SRT. Phù hợp ghi chú cuộc họp, podcast, video YouTube."] },
-        { title: "Vì sao xử lý trên trình duyệt?", paras: ["File không upload lên server — bảo mật hơn, không cần đăng ký. Bạn kiểm soát hoàn toàn dữ liệu trên máy mình."] }
+        { title: "Tải TikTok & xử lý video", paras: ["**TikTok Download** lấy MP4 HD không watermark từ link. **Compress Video** nén MP4 / tách MP3 ngay trên trình duyệt."] },
+        { title: "Audio/Video → Text", paras: ["**Speech-to-text** nhận diện giọng nói trong MP3, WAV, MP4… xuất TXT hoặc phụ đề SRT — phù hợp họp, podcast, phụ đề."] }
       ]
     },
     "cong-cu-pdf": {

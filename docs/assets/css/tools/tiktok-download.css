@@ -1,0 +1,429 @@
+/* TikTok Download · studio — compact layout */
+body[data-tool="tiktok-download"] {
+  --tt-ink: #120a1a;
+  --tt-muted: #6b6578;
+  --tt-line: rgba(88, 60, 140, 0.12);
+  --tt-soft: rgba(124, 58, 237, 0.08);
+  --tt-panel: rgba(255, 255, 255, 0.78);
+  --tt-accent: #fe2c55;
+  --tt-cyan: #25f4ee;
+}
+
+body[data-tool="tiktok-download"] .tool-workspace {
+  padding: 0 0 1.5rem !important;
+  background:
+    radial-gradient(ellipse 80% 50% at 12% -8%, rgba(254, 44, 85, 0.1), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 96% 4%, rgba(37, 244, 238, 0.12), transparent 50%),
+    linear-gradient(180deg, #f7f5fb 0%, #f3f0f9 50%, #faf9fc 100%) !important;
+}
+
+body[data-tool="tiktok-download"] .tt-top {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem 0.9rem;
+}
+body[data-tool="tiktok-download"] .tt-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+body[data-tool="tiktok-download"] .tt-title-row h1 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-weight: 780;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: var(--tt-ink);
+}
+body[data-tool="tiktok-download"] .tt-title-row p {
+  margin: 0.25rem 0 0;
+  max-width: 34rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--tt-muted);
+}
+body[data-tool="tiktok-download"] .tt-meta {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--tt-muted);
+}
+
+body[data-tool="tiktok-download"] .tt-studio {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+body[data-tool="tiktok-download"] .tt-shell {
+  display: grid;
+  grid-template-columns: minmax(300px, 400px) 1fr;
+  align-items: stretch;
+  min-height: min(520px, calc(100vh - 14rem));
+  border: 1px solid var(--tt-line);
+  border-radius: 20px;
+  background: var(--tt-panel);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 16px 44px rgba(70, 40, 120, 0.08);
+  overflow: hidden;
+}
+
+body[data-tool="tiktok-download"] .tt-side {
+  padding: 1.25rem 1.2rem 1.35rem;
+  border-right: 1px solid var(--tt-line);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.55), rgba(250, 248, 255, 0.9));
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+body[data-tool="tiktok-download"] .tt-side-label {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tt-muted);
+}
+body[data-tool="tiktok-download"] .tt-paste {
+  border: 1.5px dashed rgba(124, 58, 237, 0.28);
+  border-radius: 14px;
+  background: #fff;
+  padding: 0.65rem 0.75rem 0.7rem;
+}
+body[data-tool="tiktok-download"] .tt-paste:focus-within {
+  border-color: rgba(124, 58, 237, 0.55);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+body[data-tool="tiktok-download"] .tt-paste textarea {
+  width: 100%;
+  min-height: 88px;
+  max-height: 140px;
+  border: 0;
+  outline: none;
+  resize: vertical;
+  font: inherit;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--tt-ink);
+  background: transparent;
+}
+body[data-tool="tiktok-download"] .tt-paste-actions {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+body[data-tool="tiktok-download"] .tt-chip-btn {
+  border: 0;
+  background: var(--tt-soft);
+  color: #5b21b6;
+  font-size: 0.72rem;
+  font-weight: 650;
+  padding: 0.22rem 0.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+body[data-tool="tiktok-download"] .tt-note {
+  margin: 0.15rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--tt-muted);
+}
+body[data-tool="tiktok-download"] .tt-note strong {
+  color: var(--tt-ink);
+  font-weight: 650;
+}
+
+body[data-tool="tiktok-download"] .tt-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+}
+body[data-tool="tiktok-download"] .tt-main-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--tt-line);
+}
+body[data-tool="tiktok-download"] .tt-main-bar h2 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 720;
+  color: var(--tt-ink);
+}
+body[data-tool="tiktok-download"] .tt-main-bar p {
+  margin: 0.1rem 0 0;
+  font-size: 0.78rem;
+  color: var(--tt-muted);
+}
+
+body[data-tool="tiktok-download"] .tt-progress {
+  height: 2px;
+  background: transparent;
+  overflow: hidden;
+}
+body[data-tool="tiktok-download"] .tt-progress.is-on {
+  background: rgba(124, 58, 237, 0.08);
+}
+body[data-tool="tiktok-download"] .tt-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #fe2c55, #7c3aed 55%, #25f4ee);
+  transition: width 0.35s ease;
+}
+
+body[data-tool="tiktok-download"] .tt-body {
+  padding: 0.9rem 1.25rem 1.15rem;
+  min-height: 0;
+  flex: 1;
+}
+
+/* Chỉ hiện 1 trạng thái — fix display:grid ghi đè [hidden] */
+body[data-tool="tiktok-download"] .tt-stage {
+  position: relative;
+}
+body[data-tool="tiktok-download"] .tt-empty[hidden],
+body[data-tool="tiktok-download"] .tt-result:not(.is-on) {
+  display: none !important;
+}
+
+body[data-tool="tiktok-download"] .tt-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--tt-muted);
+  padding: 1.25rem 0.75rem;
+  min-height: 0;
+}
+body[data-tool="tiktok-download"] .tt-empty-mark {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.55rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(254, 44, 85, 0.15), rgba(37, 244, 238, 0.18));
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+}
+body[data-tool="tiktok-download"] .tt-empty strong {
+  display: block;
+  color: var(--tt-ink);
+  font-size: 0.92rem;
+  margin-bottom: 0.2rem;
+}
+body[data-tool="tiktok-download"] .tt-empty p {
+  margin: 0;
+  max-width: 24rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+body[data-tool="tiktok-download"] .tt-result.is-on {
+  display: grid;
+  grid-template-columns: minmax(160px, 190px) 1fr;
+  gap: 1rem 1.25rem;
+  align-items: start;
+  animation: ttFade 0.3s ease both;
+}
+@keyframes ttFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+body[data-tool="tiktok-download"] .tt-preview {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0c0a12;
+  aspect-ratio: 9 / 16;
+  max-height: 340px;
+  width: 100%;
+  box-shadow: 0 10px 28px rgba(20, 10, 40, 0.16);
+}
+body[data-tool="tiktok-download"] .tt-preview video,
+body[data-tool="tiktok-download"] .tt-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+body[data-tool="tiktok-download"] .tt-preview-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.42rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+body[data-tool="tiktok-download"] .tt-info h3 {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 720;
+  line-height: 1.32;
+  color: var(--tt-ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+body[data-tool="tiktok-download"] .tt-author {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  color: var(--tt-muted);
+}
+body[data-tool="tiktok-download"] .tt-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.4rem;
+  margin-bottom: 0.55rem;
+}
+body[data-tool="tiktok-download"] .tt-stat {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #4c4660;
+  background: rgba(124, 58, 237, 0.07);
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+}
+
+body[data-tool="tiktok-download"] .tt-dl-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tt-muted);
+}
+body[data-tool="tiktok-download"] .tt-dl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+body[data-tool="tiktok-download"] .tt-dl-more {
+  margin-top: 0.35rem;
+}
+body[data-tool="tiktok-download"] .tt-dl-more summary {
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: #5b21b6;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.2rem 0;
+}
+body[data-tool="tiktok-download"] .tt-dl-more summary::-webkit-details-marker {
+  display: none;
+}
+body[data-tool="tiktok-download"] .tt-dl-more .tt-dl-list {
+  margin-top: 0.35rem;
+}
+
+body[data-tool="tiktok-download"] .tt-dl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--tt-line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.55rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font: inherit;
+}
+body[data-tool="tiktok-download"] .tt-dl-btn:hover:not(:disabled) {
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 4px 14px rgba(80, 40, 140, 0.07);
+}
+body[data-tool="tiktok-download"] .tt-dl-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+body[data-tool="tiktok-download"] .tt-dl-btn.is-primary {
+  border-color: transparent;
+  background: linear-gradient(120deg, #fe2c55 0%, #7c3aed 55%, #5b21b6 100%);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(254, 44, 85, 0.22);
+}
+body[data-tool="tiktok-download"] .tt-dl-btn .tt-dl-title {
+  font-size: 0.85rem;
+  font-weight: 680;
+}
+body[data-tool="tiktok-download"] .tt-dl-btn .tt-dl-sub {
+  display: block;
+  margin-top: 0.08rem;
+  font-size: 0.72rem;
+  opacity: 0.78;
+}
+body[data-tool="tiktok-download"] .tt-dl-btn .tt-dl-go {
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+body[data-tool="tiktok-download"] .tt-images {
+  margin-top: 0.55rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 0.35rem;
+}
+body[data-tool="tiktok-download"] .tt-images button {
+  border: 0;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #eee;
+  aspect-ratio: 1;
+}
+body[data-tool="tiktok-download"] .tt-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body[data-tool="tiktok-download"] .tt-err {
+  display: none;
+  margin: 0 0 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: rgba(220, 38, 38, 0.08);
+  color: #b91c1c;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+body[data-tool="tiktok-download"] .tt-err.is-on {
+  display: block;
+}
+
+@media (max-width: 860px) {
+  body[data-tool="tiktok-download"] .tt-shell {
+    grid-template-columns: 1fr;
+  }
+  body[data-tool="tiktok-download"] .tt-side {
+    border-right: 0;
+    border-bottom: 1px solid var(--tt-line);
+  }
+  body[data-tool="tiktok-download"] .tt-result.is-on {
+    grid-template-columns: minmax(120px, 140px) 1fr;
+  }
+  body[data-tool="tiktok-download"] .tt-preview {
+    max-height: 220px;
+  }
+}

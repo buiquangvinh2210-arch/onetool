@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tải video TikTok không watermark — HD online miễn phí | OneTool</title>
+  <meta name="description" content="Dán link TikTok để tải video MP4 HD không watermark, kể cả video không cho tải trong app. Miễn phí, nhanh, chất lượng cao." />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/tools/tiktok-download.css?v=20260825d" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="tt-top">
+    <div class="tt-title-row">
+      <div>
+        <h1>TikTok Download · Tải video TikTok</h1>
+        <p>Dán link để tải MP4 HD không watermark — kể cả video app không cho lưu.</p>
+      </div>
+      <div class="tt-meta">HD · No watermark · MP3 · Slideshow</div>
+    </div>
+  </div>
+
+  <div id="protocolBanner" class="protocol-banner container">Cần chạy qua HTTP (IIS / Live Server).</div>
+
+  <div class="tt-studio">
+    <div class="tt-shell">
+      <aside class="tt-side">
+        <p class="tt-side-label">Link TikTok</p>
+        <div class="tt-paste">
+          <label class="visually-hidden" for="urlInput">Link video TikTok</label>
+          <textarea id="urlInput" placeholder="Dán link tại đây&#10;vd: https://www.tiktok.com/@user/video/…&#10;hoặc https://vt.tiktok.com/…" autocomplete="off" spellcheck="false"></textarea>
+          <div class="tt-paste-actions">
+            <button type="button" class="tt-chip-btn" id="pasteBtn">Dán từ clipboard</button>
+            <button type="button" class="tt-chip-btn" id="clearBtn">Xóa</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Lấy video</button>
+        <p class="tt-note">
+          Hỗ trợ <strong>tiktok.com</strong>, <strong>vt.tiktok.com</strong>, <strong>vm.tiktok.com</strong>.
+          Ưu tiên bản <strong>HD không watermark</strong>. Chỉ tải nội dung bạn có quyền sử dụng.
+        </p>
+      </aside>
+
+      <div class="tt-main">
+        <div class="tt-main-bar">
+          <div>
+            <h2>Kết quả</h2>
+            <p id="status">Chưa có video</p>
+          </div>
+        </div>
+        <div class="tt-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="tt-body">
+          <p class="tt-err" id="errBox" role="alert"></p>
+          <div class="tt-stage">
+            <div class="tt-empty" id="emptyState">
+              <div class="tt-empty-mark" aria-hidden="true">♪</div>
+              <strong>Dán link TikTok để bắt đầu</strong>
+              <p>Chia sẻ → Sao chép liên kết → dán vào đây → Lấy video.</p>
+            </div>
+            <div class="tt-result" id="resultPanel">
+              <div class="tt-preview" id="previewBox">
+                <span class="tt-preview-badge" id="previewBadge">HD</span>
+                <video id="previewVideo" controls playsinline preload="metadata" hidden></video>
+                <img id="previewCover" alt="Cover TikTok" hidden />
+              </div>
+              <div class="tt-info">
+                <h3 id="videoTitle">—</h3>
+                <p class="tt-author" id="videoAuthor"></p>
+                <div class="tt-stats" id="videoStats"></div>
+                <p class="tt-dl-label">Tải xuống · chất lượng cao</p>
+                <div class="tt-dl-list" id="dlList"></div>
+                <details class="tt-dl-more" id="dlMore" hidden>
+                  <summary>Tùy chọn khác (SD / watermark)</summary>
+                  <div class="tt-dl-list" id="dlMoreList"></div>
+                </details>
+                <div class="tt-images" id="imageList" hidden></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool-seo" id="toolSeo" data-static="1">
+  <div class="tool-seo-wrap">
+    <section class="tool-seo-block">
+      <h2>Tải video TikTok không watermark là gì?</h2>
+      <p><strong>TikTok Download</strong> giúp bạn lấy file MP4 chất lượng cao từ link công khai — kể cả khi nút tải trong app bị tắt. OneTool ưu tiên bản <strong>HD không watermark</strong>, hỗ trợ thêm MP3 và ảnh slideshow.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Cách tải video TikTok online</h2>
+      <p>Mở video trên TikTok → <strong>Chia sẻ</strong> → <strong>Sao chép liên kết</strong> → dán vào OneTool → bấm <strong>Lấy video</strong> → chọn <strong>MP4 HD</strong> để tải về máy.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Khi nào nên dùng</h2>
+      <ul>
+        <li><strong>Lưu video của bạn</strong> khi app không hiện nút tải.</li>
+        <li><strong>Backup nội dung</strong> trước khi edit trên CapCut / Premiere.</li>
+        <li><strong>Lấy audio</strong> (MP3) từ soundtrack của clip.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công cụ khác trên OneTool</h2>
+      <ul class="tool-seo-more">
+        <li><a class="tool-seo-card" href="video-convert.html"><span class="tool-seo-card-icon" aria-hidden="true">🎬</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Compress Video · Nén video</strong><span class="tool-seo-card-sapo">Nén MP4 hoặc tách MP3 sau khi tải.</span></span></a></li>
+        <li><a class="tool-seo-card" href="audio-to-text.html"><span class="tool-seo-card-icon" aria-hidden="true">🎙️</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Audio to Text · Giọng nói thành chữ</strong><span class="tool-seo-card-sapo">Nhận dạng lời thoại từ video đã tải.</span></span></a></li>
+        <li><a class="tool-seo-card" href="../cong-cu-anh/remove-background.html"><span class="tool-seo-card-icon" aria-hidden="true">✂️</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Remove Background · Xóa nền AI</strong><span class="tool-seo-card-sapo">Tách nền ảnh thumbnail hoặc cover.</span></span></a></li>
+      </ul>
+    </section>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260825t"></script>
+<script src="../assets/js/layout.js?v=20260825t"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/ot-config.js?v=20260825t"></script>
+<script src="../assets/js/tools/tiktok-download.js?v=20260825c"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+(function () {
+  try {
+    if (location.protocol === "file:") document.getElementById("protocolBanner")?.classList.add("is-on");
+
+    const urlInput = document.getElementById("urlInput");
+    const runBtn = document.getElementById("runBtn");
+    const pasteBtn = document.getElementById("pasteBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const statusEl = document.getElementById("status");
+    const progressBar = document.getElementById("progressBar");
+    const progressFill = document.getElementById("progressFill");
+    const emptyState = document.getElementById("emptyState");
+    const resultPanel = document.getElementById("resultPanel");
+    const errBox = document.getElementById("errBox");
+    const previewVideo = document.getElementById("previewVideo");
+    const previewCover = document.getElementById("previewCover");
+    const previewBadge = document.getElementById("previewBadge");
+    const videoTitle = document.getElementById("videoTitle");
+    const videoAuthor = document.getElementById("videoAuthor");
+    const videoStats = document.getElementById("videoStats");
+    const dlList = document.getElementById("dlList");
+    const dlMore = document.getElementById("dlMore");
+    const dlMoreList = document.getElementById("dlMoreList");
+    const imageList = document.getElementById("imageList");
+
+    let current = null;
+    let busy = false;
+
+    function setProgress(pct) {
+      const n = Math.max(0, Math.min(100, pct | 0));
+      progressBar.classList.toggle("is-on", n > 0 && n < 100);
+      progressBar.setAttribute("aria-hidden", n > 0 && n < 100 ? "false" : "true");
+      progressFill.style.width = n + "%";
+    }
+
+    function showError(msg) {
+      errBox.textContent = msg || "";
+      errBox.classList.toggle("is-on", !!msg);
+    }
+
+    function renderResult(data) {
+      current = data;
+      emptyState.hidden = true;
+      resultPanel.classList.add("is-on");
+
+      videoTitle.textContent = data.title || "TikTok video";
+      const nick = data.author?.nickname || "TikTok";
+      const uid = data.author?.uniqueId ? "@" + data.author.uniqueId : "";
+      videoAuthor.innerHTML = "<b>" + escapeHtml(nick) + "</b>" + (uid ? " · " + escapeHtml(uid) : "");
+
+      const bits = [];
+      if (data.duration) bits.push(OTTikTok.formatDuration(data.duration));
+      if (data.stats?.play) bits.push(OTTikTok.formatCount(data.stats.play) + " xem");
+      if (data.stats?.digg) bits.push(OTTikTok.formatCount(data.stats.digg) + " thích");
+      if (data.hdSize || data.size) {
+        bits.push(OTTikTok.formatBytes(data.hdSize || data.size));
+      }
+      videoStats.innerHTML = bits.map((b) => '<span class="tt-stat">' + escapeHtml(b) + "</span>").join("");
+
+      const best = (data.videos || []).find((v) => v.quality === "hd") || (data.videos || [])[0];
+      previewBadge.textContent = best?.quality === "hd" ? "HD" : "MP4";
+
+      const playUrl = best?.url || "";
+      if (playUrl && !(data.images && data.images.length)) {
+        previewVideo.hidden = false;
+        previewCover.hidden = true;
+        previewVideo.src = playUrl;
+        previewVideo.poster = data.cover || "";
+      } else {
+        previewVideo.hidden = true;
+        previewVideo.removeAttribute("src");
+        previewCover.hidden = false;
+        previewCover.src = data.cover || data.images?.[0] || "";
+      }
+
+      const base = OTTikTok.safeFileBase(data.title, data.id);
+      dlList.innerHTML = "";
+      dlMoreList.innerHTML = "";
+      dlMore.hidden = true;
+
+      function makeDlBtn(v, primary) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tt-dl-btn" + (primary ? " is-primary" : "");
+        const sizeHint =
+          v.quality === "hd" && data.hdSize
+            ? OTTikTok.formatBytes(data.hdSize) + " · HD"
+            : data.size
+              ? OTTikTok.formatBytes(data.size)
+              : "MP4";
+        const label =
+          v.quality === "hd"
+            ? "MP4 HD · Không watermark · Chất lượng cao"
+            : v.label;
+        btn.innerHTML =
+          '<span><span class="tt-dl-title">' +
+          escapeHtml(label) +
+          '</span><span class="tt-dl-sub">' +
+          escapeHtml(sizeHint) +
+          '</span></span><span class="tt-dl-go">Tải ↓</span>';
+        btn.addEventListener("click", () =>
+          downloadMedia(v.url, base + (v.quality === "wm" ? "-wm" : v.quality === "hd" ? "-hd" : "") + ".mp4", btn)
+        );
+        return btn;
+      }
+
+      const videos = data.videos || [];
+      const hd = videos.find((v) => v.quality === "hd");
+      const primary = hd || videos.find((v) => v.quality === "sd") || videos[0];
+      const extras = videos.filter((v) => v !== primary);
+
+      if (primary) dlList.appendChild(makeDlBtn(primary, true));
+      if (extras.length) {
+        dlMore.hidden = false;
+        extras.forEach((v) => dlMoreList.appendChild(makeDlBtn(v, false)));
+      }
+
+      if (data.music?.url) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tt-dl-btn";
+        btn.innerHTML =
+          '<span><span class="tt-dl-title">MP3 · Âm thanh</span><span class="tt-dl-sub">' +
+          escapeHtml(data.music.title || "Audio") +
+          '</span></span><span class="tt-dl-go">Tải ↓</span>';
+        btn.addEventListener("click", () => downloadMedia(data.music.url, base + ".mp3", btn));
+        dlList.appendChild(btn);
+      }
+
+      if (data.images?.length) {
+        imageList.hidden = false;
+        imageList.innerHTML = "";
+        data.images.forEach((src, idx) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.title = "Tải ảnh " + (idx + 1);
+          b.innerHTML = '<img src="' + escapeAttr(src) + '" alt="" loading="lazy" />';
+          b.addEventListener("click", () => downloadMedia(src, base + "-img" + (idx + 1) + ".jpg", null));
+          imageList.appendChild(b);
+        });
+      } else {
+        imageList.hidden = true;
+        imageList.innerHTML = "";
+      }
+
+      statusEl.textContent = "Sẵn sàng tải · " + ((data.videos || []).length || 0) + " phiên bản";
+    }
+
+    function escapeHtml(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+    function escapeAttr(s) {
+      return escapeHtml(s).replace(/'/g, "&#39;");
+    }
+
+    async function downloadMedia(url, fileName, btn) {
+      if (!url || busy) return;
+      busy = true;
+      if (btn) btn.disabled = true;
+      showError("");
+      try {
+        OT.setBusy(runBtn, true, "Đang tải…");
+        setProgress(40);
+        statusEl.textContent = "Đang tải " + fileName + "…";
+        await OTTikTok.downloadViaProxy(url, fileName, (msg, pct) => {
+          statusEl.textContent = msg;
+          setProgress(pct);
+        });
+        statusEl.textContent = "Đã tải: " + fileName;
+        OT.setStatus("Đã tải " + fileName, "ok");
+      } catch (e) {
+        showError(e.message || String(e));
+        statusEl.textContent = "Tải thất bại";
+        OT.setStatus(e.message || String(e), "err");
+      } finally {
+        busy = false;
+        if (btn) btn.disabled = false;
+        OT.setBusy(runBtn, false);
+        setProgress(0);
+      }
+    }
+
+    pasteBtn.onclick = async () => {
+      try {
+        const t = await navigator.clipboard.readText();
+        if (t) urlInput.value = t.trim();
+      } catch (_) {
+        urlInput.focus();
+        OT.setStatus("Hãy dán thủ công (Ctrl+V).", "");
+      }
+    };
+    clearBtn.onclick = () => {
+      urlInput.value = "";
+      urlInput.focus();
+    };
+
+    urlInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        runBtn.click();
+      }
+    });
+
+    runBtn.onclick = async () => {
+      if (busy) return;
+      showError("");
+      busy = true;
+      OT.setBusy(runBtn, true, "Đang lấy…");
+      setProgress(15);
+      statusEl.textContent = "Đang phân tích link…";
+      try {
+        const data = await OTTikTok.resolve(urlInput.value, {
+          onProgress: (msg, pct) => {
+            statusEl.textContent = msg;
+            setProgress(pct);
+          }
+        });
+        setProgress(90);
+        renderResult(data);
+        setProgress(100);
+        OT.setStatus("Đã lấy video — chọn chất lượng để tải.", "ok");
+      } catch (e) {
+        emptyState.hidden = false;
+        resultPanel.classList.remove("is-on");
+        showError(e.message || String(e));
+        statusEl.textContent = "Lỗi";
+        OT.setStatus(e.message || String(e), "err");
+      } finally {
+        busy = false;
+        OT.setBusy(runBtn, false);
+        setTimeout(() => setProgress(0), 400);
+      }
+    };
+  } catch (err) {
+    console.error(err);
+  }
+})();
+});
+</script>
+<style>
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</body>
+</html>

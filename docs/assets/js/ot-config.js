@@ -10,6 +10,10 @@ window.OT_CONFIG = {
   /* Fallback khi chạy IIS */
   whisperProxy: "/api/whisper.ashx",
 
+  /* TikTok Download — Cloudflare Worker (wrangler deploy -c wrangler-tiktok.toml) */
+  tiktokCloud: "https://onetool-tiktok.buiquangvinh2210.workers.dev",
+  tiktokProxy: "",
+
   feedbackProxy: "/api/feedback.ashx",
   feedbackEmail: "onetools27@gmail.com",
 

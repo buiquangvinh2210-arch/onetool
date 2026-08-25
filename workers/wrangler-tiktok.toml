@@ -1,0 +1,10 @@
+name = "onetool-tiktok"
+main = "tiktok-proxy.js"
+compatibility_date = "2024-09-01"
+
+# Deploy: wrangler deploy -c wrangler-tiktok.toml
+# URL: https://onetool-tiktok.<ACCOUNT>.workers.dev
+# Dán vào docs/assets/js/ot-config.js → tiktokCloud
+
+[vars]
+ALLOWED_ORIGINS = "https://onetool.vn,https://www.onetool.vn,http://onetool.vn,http://www.onetool.vn"

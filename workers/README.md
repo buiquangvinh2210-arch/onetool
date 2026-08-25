@@ -50,6 +50,128 @@ whisperCloud: "https://onetool-whisper.<account>.workers.dev",
 
 Commit + push GitHub → Audio → Text chạy được.
 
+## 2b. Cloudflare Worker (TikTok Download) — hướng dẫn chi tiết
+
+GitHub Pages **không** gọi được API TikTok từ trình duyệt (bị CORS). Tool cần một **Cloudflare Worker** làm cầu nối.
+
+Bạn đã có Worker Whisper (`onetool-whisper`) → làm tương tự, **không cần API key**.
+
+Trang tool: `https://onetool.vn/cong-cu-media/tiktok-download.html`  
+File Worker: `workers/tiktok-proxy.js`  
+Config site: `docs/assets/js/ot-config.js` → `tiktokCloud`
+
+---
+
+### Cách A — Dashboard Cloudflare (khuyên dùng, ~5 phút)
+
+#### Bước 1 — Đăng nhập
+1. Mở [dash.cloudflare.com](https://dash.cloudflare.com) (cùng tài khoản đã deploy `onetool-whisper`).
+2. Vào **Workers & Pages** (menu bên trái).
+
+#### Bước 2 — Tạo Worker mới
+1. Bấm **Create** → **Create Worker**.
+2. Đặt tên đúng: **`onetool-tiktok`** (khớp với `ot-config.js`).
+3. Bấm **Deploy** (lần đầu tạo skeleton mặc định — chưa sao).
+
+#### Bước 3 — Dán code
+1. Vào Worker `onetool-tiktok` → **Edit code** (hoặc **Quick edit**).
+2. **Xóa hết** code mặc định trong editor.
+3. Mở file trên máy: `E:\AITool\workers\tiktok-proxy.js`  
+   (hoặc `docs\workers\tiktok-proxy.js` — cùng nội dung).
+4. **Ctrl+A** → **Ctrl+C** toàn bộ file → dán vào editor Cloudflare.
+5. Bấm **Deploy** (góc phải).
+6. Đợi “Success”.
+
+#### Bước 4 — Lấy URL Worker
+1. Vào tab **Settings** → **Domains & Routes** (hoặc nhìn góc trên Worker).
+2. Copy URL dạng:
+   ```text
+   https://onetool-tiktok.<tên-subdomain>.workers.dev
+   ```
+   Ví dụ tài khoản hiện tại trong config:
+   ```text
+   https://onetool-tiktok.buiquangvinh2210.workers.dev
+   ```
+
+#### Bước 5 — Kiểm tra Worker sống
+1. Mở URL Worker trên trình duyệt (chỉ `/`).
+2. Phải thấy JSON kiểu:
+   ```json
+   {"ok":true,"service":"onetool-tiktok-proxy","version":1}
+   ```
+3. Nếu lỗi 404 / trang trống → quay lại bước 3, Deploy lại.
+
+#### Bước 6 — Gắn URL vào site
+Mở `docs/assets/js/ot-config.js`, đảm bảo đúng:
+
+```js
+tiktokCloud: "https://onetool-tiktok.buiquangvinh2210.workers.dev",
+```
+
+Nếu subdomain Cloudflare **khác** `buiquangvinh2210`, sửa cho khớp URL bước 4.
+
+#### Bước 7 — Đẩy code lên GitHub Pages
+1. Commit + push các file tool (HTML/CSS/JS/catalog/sitemap/`ot-config.js`).
+2. Đợi Pages build xong (~1 phút).
+3. Mở: `https://onetool.vn/cong-cu-media/tiktok-download.html`
+4. **Ctrl+Shift+R** (xóa cache).
+5. Dán 1 link TikTok công khai → **Lấy video** → **Tải MP4 HD**.
+
+---
+
+### Cách B — Wrangler CLI (máy đã có Node)
+
+```bash
+npm install -g wrangler
+wrangler login
+cd E:\AITool\workers
+wrangler deploy -c wrangler-tiktok.toml
+```
+
+Hoặc double-click `workers\deploy-tiktok.bat` (cần `wrangler` trong PATH).
+
+Sau deploy, vẫn kiểm tra URL như **Bước 5** và khớp `tiktokCloud` như **Bước 6–7**.
+
+---
+
+### Cách dùng tool (người dùng cuối)
+
+1. Mở TikTok (app hoặc web) → video cần tải.  
+2. Bấm **Chia sẻ** → **Sao chép liên kết**.  
+3. Vào OneTool → **TikTok Download**.  
+4. Dán link (hoặc bấm **Dán từ clipboard**) → **Lấy video**.  
+5. Xem trước → chọn **MP4 HD · Không watermark** (nút hồng/tím) → tải về máy.  
+6. Tuỳ chọn: MP3 (âm thanh) hoặc ảnh slideshow nếu là bài ảnh.
+
+Link hỗ trợ: `tiktok.com`, `vt.tiktok.com`, `vm.tiktok.com`, `m.tiktok.com`.
+
+---
+
+### Lỗi thường gặp
+
+| Hiện tượng | Cách xử lý |
+|------------|------------|
+| “Chưa cấu hình dịch vụ tải TikTok” | Chưa có / sai `tiktokCloud` trong `ot-config.js`, hoặc chưa push lên Pages. |
+| Worker mở ra không có `"onetool-tiktok-proxy"` | Chưa dán đúng `tiktok-proxy.js` hoặc chưa Deploy. |
+| “Origin không được phép” | Domain lạ. Thêm origin vào `ALLOWED_ORIGINS` trong Worker (Settings → Variables) hoặc trong `wrangler-tiktok.toml` rồi deploy lại. |
+| “Không lấy được video” | Link private / hết hạn / vùng hạn chế. Thử video công khai khác. |
+| Lấy được info nhưng tải file lỗi | CDN chặn tạm thời — thử lại sau vài giây; hoặc chọn bản SD thay vì HD. |
+| Trang tool cũ / không thấy tool | Hard refresh Ctrl+Shift+R; kiểm tra đã push `catalog.js` + `tiktok-download.html`. |
+
+**Không cần** secret / API key cho Worker TikTok (khác Whisper).
+
+---
+
+### Sơ đồ TikTok
+
+```
+Người dùng dán link
+    → onetool.vn (HTML/JS)
+    → Worker onetool-tiktok (/resolve)
+    → lấy URL MP4 HD
+    → Worker (/file) stream về máy (tránh CORS)
+```
+
 ## 3. Góp ý (không cần cấu hình)
 
 Form trên `lien-he.html` gửi email qua FormSubmit tới `onetools27@gmail.com`. Không có bảng bình luận công khai (GitHub Pages không lưu được cho máy khác nếu không có dịch vụ ngoài).
@@ -65,6 +187,7 @@ Dùng `feedback.ashx` — lưu file `docs/App_Data/feedback.jsonl`, không cần
 ```
 Người dùng → onetool.vn (GitHub Pages: HTML/JS)
                 │
-                ├─ Audio → Text  → Cloudflare Worker → Groq
-                └─ Góp ý        → FormSubmit → Gmail
+                ├─ Audio → Text     → Cloudflare Worker → Groq
+                ├─ TikTok Download → Cloudflare Worker → TikTok CDN
+                └─ Góp ý           → FormSubmit → Gmail
 ```
