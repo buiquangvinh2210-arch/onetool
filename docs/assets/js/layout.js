@@ -6,15 +6,20 @@
   const homeHref = () => (base === "." || base === "" ? "./" : `${base}/`);
   const asset = (p) => href(`assets/${p}`);
 
-  // Google Analytics 4 — dán Measurement ID (G-XXXXXXXX) vào đây.
-  // Tạo tại: https://analytics.google.com → Admin → Data streams → Web
-  const GA_MEASUREMENT_ID =
-    (window.OT_CONFIG && window.OT_CONFIG.gaMeasurementId) ||
-    "";
+  // Google Analytics 4 — ID từ analytics.google.com (onetool.vn)
+  // Có thể ghi đè bằng OT_CONFIG.gaMeasurementId nếu đã nạp ot-config.js
+  const GA_MEASUREMENT_ID_FALLBACK = "G-K0VXT2W644";
+
+  function getGaMeasurementId() {
+    const fromConfig =
+      (window.OT_CONFIG && window.OT_CONFIG.gaMeasurementId) || "";
+    const id = String(fromConfig || GA_MEASUREMENT_ID_FALLBACK || "").trim();
+    return /^G-[A-Z0-9]+$/i.test(id) ? id : "";
+  }
 
   function injectGoogleAnalytics() {
-    const id = String(GA_MEASUREMENT_ID || "").trim();
-    if (!/^G-[A-Z0-9]+$/i.test(id)) return;
+    const id = getGaMeasurementId();
+    if (!id) return;
     if (document.getElementById("ot-ga") || window.__OT_GA_LOADED) return;
     window.__OT_GA_LOADED = true;
 
