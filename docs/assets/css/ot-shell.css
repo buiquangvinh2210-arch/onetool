@@ -1,5 +1,5 @@
 /* OneTool shell bundle. Rebuild from sources. */
-/* v=20260824b */
+/* v=20260825a */
 
 /* ===== skins.css ===== */
 /* Tool skins — accent theo danh mục, bố cục thống nhất qua tool-chrome.css */
@@ -1221,10 +1221,6 @@ body[data-tool] pre#preview {
   line-height: 1.65 !important;
 }
 
-/* ── Trang chủ ── */
-.home-badge {
-  font-size: 0.875rem !important;
-}
 
 .home-hero-lead {
   font-size: 1.0625rem !important;
@@ -1313,7 +1309,7 @@ body[data-tool] pre#preview {
 
 @media (max-width: 768px) {
   html {
-    font-size: 100%;
+    font-size: 112.5%;
     scroll-padding-top: calc(var(--header-height) + 0.5rem);
   }
 
@@ -2141,6 +2137,132 @@ body[data-tool] pre#preview {
   .cat-seo-block p {
     font-size: 0.875rem !important;
     line-height: 1.6 !important;
+  }
+
+  /* ── Typography toàn site mobile — chữ to, dễ đọc ── */
+  .btn,
+  .btn-lg,
+  .home-actions .btn,
+  .home-actions .btn.btn-lg {
+    font-size: 0.9375rem !important;
+  }
+
+  .btn-sm {
+    font-size: 0.875rem !important;
+  }
+
+  .btn-block {
+    font-size: 1rem !important;
+    min-height: 46px;
+  }
+
+  .logo-stack strong {
+    font-size: 1.0625rem !important;
+  }
+
+  .logo-stack small,
+  .logo-tagline {
+    font-size: 0.8125rem !important;
+  }
+
+  .ot-crumb,
+  .ot-crumb-wrap .ot-crumb {
+    font-size: 0.9375rem !important;
+  }
+
+
+
+  .home-hero-lead {
+    font-size: 1.0625rem !important;
+  }
+
+  .home-hero-points li {
+    font-size: 0.875rem !important;
+  }
+
+  .home-stat span {
+    font-size: 0.8125rem !important;
+  }
+
+  .footer-col h4 {
+    font-size: 0.8125rem !important;
+  }
+
+  .footer-links a {
+    font-size: 0.9375rem !important;
+  }
+
+  .footer-copy,
+  .footer-tagline {
+    font-size: 0.875rem !important;
+  }
+
+  .footer-cta-desc {
+    font-size: 0.9375rem !important;
+  }
+
+  .tool-seo-block h2 {
+    font-size: 1.15rem !important;
+  }
+
+  .tool-seo-block p,
+  .tool-seo-block li {
+    font-size: 1rem !important;
+  }
+
+  .tool-seo-card-title {
+    font-size: 1rem !important;
+  }
+
+  .tool-seo-card-sapo {
+    font-size: 0.9375rem !important;
+  }
+
+  .cat-hero-lead {
+    font-size: 1.0625rem !important;
+  }
+
+  .cat-tools-section .tool-card-title {
+    font-size: 1.0625rem !important;
+  }
+
+  .cat-tools-section .tool-card-desc {
+    font-size: 0.9375rem !important;
+  }
+
+  .cat-seo-block h2 {
+    font-size: 1.15rem !important;
+  }
+
+  .cat-seo-block p {
+    font-size: 1rem !important;
+  }
+
+  .form-control,
+  select.form-control,
+  textarea.form-control {
+    font-size: 1rem !important;
+  }
+
+  body[data-tool] [class*="-mode"] button {
+    font-size: 0.875rem !important;
+  }
+
+  body[data-tool]:not([data-tool$="-index"]) .doc-hero .lede,
+  body[data-tool]:not([data-tool$="-index"]) .doc-hero p {
+    font-size: 1rem !important;
+  }
+
+  body[data-tool]:not([data-tool$="-index"]) .tool-panel-header h2 {
+    font-size: 1.0625rem !important;
+  }
+
+  .text-muted {
+    font-size: 0.9375rem !important;
+  }
+
+  .link-btn {
+    font-size: 0.9375rem !important;
   }
 }
 

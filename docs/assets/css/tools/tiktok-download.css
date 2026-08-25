@@ -413,17 +413,65 @@ body[data-tool="tiktok-download"] .tt-err.is-on {
 }
 
 @media (max-width: 860px) {
+  body[data-tool="tiktok-download"] .tt-top {
+    padding: 0 0.85rem 0.75rem;
+  }
+  body[data-tool="tiktok-download"] .tt-title-row h1 {
+    line-height: 1.22;
+  }
+
+  body[data-tool="tiktok-download"] .tt-studio {
+    padding: 0 0.75rem;
+  }
   body[data-tool="tiktok-download"] .tt-shell {
     grid-template-columns: 1fr;
+    min-height: 0;
+    border-radius: 16px;
   }
   body[data-tool="tiktok-download"] .tt-side {
     border-right: 0;
     border-bottom: 1px solid var(--tt-line);
+    padding: 1.05rem 1rem 1.15rem;
+    gap: 0.9rem;
   }
+  body[data-tool="tiktok-download"] .tt-paste textarea {
+    min-height: 100px;
+  }
+
+  body[data-tool="tiktok-download"] .tt-main-bar {
+    padding: 0.9rem 1rem;
+  }
+  body[data-tool="tiktok-download"] .tt-body {
+    padding: 0.9rem 1rem 1.05rem;
+  }
+
   body[data-tool="tiktok-download"] .tt-result.is-on {
-    grid-template-columns: minmax(120px, 140px) 1fr;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
   }
   body[data-tool="tiktok-download"] .tt-preview {
-    max-height: 220px;
+    max-height: none;
+    max-width: min(240px, 76vw);
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  body[data-tool="tiktok-download"] .tt-info h3 {
+    -webkit-line-clamp: 4;
+  }
+  body[data-tool="tiktok-download"] .tt-dl-btn {
+    padding: 0.85rem 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  body[data-tool="tiktok-download"] .tt-studio {
+    padding: 0 0.5rem;
+  }
+  body[data-tool="tiktok-download"] .tt-top {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+  body[data-tool="tiktok-download"] .tt-preview {
+    max-width: min(200px, 78vw);
   }
 }

@@ -9,7 +9,7 @@ $files = @(
 )
 $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine("/* OneTool shell bundle. Rebuild from sources. */")
-[void]$sb.AppendLine("/* v=20260824b */")
+[void]$sb.AppendLine("/* v=20260825a */")
 foreach ($f in $files) {
   $name = Split-Path $f -Leaf
   [void]$sb.AppendLine("")
