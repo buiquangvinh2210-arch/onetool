@@ -13,6 +13,6 @@ window.OT_CONFIG = {
   feedbackProxy: "/api/feedback.ashx",
   feedbackEmail: "onetools27@gmail.com",
 
-  /* Google Analytics 4 — dán Measurement ID từ analytics.google.com (dạng G-XXXXXXXX) */
-  gaMeasurementId: ""
+  /* Google Analytics 4 — Measurement ID từ Google tag (onetool.vn) */
+  gaMeasurementId: "G-K0VXT2W644"
 };

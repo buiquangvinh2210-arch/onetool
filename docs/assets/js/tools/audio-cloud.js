@@ -7,6 +7,9 @@ window.OTAudioCloud = (function () {
   const CHUNK_SEC = 90;
   const OVERLAP_SEC = 2;
   const CHUNK_TRIGGER_SEC = 100;
+  /** Giới hạn file gốc (video/audio). API Whisper chỉ nhận ~25MB — file lớn sẽ tách WAV nhỏ. */
+  const MAX_INPUT_BYTES = 512 * 1024 * 1024;
+  const DIRECT_UPLOAD_MAX = 18 * 1024 * 1024;
 
   const PROMPT_VI =
     "Đây là bản tin tiếng Việt, có dấu đầy đủ, câu văn liền mạch. Tên địa danh và đơn vị: Việt Nam, Malaysia, Indonesia, USD, tấn, đồng/kg.";
@@ -207,11 +210,11 @@ window.OTAudioCloud = (function () {
     return (a + " " + b).replace(/\s+/g, " ").trim();
   }
 
-  /** Groq qua proxy — key trên server; user không dán. */
+  /** Groq qua proxy — key trên server; user không dán. File lớn → decode + gửi từng đoạn WAV. */
   async function transcribe(file, { language = "vietnamese", onProgress } = {}) {
     if (!file) throw new Error("Chọn file audio hoặc video.");
-    if (file.size > 25 * 1024 * 1024) {
-      throw new Error("File quá lớn (tối đa ~25MB).");
+    if (file.size > MAX_INPUT_BYTES) {
+      throw new Error("File quá lớn (tối đa ~512MB). Hãy nén video trước rồi thử lại.");
     }
 
     const proxy = getProxy();
@@ -220,7 +223,7 @@ window.OTAudioCloud = (function () {
     const lang = mapLang(language);
     const basePrompt = langPrompt(lang);
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 180_000);
+    const timer = setTimeout(() => ctrl.abort(), 300_000);
 
     try {
       onProgress?.("Đang đọc audio…", 8);
@@ -232,11 +235,18 @@ window.OTAudioCloud = (function () {
       }
 
       const duration = audioBuf?.duration || 0;
-      const useChunks = audioBuf && duration > CHUNK_TRIGGER_SEC;
+      const mustChunk = file.size > DIRECT_UPLOAD_MAX || (audioBuf && duration > CHUNK_TRIGGER_SEC);
+
+      if (mustChunk && !audioBuf) {
+        throw new Error(
+          "File lớn — trình duyệt không đọc được audio. Hãy dùng tool Nén video → tách MP3 rồi nhận dạng file MP3."
+        );
+      }
+
       let text = "";
       let segments = [];
 
-      if (!useChunks) {
+      if (!mustChunk) {
         onProgress?.("Đang gửi lên Groq Whisper…", 20);
         const data = await postGroq(proxy, file, file.name || "audio.mp3", {
           language: lang,
@@ -247,7 +257,7 @@ window.OTAudioCloud = (function () {
         segments = data.segments || [];
       } else {
         const step = CHUNK_SEC - OVERLAP_SEC;
-        const total = Math.ceil(duration / step);
+        const total = Math.max(1, Math.ceil(duration / step));
         let prompt = basePrompt;
         let idx = 0;
         for (let start = 0; start < duration; start += step) {
@@ -272,7 +282,6 @@ window.OTAudioCloud = (function () {
               text: s.text
             });
           }
-          // Prompt = đuôi đoạn trước để model không lệch ngôn ngữ giữa bài
           prompt = ((basePrompt ? basePrompt + " " : "") + text.slice(-350)).slice(0, 800);
           if (end >= duration - 0.05) break;
         }
@@ -295,7 +304,7 @@ window.OTAudioCloud = (function () {
         fileNameSrt: OT.nameWithSuffix(file.name, "-transcript", ".srt")
       };
     } catch (e) {
-      if (e.name === "AbortError") throw new Error("Hết thời gian chờ. Thử file ngắn hơn.");
+      if (e.name === "AbortError") throw new Error("Hết thời gian chờ. Thử file ngắn hơn hoặc nén trước.");
       if (/Failed to fetch|NetworkError|Load failed/i.test(e.message || "")) {
         if (isLocalHost()) {
           throw new Error("Không gọi được proxy local. Chạy docs/serve-audio.bat.");

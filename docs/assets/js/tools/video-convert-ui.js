@@ -4,8 +4,8 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
 (function () {
   "use strict";
 
-  const MAX_BYTES = 256 * 1024 * 1024;
-  const WARN_BYTES = 80 * 1024 * 1024;
+  const MAX_BYTES = 512 * 1024 * 1024;
+  const WARN_BYTES = 120 * 1024 * 1024;
   const CORE_VER = "0.12.6";
   const CORE_BASE = `https://cdn.jsdelivr.net/npm/@ffmpeg/core@${CORE_VER}/dist/esm`;
 
@@ -20,7 +20,7 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
     pageDesc: "Nén video MP4, đổi WebM, tách MP3 online miễn phí trên trình duyệt — file không upload server.",
     title: "Nén / Convert video",
     lead: "Nén MP4, đổi WebM hoặc tách MP3 — xử lý ngay trên trình duyệt, file không rời máy bạn.",
-    meta: "MP4 · MOV · MKV · WebM · tối đa 256 MB",
+    meta: "MP4 · MOV · MKV · WebM · tối đa 512 MB",
     source: "Nguồn",
     dropTitle: "Thả video vào đây",
     dropOr: "hoặc",
@@ -42,8 +42,8 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
     lblSaved: "Tiết kiệm",
     protocol: "Cần chạy qua HTTP (IIS hoặc Live Server).",
     needFile: "Chọn file video trước.",
-    tooBig: "File quá lớn (tối đa 256 MB).",
-    warnBig: "File lớn — xử lý có thể chậm và tốn RAM.",
+    tooBig: "File quá lớn (tối đa 512 MB).",
+    warnBig: "File lớn — xử lý có thể chậm và tốn RAM. Nên chọn Nén mạnh / 720p.",
     done: "Hoàn tất",
     keptOriginal: "Video đã nén sẵn — giữ file gốc (nén lại không nhỏ hơn).",
     retryCompress: "Đang nén lại với bitrate thấp hơn…",

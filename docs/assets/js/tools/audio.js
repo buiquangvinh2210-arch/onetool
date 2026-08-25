@@ -255,7 +255,7 @@ window.OTAudio = (function () {
     if (!file) throw new Error("Chọn file audio hoặc video.");
     assertHttpOrigin();
     if (file.size > 25 * 1024 * 1024) {
-      throw new Error("File quá lớn (tối đa ~25MB để tránh treo trình duyệt).");
+      throw new Error("File quá lớn cho nhận dạng trên máy (tối đa ~25MB). Dùng chế độ cloud hoặc nén/tách MP3 trước.");
     }
 
     const progress = (msg, pct) => {
