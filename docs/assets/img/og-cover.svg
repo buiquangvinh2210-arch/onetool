@@ -2,12 +2,24 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#1e1038"/>
-      <stop offset="55%" stop-color="#3b1d6e"/>
+      <stop offset="50%" stop-color="#3b1d6e"/>
       <stop offset="100%" stop-color="#0e7490"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7c3aed"/>
+      <stop offset="0.55" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#06b6d4"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <text x="80" y="250" fill="#fff" font-family="Arial, sans-serif" font-size="88" font-weight="700">OneTool</text>
-  <text x="80" y="330" fill="#e9d5ff" font-family="Arial, sans-serif" font-size="36">Công cå PDF, £nh, video online miÅn phí</text>
-  <text x="80" y="420" fill="#a5f3fc" font-family="Arial, sans-serif" font-size="28">Xí lý trên trình duyÇt · Không c§n ng nh­p</text>
+  <g transform="translate(80 175)">
+    <rect width="120" height="120" rx="30" fill="url(#mark)"/>
+    <g fill="#fff" transform="translate(12 18) scale(1.5)">
+      <path d="M18.2 20.5c5.7 0 9.6 3.9 9.6 11.5s-3.9 11.5-9.6 11.5S8.6 39.6 8.6 32s3.9-11.5 9.6-11.5zm0 4.1c-3.15 0-5.2 2.55-5.2 7.4s2.05 7.4 5.2 7.4 5.2-2.55 5.2-7.4-2.05-7.4-5.2-7.4z"/>
+      <path d="M32.2 21.2h4.35v7.15c1.05-1.35 2.7-2.35 5.05-2.35 4.35 0 7.2 2.95 7.2 8.05V42.8H44.4V34.4c0-2.85-1.35-4.55-3.7-4.55-2.45 0-4.15 1.85-4.15 4.85V42.8h-4.35V21.2z"/>
+    </g>
+  </g>
+  <text x="230" y="245" fill="#fff" font-family="Segoe UI, Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-2">OneTool</text>
+  <text x="230" y="310" fill="#e9d5ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="600">Công c? PDF ? ?nh ? Video ? Audio ? Text</text>
+  <text x="230" y="370" fill="#a5f3fc" font-family="Segoe UI, Arial, sans-serif" font-size="28">X? lý ngay tr?n tr?nh duy?t ? Mi?n phí ? Không ðãng nh?p</text>
 </svg>

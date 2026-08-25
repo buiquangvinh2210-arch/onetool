@@ -68,20 +68,19 @@
     root.classList.remove("ot-pending");
   }
 
-  // Favicon
-  if (!document.querySelector('link[rel="icon"]')) {
-    const icon = document.createElement("link");
-    icon.rel = "icon";
-    icon.type = "image/svg+xml";
-    icon.href = asset("img/favicon.svg");
-    document.head.appendChild(icon);
+  // Favicon — SVG + PNG (Google Search ưu tiên PNG ≥48px)
+  function ensureIcon(rel, href, attrs) {
+    if (document.querySelector(`link[rel="${rel}"][href*="${href.split("/").pop()}"]`)) return;
+    const el = document.createElement("link");
+    el.rel = rel;
+    el.href = asset(href);
+    if (attrs) Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    document.head.appendChild(el);
   }
-  if (!document.querySelector('link[rel="apple-touch-icon"]')) {
-    const apple = document.createElement("link");
-    apple.rel = "apple-touch-icon";
-    apple.href = asset("img/favicon.svg");
-    document.head.appendChild(apple);
-  }
+  ensureIcon("icon", "img/favicon.svg", { type: "image/svg+xml" });
+  ensureIcon("icon", "img/favicon-48.png", { type: "image/png", sizes: "48x48" });
+  ensureIcon("icon", "img/favicon-192.png", { type: "image/png", sizes: "192x192" });
+  ensureIcon("apple-touch-icon", "img/apple-touch-icon.png", { sizes: "180x180" });
 
   function pathToolMeta() {
     const path = location.pathname.replace(/\\/g, "/").toLowerCase();
@@ -222,7 +221,7 @@
       "@type": "Organization",
       name: "OneTool",
       url: SITE_ORIGIN + "/",
-      logo: SITE_ORIGIN + "/assets/img/favicon.svg",
+      logo: SITE_ORIGIN + "/assets/img/logo-mark.png",
       telephone: "+84-982-945-576",
       contactPoint: {
         "@type": "ContactPoint",
@@ -350,7 +349,7 @@
   <div class="header-shell">
     <div class="container header-inner">
       <a class="logo logo--rich" href="${homeHref()}">
-        <span class="logo-icon">✨</span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/favicon.svg")}" width="46" height="46" alt="" /></span>
         <span class="logo-stack">
           <span class="logo-text">OneTool</span>
           <span class="logo-tag">${toolCount}+ công cụ · Miễn phí</span>
@@ -383,7 +382,7 @@
   <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
     <div class="nav-drawer-head">
       <a class="logo" href="${homeHref()}">
-        <span class="logo-icon">✨</span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/favicon.svg")}" width="36" height="36" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <button type="button" class="nav-drawer-close" id="navDrawerClose" aria-label="Đóng menu">✕</button>
@@ -420,7 +419,7 @@
   <div class="container footer-inner">
     <div class="footer-brand">
       <a class="logo footer-logo" href="${homeHref()}">
-        <span class="logo-icon">✨</span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/favicon.svg")}" width="40" height="40" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <p class="footer-brand-desc">Công cụ file online cho người Việt — nhanh, riêng tư, miễn phí.</p>
