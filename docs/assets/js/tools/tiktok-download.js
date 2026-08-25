@@ -136,8 +136,13 @@ window.OTTikTok = (function () {
         }
         if (!res.ok || data?.error) {
           const errMsg = String(data?.error || "Không lấy được video.");
-          if (/quá tải|1 lần\/giây|limit|request\/second/i.test(errMsg) && attempt < 3) {
-            onProgress?.("Đang chờ (giới hạn 1 lần/giây)…", 20 + attempt * 10);
+          if (/Free Api Limit|10000 request/i.test(errMsg)) {
+            throw new Error(
+              "Worker onetool-tiktok đang chạy bản cũ (v1) hoặc hết quota ngày. Cloudflare → Worker onetool-tiktok → dán workers/tiktok-proxy.js → Deploy. Kiểm tra URL Worker phải trả \"version\":5 (không phải onetool-whisper)."
+            );
+          }
+          if (/quá tải|1 lần\/giây|limit|request\/second|hạn mức|1 day|10000/i.test(errMsg) && attempt < 3) {
+            onProgress?.("Đang đổi nguồn / chờ giới hạn…", 20 + attempt * 10);
             await new Promise((r) => setTimeout(r, 1500 + attempt * 500));
             continue;
           }
@@ -153,7 +158,7 @@ window.OTTikTok = (function () {
             "Không gọi được Worker TikTok. Kiểm tra mạng hoặc URL: " + getProxy()
           );
         }
-        if (/quá tải|1 lần\/giây|limit|request\/second/i.test(e.message || "") && attempt < 3) {
+        if (/quá tải|1 lần\/giây|limit|request\/second|hạn mức|1 day|10000/i.test(e.message || "") && attempt < 3) {
           onProgress?.("Đang thử lại…", 20 + attempt * 10);
           await new Promise((r) => setTimeout(r, 1500 + attempt * 500));
           continue;
@@ -176,7 +181,13 @@ window.OTTikTok = (function () {
   async function downloadViaProxy(mediaUrl, fileName, onProgress) {
     const href = fileProxyUrl(mediaUrl, fileName);
     onProgress?.("Đang tải file…", 70);
-    const res = await fetch(href);
+    let res = await fetch(href);
+    if (!res.ok && res.status === 403) {
+      onProgress?.("Thử tải trực tiếp…", 78);
+      try {
+        res = await fetch(mediaUrl, { mode: "cors" });
+      } catch (_) {}
+    }
     if (!res.ok) {
       const t = await res.text().catch(() => "");
       let msg = "Tải file thất bại.";

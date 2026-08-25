@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tải video TikTok không watermark — HD online miễn phí | OneTool</title>
-  <meta name="description" content="Dán link TikTok để tải video MP4 HD không watermark, kể cả video không cho tải trong app. Miễn phí, nhanh, chất lượng cao." />
+  <title>Tải TikTok không logo — MP4 HD online miễn phí | OneTool</title>
+  <meta name="description" content="Dán link TikTok tải MP4 HD không dính logo TikTok. Miễn phí, nhanh — kể cả video app không cho tải." />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260824d" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260824d" />
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260825a" />
-  <link rel="stylesheet" href="../assets/css/tools/tiktok-download.css?v=20260825f" />
+  <link rel="stylesheet" href="../assets/css/tools/tiktok-download.css?v=20260825g" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
@@ -22,10 +22,10 @@
   <div class="tt-top">
     <div class="tt-title-row">
       <div>
-        <h1>TikTok Download · Tải video TikTok</h1>
-        <p>Dán link để tải MP4 HD không watermark — kể cả video app không cho lưu.</p>
+        <h1>TikTok Download · Tải không logo</h1>
+        <p>Dán link → tải MP4 HD <strong>không dính logo TikTok</strong>, kể cả video app không cho lưu.</p>
       </div>
-      <div class="tt-meta">HD · No watermark · MP3 · Slideshow</div>
+      <div class="tt-meta">Không logo · HD · MP3</div>
     </div>
   </div>
 
@@ -45,8 +45,8 @@
         </div>
         <button type="button" class="btn btn-primary btn-block" id="runBtn">Lấy video</button>
         <p class="tt-note">
-          Hỗ trợ <strong>tiktok.com</strong>, <strong>vt.tiktok.com</strong>, <strong>vm.tiktok.com</strong>.
-          Ưu tiên bản <strong>HD không watermark</strong>. Chỉ tải nội dung bạn có quyền sử dụng.
+          Ưu tiên xuất <strong>MP4 HD không watermark</strong>. Hỗ trợ link
+          tiktok.com, vt.tiktok.com và vm.tiktok.com. Chỉ tải nội dung bạn được phép sử dụng.
         </p>
       </aside>
 
@@ -68,7 +68,7 @@
             </div>
             <div class="tt-result" id="resultPanel">
               <div class="tt-preview" id="previewBox">
-                <span class="tt-preview-badge" id="previewBadge">HD</span>
+                <span class="tt-preview-badge" id="previewBadge">Không logo</span>
                 <video id="previewVideo" controls playsinline preload="metadata" hidden></video>
                 <img id="previewCover" alt="Cover TikTok" hidden />
               </div>
@@ -76,10 +76,10 @@
                 <h3 id="videoTitle">—</h3>
                 <p class="tt-author" id="videoAuthor"></p>
                 <div class="tt-stats" id="videoStats"></div>
-                <p class="tt-dl-label">Tải xuống · chất lượng cao</p>
+                <p class="tt-dl-label">Tải xuống · không logo TikTok</p>
                 <div class="tt-dl-list" id="dlList"></div>
                 <details class="tt-dl-more" id="dlMore" hidden>
-                  <summary>Tùy chọn khác (SD / watermark)</summary>
+                  <summary>Bản có logo / chất lượng thấp hơn</summary>
                   <div class="tt-dl-list" id="dlMoreList"></div>
                 </details>
                 <div class="tt-images" id="imageList" hidden></div>
@@ -95,8 +95,8 @@
 <section class="tool-seo" id="toolSeo" data-static="1">
   <div class="tool-seo-wrap">
     <section class="tool-seo-block">
-      <h2>Tải video TikTok không watermark là gì?</h2>
-      <p><strong>TikTok Download</strong> giúp bạn lấy file MP4 chất lượng cao từ link công khai — kể cả khi nút tải trong app bị tắt. OneTool ưu tiên bản <strong>HD không watermark</strong>, hỗ trợ thêm MP3 và ảnh slideshow.</p>
+      <h2>Tải TikTok không logo là gì?</h2>
+      <p><strong>TikTok Download</strong> lấy file MP4 từ link công khai — <strong>không dính logo TikTok</strong>, ưu tiên HD. Hỗ trợ thêm MP3 và ảnh slideshow khi video tắt nút tải trong app.</p>
     </section>
     <section class="tool-seo-block">
       <h2>Cách tải video TikTok online</h2>
@@ -127,7 +127,7 @@
 <script src="../assets/js/core.js"></script>
 <script src="../assets/js/site.js"></script>
 <script src="../assets/js/ot-config.js?v=20260825t"></script>
-<script src="../assets/js/tools/tiktok-download.js?v=20260825c"></script>
+<script src="../assets/js/tools/tiktok-download.js?v=20260825f"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 (function () {
@@ -189,8 +189,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       videoStats.innerHTML = bits.map((b) => '<span class="tt-stat">' + escapeHtml(b) + "</span>").join("");
 
-      const best = (data.videos || []).find((v) => v.quality === "hd") || (data.videos || [])[0];
-      previewBadge.textContent = best?.quality === "hd" ? "HD" : "MP4";
+      const best = (data.videos || []).find((v) => v.quality === "hd") || (data.videos || []).find((v) => v.quality === "sd") || (data.videos || [])[0];
+      const noLogo = best && best.quality !== "wm";
+      previewBadge.textContent = noLogo ? (best.quality === "hd" ? "HD · Không logo" : "Không logo") : "Có logo";
+      previewBadge.classList.toggle("is-wm", !noLogo);
 
       const playUrl = best?.url || "";
       if (playUrl && !(data.images && data.images.length)) {
@@ -220,10 +222,10 @@ document.addEventListener("DOMContentLoaded", function () {
             : data.size
               ? OTTikTok.formatBytes(data.size)
               : "MP4";
-        const label =
-          v.quality === "hd"
-            ? "MP4 HD · Không watermark · Chất lượng cao"
-            : v.label;
+        let label = v.label;
+        if (v.quality === "hd") label = "MP4 HD · Không logo TikTok";
+        else if (v.quality === "sd") label = "MP4 · Không logo";
+        else if (v.quality === "wm") label = "MP4 · Có logo TikTok";
         btn.innerHTML =
           '<span><span class="tt-dl-title">' +
           escapeHtml(label) +
@@ -231,20 +233,29 @@ document.addEventListener("DOMContentLoaded", function () {
           escapeHtml(sizeHint) +
           '</span></span><span class="tt-dl-go">Tải ↓</span>';
         btn.addEventListener("click", () =>
-          downloadMedia(v.url, base + (v.quality === "wm" ? "-wm" : v.quality === "hd" ? "-hd" : "") + ".mp4", btn)
+          downloadMedia(
+            v.url,
+            base + (v.quality === "wm" ? "-logo" : v.quality === "hd" ? "-hd" : "-nologo") + ".mp4",
+            btn
+          )
         );
         return btn;
       }
 
       const videos = data.videos || [];
-      const hd = videos.find((v) => v.quality === "hd");
-      const primary = hd || videos.find((v) => v.quality === "sd") || videos[0];
-      const extras = videos.filter((v) => v !== primary);
+      const clean = videos.filter((v) => v.quality !== "wm");
+      const withLogo = videos.filter((v) => v.quality === "wm");
+      const hd = clean.find((v) => v.quality === "hd");
+      const primary = hd || clean[0] || withLogo[0];
+      const moreClean = clean.filter((v) => v !== primary);
 
-      if (primary) dlList.appendChild(makeDlBtn(primary, true));
-      if (extras.length) {
+      if (primary) dlList.appendChild(makeDlBtn(primary, primary.quality !== "wm"));
+      // SD không logo vẫn hiện cạnh nút chính nếu khác primary
+      moreClean.forEach((v) => dlList.appendChild(makeDlBtn(v, false)));
+
+      if (withLogo.length) {
         dlMore.hidden = false;
-        extras.forEach((v) => dlMoreList.appendChild(makeDlBtn(v, false)));
+        withLogo.forEach((v) => dlMoreList.appendChild(makeDlBtn(v, false)));
       }
 
       if (data.music?.url) {
@@ -275,7 +286,13 @@ document.addEventListener("DOMContentLoaded", function () {
         imageList.innerHTML = "";
       }
 
-      statusEl.textContent = "Sẵn sàng tải · " + ((data.videos || []).length || 0) + " phiên bản";
+      statusEl.textContent = noLogo
+        ? "Sẵn sàng · bản không logo"
+        : "Sẵn sàng tải";
+      OT.setStatus(
+        noLogo ? "Đã lấy video không logo — chọn chất lượng để tải." : "Đã lấy video — chọn chất lượng để tải.",
+        "ok"
+      );
     }
 
     function escapeHtml(s) {
@@ -354,7 +371,6 @@ document.addEventListener("DOMContentLoaded", function () {
         setProgress(90);
         renderResult(data);
         setProgress(100);
-        OT.setStatus("Đã lấy video — chọn chất lượng để tải.", "ok");
       } catch (e) {
         emptyState.hidden = false;
         resultPanel.classList.remove("is-on");

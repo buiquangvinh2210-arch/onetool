@@ -52,7 +52,7 @@ window.OTCatalog = {
     }
   ],
   tools: [
-    { slug: "tiktok-download", name: "TikTok Download · Tải video TikTok", desc: "Tải MP4 HD không watermark từ link — kể cả video app không cho lưu.", icon: "🎵", cat: "media", featured: true },
+    { slug: "tiktok-download", name: "TikTok Download · Tải không logo", desc: "Tải MP4 HD không dính logo TikTok từ link — kể cả video app không cho lưu.", icon: "🎵", cat: "media", featured: true },
     { slug: "audio-to-text", name: "Audio to Text · Giọng nói thành chữ", desc: "Convert audio/video thành văn bản tiếng Việt + phụ đề SRT.", icon: "🎙️", cat: "media", featured: true },
     { slug: "video-convert", name: "Compress Video · Nén video", desc: "Nén MP4, convert WebM, tách MP3 — ngay trên máy bạn.", icon: "🎬", cat: "media", featured: true },
 
@@ -99,8 +99,8 @@ window.OTCatalog = {
       desc: "Batch convert / resize / nén nhiều ảnh cùng lúc trên trình duyệt. Phù hợp catalog sản phẩm — miễn phí."
     },
     "tiktok-download": {
-      title: "Tải video TikTok không watermark — HD online miễn phí | OneTool",
-      desc: "Dán link TikTok để tải MP4 HD không watermark, MP3 và slideshow. Miễn phí — kể cả video app không cho tải."
+      title: "Tải TikTok không logo — MP4 HD online miễn phí | OneTool",
+      desc: "Dán link TikTok tải MP4 HD không dính logo, MP3 và slideshow. Miễn phí — kể cả video app không cho tải."
     },
     "audio-to-text": {
       title: "Audio to Text online — Convert giọng nói thành văn bản + SRT | OneTool",
@@ -293,23 +293,23 @@ window.OTCatalog = {
       ]
     },
     "tiktok-download": {
-      keywords: "tải video tiktok, tiktok download, tải tiktok không watermark, tải mp4 tiktok hd",
+      keywords: "tải tiktok không logo, tải video tiktok không watermark, tiktok download hd, tải mp4 tiktok",
       howto: [
         "Mở TikTok → Chia sẻ → Sao chép liên kết.",
         "Dán link vào OneTool và bấm Lấy video.",
-        "Chọn MP4 HD (không watermark) hoặc MP3 để tải về."
+        "Chọn MP4 HD · Không logo TikTok để tải về."
       ],
       sections: [
         {
-          title: "Tải video TikTok không watermark là gì?",
+          title: "Tải TikTok không logo là gì?",
           paras: [
-            "**TikTok Download** lấy file MP4 chất lượng cao từ link công khai — kể cả khi app tắt nút tải. Ưu tiên bản **HD không watermark**, hỗ trợ MP3 và ảnh slideshow."
+            "**TikTok Download** lấy file MP4 từ link công khai — **không dính logo TikTok**, ưu tiên HD. Hỗ trợ MP3 và ảnh slideshow."
           ]
         },
         {
-          title: "Cách tải video TikTok online",
+          title: "Cách tải video TikTok không logo",
           paras: [
-            "Sao chép liên kết video → dán vào ô Link TikTok → bấm **Lấy video** → chọn **MP4 HD** để tải. Dùng được link tiktok.com, vt.tiktok.com và vm.tiktok.com."
+            "Sao chép liên kết → dán vào ô Link → bấm **Lấy video** → chọn **MP4 HD · Không logo**. Dùng được tiktok.com, vt.tiktok.com và vm.tiktok.com."
           ]
         },
         {
@@ -317,7 +317,7 @@ window.OTCatalog = {
           list: [
             { title: "Quyền sử dụng", text: "chỉ tải nội dung bạn có quyền (video của bạn / được phép)." },
             { title: "Video riêng tư", text: "link private hoặc hết hạn có thể không lấy được." },
-            { title: "Nén sau khi tải", text: "dùng Compress Video nếu cần giảm dung lượng." }
+            { title: "Bản có logo", text: "nằm trong mục mở rộng — mặc định luôn ưu tiên không logo." }
           ]
         }
       ]

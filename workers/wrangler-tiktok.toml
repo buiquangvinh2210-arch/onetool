@@ -8,3 +8,6 @@ compatibility_date = "2024-09-01"
 
 [vars]
 ALLOWED_ORIGINS = "https://onetool.vn,https://www.onetool.vn,http://onetool.vn,http://www.onetool.vn"
+# Tự host yt-dlp (không giới hạn) — xem servers/tiktok-ytdlp/README.md
+# YTDLP_API_URL = "https://your-vps.example.com:8788"
+# YTDLP_API_KEY = "your-secret-key"

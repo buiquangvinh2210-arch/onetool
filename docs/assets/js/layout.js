@@ -442,7 +442,7 @@
           <a href="${href("cong-cu-anh/image-convert.html")}">Convert ảnh</a>
           <a href="${href("cong-cu-pdf/pdf-merge.html")}">Gộp PDF</a>
           <a href="${href("cong-cu-anh/remove-background.html")}">Xóa nền ảnh</a>
-          <a href="${href("cong-cu-media/tiktok-download.html")}">Tải video TikTok</a>
+          <a href="${href("cong-cu-media/tiktok-download.html")}">Tải TikTok không logo</a>
           <a href="${href("cong-cu-media/audio-to-text.html")}">Audio → Text</a>
           <a href="${href("cong-cu-media/video-convert.html")}">Nén / Convert video</a>
         </div>

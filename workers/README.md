@@ -155,10 +155,47 @@ Link hỗ trợ: `tiktok.com`, `vt.tiktok.com`, `vm.tiktok.com`, `m.tiktok.com`.
 | Worker mở ra không có `"onetool-tiktok-proxy"` | Chưa dán đúng `tiktok-proxy.js` hoặc chưa Deploy. |
 | “Origin không được phép” | Domain lạ. Thêm origin vào `ALLOWED_ORIGINS` trong Worker (Settings → Variables) hoặc trong `wrangler-tiktok.toml` rồi deploy lại. |
 | “Không lấy được video” | Link private / hết hạn / vùng hạn chế. Thử video công khai khác. |
+| “Nguồn tải tạm hết hạn mức trong ngày” | tikwm hết quota — cấu hình **yt-dlp tự host** (mục 2c) hoặc đợi reset 0h UTC. |
 | Lấy được info nhưng tải file lỗi | CDN chặn tạm thời — thử lại sau vài giây; hoặc chọn bản SD thay vì HD. |
 | Trang tool cũ / không thấy tool | Hard refresh Ctrl+Shift+R; kiểm tra đã push `catalog.js` + `tiktok-download.html`. |
 
 **Không cần** secret / API key cho Worker TikTok (khác Whisper).
+
+---
+
+### 2c. Cách ít cấu hình nhất (khuyên dùng)
+
+**Không cần VPS, không API key, không biến môi trường** — chỉ 2 việc:
+
+1. Dán + Deploy `workers/tiktok-proxy.js` lên Worker `onetool-tiktok` (version **5**).
+2. Push site lên GitHub Pages (`ot-config.js` đã có `tiktokCloud`).
+
+Worker tự làm phần còn lại:
+
+- Xoay **6 nguồn API free** (tiklydown → sl-bjs → tikdown → sujoy → tikwm).
+- **tikwm để cuối** — tiết kiệm quota 10k/ngày cho khi nguồn khác lỗi.
+- **Cache 7 ngày** — cùng link không gọi API lại.
+
+Kiểm tra: mở Worker URL → `"version": 5`.
+
+---
+
+### 2d. Dùng thoải mái hơn — tự host yt-dlp (tuỳ chọn)
+
+API free bên thứ ba (tikwm, tiklydown…) **luôn có giới hạn ngày** (~10k hoặc ít hơn). Không có API public nào cho TikTok unlimited thật sự.
+
+**Giải pháp:** chạy server yt-dlp của bạn (miễn phí, chỉ tốn VPS hoặc máy nhà):
+
+1. Làm theo `servers/tiktok-ytdlp/README.md` (Python + yt-dlp, ~10 phút).
+2. Cloudflare → Worker `onetool-tiktok` → **Variables**:
+   - `YTDLP_API_URL` = URL server (vd. `https://tiktok-api.example.com`)
+   - `YTDLP_API_KEY` = khóa bảo mật (tuỳ chọn)
+3. Deploy lại `workers/tiktok-proxy.js` (version **4**).
+4. Kiểm tra `/` → `"ytdlp": true`.
+
+Worker ưu tiên yt-dlp → fallback tikwm/tiklydown khi cần. Cache 24h giảm tải.
+
+VPS free: Oracle Cloud Always Free, hoặc máy nhà + Cloudflare Tunnel.
 
 ---
 

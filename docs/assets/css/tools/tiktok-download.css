@@ -266,8 +266,11 @@ body[data-tool="tiktok-download"] .tt-preview-badge {
   text-transform: uppercase;
   padding: 0.22rem 0.42rem;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(13, 148, 136, 0.88);
   color: #fff;
+}
+body[data-tool="tiktok-download"] .tt-preview-badge.is-wm {
+  background: rgba(0, 0, 0, 0.55);
 }
 
 body[data-tool="tiktok-download"] .tt-info h3 {
