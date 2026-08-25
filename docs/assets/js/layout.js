@@ -6,6 +6,32 @@
   const homeHref = () => (base === "." || base === "" ? "./" : `${base}/`);
   const asset = (p) => href(`assets/${p}`);
 
+  // Google Analytics 4 — dán Measurement ID (G-XXXXXXXX) vào đây.
+  // Tạo tại: https://analytics.google.com → Admin → Data streams → Web
+  const GA_MEASUREMENT_ID =
+    (window.OT_CONFIG && window.OT_CONFIG.gaMeasurementId) ||
+    "";
+
+  function injectGoogleAnalytics() {
+    const id = String(GA_MEASUREMENT_ID || "").trim();
+    if (!/^G-[A-Z0-9]+$/i.test(id)) return;
+    if (document.getElementById("ot-ga") || window.__OT_GA_LOADED) return;
+    window.__OT_GA_LOADED = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", id, { anonymize_ip: true });
+
+    const s = document.createElement("script");
+    s.id = "ot-ga";
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s);
+  }
+
   // Shell CSS: ưu tiên nạp sớm trong <head> (ot-shell.css). Chỉ inject fallback nếu thiếu.
   const shellHref = asset("css/ot-shell.css?v=20260824b");
   if (!document.querySelector('link[href*="ot-shell.css"]')) {
@@ -641,6 +667,7 @@
   }
 
   try {
+    injectGoogleAnalytics();
     injectCategorySeoMeta();
     injectSeo();
     injectChrome();

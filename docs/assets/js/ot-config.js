@@ -11,5 +11,8 @@ window.OT_CONFIG = {
   whisperProxy: "/api/whisper.ashx",
 
   feedbackProxy: "/api/feedback.ashx",
-  feedbackEmail: "onetools27@gmail.com"
+  feedbackEmail: "onetools27@gmail.com",
+
+  /* Google Analytics 4 — dán Measurement ID từ analytics.google.com (dạng G-XXXXXXXX) */
+  gaMeasurementId: ""
 };
