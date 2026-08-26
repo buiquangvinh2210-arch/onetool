@@ -47,7 +47,7 @@
   }
 
   // Shell CSS: ưu tiên nạp sớm trong <head> (ot-shell.css). Chỉ inject fallback nếu thiếu.
-  const shellHref = asset("css/ot-shell.css?v=20260826p");
+  const shellHref = asset("css/ot-shell.css?v=20260826q");
   if (!document.querySelector('link[href*="ot-shell.css"]')) {
     const legacy = [
       "css/skins.css",

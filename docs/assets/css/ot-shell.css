@@ -1,5 +1,5 @@
 /* OneTool shell bundle. Rebuild from sources. */
-/* v=20260826p */
+/* v=20260826q */
 
 /* ===== skins.css ===== */
 /* Tool skins — accent theo danh mục, bố cục thống nhất qua tool-chrome.css */
@@ -390,7 +390,12 @@ body[data-tool]:not([data-tool$="-index"]) .file-chip-icon {
 }
 
 .site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(124, 58, 237, 0.1);
 }
 
@@ -408,9 +413,22 @@ body[data-tool]:not([data-tool$="-index"]) .file-chip-icon {
 }
 
 .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   min-height: var(--header-main-h);
   height: var(--header-main-h) !important;
+}
+
+.logo,
+.logo--rich {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text);
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .logo--rich {
@@ -450,6 +468,14 @@ body[data-tool]:not([data-tool$="-index"]) .file-chip-icon {
 
 .header-cta-desktop {
   display: inline-flex !important;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1;
+  flex-shrink: 0;
 }
 
 .mobile-menu-toggle {
@@ -629,6 +655,8 @@ body.nav-drawer-open {
 }
 
 .main-nav {
+  display: flex;
+  align-items: center;
   gap: 0.25rem;
   padding: 0.35rem;
   background: rgba(248, 247, 255, 0.9);
@@ -956,6 +984,12 @@ body.nav-drawer-open {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: rgba(255, 255, 255, 0.45);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .footer-links a {
