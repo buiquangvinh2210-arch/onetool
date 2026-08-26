@@ -321,9 +321,6 @@ body.nav-drawer-open {
   display: inline-flex !important;
 }
 
-.mobile-menu-toggle {
-  display: none !important;
-}
 
 .tool-grid {
   display: grid;
