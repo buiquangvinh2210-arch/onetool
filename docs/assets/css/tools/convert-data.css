@@ -230,3 +230,44 @@ body[data-tool="convert-data"] input[type="file"] {
     min-height: auto;
   }
 }
+
+/* ── Dark mode ── */
+html[data-theme="dark"] body[data-tool="convert-data"] {
+  --cd-ink: #f1edf8;
+  --cd-muted: #94a3b8;
+  --cd-line: rgba(255, 255, 255, 0.08);
+  --cd-soft: rgba(124, 58, 237, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="convert-data"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-panel,
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-panel-head,
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-mode button,
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-text-btn,
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-editor,
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-out,
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-field select {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-panel-head {
+  background: rgba(19, 16, 31, 0.98);
+}
+
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-mode button.is-on {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.4);
+  color: #c4b5fd;
+}
+
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-editor,
+html[data-theme="dark"] body[data-tool="convert-data"] .cd-out {
+  background: var(--tool-input-bg, #0f0d14);
+}

@@ -41,13 +41,14 @@
 }
 
 .logo--rich .logo-icon {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   font-size: 0;
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 0;
   overflow: hidden;
   background: transparent;
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.28);
 }
 
 .logo-stack {
@@ -692,4 +693,18 @@ body.nav-drawer-open {
   .footer-brand > p {
     max-width: 100% !important;
   }
+}
+
+.ot-inapp-banner {
+  margin: 0;
+  padding: 0.7rem 1rem;
+  background: #eff6ff;
+  border-bottom: 1px solid #bfdbfe;
+  color: #1e3a8a;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  text-align: center;
+}
+.ot-inapp-banner strong {
+  font-weight: 750;
 }

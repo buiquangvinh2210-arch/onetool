@@ -24,13 +24,117 @@ window.OT = window.OT || {};
     return base.slice(0, head) + "…" + base.slice(-tail) + ext;
   }
 
-  function downloadBlob(blob, fileName) {
+  function isInAppBrowser(ua) {
+    const u = String(ua || navigator.userAgent || "");
+    return /FBAN|FBAV|FB_IAB|FBIOS|Instagram|Line\/|Zalo|MicroMessenger|Twitter|TikTok|BytedanceWebview|Snapchat|Pinterest|LinkedInApp|Messenger|wv\)|; wv/i.test(
+      u
+    );
+  }
+
+  function isMobileUa(ua) {
+    return /Android|iPhone|iPad|iPod|Mobile/i.test(String(ua || navigator.userAgent || ""));
+  }
+
+  /**
+   * Tải blob — hỗ trợ Web Share (FB/Zalo/iOS) + anchor download + mở tab khi WebView chặn.
+   * @returns {Promise<"share"|"anchor"|"open">}
+   */
+  async function downloadBlob(blob, fileName) {
+    const name = String(fileName || "download").replace(/[<>:"/\\|?*\x00-\x1f]/g, "_");
+    const type = blob.type || "application/octet-stream";
+    const file = typeof File !== "undefined" ? new File([blob], name, { type }) : null;
+
+    // 1) Web Share API — hoạt động tốt trên iOS / một số in-app browser
+    if (file && navigator.canShare) {
+      try {
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: name });
+          return "share";
+        }
+      } catch (e) {
+        if (e && e.name === "AbortError") return "share";
+      }
+    }
+
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName || "download";
-    a.click();
-    URL.revokeObjectURL(url);
+    try {
+      // 2) Anchor download — Chrome/Edge/Firefox desktop & mobile browser
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = name;
+      a.rel = "noopener";
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      // 3) In-app WebView thường bỏ qua download= → mở blob trong tab mới để user giữ/share
+      if (isInAppBrowser()) {
+        setTimeout(() => {
+          const w = window.open(url, "_blank");
+          if (!w) {
+            // popup bị chặn — điều hướng cùng tab
+            location.href = url;
+          }
+        }, 250);
+        return "open";
+      }
+      return "anchor";
+    } finally {
+      setTimeout(() => URL.revokeObjectURL(url), isInAppBrowser() ? 120000 : 4000);
+    }
+  }
+
+  /**
+   * Tải từ URL HTTP (Worker /file…). In-app: điều hướng trực tiếp — không dùng blob.
+   */
+  async function downloadUrl(url, fileName, opts) {
+    const href = String(url || "").trim();
+    if (!href) throw new Error("Thiếu link tải.");
+    const name = String(fileName || "download").replace(/[<>:"/\\|?*\x00-\x1f]/g, "_");
+    const forceNav = opts?.forceNavigate || isInAppBrowser();
+
+    if (forceNav) {
+      const a = document.createElement("a");
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      // Không set download với cross-origin — WebView hay bỏ qua; để server Content-Disposition lo
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      // Fallback nếu WebView nuốt click
+      setTimeout(() => {
+        try {
+          const w = window.open(href, "_blank");
+          if (!w) location.assign(href);
+        } catch (_) {
+          location.assign(href);
+        }
+      }, 400);
+      return "navigate";
+    }
+
+    // Trình duyệt thường: fetch → blob → download (có tên file chắc chắn)
+    const res = await fetch(href);
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      let msg = "Tải file thất bại.";
+      try {
+        msg = JSON.parse(t)?.error || msg;
+      } catch (_) {}
+      throw new Error(msg);
+    }
+    const blob = await res.blob();
+    if (!blob.size) throw new Error("File rỗng.");
+    await downloadBlob(blob, name);
+    return "blob";
+  }
+
+  function inAppBrowserHint() {
+    if (!isInAppBrowser()) return "";
+    return "Bạn đang mở trong app (Facebook/Zalo…). Nếu không tải được: bấm ⋮ → Mở bằng trình duyệt (Chrome/Safari).";
   }
 
   function downloadBytes(bytes, fileName, contentType) {
@@ -589,8 +693,12 @@ window.OT = window.OT || {};
   OT.formatBytes = formatBytes;
   OT.shortFileName = shortFileName;
   OT.downloadBlob = downloadBlob;
+  OT.downloadUrl = downloadUrl;
   OT.downloadBytes = downloadBytes;
   OT.downloadText = downloadText;
+  OT.isInAppBrowser = isInAppBrowser;
+  OT.isMobileUa = isMobileUa;
+  OT.inAppBrowserHint = inAppBrowserHint;
   OT.copyText = copyText;
   OT.showResult = showResult;
   OT.bindResultActions = bindResultActions;

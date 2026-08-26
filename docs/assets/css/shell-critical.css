@@ -65,7 +65,7 @@
   overflow: hidden;
   font-size: 0;
   color: #fff;
-  box-shadow: 0 6px 16px var(--primary-glow);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.3);
 }
 
 .logo-icon .logo-mark {
@@ -375,6 +375,7 @@ body.nav-drawer-open {
   width: 100%;
   height: 3px;
   background: var(--gradient-brand);
+  pointer-events: none;
 }
 
 .tool-card-icon {
@@ -419,6 +420,13 @@ body.nav-drawer-open {
   font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: -0.02em;
+  color: var(--text);
+  transition: color 0.15s ease;
+}
+
+.tool-card:hover .tool-card-title,
+.tool-card:focus-visible .tool-card-title {
+  color: var(--primary);
 }
 
 .tool-card-desc {

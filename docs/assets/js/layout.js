@@ -1,6 +1,15 @@
 (function () {
   "use strict";
 
+  try {
+    var savedTheme = localStorage.getItem("lamai-theme");
+    var root = document.documentElement;
+    if (savedTheme) root.setAttribute("data-theme", savedTheme);
+    else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      root.setAttribute("data-theme", "dark");
+    }
+  } catch (_) {}
+
   const base = (window.OT_BASE || ".").replace(/\/$/, "");
   const href = (p) => (base === "." || base === "" ? p : `${base}/${p}`);
   const homeHref = () => (base === "." || base === "" ? "./" : `${base}/`);
@@ -310,8 +319,8 @@
   function buildMegaMenu() {
     const cats = window.OTCatalog?.categories || [];
     const links = cats.map((c) => `
-      <a class="nav-mega-link" href="${href(`${c.seo}.html`)}">
-        <em>${c.icon}</em>
+      <a class="nav-mega-link" href="${href(`${c.seo}.html`)}" aria-label="${esc(c.name)}">
+        <em aria-hidden="true">${c.icon}</em>
         <span><strong>${esc(c.name)}</strong><small>${esc(c.desc)}</small></span>
       </a>`).join("");
     return links || "";
@@ -321,15 +330,24 @@
     const cats = window.OTCatalog?.categories || [];
     const tools = window.OTCatalog?.tools || [];
     return cats.map((cat) => {
-      const items = tools.filter((t) => t.cat === cat.slug && !t.hub);
+      let items = tools.filter((t) => t.cat === cat.slug && !t.hub);
+      items = items.slice().sort((a, b) => {
+        const ra = Number.isFinite(a.rank) ? a.rank : 999;
+        const rb = Number.isFinite(b.rank) ? b.rank : 999;
+        return ra - rb;
+      });
+      if (items.length > 8) {
+        const feat = items.filter((t) => t.featured);
+        items = feat.length ? feat : items.slice(0, 8);
+      }
       const toolLinks = items.map((t) => `
-        <a class="nav-drawer-tool" href="${href(`${cat.seo}/${t.slug}.html`)}">
-          <em>${t.icon}</em><span>${esc(t.name)}</span>
+        <a class="nav-drawer-tool" href="${href(`${cat.seo}/${t.slug}.html`)}" aria-label="Mở ${esc(t.name)}">
+          <em aria-hidden="true">${t.icon}</em><span>${esc(t.name)}</span>
         </a>`).join("");
       return `
         <div class="nav-drawer-group">
-          <a class="nav-drawer-cat" href="${href(`${cat.seo}.html`)}">
-            ${cat.icon} ${esc(cat.name)} <span>${items.length} tool</span>
+          <a class="nav-drawer-cat" href="${href(`${cat.seo}.html`)}" aria-label="${esc(cat.name)}">
+            <span aria-hidden="true">${cat.icon}</span> ${esc(cat.name)} <span>${tools.filter((t) => t.cat === cat.slug && !t.hub).length} tool</span>
           </a>
           <div class="nav-drawer-tools">${toolLinks}</div>
         </div>`;
@@ -348,8 +366,8 @@
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
     <div class="container header-inner">
-      <a class="logo logo--rich" href="${homeHref()}">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/favicon.svg")}" width="46" height="46" alt="" /></span>
+      <a class="logo logo--rich" href="${homeHref()}" aria-label="OneTool — Về trang chủ">
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark.png")}?v=20260826f" width="46" height="46" alt="" /></span>
         <span class="logo-stack">
           <span class="logo-text">OneTool</span>
           <span class="logo-tag">${toolCount}+ công cụ · Miễn phí</span>
@@ -381,8 +399,8 @@
   <div class="nav-drawer-backdrop" id="navDrawerBackdrop"></div>
   <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
     <div class="nav-drawer-head">
-      <a class="logo" href="${homeHref()}">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/favicon.svg")}" width="36" height="36" alt="" /></span>
+      <a class="logo" href="${homeHref()}" aria-label="OneTool — Về trang chủ">
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark.png")}?v=20260826f" width="36" height="36" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <button type="button" class="nav-drawer-close" id="navDrawerClose" aria-label="Đóng menu">✕</button>
@@ -418,14 +436,14 @@
   </div>
   <div class="container footer-inner">
     <div class="footer-brand">
-      <a class="logo footer-logo" href="${homeHref()}">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/favicon.svg")}" width="40" height="40" alt="" /></span>
+      <a class="logo footer-logo" href="${homeHref()}" aria-label="OneTool — Về trang chủ">
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark.png")}?v=20260826f" width="40" height="40" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <p class="footer-brand-desc">Công cụ file online cho người Việt — nhanh, riêng tư, miễn phí.</p>
       <div class="footer-social">
-        <a href="${href("cong-cu.html")}" title="Công cụ">⚡</a>
-        <a href="${href("about.html")}" title="Giới thiệu">ℹ</a>
+        <a href="${href("cong-cu.html")}" aria-label="Tất cả công cụ">⚡</a>
+        <a href="${href("about.html")}" aria-label="Giới thiệu">ℹ</a>
       </div>
     </div>
     <div class="footer-nav">
@@ -438,12 +456,13 @@
       <div class="footer-col">
         <h4>Phổ biến</h4>
         <div class="footer-links">
-          <a href="${href("cong-cu-anh/image-convert.html")}">Convert ảnh</a>
-          <a href="${href("cong-cu-pdf/pdf-merge.html")}">Gộp PDF</a>
-          <a href="${href("cong-cu-anh/remove-background.html")}">Xóa nền ảnh</a>
           <a href="${href("cong-cu-media/tiktok-download.html")}">Tải TikTok không logo</a>
           <a href="${href("cong-cu-media/audio-to-text.html")}">Audio → Text</a>
-          <a href="${href("cong-cu-media/video-convert.html")}">Nén / Convert video</a>
+          <a href="${href("cong-cu-pdf/pdf-to-word.html")}">PDF to Word</a>
+          <a href="${href("cong-cu-pdf/image-pdf.html")}">Ảnh ↔ PDF</a>
+          <a href="${href("cong-cu-anh/image-compress.html")}">Nén ảnh</a>
+          <a href="${href("cong-cu-pdf/pdf-merge.html")}">Gộp PDF</a>
+          <a href="${href("cong-cu-anh/remove-background.html")}">Xóa nền ảnh</a>
         </div>
       </div>
       <div class="footer-col footer-col--contact">
@@ -540,7 +559,7 @@
         const target = hubCat
           ? href(`${hubCat.seo}/${hubTool.slug}.html`)
           : href(`${cat.seo}/${t.slug}.html`);
-        return `<li><a class="tool-seo-card" href="${target}">
+        return `<li><a class="tool-seo-card" href="${target}" aria-label="Mở ${esc(t.name)}">
           <span class="tool-seo-card-icon" aria-hidden="true">${esc(t.icon)}</span>
           <span class="tool-seo-card-body">
             <strong class="tool-seo-card-title">${esc(t.name)}</strong>
@@ -671,21 +690,56 @@
     document.head.appendChild(ld);
   }
 
+  function injectInAppBanner() {
+    if (document.getElementById("otInAppBanner")) return;
+    const ua = navigator.userAgent || "";
+    const inApp =
+      /FBAN|FBAV|FB_IAB|FBIOS|Instagram|Line\/|Zalo|MicroMessenger|Twitter|TikTok|BytedanceWebview|Snapchat|Messenger/i.test(
+        ua
+      );
+    if (!inApp) return;
+    const el = document.createElement("div");
+    el.id = "otInAppBanner";
+    el.className = "ot-inapp-banner";
+    el.setAttribute("role", "status");
+    el.innerHTML =
+      "<strong>Đang mở trong app</strong> — tải file dễ lỗi trên Facebook/Zalo. " +
+      "Bấm <b>⋮</b> góc trên → <b>Mở bằng trình duyệt</b> (Chrome/Safari) để tải ổn định.";
+    const header = document.getElementById("siteHeader");
+    if (header && header.parentNode) {
+      header.insertAdjacentElement("afterend", el);
+    } else {
+      document.body.prepend(el);
+    }
+  }
+
   try {
     injectGoogleAnalytics();
+  } catch (err) {
+    console.error("[OneTool layout] ga", err);
+  }
+  try {
     injectCategorySeoMeta();
     injectSeo();
+  } catch (err) {
+    console.error("[OneTool layout] seo", err);
+  }
+  try {
     injectChrome();
+  } catch (err) {
+    console.error("[OneTool layout] chrome", err);
+  }
+  try {
+    injectInAppBanner();
     injectCategoryCrumb();
     injectToolCrumb();
     injectCategorySeoBody();
     injectCategoryJsonLd();
     injectToolSeoBody();
-    requestAnimationFrame(function () {
-      requestAnimationFrame(markChromeReady);
-    });
   } catch (err) {
-    console.error("[OneTool layout]", err);
-    markChromeReady();
+    console.error("[OneTool layout] extras", err);
   }
+  requestAnimationFrame(function () {
+    requestAnimationFrame(markChromeReady);
+  });
 })();

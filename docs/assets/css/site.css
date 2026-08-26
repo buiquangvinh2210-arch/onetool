@@ -12,12 +12,12 @@
   height: 36px;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 11px;
   background: transparent;
   padding: 0;
   overflow: hidden;
   font-size: 0;
-  box-shadow: 0 6px 16px var(--primary-glow);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.28);
 }
 
 .logo-mark {
@@ -181,6 +181,20 @@
   display: none;
 }
 .protocol-banner.is-on { display: block; }
+
+.ot-inapp-banner {
+  margin: 0;
+  padding: 0.7rem 1rem;
+  background: #eff6ff;
+  border-bottom: 1px solid #bfdbfe;
+  color: #1e3a8a;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  text-align: center;
+}
+.ot-inapp-banner strong {
+  font-weight: 750;
+}
 
 /* Reserve space for JS-rendered grids to reduce CLS on hub pages. */
 #homeToolRows,

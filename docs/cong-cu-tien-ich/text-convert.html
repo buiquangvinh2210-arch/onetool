@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chuyển đổi chữ online — Hoa thường, bỏ dấu tiếng Việt | OneTool</title>
+  <meta name="description" content="Chuyển đổi chữ: viết hoa/thường, Title Case, bỏ dấu tiếng Việt, slug URL, dọn khoảng trắng, URL/HTML encode, tìm thay — miễn phí trên trình duyệt." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826h" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/text-convert.css?v=20260826b" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="text-convert">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="tc-page">
+    <header class="tc-intro">
+      <h1>Chuyển đổi chữ · Hoa thường &amp; bỏ dấu</h1>
+      <p>Viết hoa/thường, Title Case, bỏ dấu tiếng Việt, slug URL, dọn dòng, encode URL/HTML, tìm &amp; thay — chính xác, tức thì, chạy trên máy bạn.</p>
+      <div class="tc-chips" aria-hidden="true">
+        <span class="tc-chip">Bỏ dấu VN</span>
+        <span class="tc-chip">UPPER / lower</span>
+        <span class="tc-chip">Slug</span>
+        <span class="tc-chip">Tìm thay</span>
+        <span class="tc-chip">Encode</span>
+      </div>
+    </header>
+
+    <div class="tc-studio">
+      <aside class="tc-panel">
+        <div class="tc-panel-head">
+          <h2>1 · Văn bản nguồn</h2>
+          <div class="tc-toolbar">
+            <button type="button" class="tc-text-btn" id="openFileBtn">Mở file</button>
+            <button type="button" class="tc-text-btn" id="sampleBtn">Văn bản mẫu</button>
+            <button type="button" class="tc-text-btn" id="clearBtn">Xóa</button>
+            <input type="file" id="fileInput" accept=".txt,.md,.csv,.json,.html,.htm,.xml,text/plain,text/markdown,text/csv,application/json,text/html" />
+          </div>
+        </div>
+        <div class="tc-body">
+          <div class="tc-meta-row">
+            <span id="inputMeta">0 ký tự · 0 từ</span>
+            <span>Live · bấm thao tác bên phải</span>
+          </div>
+          <textarea id="inputText" class="tc-editor" spellcheck="true" placeholder="Dán hoặc gõ văn bản cần chuyển đổi…"></textarea>
+
+          <div class="tc-replace" id="replaceBox">
+            <div class="tc-replace-row">
+              <div class="tc-field">
+                <label for="findText">Tìm</label>
+                <input type="text" id="findText" placeholder="Chuỗi hoặc regex…" autocomplete="off" />
+              </div>
+              <div class="tc-field">
+                <label for="replaceText">Thay bằng</label>
+                <input type="text" id="replaceText" placeholder="Để trống = xóa khớp" autocomplete="off" />
+              </div>
+            </div>
+            <div class="tc-checks">
+              <label><input type="checkbox" id="optRegex" /> Regex</label>
+              <label><input type="checkbox" id="optIgnoreCase" checked /> Không phân biệt hoa thường</label>
+              <label><input type="checkbox" id="optChain" /> Áp vào kết quả trước</label>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" id="replaceBtn">Tìm &amp; thay</button>
+          </div>
+
+          <p class="tc-note">Bỏ dấu dùng chuẩn Unicode NFD + xử lý riêng <strong>đ/Đ</strong>. Toàn bộ xử lý local — không upload.</p>
+          <p class="tc-status" id="status">Sẵn sàng — dán chữ rồi chọn thao tác.</p>
+        </div>
+      </aside>
+
+      <div class="tc-panel">
+        <div class="tc-panel-head">
+          <h2>2 · Thao tác &amp; kết quả</h2>
+          <div class="tc-toolbar">
+            <button type="button" class="btn btn-outline btn-sm" id="swapBtn" disabled>⇄ Đưa kết quả xuống nguồn</button>
+          </div>
+        </div>
+        <div class="tc-body">
+          <div class="tc-groups" id="actionGroups" aria-label="Thao tác chuyển đổi"></div>
+
+          <div class="tc-stats" id="outStats" hidden></div>
+          <textarea id="outputText" class="tc-out is-empty" readonly spellcheck="false" placeholder="Kết quả hiện ở đây…"></textarea>
+
+          <div class="tc-foot-actions">
+            <button type="button" class="btn btn-outline" id="copyBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary" id="downloadBtn" disabled>Tải TXT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826z"></script>
+<script src="../assets/js/layout.js?v=20260826h"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826h"></script>
+<script src="../assets/js/tools/text-convert.js?v=20260826a"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+(function () {
+  const T = window.OTTextConvert;
+  const SAMPLE =
+    "OneTool — Công cụ file online cho người Việt.\n" +
+    "Chuyển Đổi Chữ: viết HOA, viết thường, bỏ dấu tiếng Việt.\n" +
+    "Ví dụ: Đặng Thị Hồng  →  Dang Thi Hong  →  dang-thi-hong\n" +
+    "Dòng trống bên dưới sẽ bị xóa khi chọn «Xóa dòng trống».\n\n" +
+    "HTML: <b>Xin chào</b> & \"OneTool\"\n" +
+    "URL mẫu: https://onetool.vn/cong-cu?q=tóm tắt";
+
+  const GROUPS = [
+    { id: "case", title: "Hoa / thường" },
+    { id: "vn", title: "Tiếng Việt & slug" },
+    { id: "clean", title: "Dọn văn bản" },
+    { id: "lines", title: "Dòng & sắp xếp" },
+    { id: "encode", title: "Encode / decode" }
+  ];
+
+  let lastAction = "";
+  let lastOut = "";
+
+  const input = document.getElementById("inputText");
+  const output = document.getElementById("outputText");
+  const inputMeta = document.getElementById("inputMeta");
+  const statusEl = document.getElementById("status");
+  const outStats = document.getElementById("outStats");
+  const copyBtn = document.getElementById("copyBtn");
+  const downloadBtn = document.getElementById("downloadBtn");
+  const swapBtn = document.getElementById("swapBtn");
+  const fileInput = document.getElementById("fileInput");
+  const actionGroups = document.getElementById("actionGroups");
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg || "";
+    statusEl.className = "tc-status" + (kind === "ok" ? " is-ok" : kind === "err" ? " is-err" : "");
+  }
+
+  function updateInputMeta() {
+    const st = T.countStats(input.value);
+    inputMeta.textContent =
+      T.formatCount(st.chars) + " ký tự · " +
+      T.formatCount(st.words) + " từ · " +
+      T.formatCount(st.lines) + " dòng";
+  }
+
+  function showOutput(text, actionId, note) {
+    lastOut = String(text ?? "");
+    lastAction = actionId || "";
+    output.value = lastOut;
+    output.classList.toggle("is-empty", !lastOut);
+    copyBtn.disabled = !lastOut;
+    downloadBtn.disabled = !lastOut;
+    swapBtn.disabled = !lastOut;
+
+    document.querySelectorAll(".tc-action").forEach((btn) => {
+      btn.classList.toggle("is-on", btn.dataset.action === lastAction);
+    });
+
+    const st = T.countStats(lastOut);
+    outStats.hidden = !lastOut;
+    outStats.innerHTML =
+      '<span class="tc-stat">' + T.formatCount(st.chars) + " ký tự</span>" +
+      '<span class="tc-stat">' + T.formatCount(st.words) + " từ</span>" +
+      '<span class="tc-stat">' + T.formatCount(st.lines) + " dòng</span>" +
+      '<span class="tc-stat">' + T.formatCount(st.bytes) + " byte</span>";
+
+    if (note) setStatus(note, "ok");
+  }
+
+  function sourceText() {
+    if (document.getElementById("optChain").checked && lastOut) return lastOut;
+    return input.value;
+  }
+
+  function runAction(id) {
+    try {
+      const src = sourceText();
+      if (!String(src || "").length) {
+        setStatus("Dán văn bản nguồn trước.", "err");
+        return;
+      }
+      const out = T.apply(id, src, { sep: "-" });
+      const label = T.ACTIONS[id]?.label || id;
+      showOutput(out, id, "Đã áp dụng «" + label + "».");
+      OT.setStatus("Đã chuyển đổi chữ", "ok");
+    } catch (e) {
+      setStatus(e.message || String(e), "err");
+      OT.setStatus(e.message || String(e), "err");
+    }
+  }
+
+  function buildActions() {
+    actionGroups.innerHTML = "";
+    GROUPS.forEach((g) => {
+      const wrap = document.createElement("div");
+      wrap.className = "tc-group";
+      const h = document.createElement("h3");
+      h.textContent = g.title;
+      wrap.appendChild(h);
+      const row = document.createElement("div");
+      row.className = "tc-actions";
+      Object.keys(T.ACTIONS).forEach((id) => {
+        const act = T.ACTIONS[id];
+        if (act.group !== g.id) return;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tc-action";
+        btn.dataset.action = id;
+        btn.textContent = act.label;
+        btn.addEventListener("click", () => runAction(id));
+        row.appendChild(btn);
+      });
+      wrap.appendChild(row);
+      actionGroups.appendChild(wrap);
+    });
+  }
+
+  input.addEventListener("input", updateInputMeta);
+
+  document.getElementById("sampleBtn").onclick = () => {
+    input.value = SAMPLE;
+    updateInputMeta();
+    showOutput("", "", "");
+    setStatus("Đã dán mẫu — chọn thao tác bên phải.", "ok");
+  };
+
+  document.getElementById("clearBtn").onclick = () => {
+    input.value = "";
+    updateInputMeta();
+    showOutput("", "", "");
+    setStatus("Đã xóa — sẵn sàng nhập mới.");
+  };
+
+  document.getElementById("openFileBtn").onclick = () => fileInput.click();
+  fileInput.addEventListener("change", async () => {
+    const file = fileInput.files?.[0];
+    fileInput.value = "";
+    if (!file) return;
+    if (file.size > 4 * 1024 * 1024) {
+      setStatus("File text tối đa 4MB.", "err");
+      return;
+    }
+    try {
+      input.value = (await file.text()).replace(/^\uFEFF/, "");
+      updateInputMeta();
+      showOutput("", "", "");
+      setStatus("Đã mở «" + file.name + "».", "ok");
+    } catch (_) {
+      setStatus("Không đọc được file.", "err");
+    }
+  });
+
+  document.getElementById("replaceBtn").onclick = () => {
+    try {
+      const out = T.findReplace(sourceText(), document.getElementById("findText").value, document.getElementById("replaceText").value, {
+        regex: document.getElementById("optRegex").checked,
+        ignoreCase: document.getElementById("optIgnoreCase").checked,
+        global: true
+      });
+      showOutput(out, "replace", "Đã tìm & thay.");
+    } catch (e) {
+      setStatus(e.message || String(e), "err");
+    }
+  };
+
+  swapBtn.onclick = () => {
+    if (!lastOut) return;
+    input.value = lastOut;
+    updateInputMeta();
+    setStatus("Đã đưa kết quả xuống nguồn — có thể chuyển tiếp.", "ok");
+  };
+
+  copyBtn.onclick = async () => {
+    if (!lastOut) return;
+    try {
+      await OT.copyText(lastOut);
+      setStatus("Đã sao chép kết quả.", "ok");
+    } catch (e) {
+      setStatus(e.message || "Không sao chép được.", "err");
+    }
+  };
+
+  downloadBtn.onclick = async () => {
+    if (!lastOut) return;
+    await OT.downloadBlob(new Blob([lastOut], { type: "text/plain;charset=utf-8" }), "chuyen-doi-chu.txt");
+    setStatus("Đã tải chuyen-doi-chu.txt", "ok");
+  };
+
+  buildActions();
+  updateInputMeta();
+})();
+});
+</script>
+</body>
+</html>

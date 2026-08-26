@@ -10,6 +10,9 @@ window.OT_CONFIG = {
   /* Fallback khi chạy IIS */
   whisperProxy: "/api/whisper.ashx",
 
+  /* Tóm tắt AI — dùng chung Worker Groq (endpoint /summarize) */
+  summarizeCloud: "https://onetool-whisper.buiquangvinh2210.workers.dev",
+
   /* TikTok Download — Cloudflare Worker (wrangler deploy -c wrangler-tiktok.toml) */
   tiktokCloud: "https://onetool-tiktok.buiquangvinh2210.workers.dev",
   tiktokProxy: "",

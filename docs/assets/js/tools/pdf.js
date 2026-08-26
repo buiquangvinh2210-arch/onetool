@@ -185,17 +185,63 @@ window.OTPdf = (function () {
     return text.replace(/\n{3,}/g, "\n\n").trim();
   }
 
-  async function renderPageCanvas(page, scale = 2) {
-    const viewport = page.getViewport({ scale });
+  async function renderPageCanvas(page, scaleOrOpts = 2) {
+    const opts =
+      typeof scaleOrOpts === "object" && scaleOrOpts !== null
+        ? scaleOrOpts
+        : { scale: scaleOrOpts };
+    const renderScale = resolveExportScale(page, opts);
+    const viewport = page.getViewport({ scale: renderScale });
     const canvas = document.createElement("canvas");
     canvas.width = Math.floor(viewport.width);
     canvas.height = Math.floor(viewport.height);
-    await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
-    return canvas;
+
+    const ctx = canvas.getContext("2d", { alpha: false, willReadFrequently: false });
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+
+    await page.render({
+      canvasContext: ctx,
+      viewport,
+      intent: "print",
+      annotationMode: 0 // DISABLE — tránh lớp phủ làm mờ ảnh xuất
+    }).promise;
+
+    return { canvas, scale: renderScale, width: canvas.width, height: canvas.height };
+  }
+
+  /** PDF user space = 72 DPI. scale 1 ≈ 72 DPI, 200 DPI ≈ 2.78× */
+  function resolveExportScale(page, { scale, dpi, maxEdge = 12000 } = {}) {
+    const PDF_DPI = 72;
+    let s;
+    if (dpi > 0) {
+      s = dpi / PDF_DPI;
+    } else if (scale > 0) {
+      s = scale;
+    } else {
+      s = 200 / PDF_DPI;
+    }
+
+    const base = page.getViewport({ scale: 1 });
+    const longest = Math.max(base.width, base.height);
+    if (longest > 0) {
+      const cap = maxEdge / longest;
+      if (s > cap) s = cap;
+    }
+    return Math.max(0.5, s);
+  }
+
+  function exportQuality(format, quality) {
+    const key = (format || "png").toLowerCase();
+    if (key === "png") return undefined;
+    const q = quality != null ? Number(quality) : 0.97;
+    return Math.min(0.98, Math.max(0.85, q));
   }
 
   async function ocrPageText(page, worker) {
-    const canvas = await renderPageCanvas(page, 2);
+    const { canvas } = await renderPageCanvas(page, { dpi: 200 });
     const { data: { text } } = await worker.recognize(canvas);
     return (text || "").trim();
   }
@@ -240,13 +286,26 @@ window.OTPdf = (function () {
     return { text: result, ocrUsed, pageCount: n, totalPages: total };
   }
 
-  async function pageToPng(file, pageNum = 1, scale = 2) {
+  async function pageToPng(file, pageNum = 1, scaleOrOpts = {}) {
+    const opts =
+      typeof scaleOrOpts === "number"
+        ? { scale: scaleOrOpts }
+        : scaleOrOpts && typeof scaleOrOpts === "object"
+          ? scaleOrOpts
+          : { dpi: 200 };
     const doc = await openPdfDoc(file);
     const n = Math.min(Math.max(1, pageNum), doc.numPages);
     const page = await doc.getPage(n);
-    const canvas = await renderPageCanvas(page, scale);
+    const { canvas, scale } = await renderPageCanvas(page, opts);
     const blob = await OT.canvasToBlob(canvas, "image/png");
-    return { blob, pageNum: n, totalPages: doc.numPages };
+    return {
+      blob,
+      pageNum: n,
+      totalPages: doc.numPages,
+      width: canvas.width,
+      height: canvas.height,
+      dpi: Math.round(scale * 72)
+    };
   }
 
   async function firstPagePng(file) {
@@ -254,29 +313,208 @@ window.OTPdf = (function () {
     return blob;
   }
 
-  async function allPagesPngZip(file, { maxPages = 50, scale = 2, onProgress } = {}) {
-    const JSZip = await loadJSZip();
+  async function allPagesPngZip(file, { maxPages = 50, scale, dpi = 200, onProgress } = {}) {
+    const result = await pagesToImages(file, {
+      format: "png",
+      maxPages,
+      scale,
+      dpi,
+      onProgress,
+      zip: true
+    });
+    return { blob: result.zipBlob, pageCount: result.pageCount, totalPages: result.totalPages };
+  }
+
+  function imageMimeExt(format) {
+    const key = (format || "png").toLowerCase();
+    if (key === "jpg" || key === "jpeg") return { type: "image/jpeg", ext: ".jpg" };
+    if (key === "webp") return { type: "image/webp", ext: ".webp" };
+    return { type: "image/png", ext: ".png" };
+  }
+
+  async function pagesToImages(file, {
+    format = "png",
+    quality = 0.97,
+    scale,
+    dpi = 200,
+    maxPages = 80,
+    pageSpec,
+    zip = true,
+    onProgress
+  } = {}) {
+    const { type, ext } = imageMimeExt(format);
+    const q = exportQuality(format, quality);
     const doc = await openPdfDoc(file);
     const total = doc.numPages;
-    const n = Math.min(total, maxPages);
-    const zip = new JSZip();
-
-    for (let i = 1; i <= n; i++) {
-      onProgress?.({ page: i, total: n });
-      const page = await doc.getPage(i);
-      const canvas = await renderPageCanvas(page, scale);
-      const blob = await OT.canvasToBlob(canvas, "image/png");
-      zip.file(`trang-${String(i).padStart(3, "0")}.png`, blob);
+    let indices;
+    if (pageSpec && String(pageSpec).trim()) {
+      indices = OT.parsePageSpec(pageSpec, total);
+    } else {
+      const n = Math.min(total, maxPages);
+      indices = Array.from({ length: n }, (_, i) => i + 1);
+    }
+    if (!indices.length) throw new Error("Không có trang nào để xuất.");
+    if (indices.length > maxPages) {
+      throw new Error(`Tối đa ${maxPages} trang mỗi lần. Đang chọn ${indices.length} trang.`);
     }
 
-    const zipBlob = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
-    return { blob: zipBlob, pageCount: n, totalPages: total };
+    const pages = [];
+    let effectiveDpi = dpi;
+    for (let i = 0; i < indices.length; i++) {
+      const pageNum = indices[i];
+      onProgress?.({ page: i + 1, total: indices.length, pageNum });
+      const page = await doc.getPage(pageNum);
+      const rendered = await renderPageCanvas(page, { scale, dpi });
+      effectiveDpi = Math.round(rendered.scale * 72);
+      const blob = await OT.canvasToBlob(rendered.canvas, type, q);
+      pages.push({
+        pageNum,
+        blob,
+        width: rendered.width,
+        height: rendered.height,
+        dpi: effectiveDpi,
+        fileName: `trang-${String(pageNum).padStart(3, "0")}${ext}`
+      });
+    }
+
+    let zipBlob = null;
+    if (zip && pages.length > 1) {
+      const JSZip = await loadJSZip();
+      const z = new JSZip();
+      pages.forEach((p) => z.file(p.fileName, p.blob));
+      zipBlob = await z.generateAsync({ type: "blob", compression: "DEFLATE", compressionOptions: { level: 6 } });
+    }
+
+    return {
+      pages,
+      zipBlob,
+      pageCount: pages.length,
+      totalPages: total,
+      format: ext.replace(".", ""),
+      dpi: effectiveDpi
+    };
+  }
+
+  async function fileToEmbeddableBytes(file, { jpegQuality = 0.98, preferPngForAlpha = true } = {}) {
+    const name = (file.name || "").toLowerCase();
+    const mime = (file.type || "").toLowerCase();
+    const isPng = mime.includes("png") || name.endsWith(".png");
+    const isJpg =
+      mime.includes("jpeg") ||
+      mime.includes("jpg") ||
+      name.endsWith(".jpg") ||
+      name.endsWith(".jpeg");
+
+    if (isPng || isJpg) {
+      return {
+        bytes: new Uint8Array(await file.arrayBuffer()),
+        kind: isPng ? "png" : "jpg",
+        width: null,
+        height: null
+      };
+    }
+
+    const img = await OT.loadImage(file);
+    const canvas = document.createElement("canvas");
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+
+    const isGif = mime.includes("gif") || name.endsWith(".gif");
+    const usePng = preferPngForAlpha && (isGif || mime.includes("webp"));
+    if (!usePng) {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    ctx.drawImage(img, 0, 0);
+
+    const blob = await OT.canvasToBlob(
+      canvas,
+      usePng ? "image/png" : "image/jpeg",
+      usePng ? undefined : jpegQuality
+    );
+    return {
+      bytes: new Uint8Array(await blob.arrayBuffer()),
+      kind: usePng ? "png" : "jpg",
+      width: canvas.width,
+      height: canvas.height
+    };
+  }
+
+  const PAGE_PRESETS = {
+    a4: { w: 595.28, h: 841.89 },
+    letter: { w: 612, h: 792 }
+  };
+
+  async function imagesToPdf(files, {
+    pageSize = "fit",
+    margin = 36,
+    jpegQuality = 0.98,
+    onProgress
+  } = {}) {
+    if (!files?.length) throw new Error("Chọn ít nhất một ảnh.");
+    if (files.length > 40) throw new Error("Tối đa 40 ảnh mỗi lần.");
+
+    const { PDFDocument } = await loadPdfLib();
+    const out = await PDFDocument.create();
+    const preset = PAGE_PRESETS[pageSize] || null;
+    const m = Math.max(0, Number(margin) || 0);
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      onProgress?.({ page: i + 1, total: files.length, name: file.name });
+      const { bytes, kind } = await fileToEmbeddableBytes(file, { jpegQuality });
+      const img = kind === "png" ? await out.embedPng(bytes) : await out.embedJpg(bytes);
+      const iw = img.width;
+      const ih = img.height;
+
+      let pageW;
+      let pageH;
+      let drawW;
+      let drawH;
+      let x;
+      let y;
+
+      if (!preset || pageSize === "fit") {
+        // 1 pixel ≈ 1 point — giữ nguyên độ phân giải gốc
+        pageW = iw;
+        pageH = ih;
+        drawW = iw;
+        drawH = ih;
+        x = 0;
+        y = 0;
+      } else {
+        const landscape = iw > ih;
+        pageW = landscape ? Math.max(preset.w, preset.h) : Math.min(preset.w, preset.h);
+        pageH = landscape ? Math.min(preset.w, preset.h) : Math.max(preset.w, preset.h);
+        const maxW = Math.max(10, pageW - m * 2);
+        const maxH = Math.max(10, pageH - m * 2);
+        const fitScale = Math.min(maxW / iw, maxH / ih, 1);
+        drawW = iw * fitScale;
+        drawH = ih * fitScale;
+        x = (pageW - drawW) / 2;
+        y = (pageH - drawH) / 2;
+      }
+
+      const page = out.addPage([pageW, pageH]);
+      page.drawImage(img, { x, y, width: drawW, height: drawH });
+    }
+
+    const pdfBytes = await out.save({ useObjectStreams: true });
+    return {
+      bytes: pdfBytes,
+      pageCount: files.length,
+      blob: new Blob([pdfBytes], { type: "application/pdf" })
+    };
   }
 
   return {
     merge, split, rotateOrDelete, compress,
     toText, pageToPng, firstPagePng, allPagesPngZip,
+    pagesToImages, imagesToPdf, resolveExportScale,
     loadPdfLib, loadPdfJs,
-    VERSION: 2
+    VERSION: 4
   };
 })();

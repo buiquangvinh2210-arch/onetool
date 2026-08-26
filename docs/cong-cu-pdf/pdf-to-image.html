@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF sang ảnh online — Xuất PNG JPG WebP từng trang | OneTool</title>
+  <meta name="description" content="Convert PDF sang ảnh PNG JPG WebP. Xuất từng trang hoặc ZIP, xem trước thumbnail — miễn phí, chạy trên trình duyệt." />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826h" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/image-pdf.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="ip-page">
+    <header class="ip-intro">
+      <h1>PDF → Ảnh</h1>
+      <p>Xuất trang PDF ra PNG / JPG / WebP — xem trước, tải từng trang hoặc cả ZIP.</p>
+    </header>
+    <nav class="ip-sibs" aria-label="Ảnh và PDF">
+      <a class="ip-sib" href="image-pdf.html">Hub</a>
+      <a class="ip-sib" href="image-to-pdf.html">Ảnh → PDF</a>
+      <a class="ip-sib is-on" href="pdf-to-image.html">PDF → Ảnh</a>
+    </nav>
+
+    <div class="ip-shell" id="shell">
+      <aside class="ip-side">
+        <div class="ip-filechip" id="fileChip">
+          <div>
+            <strong id="fileName">-</strong>
+            <span id="fileMeta">-</span>
+          </div>
+          <button type="button" class="ip-text-btn" id="changeBtn">Đổi PDF</button>
+        </div>
+
+        <div>
+          <p class="ip-label">Định dạng</p>
+          <div class="ip-formats" id="formatGrid" role="group" aria-label="Định dạng ảnh">
+            <button type="button" class="ip-fmt is-on" data-format="png">PNG</button>
+            <button type="button" class="ip-fmt" data-format="jpg">JPG</button>
+            <button type="button" class="ip-fmt" data-format="webp">WebP</button>
+          </div>
+        </div>
+
+        <div>
+          <p class="ip-label">Độ phân giải</p>
+          <div class="ip-opts" id="dpiGrid" role="group" aria-label="Độ phân giải">
+            <button type="button" class="ip-opt" data-dpi="150"><strong>Web</strong><em>150 DPI · nhanh, file nhẹ</em></button>
+            <button type="button" class="ip-opt is-on" data-dpi="200"><strong>Chuẩn</strong><em>200 DPI · khuyến nghị</em></button>
+            <button type="button" class="ip-opt" data-dpi="300"><strong>In ấn</strong><em>300 DPI · nét nhất</em></button>
+          </div>
+        </div>
+
+        <div class="ip-field">
+          <label class="ip-label" for="pageSpec">Trang (tuỳ chọn)</label>
+          <input id="pageSpec" class="form-control" type="text" placeholder="VD: 1-3, 5 — trống = tất cả" />
+          <p class="ip-hint">Tối đa 80 trang. PNG lossless; JPG/WebP 97%. Chữ PDF nên chọn PNG hoặc 300 DPI.</p>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="runBtn" disabled>Xuất ảnh</button>
+      </aside>
+
+      <div class="ip-main">
+        <div class="ip-main-bar">
+          <div>
+            <h2>Xem trước</h2>
+            <p id="status">Chọn PDF để bắt đầu</p>
+          </div>
+          <div class="ip-actions result-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải ZIP / ảnh</button>
+          </div>
+        </div>
+        <div class="ip-drop">
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+            <div class="upload-placeholder" id="uploadPlaceholder">
+              <p style="margin:0;font-weight:700;font-size:1.05rem;color:#16121c">Thả PDF vào đây</p>
+              <p class="text-muted" style="margin:0.4rem 0 0">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · tối đa 40 MB</p>
+            </div>
+          </div>
+          <div id="thumbs" class="ip-thumbs" hidden></div>
+          <div id="emptyHint" class="ip-empty" hidden>Chưa có kết quả — bấm Xuất ảnh.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826af"></script>
+<script src="../assets/js/layout.js?v=20260826k"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826i"></script>
+<script src="../assets/js/tools/pdf.js?v=20260826b"></script>
+<script src="../assets/js/tools/pdf-to-image-ui.js?v=20260826b"></script>
+</body>
+</html>

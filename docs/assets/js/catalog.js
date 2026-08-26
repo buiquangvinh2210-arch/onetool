@@ -4,17 +4,17 @@ window.OTCatalog = {
       slug: "media",
       seo: "cong-cu-media",
       name: "Media & AI",
-      desc: "Tải TikTok, Audio to Text, nén & convert video",
+      desc: "TikTok, Audio → Text, Tóm tắt AI, nén video",
       icon: "🎙️",
-      seoTitle: "Công cụ Media & AI online — Tải TikTok, Audio/Video sang văn bản | OneTool",
-      seoDescription: "Tải video TikTok HD, chuyển audio/video thành văn bản, nén MP4, đổi WebM, tách MP3 — chạy trên trình duyệt, miễn phí.",
-      seoKeywords: "tải video tiktok, audio to text, nén video online, convert video mp4, video sang mp3, webm online"
+      seoTitle: "Công cụ Media & AI online — Tải TikTok, Audio/Video sang văn bản, Tóm tắt AI | OneTool",
+      seoDescription: "Tải video TikTok HD, chuyển audio/video thành văn bản, tóm tắt AI, nén MP4 — chạy trên trình duyệt, miễn phí.",
+      seoKeywords: "tải video tiktok, audio to text, tóm tắt ai, tóm tắt văn bản, nén video online"
     },
     {
       slug: "pdf-tools",
       seo: "cong-cu-pdf",
       name: "Công cụ PDF",
-      desc: "Gộp, tách, nén, PDF to Word, Word/Excel → PDF",
+      desc: "Gộp, tách, nén, PDF to Word, Word → PDF",
       icon: "📄",
       seoTitle: "Công cụ PDF online miễn phí — Gộp, tách, nén PDF | OneTool",
       seoDescription: "Gộp PDF, tách trang, nén dung lượng, xoay và convert PDF sang TXT/ảnh — xử lý 100% trên trình duyệt, không cần đăng ký.",
@@ -24,7 +24,7 @@ window.OTCatalog = {
       slug: "images",
       seo: "cong-cu-anh",
       name: "Công cụ Ảnh",
-      desc: "Convert ảnh, Resize, xóa nền AI, batch",
+      desc: "Convert, resize, xóa nền AI, batch",
       icon: "🖼️",
       seoTitle: "Công cụ ảnh online — Convert, resize, xóa nền AI | OneTool",
       seoDescription: "Đổi định dạng JPG PNG WebP, resize ảnh, xóa nền AI, xử lý batch — miễn phí, chạy trên trình duyệt, bảo mật file.",
@@ -33,50 +33,101 @@ window.OTCatalog = {
     {
       slug: "file-converter",
       seo: "cong-cu-chuyen-doi",
-      name: "Chuyển đổi file",
-      desc: "Convert Document, convert ảnh, CSV sang JSON",
-      icon: "🔄",
-      seoTitle: "Chuyển đổi file online — CSV JSON, Document | OneTool",
-      seoDescription: "Chuyển CSV sang JSON và ngược lại, convert document — công cụ chuyển đổi dữ liệu nhanh trên trình duyệt.",
-      seoKeywords: "csv sang json, json sang csv, convert document, chuyển đổi file online"
+      name: "File & dữ liệu",
+      desc: "Excel ↔ CSV/JSON, CSV ↔ JSON, PDF → TXT",
+      icon: "📊",
+      seoTitle: "Chuyển đổi file & dữ liệu online — Excel CSV JSON | OneTool",
+      seoDescription: "Excel sang CSV/JSON, CSV/JSON sang Excel, convert document — công cụ chuyển đổi dữ liệu nhanh trên trình duyệt.",
+      seoKeywords: "excel sang csv, excel sang json, csv sang excel, json sang excel, chuyển đổi file online"
+    },
+    {
+      slug: "developer",
+      seo: "cong-cu-lap-trinh",
+      name: "Lập trình",
+      desc: "JSON, Base64, UUID, Hash, slugify",
+      icon: "🛠️",
+      seoTitle: "Công cụ lập trình online — JSON, Base64, UUID, Hash | OneTool",
+      seoDescription: "Format JSON, encode Base64, tạo UUID, hash SHA, slugify tiếng Việt — miễn phí trên trình duyệt.",
+      seoKeywords: "json formatter, base64 encode, uuid v4, hash sha256, slugify tiếng việt"
     },
     {
       slug: "utilities",
       seo: "cong-cu-tien-ich",
       name: "Tiện ích",
-      desc: "Tạo QR Code, JSON Formatter, Base64, Dev Tools",
+      desc: "QR Code, mật khẩu, chuyển đổi chữ",
       icon: "🔧",
-      seoTitle: "Công cụ tiện ích online — QR, JSON, Base64, Dev tools | OneTool",
-      seoDescription: "Tạo mã QR, format JSON, encode Base64, UUID, hash SHA — bộ tiện ích developer và văn phòng miễn phí.",
-      seoKeywords: "tạo qr code, json formatter, base64 encode, developer tools online"
+      seoTitle: "Tiện ích online — QR Code, mật khẩu, chuyển đổi chữ | OneTool",
+      seoDescription: "Tạo mã QR, password generator, chuyển đổi chữ hoa/thường bỏ dấu — tiện ích miễn phí.",
+      seoKeywords: "tạo qr code, password generator, chuyển đổi chữ, bỏ dấu tiếng việt"
+    },
+    {
+      slug: "units",
+      seo: "cong-cu-don-vi",
+      name: "Đơn vị",
+      desc: "Khối lượng, chiều dài, nhiệt độ, dung lượng…",
+      icon: "⚖️",
+      seoTitle: "Chuyển đổi đơn vị online — kg, mét, °C, MB | OneTool",
+      seoDescription: "Đổi khối lượng, chiều dài, diện tích, thể tích, nhiệt độ, tốc độ, dung lượng — hệ số SI chuẩn, miễn phí.",
+      seoKeywords: "chuyển đổi đơn vị, đổi kg sang lb, đổi mét sang feet, đổi độ c sang f, đổi mb sang gib"
     }
   ],
   tools: [
-    { slug: "tiktok-download", name: "TikTok Download · Tải không logo", desc: "Tải MP4 HD không dính logo TikTok từ link — kể cả video app không cho lưu.", icon: "🎵", cat: "media", featured: true },
-    { slug: "audio-to-text", name: "Audio to Text · Giọng nói thành chữ", desc: "Convert audio/video thành văn bản tiếng Việt + phụ đề SRT.", icon: "🎙️", cat: "media", featured: true },
-    { slug: "video-convert", name: "Compress Video · Nén video", desc: "Nén MP4, convert WebM, tách MP3 — ngay trên máy bạn.", icon: "🎬", cat: "media", featured: true },
+    /* Media — nổi bật trước */
+    { slug: "tiktok-download", name: "TikTok Download · Tải không logo", desc: "Tải MP4 HD không dính logo TikTok từ link — kể cả video app không cho lưu.", icon: "🎵", cat: "media", featured: true, rank: 1 },
+    { slug: "audio-to-text", name: "Audio to Text · Giọng nói thành chữ", desc: "Convert audio/video thành văn bản tiếng Việt + phụ đề SRT.", icon: "🎙️", cat: "media", featured: true, rank: 2 },
+    { slug: "ai-summarize", name: "Tóm tắt AI · Rút gọn văn bản", desc: "Tóm tắt bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng, TL;DR.", icon: "✨", cat: "media", featured: true, rank: 3 },
+    { slug: "video-convert", name: "Compress Video · Nén video", desc: "Nén MP4, convert WebM, tách MP3 — ngay trên máy bạn.", icon: "🎬", cat: "media", featured: true, rank: 4 },
 
-    { slug: "pdf-merge", name: "Merge PDF · Gộp file", desc: "Gộp nhiều PDF thành một tài liệu, sắp xếp thứ tự dễ dàng.", icon: "📎", cat: "pdf-tools", featured: true },
-    { slug: "pdf-split", name: "Split PDF · Tách trang", desc: "Tách PDF theo từng trang hoặc khoảng trang bạn chọn.", icon: "✂️", cat: "pdf-tools", featured: true },
-    { slug: "pdf-compress", name: "Compress PDF · Nén PDF", desc: "Nén PDF giảm dung lượng — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true },
-    { slug: "pdf-pages", name: "Rotate PDF · Xoay & xóa trang", desc: "Xoay trang bị lệch 90°/180°/270° hoặc xóa trang thừa.", icon: "🔄", cat: "pdf-tools" },
-    { slug: "pdf-to-word", name: "PDF to Word · Sang DOCX", desc: "Convert PDF sang Word chỉnh sửa được — kể cả bản scan.", icon: "📄", cat: "pdf-tools", featured: true },
-    { slug: "office-to-pdf", name: "Word/Excel → PDF · Sang PDF", desc: "Convert DOCX & XLSX sang PDF nhanh, sạch để gửi hoặc in.", icon: "📑", cat: "pdf-tools", featured: true },
-    { slug: "pdf-convert", name: "Convert PDF · Sang TXT & ảnh", desc: "Convert PDF sang TXT (OCR) hoặc PNG từng trang / ZIP.", icon: "📤", cat: "pdf-tools" },
+    /* PDF */
+    { slug: "pdf-to-word", name: "PDF to Word · Sang DOCX", desc: "Convert PDF sang Word chỉnh sửa được — kể cả bản scan.", icon: "📄", cat: "pdf-tools", featured: true, rank: 1 },
+    { slug: "pdf-merge", name: "Merge PDF · Gộp file", desc: "Gộp nhiều PDF thành một tài liệu, sắp xếp thứ tự dễ dàng.", icon: "📎", cat: "pdf-tools", featured: true, rank: 2 },
+    { slug: "image-pdf", name: "Ảnh ↔ PDF · Hub chuyển đổi", desc: "Hub rõ 2 hướng: Ảnh → PDF và PDF → Ảnh (PNG JPG WebP).", icon: "🔄", cat: "pdf-tools", featured: true, rank: 3 },
+    { slug: "image-to-pdf", name: "Ảnh → PDF · Ghép thành PDF", desc: "Ghép nhiều JPG PNG WebP thành một PDF — Fit / A4 / Letter.", icon: "🖼️", cat: "pdf-tools", featured: true, rank: 4 },
+    { slug: "pdf-to-image", name: "PDF → Ảnh · Xuất PNG JPG WebP", desc: "Xuất từng trang PDF ra ảnh — xem trước, tải ZIP.", icon: "🌄", cat: "pdf-tools", featured: true, rank: 5 },
+    { slug: "pdf-compress", name: "Compress PDF · Nén PDF", desc: "Nén PDF giảm dung lượng — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true, rank: 6 },
+    { slug: "office-to-pdf", name: "Word/Excel → PDF · Sang PDF", desc: "Convert DOCX & XLSX sang PDF nhanh, sạch để gửi hoặc in.", icon: "📑", cat: "pdf-tools", rank: 7 },
+    { slug: "pdf-split", name: "Split PDF · Tách trang", desc: "Tách PDF theo từng trang hoặc khoảng trang bạn chọn.", icon: "✂️", cat: "pdf-tools", rank: 8 },
+    { slug: "pdf-pages", name: "Rotate PDF · Xoay & xóa trang", desc: "Xoay trang bị lệch 90°/180°/270° hoặc xóa trang thừa.", icon: "🔄", cat: "pdf-tools", rank: 9 },
+    { slug: "pdf-convert", name: "Convert PDF · Sang TXT (OCR)", desc: "Trích chữ từ PDF + OCR bản scan — xuất TXT.", icon: "📤", cat: "pdf-tools", rank: 10 },
 
-    { slug: "image-convert", name: "Convert Ảnh · Đổi định dạng", desc: "Convert JPG, PNG, WebP, GIF, BMP nhanh chóng.", icon: "🖼️", cat: "images", featured: true },
-    { slug: "image-resize", name: "Resize Ảnh · Đổi kích thước", desc: "Resize theo pixel hoặc preset — giữ tỉ lệ ảnh.", icon: "📐", cat: "images", featured: true },
-    { slug: "remove-background", name: "Remove Background · Xóa nền AI", desc: "Xóa nền ảnh bằng AI, xuất PNG trong suốt.", icon: "✂️", cat: "images", featured: true },
-    { slug: "image-batch", name: "Batch Ảnh · Xử lý hàng loạt", desc: "Convert, resize hoặc nén nhiều ảnh cùng lúc.", icon: "📦", cat: "images" },
+    /* Ảnh */
+    { slug: "remove-background", name: "Remove Background · Xóa nền AI", desc: "Xóa nền ảnh bằng AI, xuất PNG trong suốt.", icon: "✂️", cat: "images", featured: true, rank: 1 },
+    { slug: "image-compress", name: "Compress Ảnh · Nén ảnh", desc: "Nén JPG PNG WebP — xem % tiết kiệm, so sánh trước/sau.", icon: "🗜️", cat: "images", featured: true, rank: 2 },
+    { slug: "image-convert", name: "Convert Ảnh · Đổi định dạng", desc: "Convert JPG, PNG, WebP, GIF, BMP nhanh chóng.", icon: "🖼️", cat: "images", featured: true, rank: 3 },
+    { slug: "image-resize", name: "Resize Ảnh · Đổi kích thước", desc: "Resize theo pixel hoặc preset — giữ tỉ lệ ảnh.", icon: "📐", cat: "images", featured: true, rank: 4 },
+    { slug: "image-batch", name: "Batch Ảnh · Xử lý hàng loạt", desc: "Convert, resize hoặc nén nhiều ảnh cùng lúc.", icon: "📦", cat: "images", rank: 5 },
 
-    { slug: "convert-document", name: "Convert Document · PDF sang TXT", desc: "Convert PDF thành văn bản TXT để copy hoặc tìm kiếm.", icon: "📝", cat: "file-converter" },
-    { slug: "convert-image", name: "Convert Image · Đổi ảnh nhanh", desc: "Lối tắt mở công cụ Convert Ảnh.", icon: "🖼️", cat: "file-converter", hub: "image-convert" },
-    { slug: "convert-data", name: "CSV to JSON · Đổi dữ liệu", desc: "Convert CSV sang JSON và JSON sang CSV trong vài giây.", icon: "📊", cat: "file-converter", featured: true },
+    /* File & dữ liệu */
+    { slug: "excel-convert", name: "Excel ↔ CSV/JSON · Đổi bảng tính", desc: "Convert XLSX/XLS ↔ CSV ↔ JSON — chọn sheet, xem trước, tải file.", icon: "📗", cat: "file-converter", featured: true, rank: 1 },
+    { slug: "convert-data", name: "CSV to JSON · Đổi dữ liệu", desc: "Convert CSV sang JSON và JSON sang CSV trong vài giây.", icon: "📊", cat: "file-converter", featured: true, rank: 2 },
+    { slug: "convert-document", name: "Convert Document · PDF sang TXT", desc: "Convert PDF thành văn bản TXT để copy hoặc tìm kiếm.", icon: "📝", cat: "file-converter", featured: true, rank: 3 },
+    { slug: "convert-image", name: "Convert Image · Đổi ảnh nhanh", desc: "Lối tắt mở công cụ Convert Ảnh.", icon: "🖼️", cat: "file-converter", hub: "image-convert", rank: 9 },
 
-    { slug: "qr-generator", name: "QR Code · Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true },
-    { slug: "json-tools", name: "JSON Formatter · Làm đẹp JSON", desc: "Format, minify và kiểm tra JSON hợp lệ.", icon: "{ }", cat: "utilities", featured: true },
-    { slug: "base64-tools", name: "Base64 · Mã hóa / giải mã", desc: "Encode/decode Base64 — tiếng Việt, URL-safe, file.", icon: "🔤", cat: "utilities" },
-    { slug: "developer-tools", name: "Dev Tools · UUID & Hash", desc: "UUID, SHA hash, slugify tiếng Việt, Unix timestamp.", icon: "🛠️", cat: "utilities" }
+    /* Đơn vị — hub + tool nổi bật trước */
+    { slug: "unit-convert", name: "Chuyển đổi đơn vị · Tất cả nhóm", desc: "Hub đổi đơn vị: khối lượng, chiều dài, nhiệt độ, dung lượng — chọn tool theo nhóm.", icon: "⚖️", cat: "units", featured: true, rank: 1 },
+    { slug: "unit-mass", name: "Đổi khối lượng · kg · lb", desc: "Đổi kilogram, gram, pound, ounce, tấn — hệ số NIST/SI chuẩn.", icon: "⚖️", cat: "units", featured: true, rank: 2 },
+    { slug: "unit-length", name: "Đổi chiều dài · m · ft", desc: "Đổi mét, centimet, inch, feet, mile, hải lý — 1 inch = 25,4 mm.", icon: "📏", cat: "units", featured: true, rank: 3 },
+    { slug: "unit-temp", name: "Đổi nhiệt độ · °C · °F", desc: "Đổi độ C, độ F, Kelvin, Rankine theo công thức chuẩn.", icon: "🌡️", cat: "units", featured: true, rank: 4 },
+    { slug: "unit-data", name: "Đổi dung lượng · MB · GiB", desc: "Đổi KB/MB/GB (SI) và KiB/MiB/GiB (IEC) chính xác.", icon: "💾", cat: "units", featured: true, rank: 5 },
+    { slug: "unit-volume", name: "Đổi thể tích · L · gallon", desc: "Đổi lít, mililít, mét khối, gallon Mỹ/Anh, cup.", icon: "🧪", cat: "units", rank: 6 },
+    { slug: "unit-area", name: "Đổi diện tích · m² · ha", desc: "Đổi mét vuông, hecta, acre, feet vuông.", icon: "🗺️", cat: "units", rank: 7 },
+    { slug: "unit-speed", name: "Đổi tốc độ · km/h · mph", desc: "Đổi km/h, m/s, mph, knot, feet/giây.", icon: "🚀", cat: "units", rank: 8 },
+    { slug: "unit-time", name: "Đổi thời gian · giờ · phút", desc: "Đổi giây, phút, giờ, ngày, tuần, năm.", icon: "⏱️", cat: "units", rank: 9 },
+    { slug: "unit-energy", name: "Đổi năng lượng · J · kWh", desc: "Đổi joule, kilowatt-giờ, calo, BTU.", icon: "⚡", cat: "units", rank: 10 },
+    { slug: "unit-pressure", name: "Đổi áp suất · Pa · bar", desc: "Đổi pascal, bar, atm, psi, torr.", icon: "🔘", cat: "units", rank: 11 },
+    { slug: "unit-power", name: "Đổi công suất · W · HP", desc: "Đổi watt, kilowatt, mã lực HP/PS.", icon: "🔌", cat: "units", rank: 12 },
+    { slug: "unit-angle", name: "Đổi góc · độ · radian", desc: "Đổi độ, radian, grad, phút/giây cung.", icon: "📐", cat: "units", rank: 13 },
+    { slug: "unit-fuel", name: "Đổi tiêu hao · L/100km · mpg", desc: "Đổi L/100km, km/L, mpg Mỹ và mpg Anh.", icon: "⛽", cat: "units", rank: 14 },
+
+    /* Lập trình */
+    { slug: "json-tools", name: "JSON Formatter · Làm đẹp JSON", desc: "Format, minify và kiểm tra JSON hợp lệ.", icon: "{ }", cat: "developer", featured: true, rank: 1 },
+    { slug: "base64-tools", name: "Base64 · Mã hóa / giải mã", desc: "Encode/decode Base64 — tiếng Việt, URL-safe, file.", icon: "🔤", cat: "developer", featured: true, rank: 2 },
+    { slug: "developer-tools", name: "Dev Tools · UUID & Hash", desc: "UUID, SHA hash, slugify tiếng Việt, Unix timestamp.", icon: "🛠️", cat: "developer", featured: true, rank: 3 },
+
+    /* Tiện ích (gọn) */
+    { slug: "qr-generator", name: "QR Code · Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 1 },
+    { slug: "password-generator", name: "Password · Tạo mật khẩu", desc: "Tạo mật khẩu mạnh ngẫu nhiên — chữ, số, ký tự đặc biệt, đo độ mạnh.", icon: "🔐", cat: "utilities", featured: true, rank: 2 },
+    { slug: "text-convert", name: "Chuyển đổi chữ · Hoa thường, bỏ dấu", desc: "Viết hoa/thường, Title Case, bỏ dấu tiếng Việt, slug URL, dọn dòng, encode, tìm thay.", icon: "Aa", cat: "utilities", featured: true, rank: 3 }
   ],
 
   origin: "https://onetool.vn",
@@ -85,6 +136,10 @@ window.OTCatalog = {
     "remove-background": {
       title: "Remove Background online — Xóa nền ảnh AI miễn phí | OneTool",
       desc: "Remove background / xóa nền ảnh AI trên trình duyệt. Tải PNG trong suốt, miễn phí, không cần đăng nhập."
+    },
+    "image-compress": {
+      title: "Nén ảnh online — Compress Image JPG WebP miễn phí | OneTool",
+      desc: "Nén ảnh giảm dung lượng JPG PNG WebP trên trình duyệt. Xem % tiết kiệm, so sánh trước/sau — miễn phí, không upload."
     },
     "image-convert": {
       title: "Convert Ảnh online — JPG PNG WebP miễn phí | OneTool",
@@ -105,6 +160,10 @@ window.OTCatalog = {
     "audio-to-text": {
       title: "Audio to Text online — Convert giọng nói thành văn bản + SRT | OneTool",
       desc: "Audio to Text / video to text tiếng Việt. Convert MP3, WAV, MP4, MOV thành văn bản và phụ đề SRT — miễn phí trên trình duyệt."
+    },
+    "ai-summarize": {
+      title: "Tóm tắt AI online — Tóm tắt văn bản tiếng Việt miễn phí | OneTool",
+      desc: "Tóm tắt văn bản bằng AI: đoạn văn, gạch đầu dòng, TL;DR. Dán text hoặc mở file — miễn phí trên trình duyệt."
     },
     "video-convert": {
       title: "Compress Video online — Nén MP4, Convert WebM, tách MP3 | OneTool",
@@ -127,8 +186,20 @@ window.OTCatalog = {
       desc: "Rotate PDF / xoay trang 90°, 180°, 270° hoặc xóa trang không cần. Thao tác trên trình duyệt, miễn phí."
     },
     "pdf-convert": {
-      title: "Convert PDF online — PDF sang TXT hoặc PNG miễn phí | OneTool",
-      desc: "Convert PDF sang TXT (OCR scan) hoặc PNG từng trang / ZIP. Chạy trên trình duyệt, miễn phí."
+      title: "Convert PDF sang TXT online — OCR miễn phí | OneTool",
+      desc: "Xuất PDF thành văn bản TXT, OCR bản scan. Cần PDF → ảnh? Dùng tool PDF → Ảnh riêng."
+    },
+    "image-pdf": {
+      title: "Ảnh ↔ PDF online — Ảnh sang PDF & PDF sang ảnh | OneTool",
+      desc: "Hub chuyển đổi Ảnh → PDF và PDF → Ảnh (PNG JPG WebP). Miễn phí trên trình duyệt."
+    },
+    "image-to-pdf": {
+      title: "Ảnh sang PDF online — JPG PNG WebP thành PDF | OneTool",
+      desc: "Ghép nhiều ảnh thành một PDF. Khổ Fit/A4/Letter, sắp xếp trang — miễn phí, không upload server."
+    },
+    "pdf-to-image": {
+      title: "PDF sang ảnh online — Xuất PNG JPG WebP | OneTool",
+      desc: "Convert PDF sang ảnh PNG JPG WebP. Xuất từng trang hoặc ZIP, xem trước — miễn phí trên trình duyệt."
     },
     "pdf-to-word": {
       title: "PDF to Word online miễn phí — Convert PDF sang Word DOCX | OneTool",
@@ -146,9 +217,77 @@ window.OTCatalog = {
       title: "CSV to JSON online — Convert JSON sang CSV miễn phí | OneTool",
       desc: "CSV to JSON / JSON to CSV ngay trên trình duyệt. Dán dữ liệu hoặc mở file, tải kết quả — miễn phí."
     },
+    "excel-convert": {
+      title: "Excel sang CSV JSON online — Convert XLSX miễn phí | OneTool",
+      desc: "Đổi Excel (.xlsx/.xls) ↔ CSV ↔ JSON trên trình duyệt. Chọn sheet, xem trước bảng, tải file — miễn phí."
+    },
     "qr-generator": {
       title: "QR Code Generator online miễn phí — tạo mã QR tải PNG | OneTool",
       desc: "QR Code Generator từ link hoặc văn bản, xem trước và tải PNG để in. Miễn phí trên trình duyệt."
+    },
+    "password-generator": {
+      title: "Tạo mật khẩu online — Password Generator miễn phí | OneTool",
+      desc: "Password Generator tạo mật khẩu mạnh ngẫu nhiên (crypto). Chữ hoa, số, ký tự đặc biệt, đo độ mạnh — miễn phí."
+    },
+    "text-convert": {
+      title: "Chuyển đổi chữ online — Hoa thường, bỏ dấu tiếng Việt | OneTool",
+      desc: "Chuyển đổi chữ: viết hoa/thường, Title Case, bỏ dấu tiếng Việt, slug URL, dọn khoảng trắng, URL/HTML encode, tìm thay — miễn phí."
+    },
+    "unit-convert": {
+      title: "Chuyển đổi đơn vị online — Khối lượng, chiều dài, nhiệt độ | OneTool",
+      desc: "Bộ đổi đơn vị: khối lượng, chiều dài, diện tích, thể tích, nhiệt độ, tốc độ, dung lượng. Hệ số SI chuẩn, miễn phí."
+    },
+    "unit-mass": {
+      title: "Đổi khối lượng online — kg sang lb, g, tấn | OneTool",
+      desc: "Đổi khối lượng: kilogram, gram, pound, ounce, tấn. Hệ số NIST/SI chuẩn — miễn phí."
+    },
+    "unit-length": {
+      title: "Đổi chiều dài online — m sang ft, inch, km | OneTool",
+      desc: "Đổi chiều dài: mét, centimet, inch, feet, mile, hải lý — miễn phí."
+    },
+    "unit-area": {
+      title: "Đổi diện tích online — m², hecta, acre | OneTool",
+      desc: "Đổi diện tích: mét vuông, hecta, acre, feet vuông — miễn phí."
+    },
+    "unit-volume": {
+      title: "Đổi thể tích online — lít, mL, gallon | OneTool",
+      desc: "Đổi thể tích: lít, mililít, mét khối, gallon Mỹ/Anh — miễn phí."
+    },
+    "unit-temp": {
+      title: "Đổi nhiệt độ online — °C sang °F, Kelvin | OneTool",
+      desc: "Đổi nhiệt độ: độ C, độ F, Kelvin, Rankine — miễn phí."
+    },
+    "unit-speed": {
+      title: "Đổi tốc độ online — km/h sang mph | OneTool",
+      desc: "Đổi tốc độ: km/h, m/s, mph, knot — miễn phí."
+    },
+    "unit-time": {
+      title: "Đổi thời gian online — giờ, phút, giây | OneTool",
+      desc: "Đổi thời gian: giây, phút, giờ, ngày, tuần — miễn phí."
+    },
+    "unit-data": {
+      title: "Đổi dung lượng online — MB sang GiB | OneTool",
+      desc: "Đổi dung lượng: KB/MB/GB (SI) và KiB/MiB/GiB (IEC) — miễn phí."
+    },
+    "unit-energy": {
+      title: "Đổi năng lượng online — J, kWh, calo | OneTool",
+      desc: "Đổi năng lượng: joule, kWh, calo, BTU — miễn phí."
+    },
+    "unit-pressure": {
+      title: "Đổi áp suất online — Pa, bar, atm, psi | OneTool",
+      desc: "Đổi áp suất: pascal, bar, atm, psi, torr — miễn phí."
+    },
+    "unit-power": {
+      title: "Đổi công suất online — W, kW, HP | OneTool",
+      desc: "Đổi công suất: watt, kilowatt, mã lực HP/PS — miễn phí."
+    },
+    "unit-angle": {
+      title: "Đổi góc online — độ sang radian | OneTool",
+      desc: "Đổi góc: độ, radian, grad — miễn phí."
+    },
+    "unit-fuel": {
+      title: "Đổi tiêu hao nhiên liệu — L/100km sang mpg | OneTool",
+      desc: "Đổi L/100km, km/L, mpg Mỹ/Anh — miễn phí."
     },
     "json-tools": {
       title: "JSON Formatter online — Format minify JSON miễn phí | OneTool",
@@ -263,6 +402,36 @@ window.OTCatalog = {
         }
       ]
     },
+    "image-compress": {
+      keywords: "nén ảnh, compress image, giảm dung lượng ảnh, nén jpg webp",
+      howto: [
+        "Tải ảnh JPG, PNG hoặc WebP lên.",
+        "Chọn mức nén (Cân bằng / Mạnh) hoặc tùy chỉnh chất lượng.",
+        "Xem % tiết kiệm, so sánh trước/sau rồi tải ảnh đã nén."
+      ],
+      sections: [
+        {
+          title: "Nén ảnh là gì?",
+          paras: [
+            "**Nén ảnh (Compress Image)** giảm dung lượng file để gửi email, đăng web hoặc chat — vẫn giữ độ nét chấp nhận được bằng cách chọn chất lượng JPG/WebP và (tuỳ chọn) thu nhỏ cạnh dài."
+          ]
+        },
+        {
+          title: "Cách nén ảnh online miễn phí",
+          paras: [
+            "Upload ảnh, chọn mức **Cân bằng** (khuyến nghị) hoặc **Mạnh**, xem vòng % tiết kiệm và so sánh ảnh gốc với kết quả, rồi tải về. Toàn bộ xử lý trên trình duyệt — file không upload server."
+          ]
+        },
+        {
+          title: "Nên chọn mức nào?",
+          list: [
+            { title: "Nhẹ", text: "ảnh in ấn hoặc khi cần giữ chi tiết cao." },
+            { title: "Cân bằng", text: "website, mạng xã hội, gửi Zalo/email." },
+            { title: "Mạnh / Siêu nhỏ", text: "form upload giới hạn MB hoặc ảnh thumbnail." }
+          ]
+        }
+      ]
+    },
     "image-batch": {
       keywords: "xử lý nhiều ảnh, batch convert resize nén ảnh",
       howto: [
@@ -348,6 +517,36 @@ window.OTCatalog = {
             { title: "Phụ đề video", text: "gắn SRT vào CapCut, Premiere hoặc YouTube." },
             { title: "Biên bản họp", text: "sửa chính tả rồi gửi team." },
             { title: "Podcast / phỏng vấn", text: "lấy quote và viết bài từ bản ghi." }
+          ]
+        }
+      ]
+    },
+    "ai-summarize": {
+      keywords: "tóm tắt ai, tóm tắt văn bản, summarize text vietnamese, tldr online, rút gọn bài viết",
+      howto: [
+        "Dán văn bản hoặc mở file .txt/.md.",
+        "Chọn độ dài, định dạng, ngôn ngữ và trọng tâm.",
+        "Bấm Tóm tắt bằng AI — sao chép hoặc tải TXT/MD."
+      ],
+      sections: [
+        {
+          title: "Tóm tắt AI là gì?",
+          paras: [
+            "**Tóm tắt AI** giúp rút gọn bài viết, biên bản họp, email dài hoặc tài liệu học tập thành ý chính. OneTool hỗ trợ tiếng Việt, xuất dạng đoạn văn, gạch đầu dòng hoặc TL;DR + điểm chính."
+          ]
+        },
+        {
+          title: "Cách tóm tắt văn bản online",
+          paras: [
+            "Dán nội dung vào ô nguồn (hoặc mở file), chọn độ dài và định dạng, bấm **Tóm tắt bằng AI**. Khi xong, sao chép kết quả hoặc tải file TXT/Markdown."
+          ]
+        },
+        {
+          title: "Khi nào nên dùng",
+          list: [
+            { title: "Đọc nhanh", text: "bài báo / newsletter dài trước khi đọc kỹ." },
+            { title: "Họp hành", text: "rút việc cần làm từ biên bản." },
+            { title: "Học tập", text: "tóm khái niệm then chốt để ôn." }
           ]
         }
       ]
@@ -499,23 +698,93 @@ window.OTCatalog = {
       ]
     },
     "pdf-convert": {
-      keywords: "pdf sang txt, pdf sang ảnh png, convert pdf",
+      keywords: "pdf sang txt, ocr pdf, convert pdf text",
       howto: [
         "Tải PDF lên.",
-        "Chọn xuất TXT hoặc PNG.",
+        "Chọn xuất TXT (OCR nếu scan).",
         "Tải kết quả."
       ],
       sections: [
         {
-          title: "Convert PDF là gì?",
+          title: "Convert PDF sang TXT là gì?",
           paras: [
-            "**Convert PDF** đổi PDF sang **TXT** để copy nội dung, hoặc sang **PNG** (trang đầu) khi cần thumbnail xem nhanh."
+            "**Convert PDF → TXT** trích chữ để copy hoặc tìm kiếm. PDF scan dùng OCR. Muốn xuất **ảnh từng trang**, dùng tool **PDF → Ảnh**."
           ]
         },
         {
-          title: "Cách chuyển PDF sang text hoặc ảnh",
+          title: "Cách chuyển PDF sang text",
           paras: [
-            "Chọn file, chọn kiểu xuất, tải kết quả. PDF tạo từ Word/máy tính thường lấy chữ tốt; PDF scan ảnh cần OCR riêng."
+            "Chọn file, chạy xuất TXT. PDF từ Word thường lấy chữ tốt; PDF scan ảnh sẽ OCR tự động."
+          ]
+        }
+      ]
+    },
+    "image-pdf": {
+      keywords: "ảnh sang pdf, pdf sang ảnh, image to pdf, pdf to image",
+      howto: [
+        "Chọn hướng: Ảnh → PDF hoặc PDF → Ảnh.",
+        "Upload file và chỉnh tùy chọn.",
+        "Tải kết quả."
+      ],
+      sections: [
+        {
+          title: "Ảnh ↔ PDF là gì?",
+          paras: [
+            "Hub gom hai nhu cầu phổ biến: **ghép ảnh thành PDF** (hồ sơ, scan điện thoại) và **xuất PDF ra ảnh** (PNG/JPG/WebP) để đăng web hoặc chỉnh sửa."
+          ]
+        },
+        {
+          title: "Chọn đúng hướng",
+          list: [
+            { title: "Ảnh → PDF", text: "nhiều JPG/PNG thành một file gửi email hoặc in." },
+            { title: "PDF → Ảnh", text: "từng trang ra PNG/JPG/WebP hoặc ZIP." }
+          ]
+        }
+      ]
+    },
+    "image-to-pdf": {
+      keywords: "ảnh sang pdf, jpg to pdf, png to pdf, ghép ảnh thành pdf",
+      howto: [
+        "Thêm một hoặc nhiều ảnh.",
+        "Sắp xếp thứ tự trang, chọn khổ Fit/A4/Letter.",
+        "Tạo PDF và tải về."
+      ],
+      sections: [
+        {
+          title: "Ảnh sang PDF là gì?",
+          paras: [
+            "**Ảnh → PDF** ghép JPG, PNG, WebP (và định dạng phổ biến khác) thành một tài liệu PDF — mỗi ảnh một trang, có thể sắp xếp lại trước khi xuất."
+          ]
+        },
+        {
+          title: "Khổ trang nào nên chọn?",
+          list: [
+            { title: "Vừa ảnh (Fit)", text: "giữ đúng kích thước pixel — tốt cho scan điện thoại." },
+            { title: "A4 / Letter", text: "căn giữa trong khổ chuẩn để in ấn." }
+          ]
+        }
+      ]
+    },
+    "pdf-to-image": {
+      keywords: "pdf sang ảnh, pdf to png, pdf to jpg, xuất trang pdf",
+      howto: [
+        "Upload PDF.",
+        "Chọn PNG/JPG/WebP và độ nét.",
+        "Xuất — tải từng trang hoặc ZIP."
+      ],
+      sections: [
+        {
+          title: "PDF sang ảnh là gì?",
+          paras: [
+            "**PDF → Ảnh** render từng trang thành PNG, JPG hoặc WebP. Phù hợp thumbnail, đăng social, hoặc chỉnh trong Photoshop/Canva."
+          ]
+        },
+        {
+          title: "Mẹo xuất đẹp",
+          list: [
+            { title: "PNG", text: "nét, chữ sắc — file lớn hơn." },
+            { title: "JPG / WebP", text: "nhẹ hơn cho ảnh chụp / đăng web." },
+            { title: "Độ nét 2×", text: "cân bằng rõ và dung lượng (khuyến nghị)." }
           ]
         }
       ]
@@ -654,6 +923,42 @@ window.OTCatalog = {
         }
       ]
     },
+    "excel-convert": {
+      keywords: "excel sang csv, excel sang json, xlsx to csv, csv sang excel, json sang excel, convert excel online",
+      howto: [
+        "Chọn chiều chuyển (Excel→CSV/JSON hoặc CSV/JSON→Excel).",
+        "Tải file .xlsx/.xls/.csv/.json hoặc dán CSV/JSON.",
+        "Chọn sheet (nếu Excel nhiều sheet) → Chuyển đổi → Tải file."
+      ],
+      sections: [
+        {
+          title: "Excel ↔ CSV/JSON là gì?",
+          paras: [
+            "Công cụ đổi **file Excel (.xlsx/.xls)** sang **CSV** hoặc **JSON**, và ngược lại — chạy hoàn toàn trên trình duyệt, không upload lên server. Phù hợp khi đưa bảng tính vào API, database hoặc mở dữ liệu JSON trong Excel."
+          ]
+        },
+        {
+          title: "Cách convert Excel sang CSV / JSON",
+          paras: [
+            "Chọn **Excel → CSV** hoặc **Excel → JSON**, kéo thả file XLSX, chọn đúng sheet nếu workbook có nhiều tab, bấm **Chuyển đổi**, rồi **Tải file**. CSV có tùy chọn BOM để Excel mở tiếng Việt không lỗi font."
+          ]
+        },
+        {
+          title: "CSV / JSON sang Excel",
+          paras: [
+            "Chọn **CSV → Excel** hoặc **JSON → Excel**, mở file hoặc dán nội dung. JSON cần là mảng object (mỗi phần tử một dòng). Kết quả là file **.xlsx** mở được trên Microsoft Excel, Google Sheets, LibreOffice."
+          ]
+        },
+        {
+          title: "Khi nào nên dùng",
+          list: [
+            { title: "Làm việc với API", text: "xuất sheet Excel → JSON cho frontend/backend." },
+            { title: "Báo cáo", text: "JSON hệ thống → Excel để gửi sếp / kế toán." },
+            { title: "Làm sạch dữ liệu", text: "CSV từ hệ thống khác → Excel chỉnh sửa rồi xuất lại." }
+          ]
+        }
+      ]
+    },
     "qr-generator": {
       keywords: "tạo mã qr, qr code url, tải qr png",
       howto: [
@@ -691,6 +996,103 @@ window.OTCatalog = {
           ]
         }
       ]
+    },
+    "password-generator": {
+      keywords: "tạo mật khẩu, password generator, mật khẩu mạnh, random password",
+      howto: [
+        "Chọn preset hoặc tùy chỉnh độ dài và loại ký tự.",
+        "Bấm Tạo mật khẩu mới — xem thanh độ mạnh.",
+        "Sao chép và lưu vào trình quản lý mật khẩu."
+      ],
+      sections: [
+        {
+          title: "Password Generator là gì?",
+          paras: [
+            "**Password Generator** tạo mật khẩu ngẫu nhiên mạnh từ chữ hoa/thường, số và ký tự đặc biệt. OneTool dùng **crypto.getRandomValues** — entropy cao, không dùng Math.random()."
+          ]
+        },
+        {
+          title: "Mật khẩu mạnh nên có gì?",
+          list: [
+            { title: "Độ dài", text: "ít nhất 12–16 ký tự (24+ cho tài khoản quan trọng)." },
+            { title: "Đa dạng", text: "trộn hoa, thường, số và ký tự đặc biệt." },
+            { title: "Không tái sử dụng", text: "mỗi site một mật khẩu — dùng Bitwarden, 1Password…" }
+          ]
+        },
+        {
+          title: "An toàn & riêng tư",
+          paras: [
+            "Mật khẩu được tạo **100% trên trình duyệt** — không gửi server, không lưu log. Sau khi sao chép, đóng tab nếu dùng máy chung."
+          ]
+        }
+      ]
+    },
+    "text-convert": {
+      keywords: "chuyển đổi chữ, viết hoa viết thường, bỏ dấu tiếng việt, slug url, title case online",
+      howto: [
+        "Dán văn bản hoặc mở file .txt.",
+        "Chọn thao tác: hoa/thường, bỏ dấu, slug, dọn dòng, encode…",
+        "Sao chép hoặc tải TXT — có thể đưa kết quả xuống nguồn để chuyển tiếp."
+      ],
+      sections: [
+        {
+          title: "Chuyển đổi chữ online dùng để làm gì?",
+          paras: [
+            "**Chuyển đổi chữ** giúp đổi kiểu viết (HOA / thường / Title Case), **bỏ dấu tiếng Việt**, tạo **slug URL**, dọn khoảng trắng và dòng trống, encode URL/HTML hoặc tìm & thay — hữu ích khi làm nội dung web, SEO, CSV và mã nguồn."
+          ]
+        },
+        {
+          title: "Bỏ dấu tiếng Việt chính xác",
+          paras: [
+            "OneTool chuẩn hóa Unicode NFD rồi gỡ dấu kết hợp, xử lý riêng **đ/Đ**. Kết quả phù hợp đặt tên file, slug bài viết hoặc tìm kiếm không dấu."
+          ]
+        },
+        {
+          title: "Khi nào nên dùng",
+          paras: ["Một số tình huống phổ biến:"],
+          list: [
+            { title: "SEO / URL", text: "slug tiêu đề tiếng Việt thành dang-thi-hong." },
+            { title: "Dữ liệu", text: "đồng bộ hoa thường, xóa dòng trống trước khi import CSV." },
+            { title: "Web / code", text: "HTML encode, URL encode hoặc Unicode escape nhanh." }
+          ]
+        }
+      ]
+    },
+    "unit-convert": {
+      keywords: "chuyển đổi đơn vị, đổi kg sang lb, đổi mét sang feet, đổi độ c sang f",
+      howto: [
+        "Mở hub Chuyển đổi đơn vị và chọn nhóm (khối lượng, chiều dài…).",
+        "Hoặc vào thẳng tool: Đổi khối lượng, Đổi nhiệt độ…",
+        "Nhập số, chọn đơn vị — kết quả hiện ngay."
+      ],
+      sections: [
+        {
+          title: "Chuyển đổi đơn vị là gì?",
+          paras: [
+            "**Chuyển đổi đơn vị** quy đổi giữa hệ mét (SI) và hệ Anh–Mỹ. OneTool tách từng nhóm thành tool riêng để dễ tìm và SEO rõ ràng."
+          ]
+        }
+      ]
+    },
+    "unit-mass": {
+      keywords: "đổi kg sang lb, đổi khối lượng, kilogram pound",
+      howto: ["Nhập khối lượng.", "Chọn đơn vị nguồn và đích.", "Sao chép kết quả hoặc xem bảng tất cả đơn vị."],
+      sections: [{ title: "Đổi khối lượng online", paras: ["Đổi **kg ↔ lb**, gram, ounce, tấn theo hệ số NIST: 1 lb = 0,45359237 kg."] }]
+    },
+    "unit-length": {
+      keywords: "đổi mét sang feet, đổi inch sang cm, chiều dài online",
+      howto: ["Nhập chiều dài.", "Chọn m, cm, inch, ft…", "Xem kết quả live."],
+      sections: [{ title: "Đổi chiều dài online", paras: ["Chuẩn SI: **1 inch = 25,4 mm**. Hỗ trợ km, mile, hải lý."] }]
+    },
+    "unit-temp": {
+      keywords: "đổi độ c sang f, celsius fahrenheit kelvin",
+      howto: ["Nhập nhiệt độ.", "Chọn °C, °F hoặc K.", "Kết quả theo công thức chuẩn."],
+      sections: [{ title: "Đổi nhiệt độ online", paras: ["Công thức qua Kelvin — chính xác °C ↔ °F ↔ K ↔ °R."] }]
+    },
+    "unit-data": {
+      keywords: "đổi mb sang gib, kilobyte mebibyte",
+      howto: ["Nhập dung lượng.", "Chọn KB/MB (SI) hoặc KiB/MiB (IEC).", "Sao chép kết quả."],
+      sections: [{ title: "Đổi dung lượng online", paras: ["Phân biệt rõ **MB (10⁶)** và **MiB (2²⁰)** — đúng chuẩn máy tính."] }]
     },
     "json-tools": {
       keywords: "format json, minify json, validate json online",
@@ -769,31 +1171,45 @@ window.OTCatalog = {
       ]
     },
     "cong-cu-pdf": {
-      intro: "Tập hợp **công cụ PDF online miễn phí**: gộp nhiều file, tách trang, nén dung lượng, xoay trang và chuyển đổi sang TXT hoặc ảnh.",
+      intro: "Tập hợp **công cụ PDF online miễn phí**: gộp, tách, nén, **Ảnh ↔ PDF**, xoay trang và trích TXT/OCR.",
       sections: [
-        { title: "Công cụ PDF phổ biến", paras: ["**Gộp PDF** — nối nhiều file thành một. **Tách PDF** — lấy trang cần thiết. **Nén PDF** — giảm dung lượng trước khi gửi email."] },
-        { title: "An toàn & riêng tư", paras: ["Mọi thao tác xử lý PDF diễn ra trên trình duyệt của bạn. File không rời khỏi thiết bị — phù hợp tài liệu nội bộ, hợp đồng."] }
+        { title: "Ảnh ↔ PDF", paras: ["**Ảnh → PDF** ghép nhiều ảnh thành một file. **PDF → Ảnh** xuất PNG/JPG/WebP từng trang hoặc ZIP."] },
+        { title: "Gộp · nén · Word", paras: ["**Gộp PDF**, **Nén PDF**, **PDF → Word**. File xử lý trên trình duyệt — không rời máy bạn."] }
       ]
     },
     "cong-cu-anh": {
-      intro: "**Công cụ ảnh online** — convert định dạng, resize theo pixel hoặc preset, xóa nền AI và xử lý hàng loạt.",
+      intro: "**Công cụ ảnh online** — nén dung lượng, convert định dạng, resize, xóa nền AI. Cần ghép ảnh thành PDF? Xem hub **Ảnh ↔ PDF**.",
       sections: [
-        { title: "Convert & resize ảnh", paras: ["Đổi JPG, PNG, WebP, GIF, BMP. Resize cho banner 1920×1080, avatar, thumbnail social — giữ chất lượng tốt nhất có thể."] },
-        { title: "Xóa nền AI", paras: ["Tách chủ thể khỏi phông, xuất **PNG trong suốt** — lý tưởng cho ảnh sản phẩm, chân dung, thiết kế Canva."] }
+        { title: "Nén & convert ảnh", paras: ["**Nén ảnh** giảm MB với % tiết kiệm rõ ràng. Đổi JPG, PNG, WebP. Resize banner, avatar, thumbnail."] },
+        { title: "Xóa nền & PDF", paras: ["Tách nền AI xuất PNG trong suốt. Ghép nhiều ảnh thành PDF tại **Ảnh → PDF**."] }
       ]
     },
     "cong-cu-chuyen-doi": {
-      intro: "Chuyển đổi dữ liệu và tài liệu — **CSV ↔ JSON**, PDF sang text và các định dạng phổ biến khác.",
+      intro: "Chuyển đổi **file và dữ liệu** — Excel ↔ CSV/JSON, CSV ↔ JSON, PDF sang text.",
       sections: [
-        { title: "CSV ↔ JSON", paras: ["Developer và analyst thường cần chuyển CSV sang JSON hoặc ngược lại. Tool hỗ trợ header, delimiter và preview trực tiếp."] },
-        { title: "Convert document", paras: ["Trích xuất nội dung text từ PDF — nhanh, không cần cài phần mềm."] }
+        { title: "Excel & bảng tính", paras: ["**Excel ↔ CSV/JSON** — chọn sheet, xem trước, tải file. Phù hợp API, báo cáo, làm sạch dữ liệu."] },
+        { title: "CSV ↔ JSON & document", paras: ["Đổi nhanh CSV/JSON. **Convert Document** trích text từ PDF."] }
+      ]
+    },
+    "cong-cu-don-vi": {
+      intro: "Bộ **đổi đơn vị** chuẩn SI/NIST: khối lượng, chiều dài, nhiệt độ, dung lượng và nhiều nhóm khác.",
+      sections: [
+        { title: "Nhóm phổ biến", paras: ["**Khối lượng** kg↔lb, **chiều dài** m↔ft, **nhiệt độ** °C↔°F, **dung lượng** MB↔GiB."] },
+        { title: "Độ chính xác", paras: ["1 lb = 0,45359237 kg · 1 inch = 25,4 mm · phân biệt KB (SI) và KiB (IEC)."] }
+      ]
+    },
+    "cong-cu-lap-trinh": {
+      intro: "Công cụ **lập trình / developer**: JSON formatter, Base64, UUID, hash SHA, slugify tiếng Việt.",
+      sections: [
+        { title: "JSON & Base64", paras: ["Format/minify/validate JSON. Encode/decode Base64 UTF-8, URL-safe, Data URL."] },
+        { title: "UUID & Hash", paras: ["Tạo UUID v4, hash SHA-256/384/512, slugify tiêu đề tiếng Việt."] }
       ]
     },
     "cong-cu-tien-ich": {
-      intro: "Bộ **tiện ích online** cho developer và văn phòng: QR code, JSON formatter, Base64, UUID, hash SHA.",
+      intro: "Tiện ích văn phòng gọn: **QR Code**, **tạo mật khẩu** và **chuyển đổi chữ** (hoa/thường, bỏ dấu).",
       sections: [
-        { title: "Developer tools", paras: ["Format JSON, encode/decode Base64, tạo UUID v4, hash SHA-256 — tiện khi debug API hoặc xử lý dữ liệu nhanh."] },
-        { title: "Tạo mã QR", paras: ["Nhập URL hoặc văn bản, tải ảnh PNG — dùng cho menu, WiFi, thanh toán, marketing."] }
+        { title: "QR & mật khẩu", paras: ["**QR Code** từ link hoặc WiFi. **Password Generator** mật khẩu crypto ngẫu nhiên, đo độ mạnh."] },
+        { title: "Chuyển đổi chữ", paras: ["Viết hoa/thường, Title Case, bỏ dấu tiếng Việt, slug URL, tìm & thay."] }
       ]
     }
   },
@@ -822,7 +1238,7 @@ window.OTCatalog = {
     const current = this.toolBySlug(slug);
     if (!current) return [];
     const same = this.tools.filter(t => t.cat === current.cat && t.slug !== slug);
-    const rest = this.tools.filter(t => t.cat !== current.cat && t.slug !== slug && (t.featured || t.cat === "utilities"));
+    const rest = this.tools.filter(t => t.cat !== current.cat && t.slug !== slug && t.featured);
     const out = [];
     const seen = new Set();
     same.concat(rest).forEach(t => {

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đổi góc online — độ sang radian | OneTool</title>
+  <meta name="description" content="Đổi góc: độ, radian, grad, phút/giây cung — miễn phí trên trình duyệt." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826h" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/unit-convert.css?v=20260826b" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="unit-angle" data-unit-cat="angle">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="uc-page">
+    <header class="uc-intro">
+      <h1>Đổi góc · độ · radian</h1>
+      <p>Đổi độ, radian, grad, phút/giây cung.</p>
+      <div class="uc-chips" aria-hidden="true">
+        <span class="uc-chip">độ</span>
+        <span class="uc-chip">radian</span>
+        <span class="uc-chip">grad</span>
+      </div>
+    </header>
+
+    <nav class="uc-sibs" id="sibNav" aria-label="Công cụ đơn vị khác"></nav>
+    <div class="uc-cats" id="catTabs" hidden></div>
+
+    <div class="uc-studio">
+      <aside class="uc-panel">
+        <div class="uc-panel-head">
+          <h2 id="panelTitle">1 · Nhập giá trị</h2>
+        </div>
+        <div class="uc-body">
+          <div class="uc-pair">
+            <div class="uc-field">
+              <label for="fromValue">Từ</label>
+              <input type="text" id="fromValue" inputmode="decimal" autocomplete="off" value="1" />
+              <select id="fromUnit" aria-label="Đơn vị nguồn" style="margin-top:0.45rem"></select>
+            </div>
+            <button type="button" class="uc-swap" id="swapBtn" title="Đảo chiều" aria-label="Đảo chiều đơn vị">⇄</button>
+            <div class="uc-field">
+              <label for="toValue">Sang</label>
+              <input type="text" id="toValue" readonly value="" />
+              <select id="toUnit" aria-label="Đơn vị đích" style="margin-top:0.45rem"></select>
+            </div>
+          </div>
+
+          <p class="uc-formula" id="formulaBox">—</p>
+
+          <div class="uc-opts">
+            <label>
+              Số chữ số thập phân
+              <select id="precision">
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6" selected>6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+              </select>
+            </label>
+            <label><input type="checkbox" id="optVi" checked /> Định dạng số Việt (1.234,5)</label>
+          </div>
+
+          <div class="uc-actions">
+            <button type="button" class="btn btn-primary" id="copyBtn">Sao chép kết quả</button>
+            <button type="button" class="btn btn-outline" id="sampleBtn">Giá trị mẫu</button>
+          </div>
+
+          <p class="uc-note" id="hintText">Hệ số theo chuẩn SI / NIST.</p>
+          <p class="uc-status" id="status">Sẵn sàng — nhập số để đổi ngay.</p>
+        </div>
+      </aside>
+
+      <div class="uc-panel">
+        <div class="uc-panel-head">
+          <h2>2 · Tất cả đơn vị trong nhóm</h2>
+        </div>
+        <div class="uc-body">
+          <div class="uc-table-wrap">
+            <table class="uc-table">
+              <thead>
+                <tr>
+                  <th>Đơn vị</th>
+                  <th>Giá trị</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="allBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826ac"></script>
+<script src="../assets/js/layout.js?v=20260826i"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826h"></script>
+<script src="../assets/js/tools/unit-convert.js?v=20260826b"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  window.OTUnitConvert.mount({ catId: "angle" });
+});
+</script>
+</body>
+</html>

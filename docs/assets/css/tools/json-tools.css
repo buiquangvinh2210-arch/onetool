@@ -231,3 +231,44 @@ body[data-tool="json-tools"] input[type="file"] {
     min-height: auto;
   }
 }
+
+/* ── Dark mode ── */
+html[data-theme="dark"] body[data-tool="json-tools"] {
+  --jt-ink: #f1edf8;
+  --jt-muted: #94a3b8;
+  --jt-line: rgba(255, 255, 255, 0.08);
+  --jt-soft: rgba(124, 58, 237, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="json-tools"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-panel,
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-panel-head,
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-mode button,
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-text-btn,
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-editor,
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-out,
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-toolbar select {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-panel-head {
+  background: rgba(19, 16, 31, 0.98);
+}
+
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-mode button.is-on {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.4);
+  color: #c4b5fd;
+}
+
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-editor,
+html[data-theme="dark"] body[data-tool="json-tools"] .jt-out {
+  background: var(--tool-input-bg, #0f0d14);
+}

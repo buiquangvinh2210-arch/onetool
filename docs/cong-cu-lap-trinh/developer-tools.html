@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UUID, Hash SHA, Slugify tiếng Việt, Timestamp online | OneTool</title>
+  <meta name="description" content="Tạo UUID v4, hash SHA-256/384/512, slugify tiếng Việt và chuyển Unix timestamp. Công cụ developer miễn phí trên trình duyệt." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/developer-tools.css" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="dev-page">
+    <header class="dev-intro">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+      <h1>Dev Tools · UUID &amp; Hash</h1>
+      <p id="introDesc"></p>
+    </header>
+
+    <div class="dev-studio">
+      <div class="dev-panel">
+        <div class="dev-panel-head">
+          <h2 id="lblSource"></h2>
+          <div class="dev-mode" id="modeTabs" role="tablist">
+            <button type="button" class="is-on" data-mode="uuid" role="tab" aria-selected="true">UUID</button>
+            <button type="button" data-mode="hash" role="tab" aria-selected="false">Hash</button>
+            <button type="button" data-mode="slugify" role="tab" aria-selected="false">Slugify</button>
+            <button type="button" data-mode="timestamp" role="tab" aria-selected="false">Timestamp</button>
+          </div>
+        </div>
+        <div class="dev-body">
+          <div class="dev-meta"><span id="inputMeta"></span></div>
+
+          <div class="dev-opts" id="uuidOpts">
+            <div class="dev-field">
+              <label for="uuidCount" id="lblCount"></label>
+              <input type="number" id="uuidCount" min="1" max="50" value="1" />
+            </div>
+          </div>
+
+          <div class="dev-opts" id="hashOpts" hidden>
+            <div class="dev-field">
+              <label for="algo" id="lblAlgo"></label>
+              <select id="algo">
+                <option value="SHA256">SHA-256</option>
+                <option value="SHA384">SHA-384</option>
+                <option value="SHA512">SHA-512</option>
+                <option value="SHA1">SHA-1</option>
+              </select>
+            </div>
+            <label class="chk"><input type="checkbox" id="hashUpper" /> <span id="lblUpper"></span></label>
+          </div>
+
+          <div class="dev-opts" id="slugOpts" hidden>
+            <div class="dev-field">
+              <label for="slugSep" id="lblSep"></label>
+              <select id="slugSep">
+                <option value="-">- (gạch ngang)</option>
+                <option value="_">_ (gạch dưới)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="dev-opts" id="tsOpts" hidden>
+            <div class="dev-submode" id="tsSubmode">
+              <button type="button" class="is-on" data-ts="now" id="tsNowBtn"></button>
+              <button type="button" data-ts="convert" id="tsConvertBtn"></button>
+            </div>
+          </div>
+
+          <div id="inputWrap">
+            <textarea id="inputText" class="dev-editor" spellcheck="false"></textarea>
+          </div>
+          <div class="dev-file-chip" id="fileChip" hidden></div>
+          <div class="dev-toolbar">
+            <button type="button" class="dev-text-btn" id="openFileBtn"></button>
+            <button type="button" class="dev-text-btn" id="sampleBtn"></button>
+            <button type="button" class="dev-text-btn" id="clearBtn"></button>
+            <input type="file" id="fileInput" />
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="runBtn"></button>
+        </div>
+      </div>
+
+      <div class="dev-panel result-panel">
+        <div class="dev-panel-head">
+          <h2 id="lblResult"></h2>
+          <div class="dev-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled></button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled></button>
+          </div>
+        </div>
+        <div class="dev-body">
+          <p id="status" class="dev-status"></p>
+          <pre id="preview" class="dev-out is-empty"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js?v=20260826g"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826g"></script>
+<script src="../assets/js/tools/dev-crypto.js?v=20260824a" defer></script>
+<script src="../assets/js/tools/developer-tools-ui.js?v=20260824a" defer></script>
+</body>
+</html>

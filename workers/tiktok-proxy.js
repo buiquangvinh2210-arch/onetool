@@ -29,8 +29,8 @@ export default {
         {
           ok: true,
           service: "onetool-tiktok-proxy",
-          version: 7,
-          build: "20260825-cdn",
+          version: 8,
+          build: "20260826-dl",
           ytdlp: Boolean(String(env.YTDLP_API_URL || "").trim())
         },
         200,
@@ -590,13 +590,15 @@ async function proxyFile(request, url, cors) {
   }
 
   const headers = new Headers(cors);
-  headers.set("Content-Type", upstream.headers.get("Content-Type") || guessMime(name));
+  // Ép octet-stream + attachment — WebView FB/Zalo hay phát inline video/mp4 thay vì tải
+  headers.set("Content-Type", "application/octet-stream");
   const len = upstream.headers.get("Content-Length");
   if (len) headers.set("Content-Length", len);
   const cr = upstream.headers.get("Content-Range");
   if (cr) headers.set("Content-Range", cr);
   headers.set("Accept-Ranges", "bytes");
   headers.set("Cache-Control", "private, max-age=300");
+  headers.set("X-Content-Type-Options", "nosniff");
   headers.set(
     "Content-Disposition",
     `attachment; filename="${name}"; filename*=UTF-8''${encodeURIComponent(name)}`

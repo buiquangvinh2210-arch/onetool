@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tóm tắt AI online — Tóm tắt văn bản tiếng Việt miễn phí | OneTool</title>
+  <meta name="description" content="Tóm tắt văn bản bằng AI: đoạn văn, gạch đầu dòng, TL;DR. Dán text hoặc mở file — miễn phí trên trình duyệt, không cần đăng nhập." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826h" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/ai-summarize.css?v=20260826b" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="ai-summarize">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="as-page">
+    <header class="as-intro">
+      <h1>Tóm tắt AI · Rút gọn văn bản</h1>
+      <p>Dán bài viết, biên bản, email hoặc tài liệu — AI tóm ý chính dạng đoạn văn, gạch đầu dòng hoặc TL;DR. Miễn phí, nhanh.</p>
+      <div class="as-chips" aria-hidden="true">
+        <span class="as-chip">Tiếng Việt</span>
+        <span class="as-chip">TL;DR</span>
+        <span class="as-chip">Gạch đầu dòng</span>
+        <span class="as-chip">Groq AI</span>
+      </div>
+    </header>
+
+    <div class="as-studio">
+      <aside class="as-panel">
+        <div class="as-panel-head">
+          <h2>1 · Nội dung nguồn</h2>
+        </div>
+        <div class="as-body">
+          <div class="as-meta-row">
+            <span id="inputMeta">0 ký tự · 0 từ</span>
+            <span id="limitHint">Tối đa 20.000 ký tự</span>
+          </div>
+          <textarea id="inputText" class="as-editor" spellcheck="true" placeholder="Dán văn bản cần tóm tắt vào đây…"></textarea>
+          <div class="as-toolbar">
+            <button type="button" class="as-text-btn" id="openFileBtn">Mở file</button>
+            <button type="button" class="as-text-btn" id="sampleBtn">Văn bản mẫu</button>
+            <button type="button" class="as-text-btn" id="clearBtn">Xóa</button>
+            <input type="file" id="fileInput" accept=".txt,.md,.csv,.json,text/plain,text/markdown,text/csv,application/json" />
+          </div>
+
+          <div class="as-opts">
+            <div class="as-field">
+              <label for="optLength">Độ dài</label>
+              <select id="optLength">
+                <option value="short">Ngắn</option>
+                <option value="medium" selected>Vừa</option>
+                <option value="long">Chi tiết</option>
+              </select>
+            </div>
+            <div class="as-field">
+              <label for="optFormat">Định dạng</label>
+              <select id="optFormat">
+                <option value="bullets" selected>Gạch đầu dòng</option>
+                <option value="paragraph">Đoạn văn</option>
+                <option value="keypoints">TL;DR + điểm chính</option>
+              </select>
+            </div>
+            <div class="as-field">
+              <label for="optLang">Ngôn ngữ kết quả</label>
+              <select id="optLang">
+                <option value="vi" selected>Tiếng Việt</option>
+                <option value="en">English</option>
+                <option value="auto">Theo ngôn ngữ nguồn</option>
+              </select>
+            </div>
+            <div class="as-field">
+              <label for="optFocus">Trọng tâm</label>
+              <select id="optFocus">
+                <option value="general" selected>Tổng quát</option>
+                <option value="action">Việc cần làm</option>
+                <option value="study">Ôn tập / học</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="as-note">AI miễn phí qua Groq (~8.000 token/phút). Nếu báo hết hạn mức, chờ ~15 giây rồi thử lại; văn bản dài nên rút ngắn.</p>
+
+          <div class="as-actions">
+            <button type="button" class="btn btn-primary" id="runBtn">Tóm tắt bằng AI</button>
+          </div>
+          <div class="as-progress" id="progressBar" aria-hidden="true"><span></span></div>
+          <p class="as-status" id="status">Sẵn sàng — dán văn bản rồi bấm Tóm tắt.</p>
+        </div>
+      </aside>
+
+      <div class="as-panel">
+        <div class="as-panel-head">
+          <h2>2 · Bản tóm tắt</h2>
+          <div class="as-actions" style="margin:0">
+            <button type="button" class="btn btn-outline btn-sm" id="copyBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadBtn" disabled>Tải TXT</button>
+            <button type="button" class="btn btn-outline btn-sm" id="downloadMdBtn" disabled>Tải MD</button>
+          </div>
+        </div>
+        <div class="as-body">
+          <div class="as-stats" id="outStats" hidden></div>
+          <pre id="preview" class="as-out is-empty">Kết quả hiện ở đây sau khi AI tóm tắt.</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826y"></script>
+<script src="../assets/js/layout.js?v=20260826g"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826h"></script>
+<script src="../assets/js/ot-config.js?v=20260826y"></script>
+<script src="../assets/js/tools/ai-summarize.js?v=20260826b"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+(function () {
+  const S = window.OTSummarize;
+  const SAMPLE =
+    "OneTool là bộ công cụ xử lý file online dành cho người Việt. Người dùng có thể convert ảnh JPG PNG WebP, gộp tách nén PDF, " +
+    "xóa nền AI, nén video, chuyển audio thành văn bản, tải TikTok không logo, và chuyển Excel sang CSV/JSON. " +
+    "Mọi tool chạy trên trình duyệt, không bắt buộc đăng nhập, ưu tiên quyền riêng tư vì file không cần upload lên server của OneTool. " +
+    "Với các tác vụ AI như nhận dạng giọng nói và tóm tắt văn bản, site dùng Cloudflare Worker làm cầu nối tới Groq API. " +
+    "Mục tiêu của OneTool là giúp học sinh, sinh viên, freelancer và dân văn phòng hoàn thành công việc file nhanh, miễn phí, giao diện tiếng Việt rõ ràng.";
+
+  let lastSummary = "";
+  let abortCtrl = null;
+
+  const input = document.getElementById("inputText");
+  const inputMeta = document.getElementById("inputMeta");
+  const statusEl = document.getElementById("status");
+  const preview = document.getElementById("preview");
+  const progressBar = document.getElementById("progressBar");
+  const outStats = document.getElementById("outStats");
+  const runBtn = document.getElementById("runBtn");
+  const copyBtn = document.getElementById("copyBtn");
+  const downloadBtn = document.getElementById("downloadBtn");
+  const downloadMdBtn = document.getElementById("downloadMdBtn");
+  const fileInput = document.getElementById("fileInput");
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg || "";
+    statusEl.className = "as-status" + (kind === "ok" ? " is-ok" : kind === "err" ? " is-err" : "");
+  }
+
+  function updateInputMeta() {
+    const st = S.countStats(input.value);
+    inputMeta.textContent = S.formatCount(st.chars) + " ký tự · " + S.formatCount(st.words) + " từ";
+    const over = st.chars > S.MAX_CHARS;
+    inputMeta.style.color = over ? "#dc2626" : "";
+    document.getElementById("limitHint").textContent =
+      st.chars > 12000
+        ? "Nên dưới ~12.000 ký tự (free Groq)"
+        : "Tối đa " + S.formatCount(S.MAX_CHARS) + " ký tự";
+  }
+
+  function clearResult(resetStatus) {
+    lastSummary = "";
+    preview.textContent = "Kết quả hiện ở đây sau khi AI tóm tắt.";
+    preview.classList.add("is-empty");
+    outStats.hidden = true;
+    outStats.innerHTML = "";
+    copyBtn.disabled = true;
+    downloadBtn.disabled = true;
+    downloadMdBtn.disabled = true;
+    if (resetStatus) setStatus("Sẵn sàng — dán văn bản rồi bấm Tóm tắt.");
+  }
+
+  function showResult(data) {
+    lastSummary = data.summary;
+    preview.textContent = data.summary;
+    preview.classList.remove("is-empty");
+    copyBtn.disabled = false;
+    downloadBtn.disabled = false;
+    downloadMdBtn.disabled = false;
+
+    const ratio = data.input.chars
+      ? Math.max(1, Math.round((1 - data.output.chars / data.input.chars) * 100))
+      : 0;
+    outStats.hidden = false;
+    outStats.innerHTML =
+      '<span class="as-stat">In: ' + S.formatCount(data.input.chars) + " ký tự</span>" +
+      '<span class="as-stat">Out: ' + S.formatCount(data.output.chars) + " ký tự</span>" +
+      '<span class="as-stat">Rút ~' + ratio + "%</span>" +
+      (data.meta?.model ? '<span class="as-stat">' + data.meta.model.replace("llama-", "Llama ") + "</span>" : "");
+  }
+
+  async function run() {
+    if (abortCtrl) abortCtrl.abort();
+    abortCtrl = new AbortController();
+    try {
+      OT.setBusy(runBtn, true, "Đang tóm tắt…");
+      progressBar.classList.add("is-on");
+      progressBar.setAttribute("aria-hidden", "false");
+      setStatus("AI đang đọc và tóm tắt…");
+      clearResult(false);
+
+      const data = await S.summarize({
+        text: input.value,
+        length: document.getElementById("optLength").value,
+        format: document.getElementById("optFormat").value,
+        language: document.getElementById("optLang").value,
+        focus: document.getElementById("optFocus").value,
+        signal: abortCtrl.signal,
+        onWait: function (sec) {
+          setStatus("Hết hạn mức tạm thời — tự thử lại sau " + sec + " giây…");
+        }
+      });
+
+      showResult(data);
+      setStatus("Hoàn tất — có thể sao chép hoặc tải về.", "ok");
+      OT.setStatus("Đã tóm tắt văn bản", "ok");
+    } catch (e) {
+      if (e.name === "AbortError") return;
+      clearResult(false);
+      setStatus(e.message || String(e), "err");
+      OT.setStatus(e.message || String(e), "err");
+    } finally {
+      OT.setBusy(runBtn, false);
+      progressBar.classList.remove("is-on");
+      progressBar.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  input.addEventListener("input", updateInputMeta);
+  document.getElementById("sampleBtn").onclick = () => {
+    input.value = SAMPLE;
+    updateInputMeta();
+    clearResult(true);
+    setStatus("Đã dán văn bản mẫu — bấm Tóm tắt bằng AI.", "ok");
+  };
+  document.getElementById("clearBtn").onclick = () => {
+    input.value = "";
+    updateInputMeta();
+    clearResult(true);
+  };
+  document.getElementById("openFileBtn").onclick = () => fileInput.click();
+  fileInput.addEventListener("change", async () => {
+    const file = fileInput.files?.[0];
+    fileInput.value = "";
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) {
+      setStatus("File text tối đa 2MB.", "err");
+      return;
+    }
+    try {
+      const text = (await file.text()).replace(/^\uFEFF/, "");
+      input.value = text;
+      updateInputMeta();
+      clearResult(true);
+      setStatus("Đã mở «" + file.name + "» — bấm Tóm tắt bằng AI.", "ok");
+    } catch (_) {
+      setStatus("Không đọc được file.", "err");
+    }
+  });
+
+  runBtn.onclick = run;
+
+  copyBtn.onclick = async () => {
+    if (!lastSummary) return;
+    try {
+      await OT.copyText(lastSummary);
+      setStatus("Đã sao chép bản tóm tắt.", "ok");
+    } catch (e) {
+      setStatus(e.message || "Không sao chép được.", "err");
+    }
+  };
+
+  downloadBtn.onclick = async () => {
+    if (!lastSummary) return;
+    await OT.downloadBlob(new Blob([lastSummary], { type: "text/plain;charset=utf-8" }), "tom-tat-ai.txt");
+    setStatus("Đã tải tom-tat-ai.txt", "ok");
+  };
+
+  downloadMdBtn.onclick = async () => {
+    if (!lastSummary) return;
+    const md = "# Tóm tắt AI\n\n" + lastSummary + "\n";
+    await OT.downloadBlob(new Blob([md], { type: "text/markdown;charset=utf-8" }), "tom-tat-ai.md");
+    setStatus("Đã tải tom-tat-ai.md", "ok");
+  };
+
+  updateInputMeta();
+})();
+});
+</script>
+</body>
+</html>

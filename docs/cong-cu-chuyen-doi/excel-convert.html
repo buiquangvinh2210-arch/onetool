@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel sang CSV JSON online — Convert XLSX miễn phí | OneTool</title>
+  <meta name="description" content="Đổi Excel (.xlsx/.xls) ↔ CSV ↔ JSON ngay trên trình duyệt. Chọn sheet, xem trước bảng, tải file — miễn phí, không upload server." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826h" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/excel-convert.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="excel-convert">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="xc-page">
+    <header class="xc-intro">
+      <h1>Excel ↔ CSV/JSON · Đổi bảng tính</h1>
+      <p>Convert XLSX/XLS sang CSV hoặc JSON — và ngược lại. Chọn sheet, xem trước bảng, tải file. Chạy 100% trên máy bạn.</p>
+      <div class="xc-chips" aria-hidden="true">
+        <span class="xc-chip">XLSX</span>
+        <span class="xc-chip">XLS</span>
+        <span class="xc-chip">CSV</span>
+        <span class="xc-chip">JSON</span>
+        <span class="xc-chip">Đa sheet</span>
+      </div>
+    </header>
+
+    <div class="xc-studio">
+      <aside class="xc-panel">
+        <div class="xc-panel-head">
+          <h2>1 · Nguồn &amp; chiều chuyển</h2>
+        </div>
+        <div class="xc-body">
+          <div class="xc-mode" id="modeTabs" role="tablist" aria-label="Chiều chuyển đổi">
+            <button type="button" class="is-on" data-mode="x2c" role="tab" aria-selected="true">
+              <strong>Excel → CSV</strong>
+              <span>Xuất bảng để mở Excel / Google Sheets</span>
+            </button>
+            <button type="button" data-mode="x2j" role="tab" aria-selected="false">
+              <strong>Excel → JSON</strong>
+              <span>Cho API, frontend, import DB</span>
+            </button>
+            <button type="button" data-mode="c2x" role="tab" aria-selected="false">
+              <strong>CSV → Excel</strong>
+              <span>Tạo file .xlsx từ CSV</span>
+            </button>
+            <button type="button" data-mode="j2x" role="tab" aria-selected="false">
+              <strong>JSON → Excel</strong>
+              <span>Mảng object → sheet Excel</span>
+            </button>
+          </div>
+
+          <div class="xc-drop" id="dropZone" tabindex="0" role="button" aria-label="Kéo thả hoặc chọn file">
+            <div class="xc-drop-icon">XL</div>
+            <p><strong>Kéo thả file vào đây</strong></p>
+            <p class="text-muted">hoặc bấm để chọn · .xlsx .xls .csv .json · tối đa 25MB</p>
+          </div>
+          <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv,application/json" />
+
+          <div class="xc-file" id="fileCard">
+            <span class="xc-file-badge" id="fileBadge">FILE</span>
+            <div class="xc-file-main">
+              <strong id="fileName">—</strong>
+              <span id="fileMeta">—</span>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" id="clearFileBtn">Xóa</button>
+          </div>
+
+          <div class="xc-sheets" id="sheetTabs" aria-label="Chọn sheet"></div>
+
+          <textarea id="pasteArea" class="xc-paste" hidden spellcheck="false" placeholder="Dán CSV hoặc JSON vào đây khi không tải file…"></textarea>
+
+          <div class="xc-opts">
+            <label><input type="checkbox" id="optBom" checked /> CSV có BOM (Excel tiếng Việt)</label>
+            <label><input type="checkbox" id="optPretty" checked /> JSON thụt lề đẹp</label>
+          </div>
+
+          <p class="xc-note" id="hintText">Chọn <strong>Excel → CSV</strong> rồi tải file .xlsx/.xls.</p>
+
+          <div class="xc-actions">
+            <button type="button" class="btn btn-primary" id="runBtn">Chuyển đổi</button>
+            <button type="button" class="btn btn-outline" id="sampleBtn">Dữ liệu mẫu</button>
+          </div>
+          <p class="xc-status" id="status">Sẵn sàng — chưa có kết quả.</p>
+        </div>
+      </aside>
+
+      <div class="xc-panel">
+        <div class="xc-panel-head">
+          <h2>2 · Kết quả</h2>
+          <div class="xc-actions" style="margin:0">
+            <button type="button" class="btn btn-outline btn-sm" id="copyBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadBtn" disabled>Tải file</button>
+          </div>
+        </div>
+        <div class="xc-body">
+          <div class="xc-preview-wrap" id="previewWrap">
+            <div class="xc-empty" id="emptyState">Kết quả hiện ở đây sau khi chuyển đổi.</div>
+            <div class="xc-table-wrap" id="tableWrap" hidden>
+              <table class="xc-table" id="previewTable">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <pre class="xc-json-out" id="jsonOut" hidden></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826x"></script>
+<script src="../assets/js/layout.js?v=20260826g"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826h"></script>
+<script src="../assets/js/tools/excel-convert.js?v=20260826a"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+(function () {
+  const XC = window.OTExcelConvert;
+  const SAMPLE_CSV = "name,email,role,city\nAn,an@example.com,dev,Hà Nội\nBình,binh@example.com,design,Đà Nẵng\nChi,chi@example.com,pm,TP.HCM";
+  const SAMPLE_JSON = '[\n  {"name":"An","email":"an@example.com","role":"dev","city":"Hà Nội"},\n  {"name":"Bình","email":"binh@example.com","role":"design","city":"Đà Nẵng"}\n]';
+
+  let mode = "x2c";
+  let source = null;
+  let activeSheet = "";
+  let lastResult = null;
+
+  const dropZone = document.getElementById("dropZone");
+  const fileInput = document.getElementById("fileInput");
+  const fileCard = document.getElementById("fileCard");
+  const fileName = document.getElementById("fileName");
+  const fileMeta = document.getElementById("fileMeta");
+  const fileBadge = document.getElementById("fileBadge");
+  const sheetTabs = document.getElementById("sheetTabs");
+  const pasteArea = document.getElementById("pasteArea");
+  const statusEl = document.getElementById("status");
+  const hintText = document.getElementById("hintText");
+  const runBtn = document.getElementById("runBtn");
+  const copyBtn = document.getElementById("copyBtn");
+  const downloadBtn = document.getElementById("downloadBtn");
+  const emptyState = document.getElementById("emptyState");
+  const tableWrap = document.getElementById("tableWrap");
+  const previewTable = document.getElementById("previewTable");
+  const jsonOut = document.getElementById("jsonOut");
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg || "";
+    statusEl.className = "xc-status" + (kind === "ok" ? " is-ok" : kind === "err" ? " is-err" : "");
+  }
+
+  function modeNeedsExcel() { return mode === "x2c" || mode === "x2j"; }
+  function modeNeedsPaste() { return mode === "c2x" || mode === "j2x"; }
+
+  function updateHints() {
+    const map = {
+      x2c: "Tải file <strong>.xlsx / .xls</strong>, chọn sheet (nếu có nhiều), rồi bấm Chuyển đổi → tải CSV.",
+      x2j: "Tải file Excel, chọn sheet → xuất JSON (mảng object theo dòng).",
+      c2x: "Tải file <strong>.csv</strong> hoặc dán CSV vào ô bên dưới → tạo file Excel .xlsx.",
+      j2x: "Tải file <strong>.json</strong> hoặc dán mảng object → tạo file Excel .xlsx."
+    };
+    hintText.innerHTML = map[mode] || "";
+    pasteArea.hidden = !modeNeedsPaste();
+    pasteArea.placeholder = mode === "c2x"
+      ? "Dán CSV — dòng đầu là tên cột…"
+      : "Dán JSON — mảng object [{…}, {…}]…";
+  }
+
+  function setMode(next) {
+    mode = next;
+    document.querySelectorAll("#modeTabs button[data-mode]").forEach((btn) => {
+      const on = btn.dataset.mode === mode;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    updateHints();
+    clearResult(true);
+  }
+
+  function clearResult(resetStatus) {
+    lastResult = null;
+    emptyState.hidden = false;
+    tableWrap.hidden = true;
+    jsonOut.hidden = true;
+    jsonOut.textContent = "";
+    previewTable.querySelector("thead").innerHTML = "";
+    previewTable.querySelector("tbody").innerHTML = "";
+    copyBtn.disabled = true;
+    downloadBtn.disabled = true;
+    if (resetStatus) setStatus("Sẵn sàng — chưa có kết quả.");
+  }
+
+  function renderSheetTabs() {
+    sheetTabs.innerHTML = "";
+    sheetTabs.classList.remove("is-on");
+    if (!source || source.kind !== "excel" || !source.names?.length) return;
+    sheetTabs.classList.add("is-on");
+    source.names.forEach((name) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = name;
+      btn.classList.toggle("is-on", name === activeSheet);
+      btn.addEventListener("click", () => {
+        activeSheet = name;
+        renderSheetTabs();
+        clearResult(true);
+        setStatus("Đã chọn sheet «" + name + "» — bấm Chuyển đổi.", "ok");
+      });
+      sheetTabs.appendChild(btn);
+    });
+  }
+
+  function showFileCard(src) {
+    if (!src) {
+      fileCard.classList.remove("is-on");
+      return;
+    }
+    fileCard.classList.add("is-on");
+    fileName.textContent = src.name;
+    const kindLabel = src.kind === "excel" ? "EXCEL" : src.kind.toUpperCase();
+    fileBadge.textContent = kindLabel;
+    const size = OT.formatBytes(src.size || 0);
+    if (src.kind === "excel") {
+      fileMeta.textContent = size + " · " + src.names.length + " sheet · " + (src.sheets[activeSheet]?.length || 0) + " dòng (sheet hiện tại)";
+    } else {
+      fileMeta.textContent = size + " · " + (src.rows?.length || 0) + " dòng";
+    }
+  }
+
+  function renderPreview(result) {
+    emptyState.hidden = true;
+    const rows = result.rows || [];
+    const maxRows = 80;
+
+    if (result.kind === "json" && result.text) {
+      tableWrap.hidden = true;
+      jsonOut.hidden = false;
+      jsonOut.textContent = result.text.length > 120000
+        ? result.text.slice(0, 120000) + "\n… (đã rút gọn khi xem trước)"
+        : result.text;
+    } else {
+      jsonOut.hidden = true;
+      tableWrap.hidden = false;
+      const keys = rows.length ? Object.keys(rows[0]) : [];
+      const thead = previewTable.querySelector("thead");
+      const tbody = previewTable.querySelector("tbody");
+      thead.innerHTML = "<tr>" + keys.map((k) => "<th>" + escapeHtml(k) + "</th>").join("") + "</tr>";
+      tbody.innerHTML = rows.slice(0, maxRows).map((row) =>
+        "<tr>" + keys.map((k) => "<td title=\"" + escapeAttr(row[k]) + "\">" + escapeHtml(row[k]) + "</td>").join("") + "</tr>"
+      ).join("");
+      if (rows.length > maxRows) {
+        tbody.innerHTML += "<tr><td colspan=\"" + keys.length + "\">… còn " + (rows.length - maxRows) + " dòng (đã tải đủ trong file)</td></tr>";
+      }
+    }
+
+    copyBtn.disabled = !(result.text || result.kind === "excel");
+    downloadBtn.disabled = !result.blob;
+  }
+
+  function escapeHtml(s) {
+    return String(s ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+  function escapeAttr(s) {
+    return escapeHtml(s).replace(/'/g, "&#39;");
+  }
+
+  async function loadFile(file) {
+    if (!file) return;
+    if (file.size > 25 * 1024 * 1024) {
+      setStatus("File quá lớn (tối đa 25MB).", "err");
+      return;
+    }
+    try {
+      OT.setBusy(runBtn, true, "Đang đọc…");
+      setStatus("Đang đọc file…");
+      source = await XC.readInputFile(file);
+      activeSheet = source.names?.[0] || "";
+      pasteArea.value = "";
+      showFileCard(source);
+      renderSheetTabs();
+      clearResult(false);
+
+      if (source.kind === "excel") {
+        if (!modeNeedsExcel()) setMode("x2c");
+        else updateHints();
+      } else if (source.kind === "csv") setMode("c2x");
+      else if (source.kind === "json") setMode("j2x");
+
+      setStatus("Đã mở «" + file.name + "» — bấm Chuyển đổi.", "ok");
+      OT.setStatus("Đã đọc " + file.name, "ok");
+    } catch (e) {
+      source = null;
+      showFileCard(null);
+      renderSheetTabs();
+      setStatus(e.message || String(e), "err");
+    } finally {
+      OT.setBusy(runBtn, false);
+    }
+  }
+
+  async function runConvert() {
+    try {
+      let src = source;
+      if (modeNeedsPaste() && pasteArea.value.trim()) {
+        if (mode === "c2x") {
+          const rows = XC.csvToRows(pasteArea.value);
+          src = { kind: "csv", name: "pasted.csv", size: pasteArea.value.length, text: pasteArea.value, rows };
+        } else {
+          const rows = XC.parseJsonRows(pasteArea.value);
+          src = { kind: "json", name: "pasted.json", size: pasteArea.value.length, text: pasteArea.value, rows };
+        }
+      }
+      if (!src) throw new Error("Chọn file hoặc dán dữ liệu trước.");
+
+      if (modeNeedsExcel() && src.kind !== "excel") {
+        throw new Error("Chế độ hiện tại cần file Excel (.xlsx / .xls).");
+      }
+      if (mode === "c2x" && src.kind !== "csv" && !pasteArea.value.trim()) {
+        throw new Error("Cần file CSV hoặc nội dung CSV.");
+      }
+      if (mode === "j2x" && src.kind !== "json" && !pasteArea.value.trim()) {
+        throw new Error("Cần file JSON hoặc nội dung JSON.");
+      }
+
+      OT.setBusy(runBtn, true, "Đang chuyển…");
+      setStatus("Đang chuyển đổi…");
+      const result = await XC.convert({
+        mode,
+        source: src,
+        sheetName: activeSheet,
+        bom: document.getElementById("optBom").checked,
+        pretty: document.getElementById("optPretty").checked
+      });
+      lastResult = result;
+      renderPreview(result);
+      setStatus(
+        "Xong · " + result.rows.length + " dòng" +
+          (result.sheetName ? " · sheet «" + result.sheetName + "»" : "") +
+          " · " + result.fileName,
+        "ok"
+      );
+      OT.setStatus("Đã chuyển → " + result.fileName, "ok");
+    } catch (e) {
+      clearResult(false);
+      setStatus(e.message || String(e), "err");
+      OT.setStatus(e.message || String(e), "err");
+    } finally {
+      OT.setBusy(runBtn, false);
+    }
+  }
+
+  document.getElementById("modeTabs").addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-mode]");
+    if (btn) setMode(btn.dataset.mode);
+  });
+
+  dropZone.addEventListener("click", () => fileInput.click());
+  dropZone.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); }
+  });
+  ["dragenter", "dragover"].forEach((ev) => {
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add("is-drag"); });
+  });
+  ["dragleave", "drop"].forEach((ev) => {
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove("is-drag"); });
+  });
+  dropZone.addEventListener("drop", (e) => {
+    const f = e.dataTransfer?.files?.[0];
+    if (f) loadFile(f);
+  });
+  fileInput.addEventListener("change", () => {
+    const f = fileInput.files?.[0];
+    fileInput.value = "";
+    if (f) loadFile(f);
+  });
+
+  document.getElementById("clearFileBtn").onclick = () => {
+    source = null;
+    activeSheet = "";
+    showFileCard(null);
+    renderSheetTabs();
+    clearResult(true);
+  };
+
+  document.getElementById("sampleBtn").onclick = () => {
+    if (mode === "j2x" || mode === "x2j") {
+      setMode("j2x");
+      pasteArea.hidden = false;
+      pasteArea.value = SAMPLE_JSON;
+      source = null;
+      showFileCard(null);
+      renderSheetTabs();
+      clearResult(true);
+      setStatus("Đã dán JSON mẫu — bấm Chuyển đổi.", "ok");
+    } else {
+      setMode("c2x");
+      pasteArea.hidden = false;
+      pasteArea.value = SAMPLE_CSV;
+      source = null;
+      showFileCard(null);
+      renderSheetTabs();
+      clearResult(true);
+      setStatus("Đã dán CSV mẫu — bấm Chuyển đổi.", "ok");
+    }
+  };
+
+  runBtn.onclick = runConvert;
+
+  copyBtn.onclick = async () => {
+    if (!lastResult) return;
+    try {
+      if (lastResult.kind === "excel") {
+        setStatus("File Excel: dùng nút Tải file (không copy binary).", "err");
+        return;
+      }
+      await OT.copyText(lastResult.text);
+      setStatus("Đã sao chép vào clipboard.", "ok");
+    } catch (e) {
+      setStatus(e.message || "Không sao chép được.", "err");
+    }
+  };
+
+  downloadBtn.onclick = async () => {
+    if (!lastResult?.blob) return;
+    try {
+      await OT.downloadBlob(lastResult.blob, lastResult.fileName);
+      setStatus("Đã tải «" + lastResult.fileName + "».", "ok");
+    } catch (e) {
+      setStatus(e.message || "Tải thất bại.", "err");
+    }
+  };
+
+  XC.ensureXlsx().catch(() => {});
+  setMode("x2c");
+})();
+});
+</script>
+</body>
+</html>

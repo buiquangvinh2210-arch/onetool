@@ -5,16 +5,46 @@ body[data-tool="tiktok-download"] {
   --tt-line: rgba(88, 60, 140, 0.12);
   --tt-soft: rgba(124, 58, 237, 0.08);
   --tt-panel: rgba(255, 255, 255, 0.78);
+  --tt-side-bg: linear-gradient(165deg, rgba(255, 255, 255, 0.55), rgba(250, 248, 255, 0.9));
+  --tt-input-bg: #fff;
+  --tt-main-bg: transparent;
+  --tt-btn-bg: #fff;
+  --tt-chip-color: #5b21b6;
+  --tt-stat-color: #4c4660;
+  --tt-stat-bg: rgba(124, 58, 237, 0.07);
+  --tt-shell-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 16px 44px rgba(70, 40, 120, 0.08);
+  --tt-ws-bg:
+    radial-gradient(ellipse 80% 50% at 12% -8%, rgba(254, 44, 85, 0.1), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 96% 4%, rgba(37, 244, 238, 0.12), transparent 50%),
+    linear-gradient(180deg, #f7f5fb 0%, #f3f0f9 50%, #faf9fc 100%);
   --tt-accent: #fe2c55;
   --tt-cyan: #25f4ee;
 }
 
+[data-theme="dark"] body[data-tool="tiktok-download"],
+[data-theme="dark"] .tool-workspace--doc:has(.tt-shell) {
+  --tt-ink: #f1edf8;
+  --tt-muted: #94a3b8;
+  --tt-line: rgba(255, 255, 255, 0.08);
+  --tt-soft: rgba(124, 58, 237, 0.14);
+  --tt-panel: #1c1824;
+  --tt-side-bg: linear-gradient(165deg, rgba(124, 58, 237, 0.1), transparent 55%);
+  --tt-input-bg: #0f0d14;
+  --tt-main-bg: #141119;
+  --tt-btn-bg: #1c1824;
+  --tt-chip-color: #c4b5fd;
+  --tt-stat-color: #94a3b8;
+  --tt-stat-bg: rgba(124, 58, 237, 0.15);
+  --tt-shell-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  --tt-ws-bg:
+    radial-gradient(ellipse 80% 50% at 12% -8%, rgba(254, 44, 85, 0.12), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 96% 4%, rgba(37, 244, 238, 0.08), transparent 50%),
+    var(--bg, #0a0812);
+}
+
 body[data-tool="tiktok-download"] .tool-workspace {
   padding: 0 0 1.5rem !important;
-  background:
-    radial-gradient(ellipse 80% 50% at 12% -8%, rgba(254, 44, 85, 0.1), transparent 55%),
-    radial-gradient(ellipse 55% 40% at 96% 4%, rgba(37, 244, 238, 0.12), transparent 50%),
-    linear-gradient(180deg, #f7f5fb 0%, #f3f0f9 50%, #faf9fc 100%) !important;
+  background: var(--tt-ws-bg) !important;
 }
 
 body[data-tool="tiktok-download"] .tt-top {
@@ -64,16 +94,14 @@ body[data-tool="tiktok-download"] .tt-shell {
   border-radius: 20px;
   background: var(--tt-panel);
   backdrop-filter: blur(14px);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.85) inset,
-    0 16px 44px rgba(70, 40, 120, 0.08);
+  box-shadow: var(--tt-shell-shadow);
   overflow: hidden;
 }
 
 body[data-tool="tiktok-download"] .tt-side {
   padding: 1.25rem 1.2rem 1.35rem;
   border-right: 1px solid var(--tt-line);
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.55), rgba(250, 248, 255, 0.9));
+  background: var(--tt-side-bg);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -89,7 +117,7 @@ body[data-tool="tiktok-download"] .tt-side-label {
 body[data-tool="tiktok-download"] .tt-paste {
   border: 1.5px dashed rgba(124, 58, 237, 0.28);
   border-radius: 14px;
-  background: #fff;
+  background: var(--tt-input-bg);
   padding: 0.65rem 0.75rem 0.7rem;
 }
 body[data-tool="tiktok-download"] .tt-paste:focus-within {
@@ -117,7 +145,7 @@ body[data-tool="tiktok-download"] .tt-paste-actions {
 body[data-tool="tiktok-download"] .tt-chip-btn {
   border: 0;
   background: var(--tt-soft);
-  color: #5b21b6;
+  color: var(--tt-chip-color);
   font-size: 0.72rem;
   font-weight: 650;
   padding: 0.22rem 0.5rem;
@@ -141,6 +169,7 @@ body[data-tool="tiktok-download"] .tt-main {
   min-width: 0;
   min-height: 0;
   flex: 1;
+  background: var(--tt-main-bg);
 }
 body[data-tool="tiktok-download"] .tt-main-bar {
   display: flex;
@@ -298,8 +327,8 @@ body[data-tool="tiktok-download"] .tt-stats {
 body[data-tool="tiktok-download"] .tt-stat {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #4c4660;
-  background: rgba(124, 58, 237, 0.07);
+  color: var(--tt-stat-color);
+  background: var(--tt-stat-bg);
   padding: 0.2rem 0.45rem;
   border-radius: 999px;
 }
@@ -323,7 +352,7 @@ body[data-tool="tiktok-download"] .tt-dl-more {
 body[data-tool="tiktok-download"] .tt-dl-more summary {
   font-size: 0.75rem;
   font-weight: 650;
-  color: #5b21b6;
+  color: var(--tt-chip-color);
   cursor: pointer;
   list-style: none;
   padding: 0.2rem 0;
@@ -343,12 +372,13 @@ body[data-tool="tiktok-download"] .tt-dl-btn {
   width: 100%;
   text-align: left;
   border: 1px solid var(--tt-line);
-  background: #fff;
+  background: var(--tt-btn-bg);
   border-radius: 12px;
   padding: 0.55rem 0.75rem;
   cursor: pointer;
   transition: border-color 0.15s, box-shadow 0.15s;
   font: inherit;
+  color: var(--tt-ink);
 }
 body[data-tool="tiktok-download"] .tt-dl-btn:hover:not(:disabled) {
   border-color: rgba(124, 58, 237, 0.35);
@@ -477,4 +507,14 @@ body[data-tool="tiktok-download"] .tt-err.is-on {
   body[data-tool="tiktok-download"] .tt-preview {
     max-width: min(200px, 78vw);
   }
+}
+
+/* Dark extras not covered by tokens */
+[data-theme="dark"] .tool-workspace--doc:has(.tt-shell) .tt-err.is-on {
+  background: rgba(220, 38, 38, 0.15);
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .tool-workspace--doc:has(.tt-shell) .tt-images button {
+  background: #1c1824;
 }

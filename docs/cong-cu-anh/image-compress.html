@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nén ảnh online — Compress Image JPG WebP miễn phí | OneTool</title>
+  <meta name="description" content="Nén ảnh giảm dung lượng JPG PNG WebP trên trình duyệt. Xem % tiết kiệm, so sánh trước/sau — miễn phí, không upload server." />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826h" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/image-compress.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="ic-page">
+    <header class="ic-intro">
+      <h1>Compress Ảnh · Nén ảnh</h1>
+      <p>Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau. File không rời máy bạn.</p>
+    </header>
+
+    <div class="ic-studio">
+      <div class="ic-shell" id="shell">
+        <div class="ic-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="image">
+            <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp" hidden />
+            <div class="upload-placeholder">
+              <p class="ic-drop-kicker">Thả ảnh vào đây</p>
+              <p class="ic-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · JPG PNG WebP · tối đa 20&nbsp;MB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ic-work">
+          <aside class="ic-side">
+            <div class="ic-file-bar">
+              <div>
+                <strong id="fileName">-</strong>
+                <span id="fileMeta">-</span>
+              </div>
+              <button type="button" class="ic-text-btn" id="changeBtn">Đổi ảnh</button>
+            </div>
+
+            <div>
+              <p class="ic-label">Mức nén</p>
+              <div class="ic-levels" id="levelGrid" role="group" aria-label="Mức nén">
+                <button type="button" class="ic-level" data-level="light"><strong>Nhẹ</strong><em>Giữ chi tiết · chất lượng ~88%</em></button>
+                <button type="button" class="ic-level is-on" data-level="balanced"><strong>Cân bằng</strong><em>Khuyến nghị · tối đa 2560px</em></button>
+                <button type="button" class="ic-level" data-level="strong"><strong>Mạnh</strong><em>File nhỏ hơn · tối đa 1920px</em></button>
+                <button type="button" class="ic-level" data-level="tiny"><strong>Siêu nhỏ</strong><em>Upload / chat · tối đa 1280px</em></button>
+                <button type="button" class="ic-level" data-level="custom"><strong>Tùy chỉnh</strong><em>Chất lượng &amp; cạnh dài tùy ý</em></button>
+              </div>
+            </div>
+
+            <div id="customWrap" hidden>
+              <div class="ic-quality" id="qualityWrap">
+                <label class="ic-label" for="quality">Chất lượng</label>
+                <input type="range" id="quality" min="30" max="95" value="70" />
+                <div class="ic-quality-meta"><span>Nhỏ hơn</span><span id="qualityVal">70%</span></div>
+              </div>
+              <div class="ic-field" style="margin-top:0.85rem">
+                <label class="ic-label" for="maxEdge">Giới hạn cạnh dài (px)</label>
+                <input id="maxEdge" class="form-control" type="number" min="0" max="8000" placeholder="Để trống = giữ kích thước" />
+                <p class="ic-hint">0 hoặc trống = không resize. Thu nhỏ cạnh dài giúp giảm mạnh dung lượng.</p>
+              </div>
+            </div>
+
+            <div>
+              <p class="ic-label">Định dạng xuất</p>
+              <div class="ic-formats" id="formatGrid" role="group" aria-label="Định dạng">
+                <button type="button" class="ic-fmt is-on" data-format="auto">Auto</button>
+                <button type="button" class="ic-fmt" data-format="jpg">JPG</button>
+                <button type="button" class="ic-fmt" data-format="webp">WebP</button>
+              </div>
+              <p class="ic-hint" style="margin-top:0.45rem">Auto chọn JPG/WebP tối ưu. PNG gốc nên xuất JPG hoặc WebP để nhỏ hơn.</p>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" id="runBtn">Nén ảnh</button>
+          </aside>
+
+          <div class="ic-main">
+            <div class="ic-main-bar">
+              <div>
+                <h2>So sánh</h2>
+                <p id="status">Upload ảnh để bắt đầu nén</p>
+              </div>
+              <div class="ic-actions result-actions">
+                <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+                <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải ảnh</button>
+              </div>
+            </div>
+
+            <div class="ic-savings" aria-live="polite">
+              <div class="ic-ring" id="saveRing" style="--pct:0%">
+                <div class="ic-ring-val"><strong id="savePct">0%</strong><span>Tiết kiệm</span></div>
+              </div>
+              <div class="ic-size-row">
+                <div class="ic-size">
+                  <span>Gốc</span>
+                  <strong id="sizeBefore">-</strong>
+                </div>
+                <span class="ic-arrow" aria-hidden="true">→</span>
+                <div class="ic-size is-after">
+                  <span>Đã nén</span>
+                  <strong id="sizeAfter">-</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="ic-compare">
+              <figure class="ic-shot">
+                <figcaption>
+                  <span>Gốc</span>
+                  <span class="ic-dim-tag" id="origDim">-</span>
+                </figcaption>
+                <div class="ic-frame">
+                  <img id="sourceImg" alt="Ảnh gốc" />
+                </div>
+              </figure>
+              <figure class="ic-shot">
+                <figcaption>
+                  <span>Kết quả</span>
+                  <span class="ic-dim-tag" id="outDim">-</span>
+                </figcaption>
+                <div id="preview" class="ic-frame">
+                  <div class="ic-wait" id="resultEmpty">Bấm Nén ảnh để xem</div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826ae"></script>
+<script src="../assets/js/layout.js?v=20260826k"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826i"></script>
+<script src="../assets/js/tools/image.js?v=20260826a"></script>
+<script src="../assets/js/tools/image-compress-ui.js?v=20260826a"></script>
+</body>
+</html>

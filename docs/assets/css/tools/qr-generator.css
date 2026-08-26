@@ -205,3 +205,41 @@ body[data-tool="qr-generator"] #preview {
     padding: 1.5rem 1rem;
   }
 }
+
+/* ── Dark mode ── */
+html[data-theme="dark"] body[data-tool="qr-generator"] {
+  --qr-ink: #f1edf8;
+  --qr-muted: #94a3b8;
+  --qr-line: rgba(255, 255, 255, 0.08);
+  --qr-soft: rgba(124, 58, 237, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="qr-generator"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="qr-generator"] .qr-card,
+html[data-theme="dark"] body[data-tool="qr-generator"] .qr-preset,
+html[data-theme="dark"] body[data-tool="qr-generator"] .qr-input,
+html[data-theme="dark"] body[data-tool="qr-generator"] .qr-preview {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="qr-generator"] .qr-form {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body[data-tool="qr-generator"] .qr-preset.is-on {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.4);
+  color: #c4b5fd;
+}
+
+html[data-theme="dark"] body[data-tool="qr-generator"] .qr-input,
+html[data-theme="dark"] body[data-tool="qr-generator"] .qr-preview {
+  background: var(--tool-input-bg, #0f0d14);
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ảnh sang PDF online — JPG PNG WebP thành PDF miễn phí | OneTool</title>
+  <meta name="description" content="Chuyển ảnh sang PDF: ghép nhiều JPG PNG WebP thành một file. Chọn khổ Fit/A4/Letter, sắp xếp trang — miễn phí trên trình duyệt." />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826h" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/image-pdf.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="ip-page">
+    <header class="ip-intro">
+      <h1>Ảnh → PDF</h1>
+      <p>Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang. File không rời máy bạn.</p>
+    </header>
+    <nav class="ip-sibs" aria-label="Ảnh và PDF">
+      <a class="ip-sib" href="image-pdf.html">Hub</a>
+      <a class="ip-sib is-on" href="image-to-pdf.html">Ảnh → PDF</a>
+      <a class="ip-sib" href="pdf-to-image.html">PDF → Ảnh</a>
+    </nav>
+
+    <div class="ip-shell" id="shell">
+      <aside class="ip-side">
+        <div>
+          <p class="ip-label">Khổ trang</p>
+          <div class="ip-opts" id="pageSizeGrid" role="group" aria-label="Khổ trang">
+            <button type="button" class="ip-opt is-on" data-size="fit"><strong>Vừa ảnh</strong><em>Mỗi trang đúng kích thước ảnh</em></button>
+            <button type="button" class="ip-opt" data-size="a4"><strong>A4</strong><em>Căn giữa, lề 1,27 cm</em></button>
+            <button type="button" class="ip-opt" data-size="letter"><strong>Letter</strong><em>Khổ Mỹ, căn giữa</em></button>
+          </div>
+        </div>
+        <p class="ip-hint">JPG/PNG gốc nhúng nguyên bản. WebP/GIF → PNG lossless hoặc JPG 98%.</p>
+        <button type="button" class="btn btn-primary btn-block" id="runBtn" disabled>Tạo PDF</button>
+      </aside>
+
+      <div class="ip-main">
+        <div class="ip-main-bar">
+          <div>
+            <h2>Danh sách ảnh</h2>
+            <p id="status">Thêm ảnh — tối đa 40 file · 15 MB mỗi ảnh</p>
+          </div>
+          <div class="ip-actions result-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải PDF</button>
+          </div>
+        </div>
+        <div class="ip-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="image">
+            <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp" multiple hidden />
+            <div class="upload-placeholder">
+              <p style="margin:0;font-weight:700;font-size:1.05rem;color:#16121c">Thả ảnh vào đây</p>
+              <p class="text-muted" style="margin:0.4rem 0 0">hoặc <button type="button" class="link-btn" id="browseBtn">chọn nhiều ảnh</button></p>
+            </div>
+          </div>
+          <div id="list" class="ip-list" hidden></div>
+          <div id="emptyHint" class="ip-empty" hidden>Chưa có ảnh — thêm file để xếp thứ tự trang PDF.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826af"></script>
+<script src="../assets/js/layout.js?v=20260826k"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826i"></script>
+<script src="../assets/js/tools/pdf.js?v=20260826b"></script>
+<script src="../assets/js/tools/image-to-pdf-ui.js?v=20260826b"></script>
+</body>
+</html>

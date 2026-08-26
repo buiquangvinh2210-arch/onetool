@@ -6,12 +6,13 @@
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="../assets/js/theme-init.js?v=20260826a"></script>
   <title>Tải TikTok không logo — MP4 HD online miễn phí | OneTool</title>
   <meta name="description" content="Dán link TikTok tải MP4 HD không dính logo TikTok. Miễn phí, nhanh — kể cả video app không cho tải." />
-  <link rel="stylesheet" href="../assets/css/site.css?v=20260825b" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260824d" />
-  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260825b" />
-  <link rel="stylesheet" href="../assets/css/tools/tiktok-download.css?v=20260825g" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826f" />
+  <link rel="stylesheet" href="../assets/css/tools/tiktok-download.css?v=20260826b" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
@@ -50,6 +51,7 @@
         <p class="tt-note">
           Ưu tiên xuất <strong>MP4 HD không watermark</strong>. Hỗ trợ link
           tiktok.com, vt.tiktok.com và vm.tiktok.com. Chỉ tải nội dung bạn được phép sử dụng.
+          Nếu mở từ Facebook/Zalo: bấm ⋮ → Mở bằng trình duyệt để tải ổn định.
         </p>
       </aside>
 
@@ -126,11 +128,11 @@
 </main>
 <div id="site-footer"></div>
 <script src="../assets/js/catalog.js?v=20260825t"></script>
-<script src="../assets/js/layout.js?v=20260825b"></script>
-<script src="../assets/js/core.js"></script>
-<script src="../assets/js/site.js"></script>
+<script src="../assets/js/layout.js?v=20260826g"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826g"></script>
 <script src="../assets/js/ot-config.js?v=20260825t"></script>
-<script src="../assets/js/tools/tiktok-download.js?v=20260825f"></script>
+<script src="../assets/js/tools/tiktok-download.js?v=20260826a"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 (function () {
@@ -322,12 +324,17 @@ document.addEventListener("DOMContentLoaded", function () {
           statusEl.textContent = msg;
           setProgress(pct);
         });
-        statusEl.textContent = "Đã tải: " + fileName;
-        OT.setStatus("Đã tải " + fileName, "ok");
+        const hint = OT.inAppBrowserHint?.() || "";
+        statusEl.textContent = hint
+          ? "Đã gửi lệnh tải. Nếu chưa có file: ⋮ → Mở bằng trình duyệt"
+          : "Đã tải: " + fileName;
+        OT.setStatus(hint || ("Đã tải " + fileName), hint ? "" : "ok");
       } catch (e) {
-        showError(e.message || String(e));
+        const hint = OT.inAppBrowserHint?.();
+        const msg = (e.message || String(e)) + (hint ? " — " + hint : "");
+        showError(msg);
         statusEl.textContent = "Tải thất bại";
-        OT.setStatus(e.message || String(e), "err");
+        OT.setStatus(msg, "err");
       } finally {
         busy = false;
         if (btn) btn.disabled = false;

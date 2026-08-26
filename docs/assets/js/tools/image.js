@@ -112,18 +112,112 @@ window.OTImage = (function () {
     };
   }
 
-  async function compress(file, quality = 0.7, format) {
-    const key = (format || (extOf(file.name) === "png" ? "png" : "jpg")).toLowerCase();
-    const type = key === "png" ? "image/png" : key === "webp" ? "image/webp" : "image/jpeg";
-    const { canvas } = await drawToCanvas(file);
-    const blob = await OT.canvasToBlob(canvas, type, type === "image/png" ? undefined : quality);
-    const ext = type === "image/png" ? ".png" : type === "image/webp" ? ".webp" : ".jpg";
+  let webpOk = null;
+  async function supportsWebp() {
+    if (webpOk != null) return webpOk;
+    try {
+      const c = document.createElement("canvas");
+      c.width = c.height = 1;
+      const b = await OT.canvasToBlob(c, "image/webp", 0.8);
+      webpOk = !!(b && b.type === "image/webp" && b.size > 0);
+    } catch (_) {
+      webpOk = false;
+    }
+    return webpOk;
+  }
+
+  async function resolveCompressType(format, fileName) {
+    let key = (format || "auto").toLowerCase().replace("jpeg", "jpg");
+    if (key === "auto") {
+      const src = extOf(fileName);
+      if (src === "png" || src === "gif" || src === "bmp" || src === "tif" || src === "tiff") {
+        key = (await supportsWebp()) ? "webp" : "jpg";
+      } else if (src === "webp") {
+        key = (await supportsWebp()) ? "webp" : "jpg";
+      } else {
+        key = "jpg";
+      }
+    }
+    if (key === "webp" && !(await supportsWebp())) key = "jpg";
+    if (key === "png") return { type: "image/png", ext: ".png", key: "png" };
+    if (key === "webp") return { type: "image/webp", ext: ".webp", key: "webp" };
+    return { type: "image/jpeg", ext: ".jpg", key: "jpg" };
+  }
+
+  async function encodeCanvas(canvas, type, quality) {
+    if (type === "image/png") return OT.canvasToBlob(canvas, type);
+    return OT.canvasToBlob(canvas, type, quality);
+  }
+
+  async function compress(file, qualityOrOpts = 0.7, formatArg) {
+    const opts =
+      typeof qualityOrOpts === "object" && qualityOrOpts !== null
+        ? qualityOrOpts
+        : { quality: qualityOrOpts, format: formatArg };
+
+    let quality = opts.quality != null ? Number(opts.quality) : 0.72;
+    if (quality > 1) quality = quality / 100;
+    quality = Math.min(0.98, Math.max(0.2, quality));
+
+    const maxEdge = opts.maxEdge > 0 ? Math.round(opts.maxEdge) : 0;
+    const drawOpts = maxEdge ? { maxW: maxEdge, maxH: maxEdge } : {};
+    const { canvas, width, height } = await drawToCanvas(file, drawOpts);
+    const { type, ext, key } = await resolveCompressType(opts.format, file.name);
+
+    let blob;
+    let usedQ = type === "image/png" ? null : quality;
+
+    if (opts.targetBytes > 0 && type !== "image/png") {
+      let lo = 0.28;
+      let hi = Math.min(0.95, Math.max(quality, 0.5));
+      blob = await encodeCanvas(canvas, type, hi);
+      usedQ = hi;
+      if (blob.size > opts.targetBytes) {
+        for (let i = 0; i < 7; i++) {
+          const mid = (lo + hi) / 2;
+          const trial = await encodeCanvas(canvas, type, mid);
+          if (trial.size > opts.targetBytes) {
+            hi = mid;
+          } else {
+            lo = mid;
+            blob = trial;
+            usedQ = mid;
+          }
+        }
+        if (!blob || blob.size > opts.targetBytes) {
+          blob = await encodeCanvas(canvas, type, lo);
+          usedQ = lo;
+        }
+      }
+    } else {
+      blob = await encodeCanvas(canvas, type, quality);
+    }
+
+    // Nếu nén xong lại lớn hơn gốc (PNG lossless / JPG đã tối ưu) — giữ bản nhỏ hơn
+    if (blob.size >= file.size && !maxEdge && key !== "png") {
+      const fallbackQ = Math.max(0.35, (usedQ || quality) * 0.82);
+      const retry = await encodeCanvas(canvas, type, fallbackQ);
+      if (retry.size < blob.size) {
+        blob = retry;
+        usedQ = fallbackQ;
+      }
+    }
+
+    const saved = Math.max(0, file.size - blob.size);
+    const ratio = file.size > 0 ? saved / file.size : 0;
+
     return {
       blob,
       fileName: OT.nameWithSuffix(file.name, "-compressed", ext),
       contentType: type,
+      format: key,
+      quality: usedQ,
+      width,
+      height,
       before: file.size,
-      after: blob.size
+      after: blob.size,
+      saved,
+      ratio
     };
   }
 

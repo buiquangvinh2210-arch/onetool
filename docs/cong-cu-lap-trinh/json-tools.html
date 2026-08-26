@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Format JSON online — làm đẹp, minify và kiểm tra | OneTool</title>
+  <meta name="description" content="Format, thu gọn và kiểm tra JSON hợp lệ. Dán text hoặc mở file .json, sao chép kết quả — miễn phí trên trình duyệt." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826c" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260824d" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826e" />
+  <link rel="stylesheet" href="../assets/css/tools/json-tools.css" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
+<body>
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="jt-page">
+    <header class="jt-intro">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+      <h1>JSON Formatter · Làm đẹp JSON</h1>
+      <p>Format đẹp, thu gọn (minify) hoặc kiểm tra JSON — xử lý ngay trên trình duyệt.</p>
+    </header>
+    <div class="jt-studio">
+      <div class="jt-panel">
+        <div class="jt-panel-head">
+          <h2>JSON nguồn</h2>
+          <div class="jt-mode" id="modeTabs" role="tablist" aria-label="Chế độ xử lý">
+            <button type="button" class="is-on" data-mode="format" role="tab" aria-selected="true">Format</button>
+            <button type="button" data-mode="minify" role="tab" aria-selected="false">Minify</button>
+          </div>
+        </div>
+        <div class="jt-body">
+          <div class="jt-meta">
+            <span id="inputMeta">Chưa có dữ liệu</span>
+            <span id="validBadge"></span>
+          </div>
+          <textarea id="inputText" class="jt-editor" spellcheck="false" placeholder='Dán JSON vào đây…&#10;{"name":"OneTool","ok":true}'></textarea>
+          <div class="jt-toolbar">
+            <button type="button" class="jt-text-btn" id="openFileBtn">Mở file .json</button>
+            <button type="button" class="jt-text-btn" id="sampleBtn">Dán mẫu</button>
+            <button type="button" class="jt-text-btn" id="validateBtn">Kiểm tra</button>
+            <button type="button" class="jt-text-btn" id="clearBtn">Xóa</button>
+            <input type="file" id="fileInput" accept=".json,application/json" />
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="runBtn">Chạy</button>
+        </div>
+      </div>
+      <div class="jt-panel result-panel">
+        <div class="jt-panel-head">
+          <h2>Kết quả</h2>
+          <div class="jt-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải .json</button>
+          </div>
+        </div>
+        <div class="jt-body">
+          <p id="status" class="jt-status">Kết quả hiện ở đây sau khi chạy Format hoặc Minify.</p>
+          <pre id="preview" class="jt-out is-empty">Chưa có kết quả</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js"></script>
+<script src="../assets/js/layout.js?v=20260826g"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826g"></script>
+<script src="../assets/js/tools/utils.js?v=20260824a" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+(function () {
+  const SAMPLE = '{\n  "site": "OneTool",\n  "tools": ["pdf", "anh", "json"],\n  "free": true\n}';
+  let mode = "format";
+  const els = {
+    input: document.getElementById("inputText"),
+    meta: document.getElementById("inputMeta"),
+    valid: document.getElementById("validBadge"),
+    status: document.getElementById("status"),
+    preview: document.getElementById("preview"),
+    tabs: document.getElementById("modeTabs"),
+    fileInput: document.getElementById("fileInput")
+  };
+  function setMode(next) {
+    mode = next;
+    els.tabs.querySelectorAll("button[data-mode]").forEach((btn) => {
+      const on = btn.dataset.mode === mode;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    document.getElementById("runBtn").textContent = mode === "format" ? "Format JSON" : "Minify JSON";
+  }
+  function updateMeta() {
+    const text = els.input.value;
+    if (!text.trim()) {
+      els.meta.textContent = "Chưa có dữ liệu";
+      els.valid.textContent = "";
+      els.valid.className = "";
+      return;
+    }
+    els.meta.textContent = text.split("\n").length + " dòng · " + OT.formatBytes(new Blob([text]).size);
+    try {
+      OTUtils.parseJson(text);
+      els.valid.textContent = "Hợp lệ";
+      els.valid.className = "valid";
+    } catch (e) {
+      els.valid.textContent = "Không hợp lệ";
+      els.valid.className = "invalid";
+    }
+  }
+  function clearResult(resetStatus) {
+    els.preview.textContent = "Chưa có kết quả";
+    els.preview.classList.add("is-empty");
+    document.getElementById("copyResultBtn").disabled = true;
+    document.getElementById("downloadResultBtn").disabled = true;
+    if (resetStatus) {
+      els.status.textContent = "Kết quả hiện ở đây sau khi chạy Format hoặc Minify.";
+      els.status.className = "jt-status";
+    }
+  }
+  function runConvert() {
+    const btn = document.getElementById("runBtn");
+    try {
+      const input = els.input.value;
+      if (!input.trim()) throw new Error("Dán JSON hoặc mở file trước.");
+      OT.setBusy(btn, true, mode === "format" ? "Đang format…" : "Đang minify…");
+      els.status.textContent = "Đang xử lý…";
+      els.status.className = "jt-status";
+      const minify = mode === "minify";
+      const text = OTUtils.formatJson(input, minify);
+      const fileName = minify ? "data.min.json" : "data.json";
+      els.preview.classList.remove("is-empty");
+      OT.showResult({ text, fileName, contentType: "application/json" });
+      els.status.textContent = minify
+        ? "Đã minify · " + text.length + " ký tự."
+        : "Đã format · " + text.split("\n").length + " dòng.";
+      els.status.className = "jt-status is-ok";
+      showToast?.(minify ? "Đã minify!" : "Đã format!", "success");
+    } catch (e) {
+      els.status.textContent = e.message || String(e);
+      els.status.className = "jt-status is-err";
+      clearResult(false);
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  }
+  function validateOnly() {
+    try {
+      if (!els.input.value.trim()) throw new Error("Dán JSON trước.");
+      OTUtils.parseJson(els.input.value);
+      els.status.textContent = "JSON hợp lệ ✓";
+      els.status.className = "jt-status is-ok";
+      updateMeta();
+    } catch (e) {
+      els.status.textContent = e.message || String(e);
+      els.status.className = "jt-status is-err";
+      updateMeta();
+    }
+  }
+  els.tabs?.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-mode]");
+    if (btn) setMode(btn.dataset.mode);
+  });
+  els.input?.addEventListener("input", () => { updateMeta(); clearResult(true); });
+  document.getElementById("sampleBtn")?.addEventListener("click", () => {
+    els.input.value = SAMPLE; updateMeta(); clearResult(true);
+  });
+  document.getElementById("clearBtn")?.addEventListener("click", () => {
+    els.input.value = ""; updateMeta(); clearResult(true);
+  });
+  document.getElementById("validateBtn")?.addEventListener("click", validateOnly);
+  document.getElementById("openFileBtn")?.addEventListener("click", () => els.fileInput?.click());
+  els.fileInput?.addEventListener("change", async () => {
+    const file = els.fileInput.files?.[0];
+    els.fileInput.value = "";
+    if (!file) return;
+    try {
+      els.input.value = await file.text();
+      updateMeta(); clearResult(true);
+      els.status.textContent = "Đã mở «" + file.name + "».";
+      els.status.className = "jt-status is-ok";
+    } catch {
+      els.status.textContent = "Không đọc được file.";
+      els.status.className = "jt-status is-err";
+    }
+  });
+  document.getElementById("runBtn").onclick = runConvert;
+  els.input?.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); runConvert(); }
+  });
+  setMode("format");
+})();
+});
+</script>
+</body>
+</html>

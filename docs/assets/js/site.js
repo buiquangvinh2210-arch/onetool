@@ -165,16 +165,32 @@
       return href(`${cat.seo}/${t.slug}.html`);
     }
 
+    function escAttr(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;");
+    }
+
+    function sortTools(list) {
+      return list.slice().sort((a, b) => {
+        const ra = Number.isFinite(a.rank) ? a.rank : 999;
+        const rb = Number.isFinite(b.rank) ? b.rank : 999;
+        if (ra !== rb) return ra - rb;
+        return String(a.name || "").localeCompare(String(b.name || ""), "vi");
+      });
+    }
+
     function pickTools(catSlug) {
       const items = OTCatalog.tools.filter(t => t.cat === catSlug && !t.hub);
-      const featured = items.filter(t => t.featured);
-      const rest = items.filter(t => !t.featured);
+      const featured = sortTools(items.filter(t => t.featured));
+      const rest = sortTools(items.filter(t => !t.featured));
       return [...featured, ...rest].slice(0, limit);
     }
 
     function toolCard(t) {
       const cat = OTCatalog.catBySlug(t.cat);
-      return `<a class="tool-card home-tool-card" href="${toolHref(t)}">
+      return `<a class="tool-card home-tool-card" href="${toolHref(t)}" aria-label="Mở ${escAttr(t.name)}">
         <div class="tool-card-icon" aria-hidden="true">${t.icon}</div>
         <div class="tool-card-body">
           <div class="tool-card-top">
@@ -193,10 +209,13 @@
     container.innerHTML = OTCatalog.categories.map((cat, i) => {
       const tools = pickTools(cat.slug);
       if (!tools.length) return "";
+      const catUrl = href(cat.seo + ".html");
       return `<section class="home-cat-row">
         <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">${i + 1}. ${cat.name.toUpperCase()}</h2>
-          <a class="home-cat-row-all" href="${href(cat.seo + ".html")}">Xem tất cả ›</a>
+          <h2 class="home-cat-row-title">
+            <a class="home-cat-row-title-link" href="${catUrl}" aria-label="Xem danh mục ${escAttr(cat.name)}">${i + 1}. ${escAttr(String(cat.name || "").toUpperCase())}</a>
+          </h2>
+          <a class="home-cat-row-all" href="${catUrl}" aria-label="Xem tất cả ${escAttr(cat.name)}">Xem tất cả ›</a>
         </div>
         <div class="home-cat-row-grid">${tools.map(toolCard).join("")}</div>
       </section>`;
@@ -224,11 +243,20 @@
       (groups[t.cat] ||= []).push(t);
     });
 
+    function sortTools(list) {
+      return list.slice().sort((a, b) => {
+        const ra = Number.isFinite(a.rank) ? a.rank : 999;
+        const rb = Number.isFinite(b.rank) ? b.rank : 999;
+        if (ra !== rb) return ra - rb;
+        return String(a.name || "").localeCompare(String(b.name || ""), "vi");
+      });
+    }
+
     function pickTools(items) {
       const list = items.filter(t => !t.hub);
-      if (!perCatLimit) return list;
-      const featured = list.filter(t => t.featured);
-      const rest = list.filter(t => !t.featured);
+      if (!perCatLimit) return sortTools(list);
+      const featured = sortTools(list.filter(t => t.featured));
+      const rest = sortTools(list.filter(t => !t.featured));
       return [...featured, ...rest].slice(0, perCatLimit);
     }
 
@@ -242,9 +270,16 @@
       return href(`${cat.seo}/${t.slug}.html`);
     }
 
+    function escAttr(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;");
+    }
+
     function card(t) {
       const cat = OTCatalog.catBySlug(t.cat);
-      return `<a class="tool-card" href="${toolHref(t)}">
+      return `<a class="tool-card" href="${toolHref(t)}" aria-label="Mở ${escAttr(t.name)}">
         <div class="tool-card-icon" aria-hidden="true">${t.icon}</div>
         <div class="tool-card-body">
           <div class="tool-card-top">

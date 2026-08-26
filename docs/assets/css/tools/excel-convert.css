@@ -1,0 +1,457 @@
+body[data-tool="excel-convert"] {
+  --xc-ink: #16121c;
+  --xc-muted: #6b6578;
+  --xc-line: rgba(88, 60, 140, 0.12);
+  --xc-soft: rgba(124, 58, 237, 0.07);
+  --xc-ok: #059669;
+  --xc-err: #dc2626;
+}
+
+body[data-tool="excel-convert"] .tool-workspace {
+  padding: 0 0 2.5rem !important;
+  background:
+    radial-gradient(ellipse 85% 50% at 8% -10%, rgba(124, 58, 237, 0.11), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(6, 182, 212, 0.08), transparent 50%),
+    linear-gradient(180deg, #f8f7fc 0%, #f1f5f9 100%) !important;
+}
+
+body[data-tool="excel-convert"] .xc-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+body[data-tool="excel-convert"] .xc-intro {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto 1.35rem;
+}
+
+body[data-tool="excel-convert"] .xc-intro h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--xc-ink);
+}
+
+body[data-tool="excel-convert"] .xc-intro p {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
+  color: var(--xc-muted);
+  line-height: 1.55;
+}
+
+body[data-tool="excel-convert"] .xc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+body[data-tool="excel-convert"] .xc-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: #fff;
+  border: 1px solid var(--xc-line);
+  color: var(--primary-dark);
+}
+
+body[data-tool="excel-convert"] .xc-studio {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+body[data-tool="excel-convert"] .xc-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--xc-line);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+body[data-tool="excel-convert"] .xc-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.9rem 1.05rem;
+  border-bottom: 1px solid var(--xc-line);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+body[data-tool="excel-convert"] .xc-panel-head h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 750;
+  color: var(--xc-ink);
+}
+
+body[data-tool="excel-convert"] .xc-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.95rem 1.05rem 1.1rem;
+  min-height: 0;
+}
+
+body[data-tool="excel-convert"] .xc-mode {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+body[data-tool="excel-convert"] .xc-mode button {
+  border: 1px solid var(--xc-line);
+  background: #fafafa;
+  color: var(--xc-muted);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 650;
+  padding: 0.65rem 0.7rem;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+body[data-tool="excel-convert"] .xc-mode button strong {
+  display: block;
+  color: inherit;
+  font-size: 0.86rem;
+  margin-bottom: 0.12rem;
+}
+
+body[data-tool="excel-convert"] .xc-mode button span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+body[data-tool="excel-convert"] .xc-mode button.is-on {
+  background: #fff;
+  color: var(--primary-dark);
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+body[data-tool="excel-convert"] .xc-drop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 150px;
+  padding: 1.25rem;
+  border: 1.5px dashed rgba(124, 58, 237, 0.28);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.04), rgba(6, 182, 212, 0.03));
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+body[data-tool="excel-convert"] .xc-drop.is-drag {
+  border-color: var(--primary);
+  background: rgba(124, 58, 237, 0.08);
+}
+
+body[data-tool="excel-convert"] .xc-drop-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--gradient-brand);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+  margin-bottom: 0.35rem;
+}
+
+body[data-tool="excel-convert"] .xc-drop p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--xc-ink);
+}
+
+body[data-tool="excel-convert"] .xc-drop .text-muted {
+  font-size: 0.78rem;
+  color: var(--xc-muted);
+}
+
+body[data-tool="excel-convert"] .xc-file {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--xc-line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+body[data-tool="excel-convert"] .xc-file.is-on {
+  display: flex;
+}
+
+body[data-tool="excel-convert"] .xc-file-badge {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+body[data-tool="excel-convert"] .xc-file-main {
+  flex: 1;
+  min-width: 0;
+}
+
+body[data-tool="excel-convert"] .xc-file-main strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--xc-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body[data-tool="excel-convert"] .xc-file-main span {
+  font-size: 0.75rem;
+  color: var(--xc-muted);
+}
+
+body[data-tool="excel-convert"] .xc-sheets {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+body[data-tool="excel-convert"] .xc-sheets.is-on {
+  display: flex;
+}
+
+body[data-tool="excel-convert"] .xc-sheets button {
+  border: 1px solid var(--xc-line);
+  background: #fff;
+  color: var(--xc-muted);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 650;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+body[data-tool="excel-convert"] .xc-sheets button.is-on {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+body[data-tool="excel-convert"] .xc-opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+  font-size: 0.8rem;
+  color: var(--xc-muted);
+}
+
+body[data-tool="excel-convert"] .xc-opts label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+body[data-tool="excel-convert"] .xc-paste {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--xc-line);
+  border-radius: 12px;
+  background: #fafafa;
+  color: var(--xc-ink);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+body[data-tool="excel-convert"] .xc-paste:focus {
+  outline: none;
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  background: #fff;
+}
+
+body[data-tool="excel-convert"] .xc-paste[hidden] {
+  display: none !important;
+}
+
+body[data-tool="excel-convert"] .xc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+body[data-tool="excel-convert"] .xc-status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--xc-muted);
+}
+
+body[data-tool="excel-convert"] .xc-status.is-ok {
+  color: var(--xc-ok);
+}
+
+body[data-tool="excel-convert"] .xc-status.is-err {
+  color: var(--xc-err);
+}
+
+body[data-tool="excel-convert"] .xc-preview-wrap {
+  flex: 1;
+  min-height: 280px;
+  border: 1px solid var(--xc-line);
+  border-radius: 12px;
+  background: #fafafa;
+  overflow: auto;
+}
+
+body[data-tool="excel-convert"] .xc-empty {
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--xc-muted);
+  font-size: 0.9rem;
+}
+
+body[data-tool="excel-convert"] .xc-empty[hidden],
+body[data-tool="excel-convert"] .xc-table-wrap[hidden],
+body[data-tool="excel-convert"] .xc-json-out[hidden] {
+  display: none !important;
+}
+
+body[data-tool="excel-convert"] .xc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+body[data-tool="excel-convert"] .xc-table th,
+body[data-tool="excel-convert"] .xc-table td {
+  padding: 0.45rem 0.65rem;
+  border-bottom: 1px solid var(--xc-line);
+  text-align: left;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body[data-tool="excel-convert"] .xc-table th {
+  position: sticky;
+  top: 0;
+  background: #f1eef8;
+  color: var(--xc-ink);
+  font-weight: 750;
+  z-index: 1;
+}
+
+body[data-tool="excel-convert"] .xc-table tr:hover td {
+  background: rgba(124, 58, 237, 0.04);
+}
+
+body[data-tool="excel-convert"] .xc-json-out {
+  margin: 0;
+  padding: 0.85rem;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--xc-ink);
+}
+
+body[data-tool="excel-convert"] input[type="file"] {
+  display: none;
+}
+
+body[data-tool="excel-convert"] .xc-note {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--xc-muted);
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  body[data-tool="excel-convert"] .xc-studio {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-tool="excel-convert"] .xc-panel {
+    min-height: auto;
+  }
+
+  body[data-tool="excel-convert"] .xc-mode {
+    grid-template-columns: 1fr;
+  }
+}
+
+html[data-theme="dark"] body[data-tool="excel-convert"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-panel,
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-file,
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-mode button.is-on {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-intro h1,
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-panel-head h2,
+html[data-tool="excel-convert"] .xc-file-main strong {
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-preview-wrap,
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-paste,
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-mode button {
+  background: rgba(15, 23, 42, 0.35);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="excel-convert"] .xc-table th {
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--text);
+}

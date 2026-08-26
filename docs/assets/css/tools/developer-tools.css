@@ -308,3 +308,47 @@ body[data-tool="developer-tools"] input[type="file"] { display: none; }
   body[data-tool="developer-tools"] .dev-studio { grid-template-columns: 1fr; }
   body[data-tool="developer-tools"] .dev-panel { min-height: auto; }
 }
+
+/* ── Dark mode ── */
+html[data-theme="dark"] body[data-tool="developer-tools"] {
+  --dev-ink: #f1edf8;
+  --dev-muted: #94a3b8;
+  --dev-line: rgba(255, 255, 255, 0.08);
+  --dev-soft: rgba(124, 58, 237, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="developer-tools"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-panel,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-panel-head,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-mode button,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-submode button,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-text-btn,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-editor,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-out,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-field select,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-field input {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-panel-head {
+  background: rgba(19, 16, 31, 0.98);
+}
+
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-mode button.is-on,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-submode button.is-on {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.4);
+  color: #c4b5fd;
+}
+
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-editor,
+html[data-theme="dark"] body[data-tool="developer-tools"] .dev-out {
+  background: var(--tool-input-bg, #0f0d14);
+}

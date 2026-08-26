@@ -513,3 +513,66 @@ body[data-tool="audio-to-text"] .at-note-mob {
     max-height: 55vh;
   }
 }
+
+/* ── Dark mode ── */
+html[data-theme="dark"] body[data-tool="audio-to-text"] {
+  --at-ink: #f1edf8;
+  --at-muted: #94a3b8;
+  --at-line: rgba(255, 255, 255, 0.08);
+  --at-soft: rgba(124, 58, 237, 0.14);
+  --at-panel: rgba(19, 16, 31, 0.92);
+  --at-surface: #1c1824;
+  --at-surface-alt: #141119;
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 90% 55% at 8% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 100% 0%, rgba(99, 102, 241, 0.12), transparent 50%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-shell {
+  background: var(--at-panel);
+  border-color: var(--at-line);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-side {
+  background: linear-gradient(165deg, rgba(124, 58, 237, 0.1), transparent 55%);
+  border-right-color: var(--at-line);
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-side .upload-zone {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: var(--border-strong, rgba(255, 255, 255, 0.14));
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-side .file-chip {
+  background: var(--at-surface) !important;
+  border-color: var(--at-line);
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-field .form-control {
+  background: var(--at-surface);
+  border-color: var(--at-line);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-main {
+  background: var(--at-surface-alt);
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-main-bar {
+  background: linear-gradient(180deg, #1a1722, #141119);
+  border-bottom-color: var(--at-line);
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-transcript {
+  background: var(--tool-input-bg, #0f0d14) !important;
+  color: var(--at-ink);
+}
+
+html[data-theme="dark"] body[data-tool="audio-to-text"] .at-transcript:empty::before {
+  color: var(--at-muted);
+}

@@ -1,0 +1,606 @@
+body[data-tool="image-pdf"],
+body[data-tool="image-to-pdf"],
+body[data-tool="pdf-to-image"] {
+  --ip-ink: #16121c;
+  --ip-muted: #7a7388;
+  --ip-line: rgba(40, 24, 70, 0.1);
+  --ip-soft: rgba(124, 58, 237, 0.07);
+  --ip-ok: #0f7a4d;
+}
+
+body[data-tool="image-pdf"] .tool-workspace,
+body[data-tool="image-to-pdf"] .tool-workspace,
+body[data-tool="pdf-to-image"] .tool-workspace {
+  padding: 0 0 2.5rem !important;
+  background:
+    radial-gradient(900px 420px at 10% -8%, rgba(124, 58, 237, 0.08), transparent 55%),
+    radial-gradient(700px 380px at 92% 0%, rgba(14, 165, 233, 0.06), transparent 50%),
+    #f6f4f9 !important;
+}
+
+body[data-tool="image-pdf"] .ip-page,
+body[data-tool="image-to-pdf"] .ip-page,
+body[data-tool="pdf-to-image"] .ip-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body[data-tool="image-pdf"] .ip-intro,
+body[data-tool="image-to-pdf"] .ip-intro,
+body[data-tool="pdf-to-image"] .ip-intro {
+  text-align: center;
+  margin: 0 auto 1.75rem;
+  max-width: 36rem;
+}
+body[data-tool="image-pdf"] .ip-intro h1,
+body[data-tool="image-to-pdf"] .ip-intro h1,
+body[data-tool="pdf-to-image"] .ip-intro h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-weight: 760;
+  letter-spacing: -0.04em;
+  color: var(--ip-ink);
+}
+body[data-tool="image-pdf"] .ip-intro p,
+body[data-tool="image-to-pdf"] .ip-intro p,
+body[data-tool="pdf-to-image"] .ip-intro p {
+  margin: 0.5rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--ip-muted);
+}
+
+body[data-tool="image-pdf"] .ip-sibs,
+body[data-tool="image-to-pdf"] .ip-sibs,
+body[data-tool="pdf-to-image"] .ip-sibs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin: 0 0 1.25rem;
+}
+body[data-tool="image-pdf"] .ip-sib,
+body[data-tool="image-to-pdf"] .ip-sib,
+body[data-tool="pdf-to-image"] .ip-sib {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--ip-line);
+  background: #fff;
+  color: var(--ip-ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+body[data-tool="image-pdf"] .ip-sib:hover,
+body[data-tool="image-to-pdf"] .ip-sib:hover,
+body[data-tool="pdf-to-image"] .ip-sib:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  background: var(--ip-soft);
+}
+body[data-tool="image-pdf"] .ip-sib.is-on,
+body[data-tool="image-to-pdf"] .ip-sib.is-on,
+body[data-tool="pdf-to-image"] .ip-sib.is-on {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* Hub */
+body[data-tool="image-pdf"] .ip-hub {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+body[data-tool="image-pdf"] .ip-hub-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.6rem 1.5rem 1.45rem;
+  border-radius: 20px;
+  border: 1px solid var(--ip-line);
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 14px 36px rgba(50, 30, 90, 0.07);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  min-height: 200px;
+}
+body[data-tool="image-pdf"] .ip-hub-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 18px 44px rgba(50, 30, 90, 0.11);
+}
+body[data-tool="image-pdf"] .ip-hub-kicker {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: var(--ip-soft);
+  color: #6d28d9;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+body[data-tool="image-pdf"] .ip-hub-card h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 760;
+  letter-spacing: -0.03em;
+  color: var(--ip-ink);
+}
+body[data-tool="image-pdf"] .ip-hub-card p {
+  margin: 0;
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ip-muted);
+}
+body[data-tool="image-pdf"] .ip-hub-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+body[data-tool="image-pdf"] .ip-hub-meta span {
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--ip-muted);
+  padding: 0.28rem 0.55rem;
+  border-radius: 8px;
+  background: #f3f1f7;
+}
+body[data-tool="image-pdf"] .ip-hub-cta {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+body[data-tool="image-pdf"] .ip-note {
+  margin: 1.5rem auto 0;
+  max-width: 40rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--ip-muted);
+  line-height: 1.5;
+}
+body[data-tool="image-pdf"] .ip-note a {
+  color: #7c3aed;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+/* Studio shell */
+body[data-tool="image-to-pdf"] .ip-shell,
+body[data-tool="pdf-to-image"] .ip-shell {
+  border-radius: 20px;
+  border: 1px solid var(--ip-line);
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 16px 40px rgba(50, 30, 90, 0.06);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  min-height: min(560px, calc(100vh - 14rem));
+}
+
+body[data-tool="image-to-pdf"] .ip-side,
+body[data-tool="pdf-to-image"] .ip-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  padding: 1.35rem 1.25rem 1.4rem;
+  border-right: 1px solid var(--ip-line);
+  background: linear-gradient(165deg, rgba(124, 58, 237, 0.045), transparent 55%);
+}
+
+body[data-tool="image-to-pdf"] .ip-label,
+body[data-tool="pdf-to-image"] .ip-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: var(--ip-ink);
+}
+
+body[data-tool="image-to-pdf"] .ip-opts,
+body[data-tool="pdf-to-image"] .ip-opts {
+  display: grid;
+  gap: 0.45rem;
+}
+body[data-tool="image-to-pdf"] .ip-opt,
+body[data-tool="pdf-to-image"] .ip-opt {
+  border: 1px solid var(--ip-line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.65rem 0.85rem;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ip-ink);
+  display: grid;
+  gap: 0.12rem;
+}
+body[data-tool="image-to-pdf"] .ip-opt:hover,
+body[data-tool="pdf-to-image"] .ip-opt:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+}
+body[data-tool="image-to-pdf"] .ip-opt.is-on,
+body[data-tool="pdf-to-image"] .ip-opt.is-on {
+  border-color: var(--primary, #7c3aed);
+  background: rgba(124, 58, 237, 0.08);
+}
+body[data-tool="image-to-pdf"] .ip-opt strong,
+body[data-tool="pdf-to-image"] .ip-opt strong {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+body[data-tool="image-to-pdf"] .ip-opt.is-on strong,
+body[data-tool="pdf-to-image"] .ip-opt.is-on strong {
+  color: var(--primary, #7c3aed);
+}
+body[data-tool="image-to-pdf"] .ip-opt em,
+body[data-tool="pdf-to-image"] .ip-opt em {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--ip-muted);
+}
+
+body[data-tool="image-to-pdf"] .ip-formats,
+body[data-tool="pdf-to-image"] .ip-formats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+body[data-tool="image-to-pdf"] .ip-fmt,
+body[data-tool="pdf-to-image"] .ip-fmt {
+  border: 1px solid var(--ip-line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 0.55rem 0.35rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  cursor: pointer;
+  color: var(--ip-muted);
+  text-align: center;
+}
+body[data-tool="image-to-pdf"] .ip-fmt.is-on,
+body[data-tool="pdf-to-image"] .ip-fmt.is-on {
+  border-color: var(--primary, #7c3aed);
+  color: var(--primary, #7c3aed);
+  background: rgba(124, 58, 237, 0.08);
+}
+
+body[data-tool="image-to-pdf"] .ip-field .form-control,
+body[data-tool="pdf-to-image"] .ip-field .form-control {
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  padding: 0.55rem 0.65rem;
+}
+body[data-tool="image-to-pdf"] .ip-hint,
+body[data-tool="pdf-to-image"] .ip-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--ip-muted);
+}
+
+body[data-tool="image-to-pdf"] .ip-side .btn-primary,
+body[data-tool="pdf-to-image"] .ip-side .btn-primary {
+  margin-top: auto;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.28);
+}
+
+body[data-tool="image-to-pdf"] .ip-main,
+body[data-tool="pdf-to-image"] .ip-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #faf9fc;
+}
+
+body[data-tool="image-to-pdf"] .ip-main-bar,
+body[data-tool="pdf-to-image"] .ip-main-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--ip-line);
+  background: #fff;
+}
+body[data-tool="image-to-pdf"] .ip-main-bar h2,
+body[data-tool="pdf-to-image"] .ip-main-bar h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 720;
+  color: var(--ip-ink);
+}
+body[data-tool="image-to-pdf"] #status,
+body[data-tool="pdf-to-image"] #status {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  color: var(--ip-muted);
+}
+body[data-tool="image-to-pdf"] .ip-actions,
+body[data-tool="pdf-to-image"] .ip-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+body[data-tool="image-to-pdf"] .ip-actions .btn,
+body[data-tool="pdf-to-image"] .ip-actions .btn {
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+
+body[data-tool="image-to-pdf"] .ip-drop,
+body[data-tool="pdf-to-image"] .ip-drop {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+body[data-tool="image-to-pdf"] .ip-drop .upload-zone,
+body[data-tool="pdf-to-image"] .ip-drop .upload-zone {
+  min-height: 160px;
+  border-radius: 14px;
+  border-style: dashed;
+  background: rgba(124, 58, 237, 0.03);
+  margin: 0;
+}
+body[data-tool="image-to-pdf"] .ip-drop .upload-zone::before,
+body[data-tool="pdf-to-image"] .ip-drop .upload-zone::before {
+  display: none;
+}
+body[data-tool="image-to-pdf"] #fileList,
+body[data-tool="pdf-to-image"] #fileList {
+  display: none !important;
+}
+
+body[data-tool="image-to-pdf"] .ip-list {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+  overflow-y: auto;
+  max-height: min(420px, 55vh);
+}
+body[data-tool="image-to-pdf"] .ip-item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.55rem 0.65rem;
+  border-radius: 12px;
+  border: 1px solid var(--ip-line);
+  background: #fff;
+}
+body[data-tool="image-to-pdf"] .ip-item img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #eee;
+}
+body[data-tool="image-to-pdf"] .ip-item strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: var(--ip-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 280px;
+}
+body[data-tool="image-to-pdf"] .ip-item span {
+  font-size: 0.78rem;
+  color: var(--ip-muted);
+}
+body[data-tool="image-to-pdf"] .ip-item-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+body[data-tool="image-to-pdf"] .ip-item-actions button {
+  border: 1px solid var(--ip-line);
+  background: #fff;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--ip-muted);
+}
+body[data-tool="image-to-pdf"] .ip-item-actions button:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  color: var(--primary, #7c3aed);
+}
+
+body[data-tool="pdf-to-image"] .ip-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+  overflow-y: auto;
+  max-height: min(460px, 58vh);
+}
+body[data-tool="pdf-to-image"] .ip-thumb {
+  margin: 0;
+  border-radius: 12px;
+  border: 1px solid var(--ip-line);
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+body[data-tool="pdf-to-image"] .ip-thumb img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: contain;
+  background:
+    linear-gradient(45deg, #eee 25%, transparent 25%),
+    linear-gradient(-45deg, #eee 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #eee 75%),
+    linear-gradient(-45deg, transparent 75%, #eee 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+  background-color: #f3f1f6;
+}
+body[data-tool="pdf-to-image"] .ip-thumb figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--ip-muted);
+}
+body[data-tool="pdf-to-image"] .ip-thumb button {
+  border: 0;
+  background: none;
+  color: #7c3aed;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+body[data-tool="image-to-pdf"] .ip-empty,
+body[data-tool="pdf-to-image"] .ip-empty {
+  margin: auto;
+  text-align: center;
+  color: var(--ip-muted);
+  font-size: 0.95rem;
+  padding: 2rem 1rem;
+}
+
+body[data-tool="image-to-pdf"] .ip-filechip,
+body[data-tool="pdf-to-image"] .ip-filechip {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--ip-line);
+  background: #fff;
+  margin-bottom: 0.85rem;
+}
+body[data-tool="image-to-pdf"] .ip-shell.has-file .ip-filechip,
+body[data-tool="pdf-to-image"] .ip-shell.has-file .ip-filechip {
+  display: flex;
+}
+body[data-tool="image-to-pdf"] .ip-filechip strong,
+body[data-tool="pdf-to-image"] .ip-filechip strong {
+  display: block;
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+body[data-tool="image-to-pdf"] .ip-filechip span,
+body[data-tool="pdf-to-image"] .ip-filechip span {
+  font-size: 0.78rem;
+  color: var(--ip-muted);
+}
+body[data-tool="image-to-pdf"] .ip-text-btn,
+body[data-tool="pdf-to-image"] .ip-text-btn {
+  border: 0;
+  background: none;
+  color: #7c3aed;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  body[data-tool="image-pdf"] .ip-hub {
+    grid-template-columns: 1fr;
+  }
+  body[data-tool="image-to-pdf"] .ip-shell,
+  body[data-tool="pdf-to-image"] .ip-shell {
+    grid-template-columns: 1fr;
+  }
+  body[data-tool="image-to-pdf"] .ip-side,
+  body[data-tool="pdf-to-image"] .ip-side {
+    border-right: 0;
+    border-bottom: 1px solid var(--ip-line);
+  }
+}
+
+/* ── Dark mode ── */
+html[data-theme="dark"] body[data-tool="image-pdf"],
+html[data-theme="dark"] body[data-tool="image-to-pdf"],
+html[data-theme="dark"] body[data-tool="pdf-to-image"] {
+  --ip-ink: #f1edf8;
+  --ip-muted: #94a3b8;
+  --ip-line: rgba(255, 255, 255, 0.08);
+  --ip-soft: rgba(124, 58, 237, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="image-pdf"] .tool-workspace,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .tool-workspace,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .tool-workspace {
+  background:
+    radial-gradient(900px 420px at 10% -8%, rgba(124, 58, 237, 0.14), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="image-pdf"] .ip-sib,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-sib,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-sib,
+html[data-theme="dark"] body[data-tool="image-pdf"] .ip-hub-card,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-shell,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-shell,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-opt,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-opt,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-fmt,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-fmt,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-filechip,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-filechip,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-thumb,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-thumb,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-page-chip,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-page-chip {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-side,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-side {
+  background: linear-gradient(165deg, rgba(124, 58, 237, 0.1), transparent 55%);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-main,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-main {
+  background: #141119;
+}
+
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-main-bar,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-main-bar {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-opt.is-on,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-opt.is-on,
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-fmt.is-on,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-fmt.is-on {
+  background: rgba(124, 58, 237, 0.15);
+}
+
+html[data-theme="dark"] body[data-tool="image-to-pdf"] .ip-text-btn,
+html[data-theme="dark"] body[data-tool="pdf-to-image"] .ip-text-btn {
+  color: #a78bfa;
+}

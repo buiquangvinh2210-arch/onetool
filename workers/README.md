@@ -25,7 +25,9 @@ GitHub Pages không chạy `.ashx`. Worker Cloudflare proxy sang Groq (miễn ph
    - Name: `GROQ_API_KEY`  
    - Value: key Groq `gsk_...` → **Save**
 6. **Edit code** → dán lại `workers/groq-whisper-proxy.js` → **Deploy** (bắt buộc sau khi thêm biến)
-7. Mở URL Worker → phải thấy `"hasGroqKey":true`
+7. Mở URL Worker → phải thấy `"hasGroqKey":true` và (sau deploy code mới) `"features":["whisper","summarize"]`
+
+Worker này còn phục vụ **Tóm tắt AI** (`POST /summarize`, cùng `GROQ_API_KEY`). Trang: `cong-cu-media/ai-summarize.html`.
 
 > **Lỗi “Chưa cấu hình GROQ_API_KEY” dù đã thêm Text trên dashboard?**  
 > Biến Text trên UI đôi khi không gắn vào runtime. Chạy `workers\deploy-worker.bat` → đăng nhập Cloudflare → `secret put GROQ_API_KEY` → deploy. Cách này chắc chắn hơn.

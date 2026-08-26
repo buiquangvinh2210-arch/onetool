@@ -180,7 +180,37 @@ window.OTTikTok = (function () {
 
   async function downloadViaProxy(mediaUrl, fileName, onProgress) {
     const href = fileProxyUrl(mediaUrl, fileName);
+    if (!href) throw new Error("Không tạo được link tải.");
+
+    const inApp = window.OT?.isInAppBrowser?.() === true;
+
+    // In-app (Facebook/Zalo/IG…): không fetch→blob — WebView chặn a.download
+    if (inApp && window.OT?.downloadUrl) {
+      onProgress?.("Đang mở file tải…", 80);
+      await OT.downloadUrl(href, fileName, { forceNavigate: true });
+      onProgress?.("Nếu chưa tải: ⋮ → Mở bằng trình duyệt", 100);
+      return 0;
+    }
+
     onProgress?.("Đang tải file…", 70);
+    if (window.OT?.downloadUrl) {
+      try {
+        await OT.downloadUrl(href, fileName);
+        onProgress?.("Hoàn tất!", 100);
+        return 0;
+      } catch (e) {
+        // Fallback: tải CORS trực tiếp rồi blob
+        onProgress?.("Thử nguồn khác…", 78);
+        const res = await fetch(mediaUrl, { mode: "cors" }).catch(() => null);
+        if (!res || !res.ok) throw e;
+        const blob = await res.blob();
+        if (!blob.size) throw e;
+        await OT.downloadBlob(blob, fileName);
+        onProgress?.("Hoàn tất!", 100);
+        return blob.size;
+      }
+    }
+
     let res = await fetch(href);
     if (!res.ok && res.status === 403) {
       onProgress?.("Thử tải trực tiếp…", 78);
@@ -199,7 +229,7 @@ window.OTTikTok = (function () {
     const blob = await res.blob();
     if (!blob.size) throw new Error("File rỗng.");
     onProgress?.("Hoàn tất!", 100);
-    if (window.OT?.downloadBlob) OT.downloadBlob(blob, fileName);
+    if (window.OT?.downloadBlob) await OT.downloadBlob(blob, fileName);
     else {
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);

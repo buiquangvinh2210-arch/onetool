@@ -265,3 +265,45 @@ body[data-tool="base64-tools"] input[type="file"] { display: none; }
   body[data-tool="base64-tools"] .b64-studio { grid-template-columns: 1fr; }
   body[data-tool="base64-tools"] .b64-panel { min-height: auto; }
 }
+
+/* ── Dark mode ── */
+html[data-theme="dark"] body[data-tool="base64-tools"] {
+  --b64-ink: #f1edf8;
+  --b64-muted: #94a3b8;
+  --b64-line: rgba(255, 255, 255, 0.08);
+  --b64-soft: rgba(124, 58, 237, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="base64-tools"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-panel,
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-panel-head,
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-mode button,
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-text-btn,
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-editor,
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-out,
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-preview,
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-options select {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-panel-head {
+  background: rgba(19, 16, 31, 0.98);
+}
+
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-mode button.is-on {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.4);
+  color: #c4b5fd;
+}
+
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-editor,
+html[data-theme="dark"] body[data-tool="base64-tools"] .b64-out {
+  background: var(--tool-input-bg, #0f0d14);
+}
