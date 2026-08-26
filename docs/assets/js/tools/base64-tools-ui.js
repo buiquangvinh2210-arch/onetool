@@ -21,7 +21,7 @@
     copy: "Sao chép",
     download: "Tải file",
     modeAria: "Chế độ xử lý",
-    pageTitle: "Base64 online — Encode/Decode UTF-8 | OneTool",
+    pageTitle: "Encode Decode Base64 online — UTF-8 tiếng Việt, file, ảnh | OneTool",
     pageDesc: "Encode/decode Base64 UTF-8 (tiếng Việt), URL-safe, file ↔ Base64 trên trình duyệt."
   };
 

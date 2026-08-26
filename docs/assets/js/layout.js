@@ -569,13 +569,17 @@
     const main = document.querySelector("main");
     if (!main) return;
     const existing = document.getElementById("toolSeo");
-    if (existing && (existing.dataset.static === "1" || existing.childElementCount > 0)) return;
+    if (existing && existing.dataset.static === "1") return;
 
     const tool = OTCatalog.toolBySlug(meta.tool);
     const copy = OTCatalog.seo[meta.tool];
     if (!tool || !copy?.sections?.length) return;
 
     const related = OTCatalog.relatedTools(meta.tool, 6);
+    const howto = copy.howto?.length
+      ? `<section class="tool-seo-block"><h2>Cách dùng ${esc(tool.name)}</h2>
+          <ol class="tool-seo-howto">${copy.howto.map((s) => `<li>${esc(s)}</li>`).join("")}</ol></section>`
+      : "";
     const blocks = copy.sections.map((sec) => {
       const paras = (sec.paras || []).map((p) => `<p>${rich(p)}</p>`).join("");
       const list = sec.list?.length
@@ -604,6 +608,7 @@
 
     const html = `
       <div class="tool-seo-wrap">
+        ${howto}
         ${blocks}
         ${more ? `<section class="tool-seo-block"><h2>Công cụ khác trên OneTool</h2>
           <ul class="tool-seo-more">${more}</ul></section>` : ""}

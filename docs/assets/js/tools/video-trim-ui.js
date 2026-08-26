@@ -18,10 +18,10 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
   }
 
   const L = {
-    pageTitle: "Cắt video online — Trim / Crop thời gian MP4 miễn phí | OneTool",
+    pageTitle: "Cắt video online miễn phí — trim MP4 theo thời gian | OneTool",
     pageDesc:
       "Cắt video theo thời gian (trim) ngay trên trình duyệt. Chọn đoạn start–end, copy nhanh hoặc encode chính xác — miễn phí, file không rời máy bạn.",
-    title: "Video Trim · Cắt video",
+    title: "Cắt video online",
     lead: "Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.",
     meta: "MP4 · MOV · WebM · MKV · tối đa 512 MB",
     source: "Nguồn",

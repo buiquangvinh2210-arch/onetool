@@ -16,10 +16,10 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
   }
 
   const L = {
-    pageTitle: "Compress Video · Nén video MP4 online — Convert WebM, MP3 | OneTool",
-    pageDesc: "Compress Video / nén MP4 online, convert WebM, tách MP3 miễn phí trên trình duyệt — file không upload server.",
-    title: "Compress Video · Nén video",
-    lead: "Nén MP4, convert WebM hoặc tách MP3 — nhanh, trên máy bạn.",
+    pageTitle: "Nén video online miễn phí — nén MP4, WebM, tách MP3 | OneTool",
+    pageDesc: "Nén video online: giảm dung lượng MP4, đổi WebM hoặc tách MP3 ngay trên trình duyệt. Miễn phí, không cần đăng nhập.",
+    title: "Nén video online",
+    lead: "Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.",
     meta: "MP4 · MOV · MKV · WebM · tối đa 512 MB",
     source: "Nguồn",
     dropTitle: "Thả video vào đây",
