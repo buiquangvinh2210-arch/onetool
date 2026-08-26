@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCR bảng sang Excel online — Ảnh → XLSX CSV miễn phí | OneTool</title>
+  <meta name="description" content="OCR bảng từ ảnh (JPG PNG) sang Excel / CSV. Chỉnh sửa ô, tải XLSX, copy TSV — tiếng Việt + Anh, chạy trên trình duyệt." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826p"></noscript>
+<link rel="stylesheet" href="../assets/css/tools/ocr-table.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="ocr-table">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="ox-page">
+    <header class="ox-intro">
+      <h1>OCR Bảng · Ảnh → Excel</h1>
+      <p>Nhận dạng bảng từ ảnh biên lai / screenshot — chỉnh ô, tải XLSX hoặc CSV. Dán ảnh bằng Ctrl+V.</p>
+      <div class="ox-chips" aria-hidden="true">
+        <span class="ox-chip">Tesseract OCR</span>
+        <span class="ox-chip">Vie + Eng</span>
+        <span class="ox-chip">XLSX / CSV</span>
+        <span class="ox-chip">Sửa ô</span>
+      </div>
+    </header>
+
+    <div class="ox-studio">
+      <aside class="ox-panel ox-panel--side">
+        <div class="ox-panel-head">
+          <h2>1 · Ảnh nguồn</h2>
+        </div>
+        <div class="ox-body">
+          <div class="ox-drop" id="dropZone" tabindex="0" role="button" aria-label="Kéo thả hoặc chọn ảnh">
+            <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/bmp,.jpg,.jpeg,.png,.webp,.bmp" hidden />
+            <div class="ox-drop-inner" id="dropInner">
+              <p class="ox-drop-kicker">Thả ảnh bảng vào đây</p>
+              <p class="ox-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · Ctrl+V dán ảnh</p>
+              <p class="ox-drop-hint">JPG · PNG · WebP · BMP · tối đa 12&nbsp;MB</p>
+            </div>
+            <div class="ox-thumb-wrap" id="thumbWrap" hidden>
+              <img id="thumbImg" alt="Ảnh đã chọn" />
+            </div>
+          </div>
+
+          <div class="ox-file" id="fileCard" hidden>
+            <div>
+              <strong id="fileName">—</strong>
+              <span id="fileMeta">—</span>
+            </div>
+            <button type="button" class="ox-text-btn" id="clearBtn">Xóa</button>
+          </div>
+
+          <div>
+            <p class="ox-label">Ngôn ngữ OCR</p>
+            <div class="ox-langs" id="langGrid" role="group" aria-label="Ngôn ngữ">
+              <button type="button" class="ox-lang is-on" data-lang="vie+eng"><strong>Vie + Eng</strong><em>Khuyến nghị</em></button>
+              <button type="button" class="ox-lang" data-lang="eng"><strong>English</strong><em>Chỉ tiếng Anh</em></button>
+              <button type="button" class="ox-lang" data-lang="vie"><strong>Tiếng Việt</strong><em>Chỉ tiếng Việt</em></button>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block" id="runBtn" disabled>Chạy OCR</button>
+
+          <div class="ox-progress" id="progressWrap" hidden>
+            <div class="ox-progress-track">
+              <div class="ox-progress-bar" id="progressBar" style="width:0%"></div>
+            </div>
+            <p class="ox-progress-msg" id="progressMsg">Đang chuẩn bị…</p>
+          </div>
+
+          <p class="ox-note">Ảnh rõ, bảng thẳng hàng cho kết quả tốt hơn. Lần đầu tải model OCR có thể mất vài giây.</p>
+        </div>
+      </aside>
+
+      <div class="ox-panel ox-panel--main">
+        <div class="ox-panel-head">
+          <div>
+            <h2>2 · Bảng kết quả</h2>
+            <p class="ox-status" id="status">Upload hoặc dán ảnh để bắt đầu</p>
+          </div>
+          <div class="ox-actions result-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyTsvBtn" disabled>Copy TSV</button>
+            <button type="button" class="btn btn-outline btn-sm" id="csvBtn" disabled>Tải CSV</button>
+            <button type="button" class="btn btn-primary btn-sm" id="xlsxBtn" disabled>Tải XLSX</button>
+          </div>
+        </div>
+
+        <div class="ox-toolbar" id="tableToolbar" hidden>
+          <button type="button" class="ox-tool-btn" id="addRowBtn">+ Hàng</button>
+          <button type="button" class="ox-tool-btn" id="delRowBtn">− Hàng</button>
+          <button type="button" class="ox-tool-btn" id="addColBtn">+ Cột</button>
+          <button type="button" class="ox-tool-btn" id="delColBtn">− Cột</button>
+          <span class="ox-meta" id="tableMeta">—</span>
+        </div>
+
+        <div class="ox-table-wrap" id="tableWrap">
+          <div class="ox-empty" id="emptyHint">Chưa có bảng — chạy OCR để xem và chỉnh sửa ô.</div>
+          <div class="ox-table-scroll" id="tableScroll" hidden>
+            <table class="ox-table" id="resultTable" aria-label="Bảng OCR có thể chỉnh"></table>
+          </div>
+        </div>
+
+        <details class="ox-raw" id="rawDetails" hidden>
+          <summary>Văn bản thô từ OCR</summary>
+          <pre id="rawText" class="ox-raw-pre"></pre>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826p"></script>
+<script src="../assets/js/layout.js?v=20260826p"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826p"></script>
+<script src="../assets/js/tools/excel-convert.js?v=20260826a"></script>
+<script src="../assets/js/tools/ocr-table.js?v=20260826a"></script>
+<script src="../assets/js/tools/ocr-table-ui.js?v=20260826a"></script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+body[data-tool="word-counter"] {
+  --wc-ink: #16121c;
+  --wc-muted: #6b6578;
+  --wc-line: rgba(88, 60, 140, 0.12);
+  --wc-soft: rgba(124, 58, 237, 0.07);
+  --wc-accent: #7c3aed;
+  --wc-good: #059669;
+  --wc-weak: #dc2626;
+}
+
+body[data-tool="word-counter"] .tool-workspace {
+  padding: 0 0 2.5rem !important;
+  background:
+    radial-gradient(ellipse 80% 50% at 8% -10%, rgba(124, 58, 237, 0.1), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 100% 0%, rgba(6, 182, 212, 0.08), transparent 50%),
+    linear-gradient(180deg, #f8f7fc 0%, #f1f5f9 100%) !important;
+}
+
+body[data-tool="word-counter"] .wc-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+body[data-tool="word-counter"] .wc-intro {
+  text-align: center;
+  max-width: 38rem;
+  margin: 0 auto 1.35rem;
+}
+
+body[data-tool="word-counter"] .wc-intro h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--wc-ink);
+}
+
+body[data-tool="word-counter"] .wc-intro p {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
+  color: var(--wc-muted);
+  line-height: 1.55;
+}
+
+body[data-tool="word-counter"] .wc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+body[data-tool="word-counter"] .wc-chip {
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid var(--wc-line);
+  color: var(--wc-accent);
+}
+
+body[data-tool="word-counter"] .wc-card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--wc-line);
+  border-radius: 20px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+}
+
+body[data-tool="word-counter"] .wc-editor {
+  padding: 1.2rem 1.35rem 1rem;
+  border-bottom: 1px solid var(--wc-line);
+  background: linear-gradient(165deg, rgba(124, 58, 237, 0.04), transparent 60%);
+}
+
+body[data-tool="word-counter"] .wc-editor-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+body[data-tool="word-counter"] .wc-editor-bar strong {
+  font-size: 0.875rem;
+  font-weight: 750;
+  color: var(--wc-ink);
+}
+
+body[data-tool="word-counter"] .wc-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+}
+
+body[data-tool="word-counter"] .wc-text-btn {
+  border: 0;
+  background: none;
+  padding: 0.15rem 0;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  color: var(--wc-accent);
+  cursor: pointer;
+}
+
+body[data-tool="word-counter"] .wc-text-btn:hover {
+  text-decoration: underline;
+}
+
+body[data-tool="word-counter"] .wc-textarea {
+  width: 100%;
+  min-height: 220px;
+  resize: vertical;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--wc-line);
+  border-radius: 14px;
+  font: inherit;
+  font-size: 0.975rem;
+  line-height: 1.6;
+  color: var(--wc-ink);
+  background: #fff;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+body[data-tool="word-counter"] .wc-textarea:focus {
+  outline: none;
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+body[data-tool="word-counter"] .wc-textarea::placeholder {
+  color: #a39db0;
+}
+
+body[data-tool="word-counter"] .wc-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border-bottom: 1px solid var(--wc-line);
+}
+
+body[data-tool="word-counter"] .wc-stat {
+  padding: 0.95rem 0.75rem;
+  text-align: center;
+  border-right: 1px solid var(--wc-line);
+}
+
+body[data-tool="word-counter"] .wc-stat:last-child {
+  border-right: 0;
+}
+
+body[data-tool="word-counter"] .wc-stat span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--wc-muted);
+}
+
+body[data-tool="word-counter"] .wc-stat strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-weight: 780;
+  letter-spacing: -0.03em;
+  color: var(--wc-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-tool="word-counter"] .wc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+body[data-tool="word-counter"] .wc-side {
+  padding: 1.25rem 1.35rem 1.4rem;
+  border-right: 1px solid var(--wc-line);
+}
+
+body[data-tool="word-counter"] .wc-side:last-child {
+  border-right: 0;
+}
+
+body[data-tool="word-counter"] .wc-label {
+  margin: 0 0 0.65rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--wc-ink);
+}
+
+body[data-tool="word-counter"] .wc-times {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+body[data-tool="word-counter"] .wc-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--wc-line);
+  background: #faf9fc;
+}
+
+body[data-tool="word-counter"] .wc-time span {
+  font-size: 0.78rem;
+  color: var(--wc-muted);
+  line-height: 1.35;
+}
+
+body[data-tool="word-counter"] .wc-time strong {
+  font-size: 0.875rem;
+  font-weight: 750;
+  color: var(--wc-accent);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-tool="word-counter"] .wc-avgs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+
+body[data-tool="word-counter"] .wc-avg {
+  padding: 0.7rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--wc-line);
+  background: #fff;
+  text-align: center;
+}
+
+body[data-tool="word-counter"] .wc-avg span {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: var(--wc-muted);
+}
+
+body[data-tool="word-counter"] .wc-avg strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1.15rem;
+  font-weight: 780;
+  letter-spacing: -0.02em;
+  color: var(--wc-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-tool="word-counter"] .wc-side .btn-primary {
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.25);
+}
+
+body[data-tool="word-counter"] .wc-keywords {
+  display: grid;
+  gap: 0.4rem;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+body[data-tool="word-counter"] .wc-empty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--wc-muted);
+  line-height: 1.5;
+  padding: 0.5rem 0;
+}
+
+body[data-tool="word-counter"] .wc-kw {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--wc-line);
+  background: #faf9fc;
+}
+
+body[data-tool="word-counter"] .wc-kw-word {
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: var(--wc-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-tool="word-counter"] .wc-kw-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--wc-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-tool="word-counter"] .wc-kw-pct {
+  font-size: 0.72rem;
+  color: var(--wc-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 2.75rem;
+  text-align: right;
+}
+
+body[data-tool="word-counter"] .wc-status {
+  margin: 0.85rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--wc-muted);
+  text-align: center;
+}
+
+body[data-tool="word-counter"] .wc-status.is-ok {
+  color: var(--wc-good);
+}
+
+body[data-tool="word-counter"] .wc-status.is-err {
+  color: var(--wc-weak);
+}
+
+@media (max-width: 820px) {
+  body[data-tool="word-counter"] .wc-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  body[data-tool="word-counter"] .wc-stat:nth-child(3) {
+    border-right: 0;
+  }
+  body[data-tool="word-counter"] .wc-stat:nth-child(n + 4) {
+    border-top: 1px solid var(--wc-line);
+  }
+}
+
+@media (max-width: 760px) {
+  body[data-tool="word-counter"] .wc-grid {
+    grid-template-columns: 1fr;
+  }
+  body[data-tool="word-counter"] .wc-side {
+    border-right: 0;
+    border-bottom: 1px solid var(--wc-line);
+  }
+  body[data-tool="word-counter"] .wc-side:last-child {
+    border-bottom: 0;
+  }
+  body[data-tool="word-counter"] .wc-textarea {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 420px) {
+  body[data-tool="word-counter"] .wc-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  body[data-tool="word-counter"] .wc-stat:nth-child(2n) {
+    border-right: 0;
+  }
+  body[data-tool="word-counter"] .wc-stat:nth-child(n + 3) {
+    border-top: 1px solid var(--wc-line);
+  }
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] body[data-tool="word-counter"],
+html[data-theme="dark"] body[data-tool="word-counter"] {
+  --wc-ink: #f1edf8;
+  --wc-muted: #94a3b8;
+  --wc-line: rgba(255, 255, 255, 0.08);
+  --wc-soft: rgba(124, 58, 237, 0.14);
+}
+
+[data-theme="dark"] body[data-tool="word-counter"] .tool-workspace,
+html[data-theme="dark"] body[data-tool="word-counter"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    #141119 !important;
+}
+
+[data-theme="dark"] body[data-tool="word-counter"] .wc-chip,
+[data-theme="dark"] body[data-tool="word-counter"] .wc-card,
+[data-theme="dark"] body[data-tool="word-counter"] .wc-textarea,
+[data-theme="dark"] body[data-tool="word-counter"] .wc-avg,
+html[data-theme="dark"] body[data-tool="word-counter"] .wc-chip,
+html[data-theme="dark"] body[data-tool="word-counter"] .wc-card,
+html[data-theme="dark"] body[data-tool="word-counter"] .wc-textarea,
+html[data-theme="dark"] body[data-tool="word-counter"] .wc-avg {
+  background: #1c1824;
+  border-color: var(--wc-line);
+  color: var(--wc-ink);
+}
+
+[data-theme="dark"] body[data-tool="word-counter"] .wc-editor,
+html[data-theme="dark"] body[data-tool="word-counter"] .wc-editor {
+  background: linear-gradient(165deg, rgba(124, 58, 237, 0.1), transparent 60%);
+}
+
+[data-theme="dark"] body[data-tool="word-counter"] .wc-time,
+[data-theme="dark"] body[data-tool="word-counter"] .wc-kw,
+html[data-theme="dark"] body[data-tool="word-counter"] .wc-time,
+html[data-theme="dark"] body[data-tool="word-counter"] .wc-kw {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--wc-line);
+}
+
+[data-theme="dark"] body[data-tool="word-counter"] .wc-side,
+html[data-theme="dark"] body[data-tool="word-counter"] .wc-side {
+  border-color: var(--wc-line);
+}

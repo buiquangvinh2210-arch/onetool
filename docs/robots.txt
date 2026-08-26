@@ -8,5 +8,11 @@ Disallow: /cong-cu-pdf/index.html
 Disallow: /cong-cu-media/index.html
 Disallow: /cong-cu-chuyen-doi/index.html
 Disallow: /cong-cu-tien-ich/index.html
+Disallow: /cong-cu-tien-ich/unit-
+Disallow: /cong-cu-tien-ich/json-tools.html
+Disallow: /cong-cu-tien-ich/base64-tools.html
+Disallow: /cong-cu-tien-ich/developer-tools.html
+Disallow: /cong-cu-chuyen-doi/convert-document.html
+Disallow: /cong-cu-chuyen-doi/convert-image.html
 
 Sitemap: https://onetool.vn/sitemap.xml

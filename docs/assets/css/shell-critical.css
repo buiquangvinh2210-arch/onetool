@@ -575,7 +575,7 @@ body.nav-drawer-open {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .main-nav,
   .header-cta-desktop {
     display: none !important;
@@ -595,14 +595,29 @@ body.nav-drawer-open {
 
   .tool-category-head,
   .footer-cta-inner,
-  .footer-bottom,
-  .footer-inner {
+  .footer-bottom {
     display: block;
   }
 
-  .footer-nav {
+  .footer-inner {
+    display: grid;
     grid-template-columns: 1fr;
-    margin-top: 1rem;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem 1.5rem;
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-nav {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

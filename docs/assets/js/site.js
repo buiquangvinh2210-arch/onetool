@@ -36,8 +36,27 @@
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeNavDrawer();
+    if (e.key === "Escape") {
+      if (document.getElementById("toolSearchModal") && !document.getElementById("toolSearchModal").hidden) {
+        closeToolSearch();
+        return;
+      }
+      closeNavDrawer();
+    }
+    // Ctrl/Cmd + K or "/" when not typing in input
+    const openSearch =
+      ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) ||
+      (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey &&
+        !(e.target instanceof HTMLInputElement) &&
+        !(e.target instanceof HTMLTextAreaElement) &&
+        !(e.target && e.target.isContentEditable));
+    if (openSearch) {
+      e.preventDefault();
+      openToolSearch();
+    }
   });
+
+  initToolSearch();
 
   function toggleNavDrawer() {
     const drawer = document.getElementById("navDrawer");
@@ -94,6 +113,225 @@
   function updateThemeIcon(theme) {
     if (themeToggle) themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
   }
+
+  /* ── Tool search (header) ── */
+  const HOT_SLUGS = [
+    "tiktok-download",
+    "audio-to-text",
+    "heic-convert",
+    "pdf-watermark",
+    "video-trim",
+    "remove-background",
+    "pdf-to-word",
+    "image-compress",
+    "ocr-table",
+    "word-counter"
+  ];
+
+  let searchActive = 0;
+
+  function assetHref(p) {
+    const base = (window.OT_BASE || ".").replace(/\/$/, "");
+    return base === "." || base === "" ? p : `${base}/${p}`;
+  }
+
+  function foldVi(s) {
+    return String(s || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/đ/g, "d")
+      .replace(/Đ/g, "D")
+      .toLowerCase();
+  }
+
+  function toolHref(tool) {
+    try {
+      return assetHref(OTCatalog.pathFor(tool));
+    } catch (_) {
+      return assetHref("cong-cu.html");
+    }
+  }
+
+  function catName(tool) {
+    return OTCatalog?.catBySlug?.(tool.cat)?.name || "";
+  }
+
+  function allSearchableTools() {
+    return (OTCatalog?.tools || []).filter((t) => !t.hub);
+  }
+
+  function hotTools() {
+    const map = new Map(allSearchableTools().map((t) => [t.slug, t]));
+    const list = HOT_SLUGS.map((s) => map.get(s)).filter(Boolean);
+    if (list.length >= 6) return list;
+    const extra = allSearchableTools()
+      .filter((t) => t.featured && !HOT_SLUGS.includes(t.slug))
+      .sort((a, b) => (a.rank || 999) - (b.rank || 999));
+    return list.concat(extra).slice(0, 10);
+  }
+
+  function searchTools(q) {
+    const query = foldVi(q).trim();
+    if (!query) return hotTools();
+    const tokens = query.split(/\s+/).filter(Boolean);
+    const scored = [];
+    for (const t of allSearchableTools()) {
+      const seo = OTCatalog?.seo?.[t.slug];
+      const hay = foldVi(
+        [t.name, t.desc, t.slug, catName(t), seo?.keywords || ""].join(" ")
+      );
+      if (!tokens.every((tok) => hay.includes(tok))) continue;
+      let score = 0;
+      const nameF = foldVi(t.name);
+      const slugF = foldVi(t.slug);
+      if (nameF.startsWith(query) || slugF.startsWith(query)) score += 40;
+      if (nameF.includes(query)) score += 20;
+      if (slugF.includes(query)) score += 15;
+      if (t.featured) score += 8;
+      if (HOT_SLUGS.includes(t.slug)) score += 5;
+      score += Math.max(0, 12 - (t.rank || 12));
+      scored.push({ t, score });
+    }
+    scored.sort((a, b) => b.score - a.score || (a.t.rank || 999) - (b.t.rank || 999));
+    return scored.slice(0, 12).map((x) => x.t);
+  }
+
+  function renderSearchList(tools, mode) {
+    const list = document.getElementById("toolSearchList");
+    const empty = document.getElementById("toolSearchEmpty");
+    const label = document.getElementById("toolSearchLabel");
+    if (!list) return;
+    searchActive = 0;
+    if (label) label.textContent = mode === "hot" ? "Gợi ý nổi bật" : "Kết quả";
+    if (!tools.length) {
+      list.innerHTML = "";
+      if (empty) empty.hidden = false;
+      return;
+    }
+    if (empty) empty.hidden = true;
+    list.innerHTML = tools
+      .map((t, i) => {
+        const cat = catName(t);
+        return `<a class="tool-search-item${i === 0 ? " is-active" : ""}" role="option" href="${toolHref(t)}" data-idx="${i}">
+          <span class="tool-search-item-icon" aria-hidden="true">${t.icon || "⚡"}</span>
+          <span class="tool-search-item-body">
+            <strong>${escHtml(t.name)}</strong>
+            <small>${escHtml(cat)}${t.desc ? " · " + escHtml(shortDesc(t.desc)) : ""}</small>
+          </span>
+          <span class="tool-search-item-go" aria-hidden="true">→</span>
+        </a>`;
+      })
+      .join("");
+  }
+
+  function shortDesc(s) {
+    const t = String(s || "");
+    return t.length > 72 ? t.slice(0, 70) + "…" : t;
+  }
+
+  function escHtml(s) {
+    return String(s || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function setActiveSearchItem(idx) {
+    const items = [...document.querySelectorAll("#toolSearchList .tool-search-item")];
+    if (!items.length) return;
+    searchActive = ((idx % items.length) + items.length) % items.length;
+    items.forEach((el, i) => el.classList.toggle("is-active", i === searchActive));
+    items[searchActive]?.scrollIntoView({ block: "nearest" });
+  }
+
+  function openToolSearch() {
+    const modal = document.getElementById("toolSearchModal");
+    const input = document.getElementById("toolSearchInput");
+    if (!modal) return;
+    closeNavDrawer();
+    document.getElementById("navMega")?.classList.remove("is-open");
+    modal.hidden = false;
+    modal.removeAttribute("inert");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("tool-search-open");
+    renderSearchList(hotTools(), "hot");
+    if (input) {
+      input.value = "";
+      requestAnimationFrame(() => input.focus());
+    }
+  }
+
+  function closeToolSearch() {
+    const modal = document.getElementById("toolSearchModal");
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    modal.setAttribute("inert", "");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("tool-search-open");
+    document.getElementById("toolSearchBtn")?.focus();
+  }
+
+  function initToolSearch() {
+    const btn = document.getElementById("toolSearchBtn");
+    const modal = document.getElementById("toolSearchModal");
+    const input = document.getElementById("toolSearchInput");
+    if (!btn || !modal || !input) return;
+
+    modal.setAttribute("inert", "");
+    btn.addEventListener("click", openToolSearch);
+    document.getElementById("toolSearchClose")?.addEventListener("click", closeToolSearch);
+    document.getElementById("toolSearchBackdrop")?.addEventListener("click", closeToolSearch);
+
+    let timer = null;
+    input.addEventListener("input", () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const q = input.value.trim();
+        renderSearchList(searchTools(q), q ? "results" : "hot");
+      }, 80);
+    });
+
+    input.addEventListener("keydown", (e) => {
+      const items = document.querySelectorAll("#toolSearchList .tool-search-item");
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setActiveSearchItem(searchActive + 1);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setActiveSearchItem(searchActive - 1);
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        const target = items[searchActive] || items[0];
+        if (target) window.location.href = target.getAttribute("href");
+      } else if (e.key === "Tab") {
+        const focusables = modal.querySelectorAll(
+          'button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusables.length) return;
+        const list = [...focusables];
+        const first = list[0];
+        const last = list[list.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    modal.addEventListener("mousemove", (e) => {
+      const item = e.target.closest?.(".tool-search-item");
+      if (!item) return;
+      const idx = Number(item.dataset.idx);
+      if (Number.isFinite(idx)) setActiveSearchItem(idx);
+    });
+  }
+
+  window.openToolSearch = openToolSearch;
+  window.closeToolSearch = closeToolSearch;
 
   function highlightActiveNav() {
     if (!mainNav) return;
@@ -333,4 +571,10 @@
   requestAnimationFrame(() => {
     revealEls.forEach(el => el.classList.add("is-in"));
   });
+
+  const countEl = document.getElementById("otToolCount");
+  if (countEl && window.OTCatalog?.tools) {
+    const n = OTCatalog.tools.filter((t) => !t.hub).length;
+    if (n) countEl.textContent = String(n);
+  }
 })();

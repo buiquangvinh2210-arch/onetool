@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cắt video online — Trim / Crop thời gian MP4 miễn phí | OneTool</title>
+  <meta name="description" content="Cắt video theo thời gian (trim) ngay trên trình duyệt. Chọn đoạn start–end, copy nhanh hoặc encode chính xác — miễn phí, file không rời máy bạn." />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826p"></noscript>
+<link rel="stylesheet" href="../assets/css/tools/video-trim.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
+<body data-tool="video-trim">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="vt-top">
+    <div class="vt-title-row">
+      <div>
+        <h1 id="vtTitle">Video Trim</h1>
+        <p id="vtLead"></p>
+      </div>
+      <div class="vt-meta" id="vtMeta"></div>
+    </div>
+  </div>
+
+  <div id="protocolBanner" class="protocol-banner container"></div>
+
+  <div class="vt-studio">
+    <div class="vt-shell">
+      <aside class="vt-side">
+        <p class="vt-side-label" id="vtLblSource"></p>
+        <div class="upload-zone" id="uploadZone" data-kind="media">
+          <input type="file" id="fileInput" accept="video/*,.mp4,.mov,.webm,.mkv,.m4v" hidden />
+          <div class="upload-placeholder">
+            <span class="upload-icon upload-icon--media">VIDEO</span>
+            <p><strong id="vtDropTitle"></strong></p>
+            <p class="text-muted"><span id="vtDropOr"></span> <button type="button" class="link-btn" id="browseBtn"></button></p>
+          </div>
+        </div>
+
+        <div class="vt-field">
+          <label for="vtMode" id="vtLblMode"></label>
+          <select id="vtMode" class="form-control">
+            <option value="fast">fast</option>
+            <option value="accurate">accurate</option>
+          </select>
+        </div>
+
+        <label class="vt-check" for="vtMute">
+          <input type="checkbox" id="vtMute" />
+          <span id="vtLblMute"></span>
+        </label>
+
+        <div class="vt-time-grid">
+          <div class="vt-field">
+            <label for="startInput" id="vtLblStart"></label>
+            <input type="text" id="startInput" class="form-control" inputmode="decimal" placeholder="0:00" autocomplete="off" />
+          </div>
+          <div class="vt-field">
+            <label for="endInput" id="vtLblEnd"></label>
+            <input type="text" id="endInput" class="form-control" inputmode="decimal" placeholder="0:00" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="vt-chip-row">
+          <button type="button" class="vt-chip-btn" id="setStartBtn"></button>
+          <button type="button" class="vt-chip-btn" id="setEndBtn"></button>
+          <button type="button" class="vt-chip-btn" id="playSelBtn"></button>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="runBtn"></button>
+        <p class="vt-note" id="vtNote"></p>
+      </aside>
+
+      <div class="vt-main">
+        <div class="vt-main-bar">
+          <div>
+            <h2 id="vtLblPreview"></h2>
+            <p id="status"></p>
+          </div>
+          <div class="vt-actions">
+            <button type="button" class="btn btn-ghost btn-sm" id="playPauseBtn" disabled></button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled></button>
+          </div>
+        </div>
+        <div class="vt-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="vt-result" id="resultBox">
+          <div class="vt-empty" id="resultEmpty">
+            <span class="vt-empty-icon" aria-hidden="true">&#9986;</span>
+            <p id="vtEmptyText"></p>
+          </div>
+
+          <div class="vt-preview-wrap hidden" id="previewWrap">
+            <video id="previewVideo" playsinline preload="metadata"></video>
+            <div class="vt-playhead" id="playhead" aria-hidden="true"></div>
+          </div>
+
+          <div class="vt-timeline hidden" id="timelineBox">
+            <div class="vt-range" id="rangeBox">
+              <div class="vt-range-track">
+                <div class="vt-range-fill" id="rangeFill"></div>
+                <input type="range" id="startRange" min="0" max="1000" value="0" step="1" aria-label="Start" />
+                <input type="range" id="endRange" min="0" max="1000" value="1000" step="1" aria-label="End" />
+              </div>
+            </div>
+            <div class="vt-range-labels">
+              <span id="startLabel">0:00</span>
+              <span id="selLabel">0:00</span>
+              <span id="endLabel">0:00</span>
+            </div>
+          </div>
+
+          <div class="vt-stats hidden" id="statsBox">
+            <div><span class="hint" id="vtLblDurBefore"></span><strong id="statDurBefore">-</strong></div>
+            <div><span class="hint" id="vtLblDurAfter"></span><strong id="statDurAfter">-</strong></div>
+            <div><span class="hint" id="vtLblSizeBefore"></span><strong id="statSizeBefore">-</strong></div>
+            <div><span class="hint" id="vtLblSizeAfter"></span><strong id="statSizeAfter">-</strong></div>
+          </div>
+
+          <div class="vt-out-preview hidden" id="outPreviewWrap">
+            <p class="vt-out-label" id="vtLblResult"></p>
+            <video id="resultVideo" controls playsinline></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826p"></script>
+<script src="../assets/js/layout.js?v=20260826p"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826p"></script>
+<script type="module" src="../assets/js/tools/video-trim-ui.js?v=20260826a"></script>
+</body>
+</html>

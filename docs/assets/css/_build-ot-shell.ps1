@@ -9,12 +9,12 @@ $files = @(
 )
 $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine("/* OneTool shell bundle. Rebuild from sources. */")
-[void]$sb.AppendLine("/* v=20260826e */")
+[void]$sb.AppendLine("/* v=20260826p */")
 foreach ($f in $files) {
   $name = Split-Path $f -Leaf
   [void]$sb.AppendLine("")
   [void]$sb.AppendLine("/* ===== $name ===== */")
-  [void]$sb.AppendLine([System.IO.File]::ReadAllText($f))
+  [void]$sb.AppendLine([System.IO.File]::ReadAllText($f, [System.Text.Encoding]::UTF8))
 }
 $dest = "e:\AITool\docs\assets\css\ot-shell.css"
 [System.IO.File]::WriteAllText($dest, $sb.ToString(), (New-Object System.Text.UTF8Encoding $false))

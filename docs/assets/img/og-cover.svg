@@ -20,7 +20,7 @@
     <rect width="140" height="140" rx="32" fill="url(#g)"/>
     <circle cx="70" cy="70" r="31" stroke="#fff" stroke-width="16" fill="none"/>
   </g>
-  <text x="270" y="285" fill="url(#word)" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="96" font-weight="800" letter-spacing="-2.5">OneTool</text>
-  <text x="270" y="350" fill="#64748b" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="32" font-weight="600">Công c? PDF ? ?nh ? Video ? AI mi?n phí</text>
-  <text x="270" y="405" fill="#94a3b8" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="26">X? lý ngay tr?n tr?nh duy?t ? Không ðãng nh?p</text>
+  <text x="270" y="285" fill="url(#word)" font-family="Segoe UI, Arial, sans-serif" font-size="96" font-weight="800" letter-spacing="-2.5">OneTool</text>
+  <text x="270" y="350" fill="#64748b" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="600">PDF · Anh · Video · AI</text>
+  <text x="270" y="405" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="26">Free tools in your browser</text>
 </svg>

@@ -1,0 +1,531 @@
+body[data-tool="ocr-table"] {
+  --ox-ink: #16121c;
+  --ox-muted: #6b6578;
+  --ox-line: rgba(88, 60, 140, 0.12);
+  --ox-soft: rgba(124, 58, 237, 0.07);
+  --ox-accent: #7c3aed;
+  --ox-ok: #059669;
+  --ox-err: #dc2626;
+}
+
+body[data-tool="ocr-table"] [hidden] {
+  display: none !important;
+}
+
+body[data-tool="ocr-table"] .tool-workspace {
+  padding: 0 0 2.5rem !important;
+  background:
+    radial-gradient(ellipse 85% 50% at 8% -10%, rgba(124, 58, 237, 0.11), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(6, 182, 212, 0.08), transparent 50%),
+    linear-gradient(180deg, #f8f7fc 0%, #f1f5f9 100%) !important;
+}
+
+body[data-tool="ocr-table"] .ox-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+body[data-tool="ocr-table"] .ox-intro {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto 1.35rem;
+}
+
+body[data-tool="ocr-table"] .ox-intro h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ox-ink);
+}
+
+body[data-tool="ocr-table"] .ox-intro p {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ox-muted);
+  line-height: 1.55;
+}
+
+body[data-tool="ocr-table"] .ox-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+body[data-tool="ocr-table"] .ox-chip {
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid var(--ox-line);
+  color: var(--ox-accent);
+}
+
+body[data-tool="ocr-table"] .ox-studio {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 1rem;
+  align-items: stretch;
+  min-height: min(620px, calc(100vh - 14rem));
+}
+
+body[data-tool="ocr-table"] .ox-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--ox-line);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+body[data-tool="ocr-table"] .ox-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.95rem 1.15rem;
+  border-bottom: 1px solid var(--ox-line);
+  background: linear-gradient(180deg, #fff, #faf8ff);
+}
+
+body[data-tool="ocr-table"] .ox-panel-head h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ox-ink);
+}
+
+body[data-tool="ocr-table"] .ox-status {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ox-muted);
+  line-height: 1.4;
+}
+
+body[data-tool="ocr-table"] .ox-status.is-ok {
+  color: var(--ox-ok);
+}
+
+body[data-tool="ocr-table"] .ox-status.is-err {
+  color: var(--ox-err);
+}
+
+body[data-tool="ocr-table"] .ox-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+body[data-tool="ocr-table"] .ox-actions .btn {
+  border-radius: 999px;
+  font-weight: 650;
+  font-size: 0.8125rem;
+}
+
+body[data-tool="ocr-table"] .ox-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.1rem 1.15rem 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+body[data-tool="ocr-table"] .ox-drop {
+  position: relative;
+  border: 1.5px dashed var(--ox-line);
+  border-radius: 14px;
+  background: rgba(124, 58, 237, 0.03);
+  min-height: 160px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+body[data-tool="ocr-table"] .ox-drop:hover,
+body[data-tool="ocr-table"] .ox-drop.is-drag {
+  border-color: rgba(124, 58, 237, 0.45);
+  background: rgba(124, 58, 237, 0.07);
+}
+
+body[data-tool="ocr-table"] .ox-drop:focus-visible {
+  outline: 2px solid rgba(124, 58, 237, 0.45);
+  outline-offset: 2px;
+}
+
+body[data-tool="ocr-table"] .ox-drop-inner {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  gap: 0.25rem;
+  min-height: 160px;
+}
+
+body[data-tool="ocr-table"] .ox-drop.has-image .ox-drop-inner {
+  display: none;
+}
+
+body[data-tool="ocr-table"] .ox-drop-kicker {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ox-ink);
+}
+
+body[data-tool="ocr-table"] .ox-drop-sub {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ox-muted);
+}
+
+body[data-tool="ocr-table"] .ox-drop-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  color: var(--ox-muted);
+}
+
+body[data-tool="ocr-table"] .ox-thumb-wrap {
+  display: none;
+  padding: 0.5rem;
+  min-height: 160px;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-tool="ocr-table"] .ox-drop.has-image .ox-thumb-wrap {
+  display: flex;
+}
+
+body[data-tool="ocr-table"] .ox-thumb-wrap img {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+body[data-tool="ocr-table"] .ox-file {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+body[data-tool="ocr-table"] .ox-file strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: var(--ox-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+
+body[data-tool="ocr-table"] .ox-file span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: var(--ox-muted);
+}
+
+body[data-tool="ocr-table"] .ox-text-btn {
+  border: 0;
+  background: none;
+  padding: 0.15rem 0;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  color: var(--ox-accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+body[data-tool="ocr-table"] .ox-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--ox-ink);
+}
+
+body[data-tool="ocr-table"] .ox-langs {
+  display: grid;
+  gap: 0.4rem;
+}
+
+body[data-tool="ocr-table"] .ox-lang {
+  border: 1px solid var(--ox-line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: grid;
+  gap: 0.08rem;
+  color: var(--ox-ink);
+}
+
+body[data-tool="ocr-table"] .ox-lang:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+body[data-tool="ocr-table"] .ox-lang.is-on {
+  border-color: var(--ox-accent);
+  background: var(--ox-soft);
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.12);
+}
+
+body[data-tool="ocr-table"] .ox-lang strong {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+body[data-tool="ocr-table"] .ox-lang.is-on strong {
+  color: var(--ox-accent);
+}
+
+body[data-tool="ocr-table"] .ox-lang em {
+  font-style: normal;
+  font-size: 0.72rem;
+  color: var(--ox-muted);
+}
+
+body[data-tool="ocr-table"] .ox-panel--side .btn-primary {
+  border-radius: 12px;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.25);
+}
+
+body[data-tool="ocr-table"] .ox-progress {
+  display: grid;
+  gap: 0.4rem;
+}
+
+body[data-tool="ocr-table"] .ox-progress-track {
+  height: 8px;
+  border-radius: 999px;
+  background: #ece9f2;
+  overflow: hidden;
+}
+
+body[data-tool="ocr-table"] .ox-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ox-accent), #06b6d4);
+  transition: width 0.2s ease;
+}
+
+body[data-tool="ocr-table"] .ox-progress-msg {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ox-muted);
+}
+
+body[data-tool="ocr-table"] .ox-note {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--ox-muted);
+}
+
+body[data-tool="ocr-table"] .ox-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.1rem;
+  border-bottom: 1px solid var(--ox-line);
+  background: #faf9fc;
+}
+
+body[data-tool="ocr-table"] .ox-tool-btn {
+  border: 1px solid var(--ox-line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.35rem 0.65rem;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--ox-ink);
+  cursor: pointer;
+}
+
+body[data-tool="ocr-table"] .ox-tool-btn:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  color: var(--ox-accent);
+}
+
+body[data-tool="ocr-table"] .ox-meta {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--ox-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-tool="ocr-table"] .ox-table-wrap {
+  flex: 1;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+body[data-tool="ocr-table"] .ox-empty {
+  margin: auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-size: 0.9375rem;
+  color: #9a93a8;
+}
+
+body[data-tool="ocr-table"] .ox-table-scroll {
+  flex: 1;
+  overflow: auto;
+  padding: 0.75rem 1rem 1rem;
+}
+
+body[data-tool="ocr-table"] .ox-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--ox-line);
+}
+
+body[data-tool="ocr-table"] .ox-table th,
+body[data-tool="ocr-table"] .ox-table td {
+  border: 1px solid var(--ox-line);
+  padding: 0;
+  min-width: 88px;
+  vertical-align: top;
+}
+
+body[data-tool="ocr-table"] .ox-table th {
+  background: rgba(124, 58, 237, 0.06);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ox-muted);
+  text-align: center;
+  padding: 0.4rem 0.5rem;
+  white-space: nowrap;
+}
+
+body[data-tool="ocr-table"] .ox-table td [contenteditable] {
+  display: block;
+  padding: 0.5rem 0.55rem;
+  min-height: 1.6em;
+  outline: none;
+  color: var(--ox-ink);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+body[data-tool="ocr-table"] .ox-table td [contenteditable]:focus {
+  background: rgba(124, 58, 237, 0.06);
+  box-shadow: inset 0 0 0 2px rgba(124, 58, 237, 0.25);
+}
+
+body[data-tool="ocr-table"] .ox-table .ox-row-num {
+  width: 2.25rem;
+  min-width: 2.25rem;
+  text-align: center;
+  background: #faf9fc;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ox-muted);
+  padding: 0.5rem 0.25rem;
+  user-select: none;
+}
+
+body[data-tool="ocr-table"] .ox-raw {
+  border-top: 1px solid var(--ox-line);
+  padding: 0.65rem 1.1rem 0.85rem;
+  background: #faf9fc;
+}
+
+body[data-tool="ocr-table"] .ox-raw summary {
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  color: var(--ox-ink);
+  user-select: none;
+}
+
+body[data-tool="ocr-table"] .ox-raw-pre {
+  margin: 0.65rem 0 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--ox-line);
+  background: #fff;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ox-ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 180px;
+  overflow: auto;
+}
+
+@media (max-width: 900px) {
+  body[data-tool="ocr-table"] .ox-studio {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark mode */
+html[data-theme="dark"] body[data-tool="ocr-table"] {
+  --ox-ink: #f1edf8;
+  --ox-muted: #94a3b8;
+  --ox-line: rgba(255, 255, 255, 0.08);
+  --ox-soft: rgba(124, 58, 237, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="ocr-table"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
+    var(--bg, #141119) !important;
+}
+
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-chip,
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-panel,
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-lang,
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-tool-btn,
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-table,
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-raw-pre {
+  background: var(--surface, #1c1824);
+  border-color: var(--border, rgba(255, 255, 255, 0.08));
+  color: var(--text, #f1edf8);
+}
+
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-panel-head,
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-toolbar,
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-raw {
+  background: #18141f;
+  border-color: var(--border, rgba(255, 255, 255, 0.08));
+}
+
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-drop {
+  background: rgba(124, 58, 237, 0.08);
+}
+
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-progress-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-table th,
+html[data-theme="dark"] body[data-tool="ocr-table"] .ox-table .ox-row-num {
+  background: rgba(124, 58, 237, 0.12);
+}

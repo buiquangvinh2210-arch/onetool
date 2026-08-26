@@ -1,20 +1,36 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light">
+<html lang="vi">
 <head>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
   <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Giới thiệu OneTool — công cụ file online miễn phí</title>
-  <meta name="description" content="OneTool — bộ công cụ PDF, ảnh, video và tiện ích chạy trên trình duyệt. Miễn phí, không cần đăng ký, file không rời máy bạn." />
-  <link rel="stylesheet" href="assets/css/site.css?v=20260826c" />
-  <link rel="stylesheet" href="assets/css/components.css?v=20260826h" />
-  <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260826e" />
+  <meta name="description" content="OneTool — bộ công cụ PDF, ảnh, video và tiện ích trên trình duyệt. Miễn phí, không cần đăng ký. Phần lớn tool chạy local; một số Media/AI dùng cloud." />
+  <link rel="canonical" href="https://onetool.vn/about.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="OneTool" />
+  <meta property="og:title" content="Giới thiệu OneTool — công cụ file online miễn phí" />
+  <meta property="og:description" content="OneTool — PDF, ảnh, video trên trình duyệt. Phần lớn local; một số Media/AI dùng cloud." />
+  <meta property="og:url" content="https://onetool.vn/about.html" />
+  <meta property="og:image" content="https://onetool.vn/assets/img/og-cover.jpg" />
+  <meta property="og:locale" content="vi_VN" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="assets/css/components.css?v=20260826p" />
+  <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260826p" />
   <script>window.OT_BASE = ".";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
-@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
 </head>
 <body>
 <div id="site-header"></div>
@@ -29,28 +45,28 @@
     <h2>Sứ mệnh</h2>
     <p>Giúp bạn xong việc nhanh mỗi ngày: gộp PDF, đổi định dạng ảnh, nén video, tạo mã QR. Dùng ngay trên trình duyệt — không cài app, không bắt buộc đăng nhập.</p>
     <h2>Cách hoạt động</h2>
-    <p>File được xử lý ngay trên máy bạn. Chúng tôi không nhận file, không lưu nội dung — bạn giữ toàn quyền với dữ liệu của mình.</p>
+    <p>Hầu hết công cụ PDF, ảnh, đơn vị và tiện ích xử lý ngay trên trình duyệt — file không gửi lên server của chúng tôi. Một số công cụ Media/AI (TikTok, Audio→Text, Tóm tắt AI) cần gửi dữ liệu tạm tới dịch vụ đám mây để xử lý, rồi trả kết quả; chúng tôi không dùng nội dung đó để huấn luyện hay lưu lâu dài.</p>
     <h2>Nguyên tắc</h2>
     <ul class="feature-list">
-      <li>File không rời máy bạn</li>
-      <li>Giao diện tiếng Việt, thao tác rõ ràng</li>
-      <li>Miễn phí, không cần tài khoản</li>
+      <li>PDF &amp; ảnh: xử lý trên máy bạn</li>
+      <li>Media/AI cloud: xử lý tạm, không lưu lâu dài</li>
+      <li>Giao diện tiếng Việt, miễn phí, không bắt buộc tài khoản</li>
     </ul>
     <a class="btn btn-primary btn-lg" href="cong-cu.html">Xem tất cả công cụ</a>
     <p class="about-contact-link">Có góp ý hoặc cần hỗ trợ? <a href="lien-he.html">Gửi góp ý tại đây</a></p>
   </div>
   <aside class="about-visual"><div class="about-stat-grid">
-    <div class="about-stat"><strong>30+</strong><span>Công cụ</span></div>
+    <div class="about-stat"><strong id="otToolCount">46</strong><span>Công cụ</span></div>
     <div class="about-stat"><strong>7</strong><span>Danh mục</span></div>
     <div class="about-stat"><strong>0đ</strong><span>Miễn phí</span></div>
-    <div class="about-stat"><strong>100%</strong><span>Trên trình duyệt</span></div>
+    <div class="about-stat"><strong>0</strong><span>Đăng ký</span></div>
   </div></aside>
 </div></section>
 </main>
 <div id="site-footer"></div>
-<script src="assets/js/catalog.js?v=20260826ad"></script>
-<script src="assets/js/layout.js?v=20260826k"></script>
+<script src="assets/js/catalog.js?v=20260826p"></script>
+<script src="assets/js/layout.js?v=20260826p"></script>
 <script src="assets/js/core.js?v=20260826a"></script>
-<script src="assets/js/site.js?v=20260826i"></script>
+<script src="assets/js/site.js?v=20260826p"></script>
 </body>
 </html>

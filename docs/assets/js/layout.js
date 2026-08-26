@@ -47,7 +47,7 @@
   }
 
   // Shell CSS: ưu tiên nạp sớm trong <head> (ot-shell.css). Chỉ inject fallback nếu thiếu.
-  const shellHref = asset("css/ot-shell.css?v=20260825a");
+  const shellHref = asset("css/ot-shell.css?v=20260826p");
   if (!document.querySelector('link[href*="ot-shell.css"]')) {
     const legacy = [
       "css/skins.css",
@@ -103,6 +103,10 @@
       return { cat: "home", tool: "contact" };
     }
 
+    if (file === "chinh-sach.html") {
+      return { cat: "home", tool: "privacy" };
+    }
+
     if (file === "cong-cu.html" || /\/cong-cu\/?($|\/?index\.html?$)/i.test(path)) {
       return { cat: "hub", tool: "tools-index" };
     }
@@ -128,7 +132,7 @@
   document.body.dataset.tool = meta.tool;
 
   const SITE_ORIGIN = "https://onetool.vn";
-  const OG_IMAGE = SITE_ORIGIN + "/assets/img/og-cover.svg";
+  const OG_IMAGE = SITE_ORIGIN + "/assets/img/og-cover.jpg";
 
   function sitePath() {
     let path = (location.pathname || "/").replace(/\\/g, "/");
@@ -209,6 +213,8 @@
     setMeta("property", "og:locale", "vi_VN", true);
     setMeta("property", "og:url", url, true);
     setMeta("property", "og:image", OG_IMAGE, true);
+    setMeta("property", "og:image:width", "1200", true);
+    setMeta("property", "og:image:height", "630", true);
     setMeta("property", "og:image:alt", "OneTool — công cụ file online miễn phí", true);
     setMeta("name", "twitter:card", "summary_large_image", true);
     setMeta("name", "twitter:title", title, true);
@@ -359,7 +365,7 @@
     const footerHost = document.getElementById("site-footer");
     const megaLinks = buildMegaMenu();
     const drawerBody = buildDrawerMenu();
-    const toolCount = window.OTCatalog?.tools?.filter((t) => !t.hub)?.length || "18";
+    const toolCount = window.OTCatalog?.tools?.filter((t) => !t.hub)?.length || 46;
 
     if (headerHost) {
       headerHost.outerHTML = `
@@ -370,7 +376,7 @@
         <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark.png")}?v=20260826f" width="46" height="46" alt="" /></span>
         <span class="logo-stack">
           <span class="logo-text">OneTool</span>
-          <span class="logo-tag">${toolCount}+ công cụ · Miễn phí</span>
+          <span class="logo-tag">${toolCount} công cụ · Miễn phí</span>
         </span>
       </a>
       <nav class="main-nav" id="mainNav" aria-label="Menu chính">
@@ -388,6 +394,9 @@
         <a href="${href("lien-he.html")}" data-nav="contact">Liên hệ</a>
       </nav>
       <div class="header-actions">
+        <button type="button" class="btn-icon" id="toolSearchBtn" aria-label="Tìm công cụ" aria-haspopup="dialog" aria-controls="toolSearchModal" title="Tìm kiếm (Ctrl+K)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
         <button type="button" class="btn-icon" id="themeToggle" aria-label="Đổi giao diện sáng/tối">🌙</button>
         <a class="btn btn-primary btn-glow btn-header-cta header-cta-desktop" href="${href("cong-cu.html")}">Tất cả công cụ</a>
         <button type="button" class="btn-icon mobile-menu-toggle" id="mobileMenuToggle" aria-label="Mở menu" aria-expanded="false" aria-controls="navDrawer">☰</button>
@@ -395,6 +404,29 @@
     </div>
   </div>
 </header>
+<div class="tool-search" id="toolSearchModal" hidden aria-hidden="true">
+  <div class="tool-search-backdrop" id="toolSearchBackdrop"></div>
+  <div class="tool-search-panel" role="dialog" aria-modal="true" aria-labelledby="toolSearchTitle">
+    <div class="tool-search-head">
+      <h2 id="toolSearchTitle" class="visually-hidden">Tìm công cụ</h2>
+      <div class="tool-search-field">
+        <span class="tool-search-ico" aria-hidden="true">⌕</span>
+        <input type="search" id="toolSearchInput" placeholder="Tìm công cụ… ví dụ: nén PDF, HEIC, cắt video" autocomplete="off" spellcheck="false" enterkeyhint="search" />
+        <kbd class="tool-search-kbd" aria-hidden="true">Esc</kbd>
+      </div>
+      <button type="button" class="btn-icon tool-search-close" id="toolSearchClose" aria-label="Đóng tìm kiếm">✕</button>
+    </div>
+    <div class="tool-search-body" id="toolSearchBody">
+      <p class="tool-search-label" id="toolSearchLabel">Gợi ý nổi bật</p>
+      <div class="tool-search-list" id="toolSearchList" role="listbox" aria-label="Kết quả tìm kiếm"></div>
+      <p class="tool-search-empty" id="toolSearchEmpty" hidden>Không thấy công cụ phù hợp. Thử từ khác hoặc xem <a href="${href("cong-cu.html")}">tất cả công cụ</a>.</p>
+    </div>
+    <div class="tool-search-foot">
+      <span>Gõ để lọc · Enter mở mục đầu</span>
+      <a href="${href("cong-cu.html")}">Tất cả công cụ →</a>
+    </div>
+  </div>
+</div>
 <div class="nav-drawer" id="navDrawer" aria-hidden="true">
   <div class="nav-drawer-backdrop" id="navDrawerBackdrop"></div>
   <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
@@ -471,6 +503,7 @@
           <a href="${href("lien-he.html")}">Gửi góp ý</a>
           <span class="footer-plain">0982 945 576</span>
           <a href="${href("about.html")}">Giới thiệu</a>
+          <a href="${href("chinh-sach.html")}">Chính sách bảo mật</a>
         </div>
       </div>
     </div>

@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light">
+<html lang="vi">
 <head>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
   <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OneTool — Công cụ PDF, ảnh, nén video &amp; Audio → Text miễn phí</title>
   <meta name="description" content="OneTool: đổi ảnh JPG PNG WebP, gộp/tách/nén PDF, xóa nền AI, nén video MP4, audio/video → văn bản ngay trên trình duyệt. Miễn phí, không đăng nhập." />
   <meta name="keywords" content="đổi ảnh online, convert ảnh, gộp pdf, nén pdf, xóa nền, audio to text, whisper, onetool" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20260826c" />
+  <link rel="canonical" href="https://onetool.vn/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="OneTool" />
+  <meta property="og:title" content="OneTool — Công cụ PDF, ảnh, nén video & Audio → Text miễn phí" />
+  <meta property="og:description" content="OneTool: đổi ảnh, gộp/nén PDF, xóa nền, nén video, audio → văn bản. Miễn phí, không đăng nhập." />
+  <meta property="og:url" content="https://onetool.vn/" />
+  <meta property="og:image" content="https://onetool.vn/assets/img/og-cover.jpg" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OneTool — Công cụ PDF, ảnh & video miễn phí" />
+  <meta name="twitter:description" content="Đổi ảnh, gộp/nén PDF, xóa nền, nén video, audio → văn bản. Miễn phí." />
+  <meta name="twitter:image" content="https://onetool.vn/assets/img/og-cover.jpg" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20260826p" />
   <link rel="stylesheet" href="assets/css/home.css?v=20260826h" />
-  <link rel="stylesheet" href="assets/css/shell-critical.css?v=20260826h" />
-  <link rel="preload" href="assets/css/ot-shell.css?v=20260826e" as="style" />
-  <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260826e" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/ot-shell.css?v=20260826e"></noscript>
-  <link rel="preload" href="assets/css/components.css?v=20260826h" as="style" />
-  <link rel="stylesheet" href="assets/css/components.css?v=20260826h" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/components.css?v=20260826h"></noscript>
+  <link rel="stylesheet" href="assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="assets/css/components.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="assets/css/components.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/components.css?v=20260826p"></noscript>
   <script>window.OT_BASE = ".";</script>
   <script>
   (function () {
@@ -29,7 +49,7 @@
 #site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
 .home-hero{min-height:420px}
-@media(max-width:900px){#site-header{min-height:56px}#site-footer{min-height:400px}.home-hero{min-height:360px}}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}.home-hero{min-height:360px}}
 </style>
 </head>
 <body>
@@ -41,9 +61,9 @@
     <div>
       <p class="home-badge"><span class="home-badge-dot"></span> Bộ công cụ file online — dành cho người Việt</p>
       <h1>Xử lý PDF, ảnh &amp; video<br /><span class="gradient-text">ngay trên trình duyệt</span></h1>
-      <p class="home-hero-lead">Convert, gộp, nén video, xóa nền hay chuyển giọng nói thành văn bản — mọi thứ chạy trên máy bạn, không upload server, không cần đăng ký.</p>
+      <p class="home-hero-lead">Convert, gộp, nén video, xóa nền hay chuyển giọng nói thành văn bản — mở trang là dùng, không cần đăng ký. PDF &amp; ảnh xử lý trên máy; một số tool Media/AI dùng xử lý đám mây có kiểm soát.</p>
       <ul class="home-hero-points">
-        <li>🔒 File không rời thiết bị</li>
+        <li>🔒 PDF &amp; ảnh chạy trên máy bạn</li>
         <li>⚡ Kết quả trong vài giây</li>
         <li>💜 Miễn phí, không watermark</li>
       </ul>
@@ -52,8 +72,8 @@
         <a href="cong-cu-media/audio-to-text.html" class="btn btn-outline btn-lg">Audio → Text</a>
       </div>
       <div class="home-stats">
-        <div class="home-stat"><strong>18+</strong><span>Công cụ</span></div>
-        <div class="home-stat"><strong>100%</strong><span>Trên trình duyệt</span></div>
+        <div class="home-stat"><strong id="otToolCount">46</strong><span>Công cụ</span></div>
+        <div class="home-stat"><strong>0</strong><span>Đăng ký</span></div>
         <div class="home-stat"><strong>0đ</strong><span>Miễn phí</span></div>
       </div>
     </div>
@@ -117,10 +137,10 @@
 
 </main>
 <div id="site-footer"></div>
-<script src="assets/js/catalog.js?v=20260826ah"></script>
-<script src="assets/js/layout.js?v=20260826m"></script>
+<script src="assets/js/catalog.js?v=20260826p"></script>
+<script src="assets/js/layout.js?v=20260826p"></script>
 <script src="assets/js/core.js?v=20260826a"></script>
-<script src="assets/js/site.js?v=20260826j"></script>
+<script src="assets/js/site.js?v=20260826p"></script>
 <script>(function () { if (window.OTCatalog && typeof renderHomeShowcase === "function") { renderHomeShowcase(document.getElementById("homeToolRows")); } })();</script>
 </body>
 </html>

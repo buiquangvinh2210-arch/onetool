@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watermark PDF online — Đóng dấu chữ / logo miễn phí | OneTool</title>
+  <meta name="description" content="Thêm watermark chữ hoặc logo vào PDF: độ trong suốt, góc xoay, vị trí, khoảng trang. Chạy trên trình duyệt — không upload server." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826p"></noscript>
+<link rel="stylesheet" href="../assets/css/tools/pdf-watermark.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="pdf-watermark">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="pw-page">
+    <header class="pw-intro">
+      <h1>Watermark PDF · Đóng dấu</h1>
+      <p>Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí, trang. File không rời máy bạn.</p>
+      <div class="pw-chips" aria-hidden="true">
+        <span class="pw-chip">Chữ / Logo</span>
+        <span class="pw-chip">Xoay &amp; opacity</span>
+        <span class="pw-chip">Lặp ô</span>
+        <span class="pw-chip">Trên trình duyệt</span>
+      </div>
+    </header>
+
+    <div class="pw-studio">
+      <div class="pw-shell" id="shell">
+        <div class="pw-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="pdf">
+            <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+            <div class="upload-placeholder">
+              <p class="pw-drop-kicker">Thả PDF vào đây</p>
+              <p class="pw-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · tối đa 40&nbsp;MB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pw-work">
+          <aside class="pw-side">
+            <div class="pw-file-bar">
+              <div>
+                <strong id="fileName">—</strong>
+                <span id="fileMeta">—</span>
+              </div>
+              <button type="button" class="pw-text-btn" id="changeBtn">Đổi PDF</button>
+            </div>
+
+            <div>
+              <p class="pw-label">Loại watermark</p>
+              <div class="pw-modes" id="modeGrid" role="group" aria-label="Loại watermark">
+                <button type="button" class="pw-mode is-on" data-mode="text"><strong>Chữ</strong><em>Văn bản đóng dấu</em></button>
+                <button type="button" class="pw-mode" data-mode="image"><strong>Ảnh</strong><em>Logo / stamp</em></button>
+              </div>
+            </div>
+
+            <div id="textOpts">
+              <div class="pw-field">
+                <label class="pw-label" for="wmText">Nội dung</label>
+                <input id="wmText" class="form-control" type="text" value="CONFIDENTIAL" maxlength="80" autocomplete="off" />
+              </div>
+              <div class="pw-row2">
+                <div class="pw-field">
+                  <label class="pw-label" for="wmColor">Màu</label>
+                  <div class="pw-color">
+                    <input type="color" id="wmColor" value="#7c3aed" aria-label="Màu chữ" />
+                    <span id="wmColorHex">#7c3aed</span>
+                  </div>
+                </div>
+                <div class="pw-field">
+                  <label class="pw-label" for="wmFontSize">Cỡ chữ</label>
+                  <input id="wmFontSize" class="form-control" type="number" min="10" max="200" value="48" />
+                </div>
+              </div>
+            </div>
+
+            <div id="imageOpts" hidden>
+              <div class="pw-field">
+                <label class="pw-label" for="wmImageInput">Ảnh watermark</label>
+                <div class="pw-img-pick">
+                  <input type="file" id="wmImageInput" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" hidden />
+                  <button type="button" class="btn btn-outline btn-sm" id="wmImageBtn">Chọn logo</button>
+                  <span id="wmImageName" class="pw-hint">PNG / JPG · nền trong suốt tốt hơn</span>
+                </div>
+              </div>
+              <div class="pw-slider">
+                <label class="pw-label" for="wmImageScale">Tỉ lệ ảnh</label>
+                <input type="range" id="wmImageScale" min="5" max="100" value="35" />
+                <div class="pw-slider-meta">
+                  <span>Nhỏ</span>
+                  <strong id="wmImageScaleVal">35%</strong>
+                  <span>Lớn</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pw-slider">
+              <label class="pw-label" for="wmOpacity">Độ trong suốt</label>
+              <input type="range" id="wmOpacity" min="5" max="100" value="28" />
+              <div class="pw-slider-meta">
+                <span>Mờ</span>
+                <strong id="wmOpacityVal">28%</strong>
+                <span>Đậm</span>
+              </div>
+            </div>
+
+            <div class="pw-slider">
+              <label class="pw-label" for="wmAngle">Góc xoay</label>
+              <input type="range" id="wmAngle" min="-90" max="90" value="-32" />
+              <div class="pw-slider-meta">
+                <span>−90°</span>
+                <strong id="wmAngleVal">−32°</strong>
+                <span>90°</span>
+              </div>
+            </div>
+
+            <div>
+              <p class="pw-label">Vị trí</p>
+              <div class="pw-pos" id="posGrid" role="group" aria-label="Vị trí">
+                <button type="button" class="pw-pos-btn" data-pos="tl" title="Trên trái">TL</button>
+                <button type="button" class="pw-pos-btn is-on" data-pos="center" title="Giữa">Giữa</button>
+                <button type="button" class="pw-pos-btn" data-pos="tr" title="Trên phải">TR</button>
+                <button type="button" class="pw-pos-btn" data-pos="bl" title="Dưới trái">BL</button>
+                <button type="button" class="pw-pos-btn" data-pos="tile" title="Lặp ô">Lặp</button>
+                <button type="button" class="pw-pos-btn" data-pos="br" title="Dưới phải">BR</button>
+              </div>
+            </div>
+
+            <div class="pw-field">
+              <label class="pw-label" for="pageSpec">Trang</label>
+              <input id="pageSpec" class="form-control" type="text" placeholder="all hoặc 1-3, 5" value="all" />
+              <p class="pw-hint">Để <code>all</code> = mọi trang. VD: <code>1-3, 5</code></p>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" id="runBtn">Đóng dấu PDF</button>
+          </aside>
+
+          <div class="pw-main">
+            <div class="pw-main-bar">
+              <div>
+                <h2>Kết quả</h2>
+                <p id="status">Chọn PDF và tùy chọn watermark</p>
+              </div>
+              <div class="pw-actions result-actions">
+                <button type="button" class="btn btn-primary btn-sm" id="downloadBtn" disabled>Tải PDF</button>
+              </div>
+            </div>
+
+            <div class="pw-stats" id="statsBar" hidden>
+              <div class="pw-stat">
+                <span>Tổng trang</span>
+                <strong id="statPages">—</strong>
+              </div>
+              <div class="pw-stat">
+                <span>Đã đóng dấu</span>
+                <strong id="statStamped">—</strong>
+              </div>
+              <div class="pw-stat">
+                <span>Dung lượng</span>
+                <strong id="statSize">—</strong>
+              </div>
+            </div>
+
+            <div class="pw-preview">
+              <div class="pw-frame" id="previewFrame">
+                <div class="pw-wait" id="previewEmpty">Bấm Đóng dấu PDF để xem trang đầu</div>
+                <img id="previewImg" alt="Xem trước trang đầu sau watermark" hidden />
+              </div>
+              <p class="pw-hint pw-preview-hint">Xem trước trang 1 (sau khi đóng dấu). Tải file đầy đủ bằng nút Tải PDF.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826p"></script>
+<script src="../assets/js/layout.js?v=20260826p"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826p"></script>
+<script src="../assets/js/tools/pdf.js?v=20260826b"></script>
+<script src="../assets/js/tools/pdf-watermark.js?v=20260826a"></script>
+<script src="../assets/js/tools/pdf-watermark-ui.js?v=20260826a"></script>
+</body>
+</html>

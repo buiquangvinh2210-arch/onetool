@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HEIC Convert online — HEIC/HEIF sang JPG PNG WebP miễn phí | OneTool</title>
+  <meta name="description" content="Chuyển HEIC/HEIF sang JPG, PNG, WebP ngay trên trình duyệt. Nhiều ảnh, tải ZIP — miễn phí, không upload server." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826p"></noscript>
+<link rel="stylesheet" href="../assets/css/tools/heic-convert.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="heic-convert">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="hc-page">
+    <header class="hc-intro">
+      <h1>HEIC Convert · HEIC sang JPG</h1>
+      <p>Chuyển HEIC / HEIF (và JPG PNG) sang JPG · PNG · WebP — nhiều ảnh, tải ZIP. File không rời máy bạn.</p>
+      <div class="hc-chips" aria-hidden="true">
+        <span class="hc-chip">HEIC → JPG</span>
+        <span class="hc-chip">Nhiều ảnh</span>
+        <span class="hc-chip">Tải ZIP</span>
+      </div>
+    </header>
+
+    <div class="hc-studio">
+      <div class="hc-shell" id="shell">
+        <div class="hc-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="image">
+            <input type="file" id="fileInput" accept=".heic,.heif,image/heic,image/heif,image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" multiple hidden />
+            <div class="upload-placeholder">
+              <p class="hc-drop-kicker">Thả ảnh HEIC vào đây</p>
+              <p class="hc-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · HEIC HEIF JPG PNG · tối đa 25&nbsp;MB · 30 file</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hc-work">
+          <aside class="hc-side">
+            <div class="hc-file-bar">
+              <div>
+                <strong id="fileSummary">-</strong>
+                <span id="fileMeta">-</span>
+              </div>
+              <button type="button" class="hc-text-btn" id="changeBtn">Đổi ảnh</button>
+            </div>
+
+            <div>
+              <p class="hc-label">Định dạng xuất</p>
+              <div class="hc-formats" id="formatGrid" role="group" aria-label="Định dạng">
+                <button type="button" class="hc-fmt is-on" data-format="jpg">JPG</button>
+                <button type="button" class="hc-fmt" data-format="png">PNG</button>
+                <button type="button" class="hc-fmt" data-format="webp">WebP</button>
+              </div>
+            </div>
+
+            <div class="hc-quality" id="qualityWrap">
+              <label class="hc-label" for="quality">Chất lượng</label>
+              <input type="range" id="quality" min="50" max="100" value="92" />
+              <div class="hc-quality-meta"><span>Nhỏ hơn</span><span id="qualityVal">92%</span></div>
+              <p class="hc-hint">Áp dụng cho JPG và WebP. PNG luôn lossless.</p>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" id="runBtn">Convert tất cả</button>
+            <button type="button" class="btn btn-outline btn-block btn-sm" id="clearBtn" style="margin-top:0.45rem">Xóa danh sách</button>
+
+            <div class="hc-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+            <p class="hc-hint" id="sideHint">HEIC từ iPhone sẽ được giải mã bằng heic2any trên trình duyệt.</p>
+          </aside>
+
+          <div class="hc-main">
+            <div class="hc-main-bar">
+              <div>
+                <h2>Kết quả</h2>
+                <p id="status">Chọn ảnh rồi bấm Convert tất cả</p>
+              </div>
+              <div class="hc-actions">
+                <button type="button" class="btn btn-outline btn-sm" id="downloadOneBtn" disabled>Tải ảnh này</button>
+                <button type="button" class="btn btn-primary btn-sm" id="downloadZipBtn" disabled>Tải ZIP</button>
+              </div>
+            </div>
+
+            <div class="hc-preview-wrap">
+              <figure class="hc-shot">
+                <figcaption>
+                  <span>Xem trước</span>
+                  <span class="hc-dim-tag" id="previewMeta">-</span>
+                </figcaption>
+                <div class="hc-frame" id="preview">
+                  <div class="hc-wait">Convert để xem ảnh đầu tiên</div>
+                </div>
+              </figure>
+            </div>
+
+            <div class="hc-list-wrap">
+              <div class="hc-list-head">
+                <strong>Danh sách file</strong>
+                <span id="listMeta">0 file</span>
+              </div>
+              <div class="hc-list" id="fileList" role="list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826p"></script>
+<script src="../assets/js/layout.js?v=20260826p"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826p"></script>
+<script src="../assets/js/tools/heic-convert.js?v=20260826a"></script>
+<script src="../assets/js/tools/heic-convert-ui.js?v=20260826a"></script>
+</body>
+</html>

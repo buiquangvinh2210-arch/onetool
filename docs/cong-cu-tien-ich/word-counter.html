@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đếm từ online — Word Counter tiếng Việt miễn phí | OneTool</title>
+  <meta name="description" content="Đếm từ, ký tự, câu, đoạn; thời gian đọc/nói; mật độ từ khóa — Word Counter tiếng Việt &amp; Anh, miễn phí trên trình duyệt." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826p"></noscript>
+<link rel="stylesheet" href="../assets/css/tools/word-counter.css?v=20260826a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="word-counter">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="wc-page">
+    <header class="wc-intro">
+      <h1>Word Counter · Đếm từ</h1>
+      <p>Đếm từ, ký tự, câu, đoạn — thời gian đọc/nói và mật độ từ khóa. Cập nhật tức thì, không gửi lên server.</p>
+      <div class="wc-chips" aria-hidden="true">
+        <span class="wc-chip">Tiếng Việt</span>
+        <span class="wc-chip">Live count</span>
+        <span class="wc-chip">Keyword density</span>
+      </div>
+    </header>
+
+    <div class="wc-card">
+      <div class="wc-editor">
+        <div class="wc-editor-bar">
+          <strong>Văn bản</strong>
+          <div class="wc-toolbar">
+            <button type="button" class="wc-text-btn" id="pasteBtn">Dán</button>
+            <button type="button" class="wc-text-btn" id="loadBtn">Mở .txt</button>
+            <button type="button" class="wc-text-btn" id="clearBtn">Xóa</button>
+            <input type="file" id="fileInput" accept=".txt,text/plain" hidden />
+          </div>
+        </div>
+        <textarea id="textInput" class="wc-textarea" rows="12" placeholder="Dán hoặc gõ văn bản cần đếm từ…" spellcheck="true"></textarea>
+      </div>
+
+      <div class="wc-stats" id="statsGrid" aria-live="polite">
+        <div class="wc-stat"><span>Từ</span><strong id="statWords">0</strong></div>
+        <div class="wc-stat"><span>Ký tự</span><strong id="statChars">0</strong></div>
+        <div class="wc-stat"><span>Không khoảng trắng</span><strong id="statCharsNoSpace">0</strong></div>
+        <div class="wc-stat"><span>Câu</span><strong id="statSentences">0</strong></div>
+        <div class="wc-stat"><span>Đoạn</span><strong id="statParagraphs">0</strong></div>
+        <div class="wc-stat"><span>Dòng</span><strong id="statLines">0</strong></div>
+      </div>
+
+      <div class="wc-grid">
+        <div class="wc-side">
+          <p class="wc-label">Thời gian ước tính</p>
+          <div class="wc-times">
+            <div class="wc-time">
+              <span>Đọc (VI ~200 từ/phút)</span>
+              <strong id="timeReadVi">—</strong>
+            </div>
+            <div class="wc-time">
+              <span>Đọc (EN ~230 từ/phút)</span>
+              <strong id="timeReadEn">—</strong>
+            </div>
+            <div class="wc-time">
+              <span>Nói (~130 từ/phút)</span>
+              <strong id="timeSpeak">—</strong>
+            </div>
+          </div>
+
+          <div class="wc-avgs">
+            <div class="wc-avg">
+              <span>Độ dài từ TB</span>
+              <strong id="avgWordLen">0</strong>
+            </div>
+            <div class="wc-avg">
+              <span>Từ / câu TB</span>
+              <strong id="avgSentenceWords">0</strong>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block" id="copyStatsBtn">Sao chép thống kê</button>
+        </div>
+
+        <div class="wc-side">
+          <p class="wc-label">Mật độ từ khóa (top)</p>
+          <div class="wc-keywords" id="keywordList">
+            <p class="wc-empty">Gõ văn bản để xem từ xuất hiện nhiều nhất.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="wc-status" id="status">Sẵn sàng — dán văn bản hoặc mở file .txt.</p>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260826p"></script>
+<script src="../assets/js/layout.js?v=20260826p"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260826p"></script>
+<script src="../assets/js/tools/word-counter.js?v=20260826a"></script>
+<script src="../assets/js/tools/word-counter-ui.js?v=20260826a"></script>
+</body>
+</html>
