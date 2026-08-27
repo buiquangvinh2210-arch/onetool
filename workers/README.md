@@ -30,7 +30,7 @@ GitHub Pages không chạy `.ashx`. Worker Cloudflare proxy sang Groq (miễn ph
 7. (Tuỳ chọn) thêm các biến model:
    - `GEMINI_MODEL`: mặc định `gemini-3.6-flash`
    - `GEMINI_AUDIO_MODEL`: mặc định dùng `GEMINI_MODEL`
-   - `OPENROUTER_CHAT_MODEL`: model miễn phí có đuôi `:free` (mặc định `openai/gpt-oss-20b:free`)
+   - `OPENROUTER_CHAT_MODEL`: model miễn phí có đuôi `:free` (mặc định `google/gemma-4-31b-it:free`)
    - `OPENROUTER_AUDIO_MODEL`: để trống nếu model OpenRouter không hỗ trợ audio
 8. **Edit code** → dán lại `workers/groq-whisper-proxy.js` → **Deploy** (bắt buộc sau khi thêm biến)
 9. Mở URL Worker → phải thấy `providers.groq`, `providers.gemini`, `providers.openrouter` đúng theo các Secret đã thêm

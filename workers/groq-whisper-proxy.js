@@ -31,7 +31,7 @@ export default {
         {
           ok: true,
           service: "onetool-groq-proxy-cf",
-          version: 7,
+          version: 8,
           features: ["whisper", "summarize"],
           chatModel: chatModelId(env),
           providers: {
@@ -83,7 +83,13 @@ const DEFAULT_CHAT_MODEL = "openai/gpt-oss-20b";
 /* Mỗi model có TPM riêng — 429 trên model A có thể thử B. */
 const CHAT_FALLBACKS = ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.6-27b"];
 const DEFAULT_GEMINI_MODEL = "gemini-3.6-flash";
-const DEFAULT_OPENROUTER_MODEL = "openai/gpt-oss-20b:free";
+const DEFAULT_OPENROUTER_MODEL = "google/gemma-4-31b-it:free";
+const OPENROUTER_CHAT_FALLBACKS = [
+  "google/gemma-4-31b-it:free",
+  "minimax/minimax-m2.7:free",
+  "nvidia/nemotron-3-super-120b-a12b:free",
+  "liquid/lfm-2.5-2.6b:free"
+];
 
 function providerKeys(env) {
   return {
@@ -117,7 +123,9 @@ function isModelUnavailable(msg) {
     t.includes("do not have access") ||
     t.includes("decommissioned") ||
     t.includes("model_not_found") ||
-    t.includes("model_decommissioned")
+    t.includes("model_decommissioned") ||
+    t.includes("unavailable for free") ||
+    t.includes("use this slug instead")
   );
 }
 
@@ -134,6 +142,7 @@ function isFallbackError(status, msg) {
     /user location|location.*not supported|not supported.*location|unsupported location|region.*not supported/.test(text);
   return (
     isRateLimited(status, msg) ||
+    isModelUnavailable(msg) ||
     [408, 409, 425, 500, 502, 503, 504].includes(Number(status)) ||
     locationUnsupported
   );
@@ -366,29 +375,41 @@ async function summarizeWithGemini(key, system, userMsg, maxTokens, env) {
 }
 
 async function summarizeWithOpenRouter(key, system, userMsg, maxTokens, env) {
-  const model = openRouterFreeModel(env.OPENROUTER_CHAT_MODEL, DEFAULT_OPENROUTER_MODEL);
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-      "HTTP-Referer": "https://onetool.vn",
-      "X-Title": "OneTool"
-    },
-    body: JSON.stringify({
-      model,
-      temperature: 0.25,
-      max_tokens: maxTokens,
-      messages: [
-        { role: "system", content: system },
-        { role: "user", content: userMsg }
-      ]
-    })
-  });
-  const data = await readProviderJson(response, "openrouter");
-  const summary = String(data?.choices?.[0]?.message?.content || "").trim();
-  if (!summary) throw providerError("openrouter", 502, "OpenRouter không trả về nội dung tóm tắt.");
-  return { summary, model };
+  const preferred = openRouterFreeModel(env.OPENROUTER_CHAT_MODEL, DEFAULT_OPENROUTER_MODEL);
+  const models = [preferred, ...OPENROUTER_CHAT_FALLBACKS.filter((m) => m !== preferred)];
+  let lastError;
+
+  for (const model of models) {
+    try {
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://onetool.vn",
+          "X-Title": "OneTool"
+        },
+        body: JSON.stringify({
+          model,
+          temperature: 0.25,
+          max_tokens: maxTokens,
+          messages: [
+            { role: "system", content: system },
+            { role: "user", content: userMsg }
+          ]
+        })
+      });
+      const data = await readProviderJson(response, "openrouter");
+      const summary = String(data?.choices?.[0]?.message?.content || "").trim();
+      if (!summary) throw providerError("openrouter", 502, "OpenRouter không trả về nội dung tóm tắt.");
+      return { summary, model };
+    } catch (e) {
+      lastError = e;
+      if (!isModelUnavailable(e.message) && !isRateLimited(e.status, e.message)) throw e;
+    }
+  }
+
+  throw lastError || providerError("openrouter", 502, "OpenRouter không trả về nội dung tóm tắt.");
 }
 
 function buildSystemPrompt({ length, format, language, focus }) {
