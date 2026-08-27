@@ -107,6 +107,10 @@
       return { cat: "home", tool: "privacy" };
     }
 
+    if (file === "dieu-khoan.html") {
+      return { cat: "home", tool: "terms" };
+    }
+
     if (file === "cong-cu.html" || /\/cong-cu\/?($|\/?index\.html?$)/i.test(path)) {
       return { cat: "hub", tool: "tools-index" };
     }
@@ -504,6 +508,7 @@
           <span class="footer-plain">0982 945 576</span>
           <a href="${href("about.html")}">Giới thiệu</a>
           <a href="${href("chinh-sach.html")}">Chính sách bảo mật</a>
+          <a href="${href("dieu-khoan.html")}">Điều khoản &amp; bản quyền</a>
         </div>
       </div>
     </div>

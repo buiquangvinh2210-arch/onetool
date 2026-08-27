@@ -160,7 +160,7 @@ window.OTCatalog = {
     },
     "tiktok-download": {
       title: "Tải TikTok không logo — MP4 HD online miễn phí | OneTool",
-      desc: "Tải TikTok không logo, không watermark: dán link lấy MP4 HD hoặc MP3. Miễn phí — kể cả video app không cho lưu."
+      desc: "Tải video TikTok từ link công khai: lấy MP4 HD hoặc MP3 cho nội dung bạn sở hữu hoặc được phép sử dụng. Miễn phí."
     },
     "audio-to-text": {
       title: "Audio to Text tiếng Việt — chuyển giọng nói thành văn bản | OneTool",
@@ -491,7 +491,7 @@ window.OTCatalog = {
         {
           title: "Tải TikTok không logo là gì?",
           paras: [
-            "**Tải TikTok không logo** lấy file MP4 từ link công khai — **không dính watermark TikTok**, ưu tiên HD. Có thể tải MP3 hoặc ảnh slideshow."
+            "**Tải TikTok không logo** lấy file MP4 từ link công khai cho nội dung bạn sở hữu hoặc được phép sử dụng. Có thể tải MP3 hoặc ảnh slideshow; hãy tôn trọng bản quyền và điều khoản của TikTok."
           ]
         },
         {

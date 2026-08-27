@@ -24,10 +24,29 @@ GitHub Pages không chạy `.ashx`. Worker Cloudflare proxy sang Groq (miễn ph
    - Type: **Secret** (Encrypt)  
    - Name: `GROQ_API_KEY`  
    - Value: key Groq `gsk_...` → **Save**
-6. **Edit code** → dán lại `workers/groq-whisper-proxy.js` → **Deploy** (bắt buộc sau khi thêm biến)
-7. Mở URL Worker → phải thấy `"hasGroqKey":true` và (sau deploy code mới) `"features":["whisper","summarize"]`
+6. (Tuỳ chọn) thêm các Secret dự phòng:
+   - `GEMINI_API_KEY`: API key từ Google AI Studio
+   - `OPENROUTER_API_KEY`: API key từ OpenRouter
+7. (Tuỳ chọn) thêm các biến model:
+   - `GEMINI_MODEL`: mặc định `gemini-2.5-flash`
+   - `GEMINI_AUDIO_MODEL`: mặc định dùng `GEMINI_MODEL`
+   - `OPENROUTER_CHAT_MODEL`: model miễn phí có đuôi `:free` (mặc định `openai/gpt-oss-20b:free`)
+   - `OPENROUTER_AUDIO_MODEL`: để trống nếu model OpenRouter không hỗ trợ audio
+8. **Edit code** → dán lại `workers/groq-whisper-proxy.js` → **Deploy** (bắt buộc sau khi thêm biến)
+9. Mở URL Worker → phải thấy `providers.groq`, `providers.gemini`, `providers.openrouter` đúng theo các Secret đã thêm
 
-Worker này còn phục vụ **Tóm tắt AI** (`POST /summarize`, cùng `GROQ_API_KEY`). Trang: `cong-cu-media/ai-summarize.html`.
+Worker này còn phục vụ **Tóm tắt AI** (`POST /summarize`) và sẽ tự chuyển sang nhà cung cấp tiếp theo khi nguồn trước hết quota. Trang: `cong-cu-media/ai-summarize.html`.
+
+### Cơ chế fallback
+
+- Tóm tắt: Groq → Gemini → OpenRouter.
+- Audio → Text: Groq Whisper → Gemini audio; OpenRouter chỉ được thử khi đã cấu hình
+  `OPENROUTER_AUDIO_MODEL` tương thích audio.
+- Chỉ chuyển nguồn khi gặp quota/rate limit hoặc lỗi tạm thời. Key sai sẽ báo lỗi
+  để không che giấu lỗi cấu hình.
+- OpenRouter bị giới hạn chỉ gọi model có đuôi `:free`; model trả phí sẽ không được gọi.
+- Không dùng nhiều tài khoản/key để né giới hạn miễn phí; mỗi nhà cung cấp vẫn áp dụng
+  điều khoản và quota riêng.
 
 > **Lỗi “Chưa cấu hình GROQ_API_KEY” dù đã thêm Text trên dashboard?**  
 > Biến Text trên UI đôi khi không gắn vào runtime. Chạy `workers\deploy-worker.bat` → đăng nhập Cloudflare → `secret put GROQ_API_KEY` → deploy. Cách này chắc chắn hơn.
@@ -40,6 +59,8 @@ wrangler login
 cd workers
 wrangler deploy
 wrangler secret put GROQ_API_KEY
+wrangler secret put GEMINI_API_KEY
+wrangler secret put OPENROUTER_API_KEY
 ```
 
 ### Dán URL vào site
