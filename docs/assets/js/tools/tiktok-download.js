@@ -184,11 +184,26 @@ window.OTTikTok = (function () {
 
     const inApp = window.OT?.isInAppBrowser?.() === true;
 
-    // In-app (Facebook/Zalo/IG…): không fetch→blob — WebView chặn a.download
+    // In-app (Facebook/Zalo/IG…): ưu tiên fetch→Web Share để không mở workers.dev
+    // như một trang web lỗi trong WebView.
     if (inApp && window.OT?.downloadUrl) {
-      onProgress?.("Đang mở file tải…", 80);
+      onProgress?.("Đang chuẩn bị file chia sẻ…", 75);
+      try {
+        const res = await fetch(href, { mode: "cors" });
+        if (res.ok) {
+          const blob = await res.blob();
+          if (blob.size) {
+            await OT.downloadBlob(blob, fileName);
+            onProgress?.("Đã mở tùy chọn lưu/chia sẻ file.", 100);
+            return blob.size;
+          }
+        }
+      } catch (_) {
+        // Một số WebView chặn fetch file lớn; thử mở bằng trình duyệt ngoài bên dưới.
+      }
+      onProgress?.("Mở file bằng trình duyệt…", 80);
       await OT.downloadUrl(href, fileName, { forceNavigate: true });
-      onProgress?.("Nếu chưa tải: ⋮ → Mở bằng trình duyệt", 100);
+      onProgress?.("Nếu chưa tải: bấm ⋮ → Mở bằng trình duyệt", 100);
       return 0;
     }
 

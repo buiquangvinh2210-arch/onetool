@@ -28,7 +28,7 @@ GitHub Pages không chạy `.ashx`. Worker Cloudflare proxy sang Groq (miễn ph
    - `GEMINI_API_KEY`: API key từ Google AI Studio
    - `OPENROUTER_API_KEY`: API key từ OpenRouter
 7. (Tuỳ chọn) thêm các biến model:
-   - `GEMINI_MODEL`: mặc định `gemini-2.5-flash`
+   - `GEMINI_MODEL`: mặc định `gemini-3.6-flash`
    - `GEMINI_AUDIO_MODEL`: mặc định dùng `GEMINI_MODEL`
    - `OPENROUTER_CHAT_MODEL`: model miễn phí có đuôi `:free` (mặc định `openai/gpt-oss-20b:free`)
    - `OPENROUTER_AUDIO_MODEL`: để trống nếu model OpenRouter không hỗ trợ audio

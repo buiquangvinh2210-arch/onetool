@@ -31,7 +31,7 @@ export default {
         {
           ok: true,
           service: "onetool-groq-proxy-cf",
-          version: 5,
+          version: 6,
           features: ["whisper", "summarize"],
           chatModel: chatModelId(env),
           providers: {
@@ -82,7 +82,7 @@ const SOFT_CHARS = 12000;
 const DEFAULT_CHAT_MODEL = "openai/gpt-oss-20b";
 /* Mỗi model có TPM riêng — 429 trên model A có thể thử B. */
 const CHAT_FALLBACKS = ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.6-27b"];
-const DEFAULT_GEMINI_MODEL = "gemini-2.5-flash";
+const DEFAULT_GEMINI_MODEL = "gemini-3.6-flash";
 const DEFAULT_OPENROUTER_MODEL = "openai/gpt-oss-20b:free";
 
 function providerKeys(env) {
@@ -101,6 +101,13 @@ function chatModelId(env) {
 function chatModelCandidates(env) {
   const preferred = chatModelId(env);
   return [preferred, ...CHAT_FALLBACKS.filter((m) => m !== preferred)];
+}
+
+function geminiModelId(env) {
+  const custom = String(env?.GEMINI_MODEL || "").trim();
+  /* Gemini có thể vẫn còn giữ model cũ trong Worker Variables. */
+  if (!custom || /gemini-2\.5-flash/i.test(custom)) return DEFAULT_GEMINI_MODEL;
+  return custom;
 }
 
 function isModelUnavailable(msg) {
@@ -325,7 +332,7 @@ async function summarizeWithGroq(key, system, userMsg, maxTokens, env) {
 }
 
 async function summarizeWithGemini(key, system, userMsg, maxTokens, env) {
-  const model = String(env.GEMINI_MODEL || DEFAULT_GEMINI_MODEL).trim();
+  const model = geminiModelId(env);
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
     {
@@ -506,7 +513,10 @@ async function transcribeWithGemini(key, file, language, env) {
   const mimeType = file.type || mimeTypeFromName(file.name);
   const base64 = bytesToBase64(new Uint8Array(await file.arrayBuffer()));
   const lang = language && language !== "auto" ? ` bằng ngôn ngữ ${language === "vietnamese" ? "tiếng Việt" : language}` : "";
-  const model = String(env.GEMINI_AUDIO_MODEL || env.GEMINI_MODEL || DEFAULT_GEMINI_MODEL).trim();
+  const customAudioModel = String(env.GEMINI_AUDIO_MODEL || "").trim();
+  const model = customAudioModel && !/gemini-2\.5-flash/i.test(customAudioModel)
+    ? customAudioModel
+    : geminiModelId(env);
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
     {
