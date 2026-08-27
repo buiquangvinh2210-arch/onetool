@@ -31,7 +31,7 @@ export default {
         {
           ok: true,
           service: "onetool-groq-proxy-cf",
-          version: 6,
+          version: 7,
           features: ["whisper", "summarize"],
           chatModel: chatModelId(env),
           providers: {
@@ -128,7 +128,15 @@ function isRateLimited(status, msg) {
 }
 
 function isFallbackError(status, msg) {
-  return isRateLimited(status, msg) || [408, 409, 425, 500, 502, 503, 504].includes(Number(status));
+  const text = String(msg || "").toLowerCase();
+  const locationUnsupported =
+    Number(status) === 400 &&
+    /user location|location.*not supported|not supported.*location|unsupported location|region.*not supported/.test(text);
+  return (
+    isRateLimited(status, msg) ||
+    [408, 409, 425, 500, 502, 503, 504].includes(Number(status)) ||
+    locationUnsupported
+  );
 }
 
 function providerError(provider, status, message) {
