@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Làm mờ ảnh online miễn phí — blur ảnh JPG PNG | OneTool</title>
+  <meta name="description" content="Làm mờ / blur ảnh online: toàn ảnh hoặc vùng chọn, chỉnh độ mờ, xuất JPG PNG WebP. Miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-anh/image-blur.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/image-blur.css?v=20260828a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="image-blur">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="ib-page">
+    <header class="ib-intro">
+      <h1>Làm mờ / blur ảnh</h1>
+      <p>Làm mờ toàn ảnh hoặc chỉ một vùng — ẩn thông tin nhạy cảm, tạo nền bokeh. Xuất JPG · PNG · WebP trên máy bạn.</p>
+    </header>
+
+    <div class="ib-studio">
+      <div class="ib-shell" id="shell">
+        <div class="ib-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="image">
+            <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp" hidden />
+            <div class="upload-placeholder">
+              <p class="ib-drop-kicker">Thả ảnh vào đây</p>
+              <p class="ib-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · JPG PNG WebP · tối đa 20&nbsp;MB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ib-work">
+          <aside class="ib-side">
+            <div class="ib-file-bar">
+              <div>
+                <strong id="fileName">-</strong>
+                <span id="fileMeta">-</span>
+              </div>
+              <button type="button" class="ib-text-btn" id="changeBtn">Đổi ảnh</button>
+            </div>
+
+            <div>
+              <p class="ib-label">Chế độ</p>
+              <div class="ib-modes" role="group" aria-label="Chế độ làm mờ">
+                <button type="button" class="ib-mode is-on" data-mode="full"><strong>Toàn ảnh</strong><em>Blur cả khung hình</em></button>
+                <button type="button" class="ib-mode" data-mode="region"><strong>Vùng chọn</strong><em>Kéo khung trên ảnh</em></button>
+              </div>
+              <p class="ib-hint" id="regionHint" hidden>Kéo chuột trên ảnh gốc để chọn vùng cần làm mờ (CCCD, biển số, mặt…).</p>
+              <button type="button" class="ib-text-btn" id="clearRegionBtn" hidden style="margin-top:0.4rem">Xóa vùng chọn</button>
+            </div>
+
+            <div>
+              <p class="ib-label">Mức mờ</p>
+              <div class="ib-presets" id="presetGrid">
+                <button type="button" class="ib-preset" data-preset="soft">Nhẹ</button>
+                <button type="button" class="ib-preset" data-preset="medium">Vừa</button>
+                <button type="button" class="ib-preset" data-preset="strong">Mạnh</button>
+                <button type="button" class="ib-preset" data-preset="heavy">Siêu mờ</button>
+              </div>
+              <div class="ib-range" style="margin-top:0.75rem">
+                <label class="ib-label" for="blurRange" style="text-transform:none;letter-spacing:0;font-weight:650">Độ mờ</label>
+                <input type="range" id="blurRange" min="1" max="60" value="14" />
+                <div class="ib-range-meta"><span>Ít</span><span id="blurVal">14 px</span></div>
+              </div>
+            </div>
+
+            <label class="ib-check">
+              <input type="checkbox" id="softEdge" checked />
+              Viền vùng mềm (feather)
+            </label>
+
+            <div>
+              <p class="ib-label">Định dạng xuất</p>
+              <div class="ib-formats" role="group" aria-label="Định dạng">
+                <button type="button" class="ib-fmt" data-format="jpg">JPG</button>
+                <button type="button" class="ib-fmt is-on" data-format="png">PNG</button>
+                <button type="button" class="ib-fmt" data-format="webp">WebP</button>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" id="runBtn">Làm mờ ảnh</button>
+          </aside>
+
+          <div class="ib-main">
+            <div class="ib-main-bar">
+              <div>
+                <h2>So sánh</h2>
+                <p id="status">Upload ảnh để bắt đầu làm mờ</p>
+              </div>
+              <div class="ib-actions result-actions">
+                <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+                <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải ảnh</button>
+              </div>
+            </div>
+
+            <div class="ib-compare">
+              <figure class="ib-shot">
+                <figcaption>
+                  <span>Gốc / chọn vùng</span>
+                  <span id="origDim">-</span>
+                </figcaption>
+                <div class="ib-frame">
+                  <canvas id="selectCanvas" aria-label="Ảnh gốc — kéo chọn vùng nếu cần"></canvas>
+                </div>
+              </figure>
+              <figure class="ib-shot">
+                <figcaption>
+                  <span>Kết quả</span>
+                  <span id="outDim">-</span>
+                </figcaption>
+                <div id="preview" class="ib-frame">
+                  <div class="ib-wait" id="resultEmpty">Bấm Làm mờ để xem</div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script src="../assets/js/tools/image-blur-ui.js?v=20260828a"></script>
+</body>
+</html>

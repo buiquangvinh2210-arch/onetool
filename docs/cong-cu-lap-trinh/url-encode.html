@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL encode decode online miễn phí — encodeURIComponent | OneTool</title>
+  <meta name="description" content="URL encode/decode online: encodeURIComponent, encodeURI, form (+). Tiếng Việt UTF-8 — miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-lap-trinh/url-encode.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/url-encode.css?v=20260828a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="url-encode">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="ue-page">
+    <header class="ue-intro">
+      <h1>URL encode / decode online</h1>
+      <p>Mã hóa hoặc giải mã chuỗi URL — hỗ trợ tiếng Việt UTF-8, encodeURIComponent / encodeURI và dạng form (+).</p>
+    </header>
+
+    <div class="ue-studio">
+      <div class="ue-panel">
+        <div class="ue-panel-head">
+          <h2>Nguồn</h2>
+          <div class="ue-mode" id="modeTabs" role="tablist">
+            <button type="button" class="is-on" data-mode="encode" role="tab" aria-selected="true">Encode</button>
+            <button type="button" data-mode="decode" role="tab" aria-selected="false">Decode</button>
+          </div>
+        </div>
+        <div class="ue-body">
+          <div class="ue-meta">
+            <span id="inputMeta">0 ký tự</span>
+            <span id="modeLabel">Encode</span>
+          </div>
+
+          <div class="ue-options" id="encodeOpts">
+            <label><input type="radio" name="ueStyle" value="component" checked /> encodeURIComponent</label>
+            <label><input type="radio" name="ueStyle" value="uri" /> encodeURI</label>
+            <label><input type="checkbox" id="plusSpace" /> Space → + (form)</label>
+          </div>
+          <p class="ue-hint" id="styleHint">encodeURIComponent: mã hóa cả ?, &amp;, = — phù hợp giá trị query.</p>
+
+          <textarea id="inputText" class="ue-editor" spellcheck="false" placeholder="Dán text hoặc URL vào đây…"></textarea>
+
+          <div class="ue-toolbar">
+            <button type="button" class="ue-text-btn" id="sampleBtn">Mẫu</button>
+            <button type="button" class="ue-text-btn" id="swapBtn">Đảo nguồn ↔ kết quả</button>
+            <button type="button" class="ue-text-btn" id="clearBtn">Xóa</button>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block" id="runBtn">Encode</button>
+        </div>
+      </div>
+
+      <div class="ue-panel result-panel">
+        <div class="ue-panel-head">
+          <h2>Kết quả</h2>
+          <div class="ue-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải TXT</button>
+          </div>
+        </div>
+        <div class="ue-body">
+          <p id="status" class="ue-status">Sẵn sàng — nhập nội dung rồi encode/decode.</p>
+          <div class="ue-meta">
+            <span id="outputMeta">0 ký tự</span>
+          </div>
+          <pre id="preview" class="ue-out is-empty" aria-label="Kết quả">Kết quả hiện ở đây.</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let mode = "encode";
+  let lastOut = "";
+  let timer = null;
+
+  const input = document.getElementById("inputText");
+  const preview = document.getElementById("preview");
+  const status = document.getElementById("status");
+  const runBtn = document.getElementById("runBtn");
+  const copyBtn = document.getElementById("copyResultBtn");
+  const dlBtn = document.getElementById("downloadResultBtn");
+  const encodeOpts = document.getElementById("encodeOpts");
+  const styleHint = document.getElementById("styleHint");
+  const plusSpace = document.getElementById("plusSpace");
+
+  const HINTS = {
+    component: "encodeURIComponent: mã hóa cả ?, &, = — phù hợp giá trị query / form field.",
+    uri: "encodeURI: giữ :, /, ?, # — phù hợp mã hóa cả URL hoàn chỉnh."
+  };
+
+  function setStatus(msg, kind) {
+    status.textContent = msg;
+    status.className = "ue-status" + (kind ? " is-" + kind : "");
+  }
+
+  function countMeta(el, text) {
+    const n = String(text || "").length;
+    el.textContent = n.toLocaleString("vi-VN") + " ký tự";
+  }
+
+  function getStyle() {
+    const el = document.querySelector('input[name="ueStyle"]:checked');
+    return el ? el.value : "component";
+  }
+
+  function updateHint() {
+    styleHint.textContent = HINTS[getStyle()] || HINTS.component;
+  }
+
+  function encodeText(raw) {
+    const style = getStyle();
+    let out = style === "uri" ? encodeURI(raw) : encodeURIComponent(raw);
+    if (plusSpace.checked) out = out.replace(/%20/g, "+");
+    return out;
+  }
+
+  function decodeText(raw) {
+    const s = String(raw).replace(/\+/g, " ");
+    try {
+      return decodeURIComponent(s);
+    } catch (_) {
+      try {
+        return decodeURI(s);
+      } catch (e2) {
+        throw new Error("Chuỗi URL không hợp lệ (thiếu %xx hoặc sai định dạng).");
+      }
+    }
+  }
+
+  function showOut(text, okMsg) {
+    lastOut = text;
+    preview.textContent = text || "";
+    preview.classList.toggle("is-empty", !text);
+    if (!text) preview.textContent = "Kết quả hiện ở đây.";
+    countMeta(document.getElementById("outputMeta"), text);
+    copyBtn.disabled = !text;
+    dlBtn.disabled = !text;
+    if (text) {
+      OT.setLastResult?.({
+        text: text,
+        fileName: mode === "encode" ? "url-encoded.txt" : "url-decoded.txt",
+        contentType: "text/plain;charset=utf-8"
+      });
+      setStatus(okMsg || "Xong.", "ok");
+    }
+  }
+
+  function run() {
+    const raw = input.value;
+    countMeta(document.getElementById("inputMeta"), raw);
+    if (!raw) {
+      showOut("", "");
+      setStatus("Nhập nội dung trước.", "err");
+      return;
+    }
+    try {
+      if (mode === "encode") {
+        showOut(encodeText(raw), "Đã encode.");
+      } else {
+        showOut(decodeText(raw), "Đã decode.");
+      }
+    } catch (e) {
+      setStatus(e.message || String(e), "err");
+    }
+  }
+
+  function scheduleRun() {
+    clearTimeout(timer);
+    timer = setTimeout(run, 220);
+  }
+
+  function setMode(next) {
+    mode = next;
+    document.querySelectorAll("#modeTabs button").forEach(function (btn) {
+      const on = btn.dataset.mode === mode;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    document.getElementById("modeLabel").textContent = mode === "encode" ? "Encode" : "Decode";
+    runBtn.textContent = mode === "encode" ? "Encode" : "Decode";
+    encodeOpts.style.opacity = mode === "encode" ? "1" : "0.55";
+    encodeOpts.querySelectorAll("input").forEach(function (inp) {
+      inp.disabled = mode === "decode" && inp.name === "ueStyle";
+    });
+    // plus still useful on decode? decode always treats + as space. Keep checkbox for encode only visual
+    plusSpace.disabled = mode === "decode";
+    scheduleRun();
+  }
+
+  document.getElementById("modeTabs").addEventListener("click", function (e) {
+    const btn = e.target.closest("button[data-mode]");
+    if (!btn) return;
+    setMode(btn.dataset.mode);
+  });
+
+  document.querySelectorAll('input[name="ueStyle"]').forEach(function (el) {
+    el.addEventListener("change", function () {
+      updateHint();
+      if (mode === "encode") scheduleRun();
+    });
+  });
+  plusSpace.addEventListener("change", function () {
+    if (mode === "encode") scheduleRun();
+  });
+
+  input.addEventListener("input", scheduleRun);
+  runBtn.addEventListener("click", run);
+
+  document.getElementById("sampleBtn").onclick = function () {
+    if (mode === "encode") {
+      input.value = "https://onetool.vn/tìm?q=đổi lịch & năm=2026";
+    } else {
+      input.value = "https%3A%2F%2Fonetool.vn%2Ft%C3%ACm%3Fq%3D%C4%91%E1%BB%95i%20l%E1%BB%8Bch%20%26%20n%C4%83m%3D2026";
+    }
+    run();
+  };
+
+  document.getElementById("clearBtn").onclick = function () {
+    input.value = "";
+    showOut("", "");
+    countMeta(document.getElementById("inputMeta"), "");
+    setStatus("Đã xóa.", "");
+  };
+
+  document.getElementById("swapBtn").onclick = function () {
+    if (!lastOut) return;
+    input.value = lastOut;
+    setMode(mode === "encode" ? "decode" : "encode");
+  };
+
+  copyBtn.addEventListener("click", async function () {
+    if (!lastOut) return;
+    try {
+      await navigator.clipboard.writeText(lastOut);
+      setStatus("Đã sao chép.", "ok");
+    } catch (_) {
+      setStatus("Không sao chép được.", "err");
+    }
+  });
+
+  dlBtn.addEventListener("click", function () {
+    if (!lastOut) return;
+    const name = mode === "encode" ? "url-encoded.txt" : "url-decoded.txt";
+    const blob = new Blob([lastOut], { type: "text/plain;charset=utf-8" });
+    OT.downloadBlob(blob, name);
+    setStatus("Đang tải " + name + "…", "ok");
+  });
+
+  updateHint();
+  setMode("encode");
+  countMeta(document.getElementById("inputMeta"), "");
+});
+</script>
+</body>
+</html>

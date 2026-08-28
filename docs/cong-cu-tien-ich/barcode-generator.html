@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tạo mã vạch online miễn phí — Barcode CODE128 EAN-13 | OneTool</title>
+  <meta name="description" content="Tạo mã vạch (Barcode) online: CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG. Miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/barcode-generator.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/barcode-generator.css?v=20260828a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="barcode-generator">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="bc-page">
+    <header class="bc-intro">
+      <h1>Tạo mã vạch online</h1>
+      <p>Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước ngay, tải PNG để in tem / bao bì.</p>
+    </header>
+
+    <div class="bc-card result-panel">
+      <div class="bc-grid">
+        <div class="bc-form">
+          <label class="bc-label" for="bcFormat">Chuẩn mã vạch</label>
+          <select id="bcFormat" class="bc-select">
+            <option value="CODE128" selected>CODE128 — đa năng (khuyến nghị)</option>
+            <option value="EAN13">EAN-13 — mã sản phẩm</option>
+            <option value="EAN8">EAN-8 — sản phẩm nhỏ</option>
+            <option value="UPC">UPC-A — Mỹ / Canada</option>
+            <option value="CODE39">CODE39 — kho / logistics</option>
+            <option value="ITF14">ITF-14 — thùng carton</option>
+            <option value="MSI">MSI</option>
+            <option value="pharmacode">Pharmacode</option>
+            <option value="codabar">Codabar</option>
+          </select>
+          <p class="bc-hint" id="bcHint">Chữ + số tự do. Phù hợp SKU, hóa đơn, nội bộ.</p>
+
+          <div class="bc-field">
+            <label class="bc-label" for="bcValue">Nội dung</label>
+            <input type="text" id="bcValue" class="bc-input" maxlength="128" placeholder="VD: ONETOOL-2026" autocomplete="off" />
+            <div class="bc-presets" id="bcPresets">
+              <button type="button" class="bc-preset" data-sample="1">Mẫu hợp lệ</button>
+              <button type="button" class="bc-preset" data-sample="sku">SKU</button>
+              <button type="button" class="bc-preset" data-sample="ean">EAN mẫu</button>
+            </div>
+          </div>
+
+          <div class="bc-row">
+            <div class="bc-range">
+              <label class="bc-label" for="bcWidth">Độ dày vạch</label>
+              <input type="range" id="bcWidth" min="1" max="4" step="1" value="2" />
+              <div class="bc-range-meta"><span>Mỏng</span><span id="bcWidthVal">2</span><span>Dày</span></div>
+            </div>
+            <div class="bc-range">
+              <label class="bc-label" for="bcHeight">Chiều cao</label>
+              <input type="range" id="bcHeight" min="60" max="180" step="10" value="100" />
+              <div class="bc-range-meta"><span>Thấp</span><span id="bcHeightVal">100 px</span><span>Cao</span></div>
+            </div>
+          </div>
+
+          <label class="bc-check" for="bcShowText">
+            <input type="checkbox" id="bcShowText" checked />
+            <span>Hiện chữ dưới mã vạch</span>
+          </label>
+
+          <div class="bc-colors">
+            <label class="bc-color">
+              <input type="color" id="bcLine" value="#1a1428" />
+              <span>Màu vạch</span>
+            </label>
+            <label class="bc-color">
+              <input type="color" id="bcBg" value="#ffffff" />
+              <span>Nền</span>
+            </label>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block" id="runBtn" style="margin-top:1rem">Tạo mã vạch</button>
+          <div class="bc-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép ảnh</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải PNG</button>
+          </div>
+        </div>
+
+        <div class="bc-preview-wrap">
+          <div class="bc-frame" id="bcFrame">
+            <div class="bc-empty" id="bcEmpty">Mã vạch hiện ở đây<br />sau khi bạn bấm Tạo</div>
+            <div id="preview" hidden></div>
+          </div>
+          <span class="bc-meta-chip" id="bcChip" hidden>CODE128</span>
+          <p id="status" class="bc-status">Sẵn sàng — chọn chuẩn, nhập nội dung rồi tạo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script src="../assets/js/tools/utils.js?v=20260828a" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const HINTS = {
+    CODE128: "Chữ + số tự do. Phù hợp SKU, hóa đơn, mã nội bộ.",
+    EAN13: "12–13 chữ số (mã sản phẩm bán lẻ). Có thể nhập 12 số — phần mềm tính check digit.",
+    EAN8: "7–8 chữ số cho sản phẩm nhỏ.",
+    UPC: "11–12 chữ số (UPC-A).",
+    CODE39: "Chữ hoa, số và - . $ / + %. Phổ biến trong kho.",
+    ITF14: "13–14 chữ số (thùng carton).",
+    MSI: "Chỉ chữ số.",
+    pharmacode: "Số nguyên 3–131070.",
+    codabar: "Bắt đầu/kết thúc bằng A–D, giữa là số và - $ : / . +"
+  };
+
+  const SAMPLES = {
+    CODE128: { "1": "ONETOOL-2026", sku: "SKU-VN-88421", ean: "5901234123457" },
+    EAN13: { "1": "5901234123457", sku: "8934567890123", ean: "5901234123457" },
+    EAN8: { "1": "96385074", sku: "40123455", ean: "96385074" },
+    UPC: { "1": "012345678905", sku: "123456789012", ean: "012345678905" },
+    CODE39: { "1": "CODE39", sku: "WH-A12", ean: "LOT-99" },
+    ITF14: { "1": "12345678901231", sku: "98765432109879", ean: "12345678901231" },
+    MSI: { "1": "1234567", sku: "998877", ean: "1234567" },
+    pharmacode: { "1": "1234", sku: "42", ean: "131070" },
+    codabar: { "1": "A12345B", sku: "C9876D", ean: "A12345B" }
+  };
+
+  let lastBlob = null;
+  const els = {
+    format: document.getElementById("bcFormat"),
+    value: document.getElementById("bcValue"),
+    hint: document.getElementById("bcHint"),
+    width: document.getElementById("bcWidth"),
+    height: document.getElementById("bcHeight"),
+    widthVal: document.getElementById("bcWidthVal"),
+    heightVal: document.getElementById("bcHeightVal"),
+    showText: document.getElementById("bcShowText"),
+    line: document.getElementById("bcLine"),
+    bg: document.getElementById("bcBg"),
+    status: document.getElementById("status"),
+    preview: document.getElementById("preview"),
+    empty: document.getElementById("bcEmpty"),
+    chip: document.getElementById("bcChip"),
+    copyBtn: document.getElementById("copyResultBtn"),
+    downloadBtn: document.getElementById("downloadResultBtn")
+  };
+
+  function syncHint() {
+    const f = els.format.value;
+    els.hint.textContent = HINTS[f] || "";
+    if (els.chip) {
+      els.chip.textContent = f;
+    }
+  }
+
+  els.format.addEventListener("change", syncHint);
+  els.width.addEventListener("input", function () {
+    els.widthVal.textContent = els.width.value;
+  });
+  els.height.addEventListener("input", function () {
+    els.heightVal.textContent = els.height.value + " px";
+  });
+
+  document.getElementById("bcPresets").addEventListener("click", function (e) {
+    const btn = e.target.closest(".bc-preset");
+    if (!btn) return;
+    const f = els.format.value;
+    const key = btn.dataset.sample || "1";
+    const map = SAMPLES[f] || SAMPLES.CODE128;
+    els.value.value = map[key] || map["1"] || "";
+    els.value.focus();
+  });
+
+  function showPreview(blob, format) {
+    lastBlob = blob;
+    const url = URL.createObjectURL(blob);
+    els.preview.innerHTML = '<img alt="Mã vạch" src="' + url + '" />';
+    els.preview.hidden = false;
+    els.empty.hidden = true;
+    els.copyBtn.disabled = false;
+    els.downloadBtn.disabled = false;
+    if (els.chip) {
+      els.chip.hidden = false;
+      els.chip.textContent = format;
+    }
+    OT.setLastResult?.({ blob: blob, fileName: "barcode.png", contentType: "image/png" });
+  }
+
+  document.getElementById("runBtn").onclick = async function () {
+    const btn = document.getElementById("runBtn");
+    try {
+      if (!window.OTUtils?.makeBarcodePng) throw new Error("Script chưa sẵn sàng — thử Ctrl+F5.");
+      const value = els.value.value.trim();
+      if (!value) throw new Error("Nhập nội dung mã vạch.");
+      const format = els.format.value;
+
+      OT.setBusy(btn, true, "Đang tạo…");
+      els.status.textContent = "Đang tạo mã vạch…";
+      els.status.className = "bc-status";
+
+      const blob = await OTUtils.makeBarcodePng(value, {
+        format: format,
+        width: parseInt(els.width.value, 10) || 2,
+        height: parseInt(els.height.value, 10) || 100,
+        displayValue: !!els.showText.checked,
+        lineColor: els.line.value,
+        background: els.bg.value
+      });
+
+      showPreview(blob, format);
+      els.status.textContent = "Xong — tải PNG hoặc sao chép ảnh.";
+      els.status.className = "bc-status is-ok";
+    } catch (e) {
+      els.status.textContent = e.message || String(e);
+      els.status.className = "bc-status is-err";
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  };
+
+  els.copyBtn.addEventListener("click", async function (e) {
+    e.preventDefault();
+    if (!lastBlob) return;
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": lastBlob })]);
+      els.status.textContent = "Đã sao chép ảnh vào clipboard.";
+      els.status.className = "bc-status is-ok";
+    } catch (_) {
+      els.status.textContent = "Không sao chép được — hãy tải PNG.";
+      els.status.className = "bc-status is-err";
+    }
+  }, true);
+
+  els.downloadBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (!lastBlob) return;
+    const name = "barcode-" + (els.format.value || "code").toLowerCase() + ".png";
+    OT.downloadBlob(lastBlob, name);
+    els.status.textContent = "Đang tải " + name + "…";
+    els.status.className = "bc-status is-ok";
+  }, true);
+
+  syncHint();
+
+  // Preload JsBarcode khi rảnh
+  if (window.OTUtils?.loadJsBarcode) {
+    const idle = window.requestIdleCallback || function (cb) { setTimeout(cb, 800); };
+    idle(function () { OTUtils.loadJsBarcode().catch(function () {}); }, { timeout: 2500 });
+  }
+});
+</script>
+</body>
+</html>

@@ -17,18 +17,23 @@
   <title>Xóa nền ảnh online miễn phí — PNG trong suốt | OneTool</title>
   <meta name="description" content="Xóa nền ảnh online bằng AI: tách người, sản phẩm khỏi phông, xem preview, tải PNG trong suốt. Miễn phí." />
   <link rel="canonical" href="https://onetool.vn/cong-cu-anh/remove-background.html" />
+  <meta name="robots" content="index,follow" />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
   <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
   <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
   <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
-<link rel="stylesheet" href="../assets/css/tools/remove-background.css" />
+  <link rel="stylesheet" href="../assets/css/tools/remove-background.css?v=20260828b" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
 #otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
-@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
+body[data-tool="remove-background"] .rb-work{display:none!important}
+body[data-tool="remove-background"] .rb-shell.has-file .rb-work{display:grid!important}
+body[data-tool="remove-background"] .rb-shell.has-file .rb-drop{display:none!important}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
 <body data-tool="remove-background">
 <div id="site-header"></div>
 <main role="main">
@@ -36,16 +41,18 @@
 <section class="tool-workspace tool-workspace--doc">
   <div class="rb-page">
     <header class="rb-intro">
-  <h1>Xóa nền ảnh online</h1>
+      <h1>Xóa nền ảnh online</h1>
       <p>Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.</p>
     </header>
 
-    <div class="rb-board" id="board">
-      <div class="upload-zone" id="uploadZone" data-kind="image">
-        <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp" hidden />
-        <div class="upload-placeholder" id="uploadPlaceholder">
-          <p class="rb-drop-kicker">Thả ảnh vào đây</p>
-          <p class="rb-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · JPG PNG WebP · tối đa 8&nbsp;MB</p>
+    <div class="rb-shell" id="shell">
+      <div class="rb-drop">
+        <div class="upload-zone" id="uploadZone" data-kind="image">
+          <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp" hidden />
+          <div class="upload-placeholder">
+            <p class="rb-drop-kicker">Thả ảnh vào đây</p>
+            <p class="rb-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · JPG PNG WebP · tối đa 8&nbsp;MB</p>
+          </div>
         </div>
       </div>
 
@@ -56,7 +63,7 @@
             <button type="button" class="rb-text-btn" id="changeBtn">Đổi ảnh</button>
           </figcaption>
           <div class="rb-frame" id="sourceBox">
-            <img id="sourceImg" alt="Ảnh gốc" />
+            <img id="sourceImg" alt="Ảnh gốc" hidden />
           </div>
           <p id="sourceMeta" class="rb-file"></p>
         </figure>
@@ -79,7 +86,7 @@
               <button type="button" data-bg="light">Sáng</button>
               <button type="button" data-bg="dark">Tối</button>
             </div>
-            <div class="result-actions">
+            <div class="rb-actions">
               <button type="button" class="rb-text-btn" id="copyResultBtn" disabled>Sao chép</button>
               <button type="button" class="rb-text-btn rb-text-btn--strong" id="downloadResultBtn" disabled>Tải PNG</button>
             </div>
@@ -91,164 +98,14 @@
     </div>
   </div>
 </section>
-<section class="tool-seo" id="toolSeo">
-  <div class="tool-seo-wrap">
-    <section class="tool-seo-block">
-      <h2>Cách dùng Xóa nền ảnh</h2>
-      <ol class="tool-seo-howto">
-        <li>Tải ảnh chân dung hoặc sản phẩm.</li>
-        <li>Bấm Xóa nền.</li>
-        <li>Tải PNG trong suốt về máy.</li>
-      </ol>
-    </section>
-    <section class="tool-seo-block">
-      <h2>Xóa nền ảnh online là gì?</h2>
-      <p><strong>Xóa nền ảnh</strong> tách chủ thể khỏi phông, xuất PNG trong suốt.</p>
-    </section>
-  </div>
-</section>
+<section class="tool-seo" id="toolSeo"></section>
 </main>
-<script src="../assets/js/layout.js?v=20260826r"></script>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
 <script src="../assets/js/core.js?v=20260826a"></script>
-<script src="../assets/js/site.js?v=20260826r"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
 <script src="../assets/js/tools/image.js?v=20260824g" defer></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-(function () {
-  const isMobile =
-    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
-    (navigator.maxTouchPoints > 0 && window.matchMedia("(max-width: 900px)").matches);
-  const maxBytes = isMobile ? 6 * 1024 * 1024 : 8 * 1024 * 1024;
-
-  let file = null;
-  let sourceUrl = null;
-  let lastBlob = null;
-
-  const els = {
-    board: document.getElementById("board"),
-    zone: document.getElementById("uploadZone"),
-    sourceImg: document.getElementById("sourceImg"),
-    sourceMeta: document.getElementById("sourceMeta"),
-    runBtn: document.getElementById("runBtn"),
-    status: document.getElementById("status"),
-    preview: document.getElementById("preview"),
-    input: document.getElementById("fileInput"),
-    outBar: document.getElementById("outBar"),
-    bgToggle: document.getElementById("bgToggle")
-  };
-
-  function waitMarkup() {
-    return '<div class="rb-wait" id="resultEmpty">Kết quả hiện ở đây</div>';
-  }
-
-  function revokeSource() {
-    if (sourceUrl) URL.revokeObjectURL(sourceUrl);
-    sourceUrl = null;
-  }
-
-  function clearResult() {
-    lastBlob = null;
-    els.board.classList.remove("is-done");
-    if (els.outBar) els.outBar.hidden = true;
-    els.preview.querySelectorAll("img").forEach((img) => {
-      if (img.src?.startsWith("blob:")) URL.revokeObjectURL(img.src);
-      img.remove();
-    });
-    if (!els.preview.querySelector(".rb-wait")) els.preview.innerHTML = waitMarkup();
-    document.getElementById("copyResultBtn").disabled = true;
-    document.getElementById("downloadResultBtn").disabled = true;
-  }
-
-  function showSource(f) {
-    revokeSource();
-    file = f;
-    sourceUrl = URL.createObjectURL(f);
-    els.sourceImg.src = sourceUrl;
-    els.sourceMeta.textContent = f.name + " · " + OT.formatBytes(f.size);
-    els.board.classList.add("has-file");
-    els.zone.classList.add("has-file");
-    els.runBtn.disabled = false;
-    els.status.textContent = "Chờ xử lý";
-    clearResult();
-  }
-
-  OT.bindUploadZone({
-    onFiles: (files) => {
-      const f = files?.[0];
-      if (!f) return;
-      if (!f.type.startsWith("image/")) {
-        showToast?.("Chọn file ảnh.", "error");
-        return;
-      }
-      if (f.size > maxBytes) {
-        showToast?.(isMobile ? "Ảnh tối đa 6MB trên điện thoại." : "Ảnh tối đa 8MB.", "error");
-        return;
-      }
-      showSource(f);
-    }
-  });
-
-  document.getElementById("changeBtn")?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    els.input?.click();
-  });
-
-  els.bgToggle?.addEventListener("click", (e) => {
-    const btn = e.target.closest("button[data-bg]");
-    if (!btn) return;
-    els.preview.dataset.bg = btn.dataset.bg;
-    els.bgToggle.querySelectorAll("button").forEach((b) => b.classList.toggle("is-on", b === btn));
-  });
-
-  document.getElementById("copyResultBtn")?.addEventListener("click", async (e) => {
-    if (!lastBlob) return;
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    try {
-      const type = lastBlob.type || "image/png";
-      await navigator.clipboard.write([new ClipboardItem({ [type]: lastBlob })]);
-      showToast?.("Đã sao chép PNG.", "success");
-    } catch {
-      showToast?.("Không sao chép được ảnh — hãy tải PNG.", "error");
-    }
-  }, true);
-
-  els.runBtn.onclick = async () => {
-    try {
-      if (location.protocol === "file:") {
-        throw new Error("Cần chạy local server (HTTP).");
-      }
-      if (!file) throw new Error("Chọn ảnh.");
-      OT.setBusy(els.runBtn, true, "Đang…");
-      els.status.textContent = "Đang xử lý";
-      els.preview.classList.add("is-busy");
-      clearResult();
-      const empty = document.getElementById("resultEmpty");
-      if (empty) empty.textContent = "Đang tách nền…";
-
-      const r = await OTImage.removeBackground(file, {
-        onProgress: (msg) => { els.status.textContent = msg; }
-      });
-
-      lastBlob = r.blob || null;
-      OT.showResult(r);
-      els.board.classList.add("is-done");
-      if (els.outBar) els.outBar.hidden = false;
-      els.status.textContent = "Xong";
-      showToast?.("Đã xóa nền!", "success");
-    } catch (e) {
-      els.status.textContent = e.message || String(e);
-      if (!els.preview.querySelector(".rb-wait")) els.preview.innerHTML = waitMarkup();
-      const empty = document.getElementById("resultEmpty");
-      if (empty) empty.textContent = "Lỗi — thử ảnh khác.";
-      console.error(e);
-    } finally {
-      els.preview.classList.remove("is-busy");
-      OT.setBusy(els.runBtn, false);
-    }
-  };
-})();
-});
-</script>
+<script src="../assets/js/tools/remove-background-ui.js?v=20260828b" defer></script>
 </body>
 </html>

@@ -1,0 +1,331 @@
+body[data-tool="barcode-generator"] {
+  --bc-ink: #16121c;
+  --bc-muted: #6b6578;
+  --bc-line: rgba(88, 60, 140, 0.12);
+  --bc-soft: rgba(14, 165, 233, 0.08);
+}
+
+body[data-tool="barcode-generator"] .tool-workspace {
+  padding: 0 0 2rem !important;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -5%, rgba(14, 165, 233, 0.12), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 100% 0%, rgba(124, 58, 237, 0.08), transparent 50%),
+    linear-gradient(180deg, #f7fafc 0%, #f3f6fb 100%) !important;
+}
+
+body[data-tool="barcode-generator"] .bc-page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body[data-tool="barcode-generator"] .bc-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 1.5rem;
+}
+
+body[data-tool="barcode-generator"] .bc-intro h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--bc-ink);
+}
+
+body[data-tool="barcode-generator"] .bc-intro p {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--bc-muted);
+  line-height: 1.5;
+}
+
+body[data-tool="barcode-generator"] .bc-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--bc-line);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+body[data-tool="barcode-generator"] .bc-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 340px);
+  gap: 0;
+}
+
+body[data-tool="barcode-generator"] .bc-form {
+  padding: 1.25rem 1.35rem 1.35rem;
+  border-right: 1px solid var(--bc-line);
+}
+
+body[data-tool="barcode-generator"] .bc-label {
+  display: block;
+  margin: 0 0 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--bc-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+body[data-tool="barcode-generator"] .bc-input,
+body[data-tool="barcode-generator"] .bc-select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--bc-line);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--bc-ink);
+  background: #fafafa;
+}
+
+body[data-tool="barcode-generator"] .bc-input:focus,
+body[data-tool="barcode-generator"] .bc-select:focus {
+  outline: none;
+  border-color: rgba(14, 165, 233, 0.45);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12);
+  background: #fff;
+}
+
+body[data-tool="barcode-generator"] .bc-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  color: var(--bc-muted);
+  line-height: 1.45;
+  min-height: 2.2em;
+}
+
+body[data-tool="barcode-generator"] .bc-field {
+  margin-top: 0.95rem;
+}
+
+body[data-tool="barcode-generator"] .bc-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0 0;
+}
+
+body[data-tool="barcode-generator"] .bc-preset {
+  border: 1px solid var(--bc-line);
+  background: #fff;
+  color: var(--bc-muted);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.38rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+body[data-tool="barcode-generator"] .bc-preset:hover {
+  border-color: rgba(14, 165, 233, 0.4);
+  color: #0284c7;
+}
+
+body[data-tool="barcode-generator"] .bc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.95rem;
+}
+
+body[data-tool="barcode-generator"] .bc-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.95rem;
+  font-size: 0.88rem;
+  color: var(--bc-ink);
+  cursor: pointer;
+  user-select: none;
+}
+
+body[data-tool="barcode-generator"] .bc-check input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #0284c7;
+}
+
+body[data-tool="barcode-generator"] .bc-range input[type="range"] {
+  width: 100%;
+  accent-color: #0284c7;
+}
+
+body[data-tool="barcode-generator"] .bc-range-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--bc-muted);
+  margin-top: 0.2rem;
+}
+
+body[data-tool="barcode-generator"] .bc-colors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.95rem;
+}
+
+body[data-tool="barcode-generator"] .bc-color {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+body[data-tool="barcode-generator"] .bc-color input[type="color"] {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--bc-line);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+body[data-tool="barcode-generator"] .bc-color span {
+  font-size: 0.8rem;
+  color: var(--bc-muted);
+  font-weight: 600;
+}
+
+body[data-tool="barcode-generator"] .bc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+body[data-tool="barcode-generator"] .bc-actions .btn {
+  flex: 1;
+  min-width: 120px;
+}
+
+body[data-tool="barcode-generator"] .bc-preview-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  background: linear-gradient(180deg, #f8fbff 0%, #f0f7fc 100%);
+  min-height: 100%;
+}
+
+body[data-tool="barcode-generator"] .bc-frame {
+  width: 100%;
+  min-height: 160px;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--bc-line);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.08);
+  overflow: hidden;
+  padding: 1rem 0.75rem;
+}
+
+body[data-tool="barcode-generator"] .bc-frame img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body[data-tool="barcode-generator"] .bc-empty {
+  text-align: center;
+  padding: 0 1rem;
+  font-size: 0.82rem;
+  color: var(--bc-muted);
+  line-height: 1.45;
+}
+
+body[data-tool="barcode-generator"] .bc-status {
+  margin: 0.85rem 0 0;
+  font-size: 0.8rem;
+  color: var(--bc-muted);
+  text-align: center;
+  min-height: 1.2em;
+}
+
+body[data-tool="barcode-generator"] .bc-status.is-ok { color: #059669; }
+body[data-tool="barcode-generator"] .bc-status.is-err { color: #dc2626; }
+
+body[data-tool="barcode-generator"] .bc-meta-chip {
+  margin-top: 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0369a1;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.18);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+}
+
+body[data-tool="barcode-generator"] #preview {
+  display: contents;
+}
+
+@media (max-width: 768px) {
+  body[data-tool="barcode-generator"] .bc-page {
+    padding: 0 1rem;
+  }
+
+  body[data-tool="barcode-generator"] .bc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-tool="barcode-generator"] .bc-form {
+    border-right: none;
+    border-bottom: 1px solid var(--bc-line);
+  }
+
+  body[data-tool="barcode-generator"] .bc-preview-wrap {
+    padding: 1.5rem 1rem;
+  }
+
+  body[data-tool="barcode-generator"] .bc-frame {
+    max-width: 100%;
+  }
+}
+
+html[data-theme="dark"] body[data-tool="barcode-generator"] {
+  --bc-ink: #f1edf8;
+  --bc-muted: #94a3b8;
+  --bc-line: rgba(255, 255, 255, 0.08);
+  --bc-soft: rgba(14, 165, 233, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="barcode-generator"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(14, 165, 233, 0.16), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="barcode-generator"] .bc-card,
+html[data-tool="barcode-generator"] .bc-preset,
+html[data-tool="barcode-generator"] .bc-input,
+html[data-tool="barcode-generator"] .bc-select,
+html[data-tool="barcode-generator"] .bc-frame {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="barcode-generator"] .bc-form {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body[data-tool="barcode-generator"] .bc-preview-wrap {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] body[data-tool="barcode-generator"] .bc-meta-chip {
+  color: #7dd3fc;
+  background: rgba(14, 165, 233, 0.18);
+  border-color: rgba(125, 211, 252, 0.25);
+}

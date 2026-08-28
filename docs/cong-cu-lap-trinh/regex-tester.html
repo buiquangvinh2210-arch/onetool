@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regex tester online miễn phí — kiểm tra biểu thức chính quy | OneTool</title>
+  <meta name="description" content="Regex tester online: thử pattern, flags g/i/m/s/u, highlight match, replace, nhóm bắt. Miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-lap-trinh/regex-tester.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/regex-tester.css?v=20260828a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="regex-tester">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="rx-page">
+    <header class="rx-intro">
+      <h1>Regex tester online</h1>
+      <p>Thử biểu thức chính quy realtime — highlight match, flags, nhóm bắt và replace. Engine JavaScript RegExp trên máy bạn.</p>
+    </header>
+
+    <div class="rx-studio">
+      <div class="rx-panel">
+        <div class="rx-panel-head">
+          <h2>Pattern</h2>
+          <div class="rx-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyPatternBtn">Sao chép /pattern/</button>
+            <button type="button" class="btn btn-outline btn-sm" id="clearBtn">Xóa</button>
+          </div>
+        </div>
+        <div class="rx-body">
+          <div class="rx-pattern-row">
+            <span class="rx-slash" aria-hidden="true">/</span>
+            <input id="patternInput" type="text" spellcheck="false" autocomplete="off" placeholder="ví dụ: \d{3}-\d{4}" aria-label="Regex pattern" />
+            <span class="rx-slash" aria-hidden="true" id="flagsSlash">/g</span>
+          </div>
+
+          <div class="rx-flags" id="flagGroup" role="group" aria-label="Flags">
+            <label title="Global — tìm tất cả"><input type="checkbox" data-flag="g" checked /> g</label>
+            <label title="Ignore case"><input type="checkbox" data-flag="i" /> i</label>
+            <label title="Multiline — ^ $ theo dòng"><input type="checkbox" data-flag="m" /> m</label>
+            <label title="DotAll — . khớp xuống dòng"><input type="checkbox" data-flag="s" /> s</label>
+            <label title="Unicode"><input type="checkbox" data-flag="u" /> u</label>
+            <label title="Sticky — khớp từ lastIndex"><input type="checkbox" data-flag="y" /> y</label>
+          </div>
+
+          <p id="status" class="rx-status">Nhập pattern và chuỗi thử — kết quả cập nhật ngay.</p>
+
+          <div class="rx-samples">
+            <span>Mẫu:</span>
+            <button type="button" class="rx-chip" data-sample="email">Email</button>
+            <button type="button" class="rx-chip" data-sample="phone">SĐT VN</button>
+            <button type="button" class="rx-chip" data-sample="url">URL</button>
+            <button type="button" class="rx-chip" data-sample="words">Từ</button>
+            <button type="button" class="rx-chip" data-sample="digits">Số</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rx-grid">
+        <div class="rx-panel">
+          <div class="rx-panel-head">
+            <h2>Chuỗi thử</h2>
+            <span class="rx-meta" id="testMeta">0 ký tự</span>
+          </div>
+          <div class="rx-body">
+            <div class="rx-highlight-wrap">
+              <pre id="highlightLayer" aria-hidden="true"></pre>
+              <textarea id="testText" spellcheck="false" placeholder="Dán văn bản cần kiểm tra regex…" aria-label="Chuỗi thử"></textarea>
+            </div>
+
+            <p class="rx-label">Replace (tuỳ chọn)</p>
+            <input id="replaceInput" class="rx-field" type="text" spellcheck="false" placeholder="vd: $1 hoặc [ẩn]" aria-label="Chuỗi replace" />
+            <p class="rx-label">Kết quả sau replace</p>
+            <pre id="replaceOut" class="rx-out is-empty">—</pre>
+          </div>
+        </div>
+
+        <div class="rx-panel">
+          <div class="rx-panel-head">
+            <h2>Matches</h2>
+            <div class="rx-actions">
+              <button type="button" class="btn btn-outline btn-sm" id="copyMatchesBtn" disabled>Sao chép JSON</button>
+            </div>
+          </div>
+          <div class="rx-body">
+            <p class="rx-meta" id="matchMeta">0 match</p>
+            <ul id="matchList" class="rx-matches"></ul>
+            <p id="matchEmpty" class="rx-empty">Chưa có match — chỉnh pattern hoặc chuỗi thử.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const SAMPLES = {
+    email: {
+      pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+      flags: "gi",
+      text: "Liên hệ: a@onetool.vn, support@example.com hoặc invalid@.\nGửi CC: hello+promo@mail.co.uk"
+    },
+    phone: {
+      pattern: "(?:\\+84|0)(?:3|5|7|8|9)\\d{8}",
+      flags: "g",
+      text: "Gọi 0982945576 hoặc +84901234567.\nSai: 0123456789 / 0982 945 576"
+    },
+    url: {
+      pattern: "https?:\\/\\/[^\\s\"'<>]+",
+      flags: "gi",
+      text: "Docs: https://onetool.vn/cong-cu.html\nCDN http://cdn.example.com/a.js?v=1"
+    },
+    words: {
+      pattern: "\\b[\\p{L}']+\\b",
+      flags: "gu",
+      text: "OneTool giúp lập trình viên thử regex nhanh trên trình duyệt."
+    },
+    digits: {
+      pattern: "\\d+",
+      flags: "g",
+      text: "Đơn hàng #48291 — 3 sản phẩm, tổng 1.250.000đ (2026)."
+    }
+  };
+
+  const patternInput = document.getElementById("patternInput");
+  const testText = document.getElementById("testText");
+  const highlightLayer = document.getElementById("highlightLayer");
+  const replaceInput = document.getElementById("replaceInput");
+  const replaceOut = document.getElementById("replaceOut");
+  const status = document.getElementById("status");
+  const flagsSlash = document.getElementById("flagsSlash");
+  const matchList = document.getElementById("matchList");
+  const matchEmpty = document.getElementById("matchEmpty");
+  const matchMeta = document.getElementById("matchMeta");
+  const testMeta = document.getElementById("testMeta");
+  const copyMatchesBtn = document.getElementById("copyMatchesBtn");
+  const flagInputs = Array.from(document.querySelectorAll("#flagGroup input[data-flag]"));
+
+  let lastMatches = [];
+  let timer = null;
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function getFlags() {
+    return flagInputs.filter((el) => el.checked).map((el) => el.dataset.flag).join("");
+  }
+
+  function setFlags(flags) {
+    const set = new Set(String(flags || "").split(""));
+    flagInputs.forEach((el) => {
+      el.checked = set.has(el.dataset.flag);
+    });
+  }
+
+  function buildRegex() {
+    const source = patternInput.value;
+    const flags = getFlags();
+    flagsSlash.textContent = "/" + (flags || "");
+    if (!source) return { re: null, err: null };
+    try {
+      return { re: new RegExp(source, flags), err: null };
+    } catch (e) {
+      return { re: null, err: e.message || "Pattern không hợp lệ" };
+    }
+  }
+
+  function collectMatches(re, text) {
+    const out = [];
+    if (!re) return out;
+    const hasG = re.global || re.sticky;
+    re.lastIndex = 0;
+    if (!hasG) {
+      const m = re.exec(text);
+      if (m) {
+        out.push({
+          index: m.index,
+          match: m[0],
+          groups: m.slice(1),
+          named: m.groups || null
+        });
+      }
+      return out;
+    }
+    let m;
+    let guard = 0;
+    while ((m = re.exec(text)) !== null) {
+      out.push({
+        index: m.index,
+        match: m[0],
+        groups: m.slice(1),
+        named: m.groups || null
+      });
+      if (m[0] === "") {
+        re.lastIndex = m.index + 1;
+      }
+      if (++guard > 5000) break;
+    }
+    return out;
+  }
+
+  function renderHighlight(text, matches) {
+    if (!text) {
+      highlightLayer.innerHTML = "";
+      return;
+    }
+    if (!matches.length) {
+      highlightLayer.innerHTML = escHtml(text);
+      return;
+    }
+    let html = "";
+    let cursor = 0;
+    matches.forEach((m) => {
+      if (m.index < cursor) return;
+      html += escHtml(text.slice(cursor, m.index));
+      html += "<mark>" + escHtml(m.match) + "</mark>";
+      cursor = m.index + m.match.length;
+    });
+    html += escHtml(text.slice(cursor));
+    highlightLayer.innerHTML = html || "&nbsp;";
+  }
+
+  function renderMatches(matches) {
+    lastMatches = matches;
+    matchList.innerHTML = "";
+    matchMeta.textContent = matches.length + " match";
+    copyMatchesBtn.disabled = !matches.length;
+    matchEmpty.hidden = matches.length > 0;
+
+    matches.forEach((m, i) => {
+      const li = document.createElement("li");
+      const groupsHtml = (m.groups || [])
+        .map((g, gi) => "<li>$" + (gi + 1) + ": <code>" + escHtml(g == null ? "" : String(g)) + "</code></li>")
+        .join("");
+      let namedHtml = "";
+      if (m.named) {
+        namedHtml = Object.keys(m.named)
+          .map((k) => "<li>&lt;" + escHtml(k) + "&gt;: <code>" + escHtml(String(m.named[k] == null ? "" : m.named[k])) + "</code></li>")
+          .join("");
+      }
+      li.innerHTML =
+        '<div class="rx-m-head"><span>#' + (i + 1) + "</span><span>index " + m.index + "</span></div>" +
+        "<code>" + escHtml(m.match) + "</code>" +
+        (groupsHtml || namedHtml ? '<ul class="rx-groups">' + groupsHtml + namedHtml + "</ul>" : "");
+      matchList.appendChild(li);
+    });
+  }
+
+  function syncScroll() {
+    highlightLayer.scrollTop = testText.scrollTop;
+    highlightLayer.scrollLeft = testText.scrollLeft;
+  }
+
+  function run() {
+    const text = testText.value;
+    testMeta.textContent = text.length + " ký tự";
+    const { re, err } = buildRegex();
+
+    status.classList.remove("is-ok", "is-err");
+    if (err) {
+      status.textContent = "Lỗi: " + err;
+      status.classList.add("is-err");
+      renderHighlight(text, []);
+      renderMatches([]);
+      replaceOut.textContent = "—";
+      replaceOut.classList.add("is-empty");
+      return;
+    }
+
+    if (!patternInput.value) {
+      status.textContent = "Nhập pattern và chuỗi thử — kết quả cập nhật ngay.";
+      renderHighlight(text, []);
+      renderMatches([]);
+      replaceOut.textContent = "—";
+      replaceOut.classList.add("is-empty");
+      return;
+    }
+
+    const matches = collectMatches(re, text);
+    renderHighlight(text, matches);
+    renderMatches(matches);
+
+    const rep = replaceInput.value;
+    if (rep !== "" && re) {
+      try {
+        const clone = new RegExp(re.source, re.flags);
+        const out = text.replace(clone, rep);
+        replaceOut.textContent = out;
+        replaceOut.classList.toggle("is-empty", false);
+      } catch (e) {
+        replaceOut.textContent = "Replace lỗi: " + (e.message || e);
+        replaceOut.classList.remove("is-empty");
+      }
+    } else {
+      replaceOut.textContent = "—";
+      replaceOut.classList.add("is-empty");
+    }
+
+    if (matches.length) {
+      status.textContent = "Khớp " + matches.length + " lần · /" + re.source + "/" + re.flags;
+      status.classList.add("is-ok");
+    } else {
+      status.textContent = "Không có match · /" + re.source + "/" + re.flags;
+    }
+    syncScroll();
+  }
+
+  function schedule() {
+    clearTimeout(timer);
+    timer = setTimeout(run, 60);
+  }
+
+  patternInput.addEventListener("input", schedule);
+  testText.addEventListener("input", schedule);
+  replaceInput.addEventListener("input", schedule);
+  flagInputs.forEach((el) => el.addEventListener("change", schedule));
+  testText.addEventListener("scroll", syncScroll);
+
+  document.getElementById("clearBtn").addEventListener("click", function () {
+    patternInput.value = "";
+    testText.value = "";
+    replaceInput.value = "";
+    setFlags("g");
+    run();
+    patternInput.focus();
+  });
+
+  document.getElementById("copyPatternBtn").addEventListener("click", async function () {
+    const flags = getFlags();
+    const lit = "/" + patternInput.value + "/" + flags;
+    try {
+      await navigator.clipboard.writeText(lit);
+      status.textContent = "Đã sao chép " + lit;
+      status.classList.remove("is-err");
+      status.classList.add("is-ok");
+    } catch (e) {
+      status.textContent = "Không sao chép được — hãy chọn thủ công.";
+      status.classList.add("is-err");
+    }
+  });
+
+  copyMatchesBtn.addEventListener("click", async function () {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(lastMatches, null, 2));
+      status.textContent = "Đã sao chép danh sách match (JSON).";
+      status.classList.remove("is-err");
+      status.classList.add("is-ok");
+    } catch (e) {
+      status.textContent = "Không sao chép được JSON.";
+      status.classList.add("is-err");
+    }
+  });
+
+  document.querySelectorAll(".rx-chip[data-sample]").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const s = SAMPLES[btn.dataset.sample];
+      if (!s) return;
+      patternInput.value = s.pattern;
+      setFlags(s.flags);
+      testText.value = s.text;
+      replaceInput.value = "";
+      run();
+    });
+  });
+
+  // Default sample
+  patternInput.value = SAMPLES.email.pattern;
+  setFlags(SAMPLES.email.flags);
+  testText.value = SAMPLES.email.text;
+  run();
+});
+</script>
+</body>
+</html>

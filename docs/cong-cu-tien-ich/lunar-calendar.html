@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đổi lịch âm dương online miễn phí — Dương lịch ↔ Âm lịch | OneTool</title>
+  <meta name="description" content="Đổi lịch Dương ↔ Âm Việt Nam: xem ngày âm, Can Chi, tháng nhuận. Miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/lunar-calendar.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/lunar-calendar.css?v=20260828b" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="lunar-calendar">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="ln-page">
+    <header class="ln-intro">
+      <h1>Đổi lịch âm dương</h1>
+      <p>Chuyển Dương lịch ↔ Âm lịch Việt Nam — Can Chi, tháng nhuận, ngày trong tuần. Theo thuật toán Hồ Ngọc Đức.</p>
+      <div class="ln-chips" aria-hidden="true">
+        <span class="ln-chip">Dương ↔ Âm</span>
+        <span class="ln-chip">Can Chi</span>
+        <span class="ln-chip">1800–2199</span>
+      </div>
+    </header>
+
+    <div class="ln-card">
+      <div class="ln-modes" role="tablist" aria-label="Chiều chuyển đổi">
+        <button type="button" class="ln-mode is-on" id="modeSolar" data-mode="solar" role="tab" aria-selected="true">
+          <strong>Dương → Âm</strong>
+          <em>Nhập ngày dương lịch</em>
+        </button>
+        <button type="button" class="ln-mode" id="modeLunar" data-mode="lunar" role="tab" aria-selected="false">
+          <strong>Âm → Dương</strong>
+          <em>Nhập ngày âm lịch</em>
+        </button>
+      </div>
+
+      <div class="ln-body">
+        <div class="ln-form">
+          <label class="ln-label" id="lnInputLabel">Ngày dương lịch</label>
+          <div class="ln-date-row">
+            <div>
+              <label class="ln-label" for="dayInput">Ngày</label>
+              <input type="number" id="dayInput" class="form-control" min="1" max="31" value="1" />
+            </div>
+            <div>
+              <label class="ln-label" for="monthInput">Tháng</label>
+              <select id="monthInput" class="form-control"></select>
+            </div>
+            <div>
+              <label class="ln-label" for="yearInput">Năm</label>
+              <input type="number" id="yearInput" class="form-control" min="1800" max="2199" value="2026" />
+            </div>
+          </div>
+
+          <label class="ln-check" id="leapWrap" hidden for="leapInput">
+            <input type="checkbox" id="leapInput" />
+            <span>Tháng nhuận (âm lịch)</span>
+          </label>
+
+          <div class="ln-quick">
+            <button type="button" id="todayBtn">Hôm nay</button>
+            <button type="button" id="tetBtn">Mùng 1 Tết (năm nay)</button>
+            <button type="button" id="midBtn">Rằm tháng 8</button>
+          </div>
+
+          <div class="ln-actions">
+            <button type="button" class="btn btn-primary" id="runBtn">Đổi lịch</button>
+            <button type="button" class="btn btn-outline" id="copyBtn" disabled>Sao chép</button>
+          </div>
+          <p class="ln-note">Múi giờ Việt Nam (UTC+7). Kết quả mang tính tham khảo cho ngày lễ / giỗ.</p>
+        </div>
+
+        <div class="ln-result">
+          <p id="status" class="ln-status">Chọn ngày rồi bấm Đổi lịch — hoặc Hôm nay.</p>
+          <div class="ln-empty" id="lnEmpty">Kết quả Dương / Âm sẽ hiện ở đây.</div>
+          <div class="ln-out" id="lnOut" hidden>
+            <div class="ln-pair">
+              <div class="ln-box">
+                <span>Dương lịch</span>
+                <strong id="outSolar">—</strong>
+                <em id="outWeekday">—</em>
+              </div>
+              <div class="ln-box is-lunar">
+                <span>Âm lịch</span>
+                <strong id="outLunar">—</strong>
+                <em id="outMonthLabel">—</em>
+              </div>
+            </div>
+            <div class="ln-meta">
+              <div><span>Năm Can Chi</span><strong id="outYearCC">—</strong></div>
+              <div><span>Con giáp</span><strong id="outAnimal">—</strong></div>
+              <div><span>Tháng Can Chi</span><strong id="outMonthCC">—</strong></div>
+              <div><span>Ngày Can Chi</span><strong id="outDayCC">—</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script src="../assets/js/tools/lunar-calendar.js?v=20260828a"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let mode = "solar";
+  let lastText = "";
+
+  const monthInput = document.getElementById("monthInput");
+  for (let i = 1; i <= 12; i++) {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    opt.textContent = "Tháng " + i;
+    monthInput.appendChild(opt);
+  }
+
+  const els = {
+    day: document.getElementById("dayInput"),
+    month: monthInput,
+    year: document.getElementById("yearInput"),
+    leap: document.getElementById("leapInput"),
+    leapWrap: document.getElementById("leapWrap"),
+    label: document.getElementById("lnInputLabel"),
+    status: document.getElementById("status"),
+    empty: document.getElementById("lnEmpty"),
+    out: document.getElementById("lnOut"),
+    copyBtn: document.getElementById("copyBtn")
+  };
+
+  function setStatus(msg, kind) {
+    els.status.textContent = msg;
+    els.status.className = "ln-status" + (kind ? " is-" + kind : "");
+  }
+
+  function setMode(next) {
+    mode = next;
+    document.getElementById("modeSolar").classList.toggle("is-on", mode === "solar");
+    document.getElementById("modeLunar").classList.toggle("is-on", mode === "lunar");
+    document.getElementById("modeSolar").setAttribute("aria-selected", mode === "solar" ? "true" : "false");
+    document.getElementById("modeLunar").setAttribute("aria-selected", mode === "lunar" ? "true" : "false");
+    els.label.textContent = mode === "solar" ? "Ngày dương lịch" : "Ngày âm lịch";
+    els.leapWrap.hidden = mode !== "lunar";
+  }
+
+  function readInts() {
+    return {
+      d: parseInt(els.day.value, 10),
+      m: parseInt(els.month.value, 10),
+      y: parseInt(els.year.value, 10),
+      leap: !!els.leap.checked
+    };
+  }
+
+  function fillDate(d, m, y, leap) {
+    els.day.value = String(d);
+    els.month.value = String(m);
+    els.year.value = String(y);
+    els.leap.checked = !!leap;
+  }
+
+  function showResult(info) {
+    const solarStr = OTLunar.formatSolar(info.solar.day, info.solar.month, info.solar.year);
+    const lunarStr = OTLunar.formatLunar(
+      info.lunar.day,
+      info.lunar.month,
+      info.lunar.year,
+      info.lunar.leap
+    );
+
+    document.getElementById("outSolar").textContent = solarStr;
+    document.getElementById("outWeekday").textContent = info.weekday;
+    document.getElementById("outLunar").textContent = lunarStr;
+    document.getElementById("outMonthLabel").textContent = info.monthLabel;
+    document.getElementById("outYearCC").textContent = info.yearCanChi;
+    document.getElementById("outAnimal").textContent = info.yearAnimal;
+    document.getElementById("outMonthCC").textContent = info.monthCanChi;
+    document.getElementById("outDayCC").textContent = info.dayCanChi;
+
+    lastText =
+      "Dương lịch: " + solarStr + " (" + info.weekday + ")\n" +
+      "Âm lịch: " + lunarStr + " — " + info.monthLabel + "\n" +
+      "Năm Can Chi: " + info.yearCanChi + " (" + info.yearAnimal + ")\n" +
+      "Tháng Can Chi: " + info.monthCanChi + "\n" +
+      "Ngày Can Chi: " + info.dayCanChi;
+
+    els.empty.hidden = true;
+    els.out.hidden = false;
+    els.copyBtn.disabled = false;
+  }
+
+  function convert() {
+    try {
+      if (!window.OTLunar) throw new Error("Script chưa sẵn sàng — thử Ctrl+F5.");
+      const { d, m, y, leap } = readInts();
+      const info =
+        mode === "solar"
+          ? OTLunar.convertSolarToLunar(d, m, y)
+          : OTLunar.convertLunarToSolar(d, m, y, leap);
+      showResult(info);
+      setStatus("Đã đổi lịch.", "ok");
+    } catch (e) {
+      setStatus(e.message || String(e), "err");
+    }
+  }
+
+  document.getElementById("modeSolar").onclick = function () {
+    setMode("solar");
+  };
+  document.getElementById("modeLunar").onclick = function () {
+    setMode("lunar");
+  };
+
+  document.getElementById("runBtn").onclick = convert;
+
+  document.getElementById("todayBtn").onclick = function () {
+    setMode("solar");
+    const info = OTLunar.todayInfo();
+    fillDate(info.solar.day, info.solar.month, info.solar.year, false);
+    showResult(info);
+    setStatus("Hôm nay.", "ok");
+  };
+
+  document.getElementById("tetBtn").onclick = function () {
+    setMode("lunar");
+    const y = new Date().getFullYear();
+    fillDate(1, 1, y, false);
+    convert();
+  };
+
+  document.getElementById("midBtn").onclick = function () {
+    setMode("lunar");
+    const y = new Date().getFullYear();
+    fillDate(15, 8, y, false);
+    convert();
+  };
+
+  document.getElementById("copyBtn").onclick = async function () {
+    if (!lastText) return;
+    try {
+      await navigator.clipboard.writeText(lastText);
+      setStatus("Đã sao chép kết quả.", "ok");
+    } catch (_) {
+      setStatus("Không sao chép được.", "err");
+    }
+  };
+
+  // Init = hôm nay
+  setMode("solar");
+  document.getElementById("todayBtn").click();
+});
+</script>
+</body>
+</html>

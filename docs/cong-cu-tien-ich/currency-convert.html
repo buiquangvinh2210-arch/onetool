@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đổi tiền tệ online miễn phí — USD EUR VND tỷ giá realtime | OneTool</title>
+  <meta name="description" content="Đổi tiền tệ online: USD, EUR, VND và 20+ loại. Tỷ giá realtime, đảo chiều 1 chạm. Miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/currency-convert.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/currency-convert.css?v=20260828a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="currency-convert">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="fx-page">
+    <header class="fx-intro">
+      <h1>Đổi tiền tệ online</h1>
+      <p>Quy đổi USD · EUR · VND và nhiều loại tiền — tỷ giá cập nhật theo ngày, đảo chiều nhanh.</p>
+      <div class="fx-chips" aria-hidden="true">
+        <span class="fx-chip">VND</span>
+        <span class="fx-chip">Realtime</span>
+        <span class="fx-chip">20+ loại</span>
+      </div>
+    </header>
+
+    <div class="fx-card">
+      <div class="fx-body">
+        <div class="fx-pair">
+          <div class="fx-field">
+            <label for="fromAmount">Từ</label>
+            <input type="text" id="fromAmount" inputmode="decimal" autocomplete="off" value="1" />
+            <select id="fromCur" aria-label="Tiền nguồn"></select>
+          </div>
+          <button type="button" class="fx-swap" id="swapBtn" title="Đảo chiều" aria-label="Đảo chiều">⇄</button>
+          <div class="fx-field">
+            <label for="toAmount">Sang</label>
+            <input type="text" id="toAmount" readonly value="" />
+            <select id="toCur" aria-label="Tiền đích"></select>
+          </div>
+        </div>
+
+        <div class="fx-rate" id="rateBox">Đang tải tỷ giá…</div>
+        <p class="fx-meta" id="metaBox">—</p>
+
+        <div class="fx-quick" id="quickRow">
+          <button type="button" data-pair="USD-VND">USD → VND</button>
+          <button type="button" data-pair="VND-USD">VND → USD</button>
+          <button type="button" data-pair="EUR-VND">EUR → VND</button>
+          <button type="button" data-pair="JPY-VND">JPY → VND</button>
+          <button type="button" data-pair="CNY-VND">CNY → VND</button>
+          <button type="button" data-pair="GBP-VND">GBP → VND</button>
+        </div>
+
+        <div class="fx-actions">
+          <button type="button" class="btn btn-primary" id="refreshBtn">Làm mới tỷ giá</button>
+          <button type="button" class="btn btn-outline" id="copyBtn" disabled>Sao chép kết quả</button>
+        </div>
+        <p class="fx-note">Tỷ giá tham khảo từ nguồn công khai, cập nhật theo ngày — không phải tỷ giá ngân hàng mua/bán. Cache trên máy bạn khoảng 6 giờ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script src="../assets/js/tools/currency-convert.js?v=20260828a"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let pack = null;
+  let lastText = "";
+  let timer = null;
+
+  const fromAmount = document.getElementById("fromAmount");
+  const toAmount = document.getElementById("toAmount");
+  const fromCur = document.getElementById("fromCur");
+  const toCur = document.getElementById("toCur");
+  const rateBox = document.getElementById("rateBox");
+  const metaBox = document.getElementById("metaBox");
+  const copyBtn = document.getElementById("copyBtn");
+
+  function fillSelects() {
+    const opts = OTCurrency.CURRENCIES.map(function (c) {
+      return '<option value="' + c.code + '">' + c.flag + " " + c.code + " — " + c.name + "</option>";
+    }).join("");
+    fromCur.innerHTML = opts;
+    toCur.innerHTML = opts;
+    fromCur.value = "USD";
+    toCur.value = "VND";
+  }
+
+  function setMeta(msg, isErr) {
+    metaBox.textContent = msg;
+    metaBox.className = "fx-meta" + (isErr ? " is-err" : "");
+  }
+
+  function convertNow() {
+    if (!pack) return;
+    try {
+      const amount = OTCurrency.parseAmount(fromAmount.value);
+      if (!Number.isFinite(amount)) {
+        toAmount.value = "";
+        rateBox.innerHTML = "Nhập số tiền hợp lệ.";
+        copyBtn.disabled = true;
+        return;
+      }
+      const from = fromCur.value;
+      const to = toCur.value;
+      const { result, rate } = OTCurrency.convert(amount, from, to, pack);
+      toAmount.value = OTCurrency.formatAmount(result, to);
+      rateBox.innerHTML =
+        "1 <strong>" + from + "</strong> = <strong>" +
+        OTCurrency.formatAmount(rate, to) + "</strong> " + to +
+        "<br />1 <strong>" + to + "</strong> = <strong>" +
+        OTCurrency.formatAmount(1 / rate, from) + "</strong> " + from;
+
+      lastText =
+        OTCurrency.formatAmount(amount, from) + " " + from + " = " +
+        OTCurrency.formatAmount(result, to) + " " + to + "\n" +
+        "1 " + from + " = " + OTCurrency.formatAmount(rate, to) + " " + to;
+      copyBtn.disabled = false;
+    } catch (e) {
+      toAmount.value = "";
+      rateBox.textContent = e.message || "Không đổi được.";
+      copyBtn.disabled = true;
+    }
+  }
+
+  function schedule() {
+    clearTimeout(timer);
+    timer = setTimeout(convertNow, 120);
+  }
+
+  async function ensureRates(force) {
+    setMeta(force ? "Đang làm mới tỷ giá…" : "Đang tải tỷ giá…");
+    try {
+      pack = await OTCurrency.loadRates(!!force);
+      setMeta(
+        "Cập nhật: " + (pack.dateLabel || "—") + " · Nguồn: " + (pack.source || "—")
+      );
+      convertNow();
+    } catch (e) {
+      setMeta(e.message || "Không tải được tỷ giá. Kiểm tra mạng rồi thử lại.", true);
+      rateBox.textContent = "Chưa có tỷ giá.";
+    }
+  }
+
+  fillSelects();
+
+  fromAmount.addEventListener("input", schedule);
+  fromCur.addEventListener("change", convertNow);
+  toCur.addEventListener("change", convertNow);
+
+  document.getElementById("swapBtn").onclick = function () {
+    const a = fromCur.value;
+    fromCur.value = toCur.value;
+    toCur.value = a;
+    convertNow();
+  };
+
+  document.getElementById("quickRow").addEventListener("click", function (e) {
+    const btn = e.target.closest("button[data-pair]");
+    if (!btn) return;
+    const parts = btn.dataset.pair.split("-");
+    fromCur.value = parts[0];
+    toCur.value = parts[1];
+    document.querySelectorAll("#quickRow button").forEach(function (b) {
+      b.classList.toggle("is-on", b === btn);
+    });
+    convertNow();
+  });
+
+  document.getElementById("refreshBtn").onclick = function () {
+    ensureRates(true);
+  };
+
+  copyBtn.onclick = async function () {
+    if (!lastText) return;
+    try {
+      await navigator.clipboard.writeText(lastText);
+      setMeta("Đã sao chép kết quả.");
+    } catch (_) {
+      setMeta("Không sao chép được.", true);
+    }
+  };
+
+  ensureRates(false);
+});
+</script>
+</body>
+</html>

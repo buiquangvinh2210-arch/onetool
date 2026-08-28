@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khóa PDF online miễn phí — đặt mật khẩu mở file | OneTool</title>
+  <meta name="description" content="Khóa PDF online: đặt mật khẩu mở file (AES-256), bảo vệ hồ sơ trước khi gửi email/Zalo. Miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-pdf/pdf-lock.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/pdf-lock.css?v=20260828a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="pdf-lock">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="pl-top">
+    <div class="pl-title-row">
+      <div>
+        <h1>Khóa PDF — đặt mật khẩu</h1>
+        <p class="pl-lead">Bảo vệ PDF bằng mật khẩu mở file (AES-256) trước khi gửi hồ sơ, hợp đồng hay báo cáo.</p>
+      </div>
+      <div class="pl-meta">
+        <span>AES-256</span>
+        <span>Hồ sơ</span>
+        <span>Riêng tư</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pl-studio">
+    <div class="pl-shell">
+      <aside class="pl-side">
+        <p class="pl-side-label">Nguồn</p>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+          <div class="upload-placeholder">
+            <span class="upload-icon">PDF</span>
+            <p><strong>Thả PDF cần khóa</strong></p>
+            <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+          </div>
+        </div>
+
+        <div class="pl-field">
+          <label for="password">Mật khẩu mở file</label>
+          <div class="pl-pass-wrap">
+            <input type="password" id="password" class="form-control" autocomplete="new-password" maxlength="64" placeholder="Ít nhất 4 ký tự" />
+            <button type="button" class="pl-eye" id="togglePw" aria-label="Hiện mật khẩu" title="Hiện / ẩn">👁</button>
+          </div>
+          <div class="pl-strength" id="strength" data-level="weak">
+            <div class="pl-strength-bar"><span id="strengthFill"></span></div>
+            <div class="pl-strength-meta">
+              <span id="strengthLabel">Độ mạnh</span>
+              <span id="strengthHint">Nhập mật khẩu</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pl-field">
+          <label for="confirm">Xác nhận mật khẩu</label>
+          <div class="pl-pass-wrap">
+            <input type="password" id="confirm" class="form-control" autocomplete="new-password" maxlength="64" placeholder="Nhập lại mật khẩu" />
+          </div>
+        </div>
+
+        <p class="pl-tips">
+          <strong>Gợi ý:</strong> dùng ≥ 10 ký tự, chữ hoa + thường + số. Gửi mật khẩu qua kênh khác (Zalo / SMS), không ghi trong cùng email với file.
+          <span id="plHttpNote" hidden> · Đang HTTP local → khóa bằng RC4 để bạn test; production HTTPS dùng AES-256.</span>
+        </p>
+
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Khóa PDF</button>
+        <p class="pl-note">Mã hóa trên trình duyệt — file không upload server. PDF đã khóa sẵn thì không khóa lại được ở đây.</p>
+      </aside>
+
+      <div class="pl-main">
+        <div class="pl-main-bar">
+          <div>
+            <h2>Kết quả</h2>
+            <p id="status">Chọn PDF, đặt mật khẩu rồi bấm khóa — tải file đã bảo vệ.</p>
+          </div>
+          <div class="pl-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải PDF khóa</button>
+          </div>
+        </div>
+        <div class="pl-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="pl-result">
+          <div class="pl-empty" id="resultEmpty">
+            <div class="pl-empty-visual" aria-hidden="true">🔒</div>
+            <p>PDF đã khóa sẽ hiện ở đây sau khi xử lý.</p>
+          </div>
+          <div class="pl-file-chip" id="fileChip">
+            <span class="pl-file-chip-icon">🔒</span>
+            <div>
+              <strong id="fileChipName">document-locked.pdf</strong>
+              <span id="fileChipMeta">sẵn sàng tải</span>
+            </div>
+          </div>
+          <div class="pl-stats" id="stats">
+            <div class="pl-stat"><strong id="statPages">—</strong><span>Trang</span></div>
+            <div class="pl-stat"><strong id="statAlgo">—</strong><span>Mã hóa</span></div>
+            <div class="pl-stat"><strong id="statSize">—</strong><span>Dung lượng</span></div>
+          </div>
+          <ul class="pl-checklist" id="checklist">
+            <li>Yêu cầu mật khẩu khi mở file</li>
+            <li>Chuẩn AES-256 (ISO 32000)</li>
+            <li>Tương thích Adobe Reader, Chrome, Edge</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script src="../assets/js/tools/pdf.js?v=20260822" defer></script>
+<script src="../assets/js/tools/pdf-lock.js?v=20260828c" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let file = null;
+
+  const empty = document.getElementById("resultEmpty");
+  const stats = document.getElementById("stats");
+  const fileChip = document.getElementById("fileChip");
+  const checklist = document.getElementById("checklist");
+  const progressBar = document.getElementById("progressBar");
+  const progressFill = document.getElementById("progressFill");
+  const pw = document.getElementById("password");
+  const cf = document.getElementById("confirm");
+  const strength = document.getElementById("strength");
+  const strengthFill = document.getElementById("strengthFill");
+  const strengthLabel = document.getElementById("strengthLabel");
+  const strengthHint = document.getElementById("strengthHint");
+
+  function setProgress(pct) {
+    const n = Math.max(0, Math.min(100, pct | 0));
+    progressBar.classList.toggle("is-on", n > 0 && n < 100);
+    progressBar.setAttribute("aria-hidden", n > 0 && n < 100 ? "false" : "true");
+    progressFill.style.width = n + "%";
+    if (typeof OT.setProgress === "function") OT.setProgress(n);
+  }
+
+  function refreshStrength() {
+    if (!window.OTPdfLock) return;
+    const s = OTPdfLock.scorePassword(pw.value);
+    strength.dataset.level = s.level;
+    strengthFill.style.width = s.pct + "%";
+    strengthLabel.textContent = s.label;
+    strengthHint.textContent = pw.value ? s.pct + "%" : "Nhập mật khẩu";
+  }
+
+  pw.addEventListener("input", refreshStrength);
+  cf.addEventListener("input", function () {
+    if (cf.value && pw.value && cf.value !== pw.value) {
+      OT.setStatus("Mật khẩu xác nhận chưa khớp.", "err");
+    } else if (file) {
+      OT.setStatus(file.name + " · sẵn sàng khóa.", "ok");
+    }
+  });
+
+  document.getElementById("togglePw").addEventListener("click", function () {
+    const show = pw.type === "password";
+    pw.type = show ? "text" : "password";
+    cf.type = show ? "text" : "password";
+    this.setAttribute("aria-label", show ? "Ẩn mật khẩu" : "Hiện mật khẩu");
+  });
+
+  OT.bindUploadZone({
+    onFiles: function (files) {
+      file = files[0] || null;
+      if (file && file.size > OTPdfLock.MAX_BYTES) {
+        OT.setStatus("File quá lớn (tối đa 80 MB).", "err");
+        file = null;
+      } else if (file) {
+        OT.setStatus(file.name + " · " + OT.formatBytes(file.size) + " — nhập mật khẩu rồi khóa.", "ok");
+      }
+    }
+  });
+
+  document.getElementById("runBtn").onclick = async function () {
+    const btn = document.getElementById("runBtn");
+    try {
+      if (!file) throw new Error("Chọn file PDF trước.");
+      if (!window.OTPdfLock) throw new Error("Script chưa sẵn sàng — thử Ctrl+F5.");
+
+      OT.setBusy(btn, true, "Đang khóa…");
+      setProgress(8);
+      OT.setStatus("Đang đọc PDF…");
+      empty.style.display = "none";
+
+      const result = await OTPdfLock.protect(file, {
+        password: pw.value,
+        confirm: cf.value,
+        onProgress: function (info) {
+          setProgress(info.pct || 10);
+          if (info.message) OT.setStatus(info.message);
+        }
+      });
+
+      document.getElementById("statPages").textContent = String(result.meta.pageCount);
+      document.getElementById("statAlgo").textContent = result.meta.algo;
+      document.getElementById("statSize").textContent = OT.formatBytes(result.meta.afterBytes);
+
+      document.getElementById("fileChipName").textContent = result.fileName;
+      document.getElementById("fileChipMeta").textContent =
+        OT.formatBytes(result.blob.size) +
+        " · mật khẩu " +
+        (result.meta.strength?.label || "").toLowerCase() +
+        " · sẵn sàng tải";
+
+      fileChip.classList.add("is-on");
+      stats.classList.add("is-on");
+      checklist.classList.add("is-on");
+
+      OT.showResult({
+        blob: result.blob,
+        fileName: result.fileName,
+        contentType: "application/pdf"
+      });
+
+      setProgress(100);
+      var note =
+        "Đã khóa " +
+        result.meta.pageCount +
+        " trang (" +
+        result.meta.algo +
+        "). Nhớ gửi mật khẩu riêng với file.";
+      if (result.meta.legacy) {
+        note =
+          "Đã khóa (RC4 — chế độ HTTP local để test). Trên https://onetool.vn sẽ dùng AES-256.";
+      }
+      OT.setStatus(note, "ok");
+      setTimeout(function () { setProgress(0); }, 400);
+    } catch (e) {
+      OT.setStatus(e.message || "Không khóa được PDF.", "err");
+      setProgress(0);
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  };
+
+  if (window.OTPdfLock && typeof OTPdfLock.warmup === "function") {
+    const idle = window.requestIdleCallback || function (cb) { setTimeout(cb, 900); };
+    idle(function () { OTPdfLock.warmup(); }, { timeout: 2500 });
+  }
+  refreshStrength();
+
+  try {
+    const httpNote = document.getElementById("plHttpNote");
+    if (httpNote && window.OTPdfLock && !OTPdfLock.hasWebCrypto()) {
+      httpNote.hidden = false;
+    }
+  } catch (_) {}
+});
+</script>
+</body>
+</html>

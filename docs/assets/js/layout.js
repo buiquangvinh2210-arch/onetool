@@ -136,7 +136,7 @@
   document.body.dataset.tool = meta.tool;
 
   const SITE_ORIGIN = "https://onetool.vn";
-  const OG_IMAGE = SITE_ORIGIN + "/assets/img/og-cover.jpg";
+  const OG_IMAGE = SITE_ORIGIN + "/assets/img/og-share.jpg";
 
   function sitePath() {
     let path = (location.pathname || "/").replace(/\\/g, "/");
@@ -494,7 +494,11 @@
         <div class="footer-links">
           <a href="${href("cong-cu-media/tiktok-download.html")}">Tải TikTok không logo</a>
           <a href="${href("cong-cu-media/audio-to-text.html")}">Audio → Text</a>
+          <a href="${href("cong-cu-media/video-to-gif.html")}">Video sang GIF</a>
+          <a href="${href("cong-cu-tien-ich/currency-convert.html")}">Đổi tiền tệ</a>
+          <a href="${href("cong-cu-tien-ich/lunar-calendar.html")}">Đổi lịch âm dương</a>
           <a href="${href("cong-cu-pdf/pdf-to-word.html")}">PDF to Word</a>
+          <a href="${href("cong-cu-pdf/pdf-to-excel.html")}">PDF sang Excel</a>
           <a href="${href("cong-cu-pdf/image-pdf.html")}">Ảnh ↔ PDF</a>
           <a href="${href("cong-cu-anh/image-compress.html")}">Nén ảnh</a>
           <a href="${href("cong-cu-pdf/pdf-merge.html")}">Gộp PDF</a>
@@ -733,6 +737,188 @@
     document.head.appendChild(ld);
   }
 
+  const LANGUAGE_CHOICE_KEY = "ot-language-choice";
+
+  function getLanguageChoice() {
+    try {
+      return localStorage.getItem(LANGUAGE_CHOICE_KEY) || "";
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function setLanguageChoice(value) {
+    try {
+      localStorage.setItem(LANGUAGE_CHOICE_KEY, value);
+    } catch (_) {}
+  }
+
+  function prefersEnglish() {
+    const languages = navigator.languages?.length ? navigator.languages : [navigator.language || ""];
+    return !/^vi(?:-|$)/i.test(String(languages[0] || ""));
+  }
+
+  function ensureLanguageStyles() {
+    if (document.getElementById("ot-language-styles")) return;
+    const style = document.createElement("style");
+    style.id = "ot-language-styles";
+    style.textContent = `
+      .ot-language-banner {
+        position: relative;
+        z-index: 190;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem 1rem;
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+        background: linear-gradient(90deg, #eef2ff, #ecfeff);
+        border-bottom: 1px solid rgba(79, 70, 229, 0.16);
+        color: #312e81;
+        font-size: 0.86rem;
+        line-height: 1.4;
+      }
+      .ot-language-banner strong {
+        font-weight: 750;
+      }
+      .ot-language-actions {
+        display: inline-flex;
+        gap: 0.4rem;
+      }
+      .ot-language-actions button {
+        border: 1px solid rgba(79, 70, 229, 0.25);
+        border-radius: 999px;
+        padding: 0.35rem 0.75rem;
+        background: #fff;
+        color: #3730a3;
+        font: inherit;
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .ot-language-actions button:first-child {
+        color: #fff;
+        border-color: #4f46e5;
+        background: #4f46e5;
+      }
+      .ot-language-actions button:hover {
+        filter: brightness(0.97);
+      }
+      .ot-google-translate {
+        position: absolute !important;
+        left: -10000px !important;
+        top: auto !important;
+        width: 1px !important;
+        height: 1px !important;
+        overflow: hidden !important;
+      }
+      html[data-theme="dark"] .ot-language-banner {
+        background: linear-gradient(90deg, #1e1b4b, #083344);
+        border-bottom-color: rgba(165, 180, 252, 0.2);
+        color: #e0e7ff;
+      }
+      html[data-theme="dark"] .ot-language-actions button {
+        background: #1c1824;
+        border-color: rgba(165, 180, 252, 0.3);
+        color: #c7d2fe;
+      }
+      html[data-theme="dark"] .ot-language-actions button:first-child {
+        background: #6366f1;
+        border-color: #6366f1;
+        color: #fff;
+      }
+      @media (max-width: 640px) {
+        .ot-language-banner {
+          padding: 0.55rem 0.75rem;
+          text-align: center;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function applyEnglishTranslation() {
+    const select = document.querySelector(".goog-te-combo");
+    if (!select) return false;
+    select.value = "en";
+    select.dispatchEvent(new Event("change"));
+    return true;
+  }
+
+  function loadEnglishTranslation() {
+    ensureLanguageStyles();
+    let host = document.getElementById("otGoogleTranslate");
+    if (!host) {
+      host = document.createElement("div");
+      host.id = "otGoogleTranslate";
+      host.className = "ot-google-translate";
+      document.body.appendChild(host);
+    }
+
+    window.otOneToolTranslateInit = function () {
+      if (window.__OT_TRANSLATE_INITIALIZED || !window.google?.translate?.TranslateElement) return;
+      window.__OT_TRANSLATE_INITIALIZED = true;
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "vi",
+          includedLanguages: "en",
+          autoDisplay: false,
+          multilanguagePage: true
+        },
+        "otGoogleTranslate"
+      );
+      window.setTimeout(applyEnglishTranslation, 250);
+      window.setTimeout(applyEnglishTranslation, 900);
+    };
+
+    if (window.google?.translate?.TranslateElement) {
+      window.otOneToolTranslateInit();
+      return;
+    }
+    if (document.getElementById("ot-google-translate-script")) return;
+
+    const script = document.createElement("script");
+    script.id = "ot-google-translate-script";
+    script.src = "https://translate.google.com/translate_a/element.js?cb=otOneToolTranslateInit";
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
+  function injectLanguagePrompt() {
+    const choice = getLanguageChoice();
+    if (choice === "en") {
+      loadEnglishTranslation();
+      return;
+    }
+    if (choice || !prefersEnglish() || document.getElementById("otLanguageBanner")) return;
+
+    ensureLanguageStyles();
+    const banner = document.createElement("section");
+    banner.id = "otLanguageBanner";
+    banner.className = "ot-language-banner";
+    banner.setAttribute("aria-label", "Language preference");
+    banner.innerHTML = `
+      <strong>🌐 View OneTool in English?</strong>
+      <span class="ot-language-actions">
+        <button type="button" id="otEnglishBtn">English</button>
+        <button type="button" id="otVietnameseBtn">Tiếng Việt</button>
+      </span>`;
+
+    const header = document.getElementById("siteHeader");
+    if (header?.parentNode) header.insertAdjacentElement("afterend", banner);
+    else document.body.prepend(banner);
+
+    document.getElementById("otEnglishBtn")?.addEventListener("click", () => {
+      setLanguageChoice("en");
+      banner.remove();
+      loadEnglishTranslation();
+    });
+    document.getElementById("otVietnameseBtn")?.addEventListener("click", () => {
+      setLanguageChoice("vi");
+      banner.remove();
+    });
+  }
+
   function injectInAppBanner() {
     if (document.getElementById("otInAppBanner")) return;
     const ua = navigator.userAgent || "";
@@ -771,6 +957,11 @@
     injectChrome();
   } catch (err) {
     console.error("[OneTool layout] chrome", err);
+  }
+  try {
+    injectLanguagePrompt();
+  } catch (err) {
+    console.error("[OneTool layout] language", err);
   }
   try {
     injectInAppBanner();

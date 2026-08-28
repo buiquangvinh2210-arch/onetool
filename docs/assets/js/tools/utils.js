@@ -53,6 +53,90 @@ window.OTUtils = (function () {
     });
   }
 
+  async function loadJsBarcode() {
+    if (typeof window.JsBarcode === "function") return window.JsBarcode;
+    const urls = [
+      "https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js",
+      "https://unpkg.com/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"
+    ];
+    let lastErr;
+    for (const src of urls) {
+      try {
+        await new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = src;
+          s.async = true;
+          s.onload = () =>
+            typeof window.JsBarcode === "function"
+              ? resolve()
+              : reject(new Error("JsBarcode missing"));
+          s.onerror = () => reject(new Error("script error"));
+          document.head.appendChild(s);
+        });
+        return window.JsBarcode;
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    throw lastErr || new Error("Không tải được thư viện mã vạch.");
+  }
+
+  /**
+   * @param {string} value
+   * @param {{ format?: string, width?: number, height?: number, displayValue?: boolean, lineColor?: string, background?: string, fontSize?: number, margin?: number }} opts
+   */
+  async function makeBarcodePng(value, opts) {
+    const JsBarcode = await loadJsBarcode();
+    const text = String(value || "").trim();
+    if (!text) throw new Error("Nhập nội dung mã vạch.");
+
+    const format = opts?.format || "CODE128";
+    const barWidth = Math.max(1, Math.min(6, Number(opts?.width) || 2));
+    const height = Math.max(40, Math.min(240, Number(opts?.height) || 100));
+    const displayValue = opts?.displayValue !== false;
+    const lineColor = opts?.lineColor || "#1a1428";
+    const background = opts?.background || "#ffffff";
+    const fontSize = Math.max(10, Math.min(28, Number(opts?.fontSize) || 16));
+    const margin = Math.max(4, Math.min(40, Number(opts?.margin) || 12));
+
+    const canvas = document.createElement("canvas");
+    try {
+      JsBarcode(canvas, text, {
+        format,
+        width: barWidth,
+        height,
+        displayValue,
+        lineColor,
+        background,
+        fontSize,
+        margin,
+        textMargin: 6,
+        fontOptions: "bold",
+        font: "monospace",
+        valid: function (valid) {
+          if (!valid) throw new Error("INVALID");
+        }
+      });
+    } catch (e) {
+      const msg = String(e?.message || e || "");
+      if (/INVALID|Invalid/i.test(msg)) {
+        throw new Error(
+          "Nội dung không hợp lệ với chuẩn " +
+            format +
+            ". Kiểm tra độ dài / ký tự (vd. EAN-13 cần 12–13 số)."
+        );
+      }
+      throw new Error(msg || "Không tạo được mã vạch.");
+    }
+
+    return await new Promise((resolve, reject) => {
+      canvas.toBlob(
+        (blob) => (blob ? resolve(blob) : reject(new Error("Không xuất được PNG."))),
+        "image/png"
+      );
+    });
+  }
+
   function parseJson(input) {
     const raw = String(input || "").trim();
     if (!raw) throw new Error("JSON đang trống.");
@@ -164,7 +248,7 @@ window.OTUtils = (function () {
   }
 
   return {
-    makeQrPng, makeQrDataUrl, formatJson, parseJson,
+    makeQrPng, makeQrDataUrl, makeBarcodePng, loadJsBarcode, formatJson, parseJson,
     encodeBase64, decodeBase64, normalizeBase64Input,
     isValidBase64, fileToBase64, base64ToBlob, guessBase64Mime, isImageMime
   };

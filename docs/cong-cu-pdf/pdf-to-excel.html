@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF sang Excel online miễn phí — chuyển PDF thành XLSX | OneTool</title>
+  <meta name="description" content="PDF sang Excel online: trích bảng từ PDF → XLSX/CSV, hỗ trợ OCR bản scan tiếng Việt. Miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-pdf/pdf-to-excel.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/pdf-to-excel.css?v=20260828a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="pdf-to-excel">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="pe-top">
+    <div class="pe-title-row">
+      <div>
+        <h1>PDF sang Excel online</h1>
+        <p class="pe-lead">Trích bảng / báo cáo từ PDF thành Excel (.xlsx) — giữ cột hàng theo vị trí chữ, có OCR bản scan.</p>
+      </div>
+      <div class="pe-meta">
+        <span>XLSX</span>
+        <span>Tiếng Việt</span>
+        <span>Riêng tư</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pe-studio">
+    <div class="pe-shell">
+      <aside class="pe-side">
+        <p class="pe-side-label">Nguồn</p>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+          <div class="upload-placeholder">
+            <span class="upload-icon">PDF</span>
+            <p><strong>Thả PDF bảng vào đây</strong></p>
+            <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+          </div>
+        </div>
+
+        <div class="pe-field">
+          <label for="sheetMode">Cách tạo sheet</label>
+          <select id="sheetMode" class="form-control">
+            <option value="pages" selected>Mỗi trang một sheet</option>
+            <option value="merge">Gộp tất cả vào 1 sheet</option>
+          </select>
+        </div>
+
+        <div class="pe-field">
+          <label for="ocrMode">Bản scan / ảnh chữ</label>
+          <select id="ocrMode" class="form-control">
+            <option value="auto" selected>Tự động (khuyến nghị)</option>
+            <option value="on">Luôn nhận dạng ảnh chữ</option>
+            <option value="off">Chỉ lấy chữ có sẵn trong PDF</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Chuyển sang Excel</button>
+        <p class="pe-note">Xử lý trên máy bạn — tối đa 40 trang / 60 MB. PDF bảng có lớp chữ cho kết quả đẹp nhất.</p>
+      </aside>
+
+      <div class="pe-main">
+        <div class="pe-main-bar">
+          <div>
+            <h2>Kết quả</h2>
+            <p id="status">Chọn PDF rồi bấm chuyển — xem trước bảng và tải XLSX.</p>
+          </div>
+          <div class="pe-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép CSV</button>
+            <button type="button" class="btn btn-outline btn-sm" id="downloadCsvBtn" disabled>Tải CSV</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải Excel</button>
+          </div>
+        </div>
+        <div class="pe-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="pe-result">
+          <div class="pe-empty" id="resultEmpty">
+            <div class="pe-empty-visual" aria-hidden="true"></div>
+            <p>Bảng Excel sẽ hiện ở đây sau khi chuyển đổi.</p>
+          </div>
+          <div class="pe-file-chip" id="fileChip">
+            <span class="pe-file-chip-icon">XLSX</span>
+            <div>
+              <strong id="fileChipName">document.xlsx</strong>
+              <span id="fileChipMeta">sẵn sàng tải</span>
+            </div>
+          </div>
+          <div class="pe-stats" id="stats">
+            <div class="pe-stat"><strong id="statPages">—</strong><span>Trang</span></div>
+            <div class="pe-stat"><strong id="statSheets">—</strong><span>Sheet</span></div>
+            <div class="pe-stat"><strong id="statRows">—</strong><span>Hàng</span></div>
+            <div class="pe-stat"><strong id="statOcr">—</strong><span>Scan</span></div>
+          </div>
+          <div class="pe-preview-wrap" id="previewWrap" aria-label="Xem trước bảng"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script src="../assets/js/tools/pdf.js?v=20260822" defer></script>
+<script src="../assets/js/tools/pdf-to-excel.js?v=20260828a" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let file = null;
+  let lastCsv = "";
+  let lastBlob = null;
+  let lastName = "";
+
+  const empty = document.getElementById("resultEmpty");
+  const previewWrap = document.getElementById("previewWrap");
+  const stats = document.getElementById("stats");
+  const fileChip = document.getElementById("fileChip");
+  const progressBar = document.getElementById("progressBar");
+  const progressFill = document.getElementById("progressFill");
+  const csvBtn = document.getElementById("downloadCsvBtn");
+
+  function setProgress(pct) {
+    const n = Math.max(0, Math.min(100, pct | 0));
+    progressBar.classList.toggle("is-on", n > 0 && n < 100);
+    progressBar.setAttribute("aria-hidden", n > 0 && n < 100 ? "false" : "true");
+    progressFill.style.width = n + "%";
+    if (typeof OT.setProgress === "function") OT.setProgress(n);
+  }
+
+  OT.bindUploadZone({
+    onFiles: function (files) {
+      file = files[0] || null;
+      if (file && file.size > OTPdfToExcel.MAX_BYTES) {
+        OT.setStatus("File quá lớn (tối đa 60 MB).", "err");
+        file = null;
+      } else if (file) {
+        OT.setStatus(file.name + " · " + OT.formatBytes(file.size) + " — sẵn sàng chuyển.", "ok");
+      }
+    }
+  });
+
+  document.getElementById("runBtn").onclick = async function () {
+    const btn = document.getElementById("runBtn");
+    try {
+      if (!file) throw new Error("Chọn file PDF trước.");
+      if (!window.OTPdfToExcel) throw new Error("Script chưa sẵn sàng — thử Ctrl+F5.");
+
+      OT.setBusy(btn, true, "Đang chuyển…");
+      setProgress(5);
+      OT.setStatus("Đang đọc PDF…");
+
+      empty.style.display = "none";
+      const ocr = document.getElementById("ocrMode").value;
+      const sheetMode = document.getElementById("sheetMode").value;
+
+      const result = await OTPdfToExcel.convert(file, {
+        ocr: ocr,
+        sheetMode: sheetMode,
+        maxPages: OTPdfToExcel.MAX_PAGES,
+        onProgress: function (info) {
+          const pct = typeof info.pct === "number" ? info.pct : 8 + Math.round((info.page / Math.max(1, info.total)) * 78);
+          setProgress(pct);
+          if (info.phase === "ocr") {
+            OT.setStatus("Đang nhận dạng trang " + info.page + "/" + info.total + "…");
+          } else if (info.phase === "build") {
+            OT.setStatus("Đang tạo file Excel…");
+          } else if (info.page) {
+            OT.setStatus("Đang đọc trang " + info.page + "/" + info.total + "…");
+          }
+        }
+      });
+
+      lastCsv = result.csv || "";
+      lastBlob = result.blob;
+      lastName = result.fileName;
+
+      document.getElementById("statPages").textContent =
+        result.meta.pageCount + (result.meta.truncated ? "+" : "");
+      document.getElementById("statSheets").textContent = String(result.meta.sheetCount);
+      document.getElementById("statRows").textContent =
+        result.meta.rowCount.toLocaleString("vi-VN");
+      document.getElementById("statOcr").textContent = result.meta.ocrUsed ? "Có" : "Không";
+
+      document.getElementById("fileChipName").textContent = result.fileName;
+      document.getElementById("fileChipMeta").textContent =
+        OT.formatBytes(result.blob.size) +
+        " · " +
+        result.meta.colCount +
+        " cột · sẵn sàng tải";
+
+      fileChip.classList.add("is-on");
+      stats.classList.add("is-on");
+      previewWrap.classList.add("is-on");
+      previewWrap.innerHTML = result.previewHtml || "<p class=\"pe-table-empty\">Không có xem trước.</p>";
+
+      OT.showResult({
+        blob: result.blob,
+        fileName: result.fileName,
+        contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        text: lastCsv
+      });
+
+      csvBtn.disabled = !lastCsv;
+
+      setProgress(100);
+      var note =
+        "Xong — " +
+        result.meta.sheetCount +
+        " sheet · " +
+        result.meta.rowCount +
+        " hàng.";
+      if (result.meta.ocrUsed) note = "Xong — đã OCR bản scan · " + note;
+      if (result.meta.truncated) {
+        note +=
+          " (xử lý " +
+          result.meta.pageCount +
+          "/" +
+          result.meta.totalPages +
+          " trang đầu)";
+      }
+      OT.setStatus(note, "ok");
+      setTimeout(function () { setProgress(0); }, 400);
+    } catch (e) {
+      OT.setStatus(e.message || "Không chuyển được — thử file khác hoặc bật OCR.", "err");
+      setProgress(0);
+    } finally {
+      OT.setBusy(btn, false);
+    }
+  };
+
+  document.getElementById("copyResultBtn").addEventListener("click", async function () {
+    if (!lastCsv) return;
+    try {
+      await navigator.clipboard.writeText(lastCsv);
+      OT.setStatus("Đã sao chép CSV.", "ok");
+    } catch (_) {
+      OT.setStatus("Không sao chép được — hãy tải CSV.", "err");
+    }
+  });
+
+  csvBtn.addEventListener("click", function () {
+    if (!lastCsv) return;
+    const blob = new Blob([lastCsv], { type: "text/csv;charset=utf-8" });
+    const name = (lastName || "document.xlsx").replace(/\.xlsx$/i, ".csv");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);
+  });
+
+  if (window.OTPdfToExcel && typeof OTPdfToExcel.warmup === "function") {
+    const idle = window.requestIdleCallback || function (cb) { setTimeout(cb, 900); };
+    idle(function () { OTPdfToExcel.warmup(); }, { timeout: 2500 });
+  }
+});
+</script>
+</body>
+</html>

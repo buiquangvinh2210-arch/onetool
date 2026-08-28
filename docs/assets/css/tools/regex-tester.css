@@ -1,0 +1,442 @@
+body[data-tool="regex-tester"] {
+  --rx-ink: #16121c;
+  --rx-muted: #6b6578;
+  --rx-line: rgba(88, 60, 140, 0.12);
+  --rx-soft: rgba(124, 58, 237, 0.07);
+  --rx-ok: #059669;
+  --rx-err: #dc2626;
+  --rx-mark: rgba(250, 204, 21, 0.45);
+  --rx-mark-alt: rgba(167, 139, 250, 0.35);
+}
+
+body[data-tool="regex-tester"] .tool-workspace {
+  padding: 0 0 2rem !important;
+  background:
+    radial-gradient(ellipse 85% 50% at 8% -8%, rgba(6, 182, 212, 0.09), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 95% 0%, rgba(124, 58, 237, 0.09), transparent 50%),
+    linear-gradient(180deg, #f8f7fc 0%, #f2f4fa 100%) !important;
+}
+
+body[data-tool="regex-tester"] .rx-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body[data-tool="regex-tester"] .rx-intro {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto 1.35rem;
+}
+
+body[data-tool="regex-tester"] .rx-intro h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--rx-ink);
+}
+
+body[data-tool="regex-tester"] .rx-intro p {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--rx-muted);
+  line-height: 1.55;
+}
+
+body[data-tool="regex-tester"] .rx-studio {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+body[data-tool="regex-tester"] .rx-panel {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--rx-line);
+  border-radius: 16px;
+  box-shadow: 0 10px 36px rgba(70, 40, 120, 0.06);
+  overflow: hidden;
+}
+
+body[data-tool="regex-tester"] .rx-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--rx-line);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+body[data-tool="regex-tester"] .rx-panel-head h2 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--rx-ink);
+}
+
+body[data-tool="regex-tester"] .rx-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem 1rem;
+}
+
+body[data-tool="regex-tester"] .rx-pattern-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid var(--rx-line);
+  border-radius: 12px;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+body[data-tool="regex-tester"] .rx-slash {
+  display: flex;
+  align-items: center;
+  padding: 0 0.55rem;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--rx-muted);
+  background: var(--rx-soft);
+  user-select: none;
+}
+
+body[data-tool="regex-tester"] #patternInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0.75rem 0.65rem;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.9rem;
+  color: var(--rx-ink);
+}
+
+body[data-tool="regex-tester"] #patternInput:focus {
+  outline: none;
+}
+
+body[data-tool="regex-tester"] .rx-pattern-row:focus-within {
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  background: #fff;
+}
+
+body[data-tool="regex-tester"] .rx-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+body[data-tool="regex-tester"] .rx-flags label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--rx-line);
+  background: var(--rx-soft);
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--rx-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+body[data-tool="regex-tester"] .rx-flags input {
+  accent-color: var(--primary, #7c3aed);
+}
+
+body[data-tool="regex-tester"] .rx-flags label:has(input:checked) {
+  color: var(--primary-dark, #6d28d9);
+  border-color: rgba(124, 58, 237, 0.35);
+  background: rgba(124, 58, 237, 0.12);
+}
+
+body[data-tool="regex-tester"] .rx-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--rx-muted);
+}
+
+body[data-tool="regex-tester"] .rx-status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--rx-muted);
+  min-height: 1.2em;
+}
+
+body[data-tool="regex-tester"] .rx-status.is-ok { color: var(--rx-ok); }
+body[data-tool="regex-tester"] .rx-status.is-err { color: var(--rx-err); }
+
+body[data-tool="regex-tester"] .rx-samples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+body[data-tool="regex-tester"] .rx-samples > span {
+  font-size: 0.75rem;
+  color: var(--rx-muted);
+  font-weight: 650;
+}
+
+body[data-tool="regex-tester"] .rx-chip {
+  border: 1px solid var(--rx-line);
+  background: #fff;
+  color: var(--rx-ink);
+  font-family: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+body[data-tool="regex-tester"] .rx-chip:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  color: var(--primary-dark, #6d28d9);
+}
+
+body[data-tool="regex-tester"] .rx-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+body[data-tool="regex-tester"] .rx-highlight-wrap {
+  position: relative;
+  min-height: 220px;
+  border: 1px solid var(--rx-line);
+  border-radius: 12px;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+body[data-tool="regex-tester"] .rx-highlight-wrap:focus-within {
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  background: #fff;
+}
+
+body[data-tool="regex-tester"] #highlightLayer,
+body[data-tool="regex-tester"] #testText {
+  margin: 0;
+  padding: 0.85rem 0.95rem;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
+}
+
+body[data-tool="regex-tester"] #highlightLayer {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  pointer-events: none;
+  color: transparent;
+  background: transparent;
+  border: 0;
+}
+
+body[data-tool="regex-tester"] #highlightLayer mark {
+  color: transparent;
+  background: var(--rx-mark);
+  border-radius: 2px;
+}
+
+body[data-tool="regex-tester"] #highlightLayer mark:nth-of-type(even) {
+  background: var(--rx-mark-alt);
+}
+
+body[data-tool="regex-tester"] #testText {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 220px;
+  height: 100%;
+  resize: vertical;
+  border: 0;
+  background: transparent;
+  color: var(--rx-ink);
+  caret-color: var(--rx-ink);
+}
+
+body[data-tool="regex-tester"] #testText:focus {
+  outline: none;
+}
+
+body[data-tool="regex-tester"] .rx-field {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--rx-line);
+  border-radius: 12px;
+  background: #fafafa;
+  color: var(--rx-ink);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+body[data-tool="regex-tester"] .rx-field:focus {
+  outline: none;
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  background: #fff;
+}
+
+body[data-tool="regex-tester"] .rx-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--rx-muted);
+}
+
+body[data-tool="regex-tester"] .rx-out {
+  margin: 0;
+  min-height: 88px;
+  max-height: 200px;
+  overflow: auto;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--rx-line);
+  border-radius: 12px;
+  background: #fafafa;
+  color: var(--rx-ink);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+body[data-tool="regex-tester"] .rx-out.is-empty {
+  color: var(--rx-muted);
+}
+
+body[data-tool="regex-tester"] .rx-matches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 420px;
+  overflow: auto;
+}
+
+body[data-tool="regex-tester"] .rx-matches li {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--rx-line);
+  border-radius: 10px;
+  background: var(--rx-soft);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+body[data-tool="regex-tester"] .rx-matches .rx-m-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: var(--rx-ink);
+  margin-bottom: 0.25rem;
+}
+
+body[data-tool="regex-tester"] .rx-matches code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.76rem;
+  word-break: break-all;
+  color: var(--primary-dark, #6d28d9);
+}
+
+body[data-tool="regex-tester"] .rx-matches .rx-groups {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--rx-muted);
+}
+
+body[data-tool="regex-tester"] .rx-empty {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--rx-muted);
+}
+
+body[data-tool="regex-tester"] .rx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+body[data-tool="regex-tester"] .rx-text-btn {
+  border: 0;
+  background: transparent;
+  color: var(--primary, #7c3aed);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  padding: 0;
+  cursor: pointer;
+}
+
+body[data-tool="regex-tester"] .rx-text-btn:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+  body[data-tool="regex-tester"] .rx-page {
+    padding: 0 1rem;
+  }
+
+  body[data-tool="regex-tester"] .rx-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+html[data-theme="dark"] body[data-tool="regex-tester"] {
+  --rx-ink: #f1edf8;
+  --rx-muted: #94a3b8;
+  --rx-line: rgba(255, 255, 255, 0.08);
+  --rx-soft: rgba(124, 58, 237, 0.16);
+  --rx-mark: rgba(250, 204, 21, 0.35);
+  --rx-mark-alt: rgba(167, 139, 250, 0.3);
+}
+
+html[data-theme="dark"] body[data-tool="regex-tester"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.2), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="regex-tester"] .rx-panel,
+html[data-theme="dark"] body[data-tool="regex-tester"] .rx-panel-head,
+html[data-theme="dark"] body[data-tool="regex-tester"] .rx-chip {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="regex-tester"] .rx-pattern-row,
+html[data-theme="dark"] body[data-tool="regex-tester"] .rx-highlight-wrap,
+html[data-theme="dark"] body[data-tool="regex-tester"] .rx-field,
+html[data-theme="dark"] body[data-tool="regex-tester"] .rx-out,
+html[data-theme="dark"] body[data-tool="regex-tester"] .rx-matches li {
+  background: var(--tool-input-bg, #0f0d14);
+  border-color: var(--border);
+  color: var(--text);
+}

@@ -4,31 +4,31 @@ window.OTCatalog = {
       slug: "media",
       seo: "cong-cu-media",
       name: "Media & AI",
-      desc: "TikTok, Audio → Text, Tóm tắt AI, nén & cắt video",
+      desc: "TikTok, Audio → Text, Tóm tắt AI, nén / cắt / GIF video",
       icon: "🎙️",
       seoTitle: "Công cụ Media & AI online — Tải TikTok, Audio/Video sang văn bản, Tóm tắt AI | OneTool",
-      seoDescription: "Tải video TikTok HD, Audio/Video → văn bản, tóm tắt AI, nén/cắt MP4. Nén & cắt chạy trên máy; TikTok và AI dùng cloud. Miễn phí.",
-      seoKeywords: "tải video tiktok, audio to text, tóm tắt ai, tóm tắt văn bản, nén video online"
+      seoDescription: "Tải video TikTok HD, Audio/Video → văn bản, tóm tắt AI, nén/cắt MP4, video sang GIF. Nén & cắt chạy trên máy; TikTok và AI dùng cloud. Miễn phí.",
+      seoKeywords: "tải video tiktok, audio to text, tóm tắt ai, video sang gif, nén video online"
     },
     {
       slug: "pdf-tools",
       seo: "cong-cu-pdf",
       name: "Công cụ PDF",
-      desc: "Gộp, tách, nén, watermark, PDF to Word",
+      desc: "Gộp, tách, nén, PDF → Word/Excel, khóa mật khẩu",
       icon: "📄",
-      seoTitle: "Công cụ PDF online miễn phí — Gộp, tách, nén PDF | OneTool",
-      seoDescription: "Gộp PDF, tách trang, nén dung lượng, xoay và convert PDF sang TXT/ảnh — xử lý 100% trên trình duyệt, không cần đăng ký.",
-      seoKeywords: "gộp pdf online, tách pdf, nén pdf, xoay pdf, convert pdf, công cụ pdf miễn phí"
+      seoTitle: "Công cụ PDF online miễn phí — Gộp, tách, nén, khóa PDF | OneTool",
+      seoDescription: "Gộp PDF, tách trang, nén dung lượng, PDF sang Word/Excel, khóa mật khẩu — xử lý 100% trên trình duyệt, không cần đăng ký.",
+      seoKeywords: "gộp pdf online, tách pdf, nén pdf, pdf sang excel, khóa pdf, convert pdf, công cụ pdf miễn phí"
     },
     {
       slug: "images",
       seo: "cong-cu-anh",
       name: "Công cụ Ảnh",
-      desc: "Convert, HEIC, resize, xóa nền AI, batch",
+      desc: "Convert, blur, HEIC, resize, xóa nền AI",
       icon: "🖼️",
-      seoTitle: "Công cụ ảnh online — Convert, resize, xóa nền AI | OneTool",
-      seoDescription: "Đổi định dạng JPG PNG WebP, resize ảnh, xóa nền AI, xử lý batch — miễn phí, chạy trên trình duyệt, bảo mật file.",
-      seoKeywords: "convert ảnh online, đổi jpg png webp, resize ảnh, xóa nền ảnh, xóa background miễn phí"
+      seoTitle: "Công cụ ảnh online — Convert, blur, resize, xóa nền | OneTool",
+      seoDescription: "Đổi định dạng JPG PNG WebP, làm mờ / blur ảnh, resize, xóa nền AI — miễn phí trên trình duyệt.",
+      seoKeywords: "convert ảnh online, làm mờ ảnh, blur ảnh, resize ảnh, xóa nền ảnh miễn phí"
     },
     {
       slug: "file-converter",
@@ -44,21 +44,21 @@ window.OTCatalog = {
       slug: "developer",
       seo: "cong-cu-lap-trinh",
       name: "Lập trình",
-      desc: "JSON, Base64, UUID, Hash, slugify",
+      desc: "JSON, Regex, Base64, URL encode, UUID",
       icon: "🛠️",
-      seoTitle: "Công cụ lập trình online — JSON, Base64, UUID, Hash | OneTool",
-      seoDescription: "Format JSON, encode Base64, tạo UUID, hash SHA, slugify tiếng Việt — miễn phí trên trình duyệt.",
-      seoKeywords: "json formatter, base64 encode, uuid v4, hash sha256, slugify tiếng việt"
+      seoTitle: "Công cụ lập trình online — JSON, Regex, Base64, URL | OneTool",
+      seoDescription: "Format JSON, Regex tester, encode Base64, URL encode/decode, UUID, hash SHA — miễn phí trên trình duyệt.",
+      seoKeywords: "json formatter, regex tester, base64 encode, url encode decode, uuid v4"
     },
     {
       slug: "utilities",
       seo: "cong-cu-tien-ich",
       name: "Tiện ích",
-      desc: "Đếm từ, QR Code, mật khẩu, chuyển đổi chữ",
+      desc: "Đếm từ, đổi tiền tệ, QR, mã vạch, lịch âm dương",
       icon: "🔧",
-      seoTitle: "Tiện ích online — QR Code, mật khẩu, chuyển đổi chữ | OneTool",
-      seoDescription: "Tạo mã QR, password generator, chuyển đổi chữ hoa/thường bỏ dấu — tiện ích miễn phí.",
-      seoKeywords: "tạo qr code, password generator, chuyển đổi chữ, bỏ dấu tiếng việt"
+      seoTitle: "Tiện ích online — Đổi tiền tệ, QR, mã vạch, lịch âm | OneTool",
+      seoDescription: "Đổi tiền tệ USD/EUR/VND, tạo mã QR, mã vạch, đổi Dương ↔ Âm lịch, password — tiện ích miễn phí.",
+      seoKeywords: "đổi tiền tệ, usd sang vnd, tạo qr code, tạo mã vạch, đổi lịch âm dương"
     },
     {
       slug: "units",
@@ -77,20 +77,23 @@ window.OTCatalog = {
     { slug: "audio-to-text", name: "Audio to Text tiếng Việt", desc: "Chuyển giọng nói thành văn bản tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.", icon: "🎙️", cat: "media", featured: true, rank: 2 },
     { slug: "ai-summarize", name: "Tóm tắt AI", desc: "Rút gọn bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng hoặc TL;DR.", icon: "✨", cat: "media", featured: true, rank: 3 },
     { slug: "video-convert", name: "Nén video online", desc: "Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.", icon: "🎬", cat: "media", featured: true, rank: 4 },
-    { slug: "video-trim", name: "Cắt video online", desc: "Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.", icon: "✂️", cat: "media", featured: true, rank: 5 },
+    { slug: "video-to-gif", name: "Video sang GIF", desc: "Cắt đoạn MP4/WebM thành GIF — chọn FPS, độ rộng, chất lượng palette.", icon: "🎞️", cat: "media", featured: true, rank: 5 },
+    { slug: "video-trim", name: "Cắt video online", desc: "Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.", icon: "✂️", cat: "media", featured: true, rank: 6 },
 
     /* PDF */
     { slug: "pdf-to-word", name: "PDF sang Word", desc: "Chuyển PDF thành Word (DOCX) để chỉnh sửa — kể cả bản scan.", icon: "📄", cat: "pdf-tools", featured: true, rank: 1 },
-    { slug: "pdf-merge", name: "Gộp PDF online", desc: "Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.", icon: "📎", cat: "pdf-tools", featured: true, rank: 2 },
-    { slug: "image-pdf", name: "Ảnh ↔ PDF", desc: "Hai hướng rõ ràng: ghép ảnh thành PDF, hoặc xuất PDF ra ảnh.", icon: "🔄", cat: "pdf-tools", featured: true, rank: 3 },
-    { slug: "image-to-pdf", name: "Ảnh sang PDF", desc: "Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.", icon: "🖼️", cat: "pdf-tools", featured: true, rank: 4 },
-    { slug: "pdf-to-image", name: "PDF sang ảnh", desc: "Xuất từng trang PDF ra PNG / JPG / WebP — xem trước hoặc tải ZIP.", icon: "🌄", cat: "pdf-tools", featured: true, rank: 5 },
-    { slug: "pdf-watermark", name: "Watermark PDF", desc: "Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.", icon: "💧", cat: "pdf-tools", featured: true, rank: 6 },
-    { slug: "pdf-compress", name: "Nén PDF online", desc: "Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true, rank: 7 },
-    { slug: "office-to-pdf", name: "Word/Excel sang PDF", desc: "Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.", icon: "📑", cat: "pdf-tools", rank: 8 },
-    { slug: "pdf-split", name: "Tách PDF online", desc: "Tách PDF theo trang hoặc khoảng — tải đúng phần cần dùng.", icon: "✂️", cat: "pdf-tools", rank: 9 },
-    { slug: "pdf-pages", name: "Xoay xóa trang PDF", desc: "Xoay trang bị ngược hoặc xóa trang trắng / trang nhầm trước khi gửi.", icon: "🔄", cat: "pdf-tools", rank: 10 },
-    { slug: "pdf-convert", name: "PDF sang TXT", desc: "Trích chữ từ PDF (text layer + OCR bản scan) ra TXT.", icon: "📤", cat: "pdf-tools", rank: 11 },
+    { slug: "pdf-to-excel", name: "PDF sang Excel", desc: "Trích bảng / báo cáo từ PDF thành Excel (XLSX) — OCR bản scan tiếng Việt.", icon: "📊", cat: "pdf-tools", featured: true, rank: 2 },
+    { slug: "pdf-merge", name: "Gộp PDF online", desc: "Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.", icon: "📎", cat: "pdf-tools", featured: true, rank: 3 },
+    { slug: "image-pdf", name: "Ảnh ↔ PDF", desc: "Hai hướng rõ ràng: ghép ảnh thành PDF, hoặc xuất PDF ra ảnh.", icon: "🔄", cat: "pdf-tools", featured: true, rank: 4 },
+    { slug: "image-to-pdf", name: "Ảnh sang PDF", desc: "Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.", icon: "🖼️", cat: "pdf-tools", featured: true, rank: 5 },
+    { slug: "pdf-to-image", name: "PDF sang ảnh", desc: "Xuất từng trang PDF ra PNG / JPG / WebP — xem trước hoặc tải ZIP.", icon: "🌄", cat: "pdf-tools", featured: true, rank: 6 },
+    { slug: "pdf-lock", name: "Khóa PDF", desc: "Đặt mật khẩu mở file PDF (AES-256) — bảo vệ hồ sơ trước khi gửi.", icon: "🔒", cat: "pdf-tools", featured: true, rank: 7 },
+    { slug: "pdf-watermark", name: "Watermark PDF", desc: "Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.", icon: "💧", cat: "pdf-tools", featured: true, rank: 8 },
+    { slug: "pdf-compress", name: "Nén PDF online", desc: "Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true, rank: 9 },
+    { slug: "office-to-pdf", name: "Word/Excel sang PDF", desc: "Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.", icon: "📑", cat: "pdf-tools", rank: 10 },
+    { slug: "pdf-split", name: "Tách PDF online", desc: "Tách PDF theo trang hoặc khoảng — tải đúng phần cần dùng.", icon: "✂️", cat: "pdf-tools", rank: 11 },
+    { slug: "pdf-pages", name: "Xoay xóa trang PDF", desc: "Xoay trang bị ngược hoặc xóa trang trắng / trang nhầm trước khi gửi.", icon: "🔄", cat: "pdf-tools", rank: 12 },
+    { slug: "pdf-convert", name: "PDF sang TXT", desc: "Trích chữ từ PDF (text layer + OCR bản scan) ra TXT.", icon: "📤", cat: "pdf-tools", rank: 13 },
 
     /* Ảnh */
     { slug: "remove-background", name: "Xóa nền ảnh", desc: "Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.", icon: "✂️", cat: "images", featured: true, rank: 1 },
@@ -98,7 +101,8 @@ window.OTCatalog = {
     { slug: "image-compress", name: "Nén ảnh online", desc: "Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau.", icon: "🗜️", cat: "images", featured: true, rank: 3 },
     { slug: "image-convert", name: "Convert ảnh", desc: "Đổi JPG ↔ PNG ↔ WebP và các định dạng phổ biến — kéo thả, chọn format, tải về.", icon: "🖼️", cat: "images", featured: true, rank: 4 },
     { slug: "image-resize", name: "Resize ảnh", desc: "Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.", icon: "📐", cat: "images", featured: true, rank: 5 },
-    { slug: "image-batch", name: "Xử lý hàng loạt ảnh", desc: "Convert, resize hoặc nén nhiều ảnh cùng lúc — phù hợp catalog sản phẩm.", icon: "📦", cat: "images", rank: 6 },
+    { slug: "image-blur", name: "Làm mờ ảnh", desc: "Blur toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.", icon: "🌫️", cat: "images", featured: true, rank: 6 },
+    { slug: "image-batch", name: "Xử lý hàng loạt ảnh", desc: "Convert, resize hoặc nén nhiều ảnh cùng lúc — phù hợp catalog sản phẩm.", icon: "📦", cat: "images", rank: 7 },
 
     /* File & dữ liệu */
     { slug: "excel-convert", name: "Excel sang CSV JSON", desc: "Convert XLSX/XLS sang CSV hoặc JSON — và ngược lại. Chọn sheet, xem trước, tải file.", icon: "📗", cat: "file-converter", featured: true, rank: 1 },
@@ -125,14 +129,19 @@ window.OTCatalog = {
 
     /* Lập trình */
     { slug: "json-tools", name: "Format JSON", desc: "Làm đẹp, minify và kiểm tra JSON hợp lệ — tiện debug API.", icon: "{ }", cat: "developer", featured: true, rank: 1 },
-    { slug: "base64-tools", name: "Base64 encode decode", desc: "Encode/decode Base64 — tiếng Việt, URL-safe, file và ảnh có preview.", icon: "🔤", cat: "developer", featured: true, rank: 2 },
-    { slug: "developer-tools", name: "UUID Hash Slugify", desc: "UUID, SHA hash, slugify tiếng Việt, Unix timestamp — công cụ dev nhanh.", icon: "🛠️", cat: "developer", featured: true, rank: 3 },
+    { slug: "regex-tester", name: "Regex tester", desc: "Thử regex realtime — highlight match, flags, replace, nhóm bắt.", icon: ".*", cat: "developer", featured: true, rank: 2 },
+    { slug: "base64-tools", name: "Base64 encode decode", desc: "Encode/decode Base64 — tiếng Việt, URL-safe, file và ảnh có preview.", icon: "🔤", cat: "developer", featured: true, rank: 3 },
+    { slug: "url-encode", name: "URL encode decode", desc: "Encode/decode URL — encodeURIComponent, encodeURI, form (+), UTF-8 tiếng Việt.", icon: "🔗", cat: "developer", featured: true, rank: 4 },
+    { slug: "developer-tools", name: "UUID Hash Slugify", desc: "UUID, SHA hash, slugify tiếng Việt, Unix timestamp — công cụ dev nhanh.", icon: "🛠️", cat: "developer", featured: true, rank: 5 },
 
     /* Tiện ích (gọn) */
     { slug: "word-counter", name: "Đếm từ online", desc: "Đếm từ, ký tự, câu, đoạn — thời gian đọc tiếng Việt, mật độ từ khóa.", icon: "🔢", cat: "utilities", featured: true, rank: 1 },
-    { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 2 },
-    { slug: "password-generator", name: "Tạo mật khẩu", desc: "Tạo mật khẩu mạnh ngẫu nhiên — chữ, số, ký tự đặc biệt, đo độ mạnh.", icon: "🔐", cat: "utilities", featured: true, rank: 3 },
-    { slug: "text-convert", name: "Chuyển đổi chữ", desc: "Viết hoa/thường, bỏ dấu tiếng Việt, slug URL, dọn dòng, encode — chạy trên máy bạn.", icon: "Aa", cat: "utilities", featured: true, rank: 4 }
+    { slug: "currency-convert", name: "Đổi tiền tệ", desc: "Đổi USD · EUR · VND và 20+ loại tiền — tỷ giá realtime, đảo chiều nhanh.", icon: "💱", cat: "utilities", featured: true, rank: 2 },
+    { slug: "lunar-calendar", name: "Đổi lịch âm dương", desc: "Dương lịch ↔ Âm lịch Việt Nam — Can Chi, tháng nhuận, ngày trong tuần.", icon: "🌙", cat: "utilities", featured: true, rank: 3 },
+    { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 4 },
+    { slug: "barcode-generator", name: "Tạo mã vạch", desc: "Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG.", icon: "🏷️", cat: "utilities", featured: true, rank: 5 },
+    { slug: "password-generator", name: "Tạo mật khẩu", desc: "Tạo mật khẩu mạnh ngẫu nhiên — chữ, số, ký tự đặc biệt, đo độ mạnh.", icon: "🔐", cat: "utilities", featured: true, rank: 6 },
+    { slug: "text-convert", name: "Chuyển đổi chữ", desc: "Viết hoa/thường, bỏ dấu tiếng Việt, slug URL, dọn dòng, encode — chạy trên máy bạn.", icon: "Aa", cat: "utilities", featured: true, rank: 7 }
   ],
 
   origin: "https://onetool.vn",
@@ -154,6 +163,10 @@ window.OTCatalog = {
       title: "Resize ảnh online miễn phí — đổi kích thước pixel | OneTool",
       desc: "Resize ảnh online theo pixel hoặc preset. Giữ tỉ lệ, xuất JPG/PNG/WebP — miễn phí trên trình duyệt."
     },
+    "image-blur": {
+      title: "Làm mờ ảnh online miễn phí — blur ảnh JPG PNG | OneTool",
+      desc: "Làm mờ / blur ảnh online: toàn ảnh hoặc vùng chọn, chỉnh độ mờ, xuất JPG PNG WebP. Miễn phí trên trình duyệt."
+    },
     "image-batch": {
       title: "Xử lý hàng loạt ảnh online — convert, resize, nén | OneTool",
       desc: "Batch ảnh online: convert, resize hoặc nén nhiều ảnh cùng lúc. Phù hợp catalog sản phẩm — miễn phí."
@@ -173,6 +186,10 @@ window.OTCatalog = {
     "video-convert": {
       title: "Nén video online miễn phí — nén MP4, WebM, tách MP3 | OneTool",
       desc: "Nén video online: giảm dung lượng MP4, đổi WebM hoặc tách MP3 ngay trên trình duyệt. Miễn phí, không cần đăng nhập."
+    },
+    "video-to-gif": {
+      title: "Video sang GIF online miễn phí — MP4 thành GIF | OneTool",
+      desc: "Video sang GIF online: cắt đoạn MP4/WebM thành GIF, chọn FPS và độ rộng. Miễn phí trên trình duyệt."
     },
     "video-trim": {
       title: "Cắt video online miễn phí — trim MP4 theo thời gian | OneTool",
@@ -230,6 +247,14 @@ window.OTCatalog = {
       title: "PDF sang Word online miễn phí — chuyển PDF thành DOCX | OneTool",
       desc: "PDF sang Word online: convert PDF → DOCX chỉnh sửa được, hỗ trợ OCR bản scan tiếng Việt. Miễn phí."
     },
+    "pdf-to-excel": {
+      title: "PDF sang Excel online miễn phí — chuyển PDF thành XLSX | OneTool",
+      desc: "PDF sang Excel online: trích bảng từ PDF → XLSX/CSV, hỗ trợ OCR bản scan tiếng Việt. Miễn phí trên trình duyệt."
+    },
+    "pdf-lock": {
+      title: "Khóa PDF online miễn phí — đặt mật khẩu mở file | OneTool",
+      desc: "Khóa PDF online: đặt mật khẩu mở file (AES-256), bảo vệ hồ sơ trước khi gửi email/Zalo. Miễn phí trên trình duyệt."
+    },
     "office-to-pdf": {
       title: "Word Excel sang PDF online miễn phí — DOCX XLSX → PDF | OneTool",
       desc: "Convert Word (DOCX) và Excel (XLSX) sang PDF online miễn phí. Nhanh, rõ nội dung — trên trình duyệt."
@@ -249,6 +274,18 @@ window.OTCatalog = {
     "qr-generator": {
       title: "Tạo mã QR online miễn phí — URL, văn bản, tải PNG | OneTool",
       desc: "Tạo mã QR online từ link hoặc văn bản, xem trước và tải PNG để in. Miễn phí trên trình duyệt."
+    },
+    "lunar-calendar": {
+      title: "Đổi lịch âm dương online miễn phí — Dương lịch ↔ Âm lịch | OneTool",
+      desc: "Đổi lịch Dương ↔ Âm Việt Nam: xem ngày âm, Can Chi, tháng nhuận. Miễn phí trên trình duyệt."
+    },
+    "currency-convert": {
+      title: "Đổi tiền tệ online miễn phí — USD EUR VND tỷ giá realtime | OneTool",
+      desc: "Đổi tiền tệ online: USD, EUR, VND và 20+ loại. Tỷ giá realtime, đảo chiều 1 chạm. Miễn phí trên trình duyệt."
+    },
+    "barcode-generator": {
+      title: "Tạo mã vạch online miễn phí — Barcode CODE128 EAN-13 | OneTool",
+      desc: "Tạo mã vạch (Barcode) online: CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG. Miễn phí trên trình duyệt."
     },
     "password-generator": {
       title: "Tạo mật khẩu online miễn phí — Password Generator mạnh | OneTool",
@@ -318,9 +355,17 @@ window.OTCatalog = {
       title: "Format JSON online miễn phí — làm đẹp, minify, kiểm tra | OneTool",
       desc: "Format JSON online: làm đẹp, minify và kiểm tra JSON hợp lệ. Miễn phí trên trình duyệt."
     },
+    "regex-tester": {
+      title: "Regex tester online miễn phí — kiểm tra biểu thức chính quy | OneTool",
+      desc: "Regex tester online: thử pattern, flags g/i/m/s/u, highlight match, replace, nhóm bắt. Miễn phí trên trình duyệt."
+    },
     "base64-tools": {
       title: "Encode Decode Base64 online — UTF-8 tiếng Việt, file, ảnh | OneTool",
       desc: "Encode/decode Base64 UTF-8 online: tiếng Việt có dấu, URL-safe, file và ảnh. Miễn phí trên trình duyệt."
+    },
+    "url-encode": {
+      title: "URL encode decode online miễn phí — encodeURIComponent | OneTool",
+      desc: "URL encode/decode online: encodeURIComponent, encodeURI, form (+). Tiếng Việt UTF-8 — miễn phí trên trình duyệt."
     },
     "developer-tools": {
       title: "UUID Hash Slugify online — SHA-256, timestamp tiếng Việt | OneTool",
@@ -417,6 +462,36 @@ window.OTCatalog = {
             { title: "Avatar", text: "vuông 400×400 hoặc 512×512." },
             { title: "Banner web", text: "chiều rộng theo layout, ví dụ 1920 px." },
             { title: "Xuất WebP/JPG", text: "chọn định dạng nhẹ hơn khi tải về." }
+          ]
+        }
+      ]
+    },
+    "image-blur": {
+      keywords: "làm mờ ảnh, blur ảnh online, làm mờ vùng ảnh, che thông tin trên ảnh, gaussian blur miễn phí",
+      howto: [
+        "Tải ảnh JPG / PNG / WebP lên.",
+        "Chọn làm mờ toàn ảnh hoặc kéo chọn vùng cần che.",
+        "Chỉnh độ mờ, xem trước rồi tải kết quả."
+      ],
+      sections: [
+        {
+          title: "Làm mờ ảnh là gì?",
+          paras: [
+            "**Làm mờ / blur ảnh** dùng hiệu ứng Gaussian để làm nhòe toàn khung hoặc một vùng — thường để ẩn CCCD, biển số, mặt người, hoặc tạo nền bokeh."
+          ]
+        },
+        {
+          title: "Toàn ảnh hay vùng chọn?",
+          list: [
+            { title: "Toàn ảnh", text: "làm mờ cả bức — phù hợp nền slide, thumbnail mờ." },
+            { title: "Vùng chọn", text: "kéo khung trên ảnh gốc để chỉ che phần nhạy cảm." },
+            { title: "Viền mềm", text: "feather giúp mép vùng mờ tự nhiên hơn." }
+          ]
+        },
+        {
+          title: "Riêng tư",
+          paras: [
+            "Ảnh xử lý trên trình duyệt bằng Canvas — không upload lên server OneTool."
           ]
         }
       ]
@@ -603,6 +678,37 @@ window.OTCatalog = {
             { title: "Dung lượng", text: "nên dùng file dưới 100 MB để xử lý mượt trên máy yếu." },
             { title: "Lần đầu", text: "trình duyệt tải bộ xử lý (~25 MB) — chờ thêm vài chục giây." },
             { title: "Bảo mật", text: "video xử lý trên máy bạn, không gửi lên server." }
+          ]
+        }
+      ]
+    },
+    "video-to-gif": {
+      keywords: "video sang gif, mp4 to gif, convert video to gif, tạo gif từ video online miễn phí, cắt video thành gif",
+      howto: [
+        "Thả video (MP4, MOV, WebM, MKV…).",
+        "Chọn điểm bắt đầu và độ dài (tối đa 12 giây).",
+        "Chọn FPS, độ rộng và chất lượng.",
+        "Bấm Tạo GIF và tải file về máy."
+      ],
+      sections: [
+        {
+          title: "Video sang GIF là gì?",
+          paras: [
+            "**Video → GIF** cắt một đoạn clip ngắn thành ảnh động **GIF** để gửi chat, đăng mạng xã hội hoặc nhúng web — không cần phần mềm cài đặt."
+          ]
+        },
+        {
+          title: "Cách tạo GIF đẹp, nhẹ",
+          list: [
+            { title: "Đoạn ngắn", text: "≤ 3–6 giây thường đủ và file nhẹ hơn." },
+            { title: "480px + 10 fps", text: "cân bằng nét và dung lượng (khuyến nghị)." },
+            { title: "Palette đẹp", text: "chế độ 2 bước cho màu ổn định hơn." }
+          ]
+        },
+        {
+          title: "Riêng tư trên máy bạn",
+          paras: [
+            "Chuyển đổi chạy bằng FFmpeg trong trình duyệt — video không upload lên server OneTool."
           ]
         }
       ]
@@ -970,6 +1076,66 @@ window.OTCatalog = {
         }
       ]
     },
+    "pdf-to-excel": {
+      keywords: "pdf sang excel, pdf to excel, convert pdf to excel, pdf to xlsx, chuyển pdf thành excel online miễn phí, trích bảng pdf",
+      howto: [
+        "Thả hoặc chọn file PDF có bảng / báo cáo.",
+        "Chọn mỗi trang một sheet hoặc gộp 1 sheet; OCR tự động nếu là bản scan.",
+        "Bấm chuyển sang Excel và tải file .xlsx (hoặc CSV)."
+      ],
+      sections: [
+        {
+          title: "PDF sang Excel là gì?",
+          paras: [
+            "**PDF → Excel** trích bảng và số liệu từ PDF thành file **XLSX** để lọc, tính toán trong Microsoft Excel hoặc Google Sheets. OneTool gom cột/hàng theo vị trí chữ trên trang."
+          ]
+        },
+        {
+          title: "Khi nào dùng PDF sang Excel?",
+          list: [
+            { title: "Bảng biểu / báo cáo", text: "bảng lương, báo cáo bán hàng, danh sách từ PDF." },
+            { title: "PDF có lớp chữ", text: "cho kết quả cột hàng chính xác nhất." },
+            { title: "PDF scan", text: "bật OCR tiếng Việt để đọc chữ trong ảnh." }
+          ]
+        },
+        {
+          title: "Lưu ý độ chính xác",
+          paras: [
+            "Bảng phức tạp, nhiều cột gộp hoặc layout thiết kế có thể lệch cột. Bạn nên xem trước bảng trên trang rồi chỉnh nhẹ trong Excel nếu cần."
+          ]
+        }
+      ]
+    },
+    "pdf-lock": {
+      keywords: "khóa pdf, đặt mật khẩu pdf, bảo mật pdf, pdf password, encrypt pdf, khóa file pdf online miễn phí",
+      howto: [
+        "Thả hoặc chọn file PDF chưa khóa.",
+        "Nhập mật khẩu mở file và xác nhận.",
+        "Bấm khóa PDF rồi tải file đã mã hóa AES-256."
+      ],
+      sections: [
+        {
+          title: "Khóa PDF là gì?",
+          paras: [
+            "**Khóa PDF** (đặt mật khẩu mở file) mã hóa tài liệu bằng **AES-256** để người nhận phải nhập mật khẩu mới xem được nội dung — phù hợp gửi hồ sơ, hợp đồng, báo cáo tài chính."
+          ]
+        },
+        {
+          title: "Cách gửi file an toàn",
+          list: [
+            { title: "Mật khẩu riêng", text: "gửi mật khẩu qua Zalo/SMS, không ghi trong cùng email với file." },
+            { title: "Độ mạnh", text: "nên ≥ 10 ký tự, có chữ hoa, thường và số." },
+            { title: "PDF đã khóa", text: "tool này không mở / đổi mật khẩu file đã mã hóa sẵn." }
+          ]
+        },
+        {
+          title: "Riêng tư trên máy bạn",
+          paras: [
+            "Toàn bộ mã hóa chạy trong trình duyệt — file PDF không được upload lên server OneTool."
+          ]
+        }
+      ]
+    },
     "office-to-pdf": {
       keywords: "word to pdf, excel to pdf, convert docx to pdf, xlsx sang pdf, word sang pdf online miễn phí, excel sang pdf",
       howto: [
@@ -1136,8 +1302,98 @@ window.OTCatalog = {
           list: [
             { title: "QR link", text: "mở website, form đăng ký, Google Maps." },
             { title: "QR văn bản", text: "ghi chú ngắn, mã khuyến mãi." },
-            { title: "QR danh thiếp", text: "dẫn tới LinkedIn, Zalo OA hoặc thông tin liên hệ." },
-            { title: "QR sự kiện", text: "in trên poster dẫn tới trang đăng ký." }
+            { title: "QR Wi‑Fi / SĐT / Email", text: "dùng preset sẵn trên tool." }
+          ]
+        }
+      ]
+    },
+    "lunar-calendar": {
+      keywords: "đổi lịch âm dương, dương lịch sang âm lịch, âm lịch việt nam, xem ngày âm, can chi, lịch âm hôm nay, chuyển đổi lịch",
+      howto: [
+        "Chọn Dương → Âm hoặc Âm → Dương.",
+        "Nhập ngày / tháng / năm (tick tháng nhuận nếu cần).",
+        "Bấm Đổi lịch — xem Can Chi và sao chép kết quả."
+      ],
+      sections: [
+        {
+          title: "Đổi lịch âm dương là gì?",
+          paras: [
+            "Tool **đổi lịch Dương ↔ Âm** giúp xem ngày âm lịch Việt Nam từ ngày dương (hoặc ngược lại), kèm **Can Chi**, con giáp và tháng nhuận — hữu ích cho giỗ, cưới hỏi, Tết."
+          ]
+        },
+        {
+          title: "Âm lịch Việt Nam khác gì?",
+          list: [
+            { title: "Múi giờ +7", text: "tính theo Việt Nam (thuật toán Hồ Ngọc Đức)." },
+            { title: "Tháng nhuận", text: "một số năm có thêm một tháng âm — nhớ tick đúng nếu đổi Âm → Dương." },
+            { title: "Can Chi", text: "chu kỳ 60 năm / ngày — năm, tháng, ngày đều có tên Can Chi." }
+          ]
+        },
+        {
+          title: "Phạm vi năm",
+          paras: [
+            "Hỗ trợ khoảng **1800–2199**. Kết quả mang tính tham khảo; ngày lễ lớn nên đối chiếu thêm nguồn chính thức nếu cần chính xác tuyệt đối."
+          ]
+        }
+      ]
+    },
+    "currency-convert": {
+      keywords: "đổi tiền tệ, usd sang vnd, eur sang vnd, currency converter, tỷ giá hôm nay, quy đổi tiền online miễn phí",
+      howto: [
+        "Chọn tiền nguồn và tiền đích (mặc định USD → VND).",
+        "Nhập số tiền — kết quả và tỷ giá hiện ngay.",
+        "Bấm đảo chiều hoặc cặp nhanh; sao chép kết quả nếu cần."
+      ],
+      sections: [
+        {
+          title: "Đổi tiền tệ online là gì?",
+          paras: [
+            "**Đổi tiền tệ** quy đổi giữa các loại tiền (USD, EUR, VND…) theo tỷ giá tham khảo cập nhật theo ngày — tiện ước tính mua hàng quốc tế, du lịch, chuyển khoản."
+          ]
+        },
+        {
+          title: "Cặp phổ biến tại Việt Nam",
+          list: [
+            { title: "USD → VND", text: "ước tính giá hàng Mỹ / USD." },
+            { title: "EUR → VND", text: "du lịch châu Âu, hàng EU." },
+            { title: "JPY / CNY / KRW", text: "mua hàng Nhật · Trung · Hàn." }
+          ]
+        },
+        {
+          title: "Lưu ý tỷ giá",
+          paras: [
+            "Đây là tỷ giá **tham khảo** từ nguồn công khai, không phải tỷ giá mua/bán của ngân hàng hay tiệm vàng. Khi giao dịch thật hãy đối chiếu Vietcombank / Techcombank / BIDV."
+          ]
+        }
+      ]
+    },
+    "barcode-generator": {
+      keywords: "tạo mã vạch, barcode generator, code128, ean13, code39, tạo barcode online miễn phí, in tem mã vạch",
+      howto: [
+        "Chọn chuẩn mã vạch (CODE128, EAN-13…).",
+        "Nhập nội dung hoặc bấm mẫu hợp lệ.",
+        "Chỉnh độ dày, chiều cao, màu nếu cần.",
+        "Bấm tạo và tải PNG."
+      ],
+      sections: [
+        {
+          title: "Mã vạch (Barcode) là gì?",
+          paras: [
+            "**Mã vạch** là dải vạch song song mã hóa số/chữ để máy quét đọc nhanh — dùng trên tem sản phẩm, hóa đơn, kho hàng, bao bì."
+          ]
+        },
+        {
+          title: "Nên chọn chuẩn nào?",
+          list: [
+            { title: "CODE128", text: "đa năng nhất cho SKU / mã nội bộ (chữ + số)." },
+            { title: "EAN-13", text: "mã bán lẻ sản phẩm phổ biến tại Việt Nam / quốc tế." },
+            { title: "CODE39", text: "phổ biến trong logistics, kho, công nghiệp." }
+          ]
+        },
+        {
+          title: "In tem đẹp, quét chuẩn",
+          paras: [
+            "Giữ nền trắng – vạch đen tương phản cao, không kéo méo ảnh, in thử và quét bằng app trước khi in số lượng lớn."
           ]
         }
       ]
@@ -1306,6 +1562,37 @@ window.OTCatalog = {
         }
       ]
     },
+    "regex-tester": {
+      keywords: "regex tester, kiểm tra regex, biểu thức chính quy, regex online miễn phí, test regexp javascript",
+      howto: [
+        "Nhập pattern và chọn flags (g, i, m…).",
+        "Dán chuỗi thử — xem highlight và danh sách match.",
+        "Tùy chọn nhập replace để xem chuỗi sau thay thế."
+      ],
+      sections: [
+        {
+          title: "Regex tester là gì?",
+          paras: [
+            "**Regex tester** giúp thử **biểu thức chính quy** trên chuỗi mẫu: xem chỗ khớp, nhóm bắt (`$1`, `$2`…) và kết quả replace — hữu ích khi validate email, SĐT, parse log."
+          ]
+        },
+        {
+          title: "Flags thường dùng",
+          list: [
+            { title: "g", text: "tìm tất cả match (global)." },
+            { title: "i", text: "không phân biệt hoa/thường." },
+            { title: "m", text: "^ và $ theo từng dòng." },
+            { title: "s / u", text: "dotAll (chấm khớp xuống dòng) / unicode." }
+          ]
+        },
+        {
+          title: "Chạy trên máy bạn",
+          paras: [
+            "Engine là **JavaScript RegExp** của trình duyệt — cú pháp giống Node.js. Không gửi chuỗi lên server."
+          ]
+        }
+      ]
+    },
     "base64-tools": {
       keywords: "encode decode base64 utf-8, base64 tiếng việt, url-safe base64",
       howto: [
@@ -1324,6 +1611,36 @@ window.OTCatalog = {
           title: "Cách encode / decode Base64",
           paras: [
             "Tab Encode: nhập text hoặc mở file, tùy chọn URL-safe và Data URL. Tab Decode: dán Base64 hoặc data:image/…;base64,… — text UTF-8 hiển thị trực tiếp, ảnh/file tải về hoặc xem preview."
+          ]
+        }
+      ]
+    },
+    "url-encode": {
+      keywords: "url encode, url decode, encodeuricomponent, percent encoding, mã hóa url online miễn phí, giải mã url",
+      howto: [
+        "Chọn Encode hoặc Decode.",
+        "Chọn encodeURIComponent (query) hoặc encodeURI (cả URL).",
+        "Dán chuỗi — kết quả hiện ngay, sao chép hoặc tải TXT."
+      ],
+      sections: [
+        {
+          title: "URL encode là gì?",
+          paras: [
+            "**URL encode** (percent-encoding) đổi ký tự đặc biệt và tiếng Việt thành dạng `%XX` để truyền an toàn trên URL, query string hoặc form."
+          ]
+        },
+        {
+          title: "encodeURIComponent vs encodeURI",
+          list: [
+            { title: "encodeURIComponent", text: "mã hóa cả ?, &, = — dùng cho từng giá trị query." },
+            { title: "encodeURI", text: "giữ cấu trúc URL (: / ? #) — dùng khi mã hóa cả đường dẫn." },
+            { title: "Space → +", text: "kiểu application/x-www-form-urlencoded phổ biến trong form HTML." }
+          ]
+        },
+        {
+          title: "Tiếng Việt UTF-8",
+          paras: [
+            "Tool dùng API trình duyệt chuẩn — dấu tiếng Việt encode đúng UTF-8, decode lại ra chữ gốc."
           ]
         }
       ]
@@ -1368,10 +1685,10 @@ window.OTCatalog = {
       ]
     },
     "cong-cu-anh": {
-      intro: "**Công cụ ảnh online** — nén dung lượng, convert định dạng, resize, xóa nền AI. Cần ghép ảnh thành PDF? Xem hub **Ảnh ↔ PDF**.",
+      intro: "**Công cụ ảnh online** — nén, convert, resize, **làm mờ / blur**, xóa nền AI. Cần ghép ảnh thành PDF? Xem hub **Ảnh ↔ PDF**.",
       sections: [
-        { title: "Nén & convert ảnh", paras: ["**Nén ảnh** giảm MB với % tiết kiệm rõ ràng. Đổi JPG, PNG, WebP. Resize banner, avatar, thumbnail."] },
-        { title: "Xóa nền & PDF", paras: ["Tách nền AI xuất PNG trong suốt. Ghép nhiều ảnh thành PDF tại **Ảnh → PDF**."] }
+        { title: "Nén, convert & blur", paras: ["**Nén ảnh** giảm MB. Đổi JPG/PNG/WebP. **Làm mờ ảnh** toàn khung hoặc vùng chọn để che thông tin."] },
+        { title: "Resize, xóa nền & PDF", paras: ["Resize banner/avatar. Tách nền AI xuất PNG. Ghép ảnh thành PDF tại **Ảnh → PDF**."] }
       ]
     },
     "cong-cu-chuyen-doi": {
@@ -1389,17 +1706,17 @@ window.OTCatalog = {
       ]
     },
     "cong-cu-lap-trinh": {
-      intro: "Công cụ **lập trình / developer**: JSON formatter, Base64, UUID, hash SHA, slugify tiếng Việt.",
+      intro: "Công cụ **lập trình / developer**: JSON formatter, Regex tester, Base64, URL encode/decode, UUID, hash SHA, slugify tiếng Việt.",
       sections: [
-        { title: "JSON & Base64", paras: ["Format/minify/validate JSON. Encode/decode Base64 UTF-8, URL-safe, Data URL."] },
-        { title: "UUID & Hash", paras: ["Tạo UUID v4, hash SHA-256/384/512, slugify tiêu đề tiếng Việt."] }
+        { title: "JSON, Regex & Base64", paras: ["Format/minify/validate JSON. **Regex tester** highlight match & replace. Encode/decode Base64 UTF-8."] },
+        { title: "URL, UUID & Hash", paras: ["URL encode/decode (encodeURIComponent / encodeURI). Tạo UUID v4, hash SHA-256/384/512, slugify tiêu đề tiếng Việt."] }
       ]
     },
     "cong-cu-tien-ich": {
-      intro: "Tiện ích văn phòng gọn: **QR Code**, **tạo mật khẩu** và **chuyển đổi chữ** (hoa/thường, bỏ dấu).",
+      intro: "Tiện ích văn phòng gọn: **đổi tiền tệ**, **QR Code**, **mã vạch**, **đổi lịch âm dương**, **tạo mật khẩu** và **chuyển đổi chữ**.",
       sections: [
-        { title: "QR & mật khẩu", paras: ["**QR Code** từ link hoặc WiFi. **Password Generator** mật khẩu crypto ngẫu nhiên, đo độ mạnh."] },
-        { title: "Chuyển đổi chữ", paras: ["Viết hoa/thường, Title Case, bỏ dấu tiếng Việt, slug URL, tìm & thay."] }
+        { title: "Tiền tệ & lịch", paras: ["**Đổi tiền tệ** USD/EUR/VND tỷ giá tham khảo. **Đổi lịch âm dương** Can Chi, tháng nhuận."] },
+        { title: "QR, mã vạch & mật khẩu", paras: ["**QR / Barcode** tải PNG. **Password Generator** mật khẩu crypto ngẫu nhiên."] }
       ]
     }
   },

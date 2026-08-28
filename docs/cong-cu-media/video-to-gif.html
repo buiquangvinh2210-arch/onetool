@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video sang GIF online miễn phí — MP4 thành GIF | OneTool</title>
+  <meta name="description" content="Video sang GIF online: cắt đoạn MP4/WebM thành GIF, chọn FPS và độ rộng. Miễn phí trên trình duyệt." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-media/video-to-gif.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260826p" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260826p"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/video-to-gif.css?v=20260828a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="video-to-gif">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="vg-top">
+    <div class="vg-title-row">
+      <div>
+        <h1>Video sang GIF online</h1>
+        <p>Cắt đoạn video thành GIF — chọn điểm bắt đầu, độ dài, FPS và độ rộng. Chạy trên máy bạn.</p>
+      </div>
+      <div class="vg-meta">
+        <span>GIF</span>
+        <span>≤ 12 giây</span>
+        <span>Riêng tư</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="protocolBanner" class="protocol-banner container">Cần chạy qua HTTP (IIS hoặc Live Server), không mở bằng file://.</div>
+
+  <div class="vg-studio">
+    <div class="vg-shell">
+      <aside class="vg-side">
+        <p class="vg-side-label">Nguồn</p>
+        <div class="upload-zone" id="uploadZone" data-kind="media">
+          <input type="file" id="fileInput" accept="video/*,.mp4,.mov,.webm,.mkv,.m4v,.avi" hidden />
+          <div class="upload-placeholder">
+            <span class="upload-icon upload-icon--media">VIDEO</span>
+            <p><strong>Thả video vào đây</strong></p>
+            <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
+          </div>
+        </div>
+
+        <div class="vg-grid-2">
+          <div class="vg-field">
+            <label for="startInput">Bắt đầu</label>
+            <input type="text" id="startInput" class="form-control" inputmode="decimal" placeholder="0:00" autocomplete="off" value="0:00" />
+          </div>
+          <div class="vg-field">
+            <label for="durInput">Độ dài (giây)</label>
+            <input type="number" id="durInput" class="form-control" min="0.5" max="12" step="0.5" value="3" />
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-outline btn-sm btn-block" id="useCurrentBtn">Lấy thời điểm đang xem</button>
+
+        <div class="vg-grid-2">
+          <div class="vg-field">
+            <label for="fpsSelect">FPS</label>
+            <select id="fpsSelect" class="form-control">
+              <option value="8">8 fps (nhẹ)</option>
+              <option value="10" selected>10 fps</option>
+              <option value="12">12 fps</option>
+              <option value="15">15 fps (mượt)</option>
+            </select>
+          </div>
+          <div class="vg-field">
+            <label for="widthSelect">Độ rộng</label>
+            <select id="widthSelect" class="form-control">
+              <option value="320">320 px</option>
+              <option value="480" selected>480 px</option>
+              <option value="640">640 px</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="vg-field">
+          <label for="qualitySelect">Chất lượng</label>
+          <select id="qualitySelect" class="form-control">
+            <option value="good" selected>Đẹp (palette 2 bước)</option>
+            <option value="fast">Nhanh (file nhẹ hơn)</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Tạo GIF</button>
+        <p class="vg-note" id="vgNote">Đoạn tối đa 12 giây. Lần đầu tải bộ xử lý (~25 MB), lần sau cache sẵn.</p>
+      </aside>
+
+      <div class="vg-main">
+        <div class="vg-main-bar">
+          <div>
+            <h2>Xem trước</h2>
+            <p id="status">Chọn video, chọn đoạn rồi tạo GIF.</p>
+          </div>
+          <div class="vg-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải GIF</button>
+          </div>
+        </div>
+        <div class="vg-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
+        <div class="vg-result">
+          <div class="vg-empty" id="resultEmpty">
+            <span class="vg-empty-icon" aria-hidden="true">GIF</span>
+            <p>Video nguồn và GIF kết quả sẽ hiện ở đây.</p>
+          </div>
+
+          <div class="vg-panels hidden" id="previewPanels">
+            <div class="vg-panel">
+              <p class="vg-panel-label">Video nguồn</p>
+              <div class="vg-media">
+                <video id="sourceVideo" controls playsinline></video>
+              </div>
+            </div>
+            <div class="vg-panel hidden" id="gifWrap">
+              <p class="vg-panel-label">GIF kết quả</p>
+              <div class="vg-media">
+                <img id="resultGif" alt="GIF kết quả" />
+              </div>
+            </div>
+          </div>
+
+          <div class="vg-stats hidden" id="statsBox">
+            <div class="vg-stat"><strong id="statDur">—</strong><span>Độ dài</span></div>
+            <div class="vg-stat"><strong id="statFps">—</strong><span>FPS</span></div>
+            <div class="vg-stat"><strong id="statWidth">—</strong><span>Rộng</span></div>
+            <div class="vg-stat"><strong id="statSize">—</strong><span>Dung lượng</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260828h"></script>
+<script src="../assets/js/layout.js?v=20260828e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260828d"></script>
+<script type="module" src="../assets/js/tools/video-to-gif-ui.js?v=20260828a"></script>
+</body>
+</html>

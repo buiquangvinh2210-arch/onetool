@@ -119,13 +119,14 @@
     "tiktok-download",
     "audio-to-text",
     "heic-convert",
-    "pdf-watermark",
-    "video-trim",
+    "currency-convert",
+    "lunar-calendar",
+    "barcode-generator",
+    "pdf-to-excel",
+    "pdf-lock",
+    "video-to-gif",
     "remove-background",
-    "pdf-to-word",
-    "image-compress",
-    "ocr-table",
-    "word-counter"
+    "qr-generator"
   ];
 
   let searchActive = 0;
