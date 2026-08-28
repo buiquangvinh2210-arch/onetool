@@ -137,6 +137,20 @@
 
   const SITE_ORIGIN = "https://onetool.vn";
   const OG_IMAGE = SITE_ORIGIN + "/assets/img/og-share.jpg";
+  const ADSENSE_CLIENT = "ca-pub-9591869402965389";
+
+  function injectAdSense() {
+    if (location.protocol === "file:") return;
+    setMeta("name", "google-adsense-account", ADSENSE_CLIENT, false);
+    if (document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) {
+      return;
+    }
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + ADSENSE_CLIENT;
+    s.crossOrigin = "anonymous";
+    document.head.appendChild(s);
+  }
 
   function sitePath() {
     let path = (location.pathname || "/").replace(/\\/g, "/");
@@ -950,6 +964,7 @@
   try {
     injectCategorySeoMeta();
     injectSeo();
+    injectAdSense();
   } catch (err) {
     console.error("[OneTool layout] seo", err);
   }
