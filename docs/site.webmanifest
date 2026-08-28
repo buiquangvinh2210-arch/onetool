@@ -1,0 +1,26 @@
+{
+  "name": "OneTool",
+  "short_name": "OneTool",
+  "description": "Công cụ PDF, ảnh, video & AI miễn phí trên trình duyệt",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f7fc",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "/assets/img/favicon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
