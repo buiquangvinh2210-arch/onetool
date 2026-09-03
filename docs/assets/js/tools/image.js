@@ -222,7 +222,10 @@ window.OTImage = (function () {
   }
 
   let mpSegmenter = null;
+  let mpDeepLab = null;
   let mpLoading = null;
+  let mpDeepLoading = null;
+  let mpRuntime = null;
   let imglyMod = null;
 
   function deviceTier() {
@@ -237,10 +240,10 @@ window.OTImage = (function () {
   }
 
   const BG_TIER = {
-    desktop: { maxEdge: 1600, maxMb: 12, models: ["isnet_fp16", "isnet_quint8"], refine: true },
-    "desktop-low": { maxEdge: 1280, maxMb: 10, models: ["isnet_quint8", "isnet_fp16"], refine: true },
-    mobile: { maxEdge: 896, maxMb: 8, models: ["isnet_quint8"], refine: true },
-    "mobile-low": { maxEdge: 720, maxMb: 6, models: ["isnet_quint8"], refine: true }
+    desktop: { maxEdge: 1600, maxMb: 12, models: ["isnet_fp16"], refine: true },
+    "desktop-low": { maxEdge: 1200, maxMb: 10, models: ["isnet_quint8"], refine: true },
+    mobile: { maxEdge: 900, maxMb: 8, models: ["isnet_quint8"], refine: false },
+    "mobile-low": { maxEdge: 720, maxMb: 6, models: ["isnet_quint8"], refine: false }
   };
 
   function bgConfig(tier) {
@@ -304,7 +307,7 @@ window.OTImage = (function () {
 
   async function removeBackgroundImgly(file, onProgress, tier = "desktop") {
     const cfg = bgConfig(tier);
-    onProgress?.("Đang tải model xóa nền (lần đầu có thể mất ~30s)…");
+    onProgress?.("Đang tải model AI (lần đầu ~15–40s, lần sau nhanh hơn)…");
     const mod = await loadImgly();
     const removeBg =
       mod.removeBackground ||
@@ -313,35 +316,35 @@ window.OTImage = (function () {
     if (!removeBg) throw new Error("API xóa nền không hợp lệ.");
 
     const publicPath = await resolveImglyPublicPath();
-    const models = cfg.models.filter((m) => m === "isnet" || m === "isnet_fp16" || m === "isnet_quint8");
+    const model = (cfg.models && cfg.models[0]) || "isnet_quint8";
     const hasWebGpu = typeof navigator !== "undefined" && !!navigator.gpu;
-    const devices = tier.startsWith("mobile") || !hasWebGpu ? ["cpu"] : ["gpu", "cpu"];
+    const device = tier.startsWith("mobile") || !hasWebGpu ? "cpu" : "gpu";
+    const attempts = device === "gpu" ? ["gpu", "cpu"] : ["cpu"];
     let lastErr;
 
-    for (const model of models) {
-      for (const device of devices) {
-        try {
-          onProgress?.(device === "cpu" ? "Đang xóa nền…" : "Đang xóa nền (GPU)…");
-          const blob = await withTimeout(
-            removeBg(file, {
-              publicPath,
-              debug: false,
-              device,
-              model,
-              output: { format: "image/png", quality: 1, type: "foreground" },
-              progress: (_key, current, total) => {
-                if (!total) return;
-                const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
-                onProgress?.(`Đang xóa nền… ${pct}%`);
-              }
-            }),
-            90000,
-            "Model quá lâu — thử cách khác."
-          );
-          if (blob instanceof Blob && blob.size > 0) return blob;
-        } catch (e) {
-          lastErr = e;
-        }
+    for (const dev of attempts) {
+      try {
+        onProgress?.(dev === "gpu" ? "Đang xóa nền (GPU)…" : "Đang xóa nền…");
+        const blob = await withTimeout(
+          removeBg(file, {
+            publicPath,
+            debug: false,
+            device: dev,
+            model,
+            output: { format: "image/png", quality: 1, type: "foreground" },
+            progress: (_key, current, total) => {
+              if (!total) return;
+              const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
+              onProgress?.(`Đang xóa nền… ${pct}%`);
+            }
+          }),
+          tier.startsWith("mobile") ? 120000 : 150000,
+          "Model quá lâu — thử lại hoặc dùng ảnh nhỏ hơn."
+        );
+        if (blob instanceof Blob && blob.size > 0) return blob;
+      } catch (e) {
+        lastErr = e;
+        onProgress?.(dev === "gpu" ? "GPU lỗi — chuyển CPU…" : null);
       }
     }
     throw lastErr || new Error("Model không trả về ảnh PNG.");
@@ -362,9 +365,10 @@ window.OTImage = (function () {
   }
 
   /**
-   * Hậu xử lý PNG: mượt cạnh, cắt nền mờ sót, giảm halo màu nền trên mép.
+   * Hậu xử lý PNG: đóng lỗ mask (nối manh mún) + làm mềm mép.
    */
-  async function refineCutoutBlob(blob) {
+  async function refineCutoutBlob(blob, opts = {}) {
+    const closeR = opts.closeRadius != null ? opts.closeRadius : 4;
     const url = URL.createObjectURL(blob);
     try {
       const img = await new Promise((resolve, reject) => {
@@ -384,10 +388,51 @@ window.OTImage = (function () {
       ctx.clearRect(0, 0, w, h);
       ctx.drawImage(img, 0, 0);
 
-      // Tách alpha → blur → gán lại
       const image = ctx.getImageData(0, 0, w, h);
       const d = image.data;
       const n = w * h;
+      const bin = new Uint8Array(n);
+      for (let i = 0; i < n; i++) bin[i] = d[i * 4 + 3] > 72 ? 1 : 0;
+
+      if (closeR > 0) {
+        const closed = morphClose(bin, w, h, closeR);
+        const r = Math.max(1, closeR);
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const i = y * w + x;
+            const o = i * 4;
+            if (closed[i] && d[o + 3] < 72) {
+              let br = 0;
+              let bg = 0;
+              let bb = 0;
+              let bn = 0;
+              const y0 = Math.max(0, y - r);
+              const y1 = Math.min(h - 1, y + r);
+              const x0 = Math.max(0, x - r);
+              const x1 = Math.min(w - 1, x + r);
+              for (let yy = y0; yy <= y1; yy++) {
+                for (let xx = x0; xx <= x1; xx++) {
+                  const j = (yy * w + xx) * 4;
+                  if (d[j + 3] > 120) {
+                    br += d[j];
+                    bg += d[j + 1];
+                    bb += d[j + 2];
+                    bn++;
+                  }
+                }
+              }
+              if (bn) {
+                d[o] = Math.round(br / bn);
+                d[o + 1] = Math.round(bg / bn);
+                d[o + 2] = Math.round(bb / bn);
+                d[o + 3] = 230;
+              }
+            } else if (!closed[i] && d[o + 3] < 90) {
+              d[o + 3] = 0;
+            }
+          }
+        }
+      }
 
       const alphaCanvas = document.createElement("canvas");
       alphaCanvas.width = w;
@@ -395,50 +440,17 @@ window.OTImage = (function () {
       const actx = alphaCanvas.getContext("2d");
       const aImg = actx.createImageData(w, h);
       for (let i = 0; i < n; i++) {
-        const a = d[i * 4 + 3];
         const p = i * 4;
         aImg.data[p] = aImg.data[p + 1] = aImg.data[p + 2] = 255;
-        aImg.data[p + 3] = a;
+        aImg.data[p + 3] = d[p + 3];
       }
       actx.putImageData(aImg, 0, 0);
-      const blurPx = Math.max(0.8, Math.min(2.5, Math.min(w, h) / 450));
+      const blurPx = Math.max(0.7, Math.min(2.2, Math.min(w, h) / 480));
       const softMask = softenMaskCanvas(alphaCanvas, blurPx);
       const softData = softMask.getContext("2d").getImageData(0, 0, w, h).data;
 
       for (let i = 0; i < n; i++) {
-        let a = softData[i * 4 + 3];
-        // Cắt nền sót / nham nhở; giữ soft-edge tóc
-        a = Math.round(smoothstep(18, 210, a) * 255);
-        const o = i * 4;
-        const prevA = d[o + 3] / 255;
-        d[o + 3] = a;
-
-        // Giảm halo: kéo RGB về phía đã “đậm” hơn khi alpha thấp
-        if (a > 10 && a < 245 && prevA > 0.05) {
-          const t = a / 255;
-          const inv = 1 / Math.max(prevA, 0.25);
-          d[o] = Math.min(255, Math.round(d[o] * inv * t));
-          d[o + 1] = Math.min(255, Math.round(d[o + 1] * inv * t));
-          d[o + 2] = Math.min(255, Math.round(d[o + 2] * inv * t));
-        }
-      }
-
-      // Loại đốm nền cô lập
-      const snap = new Uint8ClampedArray(n);
-      for (let i = 0; i < n; i++) snap[i] = d[i * 4 + 3];
-      for (let y = 1; y < h - 1; y++) {
-        for (let x = 1; x < w - 1; x++) {
-          const i = y * w + x;
-          if (snap[i] < 50) continue;
-          let near = 0;
-          for (let dy = -1; dy <= 1; dy++) {
-            for (let dx = -1; dx <= 1; dx++) {
-              if (!dx && !dy) continue;
-              if (snap[(y + dy) * w + (x + dx)] > 90) near++;
-            }
-          }
-          if (near <= 1) d[i * 4 + 3] = 0;
-        }
+        d[i * 4 + 3] = Math.round(smoothstep(6, 240, softData[i * 4 + 3]) * 255);
       }
 
       ctx.putImageData(image, 0, 0);
@@ -450,64 +462,262 @@ window.OTImage = (function () {
     }
   }
 
+  function morphClose(bin, w, h, radius) {
+    return morphErode(morphDilate(bin, w, h, radius), w, h, radius);
+  }
+
+  function morphDilate(bin, w, h, radius) {
+    const out = new Uint8Array(w * h);
+    const r = Math.max(1, radius | 0);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        let on = 0;
+        const y0 = Math.max(0, y - r);
+        const y1 = Math.min(h - 1, y + r);
+        const x0 = Math.max(0, x - r);
+        const x1 = Math.min(w - 1, x + r);
+        outer: for (let yy = y0; yy <= y1; yy++) {
+          for (let xx = x0; xx <= x1; xx++) {
+            if (bin[yy * w + xx]) {
+              on = 1;
+              break outer;
+            }
+          }
+        }
+        out[y * w + x] = on;
+      }
+    }
+    return out;
+  }
+
+  function morphErode(bin, w, h, radius) {
+    const out = new Uint8Array(w * h);
+    const r = Math.max(1, radius | 0);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        let on = 1;
+        const y0 = Math.max(0, y - r);
+        const y1 = Math.min(h - 1, y + r);
+        const x0 = Math.max(0, x - r);
+        const x1 = Math.min(w - 1, x + r);
+        outer: for (let yy = y0; yy <= y1; yy++) {
+          for (let xx = x0; xx <= x1; xx++) {
+            if (!bin[yy * w + xx]) {
+              on = 0;
+              break outer;
+            }
+          }
+        }
+        out[y * w + x] = on;
+      }
+    }
+    return out;
+  }
+
+  function loadBlobImage(blob) {
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        resolve(img);
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error("Không đọc mask"));
+      };
+      img.src = url;
+    });
+  }
+
+  /** Gộp nhiều mask — giữ alpha lớn nhất từng pixel. */
+  async function unionCutoutBlobs(...blobs) {
+    const list = blobs.filter(Boolean);
+    if (!list.length) return null;
+    if (list.length === 1) return list[0];
+    const imgs = await Promise.all(list.map(loadBlobImage));
+    const w = Math.max(...imgs.map((i) => i.naturalWidth));
+    const h = Math.max(...imgs.map((i) => i.naturalHeight));
+    const out = document.createElement("canvas");
+    out.width = w;
+    out.height = h;
+    const ctx = out.getContext("2d", { willReadFrequently: true });
+    const acc = ctx.createImageData(w, h);
+    const ad = acc.data;
+
+    for (const img of imgs) {
+      const tmp = document.createElement("canvas");
+      tmp.width = w;
+      tmp.height = h;
+      const tctx = tmp.getContext("2d", { willReadFrequently: true });
+      tctx.clearRect(0, 0, w, h);
+      tctx.drawImage(img, 0, 0, w, h);
+      const td = tctx.getImageData(0, 0, w, h).data;
+      for (let i = 0; i < ad.length; i += 4) {
+        if (td[i + 3] > ad[i + 3]) {
+          ad[i] = td[i];
+          ad[i + 1] = td[i + 1];
+          ad[i + 2] = td[i + 2];
+          ad[i + 3] = td[i + 3];
+        }
+      }
+    }
+    ctx.putImageData(acc, 0, 0);
+    return OT.canvasToBlob(out, "image/png");
+  }
+
+  /**
+   * Áp alpha mask lên ảnh gốc full-res — nét hơn kết quả AI đã bị thu nhỏ.
+   */
+  async function recompositeOnOriginal(srcImg, maskBlob) {
+    const maskImg = await loadBlobImage(maskBlob);
+    const w = srcImg.naturalWidth;
+    const h = srcImg.naturalHeight;
+    if (w < 2 || h < 2) return maskBlob;
+
+    // Morph trên bản thu nhỏ rồi phóng lại — nhanh hơn trên ảnh lớn
+    const morphEdge = 1100;
+    const edge = Math.max(w, h);
+    const scale = edge > morphEdge ? morphEdge / edge : 1;
+    const mw = Math.max(1, Math.round(w * scale));
+    const mh = Math.max(1, Math.round(h * scale));
+
+    const small = document.createElement("canvas");
+    small.width = mw;
+    small.height = mh;
+    const sctx = small.getContext("2d", { willReadFrequently: true });
+    sctx.clearRect(0, 0, mw, mh);
+    sctx.drawImage(maskImg, 0, 0, mw, mh);
+    const mid = sctx.getImageData(0, 0, mw, mh);
+    const md = mid.data;
+    const n = mw * mh;
+    const bin = new Uint8Array(n);
+    for (let i = 0; i < n; i++) {
+      const a = md[i * 4 + 3];
+      bin[i] = a > 64 ? 1 : 0;
+      md[i * 4] = md[i * 4 + 1] = md[i * 4 + 2] = 255;
+    }
+    const closeR = Math.min(7, Math.max(2, Math.round(Math.min(mw, mh) / 160)));
+    const closed = morphClose(bin, mw, mh, closeR);
+    for (let i = 0; i < n; i++) {
+      if (closed[i]) md[i * 4 + 3] = Math.max(md[i * 4 + 3], 235);
+      else if (md[i * 4 + 3] < 100) md[i * 4 + 3] = 0;
+    }
+    sctx.putImageData(mid, 0, 0);
+
+    const blurPx = Math.max(0.7, Math.min(2.2, Math.min(mw, mh) / 420));
+    const softSmall = softenMaskCanvas(small, blurPx);
+
+    const mask = document.createElement("canvas");
+    mask.width = w;
+    mask.height = h;
+    const mctx = mask.getContext("2d");
+    mctx.imageSmoothingEnabled = true;
+    mctx.imageSmoothingQuality = "high";
+    mctx.clearRect(0, 0, w, h);
+    mctx.drawImage(softSmall, 0, 0, w, h);
+
+    const out = document.createElement("canvas");
+    out.width = w;
+    out.height = h;
+    const ctx = out.getContext("2d", { alpha: true });
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(srcImg, 0, 0);
+    ctx.globalCompositeOperation = "destination-in";
+    ctx.drawImage(mask, 0, 0);
+    ctx.globalCompositeOperation = "source-over";
+    return OT.canvasToBlob(out, "image/png");
+  }
+
   function smoothstep(edge0, edge1, x) {
     const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
     return t * t * (3 - 2 * t);
   }
 
+  async function loadMpRuntime(onProgress) {
+    if (mpRuntime) return mpRuntime;
+    onProgress?.("Đang tải engine xóa nền…");
+    const urls = [
+      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/+esm",
+      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/+esm"
+    ];
+    let mod;
+    let lastErr;
+    for (const u of urls) {
+      try {
+        mod = await import(/* @vite-ignore */ u);
+        break;
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    if (!mod?.FilesetResolver || !mod?.ImageSegmenter) {
+      throw lastErr || new Error("Không tải được model xóa nền.");
+    }
+    const wasmPath = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm";
+    const vision = await mod.FilesetResolver.forVisionTasks(wasmPath);
+    mpRuntime = { mod, vision };
+    return mpRuntime;
+  }
+
+  async function createSegmenter(modelUrl, onProgress, preferCpu, extra) {
+    const { mod, vision } = await loadMpRuntime(onProgress);
+    onProgress?.("Đang khởi tạo model…");
+    const delegates = preferCpu ? ["CPU", "GPU"] : ["GPU", "CPU"];
+    let lastErr;
+    for (const delegate of delegates) {
+      try {
+        return await mod.ImageSegmenter.createFromOptions(vision, {
+          baseOptions: { modelAssetPath: modelUrl, delegate },
+          runningMode: "IMAGE",
+          outputCategoryMask: true,
+          outputConfidenceMasks: extra?.confidence !== false,
+          ...extra?.opts
+        });
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    throw lastErr || new Error("Không khởi tạo được model.");
+  }
+
   async function loadMediaPipeSegmenter(onProgress, preferCpu = false) {
     if (mpSegmenter) return mpSegmenter;
     if (mpLoading) return mpLoading;
-
-    mpLoading = (async () => {
-      onProgress?.("Đang tải model xóa nền…");
-      const urls = [
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/+esm",
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/+esm"
-      ];
-      let mod;
-      let lastErr;
-      for (const u of urls) {
-        try {
-          mod = await import(/* @vite-ignore */ u);
-          break;
-        } catch (e) {
-          lastErr = e;
-        }
-      }
-      if (!mod?.FilesetResolver || !mod?.ImageSegmenter) {
-        throw lastErr || new Error("Không tải được model xóa nền.");
-      }
-
-      const wasmPath = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm";
-      const vision = await mod.FilesetResolver.forVisionTasks(wasmPath);
-      onProgress?.("Đang khởi tạo…");
-
-      const modelUrl =
-        "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite";
-
-      const delegates = preferCpu ? ["CPU", "GPU"] : ["GPU", "CPU"];
-      lastErr = null;
-      for (const delegate of delegates) {
-        try {
-          mpSegmenter = await mod.ImageSegmenter.createFromOptions(vision, {
-            baseOptions: { modelAssetPath: modelUrl, delegate },
-            runningMode: "IMAGE",
-            outputCategoryMask: true,
-            outputConfidenceMasks: true
-          });
-          return mpSegmenter;
-        } catch (e) {
-          lastErr = e;
-        }
-      }
-      throw lastErr || new Error("Không khởi tạo được model.");
-    })().catch((e) => {
-      mpLoading = null;
-      throw e;
-    });
-
+    mpLoading = createSegmenter(
+      "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite",
+      onProgress,
+      preferCpu
+    )
+      .then((s) => {
+        mpSegmenter = s;
+        return s;
+      })
+      .catch((e) => {
+        mpLoading = null;
+        throw e;
+      });
     return mpLoading;
+  }
+
+  async function loadDeepLabSegmenter(onProgress, preferCpu = false) {
+    if (mpDeepLab) return mpDeepLab;
+    if (mpDeepLoading) return mpDeepLoading;
+    mpDeepLoading = createSegmenter(
+      "https://storage.googleapis.com/mediapipe-models/image_segmenter/deeplab_v3/float32/1/deeplab_v3.tflite",
+      onProgress,
+      preferCpu,
+      { confidence: false }
+    )
+      .then((s) => {
+        mpDeepLab = s;
+        return s;
+      })
+      .catch((e) => {
+        mpDeepLoading = null;
+        throw e;
+      });
+    return mpDeepLoading;
   }
 
   function readMaskFloat(mask) {
@@ -585,76 +795,27 @@ window.OTImage = (function () {
     if (!candidates.length) return null;
     candidates.sort((a, b) => b.score - a.score);
     const best = candidates[0];
-    if (best.score < 0.15) return null;
+    if (best.score < 0.12) return null;
     return best;
   }
 
-  function sampleMaskBilinear(data, mw, mh, u, v, invert) {
-    const x = u * (mw - 1);
-    const y = v * (mh - 1);
-    const x0 = Math.floor(x);
-    const y0 = Math.floor(y);
-    const x1 = Math.min(mw - 1, x0 + 1);
-    const y1 = Math.min(mh - 1, y0 + 1);
-    const fx = x - x0;
-    const fy = y - y0;
-    const read = (ix, iy) => {
-      let t = data[iy * mw + ix];
-      if (t > 1) t /= 255;
-      if (invert) t = 1 - t;
-      return t;
-    };
-    const a = read(x0, y0);
-    const b = read(x1, y0);
-    const c = read(x0, y1);
-    const d = read(x1, y1);
-    return a * (1 - fx) * (1 - fy) + b * fx * (1 - fy) + c * (1 - fx) * fy + d * fx * fy;
+  function extractDeepLabPersonMask(result) {
+    const m = result.categoryMask;
+    if (!m) return null;
+    const u8 = m.getAsUint8Array();
+    const data = new Float32Array(u8.length);
+    let person = 0;
+    for (let i = 0; i < u8.length; i++) {
+      const on = u8[i] === 15;
+      data[i] = on ? 1 : 0;
+      if (on) person++;
+    }
+    const coverage = person / Math.max(1, u8.length);
+    if (coverage < 0.008) return null;
+    return { data, w: m.width, h: m.height, invert: false, coverage };
   }
 
-  async function removeBackgroundMediaPipe(file, onProgress, tier = "desktop") {
-    onProgress?.("Đang chuẩn bị ảnh…");
-    const img = await OT.loadImage(file);
-    const maxEdge = tier.startsWith("mobile") ? bgConfig(tier).maxEdge : 1600;
-    const edge = Math.max(img.naturalWidth, img.naturalHeight);
-    const scale = edge > maxEdge ? maxEdge / edge : 1;
-    const w = Math.max(1, Math.round(img.naturalWidth * scale));
-    const h = Math.max(1, Math.round(img.naturalHeight * scale));
-
-    const infer = document.createElement("canvas");
-    infer.width = w;
-    infer.height = h;
-    infer.getContext("2d").drawImage(img, 0, 0, w, h);
-    let input = infer;
-    try {
-      if (typeof createImageBitmap === "function") input = await createImageBitmap(infer);
-    } catch (_) {
-      input = infer;
-    }
-
-    const segmenter = await loadMediaPipeSegmenter(onProgress, tier.startsWith("mobile"));
-    onProgress?.("Đang tách chủ thể…");
-
-    const result = await new Promise((resolve, reject) => {
-      try {
-        segmenter.segment(input, (res) => resolve(res));
-      } catch (e) {
-        reject(e);
-      }
-    });
-    try {
-      input.close?.();
-    } catch (_) {}
-
-    const person = extractPersonMask(result);
-    try {
-      result.categoryMask?.close?.();
-      result.confidenceMasks?.forEach((m) => m.close?.());
-    } catch (_) {}
-
-    if (!person) {
-      throw new Error("Không tách được chủ thể. Thử ảnh chân dung rõ người.");
-    }
-
+  function maskToCanvas(person) {
     const srcMask = document.createElement("canvas");
     srcMask.width = person.w;
     srcMask.height = person.h;
@@ -670,28 +831,96 @@ window.OTImage = (function () {
       sd[p + 3] = Math.round(Math.max(0, Math.min(1, t)) * 255);
     }
     sctx.putImageData(sid, 0, 0);
+    return srcMask;
+  }
 
+  async function segmentToPng(img, person, outW, outH) {
+    const srcMask = maskToCanvas(person);
     const maskCanvas = document.createElement("canvas");
-    maskCanvas.width = w;
-    maskCanvas.height = h;
+    maskCanvas.width = outW;
+    maskCanvas.height = outH;
     const mctx = maskCanvas.getContext("2d");
     mctx.imageSmoothingEnabled = true;
     mctx.imageSmoothingQuality = "high";
-    mctx.drawImage(srcMask, 0, 0, w, h);
-    const blurPx = Math.max(1.8, Math.min(w, h) / 220);
+    mctx.drawImage(srcMask, 0, 0, outW, outH);
+    const blurPx = Math.max(1.2, Math.min(outW, outH) / 280);
     const softMask = softenMaskCanvas(maskCanvas, blurPx);
 
     const out = document.createElement("canvas");
-    out.width = w;
-    out.height = h;
+    out.width = outW;
+    out.height = outH;
     const ctx = out.getContext("2d", { alpha: true });
-    ctx.clearRect(0, 0, w, h);
-    ctx.drawImage(img, 0, 0, w, h);
+    ctx.clearRect(0, 0, outW, outH);
+    ctx.drawImage(img, 0, 0, outW, outH);
     ctx.globalCompositeOperation = "destination-in";
     ctx.drawImage(softMask, 0, 0);
     ctx.globalCompositeOperation = "source-over";
-
     return OT.canvasToBlob(out, "image/png");
+  }
+
+  async function runSegmenter(segmenter, inferCanvas) {
+    let input = inferCanvas;
+    try {
+      if (typeof createImageBitmap === "function") input = await createImageBitmap(inferCanvas);
+    } catch (_) {
+      input = inferCanvas;
+    }
+    const result = await new Promise((resolve, reject) => {
+      try {
+        segmenter.segment(input, (res) => resolve(res));
+      } catch (e) {
+        reject(e);
+      }
+    });
+    try {
+      input.close?.();
+    } catch (_) {}
+    return result;
+  }
+
+  async function removeBackgroundMediaPipe(file, onProgress, tier = "desktop", kind = "selfie") {
+    onProgress?.("Đang chuẩn bị ảnh…");
+    const img = await OT.loadImage(file);
+    const maxEdge = kind === "person"
+      ? (tier.startsWith("mobile") ? 512 : 720)
+      : (tier.startsWith("mobile") ? bgConfig(tier).maxEdge : 1280);
+    const edge = Math.max(img.naturalWidth, img.naturalHeight);
+    const scale = edge > maxEdge ? maxEdge / edge : 1;
+    const w = Math.max(1, Math.round(img.naturalWidth * scale));
+    const h = Math.max(1, Math.round(img.naturalHeight * scale));
+
+    const infer = document.createElement("canvas");
+    infer.width = w;
+    infer.height = h;
+    infer.getContext("2d").drawImage(img, 0, 0, w, h);
+
+    const preferCpu = tier.startsWith("mobile");
+    let person = null;
+
+    if (kind === "person") {
+      onProgress?.("Đang tìm người trong ảnh…");
+      const deeplab = await loadDeepLabSegmenter(onProgress, preferCpu);
+      const result = await runSegmenter(deeplab, infer);
+      person = extractDeepLabPersonMask(result);
+      try {
+        result.categoryMask?.close?.();
+        result.confidenceMasks?.forEach((m) => m.close?.());
+      } catch (_) {}
+      if (!person) throw new Error("Không thấy người rõ trong ảnh.");
+    } else {
+      const segmenter = await loadMediaPipeSegmenter(onProgress, preferCpu);
+      onProgress?.("Đang tách chủ thể…");
+      const result = await runSegmenter(segmenter, infer);
+      person = extractPersonMask(result);
+      try {
+        result.categoryMask?.close?.();
+        result.confidenceMasks?.forEach((m) => m.close?.());
+      } catch (_) {}
+      if (!person) throw new Error("Không tách được chủ thể.");
+    }
+
+    onProgress?.("Đang xuất PNG…");
+    return segmentToPng(img, person, w, h);
   }
 
   async function looksLikeWhiteSilhouette(blob) {
@@ -725,6 +954,108 @@ window.OTImage = (function () {
     }
   }
 
+  function medianByte(arr) {
+    const a = arr.slice().sort((x, y) => x - y);
+    const m = Math.floor(a.length / 2);
+    return a.length % 2 ? a[m] : Math.round((a[m - 1] + a[m]) / 2);
+  }
+
+  function rgbDist(r, g, b, br, bg, bb) {
+    const dr = r - br;
+    const dg = g - bg;
+    const db = b - bb;
+    return Math.sqrt(dr * dr + dg * dg + db * db);
+  }
+
+  function sampleCornerMedian(data, w, h, size) {
+    const patches = [
+      [0, 0],
+      [w - size, 0],
+      [0, h - size],
+      [w - size, h - size]
+    ];
+    const rs = [];
+    const gs = [];
+    const bs = [];
+    patches.forEach(([sx, sy]) => {
+      for (let y = sy; y < sy + size; y++) {
+        for (let x = sx; x < sx + size; x++) {
+          const i = (y * w + x) * 4;
+          if (data[i + 3] < 8) continue;
+          rs.push(data[i]);
+          gs.push(data[i + 1]);
+          bs.push(data[i + 2]);
+        }
+      }
+    });
+    if (rs.length < 8) return { r: 255, g: 255, b: 255, ok: false };
+    return {
+      r: medianByte(rs),
+      g: medianByte(gs),
+      b: medianByte(bs),
+      ok: true
+    };
+  }
+
+  function analyzeGraphicBg(img) {
+    const tw = Math.min(160, img.naturalWidth);
+    const th = Math.min(160, img.naturalHeight);
+    const c = document.createElement("canvas");
+    c.width = tw;
+    c.height = th;
+    const cx = c.getContext("2d", { willReadFrequently: true });
+    cx.drawImage(img, 0, 0, tw, th);
+    const { data } = cx.getImageData(0, 0, tw, th);
+    const corner = sampleCornerMedian(data, tw, th, Math.max(4, Math.floor(Math.min(tw, th) * 0.08)));
+    const bg = corner;
+    let near = 0;
+    let n = 0;
+    const seen = new Set();
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] < 8) continue;
+      n++;
+      const d = rgbDist(data[i], data[i + 1], data[i + 2], bg.r, bg.g, bg.b);
+      if (d < 38) near++;
+      const key = ((data[i] >> 4) << 8) | ((data[i + 1] >> 4) << 4) | (data[i + 2] >> 4);
+      seen.add(key);
+    }
+    const bgFrac = n ? near / n : 0;
+    const unique = seen.size;
+    // Chỉ coi là logo khi nền trơn rõ (tránh nhầm ảnh tối / ảnh phức tạp)
+    const likely = corner.ok && bgFrac >= 0.38 && unique <= 64;
+    const confidence =
+      Math.min(1, (bgFrac - 0.28) * 2.2 + (unique <= 40 ? 0.3 : unique <= 56 ? 0.12 : 0));
+    return { likely, confidence, bg, bgFrac, unique };
+  }
+
+  async function removeBackgroundGraphic(img, info, onProgress) {
+    onProgress?.("Xóa nền logo / chữ (theo màu phông)…");
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true, alpha: true });
+    ctx.drawImage(img, 0, 0);
+    const image = ctx.getImageData(0, 0, w, h);
+    const d = image.data;
+    const bg = info.bg;
+    const t0 = 18;
+    const t1 = 52;
+
+    for (let i = 0; i < d.length; i += 4) {
+      const dist = rgbDist(d[i], d[i + 1], d[i + 2], bg.r, bg.g, bg.b);
+      let a;
+      if (dist <= t0) a = 0;
+      else if (dist >= t1) a = 255;
+      else a = Math.round(((dist - t0) / (t1 - t0)) * 255);
+      d[i + 3] = Math.min(d[i + 3], a);
+    }
+
+    ctx.putImageData(image, 0, 0);
+    return OT.canvasToBlob(canvas, "image/png");
+  }
+
   async function removeBackground(file, { onProgress } = {}) {
     if (location.protocol === "file:") {
       throw new Error("Xóa nền cần chạy qua HTTP (IIS / Live Server).");
@@ -742,39 +1073,70 @@ window.OTImage = (function () {
       );
     }
 
-    const workFile = await prepareFileForBgRemoval(file, tier);
-    onProgressHint = null;
+    const workImg = await OT.loadImage(file);
+    const graphic = analyzeGraphicBg(workImg);
+    // Logo / chữ nền trơn → chroma; còn lại → AI (một nút, tự nhận)
+    const wantLogo = graphic.likely && graphic.confidence >= 0.55;
 
     const t0 = performance.now();
     let blob = null;
-    let engine = "mediapipe";
+    let engine = "chroma";
 
-    async function tryMediaPipe() {
-      const out = await removeBackgroundMediaPipe(workFile, onProgress, tier);
-      if (await looksLikeWhiteSilhouette(out)) throw new Error("mask lỗi");
-      return out;
+    if (wantLogo) {
+      onProgress?.("Nhận diện logo / chữ — xóa phông theo màu…");
+      blob = await removeBackgroundGraphic(workImg, graphic, onProgress);
+      engine = "chroma";
+    } else {
+      onProgressHint = null;
+      onProgress?.("Đang tách nền bằng AI…");
+
+      const masks = [];
+
+      try {
+        const prepared = await prepareFileForBgRemoval(file, tier);
+        let imglyBlob = await removeBackgroundImgly(prepared, onProgress, tier);
+        if (await looksLikeWhiteSilhouette(imglyBlob)) imglyBlob = null;
+        if (imglyBlob) masks.push(imglyBlob);
+      } catch (e) {
+        console.warn("[remove-bg] imgly:", e);
+      }
+
+      if (!tier.startsWith("mobile-low")) {
+        try {
+          onProgress?.("Bổ sung vùng người…");
+          let personBlob = await removeBackgroundMediaPipe(file, onProgress, tier, "person");
+          if (await looksLikeWhiteSilhouette(personBlob)) personBlob = null;
+          if (personBlob) masks.push(personBlob);
+        } catch (e) {
+          console.warn("[remove-bg] person mask:", e);
+        }
+      }
+
+      // Nếu mask còn mỏng, thử thêm selfie segmenter
+      if (masks.length < 2 && !tier.startsWith("mobile")) {
+        try {
+          onProgress?.("Bổ sung chủ thể…");
+          let selfieBlob = await removeBackgroundMediaPipe(file, onProgress, tier, "selfie");
+          if (await looksLikeWhiteSilhouette(selfieBlob)) selfieBlob = null;
+          if (selfieBlob) masks.push(selfieBlob);
+        } catch (e) {
+          console.warn("[remove-bg] selfie:", e);
+        }
+      }
+
+      if (!masks.length) {
+        throw new Error("Không tách được nền. Thử ảnh rõ chủ thể hơn hoặc logo nền trơn.");
+      }
+
+      onProgress?.(masks.length > 1 ? "Gộp mask…" : "Ghép lên ảnh gốc…");
+      blob = await unionCutoutBlobs(...masks);
+      engine = masks.length > 1 ? "multi" : "ai";
+
+      onProgress?.("Làm sạch cạnh…");
+      blob = await recompositeOnOriginal(workImg, blob);
     }
 
-    async function tryImgly() {
-      const out = await removeBackgroundImgly(workFile, onProgress, tier);
-      if (await looksLikeWhiteSilhouette(out)) throw new Error("mask lỗi");
-      return out;
-    }
-
-    try {
-      blob = await tryImgly();
-      engine = "imgly";
-    } catch (e) {
-      console.warn("[remove-bg] imgly failed:", e);
-      onProgress?.("Chuyển sang model dự phòng…");
-      blob = await tryMediaPipe();
-      engine = "mediapipe";
-    }
-
-    if (cfg.refine) {
-      onProgress?.("Đang làm mượt cạnh…");
-      blob = await refineCutoutBlob(blob);
-    }
+    onProgressHint = null;
 
     const sec = ((performance.now() - t0) / 1000).toFixed(1);
     onProgress?.(`Xong trong ~${sec}s`);
