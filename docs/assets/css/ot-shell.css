@@ -1788,6 +1788,34 @@ body[data-tool] pre#preview {
   line-height: 1.75 !important;
 }
 
+.tool-seo-faq {
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.tool-seo-faq-item {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.tool-seo-faq dt {
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.tool-seo-faq dd {
+  margin: 0;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
 /* ── Footer ── */
 .site-footer,
 .site-footer a,

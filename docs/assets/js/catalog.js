@@ -56,9 +56,9 @@ window.OTCatalog = {
       name: "Tiện ích",
       desc: "Đếm từ, đổi tiền tệ, QR, mã vạch, lịch âm dương",
       icon: "🔧",
-      seoTitle: "Tiện ích online — Đổi tiền tệ, QR, mã vạch, lịch âm | OneTool",
-      seoDescription: "Đổi tiền tệ USD/EUR/VND, tạo mã QR, mã vạch, đổi Dương ↔ Âm lịch, password — tiện ích miễn phí.",
-      seoKeywords: "đổi tiền tệ, usd sang vnd, tạo qr code, tạo mã vạch, đổi lịch âm dương"
+      seoTitle: "Tiện ích online miễn phí — Đổi tiền tệ, QR, lịch âm, đếm từ | OneTool",
+      seoDescription: "Đổi tiền tệ USD/EUR/VND, tạo mã QR, mã vạch, đổi lịch âm dương, đếm từ, tạo mật khẩu — tiện ích online miễn phí.",
+      seoKeywords: "đổi tiền tệ, usd sang vnd, tạo qr code, tạo mã vạch, đổi lịch âm dương, đếm từ online"
     },
     {
       slug: "units",
@@ -73,8 +73,8 @@ window.OTCatalog = {
   ],
   tools: [
     /* Media — nổi bật trước */
-    { slug: "tiktok-download", name: "Tải TikTok không logo", desc: "Dán link → tải MP4 HD không dính logo / watermark TikTok.", icon: "🎵", cat: "media", featured: true, rank: 1 },
-    { slug: "audio-to-text", name: "Audio to Text tiếng Việt", desc: "Chuyển giọng nói thành văn bản tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.", icon: "🎙️", cat: "media", featured: true, rank: 2 },
+    { slug: "tiktok-download", name: "Tải video TikTok không logo", desc: "Dán link → tải MP4 HD không dính logo / watermark TikTok.", icon: "🎵", cat: "media", featured: true, rank: 1 },
+    { slug: "audio-to-text", name: "Chuyển giọng nói thành văn bản", desc: "Audio to text tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.", icon: "🎙️", cat: "media", featured: true, rank: 2 },
     { slug: "ai-summarize", name: "Tóm tắt AI", desc: "Rút gọn bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng hoặc TL;DR.", icon: "✨", cat: "media", featured: true, rank: 3 },
     { slug: "video-convert", name: "Nén video online", desc: "Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.", icon: "🎬", cat: "media", featured: true, rank: 4 },
     { slug: "video-to-gif", name: "Video sang GIF", desc: "Cắt đoạn MP4/WebM thành GIF — chọn FPS, độ rộng, chất lượng palette.", icon: "🎞️", cat: "media", featured: true, rank: 5 },
@@ -87,22 +87,22 @@ window.OTCatalog = {
     { slug: "image-pdf", name: "Ảnh ↔ PDF", desc: "Hai hướng rõ ràng: ghép ảnh thành PDF, hoặc xuất PDF ra ảnh.", icon: "🔄", cat: "pdf-tools", featured: true, rank: 4 },
     { slug: "image-to-pdf", name: "Ảnh sang PDF", desc: "Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.", icon: "🖼️", cat: "pdf-tools", featured: true, rank: 5 },
     { slug: "pdf-to-image", name: "PDF sang ảnh", desc: "Xuất từng trang PDF ra PNG / JPG / WebP — xem trước hoặc tải ZIP.", icon: "🌄", cat: "pdf-tools", featured: true, rank: 6 },
-    { slug: "pdf-lock", name: "Khóa PDF", desc: "Đặt mật khẩu mở file PDF (AES-256) — bảo vệ hồ sơ trước khi gửi.", icon: "🔒", cat: "pdf-tools", featured: true, rank: 7 },
-    { slug: "pdf-watermark", name: "Watermark PDF", desc: "Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.", icon: "💧", cat: "pdf-tools", featured: true, rank: 8 },
+    { slug: "pdf-lock", name: "Đặt mật khẩu PDF", desc: "Khóa PDF bằng mật khẩu mở file (AES-256) — bảo vệ hồ sơ trước khi gửi.", icon: "🔒", cat: "pdf-tools", featured: true, rank: 7 },
+    { slug: "pdf-watermark", name: "Đóng dấu PDF", desc: "Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.", icon: "💧", cat: "pdf-tools", featured: true, rank: 8 },
     { slug: "pdf-compress", name: "Nén PDF online", desc: "Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true, rank: 9 },
-    { slug: "office-to-pdf", name: "Word/Excel sang PDF", desc: "Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.", icon: "📑", cat: "pdf-tools", rank: 10 },
+    { slug: "office-to-pdf", name: "Word sang PDF", desc: "Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.", icon: "📑", cat: "pdf-tools", rank: 10 },
     { slug: "pdf-split", name: "Tách PDF online", desc: "Tách PDF theo trang hoặc khoảng — tải đúng phần cần dùng.", icon: "✂️", cat: "pdf-tools", rank: 11 },
-    { slug: "pdf-pages", name: "Xoay xóa trang PDF", desc: "Xoay trang bị ngược hoặc xóa trang trắng / trang nhầm trước khi gửi.", icon: "🔄", cat: "pdf-tools", rank: 12 },
+    { slug: "pdf-pages", name: "Xoay PDF / xóa trang", desc: "Xoay trang bị ngược hoặc xóa trang trắng / trang nhầm trước khi gửi.", icon: "🔄", cat: "pdf-tools", rank: 12 },
     { slug: "pdf-convert", name: "PDF sang TXT", desc: "Trích chữ từ PDF (text layer + OCR bản scan) ra TXT.", icon: "📤", cat: "pdf-tools", rank: 13 },
 
     /* Ảnh */
     { slug: "remove-background", name: "Xóa nền ảnh", desc: "Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.", icon: "✂️", cat: "images", featured: true, rank: 1 },
     { slug: "heic-convert", name: "HEIC sang JPG", desc: "Chuyển HEIC / HEIF (và JPG PNG) sang JPG · PNG · WebP — nhiều ảnh, tải ZIP.", icon: "📱", cat: "images", featured: true, rank: 2 },
     { slug: "image-compress", name: "Nén ảnh online", desc: "Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau.", icon: "🗜️", cat: "images", featured: true, rank: 3 },
-    { slug: "image-convert", name: "Convert ảnh", desc: "Đổi JPG ↔ PNG ↔ WebP và các định dạng phổ biến — kéo thả, chọn format, tải về.", icon: "🖼️", cat: "images", featured: true, rank: 4 },
-    { slug: "image-resize", name: "Resize ảnh", desc: "Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.", icon: "📐", cat: "images", featured: true, rank: 5 },
-    { slug: "image-blur", name: "Làm mờ ảnh", desc: "Blur toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.", icon: "🌫️", cat: "images", featured: true, rank: 6 },
-    { slug: "image-batch", name: "Xử lý hàng loạt ảnh", desc: "Convert, resize hoặc nén nhiều ảnh cùng lúc — phù hợp catalog sản phẩm.", icon: "📦", cat: "images", rank: 7 },
+    { slug: "image-convert", name: "Đổi định dạng ảnh", desc: "Đổi JPG ↔ PNG ↔ WebP online — kéo thả, chọn format, tải về.", icon: "🖼️", cat: "images", featured: true, rank: 4 },
+    { slug: "image-resize", name: "Đổi kích thước ảnh", desc: "Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.", icon: "📐", cat: "images", featured: true, rank: 5 },
+    { slug: "image-blur", name: "Làm mờ ảnh", desc: "Làm mờ toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.", icon: "🌫️", cat: "images", featured: true, rank: 6 },
+    { slug: "image-batch", name: "Nén nhiều ảnh cùng lúc", desc: "Đổi định dạng, resize hoặc nén nhiều ảnh cùng lúc — phù hợp catalog sản phẩm.", icon: "📦", cat: "images", rank: 7 },
 
     /* File & dữ liệu */
     { slug: "excel-convert", name: "Excel sang CSV JSON", desc: "Convert XLSX/XLS sang CSV hoặc JSON — và ngược lại. Chọn sheet, xem trước, tải file.", icon: "📗", cat: "file-converter", featured: true, rank: 1 },
@@ -141,257 +141,277 @@ window.OTCatalog = {
     { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 4 },
     { slug: "barcode-generator", name: "Tạo mã vạch", desc: "Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG.", icon: "🏷️", cat: "utilities", featured: true, rank: 5 },
     { slug: "password-generator", name: "Tạo mật khẩu", desc: "Tạo mật khẩu mạnh ngẫu nhiên — chữ, số, ký tự đặc biệt, đo độ mạnh.", icon: "🔐", cat: "utilities", featured: true, rank: 6 },
-    { slug: "text-convert", name: "Chuyển đổi chữ", desc: "Viết hoa/thường, bỏ dấu tiếng Việt, slug URL, dọn dòng, encode — chạy trên máy bạn.", icon: "Aa", cat: "utilities", featured: true, rank: 7 }
+    { slug: "text-convert", name: "Bỏ dấu tiếng Việt", desc: "Bỏ dấu, viết hoa/thường, slug URL, dọn dòng — chạy trên máy bạn.", icon: "Aa", cat: "utilities", featured: true, rank: 7 }
   ],
 
   origin: "https://onetool.vn",
 
   pageMeta: {
     "remove-background": {
-      title: "Xóa nền ảnh online miễn phí — PNG trong suốt | OneTool",
-      desc: "Xóa nền ảnh online bằng AI: tách người, sản phẩm khỏi phông, xem preview, tải PNG trong suốt. Miễn phí."
+      title: "Xóa nền ảnh online miễn phí | OneTool",
+      desc: "Xóa nền ảnh online miễn phí — tách người, sản phẩm, logo khỏi phông, tải PNG trong suốt. Không đăng ký."
     },
     "image-compress": {
-      title: "Nén ảnh online miễn phí — JPG PNG WebP | OneTool",
-      desc: "Nén ảnh online giảm dung lượng JPG PNG WebP. Xem % tiết kiệm, so sánh trước/sau — miễn phí trên trình duyệt."
+      title: "Nén ảnh online miễn phí — giảm dung lượng JPG PNG | OneTool",
+      desc: "Nén ảnh online miễn phí: giảm dung lượng JPG, PNG, WebP. Xem % tiết kiệm, so sánh trước sau."
     },
     "image-convert": {
-      title: "Convert ảnh online miễn phí — JPG PNG WebP | OneTool",
-      desc: "Convert ảnh online: đổi JPG ↔ PNG ↔ WebP và định dạng phổ biến. Kéo thả, chọn format, tải về — miễn phí."
+      title: "Đổi định dạng ảnh online — JPG PNG WebP miễn phí | OneTool",
+      desc: "Đổi ảnh JPG sang PNG, PNG sang JPG, WebP online miễn phí. Kéo thả, chọn format, tải về ngay."
     },
     "image-resize": {
-      title: "Resize ảnh online miễn phí — đổi kích thước pixel | OneTool",
-      desc: "Resize ảnh online theo pixel hoặc preset. Giữ tỉ lệ, xuất JPG/PNG/WebP — miễn phí trên trình duyệt."
+      title: "Đổi kích thước ảnh online miễn phí | OneTool",
+      desc: "Đổi kích thước ảnh online theo pixel hoặc preset (avatar, banner). Giữ tỉ lệ, xuất JPG PNG WebP."
     },
     "image-blur": {
-      title: "Làm mờ ảnh online miễn phí — blur ảnh JPG PNG | OneTool",
-      desc: "Làm mờ / blur ảnh online: toàn ảnh hoặc vùng chọn, chỉnh độ mờ, xuất JPG PNG WebP. Miễn phí trên trình duyệt."
+      title: "Làm mờ ảnh online miễn phí — che thông tin | OneTool",
+      desc: "Làm mờ ảnh online: blur toàn ảnh hoặc vùng chọn để che CCCD, biển số. Xuất JPG PNG WebP miễn phí."
     },
     "image-batch": {
-      title: "Xử lý hàng loạt ảnh online — convert, resize, nén | OneTool",
-      desc: "Batch ảnh online: convert, resize hoặc nén nhiều ảnh cùng lúc. Phù hợp catalog sản phẩm — miễn phí."
+      title: "Nén resize nhiều ảnh cùng lúc — batch ảnh online | OneTool",
+      desc: "Xử lý hàng loạt ảnh online: đổi định dạng, resize hoặc nén nhiều ảnh một lần. Miễn phí."
     },
     "tiktok-download": {
-      title: "Tải TikTok không logo — MP4 HD online miễn phí | OneTool",
-      desc: "Tải video TikTok từ link công khai: lấy MP4 HD hoặc MP3 cho nội dung bạn sở hữu hoặc được phép sử dụng. Miễn phí."
+      title: "Tải video TikTok không logo miễn phí | OneTool",
+      desc: "Tải TikTok không watermark / không logo từ link — MP4 HD hoặc MP3. Chỉ dùng khi bạn có quyền nội dung."
     },
     "audio-to-text": {
-      title: "Audio to Text tiếng Việt — chuyển giọng nói thành văn bản | OneTool",
-      desc: "Audio to Text tiếng Việt: chuyển giọng nói thành văn bản từ MP3, WAV, MP4. Xuất TXT và phụ đề SRT — miễn phí."
+      title: "Chuyển giọng nói thành văn bản tiếng Việt | OneTool",
+      desc: "Audio to text tiếng Việt: chuyển giọng nói thành văn bản từ MP3 WAV MP4, xuất TXT và phụ đề SRT."
     },
     "ai-summarize": {
-      title: "Tóm tắt AI online — rút gọn văn bản tiếng Việt miễn phí | OneTool",
-      desc: "Tóm tắt AI tiếng Việt: rút gọn bài viết, biên bản, email thành đoạn văn, gạch đầu dòng hoặc TL;DR. Miễn phí."
+      title: "Tóm tắt văn bản AI online miễn phí | OneTool",
+      desc: "Tóm tắt AI tiếng Việt online: rút gọn bài viết, biên bản, email — đoạn văn, gạch đầu dòng hoặc TL;DR."
     },
     "video-convert": {
-      title: "Nén video online miễn phí — nén MP4, WebM, tách MP3 | OneTool",
-      desc: "Nén video online: giảm dung lượng MP4, đổi WebM hoặc tách MP3 ngay trên trình duyệt. Miễn phí, không cần đăng nhập."
+      title: "Nén video online miễn phí — nén MP4 | OneTool",
+      desc: "Nén video online miễn phí: giảm dung lượng MP4, đổi WebM hoặc tách MP3 ngay trên trình duyệt."
     },
     "video-to-gif": {
-      title: "Video sang GIF online miễn phí — MP4 thành GIF | OneTool",
-      desc: "Video sang GIF online: cắt đoạn MP4/WebM thành GIF, chọn FPS và độ rộng. Miễn phí trên trình duyệt."
+      title: "Chuyển video sang GIF online miễn phí | OneTool",
+      desc: "Video sang GIF online: cắt đoạn MP4/WebM thành GIF, chọn FPS và độ rộng. Miễn phí."
     },
     "video-trim": {
-      title: "Cắt video online miễn phí — trim MP4 theo thời gian | OneTool",
-      desc: "Cắt video online (trim): chọn đoạn start–end, xem trước rồi xuất clip mới. Miễn phí trên trình duyệt."
+      title: "Cắt video online miễn phí — trim MP4 | OneTool",
+      desc: "Cắt video online miễn phí: chọn đoạn start–end, xem trước rồi xuất clip MP4 mới."
     },
     "heic-convert": {
-      title: "HEIC sang JPG online miễn phí — đổi HEIC/HEIF | OneTool",
-      desc: "Đổi ảnh HEIC/HEIF từ iPhone sang JPG, PNG, WebP online. Nhiều ảnh, tải ZIP — miễn phí trên trình duyệt."
+      title: "HEIC sang JPG online miễn phí — ảnh iPhone | OneTool",
+      desc: "Đổi HEIC sang JPG online miễn phí. Chuyển ảnh iPhone HEIC/HEIF sang JPG PNG WebP, tải ZIP."
     },
     "pdf-watermark": {
-      title: "Watermark PDF online miễn phí — đóng dấu chữ / logo | OneTool",
-      desc: "Watermark PDF online: thêm chữ hoặc logo, chỉnh độ mờ, góc xoay, vị trí, khoảng trang. Miễn phí trên trình duyệt."
+      title: "Đóng dấu PDF online — watermark chữ logo miễn phí | OneTool",
+      desc: "Watermark PDF / đóng dấu PDF online: thêm chữ hoặc logo, chỉnh độ mờ và vị trí. Miễn phí."
     },
     "ocr-table": {
-      title: "OCR bảng sang Excel online — ảnh thành XLSX CSV | OneTool",
-      desc: "OCR bảng tiếng Việt: chụp bảng, biên lai, screenshot → chỉnh sửa → tải Excel/CSV. Miễn phí trên trình duyệt."
+      title: "Ảnh sang Excel online — OCR bảng tiếng Việt | OneTool",
+      desc: "OCR bảng sang Excel: ảnh biên lai, bảng điểm → XLSX/CSV. Hỗ trợ tiếng Việt, miễn phí."
     },
     "word-counter": {
-      title: "Đếm từ online miễn phí — Word Counter tiếng Việt | OneTool",
-      desc: "Đếm từ online tiếng Việt: từ, ký tự, câu, đoạn, thời gian đọc, mật độ từ khóa. Dán text hoặc mở file TXT."
+      title: "Đếm từ online miễn phí — đếm ký tự tiếng Việt | OneTool",
+      desc: "Đếm từ online tiếng Việt: số từ, ký tự, câu, đoạn, thời gian đọc. Dán text hoặc mở file TXT."
     },
     "pdf-merge": {
       title: "Gộp PDF online miễn phí — ghép nhiều file PDF | OneTool",
-      desc: "Gộp PDF online: ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về. Miễn phí."
+      desc: "Gộp PDF / ghép PDF online miễn phí: nối nhiều file thành một, sắp xếp thứ tự rồi tải về."
     },
     "pdf-split": {
-      title: "Tách PDF online miễn phí — cắt theo trang hoặc khoảng | OneTool",
-      desc: "Tách PDF online: cắt theo trang hoặc khoảng (ví dụ 1-3,5). Tải file mới ngay — miễn phí trên trình duyệt."
+      title: "Tách PDF online miễn phí — cắt PDF theo trang | OneTool",
+      desc: "Tách PDF online miễn phí: cắt theo trang hoặc khoảng (1-3, 5). Tải đúng phần cần dùng."
     },
     "pdf-compress": {
       title: "Nén PDF online miễn phí — giảm dung lượng PDF | OneTool",
-      desc: "Nén PDF online để gửi email, Zalo hoặc nộp hồ sơ. Xem phần trăm tiết kiệm rồi tải file nhẹ hơn — miễn phí."
+      desc: "Nén PDF online miễn phí để gửi email, Zalo, nộp hồ sơ. Giảm MB, xem % tiết kiệm rồi tải về."
     },
     "pdf-pages": {
-      title: "Xoay và xóa trang PDF online miễn phí | OneTool",
-      desc: "Xoay trang PDF 90°/180°/270° hoặc xóa trang không cần. Thao tác trên trình duyệt — miễn phí."
+      title: "Xoay PDF online — xóa trang PDF miễn phí | OneTool",
+      desc: "Xoay trang PDF 90°/180°/270° hoặc xóa trang trắng / trang nhầm online miễn phí."
     },
     "pdf-convert": {
-      title: "PDF sang TXT online miễn phí — trích chữ + OCR | OneTool",
-      desc: "PDF sang TXT online: trích chữ từ PDF, OCR bản scan tiếng Việt. Xuất văn bản để copy hoặc tìm kiếm — miễn phí."
+      title: "PDF sang TXT online — trích chữ OCR miễn phí | OneTool",
+      desc: "Chuyển PDF sang TXT online: trích chữ, OCR bản scan tiếng Việt. Copy hoặc tải văn bản."
     },
     "image-pdf": {
-      title: "Ảnh ↔ PDF online — ảnh sang PDF và PDF sang ảnh | OneTool",
-      desc: "Ảnh ↔ PDF online: ghép ảnh thành PDF hoặc xuất PDF ra PNG/JPG/WebP. Miễn phí trên trình duyệt."
+      title: "Ảnh sang PDF và PDF sang ảnh online miễn phí | OneTool",
+      desc: "Ảnh sang PDF / PDF sang ảnh online: ghép JPG PNG thành PDF hoặc xuất từng trang ra PNG JPG."
     },
     "image-to-pdf": {
-      title: "Ảnh sang PDF online miễn phí — JPG PNG WebP thành PDF | OneTool",
-      desc: "Ảnh sang PDF online: ghép một hoặc nhiều ảnh JPG/PNG/WebP thành PDF. Chọn khổ trang, sắp xếp — miễn phí."
+      title: "Ảnh sang PDF online miễn phí — JPG PNG thành PDF | OneTool",
+      desc: "Chuyển ảnh sang PDF online miễn phí: ghép một hoặc nhiều JPG/PNG/WebP thành file PDF."
     },
     "pdf-to-image": {
-      title: "PDF sang ảnh online — xuất PNG JPG WebP từng trang | OneTool",
-      desc: "PDF sang ảnh online: xuất từng trang PDF ra PNG, JPG hoặc WebP. Xem trước, tải ZIP — miễn phí."
+      title: "PDF sang JPG online miễn phí — PDF sang ảnh | OneTool",
+      desc: "PDF sang ảnh / PDF sang JPG online: xuất từng trang PNG JPG WebP, xem trước hoặc tải ZIP."
     },
     "pdf-to-word": {
-      title: "PDF sang Word online miễn phí — chuyển PDF thành DOCX | OneTool",
-      desc: "PDF sang Word online: convert PDF → DOCX chỉnh sửa được, hỗ trợ OCR bản scan tiếng Việt. Miễn phí."
+      title: "PDF sang Word online miễn phí — PDF to DOCX | OneTool",
+      desc: "Chuyển PDF sang Word online miễn phí: PDF → DOCX chỉnh sửa được, OCR bản scan tiếng Việt."
     },
     "pdf-to-excel": {
-      title: "PDF sang Excel online miễn phí — chuyển PDF thành XLSX | OneTool",
-      desc: "PDF sang Excel online: trích bảng từ PDF → XLSX/CSV, hỗ trợ OCR bản scan tiếng Việt. Miễn phí trên trình duyệt."
+      title: "PDF sang Excel online miễn phí — PDF to XLSX | OneTool",
+      desc: "Chuyển PDF sang Excel online: trích bảng PDF → XLSX/CSV, OCR tiếng Việt. Miễn phí."
     },
     "pdf-lock": {
-      title: "Khóa PDF online miễn phí — đặt mật khẩu mở file | OneTool",
-      desc: "Khóa PDF online: đặt mật khẩu mở file (AES-256), bảo vệ hồ sơ trước khi gửi email/Zalo. Miễn phí trên trình duyệt."
+      title: "Đặt mật khẩu PDF online miễn phí — khóa PDF | OneTool",
+      desc: "Khóa PDF / đặt mật khẩu mở file PDF online (AES-256). Bảo vệ hồ sơ trước khi gửi."
     },
     "office-to-pdf": {
-      title: "Word Excel sang PDF online miễn phí — DOCX XLSX → PDF | OneTool",
-      desc: "Convert Word (DOCX) và Excel (XLSX) sang PDF online miễn phí. Nhanh, rõ nội dung — trên trình duyệt."
+      title: "Word sang PDF online miễn phí — Excel sang PDF | OneTool",
+      desc: "Chuyển Word sang PDF / Excel sang PDF online miễn phí (DOCX, XLSX → PDF). Không cần cài Office."
     },
     "convert-document": {
       title: "PDF sang TXT online — chuyển tới tool OCR | OneTool",
-      desc: "Lối tắt mở PDF sang TXT (có OCR). Dùng tool PDF chuyên dụng trên OneTool."
+      desc: "Lối tắt mở PDF sang TXT (có OCR tiếng Việt) trên OneTool."
     },
     "convert-data": {
-      title: "CSV to JSON online miễn phí — JSON sang CSV | OneTool",
-      desc: "CSV to JSON / JSON to CSV online. Dán dữ liệu hoặc mở file, tải kết quả — miễn phí trên trình duyệt."
+      title: "CSV sang JSON online miễn phí — JSON sang CSV | OneTool",
+      desc: "Chuyển CSV sang JSON / JSON sang CSV online miễn phí. Dán dữ liệu hoặc mở file, tải kết quả."
     },
     "excel-convert": {
-      title: "Excel sang CSV JSON online miễn phí — XLSX ↔ CSV ↔ JSON | OneTool",
-      desc: "Đổi Excel (.xlsx/.xls) ↔ CSV ↔ JSON online. Chọn sheet, xem trước bảng, tải file — miễn phí."
+      title: "Excel sang CSV online — Excel sang JSON miễn phí | OneTool",
+      desc: "Chuyển Excel sang CSV / JSON online (và ngược lại). Chọn sheet, xem trước, tải file miễn phí."
     },
     "qr-generator": {
-      title: "Tạo mã QR online miễn phí — URL, văn bản, tải PNG | OneTool",
-      desc: "Tạo mã QR online từ link hoặc văn bản, xem trước và tải PNG để in. Miễn phí trên trình duyệt."
+      title: "Tạo mã QR online miễn phí — tạo QR code | OneTool",
+      desc: "Tạo mã QR online miễn phí từ link hoặc văn bản. Xem trước và tải PNG để in, dán sản phẩm."
     },
     "lunar-calendar": {
-      title: "Đổi lịch âm dương online miễn phí — Dương lịch ↔ Âm lịch | OneTool",
-      desc: "Đổi lịch Dương ↔ Âm Việt Nam: xem ngày âm, Can Chi, tháng nhuận. Miễn phí trên trình duyệt."
+      title: "Đổi lịch âm dương online miễn phí | OneTool",
+      desc: "Đổi Dương lịch sang Âm lịch / Âm sang Dương online: ngày âm, Can Chi, tháng nhuận Việt Nam."
     },
     "currency-convert": {
-      title: "Đổi tiền tệ online miễn phí — USD EUR VND tỷ giá realtime | OneTool",
-      desc: "Đổi tiền tệ online: USD, EUR, VND và 20+ loại. Tỷ giá realtime, đảo chiều 1 chạm. Miễn phí trên trình duyệt."
+      title: "Đổi tiền tệ online — USD sang VND miễn phí | OneTool",
+      desc: "Đổi tiền USD EUR VND online theo tỷ giá realtime. Đảo chiều nhanh, hơn 20 loại tiền."
     },
     "barcode-generator": {
-      title: "Tạo mã vạch online miễn phí — Barcode CODE128 EAN-13 | OneTool",
-      desc: "Tạo mã vạch (Barcode) online: CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG. Miễn phí trên trình duyệt."
+      title: "Tạo mã vạch online miễn phí — barcode EAN CODE128 | OneTool",
+      desc: "Tạo mã vạch online miễn phí: CODE128, EAN-13, CODE39, UPC. Xem trước và tải PNG."
     },
     "password-generator": {
-      title: "Tạo mật khẩu online miễn phí — Password Generator mạnh | OneTool",
-      desc: "Tạo mật khẩu online mạnh ngẫu nhiên (crypto). Chữ hoa, số, ký tự đặc biệt, đo độ mạnh — miễn phí."
+      title: "Tạo mật khẩu mạnh online miễn phí | OneTool",
+      desc: "Tạo mật khẩu ngẫu nhiên mạnh online: chữ hoa, số, ký tự đặc biệt, đo độ mạnh. Miễn phí."
     },
     "text-convert": {
-      title: "Chuyển đổi chữ online — hoa thường, bỏ dấu tiếng Việt | OneTool",
-      desc: "Chuyển đổi chữ online: viết hoa/thường, Title Case, bỏ dấu tiếng Việt, slug URL, tìm thay — miễn phí."
+      title: "Bỏ dấu tiếng Việt online — viết hoa thường miễn phí | OneTool",
+      desc: "Chuyển đổi chữ online: bỏ dấu tiếng Việt, viết hoa/thường, Title Case, slug URL. Miễn phí."
     },
     "unit-convert": {
-      title: "Chuyển đổi đơn vị online — kg, mét, °C, MB | OneTool",
-      desc: "Bộ đổi đơn vị online: khối lượng, chiều dài, nhiệt độ, dung lượng và nhiều nhóm. Hệ số SI/NIST chuẩn — miễn phí."
+      title: "Đổi đơn vị online miễn phí — kg mét độ C | OneTool",
+      desc: "Chuyển đổi đơn vị online: khối lượng, chiều dài, nhiệt độ, dung lượng… Hệ số chuẩn, miễn phí."
     },
     "unit-mass": {
-      title: "Đổi khối lượng online — kg · lb · g | OneTool",
-      desc: "Đổi khối lượng online (kg · lb · g). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi kg sang lb online — đổi khối lượng miễn phí | OneTool",
+      desc: "Đổi khối lượng online: kg sang lb, g, oz… Hệ số SI chuẩn, kết quả tức thì."
     },
     "unit-length": {
-      title: "Đổi chiều dài online — m · ft · inch | OneTool",
-      desc: "Đổi chiều dài online (m · ft · inch). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi mét sang feet online — đổi chiều dài miễn phí | OneTool",
+      desc: "Đổi chiều dài online: m sang ft, inch, cm… Hệ số chuẩn, miễn phí."
     },
     "unit-area": {
-      title: "Đổi diện tích online — m² · ha · acre | OneTool",
-      desc: "Đổi diện tích online (m² · ha · acre). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi m2 sang ha online — đổi diện tích miễn phí | OneTool",
+      desc: "Đổi diện tích online: m², ha, acre… Hệ số chuẩn, miễn phí."
     },
     "unit-volume": {
-      title: "Đổi thể tích online — L · mL · gallon | OneTool",
-      desc: "Đổi thể tích online (L · mL · gallon). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi lít sang gallon online — đổi thể tích miễn phí | OneTool",
+      desc: "Đổi thể tích online: L, mL, gallon… Hệ số chuẩn, miễn phí."
     },
     "unit-temp": {
-      title: "Đổi nhiệt độ online — °C · °F · K | OneTool",
-      desc: "Đổi nhiệt độ online (°C · °F · K). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi độ C sang F online — đổi nhiệt độ miễn phí | OneTool",
+      desc: "Đổi nhiệt độ online: °C sang °F, Kelvin. Công thức chuẩn, miễn phí."
     },
     "unit-speed": {
-      title: "Đổi tốc độ online — km/h · mph | OneTool",
-      desc: "Đổi tốc độ online (km/h · mph). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi km/h sang mph online — đổi tốc độ miễn phí | OneTool",
+      desc: "Đổi tốc độ online: km/h ↔ mph. Hệ số chuẩn, miễn phí."
     },
     "unit-time": {
-      title: "Đổi thời gian online — giờ · phút · giây | OneTool",
-      desc: "Đổi thời gian online (giờ · phút · giây). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi giờ phút giây online — đổi thời gian miễn phí | OneTool",
+      desc: "Đổi thời gian online: giờ, phút, giây. Tính nhanh, miễn phí."
     },
     "unit-data": {
-      title: "Đổi dung lượng online — MB · GiB | OneTool",
-      desc: "Đổi dung lượng online (MB · GiB). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi MB sang GB online — đổi dung lượng miễn phí | OneTool",
+      desc: "Đổi dung lượng online: MB, GB, GiB, KB… Phân biệt SI/IEC, miễn phí."
     },
     "unit-energy": {
-      title: "Đổi năng lượng online — J · kWh · cal | OneTool",
-      desc: "Đổi năng lượng online (J · kWh · cal). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi kWh sang cal online — đổi năng lượng miễn phí | OneTool",
+      desc: "Đổi năng lượng online: J, kWh, cal… Hệ số chuẩn, miễn phí."
     },
     "unit-pressure": {
-      title: "Đổi áp suất online — Pa · bar · atm | OneTool",
-      desc: "Đổi áp suất online (Pa · bar · atm). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi bar sang atm online — đổi áp suất miễn phí | OneTool",
+      desc: "Đổi áp suất online: Pa, bar, atm… Hệ số chuẩn, miễn phí."
     },
     "unit-power": {
-      title: "Đổi công suất online — W · kW · HP | OneTool",
-      desc: "Đổi công suất online (W · kW · HP). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi kW sang HP online — đổi công suất miễn phí | OneTool",
+      desc: "Đổi công suất online: W, kW, HP… Hệ số chuẩn, miễn phí."
     },
     "unit-angle": {
-      title: "Đổi góc online — độ · radian | OneTool",
-      desc: "Đổi góc online (độ · radian). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi độ sang radian online — đổi góc miễn phí | OneTool",
+      desc: "Đổi góc online: độ ↔ radian. Hệ số chuẩn, miễn phí."
     },
     "unit-fuel": {
-      title: "Đổi tiêu hao nhiên liệu online — L/100km · mpg | OneTool",
-      desc: "Đổi tiêu hao nhiên liệu online (L/100km · mpg). Hệ số SI/NIST chuẩn — miễn phí trên trình duyệt."
+      title: "Đổi L/100km sang mpg online miễn phí | OneTool",
+      desc: "Đổi tiêu hao nhiên liệu online: L/100km ↔ mpg. Hệ số chuẩn, miễn phí."
     },
     "json-tools": {
-      title: "Format JSON online miễn phí — làm đẹp, minify, kiểm tra | OneTool",
-      desc: "Format JSON online: làm đẹp, minify và kiểm tra JSON hợp lệ. Miễn phí trên trình duyệt."
+      title: "Format JSON online miễn phí — làm đẹp JSON | OneTool",
+      desc: "Format JSON / prettier JSON online: làm đẹp, minify, kiểm tra JSON lỗi. Miễn phí."
     },
     "regex-tester": {
-      title: "Regex tester online miễn phí — kiểm tra biểu thức chính quy | OneTool",
-      desc: "Regex tester online: thử pattern, flags g/i/m/s/u, highlight match, replace, nhóm bắt. Miễn phí trên trình duyệt."
+      title: "Test regex online miễn phí — kiểm tra regex | OneTool",
+      desc: "Regex tester online: thử biểu thức chính quy, highlight match, flags, replace. Miễn phí."
     },
     "base64-tools": {
-      title: "Encode Decode Base64 online — UTF-8 tiếng Việt, file, ảnh | OneTool",
-      desc: "Encode/decode Base64 UTF-8 online: tiếng Việt có dấu, URL-safe, file và ảnh. Miễn phí trên trình duyệt."
+      title: "Encode Base64 online — decode Base64 miễn phí | OneTool",
+      desc: "Encode decode Base64 online UTF-8 tiếng Việt, URL-safe, file và ảnh. Miễn phí."
     },
     "url-encode": {
-      title: "URL encode decode online miễn phí — encodeURIComponent | OneTool",
-      desc: "URL encode/decode online: encodeURIComponent, encodeURI, form (+). Tiếng Việt UTF-8 — miễn phí trên trình duyệt."
+      title: "URL encode online miễn phí — decode URL | OneTool",
+      desc: "URL encode / URL decode online: encodeURIComponent, form (+), UTF-8 tiếng Việt."
     },
     "developer-tools": {
-      title: "UUID Hash Slugify online — SHA-256, timestamp tiếng Việt | OneTool",
-      desc: "Tạo UUID v4, hash SHA-256/384/512, slugify tiếng Việt, Unix timestamp online — miễn phí."
+      title: "Tạo UUID online — hash SHA256 slugify miễn phí | OneTool",
+      desc: "Tạo UUID v4, hash SHA-256, slugify tiếng Việt, Unix timestamp online — miễn phí."
     }
   },
 
   seo: {
     "remove-background": {
-      keywords: "xóa nền ảnh, xóa nền ảnh online, remove background, png trong suốt, tách nền ảnh miễn phí",
+      keywords: "xóa nền ảnh, xóa nền ảnh online, xóa nền ảnh miễn phí, xóa background ảnh, tách nền ảnh, remove background online, png trong suốt, xóa nền shopee",
       howto: [
-        "Tải ảnh chân dung hoặc sản phẩm (JPG, PNG, WebP).",
-        "Bấm Xóa nền — AI tách chủ thể khỏi phông.",
-        "Xem preview rồi tải PNG trong suốt về máy."
+        "Tải ảnh chân dung, sản phẩm hoặc logo (JPG, PNG, WebP).",
+        "Bấm Xóa nền — hệ thống tự nhận diện và tách chủ thể khỏi phông.",
+        "Xem preview trên nền caro rồi tải PNG trong suốt về máy."
+      ],
+      faqs: [
+        {
+          q: "Xóa nền ảnh online có miễn phí không?",
+          a: "Có. OneTool cho phép **xóa nền ảnh miễn phí**, xem preview và tải **PNG trong suốt** mà không cần đăng ký."
+        },
+        {
+          q: "Ảnh nào xóa nền đẹp nhất?",
+          a: "Ảnh sản phẩm nền sạch, chân dung ánh sáng đều, hoặc logo/ chữ trên phông trơn cho viền sắc nét hơn. Ảnh đêm nhiều người vẫn có thể dùng nhưng chất lượng AI trên trình duyệt sẽ hạn chế hơn."
+        },
+        {
+          q: "File xuất ra là gì?",
+          a: "Kết quả là **PNG** có kênh alpha (nền trong suốt), sẵn sàng ghép Shopee, Canva, banner hoặc ảnh thẻ."
+        },
+        {
+          q: "Ảnh có bị upload lên server không?",
+          a: "Xử lý chạy trên trình duyệt của bạn (model AI tải về máy). Không cần tạo tài khoản để dùng tool."
+        }
       ],
       sections: [
         {
           title: "Xóa nền ảnh online là gì?",
           paras: [
-            "**Xóa nền ảnh** (remove background) tách người hoặc sản phẩm khỏi phông, giữ chủ thể trên nền trong suốt. Kết quả thường là **PNG**, dễ ghép banner, Shopee, Canva hay ảnh thẻ."
+            "**Xóa nền ảnh** (remove background) tách người, sản phẩm hoặc logo khỏi phông, giữ chủ thể trên nền trong suốt. Kết quả thường là **PNG**, dễ ghép banner, đăng Shopee/Lazada, làm ảnh thẻ hoặc thiết kế social.",
+            "Trên OneTool bạn chỉ cần thả ảnh và bấm **Xóa nền** — hệ thống tự nhận diện logo/chữ nền trơn hoặc ảnh người rồi xuất file PNG."
           ]
         },
         {
           title: "Cách xóa nền ảnh miễn phí trên OneTool",
           paras: [
-            "Thả ảnh vào khung, bấm **Xóa nền**, xem preview rồi chọn **Tải PNG**. Hỗ trợ JPG, PNG, WebP. Ảnh sản phẩm nền sạch và chân dung tách phông rõ cho viền đẹp hơn."
+            "Thả ảnh vào khung (JPG, PNG, WebP), bấm **Xóa nền**, xem preview trên nền caro / sáng / tối rồi chọn **Tải PNG**. Không cần cài app, không watermark.",
+            "Lần đầu tải model AI có thể mất thêm vài chục giây; lần sau thường nhanh hơn nhờ bộ nhớ đệm trình duyệt."
           ]
         },
         {
@@ -400,13 +420,20 @@ window.OTCatalog = {
           list: [
             { title: "Ảnh bán hàng", text: "đặt sản phẩm lên nền trắng hoặc banner khuyến mãi." },
             { title: "Ảnh thẻ / CV", text: "tách người khỏi phông rồi ghép nền đồng phục." },
+            { title: "Logo / chữ", text: "tách logo khỏi phông trơn để dùng trên web hoặc ấn phẩm." },
             { title: "Thiết kế social", text: "xuất PNG trong suốt để chồng chữ lên Shorts hoặc Reels." }
+          ]
+        },
+        {
+          title: "Mẹo để viền đẹp hơn",
+          paras: [
+            "Chụp / crop chủ thể rõ, tránh nền rối hoặc ánh sáng quá tối. Sau khi xóa nền, có thể **nén ảnh** hoặc **resize** trước khi đăng web để trang tải nhanh hơn."
           ]
         }
       ]
     },
     "image-convert": {
-      keywords: "đổi ảnh jpg png webp, convert ảnh online, chuyển định dạng ảnh",
+      keywords: "đổi định dạng ảnh, đổi ảnh jpg sang png, png sang jpg, webp sang jpg, convert ảnh online, chuyển định dạng ảnh online miễn phí",
       howto: [
         "Kéo thả ảnh cần đổi định dạng.",
         "Chọn format đích (JPG, PNG, WebP…).",
@@ -437,7 +464,7 @@ window.OTCatalog = {
       ]
     },
     "image-resize": {
-      keywords: "resize ảnh, đổi kích thước ảnh, thu nhỏ ảnh theo pixel",
+      keywords: "đổi kích thước ảnh, đổi kích thước ảnh online, resize ảnh, thu nhỏ ảnh, phóng to ảnh theo pixel miễn phí",
       howto: [
         "Tải ảnh gốc lên.",
         "Nhập chiều rộng/cao hoặc chọn preset.",
@@ -497,11 +524,21 @@ window.OTCatalog = {
       ]
     },
     "image-compress": {
-      keywords: "nén ảnh, compress image, giảm dung lượng ảnh, nén jpg webp",
+      keywords: "nén ảnh, compress image, giảm dung lượng ảnh, nén jpg webp, nén ảnh online miễn phí",
       howto: [
         "Tải ảnh JPG, PNG hoặc WebP lên.",
         "Chọn mức nén (Cân bằng / Mạnh) hoặc tùy chỉnh chất lượng.",
         "Xem % tiết kiệm, so sánh trước/sau rồi tải ảnh đã nén."
+      ],
+      faqs: [
+        {
+          q: "Nén ảnh online có miễn phí không?",
+          a: "Có. **Nén ảnh** JPG/PNG/WebP trên OneTool miễn phí, xem % tiết kiệm và so sánh trước/sau."
+        },
+        {
+          q: "Nén ảnh có bị vỡ không?",
+          a: "Mức **Cân bằng** thường đủ dùng web/Zalo. Chọn **Nhẹ** nếu cần giữ chi tiết; **Mạnh** khi form upload giới hạn MB."
+        }
       ],
       sections: [
         {
@@ -562,6 +599,16 @@ window.OTCatalog = {
         "Dán link vào OneTool và bấm Lấy video.",
         "Chọn MP4 HD · Không logo để tải về máy."
       ],
+      faqs: [
+        {
+          q: "Tải TikTok không logo có miễn phí không?",
+          a: "Có. Dán link công khai để lấy **MP4 HD không watermark** hoặc MP3 — chỉ dùng khi bạn có quyền với nội dung."
+        },
+        {
+          q: "Video riêng tư tải được không?",
+          a: "Không. Chỉ hỗ trợ link công khai còn hiệu lực (tiktok.com, vt.tiktok.com, vm.tiktok.com)."
+        }
+      ],
       sections: [
         {
           title: "Tải TikTok không logo là gì?",
@@ -586,11 +633,21 @@ window.OTCatalog = {
       ]
     },
     "audio-to-text": {
-      keywords: "audio to text tiếng việt, chuyển giọng nói thành văn bản, phụ đề srt, speech to text",
+      keywords: "chuyển giọng nói thành văn bản, audio to text tiếng việt, speech to text, chuyển mp3 thành chữ, phụ đề srt miễn phí",
       howto: [
         "Thả file MP3, WAV, M4A hoặc video MP4/MOV.",
         "Chọn tiếng Việt (hoặc tự nhận diện) rồi bấm Nhận dạng.",
         "Sao chép văn bản, tải TXT hoặc phụ đề SRT."
+      ],
+      faqs: [
+        {
+          q: "Audio to Text tiếng Việt có miễn phí không?",
+          a: "Có. Chuyển giọng nói thành văn bản từ MP3/WAV/MP4, xuất **TXT** và phụ đề **SRT**."
+        },
+        {
+          q: "File có bị lưu trên server không?",
+          a: "File được xử lý đám mây tạm thời để nhận diện giọng nói — không cần tạo tài khoản OneTool để dùng."
+        }
       ],
       sections: [
         {
@@ -746,11 +803,25 @@ window.OTCatalog = {
       ]
     },
     "heic-convert": {
-      keywords: "heic sang jpg, convert heic, heif to jpg, đổi ảnh iphone sang jpg, heic to png",
+      keywords: "heic sang jpg, heic sang jpg online, đổi heic sang jpg, ảnh iphone sang jpg, heif to jpg, convert heic miễn phí",
       howto: [
         "Thả một hoặc nhiều file HEIC/HEIF (ảnh iPhone).",
         "Chọn JPG, PNG hoặc WebP và chỉnh chất lượng.",
         "Bấm Convert — tải từng file hoặc ZIP cả bộ."
+      ],
+      faqs: [
+        {
+          q: "HEIC sang JPG có miễn phí không?",
+          a: "Có. Đổi **HEIC/HEIF → JPG/PNG/WebP** trên OneTool miễn phí, hỗ trợ nhiều ảnh và tải ZIP."
+        },
+        {
+          q: "Vì sao Windows không mở được ảnh iPhone?",
+          a: "iPhone mặc định lưu **HEIC**. Nhiều máy Windows/web chưa hỗ trợ — đổi sang JPG là cách nhanh nhất để gửi và đăng bài."
+        },
+        {
+          q: "Có mất chất lượng không?",
+          a: "JPG là nén có mất mát — chỉnh chất lượng cao nếu cần in. PNG giữ nét hơn nhưng nặng hơn."
+        }
       ],
       sections: [
         {
@@ -820,11 +891,21 @@ window.OTCatalog = {
       ]
     },
     "word-counter": {
-      keywords: "đếm từ online, word counter tiếng việt, đếm ký tự, thời gian đọc bài viết",
+      keywords: "đếm từ online, word counter tiếng việt, đếm ký tự, thời gian đọc bài viết, đếm từ seo",
       howto: [
         "Dán văn bản hoặc mở file TXT.",
         "Xem ngay số từ, ký tự, câu, đoạn.",
         "Theo dõi thời gian đọc và mật độ từ khóa."
+      ],
+      faqs: [
+        {
+          q: "Đếm từ online tiếng Việt có chính xác không?",
+          a: "OneTool đếm theo token tách khoảng trắng — phù hợp tiếng Việt (mỗi tiếng một đơn vị), kèm thời gian đọc ước tính."
+        },
+        {
+          q: "Có đếm ký tự không khoảng trắng không?",
+          a: "Có — hiện số từ, ký tự (có/không khoảng trắng), câu và đoạn để viết bài SEO hoặc luận văn."
+        }
       ],
       sections: [
         {
@@ -844,17 +925,32 @@ window.OTCatalog = {
       ]
     },
     "pdf-merge": {
-      keywords: "gộp pdf online, ghép pdf, merge pdf, gộp nhiều file pdf miễn phí",
+      keywords: "gộp pdf, gộp pdf online, ghép pdf, ghép pdf online, merge pdf, gộp nhiều file pdf miễn phí, nối pdf",
       howto: [
         "Chọn từ 2 file PDF trở lên (kéo thả hoặc chọn từ máy).",
         "Sắp xếp thứ tự file nếu cần.",
         "Bấm Gộp PDF rồi tải tài liệu đã ghép."
       ],
+      faqs: [
+        {
+          q: "Gộp PDF online có mất phí không?",
+          a: "Không. OneTool cho **gộp PDF miễn phí**, không bắt buộc đăng ký."
+        },
+        {
+          q: "Ghép được bao nhiêu file?",
+          a: "Bạn có thể chọn nhiều PDF cùng lúc, sắp xếp thứ tự rồi xuất một file. File quá lớn có thể chậm trên máy yếu."
+        },
+        {
+          q: "File có bị upload không?",
+          a: "Gộp PDF chạy trên trình duyệt — nội dung không gửi lên server OneTool."
+        }
+      ],
       sections: [
         {
           title: "Gộp PDF online là gì?",
           paras: [
-            "**Gộp PDF online** (merge PDF) ghép nhiều file thành một — ví dụ CV kèm chứng chỉ, hợp đồng kèm phụ lục — để nộp hoặc gửi một lần."
+            "**Gộp PDF online** (merge PDF) ghép nhiều file thành một — ví dụ CV kèm chứng chỉ, hợp đồng kèm phụ lục — để nộp hoặc gửi một lần.",
+            "Dùng khi bạn muốn **một file duy nhất** thay vì gửi nhiều đính kèm."
           ]
         },
         {
@@ -903,17 +999,32 @@ window.OTCatalog = {
       ]
     },
     "pdf-compress": {
-      keywords: "nén pdf online, giảm dung lượng pdf, compress pdf miễn phí",
+      keywords: "nén pdf, nén pdf online, nén pdf miễn phí, giảm dung lượng pdf, compress pdf, nén pdf dưới 2mb, nén pdf gửi email, nén pdf zalo",
       howto: [
         "Tải file PDF cần giảm dung lượng.",
         "Chọn mức nén và chạy — xem phần trăm tiết kiệm.",
         "Tải bản PDF nhẹ hơn về máy."
       ],
+      faqs: [
+        {
+          q: "Nén PDF online có miễn phí không?",
+          a: "Có. **Nén PDF** trên OneTool miễn phí, xem % tiết kiệm rồi tải về ngay."
+        },
+        {
+          q: "Nén PDF có mất chữ không?",
+          a: "PDF toàn chữ thường giảm ít hơn. File scan/ảnh giảm mạnh hơn — chọn mức nén nhẹ nếu cần in sắc nét."
+        },
+        {
+          q: "Làm sao để PDF dưới 2MB / 5MB?",
+          a: "Chạy nén mức mạnh hơn, hoặc tách bớt trang rồi nén lại. Nhiều cổng nộp hồ sơ giới hạn 2–10 MB."
+        }
+      ],
       sections: [
         {
           title: "Nén PDF online là gì?",
           paras: [
-            "**Nén PDF online** giảm dung lượng để gửi email, Zalo hoặc nộp cổng có giới hạn MB. File scan/ảnh thường nhẹ đi rõ hơn PDF toàn chữ."
+            "**Nén PDF online** giảm dung lượng để gửi email, Zalo hoặc nộp cổng có giới hạn MB. File scan/ảnh thường nhẹ đi rõ hơn PDF toàn chữ.",
+            "OneTool cho xem **% tiết kiệm** trước khi tải — dễ chọn mức nén phù hợp."
           ]
         },
         {
@@ -1047,7 +1158,7 @@ window.OTCatalog = {
       ]
     },
     "pdf-to-word": {
-      keywords: "pdf to word, pdf sang word, convert pdf to word, pdf to docx, chuyển pdf thành word online miễn phí",
+      keywords: "pdf sang word, pdf sang word online, chuyển pdf sang word, pdf to word, pdf to docx, convert pdf to word miễn phí",
       howto: [
         "Thả hoặc chọn file PDF.",
         "Chọn chế độ OCR (tự động khuyến nghị).",
@@ -1077,11 +1188,25 @@ window.OTCatalog = {
       ]
     },
     "pdf-to-excel": {
-      keywords: "pdf sang excel, pdf to excel, convert pdf to excel, pdf to xlsx, chuyển pdf thành excel online miễn phí, trích bảng pdf",
+      keywords: "pdf sang excel, pdf sang excel online, chuyển pdf sang excel, pdf to excel, pdf to xlsx, trích bảng pdf miễn phí",
       howto: [
         "Thả hoặc chọn file PDF có bảng / báo cáo.",
         "Chọn mỗi trang một sheet hoặc gộp 1 sheet; OCR tự động nếu là bản scan.",
         "Bấm chuyển sang Excel và tải file .xlsx (hoặc CSV)."
+      ],
+      faqs: [
+        {
+          q: "PDF sang Excel có miễn phí không?",
+          a: "Có. OneTool chuyển **PDF → Excel (XLSX)** miễn phí trên trình duyệt."
+        },
+        {
+          q: "PDF scan có dùng được không?",
+          a: "Được. Tool tự OCR tiếng Việt khi trang không có lớp chữ — kết quả nên kiểm tra lại cột số."
+        },
+        {
+          q: "Bảng có chính xác 100% không?",
+          a: "Bảng đơn giản thường ổn. Layout phức tạp / cột gộp có thể lệch — nên xem trước rồi chỉnh nhẹ trong Excel."
+        }
       ],
       sections: [
         {
@@ -1271,7 +1396,7 @@ window.OTCatalog = {
       ]
     },
     "qr-generator": {
-      keywords: "tạo mã qr, qr code url, tải qr png",
+      keywords: "tạo mã qr, tạo qr code, tạo mã qr online, qr code từ link, tạo qr miễn phí, tải qr png",
       howto: [
         "Nhập URL hoặc văn bản.",
         "Bấm tạo mã QR.",
@@ -1338,7 +1463,7 @@ window.OTCatalog = {
       ]
     },
     "currency-convert": {
-      keywords: "đổi tiền tệ, usd sang vnd, eur sang vnd, currency converter, tỷ giá hôm nay, quy đổi tiền online miễn phí",
+      keywords: "đổi tiền tệ, usd sang vnd, eur sang vnd, đổi đô sang việt nam đồng, tỷ giá hôm nay, currency converter online miễn phí",
       howto: [
         "Chọn tiền nguồn và tiền đích (mặc định USD → VND).",
         "Nhập số tiền — kết quả và tỷ giá hiện ngay.",

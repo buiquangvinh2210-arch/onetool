@@ -318,6 +318,26 @@
       document.head.appendChild(how);
     }
 
+    if (isTool && seoCopy?.faqs?.length) {
+      document.getElementById("ot-jsonld-faq")?.remove();
+      const faqLd = document.createElement("script");
+      faqLd.type = "application/ld+json";
+      faqLd.id = "ot-jsonld-faq";
+      faqLd.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: seoCopy.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: String(f.a).replace(/\*\*/g, "")
+          }
+        }))
+      });
+      document.head.appendChild(faqLd);
+    }
+
     if (isTool) {
       document.getElementById("ot-jsonld-crumb")?.remove();
       const cat = window.OTCatalog?.catBySlug?.(meta.cat);
@@ -383,7 +403,7 @@
     const footerHost = document.getElementById("site-footer");
     const megaLinks = buildMegaMenu();
     const drawerBody = buildDrawerMenu();
-    const toolCount = window.OTCatalog?.tools?.filter((t) => !t.hub)?.length || 46;
+    const toolCount = window.OTCatalog?.tools?.filter((t) => !t.hub)?.length || 55;
 
     if (headerHost) {
       headerHost.outerHTML = `
@@ -610,6 +630,15 @@
         : "";
       return `<section class="tool-seo-block"><h2>${esc(sec.title)}</h2>${paras}${list}</section>`;
     }).join("");
+    const faqBlock = copy.faqs?.length
+      ? `<section class="tool-seo-block"><h2>Câu hỏi thường gặp</h2>
+          <dl class="tool-seo-faq">${copy.faqs
+            .map(
+              (f) =>
+                `<div class="tool-seo-faq-item"><dt>${esc(f.q)}</dt><dd>${rich(f.a)}</dd></div>`
+            )
+            .join("")}</dl></section>`
+      : "";
 
     const more = related
       .map((t) => {
@@ -633,7 +662,8 @@
       <div class="tool-seo-wrap">
         ${howto}
         ${blocks}
-        ${more ? `<section class="tool-seo-block"><h2>Công cụ khác trên OneTool</h2>
+        ${faqBlock}
+        ${more ? `<section class="tool-seo-block"><h2>Công cụ liên quan</h2>
           <ul class="tool-seo-more">${more}</ul></section>` : ""}
       </div>`;
     if (existing) {
