@@ -148,12 +148,6 @@
   font-weight: 750;
 }
 
-/* Reserve space for JS-rendered grids to reduce CLS on hub pages. */
-#homeToolRows,
-#allTools,
-#catTools {
-  min-height: 960px;
-}
 
 @media (max-width: 900px) {
   #homeToolRows,
