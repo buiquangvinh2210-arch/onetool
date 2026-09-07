@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Pacifico&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ký PDF online miễn phí — chữ ký tay, ngày, đóng dấu | OneTool</title>
+  <meta name="description" content="Ký PDF online miễn phí: vẽ chữ ký, gõ tên, tải ảnh chữ ký, đóng dấu ngày. Kéo thả lên trang rồi tải PDF. Không đăng ký." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-pdf/pdf-sign.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/pdf-sign.css?v=20260907d" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="pdf-sign">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="ps-page">
+    <header class="ps-intro">
+      <h1>Ký PDF online</h1>
+      <p>Ba bước: tạo chữ ký → đặt lên trang → tải PDF. File không rời máy bạn.</p>
+    </header>
+
+    <div class="ps-studio">
+      <div class="ps-shell" id="shell">
+        <div class="ps-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="pdf">
+            <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+            <div class="upload-placeholder">
+              <p class="ps-drop-kicker">Thả PDF cần ký</p>
+              <p class="ps-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · tối đa 40&nbsp;MB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ps-work">
+          <aside class="ps-side">
+            <div class="ps-file-bar">
+              <div>
+                <strong id="fileName">—</strong>
+                <span id="fileMeta">—</span>
+              </div>
+              <button type="button" class="ps-text-btn" id="changeBtn">Đổi PDF</button>
+            </div>
+
+            <p class="ps-step">1. Tạo chữ ký</p>
+            <div class="ps-tabs" id="modeGrid" role="tablist" aria-label="Cách tạo chữ ký">
+              <button type="button" class="ps-tab is-on" data-mode="draw" role="tab">Vẽ</button>
+              <button type="button" class="ps-tab" data-mode="type" role="tab">Gõ tên</button>
+              <button type="button" class="ps-tab" data-mode="image" role="tab">Ảnh</button>
+              <button type="button" class="ps-tab" data-mode="date" role="tab">Ngày</button>
+            </div>
+
+            <div id="drawOpts">
+              <div class="ps-pad-wrap">
+                <canvas id="padCanvas" width="640" height="220" aria-label="Vẽ chữ ký"></canvas>
+                <p class="ps-pad-hint" id="padHint">Ký vào đây</p>
+              </div>
+              <div class="ps-pad-tools">
+                <div class="ps-swatches" id="inkSwatches" role="group" aria-label="Màu mực">
+                  <button type="button" class="ps-swatch is-on" data-color="#1e3a8a" style="background:#1e3a8a" title="Xanh mực"></button>
+                  <button type="button" class="ps-swatch" data-color="#111827" style="background:#111827" title="Đen"></button>
+                  <button type="button" class="ps-swatch" data-color="#b91c1c" style="background:#b91c1c" title="Đỏ"></button>
+                </div>
+                <button type="button" class="ps-mini" id="undoPadBtn">Hoàn tác</button>
+                <button type="button" class="ps-mini" id="clearPadBtn">Xóa</button>
+              </div>
+            </div>
+
+            <div id="typeOpts" hidden>
+              <input id="signName" class="form-control" type="text" maxlength="80" autocomplete="name" placeholder="Nhập họ và tên" />
+              <select id="signFont" class="form-control" aria-label="Font chữ ký">
+                <option value="Pacifico, cursive">Pacifico</option>
+                <option value="'Dancing Script', cursive">Dancing Script</option>
+                <option value="'Great Vibes', cursive">Great Vibes</option>
+              </select>
+              <div class="ps-type-preview" id="typePreview">Nguyễn Văn An</div>
+              <div class="ps-color" id="colorRow">
+                <input type="color" id="signColor" value="#1e3a8a" aria-label="Màu chữ ký" />
+                <span>Màu chữ</span>
+              </div>
+            </div>
+
+            <div id="imageOpts" hidden>
+              <input type="file" id="signImageInput" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" hidden />
+              <button type="button" class="btn btn-outline btn-sm" id="signImageBtn">Chọn ảnh chữ ký</button>
+              <p class="ps-hint" id="signImageName">PNG hoặc JPG, nền trắng càng tốt</p>
+              <div class="ps-img-preview" id="imagePreview" hidden>
+                <img id="imagePreviewImg" alt="Chữ ký đã xử lý" />
+              </div>
+            </div>
+
+            <div id="dateOpts" hidden>
+              <div class="ps-row2">
+                <input id="signDate" class="form-control" type="date" aria-label="Ngày ký" />
+                <select id="dateFmt" class="form-control" aria-label="Định dạng ngày">
+                  <option value="dmy">07/09/2026</option>
+                  <option value="long">07 tháng 9, 2026</option>
+                  <option value="legal">Ngày 07 tháng 9 năm 2026</option>
+                </select>
+              </div>
+              <p class="ps-date-preview" id="datePreview">—</p>
+            </div>
+
+            <p class="ps-step">2. Đặt lên trang</p>
+            <button type="button" class="btn btn-primary btn-block" id="placeBtn">Đặt chữ ký lên PDF</button>
+            <p class="ps-hint">Sau đó kéo chữ ký đúng chỗ trên bản xem trước.</p>
+
+            <div id="selOpts" class="ps-sel" hidden>
+              <p class="ps-sel-title">Chữ ký đang chọn</p>
+              <div class="ps-sel-actions">
+                <button type="button" class="ps-mini" id="copyAllBtn">Thêm mọi trang</button>
+                <button type="button" class="ps-mini ps-danger" id="delBtn">Xóa</button>
+              </div>
+            </div>
+
+            <div id="libBlock" hidden>
+              <p class="ps-step">Đã lưu</p>
+              <div class="ps-lib" id="libGrid"></div>
+            </div>
+          </aside>
+
+          <div class="ps-main">
+            <div class="ps-main-bar">
+              <div class="ps-pager">
+                <button type="button" class="ps-icon-btn" id="prevBtn" aria-label="Trang trước">‹</button>
+                <span id="pageLabel">1 / 1</span>
+                <button type="button" class="ps-icon-btn" id="nextBtn" aria-label="Trang sau">›</button>
+              </div>
+              <p id="status">Tạo chữ ký bên trái, rồi đặt lên trang</p>
+              <button type="button" class="btn btn-primary" id="downloadBtn">Tải PDF đã ký</button>
+            </div>
+
+            <div class="ps-stage-wrap" id="stageWrap">
+              <div class="ps-stage" id="stage">
+                <canvas id="pageCanvas"></canvas>
+                <div class="ps-overlays" id="overlays"></div>
+                <p class="ps-stage-hint" id="stageHint">Chữ ký sẽ hiện ở đây — kéo để chỉnh vị trí</p>
+              </div>
+            </div>
+
+            <div class="ps-thumbs" id="thumbs" hidden></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260907d"></script>
+<script src="../assets/js/layout.js?v=20260903a"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260907a"></script>
+<script src="../assets/js/tools/pdf.js?v=20260907a"></script>
+<script src="../assets/js/tools/pdf-sign.js?v=20260907a"></script>
+<script src="../assets/js/tools/pdf-sign-ui.js?v=20260907c"></script>
+</body>
+</html>

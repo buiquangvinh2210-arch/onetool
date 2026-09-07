@@ -534,6 +534,8 @@
           <a href="${href("cong-cu-pdf/pdf-to-word.html")}">PDF to Word</a>
           <a href="${href("cong-cu-pdf/pdf-to-excel.html")}">PDF sang Excel</a>
           <a href="${href("cong-cu-pdf/image-pdf.html")}">Ảnh ↔ PDF</a>
+          <a href="${href("cong-cu-anh/image-ocr.html")}">OCR ảnh</a>
+          <a href="${href("cong-cu-anh/image-crop.html")}">Crop ảnh</a>
           <a href="${href("cong-cu-anh/image-compress.html")}">Nén ảnh</a>
           <a href="${href("cong-cu-pdf/pdf-merge.html")}">Gộp PDF</a>
           <a href="${href("cong-cu-anh/remove-background.html")}">Xóa nền ảnh</a>

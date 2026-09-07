@@ -1,0 +1,166 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCR ảnh sang chữ online miễn phí — Việt & Anh | OneTool</title>
+  <meta name="description" content="OCR ảnh → text tiếng Việt và tiếng Anh bằng AI: hóa đơn, CCCD, sách, screenshot thành chữ. Copy hoặc tải TXT. Miễn phí, không cần đăng ký." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-anh/image-ocr.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/image-ocr.css?v=20260907a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="image-ocr">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="io-page">
+    <header class="io-intro">
+      <h1>OCR ảnh → chữ</h1>
+      <p>Nhận dạng chữ trong ảnh bằng AI — tiếng Việt (có dấu) và tiếng Anh, kể cả khi lẫn trong cùng ảnh. Copy hoặc tải TXT — ảnh gửi tạm, không lưu trên OneTool.</p>
+      <div class="io-chips" aria-hidden="true">
+        <span class="io-chip">Việt + Anh</span>
+        <span class="io-chip">Copy / TXT</span>
+        <span class="io-chip">Vùng chọn</span>
+      </div>
+    </header>
+
+    <div class="io-studio">
+      <div class="io-shell" id="shell">
+        <div class="io-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="image">
+            <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp" hidden />
+            <div class="upload-placeholder">
+              <p class="io-drop-kicker">Thả ảnh có chữ vào đây</p>
+              <p class="io-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · dán Ctrl+V · JPG PNG WebP · tối đa 20&nbsp;MB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="io-work">
+          <aside class="io-side">
+            <div class="io-file-bar">
+              <div>
+                <strong id="fileName">—</strong>
+                <span id="fileMeta">—</span>
+              </div>
+              <button type="button" class="io-text-btn" id="changeBtn">Đổi ảnh</button>
+            </div>
+
+            <div>
+              <p class="io-label">Ngôn ngữ</p>
+              <div class="io-langs" role="group" aria-label="Ngôn ngữ OCR">
+                <button type="button" class="io-lang is-on" data-lang="vie+eng"><strong>Việt + Anh</strong><em>Đọc cả hai</em></button>
+                <button type="button" class="io-lang" data-lang="vie"><strong>Tiếng Việt</strong><em>Ưu tiên Việt</em></button>
+                <button type="button" class="io-lang" data-lang="eng"><strong>English</strong><em>Ưu tiên Anh</em></button>
+              </div>
+            </div>
+
+            <div>
+              <p class="io-label">Phạm vi</p>
+              <div class="io-scopes" role="group">
+                <button type="button" class="io-scope is-on" data-scope="full"><strong>Toàn ảnh</strong><em>Đọc hết chữ</em></button>
+                <button type="button" class="io-scope" data-scope="region"><strong>Vùng chọn</strong><em>Kéo khung trên ảnh</em></button>
+              </div>
+              <p class="io-hint" id="regionHint" hidden>Kéo chuột trên ảnh để chọn phần cần đọc.</p>
+            </div>
+
+            <div class="io-film">
+              <button type="button" class="io-film-btn" id="rotLBtn">↺ Xoay</button>
+              <button type="button" class="io-film-btn" id="rotRBtn">↻</button>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" id="runBtn">Nhận dạng chữ</button>
+
+            <div class="io-progress" id="progressWrap" hidden>
+              <div class="io-progress-track">
+                <div class="io-progress-bar" id="progressBar" style="width:0%"></div>
+              </div>
+              <p class="io-progress-msg" id="progressMsg">Đang chuẩn bị…</p>
+            </div>
+
+            <p class="io-note">AI đọc cả tiếng Việt (có dấu) và tiếng Anh trong cùng ảnh. Ảnh gửi tạm tới dịch vụ AI — không lưu trên OneTool. Cần bảng Excel? <a href="../cong-cu-chuyen-doi/ocr-table.html">OCR bảng → Excel</a>.</p>
+          </aside>
+
+          <div class="io-main">
+            <div class="io-main-bar">
+              <div>
+                <h2>Kết quả</h2>
+                <p id="status">Upload ảnh rồi bấm Nhận dạng chữ</p>
+              </div>
+              <div class="io-actions">
+                <button type="button" class="btn btn-outline btn-sm" id="copyBtn" disabled>Sao chép</button>
+                <button type="button" class="btn btn-primary btn-sm" id="downloadBtn" disabled>Tải TXT</button>
+              </div>
+            </div>
+
+            <div class="io-split">
+              <figure class="io-shot">
+                <figcaption>
+                  <span>Ảnh / vùng chữ</span>
+                  <span id="imgDim">—</span>
+                </figcaption>
+                <div class="io-frame">
+                  <canvas id="viewCanvas" aria-label="Ảnh — kéo chọn vùng nếu cần"></canvas>
+                </div>
+              </figure>
+              <div class="io-result">
+                <label class="io-result-label" for="outText">Văn bản (sửa được)</label>
+                <textarea id="outText" spellcheck="true" placeholder="Chữ nhận dạng sẽ hiện ở đây…"></textarea>
+                <p class="io-result-meta" id="resultMeta">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/ot-config.js?v=20260907e"></script>
+<script src="../assets/js/catalog.js?v=20260907h"></script>
+<script src="../assets/js/layout.js?v=20260907f"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260907f"></script>
+<script src="../assets/js/tools/image-ocr.js?v=20260907k"></script>
+<script src="../assets/js/tools/image-ocr-ui.js?v=20260907h"></script>
+</body>
+</html>

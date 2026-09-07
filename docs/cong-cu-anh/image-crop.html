@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crop ảnh online miễn phí — preset Instagram TikTok Shopee | OneTool</title>
+  <meta name="description" content="Crop / cắt ảnh online theo preset MXH: Instagram, TikTok, YouTube, Facebook, Shopee, ảnh thẻ 3×4. Kéo khung, khóa tỉ lệ, xuất JPG PNG WebP." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-anh/image-crop.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/image-crop.css?v=20260907a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="image-crop">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="ic-page">
+    <header class="ic-intro">
+      <h1>Crop ảnh + preset MXH</h1>
+      <p>Cắt ảnh theo tỉ lệ Instagram, TikTok, YouTube, Facebook, Shopee hay ảnh thẻ 3×4. Kéo khung trên ảnh — file không rời máy bạn.</p>
+    </header>
+
+    <div class="ic-studio">
+      <div class="ic-shell" id="shell">
+        <div class="ic-drop">
+          <div class="upload-zone" id="uploadZone" data-kind="image">
+            <input type="file" id="fileInput" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp" hidden />
+            <div class="upload-placeholder">
+              <p class="ic-drop-kicker">Thả ảnh vào đây</p>
+              <p class="ic-drop-sub">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button> · dán Ctrl+V · JPG PNG WebP · tối đa 20&nbsp;MB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ic-work">
+          <aside class="ic-side">
+            <div class="ic-file-bar">
+              <div>
+                <strong id="fileName">—</strong>
+                <span id="fileMeta">—</span>
+              </div>
+              <button type="button" class="ic-text-btn" id="changeBtn">Đổi ảnh</button>
+            </div>
+
+            <div>
+              <p class="ic-label">Tỉ lệ khung</p>
+              <div class="ic-ratios" id="ratioGrid" role="group" aria-label="Tỉ lệ cắt"></div>
+            </div>
+
+            <div>
+              <p class="ic-label">Preset mạng xã hội</p>
+              <div class="ic-groups" id="groupTabs" role="tablist" aria-label="Nhóm preset"></div>
+              <div class="ic-presets" id="presetGrid"></div>
+            </div>
+
+            <div>
+              <p class="ic-label">Hình dạng</p>
+              <div class="ic-shapes" role="group" aria-label="Hình dạng cắt">
+                <button type="button" class="ic-shape is-on" data-shape="rect"><strong>Chữ nhật</strong><em>Crop thường</em></button>
+                <button type="button" class="ic-shape" data-shape="circle"><strong>Tròn</strong><em>Avatar 1:1</em></button>
+              </div>
+            </div>
+
+            <div>
+              <p class="ic-label">Kích thước xuất</p>
+              <div class="ic-out-modes" role="group">
+                <button type="button" class="ic-out is-on" data-out="native"><strong>Đúng vùng cắt</strong><em id="nativeHint">Pixel gốc</em></button>
+                <button type="button" class="ic-out" data-out="preset"><strong>Theo preset</strong><em id="presetHint">1080 × 1080</em></button>
+              </div>
+              <div class="ic-wh">
+                <label>Rộng
+                  <input type="number" id="outW" min="16" max="8000" inputmode="numeric" />
+                </label>
+                <span aria-hidden="true">×</span>
+                <label>Cao
+                  <input type="number" id="outH" min="16" max="8000" inputmode="numeric" />
+                </label>
+              </div>
+              <p class="ic-hint" id="outHint">Xuất đúng pixel vùng cắt trên ảnh gốc — không nén kích thước, không bị mờ.</p>
+            </div>
+
+            <div>
+              <p class="ic-label">Định dạng</p>
+              <div class="ic-formats" role="group" aria-label="Định dạng">
+                <button type="button" class="ic-fmt is-on" data-format="jpg">JPG</button>
+                <button type="button" class="ic-fmt" data-format="png">PNG</button>
+                <button type="button" class="ic-fmt" data-format="webp">WebP</button>
+              </div>
+              <div class="ic-range" id="qualityWrap">
+                <label class="ic-label" for="quality" style="text-transform:none;letter-spacing:0;font-weight:650;margin:0">Chất lượng</label>
+                <input type="range" id="quality" min="70" max="100" value="96" />
+                <div class="ic-range-meta"><span>Nhẹ hơn</span><span id="qualityVal">96%</span></div>
+              </div>
+            </div>
+
+            <div class="ic-side-preview">
+              <p class="ic-label">Xem trước</p>
+              <div class="ic-mini" id="miniWrap">
+                <canvas id="miniCanvas" aria-hidden="true"></canvas>
+              </div>
+              <p class="ic-mini-meta" id="miniMeta">—</p>
+            </div>
+          </aside>
+
+          <div class="ic-main">
+            <div class="ic-main-bar">
+              <div>
+                <h2>Cắt ảnh</h2>
+                <p id="status">Kéo khung, góc hoặc cạnh để crop</p>
+              </div>
+              <div class="ic-actions">
+                <button type="button" class="btn btn-outline btn-sm" id="copyBtn">Sao chép</button>
+                <button type="button" class="btn btn-primary btn-sm" id="downloadBtn">Tải ảnh đã crop</button>
+              </div>
+            </div>
+
+            <div class="ic-stage" id="stage">
+              <canvas id="cropCanvas" aria-label="Khung cắt ảnh — kéo để crop"></canvas>
+              <div class="ic-film" role="toolbar" aria-label="Xoay và lật">
+                <button type="button" class="ic-film-btn" id="rotLBtn" title="Xoay trái 90°">↺ 90°</button>
+                <button type="button" class="ic-film-btn" id="rotRBtn" title="Xoay phải 90°">↻ 90°</button>
+                <button type="button" class="ic-film-btn" id="flipHBtn" title="Lật ngang">↔ Lật</button>
+                <button type="button" class="ic-film-btn" id="flipVBtn" title="Lật dọc">↕</button>
+                <button type="button" class="ic-film-btn is-on" id="gridBtn" title="Lưới 1/3">Lưới</button>
+                <button type="button" class="ic-film-btn" id="resetBtn" title="Reset vùng cắt">Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260907e"></script>
+<script src="../assets/js/layout.js?v=20260907e"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260907e"></script>
+<script src="../assets/js/tools/image-crop-ui.js?v=20260907b"></script>
+</body>
+</html>

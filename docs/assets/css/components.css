@@ -1377,9 +1377,6 @@ a.tool-card {
     line-height: 1.55;
     color: var(--text);
 }
-    line-height: 1.65;
-    color: var(--text);
-}
 .tool-seo-more {
     margin: 0.5rem 0 0;
     padding: 0;

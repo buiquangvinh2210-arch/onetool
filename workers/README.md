@@ -35,7 +35,9 @@ GitHub Pages không chạy `.ashx`. Worker Cloudflare proxy sang Groq (miễn ph
 8. **Edit code** → dán lại `workers/groq-whisper-proxy.js` → **Deploy** (bắt buộc sau khi thêm biến)
 9. Mở URL Worker → phải thấy `providers.groq`, `providers.gemini`, `providers.openrouter` đúng theo các Secret đã thêm
 
-Worker này còn phục vụ **Tóm tắt AI** (`POST /summarize`) và sẽ tự chuyển sang nhà cung cấp tiếp theo khi nguồn trước hết quota. Trang: `cong-cu-media/ai-summarize.html`.
+Worker này còn phục vụ **Tóm tắt AI** (`POST /summarize`) và **OCR ảnh → chữ** (`POST /ocr`). OCR ưu tiên Gemini (nếu có `GEMINI_API_KEY`), rồi Groq Vision, rồi OpenRouter. Trang: `cong-cu-media/ai-summarize.html`, `cong-cu-anh/image-ocr.html`.
+
+**Worker đã chạy rồi (Whisper/Tóm tắt) mà OCR báo lỗi cổng Audio?** Không phải thiếu `/ocr`. GET URL Worker phải ra `"version": 11` và `"features":[...,"ocr"]`. Secrets `GEMINI_API_KEY` nên có (đọc dấu Việt tốt hơn Groq).
 
 ### Cơ chế fallback
 

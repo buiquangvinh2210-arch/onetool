@@ -4,8 +4,9 @@
  * Deploy: wrangler deploy -c wrangler.toml
  *
  * GET  /           → health
- * POST /           → Whisper (multipart form-data, field file)
+ * POST /           → Whisper (multipart audio) hoặc OCR nếu file là ảnh
  * POST /summarize  → Chat completion tóm tắt (JSON)
+ * POST /ocr        → OCR ảnh → chữ (JSON { image, mime, language } hoặc multipart field file)
  */
 export default {
   async fetch(request, env) {
@@ -31,8 +32,8 @@ export default {
         {
           ok: true,
           service: "onetool-groq-proxy-cf",
-          version: 8,
-          features: ["whisper", "summarize"],
+          version: 14,
+          features: ["whisper", "summarize", "ocr"],
           chatModel: chatModelId(env),
           providers: {
             groq: providers.groq.startsWith("gsk_"),
@@ -66,8 +67,37 @@ export default {
       );
     }
 
-    if (path === "/summarize") {
+    const contentType = (request.headers.get("Content-Type") || "").toLowerCase();
+
+    if (path === "/summarize" || path.endsWith("/summarize")) {
       return summarizeText(request, cors, env, providers);
+    }
+
+    if (path === "/ocr" || path.endsWith("/ocr")) {
+      return ocrImage(request, cors, env, providers);
+    }
+
+    if (contentType.includes("application/json")) {
+      let peek;
+      try {
+        peek = await request.clone().json();
+      } catch (_) {
+        return json({ error: "JSON không hợp lệ." }, 400, cors);
+      }
+      if (peek && typeof peek.image === "string") {
+        try {
+          return runOcrPayload(parseOcrJson(peek), cors, env, providers);
+        } catch (e) {
+          return json({ error: e.message || "Không đọc được ảnh OCR." }, e.status || 400, cors);
+        }
+      }
+      return json(
+        {
+          error: "OCR ảnh: POST /ocr (JSON hoặc multipart). Audio → Text: POST / với multipart field file."
+        },
+        400,
+        cors
+      );
     }
 
     return whisperTranscribe(request, cors, env, providers);
@@ -90,6 +120,15 @@ const OPENROUTER_CHAT_FALLBACKS = [
   "nvidia/nemotron-3-super-120b-a12b:free",
   "liquid/lfm-2.5-2.6b:free"
 ];
+const GROQ_VISION_MODELS = [
+  "meta-llama/llama-4-scout-17b-16e-instruct",
+  "meta-llama/llama-4-maverick-17b-128e-instruct"
+];
+const OPENROUTER_VISION_FALLBACKS = [
+  "openrouter/free",
+  "google/gemma-4-31b-it:free"
+];
+const MAX_OCR_BYTES = 3.5 * 1024 * 1024;
 
 function providerKeys(env) {
   return {
@@ -125,7 +164,10 @@ function isModelUnavailable(msg) {
     t.includes("model_not_found") ||
     t.includes("model_decommissioned") ||
     t.includes("unavailable for free") ||
-    t.includes("use this slug instead")
+    t.includes("use this slug instead") ||
+    t.includes("no endpoints found") ||
+    t.includes("no available endpoint") ||
+    t.includes("not found")
   );
 }
 
@@ -137,13 +179,17 @@ function isRateLimited(status, msg) {
 
 function isFallbackError(status, msg) {
   const text = String(msg || "").toLowerCase();
+  const badRequest =
+    Number(status) === 400 &&
+    /invalid argument|unknown name|unknown field|thinkingconfig|reasoning|invalid json/i.test(text);
   const locationUnsupported =
     Number(status) === 400 &&
     /user location|location.*not supported|not supported.*location|unsupported location|region.*not supported/.test(text);
   return (
     isRateLimited(status, msg) ||
     isModelUnavailable(msg) ||
-    [408, 409, 425, 500, 502, 503, 504].includes(Number(status)) ||
+    badRequest ||
+    [404, 408, 409, 425, 500, 502, 503, 504].includes(Number(status)) ||
     locationUnsupported
   );
 }
@@ -154,6 +200,23 @@ function providerError(provider, status, message) {
   e.status = Number(status) || 502;
   e.rateLimited = isRateLimited(e.status, e.message);
   return e;
+}
+
+function publicErrorStatus(status) {
+  const n = Number(status) || 502;
+  if (n === 404 || n === 405) return 502;
+  return n;
+}
+
+function publicOcrError(msg) {
+  const t = String(msg || "").trim();
+  if (!t) return "Không đọc được chữ trong ảnh. Thử ảnh rõ hơn hoặc crop vùng chữ rồi nhận dạng lại.";
+  if (
+    /openrouter|gemini|groq|slug instead|unavailable for free|no endpoints found|invalid argument/i.test(t)
+  ) {
+    return "Không đọc được chữ trong ảnh. Thử ảnh rõ hơn, xoay đúng chiều, hoặc crop vùng chữ rồi nhận dạng lại.";
+  }
+  return t;
 }
 
 async function readProviderJson(response, provider) {
@@ -451,6 +514,382 @@ function normalizeChoice(v, allowed, fallback) {
   return allowed.includes(s) ? s : fallback;
 }
 
+async function ocrImage(request, cors, env, providers) {
+  let payload;
+  try {
+    payload = await parseOcrRequest(request);
+  } catch (e) {
+    return json({ error: e.message || "Không đọc được ảnh OCR." }, e.status || 400, cors);
+  }
+  return runOcrPayload(payload, cors, env, providers);
+}
+
+function parseOcrJson(body) {
+  const mime = String(body?.mime || "image/jpeg").toLowerCase();
+  if (!/^image\/(jpeg|jpg|png|webp)$/.test(mime)) {
+    const err = new Error("Ảnh OCR chỉ nhận JPG, PNG hoặc WebP.");
+    err.status = 400;
+    throw err;
+  }
+  let b64 = String(body?.image || "").replace(/\s/g, "");
+  if (b64.indexOf("base64,") >= 0) b64 = b64.slice(b64.indexOf("base64,") + 7);
+  if (!b64 || b64.length < 80) {
+    const err = new Error("Thiếu dữ liệu ảnh.");
+    err.status = 400;
+    throw err;
+  }
+  const approxBytes = Math.ceil((b64.length * 3) / 4);
+  if (approxBytes > MAX_OCR_BYTES) {
+    const err = new Error("Ảnh quá lớn để OCR (tối đa khoảng 3,5 MB sau khi nén).");
+    err.status = 413;
+    throw err;
+  }
+  return {
+    mime: mime === "image/jpg" ? "image/jpeg" : mime,
+    b64,
+    language: normalizeChoice(body?.language, ["vi", "en", "auto", "mix"], "mix")
+  };
+}
+
+function uint8ToBase64(bytes) {
+  let binary = "";
+  const chunk = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+  }
+  return btoa(binary);
+}
+
+async function parseOcrForm(form) {
+  const file = form.get("file") || form.get("image");
+  if (!file || typeof file === "string") {
+    const err = new Error("Thiếu file ảnh.");
+    err.status = 400;
+    throw err;
+  }
+  const mime = String(form.get("mime") || file.type || "image/jpeg").toLowerCase();
+  if (!/^image\/(jpeg|jpg|png|webp)$/.test(mime)) {
+    const err = new Error("Ảnh OCR chỉ nhận JPG, PNG hoặc WebP.");
+    err.status = 400;
+    throw err;
+  }
+  const buf = new Uint8Array(await file.arrayBuffer());
+  if (buf.byteLength < 32) {
+    const err = new Error("Thiếu dữ liệu ảnh.");
+    err.status = 400;
+    throw err;
+  }
+  if (buf.byteLength > MAX_OCR_BYTES) {
+    const err = new Error("Ảnh quá lớn để OCR (tối đa khoảng 3,5 MB sau khi nén).");
+    err.status = 413;
+    throw err;
+  }
+  return {
+    mime: mime === "image/jpg" ? "image/jpeg" : mime,
+    b64: uint8ToBase64(buf),
+    language: normalizeChoice(form.get("language"), ["vi", "en", "auto", "mix"], "mix")
+  };
+}
+
+async function parseOcrRequest(request) {
+  const ct = (request.headers.get("Content-Type") || "").toLowerCase();
+  if (ct.includes("multipart/form-data")) {
+    let form;
+    try {
+      form = await request.formData();
+    } catch (_) {
+      const err = new Error("Form OCR không hợp lệ.");
+      err.status = 400;
+      throw err;
+    }
+    return parseOcrForm(form);
+  }
+  let body;
+  try {
+    body = await request.json();
+  } catch (_) {
+    const err = new Error("JSON không hợp lệ.");
+    err.status = 400;
+    throw err;
+  }
+  return parseOcrJson(body);
+}
+
+async function runOcrPayload(payload, cors, env, providers) {
+  const { mime, b64, language } = payload;
+  const prompt = buildOcrPrompt(language);
+
+  const providersToTry = [];
+  if (providers.gemini) {
+    providersToTry.push({
+      name: "gemini",
+      run: () => ocrWithGemini(providers.gemini, b64, mime, prompt, env)
+    });
+  }
+  if (providers.groq.startsWith("gsk_")) {
+    providersToTry.push({
+      name: "groq",
+      run: () => ocrWithGroq(providers.groq, b64, mime, prompt, env)
+    });
+  }
+  if (providers.openrouter) {
+    providersToTry.push({
+      name: "openrouter",
+      run: () => ocrWithOpenRouter(providers.openrouter, b64, mime, prompt, env)
+    });
+  }
+
+  if (!providersToTry.length) {
+    return json({ error: "Chưa cấu hình nhà cung cấp AI cho OCR." }, 503, cors);
+  }
+
+  let lastErr = "Không gọi được dịch vụ OCR.";
+  let lastStatus = 502;
+  let lastRetry = 8;
+
+  for (const provider of providersToTry) {
+    try {
+      const result = await provider.run();
+      return json(
+        {
+          ok: true,
+          text: result.text,
+          meta: {
+            language,
+            model: result.model,
+            provider: provider.name
+          }
+        },
+        200,
+        cors
+      );
+    } catch (e) {
+      lastErr = e.message || lastErr;
+      lastStatus = e.status || 502;
+      if (e.rateLimited) lastRetry = parseRetryAfterSec(lastErr, e.retryAfter);
+      if (!isFallbackError(lastStatus, lastErr)) {
+        return json({ error: publicOcrError(lastErr), provider: provider.name }, publicErrorStatus(lastStatus), cors);
+      }
+    }
+  }
+
+  if (isRateLimited(lastStatus, lastErr)) {
+    return json(
+      {
+        error: friendlyRateLimitError(lastRetry),
+        code: "rate_limit",
+        retryAfter: lastRetry
+      },
+      429,
+      cors
+    );
+  }
+
+  return json({ error: publicOcrError(lastErr) }, publicErrorStatus(lastStatus), cors);
+}
+
+function buildOcrPrompt(language) {
+  const langLine =
+    language === "en"
+      ? "The image may be English, Vietnamese, or mixed. Transcribe every script you see. Do not translate Vietnamese into English."
+      : language === "vi"
+        ? "Ảnh có thể tiếng Việt, tiếng Anh, hoặc lẫn cả hai. Đọc hết cả hai. Không dịch tiếng Anh sang tiếng Việt."
+        : "Ảnh thường lẫn tiếng Việt và tiếng Anh (hóa đơn, CCCD, UI, sách, screenshot). Đọc HẾT cả hai ngôn ngữ — không bỏ ngôn ngữ nào.";
+  return [
+    "Bạn là OCR song ngữ Việt–Anh.",
+    "Đọc TOÀN BỘ chữ nhìn thấy: tiếng Việt CÓ ĐẦY ĐỦ DẤU thanh, và tiếng Anh nguyên văn.",
+    langLine,
+    "Không dịch, không phiên âm, không tóm tắt, không thêm tiêu đề, không markdown.",
+    "Không bỏ dấu tiếng Việt, không chuyển thành không dấu. Phân biệt Đ/đ với D/d, ă/â/ơ/ư, số 0/O, 1/l/I.",
+    "Giữ nguyên từ Anh (tên riêng, UI, email, URL, mã). Giữ số và ký hiệu đúng như ảnh.",
+    "Giữ xuống dòng và thứ tự đọc (trái→phải, trên→dưới) theo bố cục ảnh.",
+    "Không bịa chữ không có trong ảnh. Chỗ không đọc được thì ghi [không rõ].",
+    "Chỉ trả về văn bản đã đọc."
+  ].join(" ");
+}
+
+function stripOcrFences(raw) {
+  let s = String(raw || "").trim();
+  if (s.startsWith("```")) {
+    s = s.replace(/^```[a-zA-Z]*\n?/, "").replace(/```$/, "").trim();
+  }
+  return s.replace(/\u00A0/g, " ").normalize("NFC").trim();
+}
+
+function extractChatText(message) {
+  if (!message || typeof message !== "object") return "";
+  const chunks = [];
+  const push = (v) => {
+    const s = String(v || "").trim();
+    if (s) chunks.push(s);
+  };
+  const content = message.content;
+  if (typeof content === "string") push(content);
+  else if (Array.isArray(content)) {
+    content.forEach((part) => {
+      if (typeof part === "string") push(part);
+      else if (part && typeof part === "object") push(part.text || part.content);
+    });
+  }
+  if (!chunks.length) {
+    push(message.reasoning);
+    push(message.reasoning_content);
+  }
+  return stripOcrFences(chunks.join("\n"));
+}
+
+function extractGeminiOcrText(data) {
+  const parts = data?.candidates?.[0]?.content?.parts || [];
+  return stripOcrFences(parts.map((part) => String(part?.text || "")).join(""));
+}
+
+async function ocrWithGemini(key, b64, mime, prompt, env) {
+  const preferred = geminiModelId(env);
+  const models = [preferred, "gemini-2.5-flash", "gemini-2.0-flash"].filter(
+    (m, i, arr) => m && arr.indexOf(m) === i
+  );
+  let lastError;
+  for (const model of models) {
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+        {
+          method: "POST",
+          headers: {
+            "x-goog-api-key": key,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                role: "user",
+                parts: [
+                  { text: prompt },
+                  { inlineData: { mimeType: mime === "image/jpg" ? "image/jpeg" : mime, data: b64 } }
+                ]
+              }
+            ],
+            generationConfig: { temperature: 0, maxOutputTokens: 8192 }
+          })
+        }
+      );
+      const data = await readProviderJson(response, "gemini");
+      const text = extractGeminiOcrText(data);
+      if (!text) throw providerError("gemini", 502, "Gemini không đọc được chữ trong ảnh.");
+      return { text, model };
+    } catch (e) {
+      lastError = e;
+      if (!isFallbackError(e.status, e.message) && !isModelUnavailable(e.message)) throw e;
+    }
+  }
+  throw lastError || providerError("gemini", 502, "Gemini không đọc được chữ trong ảnh.");
+}
+
+async function ocrWithGroq(key, b64, mime, prompt, env) {
+  const custom = String(env?.GROQ_VISION_MODEL || "").trim();
+  const models = custom
+    ? [custom, ...GROQ_VISION_MODELS.filter((m) => m !== custom)]
+    : GROQ_VISION_MODELS.slice();
+  const dataUrl = "data:" + (mime === "image/jpg" ? "image/jpeg" : mime) + ";base64," + b64;
+  let lastError;
+  for (const model of models) {
+    try {
+      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model,
+          temperature: 0,
+          max_tokens: 8192,
+          messages: [
+            {
+              role: "user",
+              content: [
+                { type: "text", text: prompt },
+                { type: "image_url", image_url: { url: dataUrl } }
+              ]
+            }
+          ]
+        })
+      });
+      const data = await readProviderJson(response, "groq");
+      const text = extractChatText(data?.choices?.[0]?.message);
+      if (!text) throw providerError("groq", 502, "Groq không đọc được chữ trong ảnh.");
+      return { text, model };
+    } catch (e) {
+      lastError = e;
+      if (!isFallbackError(e.status, e.message) && !isModelUnavailable(e.message)) throw e;
+    }
+  }
+  throw lastError || providerError("groq", 502, "Groq Vision không trả về kết quả.");
+}
+
+async function ocrWithOpenRouter(key, b64, mime, prompt, env) {
+  const models = openRouterOcrModels(env);
+  const dataUrl = "data:" + (mime === "image/jpg" ? "image/jpeg" : mime) + ";base64," + b64;
+  let lastError;
+  for (const model of models) {
+    try {
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://onetool.vn",
+          "X-Title": "OneTool"
+        },
+        body: JSON.stringify({
+          model,
+          temperature: 0,
+          max_tokens: 8192,
+          messages: [
+            {
+              role: "user",
+              content: [
+                { type: "text", text: prompt },
+                { type: "image_url", image_url: { url: dataUrl } }
+              ]
+            }
+          ]
+        })
+      });
+      const data = await readProviderJson(response, "openrouter");
+      const text = extractChatText(data?.choices?.[0]?.message);
+      if (!text) throw providerError("openrouter", 502, "OpenRouter không đọc được chữ trong ảnh.");
+      return { text, model };
+    } catch (e) {
+      lastError = e;
+      if (!isFallbackError(e.status, e.message) && !isModelUnavailable(e.message)) throw e;
+    }
+  }
+  if (lastError && isRateLimited(lastError.status, lastError.message)) throw lastError;
+  throw providerError(
+    "openrouter",
+    502,
+    "Hết model OCR miễn phí tạm thời. Chờ vài giây rồi thử lại — không dùng model trả phí."
+  );
+}
+
+function openRouterOcrModels(env) {
+  const custom = String(env?.OPENROUTER_VISION_MODEL || "").trim();
+  const out = [];
+  if (isAllowedOpenRouterOcrModel(custom)) out.push(custom);
+  OPENROUTER_VISION_FALLBACKS.forEach((m) => {
+    if (!out.includes(m)) out.push(m);
+  });
+  return out;
+}
+
+function isAllowedOpenRouterOcrModel(model) {
+  const m = String(model || "").trim();
+  if (!m) return false;
+  if (/llama-4-scout/i.test(m)) return false;
+  return m === "openrouter/free" || m.endsWith(":free");
+}
+
 async function whisperTranscribe(request, cors, env, providers) {
   let form;
   try {
@@ -461,6 +900,15 @@ async function whisperTranscribe(request, cors, env, providers) {
 
   const file = form.get("file");
   if (!file) return json({ error: "Thiếu file audio" }, 400, cors);
+
+  const fileType = String(form.get("mime") || file.type || "").toLowerCase();
+  if (/^image\/(jpeg|jpg|png|webp)$/.test(fileType)) {
+    try {
+      return runOcrPayload(await parseOcrForm(form), cors, env, providers);
+    } catch (e) {
+      return json({ error: e.message || "Không đọc được ảnh OCR." }, e.status || 400, cors);
+    }
+  }
 
   const language = String(form.get("language") || "vi");
   const model = String(form.get("model") || "whisper-large-v3");

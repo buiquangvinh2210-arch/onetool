@@ -14,21 +14,21 @@ window.OTCatalog = {
       slug: "pdf-tools",
       seo: "cong-cu-pdf",
       name: "Công cụ PDF",
-      desc: "Gộp, tách, nén, PDF → Word/Excel, khóa mật khẩu",
+      desc: "Gộp, tách, nén, ký PDF, PDF → Word/Excel, khóa mật khẩu",
       icon: "📄",
       seoTitle: "Công cụ PDF online miễn phí — Gộp, tách, nén, khóa PDF | OneTool",
       seoDescription: "Gộp PDF, tách trang, nén dung lượng, PDF sang Word/Excel, khóa mật khẩu — xử lý 100% trên trình duyệt, không cần đăng ký.",
-      seoKeywords: "gộp pdf online, tách pdf, nén pdf, pdf sang excel, khóa pdf, convert pdf, công cụ pdf miễn phí"
+      seoKeywords: "gộp pdf online, tách pdf, nén pdf, ký pdf, pdf sang excel, khóa pdf, convert pdf, công cụ pdf miễn phí"
     },
     {
       slug: "images",
       seo: "cong-cu-anh",
       name: "Công cụ Ảnh",
-      desc: "Convert, blur, HEIC, resize, xóa nền AI",
+      desc: "Crop MXH, OCR ảnh, convert, blur, HEIC, resize, xóa nền AI",
       icon: "🖼️",
-      seoTitle: "Công cụ ảnh online — Convert, blur, resize, xóa nền | OneTool",
-      seoDescription: "Đổi định dạng JPG PNG WebP, làm mờ / blur ảnh, resize, xóa nền AI — miễn phí trên trình duyệt.",
-      seoKeywords: "convert ảnh online, làm mờ ảnh, blur ảnh, resize ảnh, xóa nền ảnh miễn phí"
+      seoTitle: "Công cụ ảnh online — OCR, crop MXH, convert, blur, resize, xóa nền | OneTool",
+      seoDescription: "OCR ảnh sang chữ tiếng Việt, crop preset Instagram TikTok Shopee, đổi JPG PNG WebP, làm mờ, resize, xóa nền AI — miễn phí trên trình duyệt.",
+      seoKeywords: "ocr ảnh tiếng việt, crop ảnh online, crop instagram, convert ảnh, làm mờ ảnh, resize ảnh, xóa nền ảnh miễn phí"
     },
     {
       slug: "file-converter",
@@ -88,21 +88,24 @@ window.OTCatalog = {
     { slug: "image-to-pdf", name: "Ảnh sang PDF", desc: "Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.", icon: "🖼️", cat: "pdf-tools", featured: true, rank: 5 },
     { slug: "pdf-to-image", name: "PDF sang ảnh", desc: "Xuất từng trang PDF ra PNG / JPG / WebP — xem trước hoặc tải ZIP.", icon: "🌄", cat: "pdf-tools", featured: true, rank: 6 },
     { slug: "pdf-lock", name: "Đặt mật khẩu PDF", desc: "Khóa PDF bằng mật khẩu mở file (AES-256) — bảo vệ hồ sơ trước khi gửi.", icon: "🔒", cat: "pdf-tools", featured: true, rank: 7 },
-    { slug: "pdf-watermark", name: "Đóng dấu PDF", desc: "Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.", icon: "💧", cat: "pdf-tools", featured: true, rank: 8 },
-    { slug: "pdf-compress", name: "Nén PDF online", desc: "Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true, rank: 9 },
-    { slug: "office-to-pdf", name: "Word sang PDF", desc: "Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.", icon: "📑", cat: "pdf-tools", rank: 10 },
-    { slug: "pdf-split", name: "Tách PDF online", desc: "Tách PDF theo trang hoặc khoảng — tải đúng phần cần dùng.", icon: "✂️", cat: "pdf-tools", rank: 11 },
-    { slug: "pdf-pages", name: "Xoay PDF / xóa trang", desc: "Xoay trang bị ngược hoặc xóa trang trắng / trang nhầm trước khi gửi.", icon: "🔄", cat: "pdf-tools", rank: 12 },
-    { slug: "pdf-convert", name: "PDF sang TXT", desc: "Trích chữ từ PDF (text layer + OCR bản scan) ra TXT.", icon: "📤", cat: "pdf-tools", rank: 13 },
+    { slug: "pdf-sign", name: "Ký PDF online", desc: "Ký tên, đóng dấu ngày, chữ ký tay hoặc ảnh lên PDF — kéo thả, nhiều trang.", icon: "✍️", cat: "pdf-tools", featured: true, rank: 8 },
+    { slug: "pdf-watermark", name: "Đóng dấu PDF", desc: "Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.", icon: "💧", cat: "pdf-tools", featured: true, rank: 9 },
+    { slug: "pdf-compress", name: "Nén PDF online", desc: "Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true, rank: 10 },
+    { slug: "office-to-pdf", name: "Word sang PDF", desc: "Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.", icon: "📑", cat: "pdf-tools", rank: 11 },
+    { slug: "pdf-split", name: "Tách PDF online", desc: "Tách PDF theo trang hoặc khoảng — tải đúng phần cần dùng.", icon: "✂️", cat: "pdf-tools", rank: 12 },
+    { slug: "pdf-pages", name: "Xoay PDF / xóa trang", desc: "Xoay trang bị ngược hoặc xóa trang trắng / trang nhầm trước khi gửi.", icon: "🔄", cat: "pdf-tools", rank: 13 },
+    { slug: "pdf-convert", name: "PDF sang TXT", desc: "Trích chữ từ PDF (text layer + OCR bản scan) ra TXT.", icon: "📤", cat: "pdf-tools", rank: 14 },
 
     /* Ảnh */
     { slug: "remove-background", name: "Xóa nền ảnh", desc: "Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.", icon: "✂️", cat: "images", featured: true, rank: 1 },
     { slug: "heic-convert", name: "HEIC sang JPG", desc: "Chuyển HEIC / HEIF (và JPG PNG) sang JPG · PNG · WebP — nhiều ảnh, tải ZIP.", icon: "📱", cat: "images", featured: true, rank: 2 },
     { slug: "image-compress", name: "Nén ảnh online", desc: "Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau.", icon: "🗜️", cat: "images", featured: true, rank: 3 },
     { slug: "image-convert", name: "Đổi định dạng ảnh", desc: "Đổi JPG ↔ PNG ↔ WebP online — kéo thả, chọn format, tải về.", icon: "🖼️", cat: "images", featured: true, rank: 4 },
-    { slug: "image-resize", name: "Đổi kích thước ảnh", desc: "Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.", icon: "📐", cat: "images", featured: true, rank: 5 },
-    { slug: "image-blur", name: "Làm mờ ảnh", desc: "Làm mờ toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.", icon: "🌫️", cat: "images", featured: true, rank: 6 },
-    { slug: "image-batch", name: "Nén nhiều ảnh cùng lúc", desc: "Đổi định dạng, resize hoặc nén nhiều ảnh cùng lúc — phù hợp catalog sản phẩm.", icon: "📦", cat: "images", rank: 7 },
+    { slug: "image-crop", name: "Crop ảnh + preset MXH", desc: "Cắt ảnh theo preset Instagram, TikTok, YouTube, Facebook, Shopee, ảnh thẻ 3×4 — kéo khung, xuất JPG/PNG/WebP.", icon: "🔲", cat: "images", featured: true, rank: 5 },
+    { slug: "image-ocr", name: "OCR ảnh → chữ", desc: "Nhận dạng chữ Việt + Anh trong ảnh: hóa đơn, CCCD, sách, screenshot — copy hoặc tải TXT.", icon: "🔤", cat: "images", featured: true, rank: 6 },
+    { slug: "image-resize", name: "Đổi kích thước ảnh", desc: "Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.", icon: "📐", cat: "images", featured: true, rank: 7 },
+    { slug: "image-blur", name: "Làm mờ ảnh", desc: "Làm mờ toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.", icon: "🌫️", cat: "images", featured: true, rank: 8 },
+    { slug: "image-batch", name: "Nén nhiều ảnh cùng lúc", desc: "Đổi định dạng, resize hoặc nén nhiều ảnh cùng lúc — phù hợp catalog sản phẩm.", icon: "📦", cat: "images", rank: 9 },
 
     /* File & dữ liệu */
     { slug: "excel-convert", name: "Excel sang CSV JSON", desc: "Convert XLSX/XLS sang CSV hoặc JSON — và ngược lại. Chọn sheet, xem trước, tải file.", icon: "📗", cat: "file-converter", featured: true, rank: 1 },
@@ -158,6 +161,14 @@ window.OTCatalog = {
     "image-convert": {
       title: "Đổi định dạng ảnh online — JPG PNG WebP miễn phí | OneTool",
       desc: "Đổi ảnh JPG sang PNG, PNG sang JPG, WebP online miễn phí. Kéo thả, chọn format, tải về ngay."
+    },
+    "image-crop": {
+      title: "Crop ảnh online miễn phí — preset Instagram TikTok Shopee | OneTool",
+      desc: "Crop / cắt ảnh online theo preset MXH: Instagram, TikTok, YouTube, Facebook, Shopee, ảnh thẻ 3×4. Kéo khung, khóa tỉ lệ, xuất JPG PNG WebP."
+    },
+    "image-ocr": {
+      title: "OCR ảnh sang chữ online miễn phí — Việt & Anh | OneTool",
+      desc: "OCR ảnh → text tiếng Việt và tiếng Anh bằng AI: chụp CCCD, hóa đơn, sách, screenshot thành chữ. Copy hoặc tải TXT. Miễn phí."
     },
     "image-resize": {
       title: "Đổi kích thước ảnh online miễn phí | OneTool",
@@ -254,6 +265,10 @@ window.OTCatalog = {
     "pdf-lock": {
       title: "Đặt mật khẩu PDF online miễn phí — khóa PDF | OneTool",
       desc: "Khóa PDF / đặt mật khẩu mở file PDF online (AES-256). Bảo vệ hồ sơ trước khi gửi."
+    },
+    "pdf-sign": {
+      title: "Ký PDF online miễn phí — chữ ký tay, ngày, đóng dấu | OneTool",
+      desc: "Ký PDF online miễn phí: vẽ chữ ký, gõ tên font chữ ký, tải ảnh chữ ký, đóng dấu ngày. Kéo thả lên trang, nhiều chữ ký. Không đăng ký."
     },
     "office-to-pdf": {
       title: "Word sang PDF online miễn phí — Excel sang PDF | OneTool",
@@ -459,6 +474,96 @@ window.OTCatalog = {
             { title: "JPG", text: "ảnh chụp, banner — dung lượng nhẹ." },
             { title: "PNG", text: "logo, icon — giữ nét và nền trong suốt." },
             { title: "WebP", text: "website hiện đại — cân bằng chất lượng và tốc độ tải." }
+          ]
+        }
+      ]
+    },
+    "image-crop": {
+      keywords: "crop ảnh, cắt ảnh online, crop ảnh instagram, crop tiktok, preset mạng xã hội, ảnh thẻ 3x4, crop 1:1 shopee, cắt ảnh facebook miễn phí",
+      howto: [
+        "Tải ảnh JPG / PNG / WebP lên (hoặc dán Ctrl+V).",
+        "Chọn tỉ lệ hoặc preset MXH (Instagram, TikTok, Shopee, ảnh thẻ…).",
+        "Kéo khung cắt, xoay/lật nếu cần, rồi bấm Tải ảnh đã crop."
+      ],
+      faqs: [
+        {
+          q: "Crop ảnh online có miễn phí không?",
+          a: "Có. OneTool cho **crop / cắt ảnh miễn phí** theo tỉ lệ và preset mạng xã hội — không cần đăng ký."
+        },
+        {
+          q: "Có preset Instagram, TikTok, Shopee không?",
+          a: "Có. Chọn sẵn **Instagram vuông/dọc/Story**, **TikTok 9:16**, **YouTube thumbnail**, **ảnh bìa Facebook**, **Shopee 1:1**, **ảnh thẻ 3×4** và nhiều kích thước khác."
+        },
+        {
+          q: "Ảnh có bị upload lên server không?",
+          a: "Không. Toàn bộ cắt ảnh chạy **trên trình duyệt** — file không gửi lên server OneTool."
+        },
+        {
+          q: "Crop tròn để làm avatar được không?",
+          a: "Được. Chọn hình **Tròn** (khóa 1:1), xuất **PNG** hoặc **WebP** để giữ nền trong suốt; JPG sẽ nền trắng."
+        }
+      ],
+      sections: [
+        {
+          title: "Crop ảnh online là gì?",
+          paras: [
+            "**Crop / cắt ảnh** là chọn một vùng trên ảnh gốc rồi xuất ra kích thước mới — dùng cho avatar, feed Instagram, video dọc TikTok/Reels, ảnh sản phẩm Shopee hoặc **ảnh thẻ 3×4**."
+          ]
+        },
+        {
+          title: "Preset mạng xã hội có sẵn",
+          list: [
+            { title: "Instagram & Reels", text: "vuông 1080×1080, dọc 4:5, Story/Reels 9:16." },
+            { title: "TikTok & YouTube", text: "TikTok 1080×1920, thumbnail 1280×720, Shorts 9:16." },
+            { title: "Facebook & Shopee", text: "bài viết 1200×630, ảnh bìa, sản phẩm 1:1, ảnh thẻ 3×4." }
+          ]
+        },
+        {
+          title: "Cách cắt ảnh chuẩn MXH",
+          paras: [
+            "Upload ảnh, chọn preset đúng nền tảng, kéo khung (có lưới 1/3), chọn xuất **đúng vùng cắt** hoặc **scale theo preset**, rồi tải JPG / PNG / WebP."
+          ]
+        }
+      ]
+    },
+    "image-ocr": {
+      keywords: "ocr ảnh, ocr tiếng việt, ocr tiếng anh, ảnh sang chữ, chuyển ảnh thành văn bản, ocr hóa đơn, ocr cccd, image to text miễn phí",
+      howto: [
+        "Tải hoặc dán ảnh có chữ (JPG / PNG / WebP).",
+        "Chọn ngôn ngữ (Việt + Anh mặc định, đọc cả hai) rồi bấm Nhận dạng chữ.",
+        "Sửa văn bản nếu cần, rồi sao chép hoặc tải file TXT."
+      ],
+      faqs: [
+        {
+          q: "OCR ảnh online có miễn phí không?",
+          a: "Có. OneTool **OCR ảnh → chữ miễn phí**, đọc **tiếng Việt (có dấu)** và **tiếng Anh** (kể cả lẫn trong cùng ảnh), không cần đăng ký."
+        },
+        {
+          q: "Ảnh có bị upload lên server không?",
+          a: "Ảnh được gửi **tạm thời** tới dịch vụ AI (cùng hạ tầng Tóm tắt AI / Audio → Text) để đọc chữ cho chính xác — OneTool không lưu ảnh. Không cần đăng ký."
+        },
+        {
+          q: "OCR được CCCD, hóa đơn, sách không?",
+          a: "Được với ảnh rõ, thẳng, đủ sáng. AI đọc **cả tiếng Việt và tiếng Anh**, giữ dấu thanh. Có thể **kéo vùng chọn** nếu chỉ cần một phần. Số liệu quan trọng nên rà lại."
+        },
+        {
+          q: "Muốn xuất bảng Excel thì sao?",
+          a: "Dùng tool **OCR bảng → Excel** nếu ảnh là bảng / biên lai nhiều cột. Tool này xuất **văn bản thuần** (TXT)."
+        }
+      ],
+      sections: [
+        {
+          title: "OCR ảnh sang chữ là gì?",
+          paras: [
+            "**OCR (Optical Character Recognition)** đọc chữ trong ảnh rồi biến thành văn bản có thể copy, tìm kiếm, chỉnh sửa — hóa đơn, CCCD, ghi chú, screenshot, trang sách. Hỗ trợ **tiếng Việt có dấu** và **tiếng Anh** trong cùng một ảnh."
+          ]
+        },
+        {
+          title: "Mẹo nhận dạng chính xác hơn",
+          list: [
+            { title: "Ảnh rõ", text: "chụp thẳng, đủ sáng, tránh bóng và nghiêng." },
+            { title: "Vùng chọn", text: "chỉ OCR phần cần thiết nếu ảnh có nhiều nhiễu." },
+            { title: "Xoay ảnh", text: "xoay đúng chiều trước khi nhận dạng." }
           ]
         }
       ]
@@ -1261,6 +1366,62 @@ window.OTCatalog = {
         }
       ]
     },
+    "pdf-sign": {
+      keywords: "ký pdf, ký pdf online, chữ ký pdf, sign pdf, đóng dấu chữ ký pdf, vẽ chữ ký pdf, chữ ký tay pdf miễn phí, ký hợp đồng pdf",
+      howto: [
+        "Thả file PDF cần ký.",
+        "Tạo chữ ký: vẽ tay, gõ tên, tải ảnh hoặc chọn ngày.",
+        "Bấm Đặt chữ ký lên PDF, rồi kéo đúng chỗ.",
+        "Bấm Tải PDF đã ký."
+      ],
+      faqs: [
+        {
+          q: "Ký PDF online có miễn phí không?",
+          a: "Có. OneTool cho **ký PDF miễn phí**: vẽ chữ ký tay, gõ tên font chữ ký, tải ảnh hoặc đóng dấu ngày — không cần đăng ký."
+        },
+        {
+          q: "Chữ ký có phải chữ ký số (USB token) không?",
+          a: "Đây là **chữ ký điện tử dạng ảnh** nhúng vào PDF (giống iLovePDF Sign): đủ dùng hợp đồng nội bộ, biên bản, phiếu giao. Không thay chứng thư số / USB token theo luật giao dịch điện tử."
+        },
+        {
+          q: "File PDF có bị upload không?",
+          a: "Không. Toàn bộ xử lý chạy **trên trình duyệt** — PDF và chữ ký không gửi lên server OneTool."
+        },
+        {
+          q: "Ký được nhiều trang không?",
+          a: "Được. Chọn chữ ký trên trang rồi bấm **Thêm mọi trang**."
+        }
+      ],
+      sections: [
+        {
+          title: "Ký PDF online là gì?",
+          paras: [
+            "**Ký PDF** thêm chữ ký tay, họ tên, ngày ký hoặc dòng chữ ký lên tài liệu — hợp đồng, biên bản, phiếu giao, hồ sơ xin việc. Kết quả là PDF đã **flatten** chữ ký vào trang, mở được trên mọi máy."
+          ]
+        },
+        {
+          title: "Cách ký PDF miễn phí trên OneTool",
+          paras: [
+            "Thả PDF, chọn **Vẽ**, **Gõ tên**, **Ảnh** hoặc **Ngày**. Bấm **Đặt chữ ký lên PDF**, kéo đúng vị trí, rồi **Tải PDF đã ký**."
+          ]
+        },
+        {
+          title: "Nên ký kiểu nào?",
+          list: [
+            { title: "Vẽ tay", text: "nhanh trên điện thoại hoặc chuột — giống ký giấy." },
+            { title: "Gõ tên", text: "chọn font Pacifico, Great Vibes… khi chưa có ảnh chữ ký." },
+            { title: "Ảnh PNG", text: "chữ ký đã scan; nền trắng được tách gần trong suốt." },
+            { title: "Ngày", text: "đóng dấu ngày ký theo định dạng tiếng Việt." }
+          ]
+        },
+        {
+          title: "Lưu chữ ký trên máy",
+          paras: [
+            "Chữ ký vừa đặt được lưu trên trình duyệt của bạn (không đưa lên server). Lần sau mở tool, bấm chữ ký đã lưu để đặt lại nhanh."
+          ]
+        }
+      ]
+    },
     "office-to-pdf": {
       keywords: "word to pdf, excel to pdf, convert docx to pdf, xlsx sang pdf, word sang pdf online miễn phí, excel sang pdf",
       howto: [
@@ -1803,17 +1964,17 @@ window.OTCatalog = {
       ]
     },
     "cong-cu-pdf": {
-      intro: "Tập hợp **công cụ PDF online miễn phí**: gộp, tách, nén, **Ảnh ↔ PDF**, xoay trang và trích TXT/OCR.",
+      intro: "Tập hợp **công cụ PDF online miễn phí**: gộp, tách, nén, **ký PDF**, **Ảnh ↔ PDF**, xoay trang và trích TXT/OCR.",
       sections: [
         { title: "Ảnh ↔ PDF", paras: ["**Ảnh → PDF** ghép nhiều ảnh thành một file. **PDF → Ảnh** xuất PNG/JPG/WebP từng trang hoặc ZIP."] },
-        { title: "Gộp · nén · Word", paras: ["**Gộp PDF**, **Nén PDF**, **PDF → Word**. File xử lý trên trình duyệt — không rời máy bạn."] }
+        { title: "Gộp · nén · ký · Word", paras: ["**Gộp PDF**, **Nén PDF**, **Ký PDF**, **PDF → Word**. File xử lý trên trình duyệt — không rời máy bạn."] }
       ]
     },
     "cong-cu-anh": {
-      intro: "**Công cụ ảnh online** — nén, convert, resize, **làm mờ / blur**, xóa nền AI. Cần ghép ảnh thành PDF? Xem hub **Ảnh ↔ PDF**.",
+      intro: "**Công cụ ảnh online** — nén, convert, **crop + preset MXH**, **OCR ảnh → chữ**, resize, **làm mờ / blur**, xóa nền AI. Cần ghép ảnh thành PDF? Xem hub **Ảnh ↔ PDF**.",
       sections: [
-        { title: "Nén, convert & blur", paras: ["**Nén ảnh** giảm MB. Đổi JPG/PNG/WebP. **Làm mờ ảnh** toàn khung hoặc vùng chọn để che thông tin."] },
-        { title: "Resize, xóa nền & PDF", paras: ["Resize banner/avatar. Tách nền AI xuất PNG. Ghép ảnh thành PDF tại **Ảnh → PDF**."] }
+        { title: "Nén, convert, crop & OCR", paras: ["**Nén ảnh** giảm MB. Đổi JPG/PNG/WebP. **Crop** preset Instagram/TikTok/Shopee. **OCR ảnh** đọc chữ tiếng Việt ra TXT."] },
+        { title: "Resize, blur, xóa nền & PDF", paras: ["Resize banner/avatar. **Làm mờ** che thông tin. Tách nền AI xuất PNG. Ghép ảnh thành PDF tại **Ảnh → PDF**."] }
       ]
     },
     "cong-cu-chuyen-doi": {

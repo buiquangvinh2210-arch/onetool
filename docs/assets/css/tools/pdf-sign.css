@@ -1,0 +1,783 @@
+body[data-tool="pdf-sign"] {
+  --ps-ink: #16121c;
+  --ps-muted: #6f687c;
+  --ps-line: rgba(40, 24, 70, 0.1);
+  --ps-soft: rgba(79, 70, 229, 0.09);
+  --ps-ok: #0f7a4d;
+  --ps-accent: #4f46e5;
+  --ps-paper: #fbf7ef;
+}
+
+body[data-tool="pdf-sign"] [hidden] {
+  display: none !important;
+}
+
+body[data-tool="pdf-sign"] .tool-workspace {
+  padding: 0 0 1.15rem !important;
+  background: #f6f5f8 !important;
+}
+
+body[data-tool="pdf-sign"] .ps-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+body[data-tool="pdf-sign"] .ps-intro {
+  text-align: center;
+  margin: 0 auto 1.15rem;
+  max-width: 34rem;
+}
+
+body[data-tool="pdf-sign"] .ps-intro h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  font-weight: 760;
+  letter-spacing: -0.04em;
+  color: var(--ps-ink);
+}
+
+body[data-tool="pdf-sign"] .ps-intro p {
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ps-muted);
+}
+
+body[data-tool="pdf-sign"] .ps-shell {
+  border-radius: 18px;
+  border: 1px solid var(--ps-line);
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(50, 30, 90, 0.05);
+  overflow: hidden;
+  min-height: min(620px, calc(100vh - 10rem));
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-tool="pdf-sign"] .ps-drop {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 340px;
+  padding: 2rem;
+}
+
+body[data-tool="pdf-sign"] .ps-shell.has-file .ps-drop {
+  display: none;
+}
+
+body[data-tool="pdf-sign"] .ps-drop .upload-zone {
+  width: 100%;
+  max-width: 440px;
+  min-height: 200px;
+  margin: 0;
+  border-radius: 16px;
+  border-style: dashed;
+  background: rgba(79, 70, 229, 0.04);
+}
+
+body[data-tool="pdf-sign"] .ps-drop .upload-zone::before {
+  display: none;
+}
+
+body[data-tool="pdf-sign"] .ps-drop-kicker {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ps-ink);
+}
+
+body[data-tool="pdf-sign"] .ps-drop-sub {
+  margin: 0.4rem 0 0;
+  color: var(--ps-muted);
+}
+
+body[data-tool="pdf-sign"] .ps-work {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: 300px 1fr;
+}
+
+body[data-tool="pdf-sign"] .ps-shell.has-file .ps-work {
+  display: grid;
+}
+
+body[data-tool="pdf-sign"] .ps-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1rem 1.1rem;
+  border-right: 1px solid var(--ps-line);
+  overflow-y: auto;
+  max-height: min(80vh, 860px);
+}
+
+body[data-tool="pdf-sign"] .ps-file-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--ps-line);
+}
+
+body[data-tool="pdf-sign"] .ps-file-bar strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 650;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 190px;
+  color: var(--ps-ink);
+}
+
+body[data-tool="pdf-sign"] .ps-file-bar span {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.78rem;
+  color: var(--ps-muted);
+}
+
+body[data-tool="pdf-sign"] .ps-text-btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: var(--ps-accent);
+  cursor: pointer;
+}
+
+body[data-tool="pdf-sign"] .ps-step {
+  margin: 0.15rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ps-muted);
+}
+
+body[data-tool="pdf-sign"] .ps-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.28rem;
+  padding: 0.22rem;
+  border-radius: 12px;
+  background: #f3f1f6;
+}
+
+body[data-tool="pdf-sign"] .ps-tab {
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  padding: 0.48rem 0.2rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--ps-muted);
+  cursor: pointer;
+}
+
+body[data-tool="pdf-sign"] .ps-tab.is-on {
+  background: #fff;
+  color: var(--ps-accent);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+body[data-tool="pdf-sign"] .ps-pad-wrap {
+  position: relative;
+  border-radius: 12px;
+  border: 1px dashed rgba(79, 70, 229, 0.28);
+  background: var(--ps-paper);
+  overflow: hidden;
+}
+
+body[data-tool="pdf-sign"] #padCanvas {
+  display: block;
+  width: 100%;
+  height: 128px;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+body[data-tool="pdf-sign"] .ps-pad-hint {
+  position: absolute;
+  inset: auto 0 0.4rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9a8f7a;
+  pointer-events: none;
+}
+
+body[data-tool="pdf-sign"] .ps-pad-wrap.is-inked .ps-pad-hint {
+  display: none;
+}
+
+body[data-tool="pdf-sign"] .ps-pad-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+body[data-tool="pdf-sign"] .ps-swatches {
+  display: flex;
+  gap: 0.32rem;
+  margin-right: auto;
+}
+
+body[data-tool="pdf-sign"] .ps-swatch {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.16);
+  cursor: pointer;
+  padding: 0;
+}
+
+body[data-tool="pdf-sign"] .ps-swatch.is-on {
+  box-shadow: 0 0 0 2px var(--ps-accent);
+}
+
+body[data-tool="pdf-sign"] .ps-mini {
+  border: 1px solid var(--ps-line);
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.28rem 0.55rem;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--ps-ink);
+  cursor: pointer;
+}
+
+body[data-tool="pdf-sign"] .ps-mini.ps-danger {
+  color: #b91c1c;
+}
+
+body[data-tool="pdf-sign"] .form-control {
+  border-radius: 10px;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.65rem;
+}
+
+body[data-tool="pdf-sign"] #typeOpts,
+body[data-tool="pdf-sign"] #imageOpts,
+body[data-tool="pdf-sign"] #dateOpts,
+body[data-tool="pdf-sign"] #drawOpts {
+  display: grid;
+  gap: 0.5rem;
+}
+
+body[data-tool="pdf-sign"] .ps-row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+body[data-tool="pdf-sign"] .ps-type-preview,
+body[data-tool="pdf-sign"] .ps-date-preview {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  background: var(--ps-paper);
+  color: #1e3a8a;
+  font-size: 1.45rem;
+  line-height: 1.2;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+}
+
+body[data-tool="pdf-sign"] .ps-date-preview {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--ps-ink);
+}
+
+body[data-tool="pdf-sign"] .ps-color {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--ps-muted);
+}
+
+body[data-tool="pdf-sign"] .ps-color input[type="color"] {
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+body[data-tool="pdf-sign"] .ps-img-preview {
+  padding: 0.4rem;
+  border-radius: 10px;
+  background: repeating-conic-gradient(#eee 0 25%, #fff 0 50%) 0 0 / 12px 12px;
+}
+
+body[data-tool="pdf-sign"] .ps-img-preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 72px;
+  margin: 0 auto;
+}
+
+body[data-tool="pdf-sign"] .ps-hint {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--ps-muted);
+}
+
+body[data-tool="pdf-sign"] .ps-side .btn-block {
+  border-radius: 11px;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+}
+
+body[data-tool="pdf-sign"] .ps-sel {
+  padding: 0.7rem;
+  border-radius: 12px;
+  background: var(--ps-soft);
+  display: grid;
+  gap: 0.5rem;
+}
+
+body[data-tool="pdf-sign"] .ps-sel-title {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ps-ink);
+}
+
+body[data-tool="pdf-sign"] .ps-sel-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+body[data-tool="pdf-sign"] .ps-lib {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+}
+
+body[data-tool="pdf-sign"] .ps-lib-item {
+  position: relative;
+  aspect-ratio: 1.35;
+  border: 1px solid var(--ps-line);
+  border-radius: 8px;
+  background: #faf9fc;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+}
+
+body[data-tool="pdf-sign"] .ps-lib-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+body[data-tool="pdf-sign"] .ps-lib-x {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.7);
+  color: #fff;
+  font-size: 0.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+body[data-tool="pdf-sign"] .ps-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: #eceaf1;
+}
+
+body[data-tool="pdf-sign"] .ps-main-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding: 0.7rem 0.95rem;
+  border-bottom: 1px solid var(--ps-line);
+  background: #fff;
+}
+
+body[data-tool="pdf-sign"] .ps-pager {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--ps-ink);
+  white-space: nowrap;
+}
+
+body[data-tool="pdf-sign"] .ps-icon-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--ps-line);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  color: var(--ps-ink);
+}
+
+body[data-tool="pdf-sign"] .ps-icon-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+body[data-tool="pdf-sign"] #status {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--ps-muted);
+  min-width: 0;
+}
+
+body[data-tool="pdf-sign"] #status.is-ok { color: var(--ps-ok); }
+body[data-tool="pdf-sign"] #status.is-err { color: #b91c1c; }
+
+body[data-tool="pdf-sign"] .ps-main-bar .btn-primary {
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 0.55rem 1rem;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.22);
+}
+
+body[data-tool="pdf-sign"] .ps-main-bar .btn-primary:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+body[data-tool="pdf-sign"] .ps-stage-wrap {
+  flex: 1;
+  min-height: 340px;
+  overflow: auto;
+  padding: 1rem;
+  display: grid;
+  place-items: start center;
+}
+
+body[data-tool="pdf-sign"] .ps-stage {
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.14);
+  background: #fff;
+  line-height: 0;
+}
+
+body[data-tool="pdf-sign"] #pageCanvas {
+  display: block;
+}
+
+body[data-tool="pdf-sign"] .ps-overlays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+body[data-tool="pdf-sign"] .ps-stamp {
+  position: absolute;
+  pointer-events: auto;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transform-origin: center center;
+}
+
+body[data-tool="pdf-sign"] .ps-stamp.is-dragging {
+  cursor: grabbing;
+  z-index: 4;
+}
+
+body[data-tool="pdf-sign"] .ps-stamp img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+body[data-tool="pdf-sign"] .ps-stamp.is-on {
+  outline: 2px solid var(--ps-accent);
+  outline-offset: 1px;
+  z-index: 3;
+}
+
+body[data-tool="pdf-sign"] .ps-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #fff;
+  border: 2px solid var(--ps-accent);
+  z-index: 2;
+}
+
+body[data-tool="pdf-sign"] .ps-handle-se { right: -5px; bottom: -5px; cursor: nwse-resize; }
+body[data-tool="pdf-sign"] .ps-handle-ne { right: -5px; top: -5px; cursor: nesw-resize; }
+body[data-tool="pdf-sign"] .ps-handle-sw { left: -5px; bottom: -5px; cursor: nesw-resize; }
+body[data-tool="pdf-sign"] .ps-handle-nw { left: -5px; top: -5px; cursor: nwse-resize; }
+
+body[data-tool="pdf-sign"] .ps-stage-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.72);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  pointer-events: none;
+  white-space: normal;
+  text-align: center;
+  max-width: calc(100% - 1.5rem);
+  box-sizing: border-box;
+}
+
+body[data-tool="pdf-sign"] .ps-stage.has-stamps .ps-stage-hint {
+  display: none;
+}
+
+body[data-tool="pdf-sign"] .ps-thumbs {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.55rem 0.9rem 0.75rem;
+  border-top: 1px solid var(--ps-line);
+  background: #fff;
+}
+
+body[data-tool="pdf-sign"] .ps-thumb {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 64px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  overflow: hidden;
+  padding: 0;
+  background: #f3f1f6;
+  cursor: pointer;
+}
+
+body[data-tool="pdf-sign"] .ps-thumb.is-on {
+  border-color: var(--ps-accent);
+}
+
+body[data-tool="pdf-sign"] .ps-thumb canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  body[data-tool="pdf-sign"] .ps-work {
+    grid-template-columns: 1fr;
+  }
+  body[data-tool="pdf-sign"] .ps-side {
+    border-right: 0;
+    border-bottom: 1px solid var(--ps-line);
+    max-height: none;
+  }
+  body[data-tool="pdf-sign"] .ps-main-bar {
+    grid-template-columns: 1fr auto;
+  }
+  body[data-tool="pdf-sign"] #status {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+  body[data-tool="pdf-sign"] .ps-stage-hint {
+    white-space: normal;
+    text-align: center;
+    max-width: 90%;
+  }
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] {
+  --ps-ink: #f1edf8;
+  --ps-muted: #94a3b8;
+  --ps-line: rgba(255, 255, 255, 0.08);
+  --ps-soft: rgba(129, 140, 248, 0.16);
+  --ps-paper: #231f18;
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] .tool-workspace {
+  background: var(--bg, #141119) !important;
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-shell,
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-main-bar,
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-tab.is-on,
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-icon-btn,
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-mini,
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-thumbs {
+  background: var(--surface, #1c1824);
+  border-color: var(--border, rgba(255, 255, 255, 0.08));
+  color: var(--text, #f1edf8);
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-tabs {
+  background: #121018;
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-main {
+  background: #121018;
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-type-preview,
+html[data-theme="dark"] body[data-tool="pdf-sign"] .ps-date-preview {
+  background: #1a1814;
+  color: #c7d2fe;
+}
+
+/* Phần mô tả / SEO — cùng cột với tool, card gọn, không lệch trái */
+body[data-tool="pdf-sign"] .tool-seo {
+  padding: 0.35rem 0 3rem;
+  background: #f6f5f8;
+  border-top: 0;
+  overflow-x: hidden;
+}
+
+body[data-tool="pdf-sign"] .tool-seo:empty {
+  display: none;
+  min-height: 0;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-block {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 1.15rem 1.25rem 1.2rem;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-block h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem !important;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-howto {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-howto li {
+  position: relative;
+  padding: 0.45rem 0.7rem 0.45rem 2.35rem;
+  border-radius: 10px;
+  background: #f6f5f8;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-howto li::before {
+  position: absolute;
+  left: 0.65rem;
+  top: 0.42rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: var(--ps-soft);
+  color: var(--ps-accent);
+  font-size: 0.72rem;
+  font-weight: 750;
+  display: grid;
+  place-items: center;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-howto li:nth-child(1)::before { content: "1"; }
+body[data-tool="pdf-sign"] .tool-seo-howto li:nth-child(2)::before { content: "2"; }
+body[data-tool="pdf-sign"] .tool-seo-howto li:nth-child(3)::before { content: "3"; }
+body[data-tool="pdf-sign"] .tool-seo-howto li:nth-child(4)::before { content: "4"; }
+
+body[data-tool="pdf-sign"] .tool-seo-block ul:not(.tool-seo-more) {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-block ul:not(.tool-seo-more) li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--ps-line);
+}
+
+body[data-tool="pdf-sign"] .tool-seo-block ul:not(.tool-seo-more) li:last-child {
+  border-bottom: 0;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-faq {
+  gap: 0.55rem;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-faq-item {
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  background: #f6f5f8;
+  border: 0;
+}
+
+body[data-tool="pdf-sign"] .tool-seo-more {
+  margin: 0.35rem 0 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] .tool-seo {
+  background: var(--bg, #141119);
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] .tool-seo-block {
+  background: var(--surface, #1c1824);
+  border-color: var(--border, rgba(255, 255, 255, 0.08));
+}
+
+html[data-theme="dark"] body[data-tool="pdf-sign"] .tool-seo-howto li,
+html[data-theme="dark"] body[data-tool="pdf-sign"] .tool-seo-faq-item {
+  background: #121018;
+}
+
+@media (max-width: 900px) {
+  body[data-tool="pdf-sign"] .tool-seo-more {
+    grid-template-columns: 1fr;
+  }
+}

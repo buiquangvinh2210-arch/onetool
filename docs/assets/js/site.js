@@ -124,8 +124,11 @@
     "barcode-generator",
     "pdf-to-excel",
     "pdf-lock",
+    "pdf-sign",
     "video-to-gif",
     "remove-background",
+    "image-crop",
+    "image-ocr",
     "qr-generator"
   ];
 

@@ -514,7 +514,7 @@ window.OTPdf = (function () {
     merge, split, rotateOrDelete, compress,
     toText, pageToPng, firstPagePng, allPagesPngZip,
     pagesToImages, imagesToPdf, resolveExportScale,
-    loadPdfLib, loadPdfJs,
+    loadPdfLib, loadPdfJs, openPdfDoc,
     VERSION: 4
   };
 })();

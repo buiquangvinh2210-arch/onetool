@@ -12,6 +12,8 @@ window.OT_CONFIG = {
 
   /* Tóm tắt AI — dùng chung Worker Groq (endpoint /summarize) */
   summarizeCloud: "https://onetool-whisper.buiquangvinh2210.workers.dev",
+  /* OCR ảnh → chữ — cùng Worker (endpoint /ocr) */
+  ocrCloud: "https://onetool-whisper.buiquangvinh2210.workers.dev",
 
   /* TikTok Download — Cloudflare Worker (wrangler deploy -c wrangler-tiktok.toml) */
   tiktokCloud: "https://onetool-tiktok.buiquangvinh2210.workers.dev",
