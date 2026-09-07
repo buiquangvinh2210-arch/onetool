@@ -3,12 +3,22 @@ window.OTCatalog = {
     {
       slug: "media",
       seo: "cong-cu-media",
-      name: "Media & AI",
-      desc: "TikTok, Audio → Text, Tóm tắt AI, nén / cắt / GIF video",
-      icon: "🎙️",
-      seoTitle: "Công cụ Media & AI online — Tải TikTok, Audio/Video sang văn bản, Tóm tắt AI | OneTool",
-      seoDescription: "Tải video TikTok HD, Audio/Video → văn bản, tóm tắt AI, nén/cắt MP4, video sang GIF. Nén & cắt chạy trên máy; TikTok và AI dùng cloud. Miễn phí.",
-      seoKeywords: "tải video tiktok, audio to text, tóm tắt ai, video sang gif, nén video online"
+      name: "Công cụ Media",
+      desc: "TikTok, nén / cắt video, video sang GIF",
+      icon: "🎬",
+      seoTitle: "Công cụ Media online — Tải TikTok, nén cắt video, GIF | OneTool",
+      seoDescription: "Tải video TikTok HD không logo, nén MP4, cắt video, video sang GIF. Nén & cắt chạy trên máy; TikTok dùng cloud. Miễn phí.",
+      seoKeywords: "tải video tiktok, nén video online, cắt video, video sang gif"
+    },
+    {
+      slug: "ai",
+      seo: "cong-cu-ai",
+      name: "Công cụ AI",
+      desc: "Audio → Text, TTS, Tóm tắt AI",
+      icon: "✨",
+      seoTitle: "Công cụ AI online — Audio to text, TTS, Tóm tắt AI | OneTool",
+      seoDescription: "Chuyển giọng nói thành văn bản, văn bản thành giọng nói tiếng Việt, tóm tắt AI. Miễn phí, xử lý đám mây có kiểm soát.",
+      seoKeywords: "audio to text, text to speech tiếng việt, tóm tắt ai, chuyển giọng nói thành văn bản"
     },
     {
       slug: "pdf-tools",
@@ -72,13 +82,16 @@ window.OTCatalog = {
     }
   ],
   tools: [
-    /* Media — nổi bật trước */
+    /* Media */
     { slug: "tiktok-download", name: "Tải video TikTok không logo", desc: "Dán link → tải MP4 HD không dính logo / watermark TikTok.", icon: "🎵", cat: "media", featured: true, rank: 1 },
-    { slug: "audio-to-text", name: "Chuyển giọng nói thành văn bản", desc: "Audio to text tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.", icon: "🎙️", cat: "media", featured: true, rank: 2 },
-    { slug: "ai-summarize", name: "Tóm tắt AI", desc: "Rút gọn bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng hoặc TL;DR.", icon: "✨", cat: "media", featured: true, rank: 3 },
-    { slug: "video-convert", name: "Nén video online", desc: "Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.", icon: "🎬", cat: "media", featured: true, rank: 4 },
-    { slug: "video-to-gif", name: "Video sang GIF", desc: "Cắt đoạn MP4/WebM thành GIF — chọn FPS, độ rộng, chất lượng palette.", icon: "🎞️", cat: "media", featured: true, rank: 5 },
-    { slug: "video-trim", name: "Cắt video online", desc: "Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.", icon: "✂️", cat: "media", featured: true, rank: 6 },
+    { slug: "video-convert", name: "Nén video online", desc: "Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.", icon: "🎬", cat: "media", featured: true, rank: 2 },
+    { slug: "video-to-gif", name: "Video sang GIF", desc: "Cắt đoạn MP4/WebM thành GIF — chọn FPS, độ rộng, chất lượng palette.", icon: "🎞️", cat: "media", featured: true, rank: 3 },
+    { slug: "video-trim", name: "Cắt video online", desc: "Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.", icon: "✂️", cat: "media", featured: true, rank: 4 },
+
+    /* AI — file vẫn ở cong-cu-media/ (dir) để giữ URL cũ */
+    { slug: "audio-to-text", name: "Chuyển giọng nói thành văn bản", desc: "Audio to text tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.", icon: "🎙️", cat: "ai", dir: "cong-cu-media", featured: true, rank: 1 },
+    { slug: "text-to-speech", name: "Văn bản thành giọng nói", desc: "Text to speech tiếng Việt: chọn giọng nam/nữ, nghe thử, tải WAV — miễn phí.", icon: "🔊", cat: "ai", dir: "cong-cu-media", featured: true, rank: 2 },
+    { slug: "ai-summarize", name: "Tóm tắt AI", desc: "Rút gọn bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng hoặc TL;DR.", icon: "✨", cat: "ai", dir: "cong-cu-media", featured: true, rank: 3 },
 
     /* PDF */
     { slug: "pdf-to-word", name: "PDF sang Word", desc: "Chuyển PDF thành Word (DOCX) để chỉnh sửa — kể cả bản scan.", icon: "📄", cat: "pdf-tools", featured: true, rank: 1 },
@@ -189,6 +202,10 @@ window.OTCatalog = {
     "audio-to-text": {
       title: "Chuyển giọng nói thành văn bản tiếng Việt | OneTool",
       desc: "Audio to text tiếng Việt: chuyển giọng nói thành văn bản từ MP3 WAV MP4, xuất TXT và phụ đề SRT."
+    },
+    "text-to-speech": {
+      title: "Text to speech tiếng Việt — văn bản thành giọng nói | OneTool",
+      desc: "Chuyển văn bản thành giọng nói tiếng Việt online: chọn giọng nam/nữ, nghe thử, tải WAV. Miễn phí."
     },
     "ai-summarize": {
       title: "Tóm tắt văn bản AI online miễn phí | OneTool",
@@ -773,6 +790,50 @@ window.OTCatalog = {
             { title: "Phụ đề video", text: "gắn SRT vào CapCut, Premiere hoặc YouTube." },
             { title: "Biên bản họp", text: "sửa chính tả rồi gửi team." },
             { title: "Podcast / phỏng vấn", text: "lấy quote và viết bài từ bản ghi." }
+          ]
+        }
+      ]
+    },
+    "text-to-speech": {
+      keywords: "text to speech tiếng việt, văn bản thành giọng nói, chuyển chữ thành giọng nói, đọc văn bản online, tts việt nam miễn phí",
+      howto: [
+        "Dán văn bản tiếng Việt (tối đa 8.000 ký tự) hoặc mở file .txt.",
+        "Chọn giọng nam/nữ, phong cách và tốc độ.",
+        "Bấm Nghe thử trên máy, hoặc Tạo file âm thanh rồi tải WAV."
+      ],
+      faqs: [
+        {
+          q: "Text to speech tiếng Việt có miễn phí không?",
+          a: "Có. OneTool đọc văn bản thành **giọng nói tiếng Việt**, nghe thử ngay trên máy và **tải file WAV** — không cần đăng ký."
+        },
+        {
+          q: "Văn bản có bị lưu không?",
+          a: "Nghe thử chạy trên trình duyệt. Tạo file WAV gửi **tạm thời** tới dịch vụ đọc — OneTool không lưu văn bản hay file âm thanh."
+        },
+        {
+          q: "Đọc được tiếng Anh không?",
+          a: "Có. Dán đoạn tiếng Anh hoặc lẫn Việt–Anh. Giọng tối ưu cho **tiếng Việt**."
+        }
+      ],
+      sections: [
+        {
+          title: "Text to speech tiếng Việt là gì?",
+          paras: [
+            "**Text to speech (TTS)** chuyển chữ thành giọng đọc. OneTool hỗ trợ **tiếng Việt**: chọn giọng nam/nữ, nghe thử, tải **WAV** để gắn video, học từ hoặc voice-over."
+          ]
+        },
+        {
+          title: "Cách chuyển văn bản thành giọng nói",
+          paras: [
+            "Dán đoạn cần đọc, chọn giọng, bấm **Nghe thử** (chạy trên máy) hoặc **Tạo file âm thanh** để tải file. Tối đa 8.000 ký tự mỗi lần."
+          ]
+        },
+        {
+          title: "Dùng giọng đọc để làm gì",
+          list: [
+            { title: "Học tập", text: "nghe lại bài, luyện phát âm, đọc cho người khiếm thị." },
+            { title: "Nội dung", text: "voice-over TikTok, Reels, video hướng dẫn." },
+            { title: "Công việc", text: "nghe email / biên bản khi đang di chuyển." }
           ]
         }
       ]
@@ -1957,10 +2018,17 @@ window.OTCatalog = {
 
   categorySeo: {
     "cong-cu-media": {
-      intro: "Bộ công cụ **Media & AI**: tải TikTok HD, chuyển audio/video thành văn bản, tóm tắt AI, nén/cắt MP4. Nén & cắt chạy trên máy; TikTok và AI dùng xử lý đám mây.",
+      intro: "Bộ **công cụ Media**: tải TikTok HD, nén/cắt MP4, video sang GIF. Nén & cắt chạy trên máy; TikTok dùng xử lý đám mây.",
       sections: [
-        { title: "Tải TikTok & xử lý video", paras: ["**TikTok Download** lấy MP4 HD không watermark từ link (xử lý đám mây). **Compress Video** / **Video Trim** nén hoặc cắt MP4 trên trình duyệt."] },
-        { title: "Audio/Video → Text & AI", paras: ["**Speech-to-text** và **Tóm tắt AI** dùng dịch vụ đám mây tạm thời để nhận diện/tóm tắt — xuất TXT, SRT hoặc bản rút gọn."] }
+        { title: "Tải TikTok", paras: ["**TikTok Download** lấy MP4 HD không watermark từ link (xử lý đám mây). Chỉ dùng khi bạn có quyền nội dung."] },
+        { title: "Nén, cắt & GIF", paras: ["**Nén video** giảm dung lượng MP4 hoặc đổi WebM. **Cắt video** chọn đoạn start–end. **Video sang GIF** xuất đoạn ngắn."] }
+      ]
+    },
+    "cong-cu-ai": {
+      intro: "Bộ **công cụ AI**: chuyển giọng nói thành văn bản, **văn bản thành giọng nói**, tóm tắt bài viết. File gửi tạm lên đám mây để xử lý, không lưu lâu dài.",
+      sections: [
+        { title: "Giọng nói ↔ văn bản", paras: ["**Audio → Text** chép lời từ MP3/WAV/MP4, xuất TXT và SRT. **Text-to-speech** đọc tiếng Việt thành file WAV."] },
+        { title: "Tóm tắt", paras: ["**Tóm tắt AI** rút gọn bài viết, biên bản, email thành đoạn văn, gạch đầu dòng hoặc TL;DR."] }
       ]
     },
     "cong-cu-pdf": {
@@ -2014,8 +2082,18 @@ window.OTCatalog = {
     return this.tools.find(t => t.slug === slug);
   },
   pathFor(tool) {
+    if (!tool) return "cong-cu.html";
     const cat = this.catBySlug(tool.cat);
-    return `${cat.seo}/${tool.slug}.html`;
+    const folder = tool.dir || cat?.seo || "cong-cu";
+    return `${folder}/${tool.slug}.html`;
+  },
+  hrefFor(tool) {
+    if (!tool) return "cong-cu.html";
+    if (tool.hub) {
+      const hub = this.toolBySlug(tool.hub);
+      if (hub) return this.pathFor(hub);
+    }
+    return this.pathFor(tool);
   },
   catIndexUrl(seo) {
     return `${seo}.html`;

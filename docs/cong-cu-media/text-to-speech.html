@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text to speech tiếng Việt — văn bản thành giọng nói online | OneTool</title>
+  <meta name="description" content="Chuyển văn bản thành giọng nói tiếng Việt online: chọn giọng nam/nữ, nghe thử, tải file WAV. Miễn phí, không cần đăng ký." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-media/text-to-speech.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/text-to-speech.css?v=20260907d" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="text-to-speech">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace">
+  <div class="tts-page">
+    <header class="tts-intro">
+      <h1>Văn bản thành giọng nói</h1>
+      <p>Đọc tiếng Việt tự nhiên: chọn giọng nam/nữ, nghe thử ngay hoặc tạo file WAV để tải về. Phù hợp học từ, voice-over, nội dung TikTok.</p>
+      <div class="tts-chips" aria-hidden="true">
+        <span class="tts-chip">Tiếng Việt</span>
+        <span class="tts-chip">8 giọng</span>
+        <span class="tts-chip">Nghe thử</span>
+        <span class="tts-chip">Tải WAV</span>
+      </div>
+    </header>
+
+    <div class="tts-studio">
+      <aside class="tts-col tts-col--in">
+        <div class="tts-head">
+          <h2>1 · Văn bản</h2>
+          <span id="charMeta">0 / 2.000</span>
+        </div>
+        <textarea id="inputText" maxlength="8000" spellcheck="true" placeholder="Dán đoạn cần đọc bằng tiếng Việt…"></textarea>
+        <div class="tts-toolbar">
+          <button type="button" class="tts-ghost" id="sampleBtn">Văn bản mẫu</button>
+          <button type="button" class="tts-ghost" id="fileBtn">Mở file</button>
+          <button type="button" class="tts-ghost" id="clearBtn">Xóa</button>
+          <input type="file" id="fileInput" accept=".txt,.md,text/plain,text/markdown" hidden />
+        </div>
+        <div class="tts-samples" role="group" aria-label="Đoạn mẫu nhanh">
+          <button type="button" class="tts-pill" data-sample="chao">Chào hỏi</button>
+          <button type="button" class="tts-pill" data-sample="hoc">Học từ</button>
+          <button type="button" class="tts-pill" data-sample="qc">Quảng cáo</button>
+        </div>
+      </aside>
+
+      <div class="tts-col tts-col--ctrl">
+        <div class="tts-head">
+          <h2>2 · Giọng đọc</h2>
+        </div>
+        <p class="tts-label">Giọng</p>
+        <div class="tts-voices" id="voiceGrid" role="radiogroup" aria-label="Chọn giọng"></div>
+
+        <div class="tts-row">
+          <div>
+            <p class="tts-label">Phong cách</p>
+            <div class="tts-styles" role="group">
+              <button type="button" class="tts-style is-on" data-style="natural"><strong>Tự nhiên</strong><em>Hàng ngày</em></button>
+              <button type="button" class="tts-style" data-style="clear"><strong>Rõ ràng</strong><em>Chậm, dễ nghe</em></button>
+              <button type="button" class="tts-style" data-style="warm"><strong>Ấm áp</strong><em>Kể chuyện</em></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tts-speed">
+          <div class="tts-speed-top">
+            <p class="tts-label">Tốc độ phát</p>
+            <span id="speedVal">1.0×</span>
+          </div>
+          <input type="range" id="speedRange" min="75" max="125" value="100" step="5" aria-label="Tốc độ phát" />
+          <div class="tts-speed-marks"><span>Chậm</span><span>Chuẩn</span><span>Nhanh</span></div>
+        </div>
+
+        <p class="tts-note">Nghe thử chạy trên máy bạn. Tạo file WAV gửi tạm tới dịch vụ đọc — OneTool không lưu văn bản.</p>
+        <div class="tts-actions">
+          <button type="button" class="btn btn-outline" id="previewBtn">Nghe thử</button>
+          <button type="button" class="btn btn-primary" id="runBtn">Tạo file âm thanh</button>
+        </div>
+        <div class="tts-progress" id="progressBar" hidden><span></span></div>
+        <p class="tts-status" id="status">Dán văn bản, chọn giọng, rồi nghe thử hoặc tạo file.</p>
+      </div>
+
+      <div class="tts-col tts-col--out">
+        <div class="tts-head">
+          <h2>3 · Nghe &amp; tải</h2>
+          <div class="tts-out-btns">
+            <button type="button" class="btn btn-outline btn-sm" id="stopBtn" disabled>Dừng</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadBtn" disabled>Tải WAV</button>
+          </div>
+        </div>
+        <div class="tts-player">
+          <canvas id="waveCanvas" width="640" height="120" aria-hidden="true"></canvas>
+          <audio id="audioEl" controls></audio>
+          <p class="tts-player-meta" id="playerMeta">Chưa có file — bấm Tạo file âm thanh.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/ot-config.js?v=20260907f"></script>
+<script src="../assets/js/catalog.js?v=20260907k"></script>
+<script src="../assets/js/layout.js?v=20260907k"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260907k"></script>
+<script src="../assets/js/tools/text-to-speech.js?v=20260907g"></script>
+<script src="../assets/js/tools/text-to-speech-ui.js?v=20260907g"></script>
+</body>
+</html>

@@ -118,6 +118,7 @@
   const HOT_SLUGS = [
     "tiktok-download",
     "audio-to-text",
+    "text-to-speech",
     "heic-convert",
     "currency-convert",
     "lunar-calendar",
@@ -150,7 +151,7 @@
 
   function toolHref(tool) {
     try {
-      return assetHref(OTCatalog.pathFor(tool));
+      return assetHref(OTCatalog.hrefFor(tool));
     } catch (_) {
       return assetHref("cong-cu.html");
     }
@@ -398,13 +399,7 @@
     const href = (p) => (base === "." || base === "" ? p : `${base}/${p}`);
 
     function toolHref(t) {
-      const cat = OTCatalog.catBySlug(t.cat);
-      if (t.hub) {
-        const hubTool = OTCatalog.tools.find(x => x.slug === t.hub);
-        const hubCat = OTCatalog.catBySlug(hubTool.cat);
-        return href(`${hubCat.seo}/${t.hub}.html`);
-      }
-      return href(`${cat.seo}/${t.slug}.html`);
+      return href(OTCatalog.hrefFor(t));
     }
 
     function escAttr(s) {
@@ -503,13 +498,7 @@
     }
 
     function toolHref(t) {
-      const cat = OTCatalog.catBySlug(t.cat);
-      if (t.hub) {
-        const hubTool = OTCatalog.tools.find(x => x.slug === t.hub);
-        const hubCat = OTCatalog.catBySlug(hubTool.cat);
-        return href(`${hubCat.seo}/${t.hub}.html`);
-      }
-      return href(`${cat.seo}/${t.slug}.html`);
+      return href(OTCatalog.hrefFor(t));
     }
 
     function escAttr(s) {

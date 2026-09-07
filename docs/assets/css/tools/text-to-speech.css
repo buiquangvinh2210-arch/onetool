@@ -1,0 +1,366 @@
+body[data-tool="text-to-speech"] {
+  --tts-ink: #15111c;
+  --tts-muted: #6d6678;
+  --tts-line: rgba(88, 60, 140, 0.12);
+  --tts-accent: #7c3aed;
+  --tts-ok: #0f7a4d;
+}
+
+body[data-tool="text-to-speech"] [hidden] {
+  display: none !important;
+}
+
+body[data-tool="text-to-speech"] .tool-workspace {
+  padding: 0 0 2.5rem !important;
+  background:
+    radial-gradient(ellipse 70% 45% at 8% -12%, rgba(124, 58, 237, 0.14), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 96% 0%, rgba(14, 165, 233, 0.1), transparent 50%),
+    linear-gradient(180deg, #f7f5fb 0%, #eef2f7 100%) !important;
+}
+
+body[data-tool="text-to-speech"] .tts-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+body[data-tool="text-to-speech"] .tts-intro {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto 1.4rem;
+}
+
+body[data-tool="text-to-speech"] .tts-intro h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--tts-ink);
+}
+
+body[data-tool="text-to-speech"] .tts-intro p {
+  margin: 0.45rem 0 0;
+  color: var(--tts-muted);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+body[data-tool="text-to-speech"] .tts-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+body[data-tool="text-to-speech"] .tts-chip {
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid var(--tts-line);
+  color: var(--tts-accent);
+}
+
+body[data-tool="text-to-speech"] .tts-studio {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr 0.95fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+body[data-tool="text-to-speech"] .tts-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--tts-line);
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+  padding: 1rem 1.05rem 1.1rem;
+  min-height: 560px;
+}
+
+body[data-tool="text-to-speech"] .tts-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+body[data-tool="text-to-speech"] .tts-head h2 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--tts-ink);
+}
+
+body[data-tool="text-to-speech"] #charMeta,
+body[data-tool="text-to-speech"] #speedVal,
+body[data-tool="text-to-speech"] .tts-player-meta {
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--tts-muted);
+}
+
+body[data-tool="text-to-speech"] #inputText {
+  flex: 1;
+  width: 100%;
+  min-height: 280px;
+  resize: vertical;
+  border: 1px solid var(--tts-line);
+  border-radius: 14px;
+  padding: 0.85rem 0.95rem;
+  font: inherit;
+  line-height: 1.55;
+  color: var(--tts-ink);
+  background: #fbfafe;
+}
+
+body[data-tool="text-to-speech"] #inputText:focus {
+  outline: 2px solid rgba(124, 58, 237, 0.28);
+  border-color: rgba(124, 58, 237, 0.45);
+}
+
+body[data-tool="text-to-speech"] .tts-toolbar,
+body[data-tool="text-to-speech"] .tts-samples,
+body[data-tool="text-to-speech"] .tts-out-btns,
+body[data-tool="text-to-speech"] .tts-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+body[data-tool="text-to-speech"] .tts-ghost,
+body[data-tool="text-to-speech"] .tts-pill {
+  border: 1px solid var(--tts-line);
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.32rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--tts-ink);
+  cursor: pointer;
+}
+
+body[data-tool="text-to-speech"] .tts-ghost:hover,
+body[data-tool="text-to-speech"] .tts-pill:hover,
+body[data-tool="text-to-speech"] .tts-voice:hover,
+body[data-tool="text-to-speech"] .tts-style:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+body[data-tool="text-to-speech"] .tts-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tts-muted);
+}
+
+body[data-tool="text-to-speech"] .tts-voices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+body[data-tool="text-to-speech"] .tts-voice {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-align: left;
+  border: 1px solid var(--tts-line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.5rem 0.55rem;
+  cursor: pointer;
+}
+
+body[data-tool="text-to-speech"] .tts-voice.is-on,
+body[data-tool="text-to-speech"] .tts-style.is-on {
+  border-color: var(--tts-accent);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+  background: #faf7ff;
+}
+
+body[data-tool="text-to-speech"] .tts-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+}
+
+body[data-tool="text-to-speech"] .tts-voice[data-gender="male"] .tts-avatar {
+  background: linear-gradient(135deg, #334155, #0ea5e9);
+}
+
+body[data-tool="text-to-speech"] .tts-voice strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--tts-ink);
+}
+
+body[data-tool="text-to-speech"] .tts-voice em,
+body[data-tool="text-to-speech"] .tts-style em {
+  display: block;
+  font-style: normal;
+  font-size: 0.68rem;
+  color: var(--tts-muted);
+}
+
+body[data-tool="text-to-speech"] .tts-styles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+}
+
+body[data-tool="text-to-speech"] .tts-style {
+  text-align: left;
+  border: 1px solid var(--tts-line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+}
+
+body[data-tool="text-to-speech"] .tts-speed-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+body[data-tool="text-to-speech"] #speedRange {
+  width: 100%;
+  accent-color: var(--tts-accent);
+}
+
+body[data-tool="text-to-speech"] .tts-speed-marks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--tts-muted);
+}
+
+body[data-tool="text-to-speech"] .tts-note {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--tts-muted);
+  line-height: 1.45;
+}
+
+body[data-tool="text-to-speech"] .tts-actions .btn {
+  flex: 1;
+}
+
+body[data-tool="text-to-speech"] .tts-progress {
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.12);
+  overflow: hidden;
+}
+
+body[data-tool="text-to-speech"] .tts-progress > span {
+  display: block;
+  height: 100%;
+  width: 38%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7c3aed, #06b6d4);
+  animation: tts-indeterminate 1.1s ease-in-out infinite;
+}
+
+@keyframes tts-indeterminate {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(320%); }
+}
+
+body[data-tool="text-to-speech"] .tts-status {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--tts-muted);
+}
+
+body[data-tool="text-to-speech"] .tts-status.is-ok {
+  color: var(--tts-ok);
+  font-weight: 650;
+}
+
+body[data-tool="text-to-speech"] .tts-status.is-err {
+  color: #b42318;
+  font-weight: 650;
+}
+
+body[data-tool="text-to-speech"] .tts-player {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.12), transparent 45%),
+    linear-gradient(180deg, #1e1630, #12101a);
+  padding: 1rem;
+  color: #efeaf8;
+}
+
+body[data-tool="text-to-speech"] #waveCanvas {
+  width: 100%;
+  height: 110px;
+  border-radius: 10px;
+}
+
+body[data-tool="text-to-speech"] #audioEl {
+  width: 100%;
+}
+
+body[data-tool="text-to-speech"] .tts-player-meta {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+@media (max-width: 1020px) {
+  body[data-tool="text-to-speech"] .tts-studio {
+    grid-template-columns: 1fr;
+  }
+  body[data-tool="text-to-speech"] .tts-col {
+    min-height: 0;
+  }
+  body[data-tool="text-to-speech"] #inputText {
+    min-height: 180px;
+  }
+}
+
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tool-workspace {
+  background:
+    radial-gradient(ellipse 70% 45% at 8% -10%, rgba(124, 58, 237, 0.22), transparent 55%),
+    var(--bg) !important;
+}
+
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-intro h1,
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-head h2,
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-voice strong {
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-col,
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-chip,
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-ghost,
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-pill,
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-voice,
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-style,
+html[data-theme="dark"] body[data-tool="text-to-speech"] #inputText {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-voice.is-on,
+html[data-theme="dark"] body[data-tool="text-to-speech"] .tts-style.is-on {
+  background: rgba(124, 58, 237, 0.16);
+}

@@ -14,6 +14,8 @@ window.OT_CONFIG = {
   summarizeCloud: "https://onetool-whisper.buiquangvinh2210.workers.dev",
   /* OCR ảnh → chữ — cùng Worker (endpoint /ocr) */
   ocrCloud: "https://onetool-whisper.buiquangvinh2210.workers.dev",
+  /* Văn bản → giọng nói — cùng Worker (endpoint /tts) */
+  ttsCloud: "https://onetool-whisper.buiquangvinh2210.workers.dev",
 
   /* TikTok Download — Cloudflare Worker (wrangler deploy -c wrangler-tiktok.toml) */
   tiktokCloud: "https://onetool-tiktok.buiquangvinh2210.workers.dev",

@@ -125,7 +125,8 @@
       if (idx === -1) continue;
       const rest = path.slice(idx + marker.length).replace(/\.html$/i, "").replace(/\/$/, "");
       if (rest && rest !== "index") {
-        return { cat: c.slug, tool: rest };
+        const rec = window.OTCatalog?.toolBySlug?.(rest);
+        return { cat: rec?.cat || c.slug, tool: rest };
       }
     }
     return { cat: "home", tool: "home" };
@@ -385,7 +386,7 @@
         items = feat.length ? feat : items.slice(0, 8);
       }
       const toolLinks = items.map((t) => `
-        <a class="nav-drawer-tool" href="${href(`${cat.seo}/${t.slug}.html`)}" aria-label="Mở ${esc(t.name)}">
+        <a class="nav-drawer-tool" href="${href(OTCatalog.hrefFor(t))}" aria-label="Mở ${esc(t.name)}">
           <em aria-hidden="true">${t.icon}</em><span>${esc(t.name)}</span>
         </a>`).join("");
       return `
@@ -528,6 +529,7 @@
         <div class="footer-links">
           <a href="${href("cong-cu-media/tiktok-download.html")}">Tải TikTok không logo</a>
           <a href="${href("cong-cu-media/audio-to-text.html")}">Audio → Text</a>
+          <a href="${href("cong-cu-media/text-to-speech.html")}">Văn bản → giọng nói</a>
           <a href="${href("cong-cu-media/video-to-gif.html")}">Video sang GIF</a>
           <a href="${href("cong-cu-tien-ich/currency-convert.html")}">Đổi tiền tệ</a>
           <a href="${href("cong-cu-tien-ich/lunar-calendar.html")}">Đổi lịch âm dương</a>
@@ -644,12 +646,7 @@
 
     const more = related
       .map((t) => {
-        const cat = OTCatalog.catBySlug(t.cat);
-        const hubTool = t.hub ? OTCatalog.toolBySlug(t.hub) : null;
-        const hubCat = hubTool ? OTCatalog.catBySlug(hubTool.cat) : null;
-        const target = hubCat
-          ? href(`${hubCat.seo}/${hubTool.slug}.html`)
-          : href(`${cat.seo}/${t.slug}.html`);
+        const target = href(OTCatalog.hrefFor(t));
         return `<li><a class="tool-seo-card" href="${target}" aria-label="Mở ${esc(t.name)}">
           <span class="tool-seo-card-icon" aria-hidden="true">${esc(t.icon)}</span>
           <span class="tool-seo-card-body">
@@ -777,7 +774,7 @@
         "@type": "WebApplication",
         name: t.name,
         description: t.desc,
-        url: SITE_ORIGIN + "/" + cat.seo + "/" + t.slug + ".html"
+        url: SITE_ORIGIN + "/" + OTCatalog.pathFor(t)
       }))
     });
     document.head.appendChild(ld);

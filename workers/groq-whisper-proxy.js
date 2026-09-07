@@ -7,6 +7,7 @@
  * POST /           → Whisper (multipart audio) hoặc OCR nếu file là ảnh
  * POST /summarize  → Chat completion tóm tắt (JSON)
  * POST /ocr        → OCR ảnh → chữ (JSON { image, mime, language } hoặc multipart field file)
+ * POST /tts        → Text → giọng nói (JSON { text, voice })
  */
 export default {
   async fetch(request, env) {
@@ -32,8 +33,8 @@ export default {
         {
           ok: true,
           service: "onetool-groq-proxy-cf",
-          version: 14,
-          features: ["whisper", "summarize", "ocr"],
+          version: 21,
+          features: ["whisper", "summarize", "ocr", "tts"],
           chatModel: chatModelId(env),
           providers: {
             groq: providers.groq.startsWith("gsk_"),
@@ -57,7 +58,8 @@ export default {
     }
 
     const providers = providerKeys(env);
-    if (!providers.groq.startsWith("gsk_") && !providers.gemini && !providers.openrouter) {
+    const isTts = path === "/tts" || path.endsWith("/tts");
+    if (!isTts && !providers.groq.startsWith("gsk_") && !providers.gemini && !providers.openrouter) {
       return json(
         {
           error: "Chưa cấu hình nhà cung cấp AI. Thêm GROQ_API_KEY, GEMINI_API_KEY hoặc OPENROUTER_API_KEY trong Worker Secrets."
@@ -75,6 +77,10 @@ export default {
 
     if (path === "/ocr" || path.endsWith("/ocr")) {
       return ocrImage(request, cors, env, providers);
+    }
+
+    if (path === "/tts" || path.endsWith("/tts")) {
+      return ttsSpeak(request, cors, env, providers);
     }
 
     if (contentType.includes("application/json")) {
@@ -129,6 +135,52 @@ const OPENROUTER_VISION_FALLBACKS = [
   "google/gemma-4-31b-it:free"
 ];
 const MAX_OCR_BYTES = 3.5 * 1024 * 1024;
+const MAX_TTS_CHARS = 8000;
+const EDGE_TTS_CHUNK = 1500;
+const EDGE_TTS_PARALLEL = 1;
+const GEMINI_TTS_MODELS = [
+  "gemini-2.5-flash-preview-tts",
+  "gemini-3.1-flash-tts-preview",
+  "gemini-2.5-flash-tts"
+];
+const GEMINI_TTS_VOICES = [
+  "Kore",
+  "Aoede",
+  "Leda",
+  "Zephyr",
+  "Charon",
+  "Puck",
+  "Fenrir",
+  "Orus"
+];
+const GROQ_TTS_VOICE_MAP = {
+  Kore: "hannah",
+  Aoede: "hannah",
+  Leda: "hannah",
+  Zephyr: "hannah",
+  Charon: "austin",
+  Puck: "troy",
+  Fenrir: "austin",
+  Orus: "troy"
+};
+const GROQ_TTS_MODELS = ["canopylabs/orpheus-v1-english"];
+const OPENROUTER_TTS_MODELS = [
+  "google/gemini-3.1-flash-tts-preview",
+  "google/gemini-2.5-flash-preview-tts"
+];
+const VI_TTS_CHUNK = 180;
+const EDGE_TTS_TOKEN = "6A5AA1D4EAFF4E9FB37E23D68491D6F4";
+const EDGE_TTS_GEC_VER = "1-143.0.3650.75";
+const VI_VOICE_PRESETS = {
+  Kore: { name: "vi-VN-HoaiMyNeural", pitch: "+0%", rate: "+0%" },
+  Aoede: { name: "vi-VN-HoaiMyNeural", pitch: "+8%", rate: "-5%" },
+  Leda: { name: "vi-VN-HoaiMyNeural", pitch: "+14%", rate: "+8%" },
+  Zephyr: { name: "vi-VN-HoaiMyNeural", pitch: "+6%", rate: "+12%" },
+  Charon: { name: "vi-VN-NamMinhNeural", pitch: "-8%", rate: "-8%" },
+  Puck: { name: "vi-VN-NamMinhNeural", pitch: "+6%", rate: "+8%" },
+  Fenrir: { name: "vi-VN-NamMinhNeural", pitch: "-14%", rate: "+0%" },
+  Orus: { name: "vi-VN-NamMinhNeural", pitch: "-2%", rate: "-6%" }
+};
 
 function providerKeys(env) {
   return {
@@ -888,6 +940,727 @@ function isAllowedOpenRouterOcrModel(model) {
   if (!m) return false;
   if (/llama-4-scout/i.test(m)) return false;
   return m === "openrouter/free" || m.endsWith(":free");
+}
+
+async function ttsSpeak(request, cors, env, providers) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (_) {
+    return json({ error: "JSON không hợp lệ." }, 400, cors);
+  }
+
+  const text = String(body?.text || "").replace(/\u00A0/g, " ").trim();
+  if (!text) return json({ error: "Nhập văn bản cần đọc." }, 400, cors);
+  if (text.length < 2) return json({ error: "Văn bản quá ngắn." }, 400, cors);
+  if (text.length > MAX_TTS_CHARS) {
+    return json(
+      { error: "Tối đa " + MAX_TTS_CHARS.toLocaleString("vi-VN") + " ký tự mỗi lần đọc." },
+      413,
+      cors
+    );
+  }
+
+  const voice = normalizeTtsVoice(body?.voice);
+  const style = normalizeChoice(body?.style, ["natural", "clear", "warm"], "natural");
+
+  const providersToTry = [
+    {
+      name: "vi",
+      run: () => ttsWithEdgeNeural(text, voice, style)
+    },
+    {
+      name: "vi",
+      run: () => ttsWithViNeural(text)
+    }
+  ];
+
+  if (!providersToTry.length) {
+    return json({ error: "Chưa cấu hình dịch vụ đọc thành tiếng." }, 503, cors);
+  }
+
+  let lastErr = "Không tạo được giọng đọc.";
+  let lastStatus = 502;
+  let lastRetry = 8;
+
+  for (const provider of providersToTry) {
+    try {
+      const result = await provider.run();
+      return json(
+        {
+          ok: true,
+          audio: result.audio,
+          mime: result.mime || "audio/wav",
+          meta: {
+            voice,
+            style,
+            chars: text.length,
+            model: result.model,
+            provider: provider.name
+          }
+        },
+        200,
+        cors
+      );
+    } catch (e) {
+      lastErr = e.message || lastErr;
+      lastStatus = e.status || 502;
+      if (e.rateLimited) lastRetry = parseRetryAfterSec(lastErr, e.retryAfter);
+    }
+  }
+
+  if (isRateLimited(lastStatus, lastErr)) {
+    return json(
+      {
+        error: friendlyRateLimitError(lastRetry),
+        code: "rate_limit",
+        retryAfter: lastRetry
+      },
+      429,
+      cors
+    );
+  }
+
+  return json(
+    { error: publicTtsError(lastErr), debug: String(lastErr || "").slice(0, 180) },
+    publicErrorStatus(lastStatus),
+    cors
+  );
+}
+
+function publicTtsError(msg) {
+  const t = String(msg || "").trim();
+  if (/rate limit|hết hạn mức|tokens per minute/i.test(t)) {
+    return t;
+  }
+  if (/openrouter|gemini|groq|playai|invalid argument|not found|unavailable/i.test(t)) {
+    return "Không tạo được giọng đọc lúc này. Chờ vài giây rồi thử lại, hoặc dùng Nghe thử trên máy.";
+  }
+  return t || "Không tạo được giọng đọc.";
+}
+
+function normalizeTtsVoice(v) {
+  const s = String(v || "").trim();
+  const hit = GEMINI_TTS_VOICES.find((name) => name.toLowerCase() === s.toLowerCase());
+  return hit || "Kore";
+}
+
+function geminiTtsModels(env) {
+  const custom = String(env?.GEMINI_TTS_MODEL || "").trim();
+  const list = [];
+  if (custom && /tts/i.test(custom)) list.push(custom);
+  GEMINI_TTS_MODELS.forEach((m) => {
+    if (!list.includes(m)) list.push(m);
+  });
+  return list;
+}
+
+function ttsGeminiInput(text, style) {
+  const tone =
+    style === "clear" ? "clearly and steadily" : style === "warm" ? "warmly and kindly" : "naturally";
+  return `Speak ${tone} in Vietnamese:\n${text}`;
+}
+
+function geminiTtsBody(text, voice, model) {
+  return {
+    model,
+    contents: [{ parts: [{ text }] }],
+    generationConfig: {
+      responseModalities: ["AUDIO"],
+      speechConfig: {
+        voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } }
+      }
+    }
+  };
+}
+
+function extractGeminiInlineAudio(data) {
+  if (!data || typeof data !== "object") return null;
+  const asInline = (obj) => {
+    if (!obj || typeof obj !== "object") return null;
+    const nested = obj.inlineData || obj.inline_data;
+    if (nested?.data) return nested;
+    if (obj.data && typeof obj.data === "string") {
+      return {
+        data: obj.data,
+        mimeType: obj.mimeType || obj.mime_type || obj.mime || "audio/L16;rate=24000"
+      };
+    }
+    return null;
+  };
+  const buckets = [
+    data.output_audio,
+    data.outputAudio,
+    data.audio,
+    data.output?.audio,
+    data.output?.output_audio
+  ];
+  if (Array.isArray(data.outputs)) {
+    data.outputs.forEach((item) => {
+      buckets.push(item, item?.audio, item?.output_audio, item?.outputAudio);
+    });
+  }
+  for (const item of buckets) {
+    const hit = asInline(item);
+    if (hit) return hit;
+  }
+  const parts = data?.candidates?.[0]?.content?.parts || [];
+  for (const part of parts) {
+    const hit = asInline(part);
+    if (hit) return hit;
+  }
+  return null;
+}
+
+function parseAudioRate(mime) {
+  const m = String(mime || "").match(/rate=(\d+)/i);
+  const n = m ? Number(m[1]) : 24000;
+  return Number.isFinite(n) && n >= 8000 ? n : 24000;
+}
+
+function b64ToBytes(b64) {
+  const bin = atob(String(b64 || "").replace(/\s/g, ""));
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
+function pcmToWav(pcm, sampleRate, numChannels, bitDepth) {
+  const ch = numChannels || 1;
+  const bits = bitDepth || 16;
+  const blockAlign = ch * (bits / 8);
+  const byteRate = sampleRate * blockAlign;
+  const dataSize = pcm.length;
+  const buf = new ArrayBuffer(44 + dataSize);
+  const view = new DataView(buf);
+  const writeStr = (off, s) => {
+    for (let i = 0; i < s.length; i++) view.setUint8(off + i, s.charCodeAt(i));
+  };
+  writeStr(0, "RIFF");
+  view.setUint32(4, 36 + dataSize, true);
+  writeStr(8, "WAVE");
+  writeStr(12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, ch, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, byteRate, true);
+  view.setUint16(32, blockAlign, true);
+  view.setUint16(34, bits, true);
+  writeStr(36, "data");
+  view.setUint32(40, dataSize, true);
+  new Uint8Array(buf).set(pcm, 44);
+  return new Uint8Array(buf);
+}
+
+function audioPartToWavB64(inline) {
+  const mime = String(inline?.mimeType || inline?.mime_type || "").toLowerCase();
+  const raw = String(inline?.data || "").replace(/\s/g, "");
+  if (!raw) throw providerError("gemini", 502, "Không nhận được dữ liệu âm thanh.");
+  if (mime.includes("wav") || mime.includes("mpeg") || mime.includes("mp3")) {
+    return { audio: raw, mime: mime.includes("mpeg") || mime.includes("mp3") ? "audio/mpeg" : "audio/wav" };
+  }
+  const pcm = b64ToBytes(raw);
+  const wav = pcmToWav(pcm, parseAudioRate(mime));
+  return { audio: uint8ToBase64(wav), mime: "audio/wav" };
+}
+
+function ttsShouldRetry(err) {
+  const status = Number(err?.status) || 0;
+  if (status === 401 || status === 403) return false;
+  return true;
+}
+
+async function ttsWithGemini(key, text, voice, env) {
+  const models = geminiTtsModels(env);
+  const headers = {
+    "x-goog-api-key": key,
+    "Content-Type": "application/json"
+  };
+  let lastError;
+  for (const model of models) {
+    const attempts = [
+      {
+        url: `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+        body: geminiTtsBody(text, voice, model)
+      }
+    ];
+    for (const attempt of attempts) {
+      try {
+        const response = await fetch(attempt.url, {
+          method: "POST",
+          headers,
+          body: JSON.stringify(attempt.body)
+        });
+        const data = await readProviderJson(response, "gemini");
+        const inline = extractGeminiInlineAudio(data);
+        if (!inline?.data) throw providerError("gemini", 502, "Gemini không trả về âm thanh.");
+        const wav = audioPartToWavB64(inline);
+        return { audio: wav.audio, mime: wav.mime, model };
+      } catch (e) {
+        lastError = e;
+        if (!ttsShouldRetry(e)) throw e;
+      }
+    }
+  }
+  throw lastError || providerError("gemini", 502, "Gemini TTS không trả về kết quả.");
+}
+
+function splitTtsChunks(text, max) {
+  const s = String(text || "").replace(/\s+/g, " ").trim();
+  if (!s) return [];
+  if (s.length <= max) return [s];
+  const parts = [];
+  let rest = s;
+  while (rest.length > max) {
+    let cut = rest.lastIndexOf(" ", max);
+    if (cut < Math.floor(max * 0.45)) cut = max;
+    parts.push(rest.slice(0, cut).trim());
+    rest = rest.slice(cut).trim();
+  }
+  if (rest) parts.push(rest);
+  return parts;
+}
+
+function splitEdgeTtsChunks(text, max) {
+  const s = String(text || "").replace(/\s+/g, " ").trim();
+  if (!s) return [];
+  if (s.length <= max) return [s];
+  const parts = [];
+  let rest = s;
+  const isBreak = (ch) => /[.!?;:\n…\u3002]/.test(ch);
+  while (rest.length > max) {
+    const window = rest.slice(0, max);
+    let cut = -1;
+    for (let i = window.length - 1; i >= Math.floor(max * 0.4); i--) {
+      if (isBreak(window[i])) {
+        cut = i + 1;
+        break;
+      }
+    }
+    if (cut < 0) cut = window.lastIndexOf(" ");
+    if (cut < Math.floor(max * 0.4)) cut = max;
+    parts.push(rest.slice(0, cut).trim());
+    rest = rest.slice(cut).trim();
+  }
+  if (rest) parts.push(rest);
+  return parts;
+}
+
+async function mapPool(items, limit, fn) {
+  const out = new Array(items.length);
+  let next = 0;
+  async function worker() {
+    while (next < items.length) {
+      const idx = next++;
+      out[idx] = await fn(items[idx], idx);
+    }
+  }
+  const n = Math.max(1, Math.min(limit, items.length));
+  const runners = [];
+  for (let i = 0; i < n; i++) runners.push(worker());
+  await Promise.all(runners);
+  return out;
+}
+
+async function readSpeechAudio(response, provider) {
+  const ct = String(response.headers.get("Content-Type") || "").toLowerCase();
+  if (!response.ok || ct.includes("application/json") || ct.includes("text/")) {
+    await readProviderJson(response, provider);
+    throw providerError(provider, response.status || 502, "TTS lỗi.");
+  }
+  const buf = new Uint8Array(await response.arrayBuffer());
+  if (buf.byteLength < 64) throw providerError(provider, 502, "Không trả về âm thanh.");
+  if (ct.includes("mpeg") || ct.includes("mp3")) {
+    return { audio: uint8ToBase64(buf), mime: "audio/mpeg" };
+  }
+  if (ct.includes("wav")) {
+    return { audio: uint8ToBase64(buf), mime: "audio/wav" };
+  }
+  const wav = pcmToWav(buf, parseAudioRate(ct));
+  return { audio: uint8ToBase64(wav), mime: "audio/wav" };
+}
+
+async function ttsWithOpenRouterSpeech(key, text, voice, env) {
+  const custom = String(env?.OPENROUTER_TTS_MODEL || "").trim();
+  const models = custom
+    ? [custom, ...OPENROUTER_TTS_MODELS.filter((m) => m !== custom)]
+    : OPENROUTER_TTS_MODELS.slice();
+  let lastError;
+  for (const model of models) {
+    try {
+      const response = await fetch("https://openrouter.ai/api/v1/audio/speech", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://onetool.vn",
+          "X-Title": "OneTool"
+        },
+        body: JSON.stringify({
+          model,
+          input: text,
+          voice,
+          response_format: "mp3"
+        })
+      });
+      const result = await readSpeechAudio(response, "openrouter");
+      return { ...result, model };
+    } catch (e) {
+      lastError = e;
+      if (!ttsShouldRetry(e)) throw e;
+    }
+  }
+  throw lastError || providerError("openrouter", 502, "OpenRouter TTS không trả về kết quả.");
+}
+
+function escapeXml(text) {
+  return String(text || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function viVoicePreset(voice, style) {
+  const base = VI_VOICE_PRESETS[voice] || VI_VOICE_PRESETS.Kore;
+  let rate = parseInt(String(base.rate).replace("%", ""), 10) || 0;
+  if (style === "clear") rate -= 8;
+  if (style === "warm") rate -= 4;
+  return {
+    name: base.name,
+    pitch: base.pitch,
+    rate: (rate >= 0 ? "+" : "") + rate + "%"
+  };
+}
+
+function uuid4() {
+  const b = new Uint8Array(16);
+  crypto.getRandomValues(b);
+  b[6] = (b[6] & 0x0f) | 0x40;
+  b[8] = (b[8] & 0x3f) | 0x80;
+  const h = Array.from(b, (x) => x.toString(16).padStart(2, "0")).join("");
+  return h.slice(0, 8) + "-" + h.slice(8, 12) + "-" + h.slice(12, 16) + "-" + h.slice(16, 20) + "-" + h.slice(20);
+}
+
+async function edgeSecMsGec() {
+  const ticks = Math.floor(Date.now() / 1000) + 11644473600;
+  const rounded = ticks - (ticks % 300);
+  const windowsTicks = rounded * 10000000;
+  const data = new TextEncoder().encode(String(windowsTicks) + EDGE_TTS_TOKEN);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hash))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("")
+    .toUpperCase();
+}
+
+function toUint8(data) {
+  if (!data) return null;
+  if (data instanceof Uint8Array) return data;
+  if (data instanceof ArrayBuffer) return new Uint8Array(data);
+  if (ArrayBuffer.isView(data)) return new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
+  return null;
+}
+
+function extractEdgeAudio(bytes) {
+  if (!bytes || bytes.byteLength < 4) return null;
+  try {
+    const headerLength = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getInt16(0);
+    if (headerLength > 0 && bytes.byteLength > headerLength + 2) {
+      const out = bytes.subarray(2 + headerLength);
+      return out.byteLength ? out : null;
+    }
+  } catch (_) {}
+  const needle = "Path:audio\r\n";
+  const latin = new TextDecoder("latin1").decode(bytes);
+  let at = latin.indexOf(needle);
+  if (at === -1) at = latin.indexOf("Path: audio\r\n");
+  if (at !== -1) {
+    const skip = latin.startsWith("Path: audio", at) ? "Path: audio\r\n".length : needle.length;
+    const out = bytes.subarray(at + skip);
+    return out.byteLength ? out : null;
+  }
+  return null;
+}
+
+function genWsMessage(headers, body) {
+  let h = "";
+  for (const key of Object.keys(headers)) h += key + ": " + headers[key] + "\r\n";
+  return h + "\r\n" + body;
+}
+
+async function messageToBuffer(data) {
+  if (!data || typeof data === "string") return null;
+  if (typeof Blob !== "undefined" && data instanceof Blob) return new Uint8Array(await data.arrayBuffer());
+  if (data instanceof ArrayBuffer) return new Uint8Array(data);
+  if (data instanceof Uint8Array) return data;
+  if (ArrayBuffer.isView(data)) {
+    return new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
+  }
+  if (typeof data.arrayBuffer === "function") return new Uint8Array(await data.arrayBuffer());
+  return toUint8(data);
+}
+
+function wsPathIs(text, name) {
+  return new RegExp("Path:\\s*" + name, "i").test(String(text || ""));
+}
+
+function edgeWsHeaders() {
+  const muid = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("")
+    .toUpperCase();
+  return {
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0",
+    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "Accept-Language": "en-US,en;q=0.9",
+    Pragma: "no-cache",
+    "Cache-Control": "no-cache",
+    Origin: "chrome-extension://jdiccldimpdaibmpdkjnbmckianbfold",
+    Cookie: "muid=" + muid + ";"
+  };
+}
+
+function concatBytes(chunks) {
+  const total = chunks.reduce((n, b) => n + b.length, 0);
+  const out = new Uint8Array(total);
+  let off = 0;
+  for (const buf of chunks) {
+    out.set(buf, off);
+    off += buf.length;
+  }
+  return out;
+}
+
+function sanitizeTtsText(text) {
+  return String(text || "")
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, " ")
+    .replace(/\u00A0/g, " ")
+    .replace(/[“”]/g, '"')
+    .replace(/[‘’]/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buildViSsml(text, preset) {
+  return (
+    '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="vi-VN">' +
+    '<voice name="' +
+    preset.name +
+    '"><prosody pitch="' +
+    preset.pitch +
+    '" rate="' +
+    preset.rate +
+    '">' +
+    escapeXml(text) +
+    "</prosody></voice></speak>"
+  );
+}
+
+async function ttsEdgeOneChunk(text, preset, gec) {
+  const connId = uuid4();
+  const url =
+    "https://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=" +
+    EDGE_TTS_TOKEN +
+    "&Sec-MS-GEC=" +
+    gec +
+    "&Sec-MS-GEC-Version=" +
+    encodeURIComponent(EDGE_TTS_GEC_VER) +
+    "&ConnectionId=" +
+    connId;
+  const response = await fetch(url, {
+    headers: Object.assign({ Upgrade: "websocket" }, edgeWsHeaders())
+  });
+  const ws = response.webSocket;
+  if (!ws) throw providerError("tts", 502, "Không kết nối được giọng đọc.");
+
+  const chunks = [];
+  await new Promise((resolve, reject) => {
+    let settled = false;
+    let pending = Promise.resolve();
+    const timer = setTimeout(() => finish(providerError("tts", 504, "Giọng đọc hết thời gian.")), 28000);
+    const finish = (err) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      try {
+        ws.close();
+      } catch (_) {}
+      if (err) reject(err);
+      else resolve();
+    };
+    const enqueue = (job) => {
+      pending = pending.then(job).catch(() => {});
+    };
+    const onEnd = () => {
+      pending.then(() => finish()).catch(() => finish());
+    };
+    ws.addEventListener("message", (event) => {
+      const data = event.data;
+      if (typeof data === "string") {
+        if (wsPathIs(data, "turn.end")) onEnd();
+        return;
+      }
+      enqueue(async () => {
+        if (settled) return;
+        const bytes = await messageToBuffer(data);
+        const audio = extractEdgeAudio(bytes);
+        if (audio && audio.byteLength) chunks.push(audio);
+      });
+    });
+    ws.addEventListener("error", () => finish(providerError("tts", 502, "Không tạo được giọng đọc.")));
+    ws.addEventListener("close", () => onEnd());
+    const ts = new Date().toString();
+    try {
+      ws.accept();
+      ws.send(
+        genWsMessage(
+          {
+            "X-Timestamp": ts,
+            "Content-Type": "application/json; charset=utf-8",
+            Path: "speech.config"
+          },
+          '{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":false,"wordBoundaryEnabled":true},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}'
+        )
+      );
+      ws.send(
+        genWsMessage(
+          {
+            "X-RequestId": connId,
+            "Content-Type": "application/ssml+xml",
+            "X-Timestamp": ts,
+            Path: "ssml"
+          },
+          buildViSsml(text, preset)
+        )
+      );
+    } catch (e) {
+      finish(providerError("tts", 502, e.message || "Không gửi được giọng đọc."));
+    }
+  });
+
+  if (!chunks.length) throw providerError("tts", 502, "Không nhận được âm thanh.");
+  const out = concatBytes(chunks);
+  if (out.byteLength < 200) throw providerError("tts", 502, "Không nhận được âm thanh.");
+  return out;
+}
+
+async function ttsWithEdgeNeural(text, voice, style) {
+  const preset = viVoicePreset(voice, style);
+  const clean = sanitizeTtsText(text);
+  const parts = clean.length <= EDGE_TTS_CHUNK ? [clean] : splitEdgeTtsChunks(clean, EDGE_TTS_CHUNK);
+  if (!parts.length) throw providerError("tts", 400, "Nhập văn bản cần đọc.");
+  const gec = await edgeSecMsGec();
+
+  async function one(part) {
+    try {
+      return await ttsEdgeOneChunk(part, preset, gec);
+    } catch (_) {
+      await sleep(350);
+      return await ttsEdgeOneChunk(part, preset, await edgeSecMsGec());
+    }
+  }
+
+  const buffers = [];
+  for (const part of parts) {
+    buffers.push(await one(part));
+  }
+  const out = concatBytes(buffers);
+  if (out.byteLength < 200) throw providerError("tts", 502, "Không nhận được âm thanh.");
+  return { audio: uint8ToBase64(out), mime: "audio/mpeg", model: preset.name };
+}
+
+async function ttsWithViNeural(text) {
+  const chunks = splitTtsChunks(text, VI_TTS_CHUNK);
+  if (!chunks.length) throw providerError("tts", 400, "Nhập văn bản cần đọc.");
+  const headers = {
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    Referer: "https://translate.google.com/",
+    Accept: "audio/mpeg,audio/*;q=0.9,*/*;q=0.8"
+  };
+  const buffers = [];
+  for (let i = 0; i < chunks.length; i++) {
+    const chunk = chunks[i];
+    const urls = [
+      "https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=vi&q=" + encodeURIComponent(chunk),
+      "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&total=" +
+        chunks.length +
+        "&idx=" +
+        i +
+        "&textlen=" +
+        String(chunk.length) +
+        "&tl=vi&q=" +
+        encodeURIComponent(chunk)
+    ];
+    let saved = null;
+    let lastStatus = 502;
+    for (const url of urls) {
+      const response = await fetch(url, { headers });
+      lastStatus = response.status;
+      const ct = String(response.headers.get("Content-Type") || "").toLowerCase();
+      if (!response.ok || ct.includes("text/html") || ct.includes("application/json")) continue;
+      const buf = new Uint8Array(await response.arrayBuffer());
+      if (buf.byteLength < 200) continue;
+      saved = buf;
+      break;
+    }
+    if (!saved) throw providerError("tts", lastStatus, "Không tạo được giọng đọc tiếng Việt.");
+    buffers.push(saved);
+  }
+  const total = buffers.reduce((n, b) => n + b.length, 0);
+  const out = new Uint8Array(total);
+  let off = 0;
+  for (const buf of buffers) {
+    out.set(buf, off);
+    off += buf.length;
+  }
+  return { audio: uint8ToBase64(out), mime: "audio/mpeg", model: "vi" };
+}
+
+async function ttsWithGroq(key, text, voice, env) {
+  const custom = String(env?.GROQ_TTS_MODEL || "").trim();
+  const models = custom ? [custom, ...GROQ_TTS_MODELS.filter((m) => m !== custom)] : GROQ_TTS_MODELS.slice();
+  const preferred = GROQ_TTS_VOICE_MAP[voice] || "hannah";
+  let lastError;
+  for (const model of models) {
+    const voices = /orpheus/i.test(model)
+      ? [preferred, preferred === "hannah" ? "austin" : "hannah"]
+      : [voice === "Charon" || voice === "Puck" || voice === "Fenrir" || voice === "Orus" ? "Fritz-PlayAI" : "Celeste-PlayAI"];
+    for (const groqVoice of voices) {
+      try {
+        const response = await fetch("https://api.groq.com/openai/v1/audio/speech", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${key}`,
+            "Content-Type": "application/json",
+            Accept: "audio/wav"
+          },
+          body: JSON.stringify({
+            model,
+            voice: groqVoice,
+            input: text,
+            response_format: "wav"
+          })
+        });
+        const ct = String(response.headers.get("Content-Type") || "").toLowerCase();
+        if (!response.ok || ct.includes("application/json")) {
+          await readProviderJson(response, "groq");
+          throw providerError("groq", response.status || 502, "Groq TTS lỗi.");
+        }
+        const buf = new Uint8Array(await response.arrayBuffer());
+        if (buf.byteLength < 64) throw providerError("groq", 502, "Groq TTS không trả về âm thanh.");
+        return { audio: uint8ToBase64(buf), mime: "audio/wav", model };
+      } catch (e) {
+        lastError = e;
+        if (!ttsShouldRetry(e)) throw e;
+      }
+    }
+  }
+  throw lastError || providerError("groq", 502, "Groq TTS không trả về kết quả.");
 }
 
 async function whisperTranscribe(request, cors, env, providers) {
