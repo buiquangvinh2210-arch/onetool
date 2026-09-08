@@ -570,4 +570,23 @@
     const n = OTCatalog.tools.filter((t) => !t.hub).length;
     if (n) countEl.textContent = String(n);
   }
+
+  window.initHomeMotion = function () {
+    const els = document.querySelectorAll(".home-cat-row, .home-step, .home-trust-item, .home-cta-box, .home-section-head");
+    els.forEach((el) => el.classList.add("is-in"));
+
+    const count = document.getElementById("otToolCount");
+    const total = window.OTCatalog?.tools?.filter((t) => !t.hub).length || 0;
+    if (count && total) {
+      const start = performance.now();
+      const dur = 900;
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        count.textContent = String(Math.round(total * eased));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  };
 })();

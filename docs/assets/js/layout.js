@@ -596,7 +596,7 @@
       if (main) main.prepend(nav);
       else return;
     }
-    nav.className = "ot-crumb-wrap";
+    nav.className = "ot-crumb-wrap container";
     nav.setAttribute("aria-label", "Breadcrumb");
     nav.innerHTML = `
       <div class="ot-crumb">
@@ -698,14 +698,69 @@
     }
     if (cat.seoKeywords) setMeta("name", "keywords", "onetool, " + cat.seoKeywords, true);
 
-    if (!document.querySelector('link[href*="category.css"]')) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = asset("css/category.css");
-      document.head.appendChild(link);
+    ensureCategoryStyles();
+    document.body.classList.add("cat-page");
+    polishCategoryHero();
+  }
+
+  function isToolPage() {
+    return meta.cat !== "home" && meta.cat !== "hub" && !String(meta.tool).endsWith("-index");
+  }
+
+  function ensureToolPageStyles() {
+    if (!isToolPage()) return;
+    document.body.classList.add("tool-page");
+    if (document.querySelector('link[href*="tool-page.css"]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = asset("css/tool-page.css?v=20260908d");
+    document.head.appendChild(link);
+  }
+
+  function enhanceHubPage() {
+    if (meta.cat !== "hub") return;
+    document.body.classList.add("cat-page", "cat-hub");
+    ensureCategoryStyles();
+    const hero = document.querySelector(".page-hero .container");
+    const filter = document.getElementById("catFilter");
+    if (hero && filter && !hero.contains(filter)) hero.appendChild(filter);
+  }
+
+  function ensureCategoryStyles() {
+    if (document.querySelector('link[href*="category.css"]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = asset("css/category.css?v=20260908a");
+    document.head.appendChild(link);
+  }
+
+  function polishCategoryHero() {
+    const hero = document.querySelector(".cat-hero");
+    const inner = hero && hero.querySelector(".container");
+    if (!hero || !inner) return;
+
+    if (!hero.querySelector(".cat-hero-orbs")) {
+      const orbs = document.createElement("div");
+      orbs.className = "cat-hero-orbs";
+      orbs.setAttribute("aria-hidden", "true");
+      orbs.innerHTML = '<span class="cat-orb cat-orb--a"></span><span class="cat-orb cat-orb--b"></span>';
+      hero.prepend(orbs);
     }
 
-    document.body.classList.add("cat-page");
+    const filter = document.getElementById("catFilter");
+    if (filter && !inner.contains(filter)) inner.appendChild(filter);
+
+    const cat = window.OTCatalog && OTCatalog.catBySlug(meta.cat);
+    if (cat && !inner.querySelector(".cat-hero-count")) {
+      const n = OTCatalog.tools.filter((t) => t.cat === cat.slug && !t.hub).length;
+      if (n) {
+        const el = document.createElement("p");
+        el.className = "cat-hero-count";
+        el.innerHTML = "<strong>" + n + "</strong> công cụ trong danh mục này";
+        const lead = inner.querySelector(".cat-hero-lead");
+        (lead || inner).insertAdjacentElement(lead ? "afterend" : "beforeend", el);
+      }
+    }
   }
 
   function injectCategoryCrumb() {
@@ -714,7 +769,7 @@
     if (!cat) return;
 
     const nav = document.createElement("nav");
-    nav.className = "ot-crumb-wrap";
+    nav.className = "ot-crumb-wrap container";
     nav.id = "otCrumb";
     nav.setAttribute("aria-label", "Breadcrumb");
     nav.innerHTML = `
@@ -992,6 +1047,8 @@
   }
   try {
     injectCategorySeoMeta();
+    enhanceHubPage();
+    ensureToolPageStyles();
     injectSeo();
     injectAdSense();
   } catch (err) {

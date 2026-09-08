@@ -1,0 +1,183 @@
+/* Trang tool — cùng tông trang chủ / danh mục */
+
+body[data-tool]:not([data-tool$="-index"]) {
+  background: #f8f7ff;
+}
+
+body[data-tool]:not([data-tool$="-index"]) main {
+  background: #f8f7ff;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .ot-crumb-wrap.container {
+  background: transparent;
+  border-bottom: none;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  body[data-tool]:not([data-tool$="-index"]) .ot-crumb-wrap.container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo {
+  background: #f8f7ff;
+  border-top: none;
+  padding: 1.35rem 0 3.5rem;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-block:not(:last-child) {
+  max-width: 46rem;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-block:has(.tool-seo-faq),
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-block:has(.tool-seo-more) {
+  max-width: none;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-block h2 {
+  letter-spacing: -0.03em;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-howto {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+  counter-reset: ot-howto;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-howto li {
+  counter-increment: ot-howto;
+  display: grid;
+  grid-template-columns: 1.7rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  margin: 0;
+  padding: 0.9rem 1.05rem;
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-howto li::before {
+  content: counter(ot-howto);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7c3aed, #6366f1);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-block ul:not(.tool-seo-more) {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-block ul:not(.tool-seo-more) li {
+  margin: 0 0 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: 12px;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-block ul:not(.tool-seo-more) li:last-child {
+  margin-bottom: 0;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-faq {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-faq-item {
+  padding: 1.05rem 1.15rem;
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.045);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-faq dt {
+  color: var(--text);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-faq dd {
+  color: var(--text-muted);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-more {
+  gap: 0.9rem;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-card {
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.045);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(124, 58, 237, 0.28);
+  box-shadow: 0 14px 28px rgba(124, 58, 237, 0.1);
+}
+
+body[data-tool]:not([data-tool$="-index"]) .tool-seo-card-icon {
+  width: 42px;
+  height: 42px;
+  font-size: 1.25rem;
+  border-radius: 11px;
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.12);
+}
+
+@media (max-width: 720px) {
+  body[data-tool]:not([data-tool$="-index"]) .tool-seo-faq {
+    grid-template-columns: 1fr;
+  }
+}
+
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]),
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) main,
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) .tool-seo {
+  background: var(--bg);
+}
+
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) .tool-seo-howto li,
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) .tool-seo-block ul:not(.tool-seo-more) li,
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) .tool-seo-faq-item,
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) .tool-seo-card {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) .tool-seo-faq dt,
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) .tool-seo-card-title {
+  color: var(--text);
+}
+
+[data-theme="dark"] body[data-tool]:not([data-tool$="-index"]) .tool-seo-faq dd {
+  color: var(--text-muted);
+}

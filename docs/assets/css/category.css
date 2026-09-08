@@ -1,18 +1,99 @@
-/* Category landing pages — SEO */
+/* Trang danh mục công cụ — cùng tông trang chủ */
 
-.cat-hero {
-  padding: 2.5rem 0 2rem;
-  background: linear-gradient(165deg, rgba(248, 247, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 55%, rgba(237, 233, 254, 0.35) 100%);
-  border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+.cat-page {
+  background: #f8f7ff;
 }
 
-[data-theme="dark"] .cat-hero {
-  background: linear-gradient(165deg, rgba(19, 16, 31, 0.98), rgba(13, 10, 22, 0.95));
+.cat-page main {
+  background: #f8f7ff;
+}
+
+.cat-page .ot-crumb-wrap {
+  background: transparent;
+  border-bottom: none;
+}
+
+/* ─── Hero ─── */
+.cat-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 1.75rem 0 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 12% -20%, rgba(124, 58, 237, 0.12), transparent 55%),
+    radial-gradient(ellipse 55% 50% at 96% 8%, rgba(6, 182, 212, 0.08), transparent 50%),
+    #f8f7ff;
+  border-bottom: none;
+}
+
+.cat-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.cat-hero-orbs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cat-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cat-orb--a {
+  width: 280px;
+  height: 280px;
+  left: -90px;
+  top: -110px;
+  background:
+    radial-gradient(circle at 32% 28%,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(233, 213, 255, 0.45) 16%,
+      rgba(167, 139, 250, 0.22) 40%,
+      transparent 72%);
+  animation: catOrbA 20s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.cat-orb--b {
+  width: 200px;
+  height: 200px;
+  right: -50px;
+  top: -20px;
+  background:
+    radial-gradient(circle at 38% 30%,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(165, 243, 252, 0.32) 18%,
+      rgba(34, 211, 238, 0.14) 44%,
+      transparent 74%);
+  animation: catOrbB 24s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes catOrbA {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(28px, 16px, 0) scale(1.05); }
+}
+
+@keyframes catOrbB {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-22px, 20px, 0) scale(1.06); }
 }
 
 .cat-hero-eyebrow {
-  display: inline-block;
-  margin-bottom: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.07);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -21,8 +102,8 @@
 }
 
 .cat-hero h1 {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.7rem, 3.4vw, 2.35rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -36,32 +117,119 @@
   color: var(--text-muted);
 }
 
-.cat-tools-section {
-  padding-top: 2rem;
+.cat-hero-count {
+  margin: 0.85rem 0 0;
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: var(--text-muted);
 }
 
+.cat-hero-count strong {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+/* ─── Chips ─── */
+.cat-page .category-filter,
+.cat-hero .category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+}
+
+.cat-page .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.48rem 0.95rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    color 0.22s ease;
+}
+
+.cat-page .chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 58, 237, 0.32);
+  color: var(--primary);
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.1);
+}
+
+.cat-page .chip.chip--active,
+.cat-page .chip--active {
+  background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.28);
+}
+
+/* ─── Tool grid ─── */
+.cat-tools-section {
+  padding: 1.35rem 0 2.75rem;
+  background: #f8f7ff;
+}
+
+.cat-page .cat-tools-section .tool-grid {
+  gap: 0.9rem;
+}
+
+.cat-page .cat-tools-section .tool-card {
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.045);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.cat-page .cat-tools-section a.tool-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(124, 58, 237, 0.28);
+  box-shadow: 0 14px 28px rgba(124, 58, 237, 0.1);
+}
+
+.cat-page .cat-tools-section .tool-card-icon {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.1);
+}
+
+/* ─── SEO blocks ─── */
 .cat-seo {
-  padding: 2.5rem 0 3.5rem;
-  background: var(--bg-alt);
-  border-top: 1px solid var(--border);
+  padding: 0.5rem 0 3.25rem;
+  background: #f8f7ff;
+  border-top: none;
 }
 
 .cat-seo-wrap {
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .cat-seo-block {
-  padding: 1.25rem 1.35rem;
-  background: var(--surface, #fff);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  padding: 1.3rem 1.4rem;
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.045);
 }
 
 .cat-seo-block h2 {
   margin: 0 0 0.65rem;
   font-size: 1.05rem;
   font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .cat-seo-block p {
@@ -79,4 +247,105 @@
   .cat-seo-wrap {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+/* ─── Hub (Tất cả công cụ) ─── */
+.cat-hub .page-hero {
+  padding: 2.25rem 0 1.5rem;
+  background:
+    radial-gradient(ellipse 90% 70% at 12% -20%, rgba(124, 58, 237, 0.12), transparent 55%),
+    #f8f7ff;
+  text-align: left;
+}
+
+.cat-hub .page-hero::after {
+  display: none;
+}
+
+.cat-hub .page-hero p {
+  margin: 0;
+  max-width: 58ch;
+}
+
+.cat-hub .section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.07);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.cat-hub .section {
+  background: #f8f7ff;
+  padding-top: 1.35rem;
+}
+
+.cat-hub .page-hero .category-filter {
+  margin: 1.25rem 0 0;
+}
+
+.cat-hub .tool-category-head h2 {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.cat-hub .tool-card {
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.045);
+}
+
+/* ─── Dark ─── */
+[data-theme="dark"] .cat-page,
+.cat-page[data-theme="dark"] {
+  background: var(--bg);
+}
+
+[data-theme="dark"] .cat-page main,
+[data-theme="dark"] .cat-hero,
+[data-theme="dark"] .cat-tools-section,
+[data-theme="dark"] .cat-seo,
+[data-theme="dark"] .cat-hub .page-hero,
+[data-theme="dark"] .cat-hub .section {
+  background: var(--bg);
+}
+
+[data-theme="dark"] .cat-hero-eyebrow,
+[data-theme="dark"] .cat-page .chip,
+[data-theme="dark"] .cat-hub .section-eyebrow {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme="dark"] .cat-page .cat-tools-section .tool-card,
+[data-theme="dark"] .cat-seo-block,
+[data-theme="dark"] .cat-hub .tool-card {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .cat-orb--a {
+  background:
+    radial-gradient(circle at 32% 28%,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(167, 139, 250, 0.28) 28%,
+      transparent 72%);
+}
+
+[data-theme="dark"] .cat-orb--b {
+  background:
+    radial-gradient(circle at 38% 30%,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(34, 211, 238, 0.16) 30%,
+      transparent 74%);
 }

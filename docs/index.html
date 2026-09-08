@@ -37,7 +37,7 @@
   <meta name="twitter:description" content="Xóa nền ảnh, nén PDF, HEIC sang JPG, nén video, audio to text. Miễn phí." />
   <meta name="twitter:image" content="https://onetool.vn/assets/img/og-share.jpg" />
   <link rel="stylesheet" href="assets/css/site.css?v=20260826p" />
-  <link rel="stylesheet" href="assets/css/home.css?v=20260826h" />
+  <link rel="stylesheet" href="assets/css/home.css?v=20260908l" />
   <link rel="stylesheet" href="assets/css/shell-critical.css?v=20260826p" />
   <link rel="preload" href="assets/css/ot-shell.css?v=20260903a" as="style" />
   <link rel="stylesheet" href="assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/ot-shell.css?v=20260903a"></noscript>
@@ -62,13 +62,18 @@
 @media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}.home-hero{min-height:360px}}
 </style>
 </head>
-<body>
+<body data-tool="home">
 <div id="site-header"></div>
 <main role="main">
 
 <section class="home-hero">
+  <div class="home-hero-orbs" aria-hidden="true">
+    <span class="home-orb home-orb--a"></span>
+    <span class="home-orb home-orb--b"></span>
+    <span class="home-orb home-orb--c"></span>
+  </div>
   <div class="container home-hero-inner">
-    <div>
+    <div class="home-hero-copy">
       <p class="home-badge"><span class="home-badge-dot"></span> Bộ công cụ file online — dành cho người Việt</p>
       <h1>Xử lý PDF, ảnh &amp; video<br /><span class="gradient-text">ngay trên trình duyệt</span></h1>
       <p class="home-hero-lead">Convert, gộp, nén video, xóa nền hay chuyển giọng nói thành văn bản — mở trang là dùng, không cần đăng ký. PDF &amp; ảnh xử lý trên máy; một số tool Media/AI dùng xử lý đám mây có kiểm soát.</p>
@@ -88,13 +93,14 @@
       </div>
     </div>
     <div class="home-visual">
-      <a class="home-tile" href="cong-cu-tien-ich/password-generator.html"><em>🔐</em>Tạo mật khẩu</a>
+      <a class="home-tile" href="cong-cu-media/tiktok-download.html"><em>🎵</em>Tải TikTok không logo</a>
+      <a class="home-tile" href="cong-cu-media/audio-to-text.html"><em>🎙️</em>Giọng nói → văn bản</a>
+      <a class="home-tile" href="cong-cu-media/text-to-speech.html"><em>🔊</em>Văn bản → giọng nói</a>
       <a class="home-tile" href="cong-cu-pdf/image-pdf.html"><em>🔄</em>Ảnh ↔ PDF</a>
       <a class="home-tile" href="cong-cu-anh/image-compress.html"><em>🗜️</em>Nén ảnh</a>
       <a class="home-tile" href="cong-cu-anh/image-convert.html"><em>🖼️</em>Đổi định dạng ảnh</a>
       <a class="home-tile" href="cong-cu-pdf/pdf-to-word.html"><em>📄</em>PDF sang Word</a>
       <a class="home-tile" href="cong-cu-anh/remove-background.html"><em>✂️</em>Xóa nền ảnh</a>
-      <a class="home-tile" href="cong-cu-media/text-to-speech.html"><em>🔊</em>Văn bản → giọng nói</a>
       <a class="home-tile home-tile--accent" href="cong-cu.html">
         <em>✨</em>
         <div><strong>Khám phá tất cả công cụ</strong><small>PDF · Ảnh · Media · AI · Lập trình · Tiện ích · Đơn vị</small></div>
@@ -150,7 +156,10 @@
 <script src="assets/js/catalog.js?v=20260907k"></script>
 <script src="assets/js/layout.js?v=20260907k"></script>
 <script src="assets/js/core.js?v=20260826a"></script>
-<script src="assets/js/site.js?v=20260907k"></script>
-<script>(function () { if (window.OTCatalog && typeof renderHomeShowcase === "function") { renderHomeShowcase(document.getElementById("homeToolRows")); } })();</script>
+<script src="assets/js/site.js?v=20260908g"></script>
+<script>(function () {
+  if (window.OTCatalog && typeof renderHomeShowcase === "function") renderHomeShowcase(document.getElementById("homeToolRows"));
+  if (typeof initHomeMotion === "function") initHomeMotion();
+})();</script>
 </body>
 </html>
