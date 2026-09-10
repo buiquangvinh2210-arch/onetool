@@ -1,26 +1,6 @@
 window.OTCatalog = {
   categories: [
     {
-      slug: "pdf-tools",
-      seo: "cong-cu-pdf",
-      name: "Công cụ PDF",
-      desc: "Gộp, tách, nén, ký PDF, PDF → Word/Excel, khóa mật khẩu",
-      icon: "📄",
-      seoTitle: "Công cụ PDF online miễn phí — Gộp, tách, nén, khóa PDF | OneTool",
-      seoDescription: "Gộp PDF, tách trang, nén dung lượng, PDF sang Word/Excel, khóa mật khẩu — xử lý 100% trên trình duyệt, không cần đăng ký.",
-      seoKeywords: "gộp pdf online, tách pdf, nén pdf, ký pdf, pdf sang excel, khóa pdf, convert pdf, công cụ pdf miễn phí"
-    },
-    {
-      slug: "images",
-      seo: "cong-cu-anh",
-      name: "Công cụ Ảnh",
-      desc: "Crop MXH, OCR ảnh, convert, blur, HEIC, resize, xóa nền AI",
-      icon: "🖼️",
-      seoTitle: "Công cụ ảnh online — OCR, crop MXH, convert, blur, resize, xóa nền | OneTool",
-      seoDescription: "OCR ảnh sang chữ tiếng Việt, crop preset Instagram TikTok Shopee, đổi JPG PNG WebP, làm mờ, resize, xóa nền AI — miễn phí trên trình duyệt.",
-      seoKeywords: "ocr ảnh tiếng việt, crop ảnh online, crop instagram, convert ảnh, làm mờ ảnh, resize ảnh, xóa nền ảnh miễn phí"
-    },
-    {
       slug: "media",
       seo: "cong-cu-media",
       name: "Công cụ Media",
@@ -39,6 +19,26 @@ window.OTCatalog = {
       seoTitle: "Công cụ AI online — Audio to text, TTS, Tóm tắt AI | OneTool",
       seoDescription: "Chuyển giọng nói thành văn bản, văn bản thành giọng nói tiếng Việt, tóm tắt AI. Miễn phí, xử lý đám mây có kiểm soát.",
       seoKeywords: "audio to text, text to speech tiếng việt, tóm tắt ai, chuyển giọng nói thành văn bản"
+    },
+    {
+      slug: "pdf-tools",
+      seo: "cong-cu-pdf",
+      name: "Công cụ PDF",
+      desc: "Gộp, tách, nén, ký PDF, PDF → Word/Excel, khóa mật khẩu",
+      icon: "📄",
+      seoTitle: "Công cụ PDF online miễn phí — Gộp, tách, nén, khóa PDF | OneTool",
+      seoDescription: "Gộp PDF, tách trang, nén dung lượng, PDF sang Word/Excel, khóa mật khẩu — xử lý 100% trên trình duyệt, không cần đăng ký.",
+      seoKeywords: "gộp pdf online, tách pdf, nén pdf, ký pdf, pdf sang excel, khóa pdf, convert pdf, công cụ pdf miễn phí"
+    },
+    {
+      slug: "images",
+      seo: "cong-cu-anh",
+      name: "Công cụ Ảnh",
+      desc: "Crop MXH, OCR ảnh, convert, blur, HEIC, resize, xóa nền AI",
+      icon: "🖼️",
+      seoTitle: "Công cụ ảnh online — OCR, crop MXH, convert, blur, resize, xóa nền | OneTool",
+      seoDescription: "OCR ảnh sang chữ tiếng Việt, crop preset Instagram TikTok Shopee, đổi JPG PNG WebP, làm mờ, resize, xóa nền AI — miễn phí trên trình duyệt.",
+      seoKeywords: "ocr ảnh tiếng việt, crop ảnh online, crop instagram, convert ảnh, làm mờ ảnh, resize ảnh, xóa nền ảnh miễn phí"
     },
     {
       slug: "file-converter",
