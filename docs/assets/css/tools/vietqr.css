@@ -1,0 +1,116 @@
+body[data-tool="vietqr"] .tool-workspace {
+  padding: 0 0 2rem !important;
+  background:
+    radial-gradient(ellipse 70% 45% at 100% 0%, rgba(6, 182, 212, 0.1), transparent 50%),
+    #f8f7ff !important;
+}
+
+.vqr-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.vqr-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 1.35rem;
+}
+
+.vqr-intro h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.vqr-intro p {
+  margin: 0.5rem 0 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.vqr-card {
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05);
+}
+
+.vqr-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+}
+
+.vqr-form { padding: 1.25rem 1.35rem; border-right: 1px solid rgba(124, 58, 237, 0.1); }
+
+.vqr-label {
+  display: block;
+  margin: 0.85rem 0 0.4rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.vqr-label:first-child { margin-top: 0; }
+
+.vqr-form input, .vqr-form select, .vqr-form textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  border-radius: 12px;
+  font: inherit;
+  background: #fafafa;
+}
+
+.vqr-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.vqr-preview {
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #faf8ff, #f3fbff);
+}
+
+.vqr-empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.vqr-preview img {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+}
+
+.vqr-status { margin: 0.85rem 0 0; font-size: 0.85rem; color: var(--text-muted); text-align: center; }
+.vqr-status.is-ok { color: #047857; }
+.vqr-status.is-err { color: #b91c1c; }
+
+.vqr-payload {
+  margin-top: 0.75rem;
+  width: 100%;
+  font: 11px ui-monospace, Consolas, monospace;
+  color: #6b6578;
+  background: transparent;
+  border: 0;
+  resize: none;
+}
+
+@media (max-width: 800px) {
+  .vqr-page { padding: 0 1rem; }
+  .vqr-grid { grid-template-columns: 1fr; }
+  .vqr-form { border-right: 0; border-bottom: 1px solid rgba(124, 58, 237, 0.1); }
+}

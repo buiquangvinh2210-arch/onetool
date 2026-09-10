@@ -1,0 +1,86 @@
+body[data-tool="number-to-words"] .tool-workspace {
+  padding: 0 0 2rem !important;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, rgba(16, 185, 129, 0.1), transparent 55%),
+    #f8f7ff !important;
+}
+
+.ntw-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.ntw-intro { text-align: center; margin: 0 auto 1.35rem; }
+.ntw-intro h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.ntw-intro p { margin: 0.5rem 0 0; color: var(--text-muted); line-height: 1.6; }
+
+.ntw-card {
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05);
+}
+
+.ntw-label {
+  display: block;
+  margin: 0 0 0.4rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ntw-card input, .ntw-card textarea {
+  width: 100%;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  border-radius: 12px;
+  font: inherit;
+  background: #fafafa;
+}
+
+.ntw-card textarea {
+  min-height: 7rem;
+  resize: vertical;
+  font-weight: 650;
+  line-height: 1.55;
+}
+
+.ntw-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  margin: 0.85rem 0 1rem;
+}
+
+.ntw-ex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.55rem 0 1rem;
+}
+
+.ntw-ex button {
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.ntw-status { margin: 0.75rem 0 0; font-size: 0.88rem; color: var(--text-muted); }
+.ntw-status.is-ok { color: #047857; }
+.ntw-status.is-err { color: #b91c1c; }
+
+@media (max-width: 640px) { .ntw-page { padding: 0 1rem; } }

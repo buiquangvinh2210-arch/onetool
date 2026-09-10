@@ -16,9 +16,10 @@
 </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nén video online miễn phí — nén MP4, WebM, tách MP3 | OneTool</title>
-  <meta name="description" content="Nén video online: giảm dung lượng MP4, đổi WebM hoặc tách MP3 ngay trên trình duyệt. Miễn phí, không cần đăng nhập." />
-  <link rel="canonical" href="https://onetool.vn/cong-cu-media/video-convert.html" />
+  <title>Video sang MP3 online miễn phí — tách nhạc MP4 | OneTool</title>
+  <meta name="description" content="Chuyển video sang MP3 online: tách audio từ MP4, MOV, MKV, WebM thành MP3 192kbps ngay trên trình duyệt. Miễn phí, không cần đăng nhập." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-media/video-to-mp3.html" />
+  <meta name="robots" content="index,follow" />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
   <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
   <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
@@ -26,13 +27,13 @@
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
   <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
-<link rel="stylesheet" href="../assets/css/tools/video-convert.css?v=20260910a" />
+  <link rel="stylesheet" href="../assets/css/tools/video-convert.css?v=20260910a" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
 #otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
 @media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
-<body data-tool="video-convert">
+<body data-tool="video-to-mp3">
 <div id="site-header"></div>
 <main role="main">
 <nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
@@ -40,10 +41,10 @@
   <div class="vc-top">
     <div class="vc-title-row">
       <div>
-        <h1 id="vcTitle">Nén video online</h1>
-        <p id="vcLead">Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.</p>
+        <h1 id="vcTitle">Video sang MP3</h1>
+        <p id="vcLead">Tách tiếng từ video thành file MP3 — bỏ hình, giữ âm thanh 192kbps.</p>
       </div>
-      <div class="vc-meta" id="vcMeta"></div>
+      <div class="vc-meta" id="vcMeta">MP4 · MOV · MKV · WebM · MP3 192kbps · tối đa 512 MB</div>
     </div>
   </div>
 
@@ -62,29 +63,22 @@
           </div>
         </div>
 
-        <div class="vc-field" id="vcModeField">
+        <div class="vc-field" id="vcModeField" hidden>
           <label for="vcMode" id="vcLblMode"></label>
           <select id="vcMode" class="form-control">
-            <option value="mp4-balance">mp4-balance</option>
-            <option value="mp4-compress">mp4-compress</option>
-            <option value="mp4-strong">mp4-strong</option>
-            <option value="webm">webm</option>
-            <option value="mp3">mp3</option>
+            <option value="mp3" selected>mp3</option>
           </select>
         </div>
 
-        <div class="vc-field" id="vcScaleField">
+        <div class="vc-field" id="vcScaleField" hidden>
           <label for="vcScale" id="vcLblScale"></label>
           <select id="vcScale" class="form-control">
-            <option value="original">original</option>
-            <option value="1080">1080</option>
-            <option value="720">720</option>
-            <option value="480">480</option>
+            <option value="original" selected>original</option>
           </select>
         </div>
 
-        <button type="button" class="btn btn-primary btn-block" id="runBtn"></button>
-        <p class="vc-note" id="vcNote"></p>
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Tách MP3</button>
+        <p class="vc-note" id="vcNote">Chỉ lấy audio, bỏ hình. Lần đầu tải bộ xử lý (~25 MB).</p>
       </aside>
 
       <div class="vc-main">
@@ -100,12 +94,12 @@
         <div class="vc-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
         <div class="vc-result" id="resultBox">
           <div class="vc-empty" id="resultEmpty">
-            <span class="vc-empty-icon" aria-hidden="true">&#9654;</span>
-            <p id="vcEmptyText"></p>
+            <span class="vc-empty-icon" aria-hidden="true">&#9835;</span>
+            <p id="vcEmptyText">Chưa có MP3 — chọn video rồi bấm tách.</p>
           </div>
           <div class="vc-preview-wrap hidden" id="previewWrap">
-            <video id="resultVideo" controls playsinline></video>
-            <audio id="resultAudio" controls class="hidden"></audio>
+            <video id="resultVideo" controls playsinline class="hidden"></video>
+            <audio id="resultAudio" controls></audio>
           </div>
           <div class="vc-stats hidden" id="statsBox">
             <div><span class="hint" id="vcLblBefore"></span><strong id="statBefore">-</strong></div>
@@ -120,16 +114,16 @@
 <section class="tool-seo" id="toolSeo">
   <div class="tool-seo-wrap">
     <section class="tool-seo-block">
-      <h2>Cách dùng Nén video online</h2>
+      <h2>Cách dùng Video sang MP3</h2>
       <ol class="tool-seo-howto">
-        <li>Chọn file video (MP4…).</li>
-        <li>Chọn nén / WebM / tách MP3.</li>
-        <li>Chạy và tải kết quả về máy.</li>
+        <li>Thả file video (MP4, MOV, MKV, WebM…).</li>
+        <li>Bấm Tách MP3 — trình duyệt lấy audio, bỏ hình.</li>
+        <li>Nghe thử rồi tải file MP3 192kbps về máy.</li>
       </ol>
     </section>
     <section class="tool-seo-block">
-      <h2>Nén video online là gì?</h2>
-      <p><strong>Nén video online</strong> giảm dung lượng MP4, convert WebM hoặc tách audio MP3 ngay trên trình duyệt.</p>
+      <h2>Video sang MP3 là gì?</h2>
+      <p><strong>Video sang MP3</strong> tách phần âm thanh từ clip thành file MP3. Toàn bộ chạy trên trình duyệt — video không upload lên server.</p>
     </section>
   </div>
 </section>

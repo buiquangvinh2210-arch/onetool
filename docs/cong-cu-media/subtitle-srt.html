@@ -16,9 +16,10 @@
 </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Audio to Text tiếng Việt — chuyển giọng nói thành văn bản | OneTool</title>
-  <meta name="description" content="Audio to Text tiếng Việt: chuyển giọng nói thành văn bản từ MP3, WAV, MP4. Xuất TXT và phụ đề SRT — miễn phí." />
-  <link rel="canonical" href="https://onetool.vn/cong-cu-media/audio-to-text.html" />
+  <title>Tạo phụ đề SRT online miễn phí — video MP3 sang SRT | OneTool</title>
+  <meta name="description" content="Tạo phụ đề SRT từ video hoặc MP3 tiếng Việt: nhận dạng giọng nói, xuất file SRT gắn CapCut, YouTube, Premiere. Miễn phí." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-media/subtitle-srt.html" />
+  <meta name="robots" content="index,follow" />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
   <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
   <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
@@ -26,13 +27,13 @@
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
   <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
-<link rel="stylesheet" href="../assets/css/tools/audio-to-text.css?v=20260910a" />
+  <link rel="stylesheet" href="../assets/css/tools/audio-to-text.css?v=20260910a" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
 #otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
 @media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style></head>
-<body data-tool="audio-to-text">
+<body data-tool="subtitle-srt">
 <div id="site-header"></div>
 <main role="main">
 <nav id="otCrumb" class="ot-crumb-wrap" aria-label="Breadcrumb"></nav>
@@ -40,10 +41,10 @@
   <div class="at-top">
     <div class="at-title-row">
       <div>
-        <h1>Chuyển giọng nói thành văn bản</h1>
-        <p>Chuyển giọng nói thành văn bản tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.</p>
+        <h1>Tạo phụ đề SRT</h1>
+        <p>Video hoặc MP3 thành phụ đề SRT tiếng Việt — gắn CapCut, YouTube, Premiere.</p>
       </div>
-      <div class="at-meta">MP3 · WAV · MP4 · MOV · tối đa 512&nbsp;MB</div>
+      <div class="at-meta">MP4 · MOV · MP3 · WAV · tối đa 512&nbsp;MB</div>
     </div>
   </div>
 
@@ -54,10 +55,10 @@
       <aside class="at-side">
         <p class="at-side-label">Nguồn</p>
         <div class="upload-zone" id="uploadZone" data-kind="media">
-          <input type="file" id="fileInput" accept="audio/*,video/*,.mp3,.wav,.m4a,.ogg,.webm,.mp4,.mkv,.mov,.m4v,video/quicktime,video/mp4" hidden />
+          <input type="file" id="fileInput" accept="video/*,audio/*,.mp4,.mkv,.mov,.m4v,.webm,.mp3,.wav,.m4a,.ogg,video/quicktime,video/mp4" hidden />
           <div class="upload-placeholder">
-            <span class="upload-icon upload-icon--media">AUDIO</span>
-            <p><strong>Thả file vào đây</strong></p>
+            <span class="upload-icon upload-icon--media">VIDEO</span>
+            <p><strong>Thả video hoặc MP3 vào đây</strong></p>
             <p class="text-muted">hoặc <button type="button" class="link-btn" id="browseBtn">chọn từ máy</button></p>
           </div>
         </div>
@@ -69,23 +70,23 @@
             <option value="auto">Tự nhận diện</option>
           </select>
         </div>
-        <button type="button" class="btn btn-primary btn-block" id="runBtn">Nhận dạng</button>
+        <button type="button" class="btn btn-primary btn-block" id="runBtn">Tạo phụ đề SRT</button>
         <p class="at-note">
-          <span class="at-note-desk">Kết quả hiện bên phải — có thể sao chép hoặc tải về.</span>
-          <span class="at-note-mob">Kết quả hiện ngay bên dưới — sao chép hoặc tải TXT/SRT.</span>
+          <span class="at-note-desk">File SRT hiện bên phải — tải về rồi gắn vào video.</span>
+          <span class="at-note-mob">File SRT hiện ngay bên dưới — tải về rồi gắn vào video.</span>
         </p>
       </aside>
 
       <div class="at-main">
         <div class="at-main-bar">
           <div>
-            <h2>Bản ghi</h2>
-            <p id="status">Chưa có nội dung</p>
+            <h2>Phụ đề SRT</h2>
+            <p id="status">Chưa có phụ đề</p>
           </div>
           <div class="at-actions">
             <button type="button" class="btn btn-outline btn-sm" id="copyResultBtn" disabled>Sao chép</button>
-            <button type="button" class="btn btn-primary btn-sm" id="downloadResultBtn" disabled>Tải TXT</button>
-            <button type="button" class="btn btn-outline btn-sm" id="downloadSrtBtn" disabled>Tải SRT</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadSrtBtn" disabled>Tải SRT</button>
+            <button type="button" class="btn btn-outline btn-sm" id="downloadTxtBtn" disabled>Tải TXT</button>
           </div>
         </div>
         <div class="at-progress" id="progressBar" aria-hidden="true"><span id="progressFill"></span></div>
@@ -98,16 +99,16 @@
 <section class="tool-seo" id="toolSeo">
   <div class="tool-seo-wrap">
     <section class="tool-seo-block">
-      <h2>Cách dùng Audio to Text tiếng Việt</h2>
+      <h2>Cách tạo phụ đề SRT online</h2>
       <ol class="tool-seo-howto">
-        <li>Thả file MP3, WAV, M4A hoặc video MP4/MOV.</li>
-        <li>Chọn tiếng Việt rồi bấm Nhận dạng.</li>
-        <li>Sao chép văn bản, tải TXT hoặc phụ đề SRT.</li>
+        <li>Thả video MP4/MOV hoặc file MP3/WAV.</li>
+        <li>Chọn tiếng Việt rồi bấm Tạo phụ đề SRT.</li>
+        <li>Tải file .srt và gắn vào CapCut, YouTube hoặc Premiere.</li>
       </ol>
     </section>
     <section class="tool-seo-block">
-      <h2>Audio to Text tiếng Việt là gì?</h2>
-      <p><strong>Audio to Text</strong> chuyển giọng nói thành văn bản. OneTool nhận diện <strong>tiếng Việt</strong>, xuất TXT và SRT.</p>
+      <h2>Phụ đề SRT là gì?</h2>
+      <p><strong>SRT</strong> là file phụ đề có time-code. OneTool nhận diện giọng nói tiếng Việt từ video/MP3 rồi xuất SRT để gắn vào trình chỉnh sửa video.</p>
     </section>
   </div>
 </section>
@@ -131,8 +132,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let file = null;
     let lastSrt = "";
+    let lastTxt = "";
     let lastTxtName = "transcript.txt";
-    let lastSrtName = "transcript.srt";
+    let lastSrtName = "subtitle.srt";
     const previewEl = document.getElementById("preview");
     const statusEl = document.getElementById("status");
     const progressBar = document.getElementById("progressBar");
@@ -148,25 +150,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     OT.bindUploadZone({ onFiles: (f) => {
       file = f[0] || null;
-      if (statusEl && !file) statusEl.textContent = "Chưa có nội dung";
+      if (statusEl && !file) statusEl.textContent = "Chưa có phụ đề";
     } });
 
     document.getElementById("downloadSrtBtn")?.addEventListener("click", () => {
       if (!lastSrt) return;
       OT.downloadText(lastSrt, lastSrtName, "application/x-subrip;charset=utf-8");
     });
+    document.getElementById("downloadTxtBtn")?.addEventListener("click", () => {
+      if (!lastTxt) return;
+      OT.downloadText(lastTxt, lastTxtName, "text/plain;charset=utf-8");
+    });
 
     document.getElementById("runBtn").onclick = async () => {
       const btn = document.getElementById("runBtn");
       const srtBtn = document.getElementById("downloadSrtBtn");
+      const txtBtn = document.getElementById("downloadTxtBtn");
       try {
         if (location.protocol === "file:") throw new Error("Cần chạy qua HTTP (IIS hoặc Live Server).");
-        if (!file) throw new Error("Chọn file audio hoặc video trước.");
+        if (!file) throw new Error("Chọn video hoặc MP3 trước.");
         if (!window.OTAudioCloud?.transcribe) throw new Error("Thiếu script nhận dạng. Thử Ctrl+F5.");
 
-        OT.setBusy(btn, true, "Đang xử lý…");
+        OT.setBusy(btn, true, "Đang tạo phụ đề…");
         if (srtBtn) srtBtn.disabled = true;
+        if (txtBtn) txtBtn.disabled = true;
         lastSrt = "";
+        lastTxt = "";
         previewEl.textContent = "";
         setProgress(5);
 
@@ -179,18 +188,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const result = await OTAudioCloud.transcribe(file, { language, onProgress });
         lastSrt = result.srt || "";
+        lastTxt = (result.text || "").trim();
         lastTxtName = result.fileNameTxt || "transcript.txt";
-        lastSrtName = result.fileNameSrt || "transcript.srt";
+        lastSrtName = (result.fileNameSrt || "subtitle.srt").replace("-transcript.srt", "-subtitle.srt");
         if (srtBtn) srtBtn.disabled = !lastSrt;
+        if (txtBtn) txtBtn.disabled = !lastTxt;
 
-        const preview = (result.text || "").trim() || "(Không có nội dung.)";
+        const srtPreview = (lastSrt || "").trim() || lastTxt || "(Không nhận được lời thoại.)";
         OT.showResult({
-          text: preview,
-          fileName: lastTxtName,
-          contentType: "text/plain;charset=utf-8"
+          text: lastSrt || lastTxt,
+          fileName: lastSrtName,
+          contentType: "application/x-subrip;charset=utf-8"
         });
-        previewEl.textContent = preview;
-        if (statusEl) statusEl.textContent = "Hoàn tất";
+        previewEl.textContent = srtPreview;
+        if (statusEl) statusEl.textContent = lastSrt ? "Đã tạo phụ đề SRT — tải về rồi gắn vào video." : "Hoàn tất";
         setProgress(100);
       } catch (e) {
         if (statusEl) statusEl.textContent = e.message || String(e);

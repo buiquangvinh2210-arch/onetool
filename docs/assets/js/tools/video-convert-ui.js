@@ -66,6 +66,21 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
     scale480: "Tối đa 480p"
   };
 
+  const IS_MP3 = document.body?.dataset?.tool === "video-to-mp3";
+  if (IS_MP3) {
+    L.pageTitle = "Video sang MP3 online miễn phí — tách nhạc MP4 | OneTool";
+    L.pageDesc = "Chuyển video sang MP3 online: tách audio từ MP4, MOV, MKV, WebM thành MP3 192kbps ngay trên trình duyệt. Miễn phí.";
+    L.title = "Video sang MP3";
+    L.lead = "Tách tiếng từ video thành file MP3 — bỏ hình, giữ âm thanh 192kbps.";
+    L.meta = "MP4 · MOV · MKV · WebM · MP3 192kbps · tối đa 512 MB";
+    L.run = "Tách MP3";
+    L.empty = "Chưa có MP3 — chọn video rồi bấm tách.";
+    L.note = "Chỉ lấy audio, bỏ hình. Lần đầu tải bộ xử lý (~25 MB).";
+    L.done = "Đã tách MP3 — nghe thử rồi tải về.";
+    L.encodeBusy = "Đang tách MP3…";
+    L.hintMp3 = "Chỉ lấy audio MP3 192kbps, bỏ hình. Nhanh hơn nén video."
+  }
+
   let file = null;
   let lastBlob = null;
   let lastName = "output.mp4";
@@ -117,8 +132,8 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
     $("vcDropTitle").textContent = L.dropTitle;
     $("vcDropOr").textContent = L.dropOr;
     $("browseBtn").textContent = L.browse;
-    $("vcLblMode").textContent = L.lblMode;
-    $("vcLblScale").textContent = L.lblScale;
+    if ($("vcLblMode")) $("vcLblMode").textContent = L.lblMode;
+    if ($("vcLblScale")) $("vcLblScale").textContent = L.lblScale;
     $("vcLblResult").textContent = L.lblResult;
     $("vcNote").textContent = L.note;
     $("runBtn").textContent = L.run;
@@ -129,20 +144,26 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
     $("vcLblSaved").textContent = L.lblSaved;
     $("protocolBanner").textContent = L.protocol;
 
-    const mode = $("vcMode");
-    if (mode) {
-      mode.options[0].textContent = L.modeMp4Balance;
-      mode.options[1].textContent = L.modeMp4Compress;
-      mode.options[2].textContent = L.modeMp4Strong;
-      mode.options[3].textContent = L.modeWebm;
-      mode.options[4].textContent = L.modeMp3;
-    }
-    const scale = $("vcScale");
-    if (scale) {
-      scale.options[0].textContent = L.scaleOriginal;
-      scale.options[1].textContent = L.scale1080;
-      scale.options[2].textContent = L.scale720;
-      scale.options[3].textContent = L.scale480;
+    if (IS_MP3) {
+      $("vcModeField")?.setAttribute("hidden", "");
+      $("vcScaleField")?.setAttribute("hidden", "");
+      if ($("vcMode")) $("vcMode").value = "mp3";
+    } else {
+      const mode = $("vcMode");
+      if (mode && mode.options.length >= 5) {
+        mode.options[0].textContent = L.modeMp4Balance;
+        mode.options[1].textContent = L.modeMp4Compress;
+        mode.options[2].textContent = L.modeMp4Strong;
+        mode.options[3].textContent = L.modeWebm;
+        mode.options[4].textContent = L.modeMp3;
+      }
+      const scale = $("vcScale");
+      if (scale && scale.options.length >= 4) {
+        scale.options[0].textContent = L.scaleOriginal;
+        scale.options[1].textContent = L.scale1080;
+        scale.options[2].textContent = L.scale720;
+        scale.options[3].textContent = L.scale480;
+      }
     }
   }
 
@@ -291,7 +312,7 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
 
   function updateModeHint() {
     const note = $("vcNote");
-    const mode = $("vcMode")?.value || "mp4-balance";
+    const mode = IS_MP3 ? "mp3" : ($("vcMode")?.value || "mp4-balance");
     if (note) note.textContent = modeHint(mode);
   }
 
@@ -652,7 +673,7 @@ import { fetchFile, toBlobURL } from "https://cdn.jsdelivr.net/npm/@ffmpeg/util@
         showEmpty();
         setProgress(5);
 
-        const mode = $("vcMode")?.value || "mp4-balance";
+        const mode = IS_MP3 ? "mp3" : ($("vcMode")?.value || "mp4-balance");
         const scale = $("vcScale")?.value || "original";
 
         const { blob, outputName, mime, keptOriginal } = await processVideo(file, mode, scale);

@@ -116,21 +116,19 @@
 
   /* ── Tool search (header) ── */
   const HOT_SLUGS = [
-    "tiktok-download",
     "audio-to-text",
-    "text-to-speech",
-    "heic-convert",
-    "currency-convert",
-    "lunar-calendar",
-    "barcode-generator",
-    "pdf-to-excel",
-    "pdf-lock",
-    "pdf-sign",
-    "video-to-gif",
+    "subtitle-srt",
+    "pdf-to-word",
     "remove-background",
-    "image-crop",
-    "image-ocr",
-    "qr-generator"
+    "video-to-mp3",
+    "vietqr",
+    "heic-convert",
+    "text-to-speech",
+    "pdf-merge",
+    "pdf-compress",
+    "image-compress",
+    "currency-convert",
+    "number-to-words"
   ];
 
   let searchActive = 0;
@@ -419,10 +417,8 @@
     }
 
     function pickTools(catSlug) {
-      const items = OTCatalog.tools.filter(t => t.cat === catSlug && !t.hub);
-      const featured = sortTools(items.filter(t => t.featured));
-      const rest = sortTools(items.filter(t => !t.featured));
-      return [...featured, ...rest].slice(0, limit);
+      const items = OTCatalog.tools.filter(t => t.cat === catSlug && !t.hub && t.featured);
+      return sortTools(items).slice(0, limit);
     }
 
     function toolCard(t) {

@@ -1,4 +1,4 @@
-body[data-tool="audio-to-text"] {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) {
   --at-ink: #1a1428;
   --at-muted: #6b6578;
   --at-line: rgba(88, 60, 140, 0.12);
@@ -8,7 +8,7 @@ body[data-tool="audio-to-text"] {
   --at-surface-alt: #faf9fc;
 }
 
-body[data-tool="audio-to-text"] .tool-workspace {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .tool-workspace {
   padding: 0 0 2rem !important;
   background:
     radial-gradient(ellipse 90% 55% at 8% -10%, rgba(124, 58, 237, 0.14), transparent 55%),
@@ -16,20 +16,20 @@ body[data-tool="audio-to-text"] .tool-workspace {
     linear-gradient(180deg, #f7f5fb 0%, #f3f0f9 45%, #faf9fc 100%) !important;
 }
 
-body[data-tool="audio-to-text"] .at-top {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-top {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 1.5rem 1.35rem;
 }
 
-body[data-tool="audio-to-text"] .at-title-row {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-title-row {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 0.75rem 1.5rem;
 }
-body[data-tool="audio-to-text"] .at-title-row h1 {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-title-row h1 {
   margin: 0;
   font-size: clamp(1.55rem, 2.6vw, 2rem);
   font-weight: 780;
@@ -37,14 +37,14 @@ body[data-tool="audio-to-text"] .at-title-row h1 {
   line-height: 1.15;
   color: var(--at-ink);
 }
-body[data-tool="audio-to-text"] .at-title-row p {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-title-row p {
   margin: 0.35rem 0 0;
   max-width: 34rem;
   font-size: 0.92rem;
   line-height: 1.5;
   color: var(--at-muted);
 }
-body[data-tool="audio-to-text"] .at-meta {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-meta {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--at-muted);
@@ -53,12 +53,12 @@ body[data-tool="audio-to-text"] .at-meta {
 }
 
 /* One studio shell instead of two loud cards */
-body[data-tool="audio-to-text"] .at-studio {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-studio {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
-body[data-tool="audio-to-text"] .at-shell {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-shell {
   display: grid;
   grid-template-columns: minmax(260px, 320px) 1fr;
   min-height: min(640px, calc(100vh - 12rem));
@@ -77,7 +77,7 @@ body[data-tool="audio-to-text"] .at-shell {
   to { opacity: 1; transform: none; }
 }
 
-body[data-tool="audio-to-text"] .at-side {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -86,7 +86,7 @@ body[data-tool="audio-to-text"] .at-side {
   background: linear-gradient(165deg, rgba(124, 58, 237, 0.05), transparent 55%);
   min-width: 0;
 }
-body[data-tool="audio-to-text"] .at-side-label {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side-label {
   margin: 0;
   font-size: 0.7rem;
   font-weight: 750;
@@ -95,28 +95,28 @@ body[data-tool="audio-to-text"] .at-side-label {
   color: var(--primary);
 }
 
-body[data-tool="audio-to-text"] .at-side .upload-zone {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-zone {
   min-height: 148px;
   border-radius: 16px;
   border-style: dashed;
   background: rgba(255, 255, 255, 0.55);
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
-body[data-tool="audio-to-text"] .at-side .upload-zone:hover,
-body[data-tool="audio-to-text"] .at-side .upload-zone.dragover {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-zone:hover,
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-zone.dragover {
   transform: translateY(-1px);
   border-color: rgba(124, 58, 237, 0.45);
   background: rgba(124, 58, 237, 0.04);
 }
-body[data-tool="audio-to-text"] .at-side .upload-icon {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-icon {
   font-size: 0.68rem;
   letter-spacing: 0.06em;
 }
-body[data-tool="audio-to-text"] .at-side .upload-placeholder p {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-placeholder p {
   margin: 0.2rem 0;
   font-size: 0.88rem;
 }
-body[data-tool="audio-to-text"] .at-side .file-chip {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .file-chip {
   border-radius: 12px;
   border: 1px solid var(--at-line);
   background: var(--at-surface);
@@ -128,61 +128,61 @@ body[data-tool="audio-to-text"] .at-side .file-chip {
   align-items: center;
 }
 
-body[data-tool="audio-to-text"] .at-side .file-list {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .file-list {
   width: 100%;
   min-width: 0;
 }
 
-body[data-tool="audio-to-text"] .at-side .file-list .file-chip-body {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .file-list .file-chip-body {
   min-width: 0;
   overflow: hidden;
 }
 
-body[data-tool="audio-to-text"] .at-side .file-list .file-chip-body strong {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .file-list .file-chip-body strong {
   font-size: 0.8125rem;
   line-height: 1.35;
 }
 
-body[data-tool="audio-to-text"] .at-side .file-list .file-chip-icon {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .file-list .file-chip-icon {
   width: 36px;
   height: 36px;
   font-size: 0.58rem;
   box-shadow: none;
 }
 
-body[data-tool="audio-to-text"] .at-side .file-list .file-chip-actions button {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .file-list .file-chip-actions button {
   width: 28px;
   height: 28px;
   font-size: 0.875rem;
 }
 
-body[data-tool="audio-to-text"] .at-main-bar > div:first-child {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main-bar > div:first-child {
   min-width: 0;
   flex: 1 1 auto;
 }
 
-body[data-tool="audio-to-text"] #status {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) #status {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%;
 }
 
-body[data-tool="audio-to-text"] .at-field {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-field {
   display: grid;
   gap: 0.35rem;
 }
-body[data-tool="audio-to-text"] .at-field label {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-field label {
   font-size: 0.78rem;
   font-weight: 650;
   color: var(--at-muted);
 }
-body[data-tool="audio-to-text"] .at-field .form-control {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-field .form-control {
   border-radius: 12px;
   border-color: var(--at-line);
   background: var(--at-surface);
 }
-body[data-tool="audio-to-text"] .at-side .btn-primary {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .btn-primary {
   border-radius: 12px;
   margin-top: 0.15rem;
   font-weight: 700;
@@ -190,11 +190,11 @@ body[data-tool="audio-to-text"] .at-side .btn-primary {
   box-shadow: 0 10px 24px rgba(124, 58, 237, 0.28);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-body[data-tool="audio-to-text"] .at-side .btn-primary:hover {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .btn-primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 14px 28px rgba(124, 58, 237, 0.32);
 }
-body[data-tool="audio-to-text"] .at-note {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-note {
   margin: 0;
   font-size: 0.75rem;
   line-height: 1.45;
@@ -203,14 +203,14 @@ body[data-tool="audio-to-text"] .at-note {
   word-break: break-word;
 }
 
-body[data-tool="audio-to-text"] .at-main {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main {
   display: flex;
   flex-direction: column;
   min-height: 0;
   min-width: 0;
   background: var(--at-surface);
 }
-body[data-tool="audio-to-text"] .at-main-bar {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -220,48 +220,48 @@ body[data-tool="audio-to-text"] .at-main-bar {
   border-bottom: 1px solid var(--at-line);
   background: linear-gradient(180deg, var(--at-surface-alt), var(--at-surface));
 }
-body[data-tool="audio-to-text"] .at-main-bar h2 {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main-bar h2 {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 720;
   letter-spacing: -0.02em;
   color: var(--at-ink);
 }
-body[data-tool="audio-to-text"] #status {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) #status {
   margin: 0.2rem 0 0;
   font-size: 0.78rem;
   color: var(--at-muted);
   min-height: 1.1em;
 }
-body[data-tool="audio-to-text"] #status.is-err,
-body[data-tool="audio-to-text"] #status[data-tone="err"] {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) #status.is-err,
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) #status[data-tone="err"] {
   color: #b42318;
 }
-body[data-tool="audio-to-text"] .at-actions {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
-body[data-tool="audio-to-text"] .at-actions .btn {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-actions .btn {
   border-radius: 999px;
   padding: 0.4rem 0.85rem;
   font-size: 0.78rem;
   font-weight: 650;
 }
 
-body[data-tool="audio-to-text"] .at-progress {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-progress {
   height: 2px;
   background: transparent;
   overflow: hidden;
 }
-body[data-tool="audio-to-text"] .at-progress > span {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-progress > span {
   display: block;
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, #7c3aed, #a855f7);
   transition: width 0.25s ease;
 }
-body[data-tool="audio-to-text"] .at-progress.is-on > span {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-progress.is-on > span {
   animation: atPulse 1.1s ease-in-out infinite;
 }
 @keyframes atPulse {
@@ -269,7 +269,7 @@ body[data-tool="audio-to-text"] .at-progress.is-on > span {
   50% { opacity: 0.55; }
 }
 
-body[data-tool="audio-to-text"] .at-transcript {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-transcript {
   flex: 1;
   min-height: 320px;
   margin: 0;
@@ -298,21 +298,21 @@ body[data-tool="audio-to-text"] .at-transcript {
   box-shadow: none;
   resize: none;
 }
-body[data-tool="audio-to-text"] .at-transcript:empty::before {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-transcript:empty::before {
   color: #9a93a8;
   font-style: normal;
 }
 
-body[data-tool="audio-to-text"] .protocol-banner {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .protocol-banner {
   display: none;
   max-width: 1180px;
   margin: 0 auto 0.85rem;
   padding: 0.65rem 1rem;
 }
-body[data-tool="audio-to-text"] .protocol-banner.is-on { display: block; }
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .protocol-banner.is-on { display: block; }
 
 /* Avoid inherited dual-card chrome */
-body[data-tool="audio-to-text"][data-cat="media"] .tool-panel {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"])[data-cat="media"] .tool-panel {
   border-top: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -320,38 +320,38 @@ body[data-tool="audio-to-text"][data-cat="media"] .tool-panel {
   border: 0 !important;
 }
 
-body[data-tool="audio-to-text"] .at-note-mob {
+:is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-note-mob {
   display: none;
 }
 
 @media (max-width: 768px) {
-  body[data-tool="audio-to-text"] .tool-workspace {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .tool-workspace {
     padding-top: 0.5rem !important;
     padding-bottom: 1.5rem !important;
   }
 
-  body[data-tool="audio-to-text"] .at-top {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-top {
     padding: 0.65rem 1rem 1.125rem;
   }
 
-  body[data-tool="audio-to-text"] .at-title-row {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-title-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
 
-  body[data-tool="audio-to-text"] .at-title-row h1 {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-title-row h1 {
     font-size: clamp(1.28rem, 5.2vw, 1.5rem);
     line-height: 1.2;
   }
 
-  body[data-tool="audio-to-text"] .at-title-row p {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-title-row p {
     font-size: 0.875rem;
     line-height: 1.5;
     margin-top: 0.35rem;
   }
 
-  body[data-tool="audio-to-text"] .at-meta {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-meta {
     white-space: normal;
     align-self: stretch;
     margin-top: 0.15rem;
@@ -364,11 +364,11 @@ body[data-tool="audio-to-text"] .at-note-mob {
     text-align: center;
   }
 
-  body[data-tool="audio-to-text"] .at-studio {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-studio {
     padding: 0 1rem 0.25rem;
   }
 
-  body[data-tool="audio-to-text"] .at-shell {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-shell {
     grid-template-columns: 1fr;
     min-height: 0;
     border-radius: 16px;
@@ -376,7 +376,7 @@ body[data-tool="audio-to-text"] .at-note-mob {
     overflow: hidden;
   }
 
-  body[data-tool="audio-to-text"] .at-side {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side {
     gap: 0.875rem;
     padding: 1rem 1rem 1.125rem;
     border-right: 0;
@@ -384,21 +384,21 @@ body[data-tool="audio-to-text"] .at-note-mob {
     overflow: hidden;
   }
 
-  body[data-tool="audio-to-text"] .at-side .upload-zone.has-file {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-zone.has-file {
     display: none !important;
   }
 
-  body[data-tool="audio-to-text"] .at-side .file-list .file-chip {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .file-list .file-chip {
     padding: 0.5rem 0.55rem;
     gap: 0.5rem;
   }
 
-  body[data-tool="audio-to-text"] .at-field .form-control {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-field .form-control {
     padding: 0.45rem 0.65rem;
     font-size: 0.875rem !important;
   }
 
-  body[data-tool="audio-to-text"] .at-side-label {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side-label {
     text-transform: none;
     letter-spacing: 0;
     font-size: 0.8125rem;
@@ -407,27 +407,27 @@ body[data-tool="audio-to-text"] .at-note-mob {
     margin: 0 0 0.15rem;
   }
 
-  body[data-tool="audio-to-text"] .at-side .upload-zone {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-zone {
     min-height: 104px;
     padding: 0.85rem 0.75rem;
   }
 
-  body[data-tool="audio-to-text"] .at-side .upload-placeholder p {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-placeholder p {
     font-size: 0.8125rem;
   }
 
-  body[data-tool="audio-to-text"] .at-field {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-field {
     gap: 0.45rem;
   }
 
-  body[data-tool="audio-to-text"] .at-side .btn-primary {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .btn-primary {
     margin-top: 0.15rem;
     padding: 0.52rem 0.85rem;
     font-size: 0.8125rem;
     box-shadow: 0 4px 14px rgba(124, 58, 237, 0.2);
   }
 
-  body[data-tool="audio-to-text"] .at-note {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-note {
     margin-top: 0.15rem;
     font-size: 0.6875rem;
     text-align: center;
@@ -435,35 +435,35 @@ body[data-tool="audio-to-text"] .at-note-mob {
     padding: 0 0.15rem;
   }
 
-  body[data-tool="audio-to-text"] .at-note-desk {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-note-desk {
     display: none;
   }
 
-  body[data-tool="audio-to-text"] .at-note-mob {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-note-mob {
     display: block;
   }
 
-  body[data-tool="audio-to-text"] .at-main {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main {
     background: var(--at-surface-alt);
   }
 
-  body[data-tool="audio-to-text"] .at-main-bar {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main-bar {
     flex-direction: column;
     align-items: stretch;
     gap: 0.45rem;
     padding: 0.65rem 0.85rem;
   }
 
-  body[data-tool="audio-to-text"] .at-main-bar h2 {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main-bar h2 {
     font-size: 0.875rem;
   }
 
-  body[data-tool="audio-to-text"] #status {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) #status {
     font-size: 0.75rem;
     margin-top: 0.15rem;
   }
 
-  body[data-tool="audio-to-text"] .at-actions {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-actions {
     display: flex !important;
     flex-wrap: wrap;
     gap: 0.35rem;
@@ -471,11 +471,11 @@ body[data-tool="audio-to-text"] .at-note-mob {
     margin: 0;
   }
 
-  body[data-tool="audio-to-text"] .at-actions #copyResultBtn {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-actions #copyResultBtn {
     flex: 1 1 auto;
   }
 
-  body[data-tool="audio-to-text"] .at-actions .btn {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-actions .btn {
     width: auto;
     flex: 1 1 auto;
     min-height: 0 !important;
@@ -489,7 +489,7 @@ body[data-tool="audio-to-text"] .at-note-mob {
     white-space: nowrap;
   }
 
-  body[data-tool="audio-to-text"] .at-transcript {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-transcript {
     min-height: 180px;
     max-height: min(55vh, 480px);
     padding: 0.875rem 1rem 1.125rem;
@@ -500,22 +500,22 @@ body[data-tool="audio-to-text"] .at-note-mob {
 }
 
 @media (max-width: 860px) {
-  body[data-tool="audio-to-text"] .at-shell {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-shell {
     grid-template-columns: 1fr;
     min-height: 0;
   }
-  body[data-tool="audio-to-text"] .at-side {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side {
     border-right: 0;
     border-bottom: 1px solid var(--at-line);
   }
-  body[data-tool="audio-to-text"] .at-transcript {
+  :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-transcript {
     min-height: 260px;
     max-height: 55vh;
   }
 }
 
 /* ── Dark mode ── */
-html[data-theme="dark"] body[data-tool="audio-to-text"] {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) {
   --at-ink: #f1edf8;
   --at-muted: #94a3b8;
   --at-line: rgba(255, 255, 255, 0.08);
@@ -525,54 +525,54 @@ html[data-theme="dark"] body[data-tool="audio-to-text"] {
   --at-surface-alt: #141119;
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .tool-workspace {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .tool-workspace {
   background:
     radial-gradient(ellipse 90% 55% at 8% -10%, rgba(124, 58, 237, 0.18), transparent 55%),
     radial-gradient(ellipse 60% 45% at 100% 0%, rgba(99, 102, 241, 0.12), transparent 50%),
     var(--bg) !important;
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-shell {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-shell {
   background: var(--at-panel);
   border-color: var(--at-line);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-side {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side {
   background: linear-gradient(165deg, rgba(124, 58, 237, 0.1), transparent 55%);
   border-right-color: var(--at-line);
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-side .upload-zone {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .upload-zone {
   background: rgba(255, 255, 255, 0.03) !important;
   border-color: var(--border-strong, rgba(255, 255, 255, 0.14));
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-side .file-chip {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-side .file-chip {
   background: var(--at-surface) !important;
   border-color: var(--at-line);
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-field .form-control {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-field .form-control {
   background: var(--at-surface);
   border-color: var(--at-line);
   color: var(--text);
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-main {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main {
   background: var(--at-surface-alt);
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-main-bar {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-main-bar {
   background: linear-gradient(180deg, #1a1722, #141119);
   border-bottom-color: var(--at-line);
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-transcript {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-transcript {
   background: var(--tool-input-bg, #0f0d14) !important;
   color: var(--at-ink);
 }
 
-html[data-theme="dark"] body[data-tool="audio-to-text"] .at-transcript:empty::before {
+html[data-theme="dark"] :is(body[data-tool="audio-to-text"], body[data-tool="subtitle-srt"]) .at-transcript:empty::before {
   color: var(--at-muted);
 }

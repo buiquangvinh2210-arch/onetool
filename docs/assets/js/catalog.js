@@ -1,24 +1,24 @@
 window.OTCatalog = {
   categories: [
     {
-      slug: "media",
-      seo: "cong-cu-media",
-      name: "Công cụ Media",
-      desc: "TikTok, nén / cắt video, video sang GIF",
-      icon: "🎬",
-      seoTitle: "Công cụ Media online — Tải TikTok, nén cắt video, GIF | OneTool",
-      seoDescription: "Tải video TikTok HD không logo, nén MP4, cắt video, video sang GIF. Nén & cắt chạy trên máy; TikTok dùng cloud. Miễn phí.",
-      seoKeywords: "tải video tiktok, nén video online, cắt video, video sang gif"
-    },
-    {
       slug: "ai",
       seo: "cong-cu-ai",
       name: "Công cụ AI",
-      desc: "Audio → Text, TTS, Tóm tắt AI",
+      desc: "Video/audio → chữ, phụ đề SRT, TTS, Tóm tắt AI",
       icon: "✨",
       seoTitle: "Công cụ AI online — Audio to text, TTS, Tóm tắt AI | OneTool",
       seoDescription: "Chuyển giọng nói thành văn bản, văn bản thành giọng nói tiếng Việt, tóm tắt AI. Miễn phí, xử lý đám mây có kiểm soát.",
       seoKeywords: "audio to text, text to speech tiếng việt, tóm tắt ai, chuyển giọng nói thành văn bản"
+    },
+    {
+      slug: "media",
+      seo: "cong-cu-media",
+      name: "Công cụ Media",
+      desc: "TikTok, video sang MP3, nén / cắt video",
+      icon: "🎬",
+      seoTitle: "Công cụ Media online — Tải TikTok, nén cắt video, MP3 | OneTool",
+      seoDescription: "Tải TikTok không logo, nén MP4, tách MP3, cắt video trên trình duyệt. Miễn phí.",
+      seoKeywords: "tải video tiktok, nén video online, video sang mp3, cắt video"
     },
     {
       slug: "pdf-tools",
@@ -34,11 +34,21 @@ window.OTCatalog = {
       slug: "images",
       seo: "cong-cu-anh",
       name: "Công cụ Ảnh",
-      desc: "Crop MXH, OCR ảnh, convert, blur, HEIC, resize, xóa nền AI",
+      desc: "Xóa nền AI, nén, HEIC, OCR, crop MXH",
       icon: "🖼️",
       seoTitle: "Công cụ ảnh online — OCR, crop MXH, convert, blur, resize, xóa nền | OneTool",
       seoDescription: "OCR ảnh sang chữ tiếng Việt, crop preset Instagram TikTok Shopee, đổi JPG PNG WebP, làm mờ, resize, xóa nền AI — miễn phí trên trình duyệt.",
       seoKeywords: "ocr ảnh tiếng việt, crop ảnh online, crop instagram, convert ảnh, làm mờ ảnh, resize ảnh, xóa nền ảnh miễn phí"
+    },
+    {
+      slug: "utilities",
+      seo: "cong-cu-tien-ich",
+      name: "Tiện ích",
+      desc: "VietQR, đổi tiền tệ, số thành chữ, QR, lịch âm",
+      icon: "🔧",
+      seoTitle: "Tiện ích online miễn phí — Đổi tiền tệ, QR, lịch âm, đếm từ | OneTool",
+      seoDescription: "Đổi tiền tệ USD/EUR/VND, tạo mã QR, mã vạch, đổi lịch âm dương, đếm từ, tạo mật khẩu — tiện ích online miễn phí.",
+      seoKeywords: "đổi tiền tệ, usd sang vnd, tạo qr code, tạo mã vạch, đổi lịch âm dương, đếm từ online"
     },
     {
       slug: "file-converter",
@@ -61,16 +71,6 @@ window.OTCatalog = {
       seoKeywords: "json formatter, regex tester, base64 encode, url encode decode, uuid v4"
     },
     {
-      slug: "utilities",
-      seo: "cong-cu-tien-ich",
-      name: "Tiện ích",
-      desc: "Đếm từ, đổi tiền tệ, QR, mã vạch, lịch âm dương",
-      icon: "🔧",
-      seoTitle: "Tiện ích online miễn phí — Đổi tiền tệ, QR, lịch âm, đếm từ | OneTool",
-      seoDescription: "Đổi tiền tệ USD/EUR/VND, tạo mã QR, mã vạch, đổi lịch âm dương, đếm từ, tạo mật khẩu — tiện ích online miễn phí.",
-      seoKeywords: "đổi tiền tệ, usd sang vnd, tạo qr code, tạo mã vạch, đổi lịch âm dương, đếm từ online"
-    },
-    {
       slug: "units",
       seo: "cong-cu-don-vi",
       name: "Đơn vị",
@@ -82,42 +82,44 @@ window.OTCatalog = {
     }
   ],
   tools: [
-    /* Media */
+    /* Media — TikTok đầu hàng Media trên trang chủ */
     { slug: "tiktok-download", name: "Tải video TikTok không logo", desc: "Dán link → tải MP4 HD không dính logo / watermark TikTok.", icon: "🎵", cat: "media", featured: true, rank: 1 },
-    { slug: "video-convert", name: "Nén video online", desc: "Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.", icon: "🎬", cat: "media", featured: true, rank: 2 },
-    { slug: "video-to-gif", name: "Video sang GIF", desc: "Cắt đoạn MP4/WebM thành GIF — chọn FPS, độ rộng, chất lượng palette.", icon: "🎞️", cat: "media", featured: true, rank: 3 },
-    { slug: "video-trim", name: "Cắt video online", desc: "Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.", icon: "✂️", cat: "media", featured: true, rank: 4 },
+    { slug: "video-to-mp3", name: "Video sang MP3", desc: "Tách tiếng từ MP4, MOV, MKV thành MP3 192kbps — chạy trên trình duyệt.", icon: "🎧", cat: "media", featured: true, rank: 2 },
+    { slug: "video-convert", name: "Nén video online", desc: "Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.", icon: "🎬", cat: "media", featured: true, rank: 3 },
+    { slug: "video-trim", name: "Cắt video online", desc: "Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.", icon: "✂️", cat: "media", rank: 4 },
+    { slug: "video-to-gif", name: "Video sang GIF", desc: "Cắt đoạn MP4/WebM thành GIF — chọn FPS, độ rộng, chất lượng palette.", icon: "🎞️", cat: "media", rank: 5 },
 
     /* AI — file vẫn ở cong-cu-media/ (dir) để giữ URL cũ */
     { slug: "audio-to-text", name: "Chuyển giọng nói thành văn bản", desc: "Audio to text tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.", icon: "🎙️", cat: "ai", dir: "cong-cu-media", featured: true, rank: 1 },
-    { slug: "text-to-speech", name: "Văn bản thành giọng nói", desc: "Text to speech tiếng Việt: chọn giọng nam/nữ, nghe thử, tải WAV — miễn phí.", icon: "🔊", cat: "ai", dir: "cong-cu-media", featured: true, rank: 2 },
-    { slug: "ai-summarize", name: "Tóm tắt AI", desc: "Rút gọn bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng hoặc TL;DR.", icon: "✨", cat: "ai", dir: "cong-cu-media", featured: true, rank: 3 },
+    { slug: "subtitle-srt", name: "Tạo phụ đề SRT", desc: "Video hoặc MP3 thành phụ đề SRT tiếng Việt — gắn CapCut, YouTube, Premiere.", icon: "💬", cat: "ai", dir: "cong-cu-media", featured: true, rank: 2 },
+    { slug: "text-to-speech", name: "Văn bản thành giọng nói", desc: "Text to speech tiếng Việt: chọn giọng nam/nữ, nghe thử, tải WAV — miễn phí.", icon: "🔊", cat: "ai", dir: "cong-cu-media", featured: true, rank: 3 },
+    { slug: "ai-summarize", name: "Tóm tắt AI", desc: "Rút gọn bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng hoặc TL;DR.", icon: "✨", cat: "ai", dir: "cong-cu-media", rank: 4 },
 
     /* PDF */
     { slug: "pdf-to-word", name: "PDF sang Word", desc: "Chuyển PDF thành Word (DOCX) để chỉnh sửa — kể cả bản scan.", icon: "📄", cat: "pdf-tools", featured: true, rank: 1 },
-    { slug: "pdf-to-excel", name: "PDF sang Excel", desc: "Trích bảng / báo cáo từ PDF thành Excel (XLSX) — OCR bản scan tiếng Việt.", icon: "📊", cat: "pdf-tools", featured: true, rank: 2 },
-    { slug: "pdf-merge", name: "Gộp PDF online", desc: "Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.", icon: "📎", cat: "pdf-tools", featured: true, rank: 3 },
-    { slug: "image-pdf", name: "Ảnh ↔ PDF", desc: "Hai hướng rõ ràng: ghép ảnh thành PDF, hoặc xuất PDF ra ảnh.", icon: "🔄", cat: "pdf-tools", featured: true, rank: 4 },
-    { slug: "image-to-pdf", name: "Ảnh sang PDF", desc: "Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.", icon: "🖼️", cat: "pdf-tools", featured: true, rank: 5 },
-    { slug: "pdf-to-image", name: "PDF sang ảnh", desc: "Xuất từng trang PDF ra PNG / JPG / WebP — xem trước hoặc tải ZIP.", icon: "🌄", cat: "pdf-tools", featured: true, rank: 6 },
-    { slug: "pdf-lock", name: "Đặt mật khẩu PDF", desc: "Khóa PDF bằng mật khẩu mở file (AES-256) — bảo vệ hồ sơ trước khi gửi.", icon: "🔒", cat: "pdf-tools", featured: true, rank: 7 },
-    { slug: "pdf-sign", name: "Ký PDF online", desc: "Ký tên, đóng dấu ngày, chữ ký tay hoặc ảnh lên PDF — kéo thả, nhiều trang.", icon: "✍️", cat: "pdf-tools", featured: true, rank: 8 },
-    { slug: "pdf-watermark", name: "Đóng dấu PDF", desc: "Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.", icon: "💧", cat: "pdf-tools", featured: true, rank: 9 },
-    { slug: "pdf-compress", name: "Nén PDF online", desc: "Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true, rank: 10 },
-    { slug: "office-to-pdf", name: "Word sang PDF", desc: "Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.", icon: "📑", cat: "pdf-tools", rank: 11 },
+    { slug: "pdf-merge", name: "Gộp PDF online", desc: "Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.", icon: "📎", cat: "pdf-tools", featured: true, rank: 2 },
+    { slug: "pdf-compress", name: "Nén PDF online", desc: "Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.", icon: "🗜️", cat: "pdf-tools", featured: true, rank: 3 },
+    { slug: "pdf-to-excel", name: "PDF sang Excel", desc: "Trích bảng / báo cáo từ PDF thành Excel (XLSX) — OCR bản scan tiếng Việt.", icon: "📊", cat: "pdf-tools", featured: true, rank: 4 },
+    { slug: "office-to-pdf", name: "Word sang PDF", desc: "Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.", icon: "📑", cat: "pdf-tools", featured: true, rank: 5 },
+    { slug: "image-to-pdf", name: "Ảnh sang PDF", desc: "Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.", icon: "🖼️", cat: "pdf-tools", featured: true, rank: 6 },
+    { slug: "pdf-to-image", name: "PDF sang ảnh", desc: "Xuất từng trang PDF ra PNG / JPG / WebP — xem trước hoặc tải ZIP.", icon: "🌄", cat: "pdf-tools", featured: true, rank: 7 },
+    { slug: "image-pdf", name: "Ảnh ↔ PDF", desc: "Hai hướng rõ ràng: ghép ảnh thành PDF, hoặc xuất PDF ra ảnh.", icon: "🔄", cat: "pdf-tools", rank: 8 },
+    { slug: "pdf-lock", name: "Đặt mật khẩu PDF", desc: "Khóa PDF bằng mật khẩu mở file (AES-256) — bảo vệ hồ sơ trước khi gửi.", icon: "🔒", cat: "pdf-tools", rank: 9 },
+    { slug: "pdf-sign", name: "Ký PDF online", desc: "Ký tên, đóng dấu ngày, chữ ký tay hoặc ảnh lên PDF — kéo thả, nhiều trang.", icon: "✍️", cat: "pdf-tools", rank: 10 },
+    { slug: "pdf-watermark", name: "Đóng dấu PDF", desc: "Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.", icon: "💧", cat: "pdf-tools", rank: 11 },
     { slug: "pdf-split", name: "Tách PDF online", desc: "Tách PDF theo trang hoặc khoảng — tải đúng phần cần dùng.", icon: "✂️", cat: "pdf-tools", rank: 12 },
     { slug: "pdf-pages", name: "Xoay PDF / xóa trang", desc: "Xoay trang bị ngược hoặc xóa trang trắng / trang nhầm trước khi gửi.", icon: "🔄", cat: "pdf-tools", rank: 13 },
     { slug: "pdf-convert", name: "PDF sang TXT", desc: "Trích chữ từ PDF (text layer + OCR bản scan) ra TXT.", icon: "📤", cat: "pdf-tools", rank: 14 },
 
     /* Ảnh */
     { slug: "remove-background", name: "Xóa nền ảnh", desc: "Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.", icon: "✂️", cat: "images", featured: true, rank: 1 },
-    { slug: "heic-convert", name: "HEIC sang JPG", desc: "Chuyển HEIC / HEIF (và JPG PNG) sang JPG · PNG · WebP — nhiều ảnh, tải ZIP.", icon: "📱", cat: "images", featured: true, rank: 2 },
-    { slug: "image-compress", name: "Nén ảnh online", desc: "Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau.", icon: "🗜️", cat: "images", featured: true, rank: 3 },
-    { slug: "image-convert", name: "Đổi định dạng ảnh", desc: "Đổi JPG ↔ PNG ↔ WebP online — kéo thả, chọn format, tải về.", icon: "🖼️", cat: "images", featured: true, rank: 4 },
+    { slug: "image-compress", name: "Nén ảnh online", desc: "Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau.", icon: "🗜️", cat: "images", featured: true, rank: 2 },
+    { slug: "heic-convert", name: "HEIC sang JPG", desc: "Chuyển HEIC / HEIF (và JPG PNG) sang JPG · PNG · WebP — nhiều ảnh, tải ZIP.", icon: "📱", cat: "images", featured: true, rank: 3 },
+    { slug: "image-ocr", name: "OCR ảnh → chữ", desc: "Nhận dạng chữ Việt + Anh trong ảnh: hóa đơn, CCCD, sách, screenshot — copy hoặc tải TXT.", icon: "🔤", cat: "images", featured: true, rank: 4 },
     { slug: "image-crop", name: "Crop ảnh + preset MXH", desc: "Cắt ảnh theo preset Instagram, TikTok, YouTube, Facebook, Shopee, ảnh thẻ 3×4 — kéo khung, xuất JPG/PNG/WebP.", icon: "🔲", cat: "images", featured: true, rank: 5 },
-    { slug: "image-ocr", name: "OCR ảnh → chữ", desc: "Nhận dạng chữ Việt + Anh trong ảnh: hóa đơn, CCCD, sách, screenshot — copy hoặc tải TXT.", icon: "🔤", cat: "images", featured: true, rank: 6 },
-    { slug: "image-resize", name: "Đổi kích thước ảnh", desc: "Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.", icon: "📐", cat: "images", featured: true, rank: 7 },
-    { slug: "image-blur", name: "Làm mờ ảnh", desc: "Làm mờ toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.", icon: "🌫️", cat: "images", featured: true, rank: 8 },
+    { slug: "image-convert", name: "Đổi định dạng ảnh", desc: "Đổi JPG ↔ PNG ↔ WebP online — kéo thả, chọn format, tải về.", icon: "🖼️", cat: "images", rank: 6 },
+    { slug: "image-resize", name: "Đổi kích thước ảnh", desc: "Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.", icon: "📐", cat: "images", rank: 7 },
+    { slug: "image-blur", name: "Làm mờ ảnh", desc: "Làm mờ toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.", icon: "🌫️", cat: "images", rank: 8 },
     { slug: "image-batch", name: "Nén nhiều ảnh cùng lúc", desc: "Đổi định dạng, resize hoặc nén nhiều ảnh cùng lúc — phù hợp catalog sản phẩm.", icon: "📦", cat: "images", rank: 9 },
 
     /* File & dữ liệu */
@@ -128,11 +130,11 @@ window.OTCatalog = {
     { slug: "convert-image", name: "Convert Image · Đổi ảnh nhanh", desc: "Lối tắt mở công cụ Convert Ảnh.", icon: "🖼️", cat: "file-converter", hub: "image-convert", rank: 9 },
 
     /* Đơn vị — hub + tool nổi bật trước */
-    { slug: "unit-convert", name: "Chuyển đổi đơn vị", desc: "Chọn nhóm cần đổi — mỗi tool riêng, hệ số SI/NIST chuẩn.", icon: "⚖️", cat: "units", featured: true, rank: 1 },
-    { slug: "unit-mass", name: "Đổi khối lượng", desc: "Đổi khối lượng: kg · lb · g. Hệ số chuẩn, kết quả tức thì.", icon: "⚖️", cat: "units", featured: true, rank: 2 },
-    { slug: "unit-length", name: "Đổi chiều dài", desc: "Đổi chiều dài: m · ft · inch. Hệ số chuẩn, kết quả tức thì.", icon: "📏", cat: "units", featured: true, rank: 3 },
-    { slug: "unit-temp", name: "Đổi nhiệt độ", desc: "Đổi nhiệt độ: °C · °F · K. Hệ số chuẩn, kết quả tức thì.", icon: "🌡️", cat: "units", featured: true, rank: 4 },
-    { slug: "unit-data", name: "Đổi dung lượng", desc: "Đổi dung lượng: MB · GiB. Hệ số chuẩn, kết quả tức thì.", icon: "💾", cat: "units", featured: true, rank: 5 },
+    { slug: "unit-convert", name: "Chuyển đổi đơn vị", desc: "Chọn nhóm cần đổi — mỗi tool riêng, hệ số SI/NIST chuẩn.", icon: "⚖️", cat: "units", rank: 1 },
+    { slug: "unit-mass", name: "Đổi khối lượng", desc: "Đổi khối lượng: kg · lb · g. Hệ số chuẩn, kết quả tức thì.", icon: "⚖️", cat: "units", rank: 2 },
+    { slug: "unit-length", name: "Đổi chiều dài", desc: "Đổi chiều dài: m · ft · inch. Hệ số chuẩn, kết quả tức thì.", icon: "📏", cat: "units", rank: 3 },
+    { slug: "unit-temp", name: "Đổi nhiệt độ", desc: "Đổi nhiệt độ: °C · °F · K. Hệ số chuẩn, kết quả tức thì.", icon: "🌡️", cat: "units", rank: 4 },
+    { slug: "unit-data", name: "Đổi dung lượng", desc: "Đổi dung lượng: MB · GiB. Hệ số chuẩn, kết quả tức thì.", icon: "💾", cat: "units", rank: 5 },
     { slug: "unit-volume", name: "Đổi thể tích", desc: "Đổi thể tích: L · mL · gallon. Hệ số chuẩn, kết quả tức thì.", icon: "🧪", cat: "units", rank: 6 },
     { slug: "unit-area", name: "Đổi diện tích", desc: "Đổi diện tích: m² · ha · acre. Hệ số chuẩn, kết quả tức thì.", icon: "🗺️", cat: "units", rank: 7 },
     { slug: "unit-speed", name: "Đổi tốc độ", desc: "Đổi tốc độ: km/h · mph. Hệ số chuẩn, kết quả tức thì.", icon: "🚀", cat: "units", rank: 8 },
@@ -147,17 +149,19 @@ window.OTCatalog = {
     { slug: "json-tools", name: "Format JSON", desc: "Làm đẹp, minify và kiểm tra JSON hợp lệ — tiện debug API.", icon: "{ }", cat: "developer", featured: true, rank: 1 },
     { slug: "regex-tester", name: "Regex tester", desc: "Thử regex realtime — highlight match, flags, replace, nhóm bắt.", icon: ".*", cat: "developer", featured: true, rank: 2 },
     { slug: "base64-tools", name: "Base64 encode decode", desc: "Encode/decode Base64 — tiếng Việt, URL-safe, file và ảnh có preview.", icon: "🔤", cat: "developer", featured: true, rank: 3 },
-    { slug: "url-encode", name: "URL encode decode", desc: "Encode/decode URL — encodeURIComponent, encodeURI, form (+), UTF-8 tiếng Việt.", icon: "🔗", cat: "developer", featured: true, rank: 4 },
-    { slug: "developer-tools", name: "UUID Hash Slugify", desc: "UUID, SHA hash, slugify tiếng Việt, Unix timestamp — công cụ dev nhanh.", icon: "🛠️", cat: "developer", featured: true, rank: 5 },
+    { slug: "url-encode", name: "URL encode decode", desc: "Encode/decode URL — encodeURIComponent, encodeURI, form (+), UTF-8 tiếng Việt.", icon: "🔗", cat: "developer", rank: 4 },
+    { slug: "developer-tools", name: "UUID Hash Slugify", desc: "UUID, SHA hash, slugify tiếng Việt, Unix timestamp — công cụ dev nhanh.", icon: "🛠️", cat: "developer", rank: 5 },
 
     /* Tiện ích (gọn) */
-    { slug: "word-counter", name: "Đếm từ online", desc: "Đếm từ, ký tự, câu, đoạn — thời gian đọc tiếng Việt, mật độ từ khóa.", icon: "🔢", cat: "utilities", featured: true, rank: 1 },
+    { slug: "vietqr", name: "Tạo mã VietQR", desc: "Tạo QR chuyển khoản NAPAS: ngân hàng, STK, số tiền — tải PNG in/dán shop.", icon: "🏦", cat: "utilities", featured: true, rank: 1 },
     { slug: "currency-convert", name: "Đổi tiền tệ", desc: "Đổi USD · EUR · VND và 20+ loại tiền — tỷ giá realtime, đảo chiều nhanh.", icon: "💱", cat: "utilities", featured: true, rank: 2 },
-    { slug: "lunar-calendar", name: "Đổi lịch âm dương", desc: "Dương lịch ↔ Âm lịch Việt Nam — Can Chi, tháng nhuận, ngày trong tuần.", icon: "🌙", cat: "utilities", featured: true, rank: 3 },
-    { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 4 },
-    { slug: "barcode-generator", name: "Tạo mã vạch", desc: "Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG.", icon: "🏷️", cat: "utilities", featured: true, rank: 5 },
-    { slug: "password-generator", name: "Tạo mật khẩu", desc: "Tạo mật khẩu mạnh ngẫu nhiên — chữ, số, ký tự đặc biệt, đo độ mạnh.", icon: "🔐", cat: "utilities", featured: true, rank: 6 },
-    { slug: "text-convert", name: "Bỏ dấu tiếng Việt", desc: "Bỏ dấu, viết hoa/thường, slug URL, dọn dòng — chạy trên máy bạn.", icon: "Aa", cat: "utilities", featured: true, rank: 7 }
+    { slug: "number-to-words", name: "Số thành chữ", desc: "Đổi số tiền thành chữ tiếng Việt cho hóa đơn, hợp đồng — một triệu hai trăm nghìn đồng.", icon: "🔡", cat: "utilities", featured: true, rank: 3 },
+    { slug: "lunar-calendar", name: "Đổi lịch âm dương", desc: "Dương lịch ↔ Âm lịch Việt Nam — Can Chi, tháng nhuận, ngày trong tuần.", icon: "🌙", cat: "utilities", featured: true, rank: 4 },
+    { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 5 },
+    { slug: "word-counter", name: "Đếm từ online", desc: "Đếm từ, ký tự, câu, đoạn — thời gian đọc tiếng Việt, mật độ từ khóa.", icon: "🔢", cat: "utilities", rank: 6 },
+    { slug: "barcode-generator", name: "Tạo mã vạch", desc: "Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG.", icon: "🏷️", cat: "utilities", rank: 7 },
+    { slug: "password-generator", name: "Tạo mật khẩu", desc: "Tạo mật khẩu mạnh ngẫu nhiên — chữ, số, ký tự đặc biệt, đo độ mạnh.", icon: "🔐", cat: "utilities", rank: 8 },
+    { slug: "text-convert", name: "Bỏ dấu tiếng Việt", desc: "Bỏ dấu, viết hoa/thường, slug URL, dọn dòng — chạy trên máy bạn.", icon: "Aa", cat: "utilities", rank: 9 }
   ],
 
   origin: "https://onetool.vn",
@@ -203,6 +207,10 @@ window.OTCatalog = {
       title: "Chuyển giọng nói thành văn bản tiếng Việt | OneTool",
       desc: "Audio to text tiếng Việt: chuyển giọng nói thành văn bản từ MP3 WAV MP4, xuất TXT và phụ đề SRT."
     },
+    "subtitle-srt": {
+      title: "Tạo phụ đề SRT online miễn phí — video MP3 sang SRT | OneTool",
+      desc: "Tạo phụ đề SRT từ video hoặc MP3 tiếng Việt: nhận dạng giọng nói, xuất file SRT gắn CapCut, YouTube, Premiere. Miễn phí."
+    },
     "text-to-speech": {
       title: "Text to speech tiếng Việt — văn bản thành giọng nói | OneTool",
       desc: "Chuyển văn bản thành giọng nói tiếng Việt online: chọn giọng nam/nữ, nghe thử, tải WAV. Miễn phí."
@@ -214,6 +222,10 @@ window.OTCatalog = {
     "video-convert": {
       title: "Nén video online miễn phí — nén MP4 | OneTool",
       desc: "Nén video online miễn phí: giảm dung lượng MP4, đổi WebM hoặc tách MP3 ngay trên trình duyệt."
+    },
+    "video-to-mp3": {
+      title: "Video sang MP3 online miễn phí — tách nhạc MP4 | OneTool",
+      desc: "Chuyển video sang MP3 online: tách audio từ MP4, MOV, MKV, WebM thành MP3 192kbps ngay trên trình duyệt. Miễn phí."
     },
     "video-to-gif": {
       title: "Chuyển video sang GIF online miễn phí | OneTool",
@@ -302,6 +314,14 @@ window.OTCatalog = {
     "excel-convert": {
       title: "Excel sang CSV online — Excel sang JSON miễn phí | OneTool",
       desc: "Chuyển Excel sang CSV / JSON online (và ngược lại). Chọn sheet, xem trước, tải file miễn phí."
+    },
+    "vietqr": {
+      title: "Tạo mã VietQR online miễn phí — QR chuyển khoản | OneTool",
+      desc: "Tạo mã VietQR NAPAS: chọn ngân hàng, số tài khoản, số tiền, nội dung CK — tải PNG in hoặc gửi khách quét app. Miễn phí."
+    },
+    "number-to-words": {
+      title: "Đọc số thành chữ tiếng Việt — số tiền bằng chữ | OneTool",
+      desc: "Đổi số thành chữ tiếng Việt: 1.250.000 → Một triệu hai trăm năm mươi nghìn đồng chẵn. Dùng cho hóa đơn, hợp đồng."
     },
     "qr-generator": {
       title: "Tạo mã QR online miễn phí — tạo QR code | OneTool",
@@ -794,6 +814,50 @@ window.OTCatalog = {
         }
       ]
     },
+    "subtitle-srt": {
+      keywords: "tạo phụ đề srt, video sang srt, mp3 sang phụ đề, phụ đề tiếng việt, auto subtitle, speech to srt, phụ đề youtube capcut",
+      howto: [
+        "Thả video MP4/MOV hoặc file MP3/WAV.",
+        "Chọn tiếng Việt (hoặc tự nhận diện) rồi bấm Tạo phụ đề SRT.",
+        "Tải file .srt và gắn vào CapCut, YouTube hoặc Premiere."
+      ],
+      faqs: [
+        {
+          q: "Tạo phụ đề SRT online có miễn phí không?",
+          a: "Có. OneTool nhận diện giọng nói từ **video hoặc MP3**, xuất file **SRT** có time-code — không cần đăng ký."
+        },
+        {
+          q: "Gắn file SRT vào đâu?",
+          a: "Kéo file `.srt` vào **CapCut**, **Premiere**, **VNVE**, hoặc tải lên **YouTube Studio → Phụ đề**. Một số trình phát video cũng nhận SRT cùng tên với file MP4."
+        },
+        {
+          q: "File có bị lưu trên server không?",
+          a: "File được xử lý đám mây tạm thời để nhận diện giọng nói — không cần tạo tài khoản OneTool để dùng."
+        }
+      ],
+      sections: [
+        {
+          title: "Phụ đề SRT là gì?",
+          paras: [
+            "**SRT** là file phụ đề có số thứ tự, mốc thời gian và lời thoại. OneTool chuyển **video / MP3** thành SRT tiếng Việt để gắn vào video đăng YouTube, TikTok (CapCut) hoặc Premiere."
+          ]
+        },
+        {
+          title: "Cách tạo phụ đề SRT từ video",
+          paras: [
+            "Thả MP4, MOV hoặc MP3, chọn **Tiếng Việt**, bấm **Tạo phụ đề SRT**. Khi xong, tải `.srt` — có thể sao chép nội dung hoặc tải thêm bản TXT nếu cần sửa bài."
+          ]
+        },
+        {
+          title: "Dùng phụ đề SRT để làm gì",
+          list: [
+            { title: "YouTube / Shorts", text: "upload SRT trong YouTube Studio để bật CC." },
+            { title: "CapCut / Premiere", text: "kéo file SRT vào timeline, chỉnh câu cho khớp miệng." },
+            { title: "Học / họp", text: "xem lại lời thoại có time-code thay vì nghe cả clip." }
+          ]
+        }
+      ]
+    },
     "text-to-speech": {
       keywords: "text to speech tiếng việt, văn bản thành giọng nói, chuyển chữ thành giọng nói, đọc văn bản online, tts việt nam miễn phí",
       howto: [
@@ -901,6 +965,46 @@ window.OTCatalog = {
             { title: "Dung lượng", text: "nên dùng file dưới 100 MB để xử lý mượt trên máy yếu." },
             { title: "Lần đầu", text: "trình duyệt tải bộ xử lý (~25 MB) — chờ thêm vài chục giây." },
             { title: "Bảo mật", text: "video xử lý trên máy bạn, không gửi lên server." }
+          ]
+        }
+      ]
+    },
+    "video-to-mp3": {
+      keywords: "video sang mp3, tách mp3 từ video, mp4 sang mp3, convert video to mp3, tách nhạc mp4 online miễn phí",
+      howto: [
+        "Thả file video (MP4, MOV, MKV, WebM…).",
+        "Bấm Tách MP3 — trình duyệt lấy audio, bỏ hình.",
+        "Nghe thử rồi tải file MP3 192kbps về máy."
+      ],
+      faqs: [
+        {
+          q: "Chuyển video sang MP3 có miễn phí không?",
+          a: "Có. OneTool **tách MP3** từ MP4/MOV/MKV ngay trên trình duyệt — không cần đăng ký, không watermark."
+        },
+        {
+          q: "Video có bị upload lên server không?",
+          a: "Không. FFmpeg chạy trong trình duyệt — file video **không gửi lên server** OneTool."
+        }
+      ],
+      sections: [
+        {
+          title: "Video sang MP3 là gì?",
+          paras: [
+            "**Video → MP3** tách phần âm thanh khỏi clip thành file **MP3 192kbps**. Dùng khi chỉ cần nhạc / lời thoại, không cần hình."
+          ]
+        },
+        {
+          title: "Cách tách MP3 từ video online",
+          paras: [
+            "Thả MP4, MOV, MKV hoặc WebM, bấm **Tách MP3**. Lần đầu trình duyệt tải bộ xử lý (~25 MB); lần sau cache sẵn. Nghe thử rồi tải file về máy."
+          ]
+        },
+        {
+          title: "Khi nào nên tách MP3",
+          list: [
+            { title: "Nhạc / podcast", text: "lấy audio từ video YouTube đã tải về máy (khi bạn có quyền)." },
+            { title: "Học tập", text: "nghe lại bài giảng, bỏ phần hình để tiết kiệm dung lượng." },
+            { title: "Nén video", text: "nếu cần giảm dung lượng cả hình, dùng công cụ **Nén video online**." }
           ]
         }
       ]
@@ -1650,6 +1754,66 @@ window.OTCatalog = {
             { title: "QR link", text: "mở website, form đăng ký, Google Maps." },
             { title: "QR văn bản", text: "ghi chú ngắn, mã khuyến mãi." },
             { title: "QR Wi‑Fi / SĐT / Email", text: "dùng preset sẵn trên tool." }
+          ]
+        }
+      ]
+    },
+    "vietqr": {
+      keywords: "tạo mã vietqr, vietqr ngân hàng, qr chuyển khoản, tạo qr mb bank, vietcombank qr, napas vietqr, qr thanh toán",
+      howto: [
+        "Chọn ngân hàng nhận tiền (mã BIN NAPAS).",
+        "Nhập số tài khoản, tuỳ chọn số tiền và nội dung CK không dấu.",
+        "Tạo mã, quét thử bằng app ngân hàng, rồi tải PNG."
+      ],
+      faqs: [
+        {
+          q: "VietQR khác mã QR thường thế nào?",
+          a: "**VietQR** theo chuẩn NAPAS: app ngân hàng đọc BIN + STK + số tiền. QR text thường chỉ mở link web."
+        },
+        {
+          q: "Có cần điền số tiền không?",
+          a: "Không. Để trống thì người chuyển tự nhập số tiền trên app. Điền sẵn thì quét xong ra đúng số."
+        }
+      ],
+      sections: [
+        {
+          title: "VietQR là gì?",
+          paras: [
+            "**VietQR** là mã QR chuyển khoản liên ngân hàng Việt Nam. Khách quét bằng app (MB, Vietcombank, MoMo ngân hàng…) là ra đúng STK, không gõ tay."
+          ]
+        },
+        {
+          title: "Cách tạo mã VietQR miễn phí",
+          paras: [
+            "Chọn ngân hàng, nhập STK, bấm **Tạo VietQR**, quét thử một lần rồi in hoặc gửi ảnh. Số tiền và nội dung CK là tuỳ chọn."
+          ]
+        }
+      ]
+    },
+    "number-to-words": {
+      keywords: "đọc số thành chữ, số thành chữ tiếng việt, số tiền bằng chữ, đổi số thành chữ, 1250000 bằng chữ, viết số tiền bằng chữ",
+      howto: [
+        "Nhập số (có thể dùng dấu chấm ngăn cách nghìn).",
+        "Bật “đồng chẵn” nếu dùng cho hóa đơn.",
+        "Sao chép câu chữ vào Word / PDF."
+      ],
+      faqs: [
+        {
+          q: "1.250.000 đọc thành chữ như thế nào?",
+          a: "**Một triệu hai trăm năm mươi nghìn đồng chẵn** — đúng kiểu hóa đơn, hợp đồng tiếng Việt."
+        }
+      ],
+      sections: [
+        {
+          title: "Đổi số thành chữ tiếng Việt là gì?",
+          paras: [
+            "Tool đọc số (kể cả số tiền) thành chữ: dùng trong **hóa đơn, hợp đồng, ủy nhiệm chi** để tránh sửa số."
+          ]
+        },
+        {
+          title: "Cách dùng",
+          paras: [
+            "Gõ hoặc dán số, tick **đồng chẵn** nếu cần, sao chép kết quả. Xử lý trên trình duyệt, không gửi số lên server."
           ]
         }
       ]

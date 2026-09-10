@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tạo mã VietQR online miễn phí — QR chuyển khoản ngân hàng | OneTool</title>
+  <meta name="description" content="Tạo mã VietQR NAPAS: chọn ngân hàng, số tài khoản, số tiền, nội dung — tải PNG để in, dán shop, quét CK app ngân hàng. Miễn phí." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/vietqr.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/vietqr.css?v=20260910a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="vietqr">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap container" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="vqr-page">
+    <header class="vqr-intro">
+      <h1>Tạo mã VietQR chuyển khoản</h1>
+      <p>Chuẩn NAPAS: chọn ngân hàng, STK, số tiền (tuỳ chọn) — tải PNG để in hoặc gửi khách quét app.</p>
+    </header>
+    <div class="vqr-card">
+      <div class="vqr-grid">
+        <div class="vqr-form">
+          <label class="vqr-label" for="bank">Ngân hàng</label>
+          <select id="bank"></select>
+          <label class="vqr-label" for="account">Số tài khoản</label>
+          <input id="account" inputmode="numeric" autocomplete="off" placeholder="Số tài khoản nhận tiền" />
+          <label class="vqr-label" for="accName">Tên chủ tài khoản (in trên ảnh)</label>
+          <input id="accName" autocomplete="off" placeholder="NGUYEN VAN A" />
+          <label class="vqr-label" for="amount">Số tiền (VND, để trống = người chuyển tự nhập)</label>
+          <input id="amount" inputmode="numeric" placeholder="50000" />
+          <label class="vqr-label" for="memo">Nội dung CK (không dấu, tối đa 25 ký tự)</label>
+          <input id="memo" maxlength="40" placeholder="Thanh toan don hang" />
+          <button type="button" class="btn btn-primary btn-block" id="runBtn" style="margin-top:1rem">Tạo VietQR</button>
+          <div class="vqr-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="copyBtn" disabled>Sao chép ảnh</button>
+            <button type="button" class="btn btn-primary btn-sm" id="downloadBtn" disabled>Tải PNG</button>
+          </div>
+        </div>
+        <div class="vqr-preview">
+          <div class="vqr-empty" id="qrEmpty">Mã VietQR hiện ở đây<br />sau khi bạn bấm Tạo</div>
+          <div id="preview" hidden></div>
+          <p id="status" class="vqr-status">Sẵn sàng — điền STK rồi tạo mã.</p>
+          <textarea id="payload" class="vqr-payload" rows="3" readonly aria-label="Chuỗi VietQR"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tool-seo" id="toolSeo"></section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20260910h"></script>
+<script src="../assets/js/layout.js?v=20260910a"></script>
+<script src="../assets/js/core.js?v=20260826a"></script>
+<script src="../assets/js/site.js?v=20260910i"></script>
+<script src="../assets/js/tools/utils.js?v=20260824a"></script>
+<script src="../assets/js/tools/vietqr.js?v=20260910a"></script>
+</body>
+</html>
