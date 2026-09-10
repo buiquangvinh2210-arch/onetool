@@ -46,6 +46,12 @@
     document.head.appendChild(s);
   }
 
+  try {
+    injectGoogleAnalytics();
+  } catch (err) {
+    console.error("[OneTool layout] ga", err);
+  }
+
   // Shell CSS: ưu tiên nạp sớm trong <head> (ot-shell.css). Chỉ inject fallback nếu thiếu.
   const shellHref = asset("css/ot-shell.css?v=20260826q");
   if (!document.querySelector('link[href*="ot-shell.css"]')) {
@@ -241,7 +247,9 @@
     setMeta("name", "twitter:image", OG_IMAGE, true);
 
     if (location.protocol !== "file:") {
-      setLink("canonical", url);
+      const existingCanon = document.querySelector('link[rel="canonical"]');
+      const existingHref = (existingCanon && existingCanon.getAttribute("href") || "").trim();
+      if (!existingHref) setLink("canonical", url);
     }
 
     const isTool = meta.cat !== "home" && meta.cat !== "hub" && !String(meta.tool).endsWith("-index");
@@ -1040,11 +1048,6 @@
     }
   }
 
-  try {
-    injectGoogleAnalytics();
-  } catch (err) {
-    console.error("[OneTool layout] ga", err);
-  }
   try {
     injectCategorySeoMeta();
     enhanceHubPage();

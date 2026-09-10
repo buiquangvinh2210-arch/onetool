@@ -1,26 +1,6 @@
 window.OTCatalog = {
   categories: [
     {
-      slug: "media",
-      seo: "cong-cu-media",
-      name: "Công cụ Media",
-      desc: "TikTok, nén / cắt video, video sang GIF",
-      icon: "🎬",
-      seoTitle: "Công cụ Media online — Tải TikTok, nén cắt video, GIF | OneTool",
-      seoDescription: "Tải video TikTok HD không logo, nén MP4, cắt video, video sang GIF. Nén & cắt chạy trên máy; TikTok dùng cloud. Miễn phí.",
-      seoKeywords: "tải video tiktok, nén video online, cắt video, video sang gif"
-    },
-    {
-      slug: "ai",
-      seo: "cong-cu-ai",
-      name: "Công cụ AI",
-      desc: "Audio → Text, TTS, Tóm tắt AI",
-      icon: "✨",
-      seoTitle: "Công cụ AI online — Audio to text, TTS, Tóm tắt AI | OneTool",
-      seoDescription: "Chuyển giọng nói thành văn bản, văn bản thành giọng nói tiếng Việt, tóm tắt AI. Miễn phí, xử lý đám mây có kiểm soát.",
-      seoKeywords: "audio to text, text to speech tiếng việt, tóm tắt ai, chuyển giọng nói thành văn bản"
-    },
-    {
       slug: "pdf-tools",
       seo: "cong-cu-pdf",
       name: "Công cụ PDF",
@@ -39,6 +19,26 @@ window.OTCatalog = {
       seoTitle: "Công cụ ảnh online — OCR, crop MXH, convert, blur, resize, xóa nền | OneTool",
       seoDescription: "OCR ảnh sang chữ tiếng Việt, crop preset Instagram TikTok Shopee, đổi JPG PNG WebP, làm mờ, resize, xóa nền AI — miễn phí trên trình duyệt.",
       seoKeywords: "ocr ảnh tiếng việt, crop ảnh online, crop instagram, convert ảnh, làm mờ ảnh, resize ảnh, xóa nền ảnh miễn phí"
+    },
+    {
+      slug: "media",
+      seo: "cong-cu-media",
+      name: "Công cụ Media",
+      desc: "TikTok, nén / cắt video, video sang GIF",
+      icon: "🎬",
+      seoTitle: "Công cụ Media online — Tải TikTok, nén cắt video, GIF | OneTool",
+      seoDescription: "Tải video TikTok HD không logo, nén MP4, cắt video, video sang GIF. Nén & cắt chạy trên máy; TikTok dùng cloud. Miễn phí.",
+      seoKeywords: "tải video tiktok, nén video online, cắt video, video sang gif"
+    },
+    {
+      slug: "ai",
+      seo: "cong-cu-ai",
+      name: "Công cụ AI",
+      desc: "Audio → Text, TTS, Tóm tắt AI",
+      icon: "✨",
+      seoTitle: "Công cụ AI online — Audio to text, TTS, Tóm tắt AI | OneTool",
+      seoDescription: "Chuyển giọng nói thành văn bản, văn bản thành giọng nói tiếng Việt, tóm tắt AI. Miễn phí, xử lý đám mây có kiểm soát.",
+      seoKeywords: "audio to text, text to speech tiếng việt, tóm tắt ai, chuyển giọng nói thành văn bản"
     },
     {
       slug: "file-converter",
