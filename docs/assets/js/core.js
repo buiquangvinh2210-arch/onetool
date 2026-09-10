@@ -36,16 +36,17 @@ window.OT = window.OT || {};
   }
 
   /**
-   * Tải blob — hỗ trợ Web Share (FB/Zalo/iOS) + anchor download + mở tab khi WebView chặn.
+   * Tải blob — desktop luôn tải file; Share chỉ trên mobile / in-app (FB, Zalo…).
    * @returns {Promise<"share"|"anchor"|"open">}
    */
   async function downloadBlob(blob, fileName) {
     const name = String(fileName || "download").replace(/[<>:"/\\|?*\x00-\x1f]/g, "_");
     const type = blob.type || "application/octet-stream";
     const file = typeof File !== "undefined" ? new File([blob], name, { type }) : null;
+    const preferShare = isMobileUa() || isInAppBrowser();
 
-    // 1) Web Share API — hoạt động tốt trên iOS / một số in-app browser
-    if (file && navigator.canShare) {
+    // Web Share — chỉ mobile / in-app. Desktop Windows+Edge hay mở hộp Share thay vì tải file.
+    if (preferShare && file && navigator.canShare) {
       try {
         if (navigator.canShare({ files: [file] })) {
           await navigator.share({ files: [file], title: name });
@@ -58,7 +59,6 @@ window.OT = window.OT || {};
 
     const url = URL.createObjectURL(blob);
     try {
-      // 2) Anchor download — Chrome/Edge/Firefox desktop & mobile browser
       const a = document.createElement("a");
       a.href = url;
       a.download = name;
@@ -68,14 +68,10 @@ window.OT = window.OT || {};
       a.click();
       a.remove();
 
-      // 3) In-app WebView thường bỏ qua download= → mở blob trong tab mới để user giữ/share
       if (isInAppBrowser()) {
         setTimeout(() => {
           const w = window.open(url, "_blank");
-          if (!w) {
-            // popup bị chặn — điều hướng cùng tab
-            location.href = url;
-          }
+          if (!w) location.href = url;
         }, 250);
         return "open";
       }
