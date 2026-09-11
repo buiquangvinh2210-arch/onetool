@@ -431,6 +431,38 @@ body[data-tool="pdf-watermark"] .pw-preview {
   gap: 0.65rem;
 }
 
+body[data-tool="pdf-watermark"] .pw-page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+body[data-tool="pdf-watermark"] .pw-nav-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--pw-line);
+  background: #fff;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--pw-ink);
+}
+
+body[data-tool="pdf-watermark"] .pw-nav-btn:hover {
+  border-color: rgba(124, 58, 237, 0.45);
+  color: var(--pw-accent);
+}
+
+body[data-tool="pdf-watermark"] #pageLabel {
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: var(--pw-ink);
+  min-width: 6.5rem;
+  text-align: center;
+}
+
 body[data-tool="pdf-watermark"] .pw-frame {
   flex: 1;
   min-height: 280px;
@@ -446,18 +478,93 @@ body[data-tool="pdf-watermark"] .pw-frame {
   background-size: 16px 16px;
   background-position: 0 0, 0 8px, 8px -8px, -8px 0;
   background-color: #f3f1f6;
-  overflow: hidden;
+  overflow: auto;
   padding: 0.75rem;
 }
 
-body[data-tool="pdf-watermark"] .pw-frame img {
-  max-width: 100%;
-  max-height: min(420px, 55vh);
-  object-fit: contain;
-  display: block;
-  border-radius: 4px;
+body[data-tool="pdf-watermark"] .pw-stage {
+  position: relative;
+  margin: 0 auto;
   box-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+  border-radius: 4px;
+  background: #fff;
 }
+
+body[data-tool="pdf-watermark"] .pw-stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+body[data-tool="pdf-watermark"] .pw-overlays {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+body[data-tool="pdf-watermark"] .pw-wm {
+  position: absolute;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  box-sizing: border-box;
+  border: 1.5px dashed rgba(124, 58, 237, 0.55);
+  border-radius: 4px;
+  background: rgba(124, 58, 237, 0.04);
+  transform: rotate(var(--wm-angle, -32deg));
+  transform-origin: center center;
+  user-select: none;
+}
+
+body[data-tool="pdf-watermark"] .pw-wm.is-dragging {
+  cursor: grabbing;
+  border-color: var(--pw-accent);
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+}
+
+body[data-tool="pdf-watermark"] .pw-wm-body {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+  padding: 0;
+  white-space: nowrap;
+}
+
+body[data-tool="pdf-watermark"] .pw-wm.is-image .pw-wm-body {
+  padding: 0;
+}
+
+body[data-tool="pdf-watermark"] .pw-wm-body img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  display: block;
+}
+
+body[data-tool="pdf-watermark"] .pw-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #fff;
+  border: 2px solid var(--pw-accent);
+  z-index: 2;
+}
+
+body[data-tool="pdf-watermark"] .pw-handle-se { right: -5px; bottom: -5px; cursor: nwse-resize; }
+body[data-tool="pdf-watermark"] .pw-handle-ne { right: -5px; top: -5px; cursor: nesw-resize; }
+body[data-tool="pdf-watermark"] .pw-handle-sw { left: -5px; bottom: -5px; cursor: nesw-resize; }
+body[data-tool="pdf-watermark"] .pw-handle-nw { left: -5px; top: -5px; cursor: nwse-resize; }
 
 body[data-tool="pdf-watermark"] .pw-wait {
   font-size: 0.9375rem;
@@ -468,6 +575,52 @@ body[data-tool="pdf-watermark"] .pw-wait {
 }
 
 body[data-tool="pdf-watermark"] .pw-preview-hint {
+  text-align: center;
+}
+
+body[data-tool="pdf-watermark"] .pw-result-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+body[data-tool="pdf-watermark"] .pw-result-bar strong {
+  font-size: 0.95rem;
+  color: var(--pw-ink);
+}
+
+body[data-tool="pdf-watermark"] .pw-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.85rem;
+  max-height: min(62vh, 640px);
+  overflow: auto;
+  padding: 0.25rem;
+}
+
+body[data-tool="pdf-watermark"] .pw-result-card {
+  margin: 0;
+  border-radius: 12px;
+  border: 1px solid var(--pw-line);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(30, 20, 60, 0.06);
+}
+
+body[data-tool="pdf-watermark"] .pw-result-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #f3f1f6;
+}
+
+body[data-tool="pdf-watermark"] .pw-result-card figcaption {
+  padding: 0.4rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--pw-muted);
   text-align: center;
 }
 
@@ -505,7 +658,9 @@ html[data-theme="dark"] body[data-tool="pdf-watermark"] .pw-main-bar,
 html[data-theme="dark"] body[data-tool="pdf-watermark"] .pw-mode,
 html[data-theme="dark"] body[data-tool="pdf-watermark"] .pw-pos-btn,
 html[data-theme="dark"] body[data-tool="pdf-watermark"] .pw-color,
-html[data-theme="dark"] body[data-tool="pdf-watermark"] .pw-stat {
+html[data-theme="dark"] body[data-tool="pdf-watermark"] .pw-stat,
+html[data-theme="dark"] body[data-tool="pdf-watermark"] .pw-nav-btn,
+html[data-theme="dark"] body[data-tool="pdf-watermark"] .pw-result-card {
   background: var(--surface, #1c1824);
   border-color: var(--border, rgba(255, 255, 255, 0.08));
   color: var(--text, #f1edf8);

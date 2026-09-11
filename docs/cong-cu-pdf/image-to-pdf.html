@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
   <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
-<link rel="stylesheet" href="../assets/css/tools/image-pdf.css?v=20260826a" />
+<link rel="stylesheet" href="../assets/css/tools/image-pdf.css?v=20260911a" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
@@ -84,6 +84,24 @@
           <div id="list" class="ip-list" hidden></div>
           <div id="emptyHint" class="ip-empty" hidden>Chưa có ảnh — thêm file để xếp thứ tự trang PDF.</div>
         </div>
+
+        <div class="ip-result" id="resultPanel" hidden>
+          <div class="ip-result-head">
+            <div>
+              <p class="ip-result-badge">Đã tạo PDF</p>
+              <h3 id="resultTitle">File sẵn sàng tải</h3>
+              <p id="resultMeta" class="ip-result-meta"></p>
+            </div>
+            <div class="ip-result-actions">
+              <button type="button" class="btn btn-primary" id="downloadResultBtn2">Tải PDF ngay</button>
+              <button type="button" class="btn btn-outline btn-sm" id="openPdfBtn">Mở tab xem</button>
+            </div>
+          </div>
+          <div class="ip-result-frame-wrap">
+            <iframe id="pdfPreview" class="ip-result-frame" title="Xem trước PDF"></iframe>
+            <p class="ip-result-fallback" id="pdfFallback" hidden>Trình duyệt không nhúng được PDF — bấm <strong>Mở tab xem</strong> hoặc <strong>Tải PDF</strong>.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -108,9 +126,9 @@
 <div id="site-footer"></div>
 <script src="../assets/js/catalog.js?v=20260910h"></script>
 <script src="../assets/js/layout.js?v=20260910a"></script>
-<script src="../assets/js/core.js?v=20260910b"></script>
+<script src="../assets/js/core.js?v=20260910c"></script>
 <script src="../assets/js/site.js?v=20260910i"></script>
 <script src="../assets/js/tools/pdf.js?v=20260826b"></script>
-<script src="../assets/js/tools/image-to-pdf-ui.js?v=20260826b"></script>
+<script src="../assets/js/tools/image-to-pdf-ui.js?v=20260911a"></script>
 </body>
 </html>

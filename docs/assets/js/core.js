@@ -36,25 +36,16 @@ window.OT = window.OT || {};
   }
 
   /**
-   * Tải blob — desktop luôn tải file; Share chỉ trên mobile / in-app (FB, Zalo…).
-   * @returns {Promise<"share"|"anchor"|"open">}
+   * Tải blob xuống máy — luôn dùng thẻ <a download>, không gọi Web Share
+   * (Share trên Windows mở hộp OneNote/Mail thay vì tải file).
+   * @returns {Promise<"anchor"|"open"|"ms">}
    */
   async function downloadBlob(blob, fileName) {
     const name = String(fileName || "download").replace(/[<>:"/\\|?*\x00-\x1f]/g, "_");
-    const type = blob.type || "application/octet-stream";
-    const file = typeof File !== "undefined" ? new File([blob], name, { type }) : null;
-    const preferShare = isMobileUa() || isInAppBrowser();
 
-    // Web Share — chỉ mobile / in-app. Desktop Windows+Edge hay mở hộp Share thay vì tải file.
-    if (preferShare && file && navigator.canShare) {
-      try {
-        if (navigator.canShare({ files: [file] })) {
-          await navigator.share({ files: [file], title: name });
-          return "share";
-        }
-      } catch (e) {
-        if (e && e.name === "AbortError") return "share";
-      }
+    if (typeof navigator.msSaveOrOpenBlob === "function") {
+      navigator.msSaveOrOpenBlob(blob, name);
+      return "ms";
     }
 
     const url = URL.createObjectURL(blob);
@@ -68,6 +59,7 @@ window.OT = window.OT || {};
       a.click();
       a.remove();
 
+      // In-app WebView hay bỏ qua download= → mở blob để user giữ file
       if (isInAppBrowser()) {
         setTimeout(() => {
           const w = window.open(url, "_blank");

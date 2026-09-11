@@ -149,11 +149,14 @@
 }
 
 
+/* CLS reserve trước khi JS vẽ lưới — #catTools không dùng 1320px (danh mục AI chỉ vài card → đống trắng mb) */
 @media (max-width: 900px) {
   #homeToolRows,
-  #allTools,
-  #catTools {
+  #allTools {
     min-height: 1320px;
+  }
+  #catTools {
+    min-height: 24rem;
   }
 }
 

@@ -701,18 +701,28 @@ body[data-tool="pdf-sign"] .tool-seo-howto {
 }
 
 body[data-tool="pdf-sign"] .tool-seo-howto li {
+  /* Hủy grid 1.7rem|1fr từ tool-page.css — ::before absolute làm chữ bị kẹt cột hẹp trên mobile */
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
   position: relative;
-  padding: 0.45rem 0.7rem 0.45rem 2.35rem;
+  margin: 0;
+  padding: 0.55rem 0.75rem 0.55rem 2.45rem;
   border-radius: 10px;
   background: #f6f5f8;
+  border: 0;
+  box-shadow: none;
   font-size: 0.9rem !important;
-  line-height: 1.5 !important;
+  line-height: 1.55 !important;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 body[data-tool="pdf-sign"] .tool-seo-howto li::before {
+  content: "";
   position: absolute;
   left: 0.65rem;
-  top: 0.42rem;
+  top: 0.5rem;
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 999px;
@@ -720,8 +730,10 @@ body[data-tool="pdf-sign"] .tool-seo-howto li::before {
   color: var(--ps-accent);
   font-size: 0.72rem;
   font-weight: 750;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 body[data-tool="pdf-sign"] .tool-seo-howto li:nth-child(1)::before { content: "1"; }

@@ -164,9 +164,12 @@
     if (!padCtx || !padLast) return;
     padCtx.strokeStyle = inkColor;
     padCtx.lineWidth = INK_WIDTH;
+    padCtx.lineCap = "round";
+    padCtx.lineJoin = "round";
+    // Nối thẳng tới điểm mới (curve cũ chỉ vẽ nửa đoạn → nét đứt khi ký nhanh)
     padCtx.beginPath();
     padCtx.moveTo(padLast.x, padLast.y);
-    padCtx.quadraticCurveTo(padLast.x, padLast.y, (padLast.x + pt.x) / 2, (padLast.y + pt.y) / 2);
+    padCtx.lineTo(pt.x, pt.y);
     padCtx.stroke();
     padLast = pt;
     padDirty = true;
@@ -583,7 +586,9 @@
   els.pad?.addEventListener("pointermove", (e) => {
     if (!padDrawing) return;
     e.preventDefault();
-    drawPadTo(padPoint(e));
+    const coalesced = typeof e.getCoalescedEvents === "function" ? e.getCoalescedEvents() : [];
+    const events = coalesced.length ? coalesced : [e];
+    for (const ev of events) drawPadTo(padPoint(ev));
   });
   function endPad(e) {
     if (!padDrawing) return;

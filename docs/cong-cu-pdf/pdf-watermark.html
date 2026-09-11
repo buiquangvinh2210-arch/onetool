@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
   <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
-<link rel="stylesheet" href="../assets/css/tools/pdf-watermark.css?v=20260826a" />
+<link rel="stylesheet" href="../assets/css/tools/pdf-watermark.css?v=20260911d" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
@@ -94,8 +94,8 @@
                   </div>
                 </div>
                 <div class="pw-field">
-                  <label class="pw-label" for="wmFontSize">Cỡ chữ</label>
-                  <input id="wmFontSize" class="form-control" type="number" min="10" max="200" value="48" />
+                  <label class="pw-label" for="wmFontSize">Cỡ chữ <span class="pw-hint" style="display:inline;text-transform:none;letter-spacing:0;font-weight:500">(trang này)</span></label>
+                  <input id="wmFontSize" class="form-control" type="number" min="8" max="400" value="48" />
                 </div>
               </div>
             </div>
@@ -150,6 +150,7 @@
                 <button type="button" class="pw-pos-btn" data-pos="tile" title="Lặp ô">Lặp</button>
                 <button type="button" class="pw-pos-btn" data-pos="br" title="Dưới phải">BR</button>
               </div>
+              <p class="pw-hint" id="posHint">Kéo trên một trang — mọi trang giữ cùng tỉ lệ vị trí &amp; cỡ chữ.</p>
             </div>
 
             <div class="pw-field">
@@ -188,11 +189,38 @@
             </div>
 
             <div class="pw-preview">
-              <div class="pw-frame" id="previewFrame">
-                <div class="pw-wait" id="previewEmpty">Bấm Đóng dấu PDF để xem trang đầu</div>
-                <img id="previewImg" alt="Xem trước trang đầu sau watermark" hidden />
+              <div class="pw-editor" id="editorPane">
+                <div class="pw-page-nav">
+                  <button type="button" class="pw-nav-btn" id="prevPageBtn" aria-label="Trang trước">‹</button>
+                  <span id="pageLabel">Trang 1</span>
+                  <button type="button" class="pw-nav-btn" id="nextPageBtn" aria-label="Trang sau">›</button>
+                </div>
+                <div class="pw-frame" id="previewFrame">
+                  <div class="pw-wait" id="previewEmpty">Đang tải trang PDF…</div>
+                  <div class="pw-stage" id="stage" hidden>
+                    <canvas id="pageCanvas"></canvas>
+                    <div class="pw-overlays" id="overlays">
+                      <div class="pw-wm is-on" id="wmBox" hidden>
+                        <div class="pw-wm-body" id="wmBody"></div>
+                        <span class="pw-handle pw-handle-nw" data-handle="nw"></span>
+                        <span class="pw-handle pw-handle-ne" data-handle="ne"></span>
+                        <span class="pw-handle pw-handle-sw" data-handle="sw"></span>
+                        <span class="pw-handle pw-handle-se" data-handle="se"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p class="pw-hint pw-preview-hint" id="editorHint">Cỡ chữ theo tỉ lệ trang (PDF nhiều khổ vẫn cân). Kéo / phóng rồi bấm Đóng dấu PDF.</p>
               </div>
-              <p class="pw-hint pw-preview-hint">Xem trước trang 1 (sau khi đóng dấu). Tải file đầy đủ bằng nút Tải PDF.</p>
+
+              <div class="pw-result" id="resultPane" hidden>
+                <div class="pw-result-bar">
+                  <strong>Xem tất cả trang đã đóng dấu</strong>
+                  <button type="button" class="pw-text-btn" id="backEditBtn">Sửa vị trí</button>
+                </div>
+                <div class="pw-result-grid" id="resultGrid"></div>
+                <p class="pw-hint pw-preview-hint">Cuộn xem mọi trang. Tải file đầy đủ bằng nút Tải PDF.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -205,9 +233,9 @@
     <section class="tool-seo-block">
       <h2>Cách dùng Watermark PDF</h2>
       <ol class="tool-seo-howto">
-        <li>Upload PDF.</li>
-        <li>Nhập chữ hoặc chọn logo watermark.</li>
-        <li>Chỉnh tùy chọn rồi tải PDF đã đóng dấu.</li>
+        <li>Upload PDF — xem trước trang và kéo watermark đặt vị trí / kéo góc để phóng to.</li>
+        <li>Chỉnh chữ hoặc logo, độ mờ, góc xoay.</li>
+        <li>Bấm Đóng dấu PDF để xem mọi trang rồi tải về.</li>
       </ol>
     </section>
     <section class="tool-seo-block">
@@ -220,10 +248,10 @@
 <div id="site-footer"></div>
 <script src="../assets/js/catalog.js?v=20260910h"></script>
 <script src="../assets/js/layout.js?v=20260910a"></script>
-<script src="../assets/js/core.js?v=20260910b"></script>
+<script src="../assets/js/core.js?v=20260910c"></script>
 <script src="../assets/js/site.js?v=20260910i"></script>
 <script src="../assets/js/tools/pdf.js?v=20260826b"></script>
-<script src="../assets/js/tools/pdf-watermark.js?v=20260826a"></script>
-<script src="../assets/js/tools/pdf-watermark-ui.js?v=20260826a"></script>
+<script src="../assets/js/tools/pdf-watermark.js?v=20260911d"></script>
+<script src="../assets/js/tools/pdf-watermark-ui.js?v=20260911d"></script>
 </body>
 </html>

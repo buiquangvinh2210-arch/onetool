@@ -1,5 +1,5 @@
 /**
- * Watermark PDF — text / ảnh, opacity, góc xoay, vị trí, lặp ô.
+ * Watermark PDF — text / ảnh, opacity, góc xoay, vị trí (preset / kéo tay / lặp ô).
  * Phụ thuộc OTPdf.loadPdfLib + pdf-lib.
  */
 window.OTPdfWatermark = (function () {
@@ -36,7 +36,6 @@ window.OTPdfWatermark = (function () {
     if (type.includes("jpeg") || type.includes("jpg") || name.endsWith(".jpg") || name.endsWith(".jpeg")) {
       return { bytes: buf, kind: "jpg" };
     }
-    // Convert other formats via canvas
     const bmp = await createImageBitmap(file);
     const canvas = document.createElement("canvas");
     canvas.width = bmp.width;
@@ -45,6 +44,28 @@ window.OTPdfWatermark = (function () {
     bmp.close?.();
     const blob = await OT.canvasToBlob(canvas, "image/png");
     return { bytes: new Uint8Array(await blob.arrayBuffer()), kind: "png" };
+  }
+
+  /** pdf-lib xoay quanh góc dưới-trái — tính BL để tâm nằm tại (cx, cy). */
+  function bottomLeftForCenter(cx, cy, w, h, angleDeg) {
+    const rad = (Number(angleDeg) || 0) * (Math.PI / 180);
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
+    return {
+      x: cx - (w / 2) * cos + (h / 2) * sin,
+      y: cy - (w / 2) * sin - (h / 2) * cos
+    };
+  }
+
+  function presetCenter(position, pageW, pageH, boxW, boxH) {
+    const pad = 40;
+    const cx = pageW / 2;
+    const cy = pageH / 2;
+    if (position === "tl") return { cx: pad + boxW / 2, cy: pageH - pad - boxH / 2 };
+    if (position === "tr") return { cx: pageW - pad - boxW / 2, cy: pageH - pad - boxH / 2 };
+    if (position === "bl") return { cx: pad + boxW / 2, cy: pad + boxH / 2 };
+    if (position === "br") return { cx: pageW - pad - boxW / 2, cy: pad + boxH / 2 };
+    return { cx, cy };
   }
 
   /**
@@ -57,11 +78,12 @@ window.OTPdfWatermark = (function () {
     const text = String(opts.text || "OneTool").trim() || "CONFIDENTIAL";
     const opacity = clamp(Number(opts.opacity ?? 0.28), 0.05, 1);
     const angle = Number(opts.angle ?? -32) || 0;
-    const fontSize = clamp(Number(opts.fontSize ?? 48), 10, 200);
-    const position = opts.position || "center"; // center | tile | tl | tr | bl | br
+    let fontSize = clamp(Number(opts.fontSize ?? 48), 10, 200);
+    const position = opts.position || "center";
     const pagesSpec = opts.pages || "all";
     const colorHex = opts.color || "#7c3aed";
-    const imageScale = clamp(Number(opts.imageScale ?? 0.35), 0.05, 1);
+    let imageScale = clamp(Number(opts.imageScale ?? 0.35), 0.05, 1);
+    const custom = opts.custom && typeof opts.custom === "object" ? opts.custom : null;
 
     const { PDFDocument, rgb, degrees, StandardFonts } = await OTPdf.loadPdfLib();
     const srcBytes = await file.arrayBuffer();
@@ -78,12 +100,13 @@ window.OTPdfWatermark = (function () {
     }
 
     const { r, g, b } = hexToRgb(colorHex);
+    const useCustom = position === "custom" && custom && Number.isFinite(custom.cx) && Number.isFinite(custom.cy);
 
     for (const idx of indices) {
       const page = doc.getPage(idx);
       const { width, height } = page.getSize();
 
-      const drawOne = (x, y, w, h) => {
+      const drawOne = (x, y, w, h, size) => {
         if (mode === "image" && embedded) {
           page.drawImage(embedded, {
             x,
@@ -97,7 +120,7 @@ window.OTPdfWatermark = (function () {
           page.drawText(text, {
             x,
             y,
-            size: fontSize,
+            size: size || fontSize,
             font,
             color: rgb(r, g, b),
             opacity,
@@ -107,8 +130,15 @@ window.OTPdfWatermark = (function () {
       };
 
       if (mode === "image" && embedded) {
-        const iw = embedded.width * imageScale;
-        const ih = embedded.height * imageScale;
+        let iw = embedded.width * imageScale;
+        let ih = embedded.height * imageScale;
+        if (useCustom && Number.isFinite(custom.wNorm) && custom.wNorm > 0) {
+          iw = clamp(custom.wNorm, 0.04, 1.2) * width;
+          ih =
+            Number.isFinite(custom.hNorm) && custom.hNorm > 0
+              ? clamp(custom.hNorm, 0.02, 1.2) * height
+              : iw * (embedded.height / Math.max(1, embedded.width));
+        }
 
         if (position === "tile") {
           const gapX = iw * 1.6;
@@ -119,52 +149,49 @@ window.OTPdfWatermark = (function () {
             }
           }
         } else {
-          let x = (width - iw) / 2;
-          let y = (height - ih) / 2;
-          const pad = 36;
-          if (position === "tl") {
-            x = pad;
-            y = height - ih - pad;
-          } else if (position === "tr") {
-            x = width - iw - pad;
-            y = height - ih - pad;
-          } else if (position === "bl") {
-            x = pad;
-            y = pad;
-          } else if (position === "br") {
-            x = width - iw - pad;
-            y = pad;
+          let center;
+          if (useCustom) {
+            center = {
+              cx: clamp(custom.cx, 0, 1) * width,
+              cy: clamp(custom.cy, 0, 1) * height
+            };
+          } else {
+            center = presetCenter(position, width, height, iw, ih);
           }
-          drawOne(x, y, iw, ih);
+          const bl = bottomLeftForCenter(center.cx, center.cy, iw, ih, angle);
+          drawOne(bl.x, bl.y, iw, ih);
         }
       } else {
-        const textW = font.widthOfTextAtSize(text, fontSize);
+        // Scale cỡ chữ theo tỉ lệ bề rộng trang → mọi khổ trang nhìn cân nhau
+        let size = fontSize;
+        if (useCustom && Number.isFinite(custom.wNorm) && custom.wNorm > 0) {
+          const targetW = clamp(custom.wNorm, 0.04, 1.2) * width;
+          const baseW = font.widthOfTextAtSize(text, 100) || 100;
+          size = clamp((targetW / baseW) * 100, 8, 400);
+        }
+        let textW = font.widthOfTextAtSize(text, size);
+        let textH = size;
+
         if (position === "tile") {
           const gapX = Math.max(textW * 1.4, 160);
-          const gapY = fontSize * 3.2;
-          for (let y = fontSize; y < height; y += gapY) {
+          const gapY = size * 3.2;
+          for (let y = size; y < height; y += gapY) {
             for (let x = 24; x < width; x += gapX) {
-              drawOne(x, y);
+              drawOne(x, y, textW, textH, size);
             }
           }
         } else {
-          let x = (width - textW) / 2;
-          let y = height / 2;
-          const pad = 40;
-          if (position === "tl") {
-            x = pad;
-            y = height - pad;
-          } else if (position === "tr") {
-            x = width - textW - pad;
-            y = height - pad;
-          } else if (position === "bl") {
-            x = pad;
-            y = pad + fontSize;
-          } else if (position === "br") {
-            x = width - textW - pad;
-            y = pad + fontSize;
+          let center;
+          if (useCustom) {
+            center = {
+              cx: clamp(custom.cx, 0, 1) * width,
+              cy: clamp(custom.cy, 0, 1) * height
+            };
+          } else {
+            center = presetCenter(position, width, height, textW, textH);
           }
-          drawOne(x, y);
+          const bl = bottomLeftForCenter(center.cx, center.cy, textW, textH, angle);
+          drawOne(bl.x, bl.y, textW, textH, size);
         }
       }
     }
@@ -178,5 +205,5 @@ window.OTPdfWatermark = (function () {
     };
   }
 
-  return { apply };
+  return { apply, bottomLeftForCenter, presetCenter };
 })();

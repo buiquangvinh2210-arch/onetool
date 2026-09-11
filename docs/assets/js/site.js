@@ -453,6 +453,7 @@
         <div class="home-cat-row-grid">${tools.map(toolCard).join("")}</div>
       </section>`;
     }).join("");
+    container.style.minHeight = "0";
   };
 
   window.renderToolGrid = function (container, { categorySeo, featuredOnly, limitPerCategory, variant } = {}) {
@@ -542,6 +543,7 @@
       }
     });
     container.innerHTML = html || `<div class="empty-state"><h3>Chưa có công cụ</h3></div>`;
+    container.style.minHeight = "0";
     requestAnimationFrame(() => container.querySelectorAll(".reveal,.tool-card").forEach((el, i) => {
       el.style.animationDelay = `${Math.min(i * 0.04, 0.4)}s`;
       el.classList.add("is-in");

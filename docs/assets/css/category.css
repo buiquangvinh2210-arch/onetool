@@ -4,6 +4,13 @@
   background: #f8f7ff;
 }
 
+/* Tránh đống trắng mobile: site.css từng reserve 1320px cho #catTools */
+@media (max-width: 900px) {
+  .cat-page #catTools {
+    min-height: 0;
+  }
+}
+
 .cat-page main {
   background: #f8f7ff;
 }
