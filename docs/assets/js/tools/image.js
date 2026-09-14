@@ -323,29 +323,29 @@ window.OTImage = (function () {
     let lastErr;
 
     for (const model of models) {
-      for (const dev of attempts) {
-        try {
-          onProgress?.(dev === "gpu" ? "Đang xóa nền (GPU)…" : "Đang xóa nền…");
-          const blob = await withTimeout(
-            removeBg(file, {
-              publicPath,
-              debug: false,
-              device: dev,
-              model,
-              output: { format: "image/png", quality: 1, type: "foreground" },
-              progress: (_key, current, total) => {
-                if (!total) return;
-                const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
-                onProgress?.(`Đang xóa nền… ${pct}%`);
-              }
-            }),
-            tier.startsWith("mobile") ? 120000 : 150000,
-            "Model quá lâu — thử lại hoặc dùng ảnh nhỏ hơn."
-          );
-          if (blob instanceof Blob && blob.size > 0) return blob;
-        } catch (e) {
-          lastErr = e;
-          onProgress?.(dev === "gpu" ? "GPU lỗi — chuyển CPU…" : null);
+    for (const dev of attempts) {
+      try {
+        onProgress?.(dev === "gpu" ? "Đang xóa nền (GPU)…" : "Đang xóa nền…");
+        const blob = await withTimeout(
+          removeBg(file, {
+            publicPath,
+            debug: false,
+            device: dev,
+            model,
+            output: { format: "image/png", quality: 1, type: "foreground" },
+            progress: (_key, current, total) => {
+              if (!total) return;
+              const pct = Math.max(1, Math.min(99, Math.round((current / total) * 100)));
+              onProgress?.(`Đang xóa nền… ${pct}%`);
+            }
+          }),
+          tier.startsWith("mobile") ? 120000 : 150000,
+          "Model quá lâu — thử lại hoặc dùng ảnh nhỏ hơn."
+        );
+        if (blob instanceof Blob && blob.size > 0) return blob;
+      } catch (e) {
+        lastErr = e;
+        onProgress?.(dev === "gpu" ? "GPU lỗi — chuyển CPU…" : null);
         }
       }
     }
@@ -558,10 +558,10 @@ window.OTImage = (function () {
     const acc = ctx.createImageData(w, h);
     const ad = acc.data;
 
-    const tmp = document.createElement("canvas");
-    tmp.width = w;
-    tmp.height = h;
-    const tctx = tmp.getContext("2d", { willReadFrequently: true });
+      const tmp = document.createElement("canvas");
+      tmp.width = w;
+      tmp.height = h;
+      const tctx = tmp.getContext("2d", { willReadFrequently: true });
 
     // Mask chính
     tctx.clearRect(0, 0, w, h);

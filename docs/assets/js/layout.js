@@ -117,6 +117,14 @@
       return { cat: "home", tool: "terms" };
     }
 
+    if (/\/blog\/?($|index\.html$)/i.test(path) || file === "blog") {
+      return { cat: "home", tool: "blog-index" };
+    }
+
+    if (/\/blog\//i.test(path)) {
+      return { cat: "home", tool: "blog-article" };
+    }
+
     if (file === "cong-cu.html" || /\/cong-cu\/?($|\/?index\.html?$)/i.test(path)) {
       return { cat: "hub", tool: "tools-index" };
     }
@@ -195,17 +203,53 @@
   }
 
   function applyPageMeta() {
-    const pack = window.OTCatalog?.pageMeta?.[meta.tool];
+    const tool = window.OTCatalog?.toolBySlug?.(meta.tool);
+    let pack = window.OTCatalog?.pageMeta?.[meta.tool];
+    if (!pack && tool) {
+      pack = {
+        title: tool.name + " online miễn phí | OneTool",
+        desc: String(tool.desc || tool.name) + " Miễn phí, không cần đăng ký."
+      };
+    }
     if (!pack) return;
-    if (pack.title) document.title = pack.title;
-    if (pack.desc) {
-      let desc = document.querySelector('meta[name="description"]');
-      if (!desc) {
-        desc = document.createElement("meta");
-        desc.name = "description";
-        document.head.appendChild(desc);
+
+    let title = pack.title || "";
+    let desc = pack.desc || "";
+    // CTR hooks — bổ sung nếu thiếu (toàn site)
+    if (title && !/\|\s*OneTool\s*$/i.test(title)) title = title.replace(/\s*$/, "") + " | OneTool";
+    if (desc) {
+      const low = desc.toLowerCase();
+      const extras = [];
+      if (!/miễn phí/.test(low)) extras.push("Miễn phí");
+      if (!/không (cần )?đăng ký|không bắt buộc đăng nhập|không tài khoản/.test(low)) {
+        extras.push("không cần đăng ký");
       }
-      desc.setAttribute("content", pack.desc);
+      const fileish =
+        tool &&
+        /pdf|image|video|audio|file|excel|word|heic|ocr|convert|merge|split|compress|sign|watermark|lock/i.test(
+          tool.slug + " " + (tool.cat || "")
+        );
+      if (
+        fileish &&
+        !/trình duyệt|không (tải lên|upload)|không gửi lên server|trên máy bạn|riêng tư/.test(low)
+      ) {
+        extras.push("xử lý trên trình duyệt");
+      }
+      if (extras.length) {
+        desc = desc.replace(/\.\s*$/, "") + ". " + extras.join(", ") + ".";
+      }
+      if (desc.length > 160) desc = desc.slice(0, 157).replace(/\s+\S*$/, "") + "…";
+    }
+
+    if (title) document.title = title;
+    if (desc) {
+      let el = document.querySelector('meta[name="description"]');
+      if (!el) {
+        el = document.createElement("meta");
+        el.name = "description";
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", desc);
     }
   }
 
@@ -438,6 +482,7 @@
           </div>
         </div>
         <a href="${href("about.html")}" data-nav="about">Giới thiệu</a>
+        <a href="${href("blog/")}" data-nav="blog">Blog</a>
         <a href="${href("lien-he.html")}" data-nav="contact">Liên hệ</a>
       </nav>
       <div class="header-actions">
@@ -487,6 +532,7 @@
     <div class="nav-drawer-primary">
       <a href="${homeHref()}">🏠 Trang chủ</a>
       <a href="${href("cong-cu.html")}">⚡ Tất cả công cụ</a>
+      <a href="${href("blog/")}">📝 Blog hướng dẫn</a>
       <a href="${href("about.html")}">ℹ️ Giới thiệu</a>
       <a href="${href("lien-he.html")}">📞 Liên hệ &amp; Góp ý</a>
     </div>
@@ -556,6 +602,7 @@
         <div class="footer-links">
           <a href="${href("lien-he.html")}">Gửi góp ý</a>
           <span class="footer-plain">0982 945 576</span>
+          <a href="${href("blog/")}">Blog hướng dẫn</a>
           <a href="${href("about.html")}">Giới thiệu</a>
           <a href="${href("chinh-sach.html")}">Chính sách bảo mật</a>
           <a href="${href("dieu-khoan.html")}">Điều khoản &amp; bản quyền</a>
@@ -665,11 +712,20 @@
       })
       .join("");
 
+    const privacyNote =
+      `<section class="tool-seo-block"><h2>Vì sao dùng OneTool?</h2>
+        <ul>
+          <li><strong>Miễn phí</strong> — không bắt buộc đăng ký hay trả phí ẩn.</li>
+          <li><strong>Riêng tư</strong> — nhiều công cụ xử lý ngay trên trình duyệt, file không gửi lên server OneTool.</li>
+          <li><strong>Nhanh</strong> — kéo thả, xem trước, tải kết quả trong vài bước.</li>
+        </ul></section>`;
+
     const html = `
       <div class="tool-seo-wrap">
         ${howto}
         ${blocks}
         ${faqBlock}
+        ${privacyNote}
         ${more ? `<section class="tool-seo-block"><h2>Công cụ liên quan</h2>
           <ul class="tool-seo-more">${more}</ul></section>` : ""}
       </div>`;
