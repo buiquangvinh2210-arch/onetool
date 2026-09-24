@@ -320,8 +320,8 @@ window.OTCatalog = {
       desc: "Tạo VietQR NAPAS: ngân hàng, STK, số tiền, nội dung CK — tải PNG. Miễn phí, không đăng ký."
     },
     "number-to-words": {
-      title: "Đọc số thành chữ tiếng Việt — số tiền bằng chữ | OneTool",
-      desc: "Đổi số thành chữ: 1.250.000 → Một triệu hai trăm năm mươi nghìn đồng. Dùng hóa đơn, hợp đồng — miễn phí."
+      title: "Đổi số thành chữ online miễn phí — số tiền bằng chữ | OneTool",
+      desc: "Nhập số → ra chữ ngay: 1.250.000 thành Một triệu hai trăm năm mươi nghìn đồng. Viết hóa đơn, hợp đồng — không đăng ký."
     },
     "qr-generator": {
       title: "Tạo mã QR online miễn phí — QR code từ link | OneTool",
