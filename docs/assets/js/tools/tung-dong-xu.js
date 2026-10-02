@@ -248,6 +248,29 @@
     return ac;
   }
 
+  const GESTURES = ["pointerup", "touchend", "click", "keydown"];
+
+  function unlockAudio() {
+    const c = audio();
+    if (!c) return;
+    try {
+      if (navigator.audioSession) navigator.audioSession.type = "playback";
+    } catch (_) {}
+    try {
+      const src = c.createBufferSource();
+      src.buffer = c.createBuffer(1, 1, 22050);
+      src.connect(c.destination);
+      src.start(0);
+    } catch (_) {}
+    const done = () => {
+      if (c.state === "running") GESTURES.forEach((ev) => document.removeEventListener(ev, unlockAudio, true));
+    };
+    if (c.state === "running") done();
+    else c.resume().then(done, () => {});
+  }
+
+  GESTURES.forEach((ev) => document.addEventListener(ev, unlockAudio, true));
+
   function ping(delay, base, gain, len, partials) {
     const c = audio();
     if (!c) return;

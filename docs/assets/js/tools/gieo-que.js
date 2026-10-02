@@ -63,6 +63,8 @@
   let motionOn = false;
   let motionLive = false;
   let prev = null;
+  let allowTap = true;
+  let motionProbe = 0;
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -139,6 +141,35 @@
     if (ac.state === "suspended") ac.resume().catch(() => {});
     return ac;
   }
+
+  function audioReady() {
+    return !!ac && ac.state === "running";
+  }
+
+  const GESTURES = ["pointerup", "touchend", "click", "keydown"];
+
+  function unlockAudio() {
+    const c = audio();
+    if (!c) return;
+    try {
+      if (navigator.audioSession) navigator.audioSession.type = "playback";
+    } catch (_) {}
+    try {
+      const src = c.createBufferSource();
+      src.buffer = c.createBuffer(1, 1, 22050);
+      src.connect(c.destination);
+      src.start(0);
+    } catch (_) {}
+    const done = () => {
+      if (!audioReady()) return;
+      GESTURES.forEach((ev) => document.removeEventListener(ev, unlockAudio, true));
+      if (state === "idle") setHint(idleHint());
+    };
+    if (c.state === "running") done();
+    else c.resume().then(done, () => {});
+  }
+
+  GESTURES.forEach((ev) => document.addEventListener(ev, unlockAudio, true));
 
   function clack(delay, gain) {
     const c = audio();
@@ -219,10 +250,20 @@
   }
 
   function idleHint() {
-    if (motionOn && motionLive) return "Thành tâm nghĩ về điều muốn hỏi, rồi lắc điện thoại cho đến khi thẻ quẻ rơi ra.";
-    if (motionOn) return "Lắc điện thoại để gieo quẻ — hoặc chạm vào ống quẻ.";
-    if (needsPermission) return "Bật “Lắc điện thoại” để gieo bằng cách lắc máy, hoặc chạm vào ống quẻ.";
+    if (!allowTap) {
+      if (needsPermission && !motionOn) return "Bấm “Bật lắc điện thoại”, rồi thành tâm lắc máy để gieo quẻ.";
+      if (soundOn && !audioReady()) return "Chạm màn hình một lần để bật tiếng, rồi lắc điện thoại cho đến khi thẻ quẻ rơi ra.";
+      return "Thành tâm nghĩ về điều muốn hỏi, rồi lắc điện thoại cho đến khi thẻ quẻ rơi ra.";
+    }
     return "Thành tâm nghĩ về điều muốn hỏi, rồi bấm “Lắc ống quẻ”.";
+  }
+
+  function setTap(on) {
+    allowTap = on;
+    els.go.hidden = !on;
+    els.cup.classList.toggle("is-shake-only", !on);
+    els.cup.setAttribute("aria-label", on ? "Ống quẻ — chạm để lắc" : "Ống quẻ — lắc điện thoại để gieo");
+    if (state === "idle") setHint(idleHint());
   }
 
   /* ── Lắc ── */
@@ -268,6 +309,16 @@
 
   function autoShake() {
     if (state === "falling" || autoTimer) return;
+    if (!allowTap) {
+      if (needsPermission && !motionOn) {
+        askMotion();
+        return;
+      }
+      rattle();
+      if (state === "idle") setHint("Hãy cầm chắc điện thoại và lắc để gieo quẻ nhé!");
+      if (navigator.vibrate) navigator.vibrate(18);
+      return;
+    }
     audio();
     track("gieo_que_start", { method: "tap", topic });
     autoTimer = setInterval(() => {
@@ -284,7 +335,9 @@
     if (!a || a.x == null) return;
     if (!motionLive) {
       motionLive = true;
-      if (state === "idle") setHint(idleHint());
+      clearTimeout(motionProbe);
+      if (isTouch) setTap(false);
+      else if (state === "idle") setHint(idleHint());
     }
     if (prev && document.visibilityState === "visible") {
       const d = Math.abs(a.x - prev.x) + Math.abs(a.y - prev.y) + Math.abs(a.z - prev.z);
@@ -302,6 +355,9 @@
     motionOn = true;
     window.addEventListener("devicemotion", onMotion, { passive: true });
     if (els.motion) els.motion.hidden = true;
+    motionProbe = setTimeout(() => {
+      if (!motionLive) setTap(true);
+    }, 1500);
     if (state === "idle") setHint(idleHint());
   }
 
@@ -315,6 +371,8 @@
         return;
       }
     } catch (_) {}
+    if (els.motion) els.motion.hidden = true;
+    setTap(true);
     toast("Chưa được cấp quyền chuyển động — bạn chạm vào ống quẻ để gieo nhé.", "error");
   }
 
@@ -453,9 +511,7 @@
 
   /* ── Chia sẻ ── */
   function shareUrl() {
-    const canon = document.querySelector('link[rel="canonical"]');
-    const base = canon ? canon.href : location.origin + location.pathname;
-    return base + "?que=" + current.q.n + "&viec=" + current.topic;
+    return "https://onetool.vn/gieo-que/que-so-" + current.q.n + ".html";
   }
 
   function shareText() {
@@ -672,6 +728,7 @@
       } catch (_) {}
       renderSound();
       if (soundOn) rattle();
+      if (state === "idle") setHint(idleHint());
     });
   }
 
@@ -695,8 +752,12 @@
   /* ── Khởi động ── */
   renderTopics();
   if (isTouch && hasMotion) {
+    setTap(false);
     if (needsPermission) {
-      if (els.motion) els.motion.hidden = false;
+      if (els.motion) {
+        els.motion.classList.replace("btn-outline", "btn-primary");
+        els.motion.hidden = false;
+      }
     } else {
       listenMotion();
     }

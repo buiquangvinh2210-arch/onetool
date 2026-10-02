@@ -3,7 +3,7 @@
   const FROM = { y: 2026, m: 1 };
   const TO = { y: 2027, m: 12 };
   const PUBLISHED = "2026-10-02";
-  const V = { catalog: "20261002k", layout: "20261002g", core: "20261002a", site: "20261002c", blog: "20261002b" };
+  const V = { catalog: "20261002k", layout: "20261002h", core: "20261002a", site: "20261002c", blog: "20261002b" };
 
   const L = window.OTLunar;
   const F = window.OTFortune;

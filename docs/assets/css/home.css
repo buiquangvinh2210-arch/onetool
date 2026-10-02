@@ -1073,3 +1073,61 @@ body[data-tool="home"] .tool-card-footer .btn {
   40% { transform: translate3d(-24px, -20px, 0) scale(1.08) rotate(12deg); }
   72% { transform: translate3d(20px, 10px, 0) scale(0.96) rotate(-4deg); }
 }
+
+/* Hero mobile — ot-shell.css dùng !important nên cần selector mạnh hơn */
+@media (max-width: 560px) {
+  .home-hero .home-hero-points {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    margin: 0 0 1.1rem !important;
+  }
+
+  .home-hero .home-hero-points li,
+  .home-hero .home-hero-points li:last-child {
+    flex: none !important;
+    width: auto !important;
+    padding: 0 !important;
+    background: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    text-align: left !important;
+    font-size: 0.9375rem !important;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  .home-hero .home-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+    margin-bottom: 1.1rem !important;
+  }
+
+  .home-hero .home-actions .btn,
+  .home-hero .home-actions .btn.btn-lg {
+    width: 100% !important;
+    flex: none !important;
+    min-height: 48px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 700;
+    border-radius: 12px !important;
+    white-space: normal;
+  }
+
+  .home-hero .home-stats {
+    gap: 0 !important;
+    padding: 0.7rem 0.25rem !important;
+    border-radius: 12px !important;
+  }
+
+  .home-hero .home-stat + .home-stat {
+    border-left: 1px solid rgba(124, 58, 237, 0.12);
+  }
+
+  html[data-theme="dark"] .home-hero .home-stat + .home-stat {
+    border-left-color: var(--border);
+  }
+}
