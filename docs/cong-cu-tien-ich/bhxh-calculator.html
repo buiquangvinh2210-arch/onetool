@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tính BHXH một lần online — rút được bao nhiêu? | OneTool</title>
+  <meta name="description" content="Ước tính tiền rút bảo hiểm xã hội một lần theo số năm đóng và lương bình quân: 1,5 tháng lương cho năm trước 2014, 2 tháng từ 2014, làm tròn tháng lẻ. Miễn phí." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/bhxh-calculator.html" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Tính BHXH một lần — đóng bao nhiêu năm, rút được bao nhiêu" />
+  <meta property="og:description" content="Nhập thời gian đóng và mức lương, công cụ tính tiền BHXH một lần theo công thức của luật, có diễn giải từng bước." />
+  <meta property="og:image" content="https://onetool.vn/assets/img/og-bhxh.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/salary-calculator.css?v=20261002a" />
+  <link rel="stylesheet" href="../assets/css/tools/finance-calc.css?v=20261002a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="bhxh-calculator">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap container" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="sal-page">
+    <header class="sal-intro">
+      <h1>Tính BHXH một lần</h1>
+      <p>Ước tính số tiền nhận được khi rút bảo hiểm xã hội một lần, theo thời gian đóng và mức lương bình quân. Có diễn giải từng bước để bạn tự kiểm tra.</p>
+    </header>
+
+    <div class="sal-grid">
+      <div class="sal-card">
+        <div class="sal-tabs" role="tablist" aria-label="Cách nhập">
+          <button type="button" class="sal-tab is-on" role="tab" aria-selected="true" data-bh-mode="quick">Nhập nhanh</button>
+          <button type="button" class="sal-tab" role="tab" aria-selected="false" data-bh-mode="detail">Theo quá trình đóng</button>
+        </div>
+
+        <div data-bh-show="quick">
+          <label class="sal-label" for="bhAvg">Lương bình quân đóng BHXH</label>
+          <div class="sal-money">
+            <input id="bhAvg" inputmode="numeric" autocomplete="off" placeholder="Ví dụ: 8.000.000" />
+            <span>đ/tháng</span>
+          </div>
+          <p class="fin-hint">Bình quân tiền lương tháng đóng BHXH của cả quá trình, đã nhân hệ số trượt giá nếu có. Chưa rõ thì dùng tab Theo quá trình đóng.</p>
+
+          <label class="sal-label">Thời gian đóng trước năm 2014</label>
+          <div class="fin-inline">
+            <div class="sal-money sal-money--sm"><input id="bhPreY" type="number" min="0" max="60" inputmode="numeric" placeholder="0" aria-label="Số năm đóng trước 2014" /><span>năm</span></div>
+            <div class="sal-money sal-money--sm"><input id="bhPreM" type="number" min="0" max="11" inputmode="numeric" placeholder="0" aria-label="Số tháng lẻ đóng trước 2014" /><span>tháng</span></div>
+          </div>
+
+          <label class="sal-label">Thời gian đóng từ năm 2014 trở đi</label>
+          <div class="fin-inline">
+            <div class="sal-money sal-money--sm"><input id="bhPostY" type="number" min="0" max="60" inputmode="numeric" placeholder="0" aria-label="Số năm đóng từ 2014" /><span>năm</span></div>
+            <div class="sal-money sal-money--sm"><input id="bhPostM" type="number" min="0" max="11" inputmode="numeric" placeholder="0" aria-label="Số tháng lẻ đóng từ 2014" /><span>tháng</span></div>
+          </div>
+        </div>
+
+        <div data-bh-show="detail" hidden>
+          <p class="fin-hint">Nhập từng giai đoạn đóng BHXH như trên sổ hoặc ứng dụng VssID. Mỗi lần đổi mức lương là một giai đoạn.</p>
+          <div class="fin-periods" id="bhPeriods"></div>
+          <button type="button" class="fin-add" id="bhAddPeriod">+ Thêm giai đoạn</button>
+        </div>
+
+        <p id="status" class="sal-status">Nhập lương bình quân và thời gian đóng để tính.</p>
+        <div class="sal-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="bhCopyBtn" disabled>Sao chép kết quả</button>
+        </div>
+      </div>
+
+      <div class="sal-result" aria-live="polite">
+        <div class="sal-summary" id="bhSummary">
+          <div class="sal-stat"><span>Tổng thời gian đóng</span><strong>—</strong></div>
+          <div class="sal-stat"><span>Lương bình quân</span><strong>—</strong></div>
+          <div class="sal-stat"><span>Số năm tính hưởng</span><strong>—</strong></div>
+          <div class="sal-stat sal-stat--net"><span>Tiền BHXH một lần</span><strong>—</strong></div>
+        </div>
+
+        <h2 class="sal-h2">Diễn giải cách tính</h2>
+        <table class="sal-table"><tbody id="bhBreakdown"></tbody></table>
+
+        <div id="bhPeriodWrap" hidden>
+          <h2 class="sal-h2">Các giai đoạn đóng</h2>
+          <div class="fin-scroll">
+            <table class="sal-table">
+              <thead><tr><th scope="col">Giai đoạn</th><th scope="col">Số tháng</th><th scope="col">Trước 2014</th><th scope="col">Từ 2014</th><th scope="col">Lương × hệ số</th></tr></thead>
+              <tbody id="bhPeriodRows"></tbody>
+            </table>
+          </div>
+        </div>
+        <p class="sal-note">Kết quả là ước tính để tham khảo. Số tiền chính thức do cơ quan BHXH tính khi giải quyết hồ sơ, dựa trên hệ số trượt giá từng năm và quá trình đóng thực tế. Nếu có thời gian đóng BHXH tự nguyện được Nhà nước hỗ trợ, phần hỗ trợ sẽ bị trừ ra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool-seo" id="toolSeo" data-static="1">
+  <div class="tool-seo-wrap">
+    <section class="tool-seo-block">
+      <h2>Cách dùng Tính BHXH một lần</h2>
+      <ol class="tool-seo-howto">
+        <li>Nhập nhanh lương bình quân và số năm, tháng đóng trước và từ năm 2014; hoặc nhập từng giai đoạn đóng ở tab Theo quá trình đóng.</li>
+        <li>Nếu biết hệ số trượt giá của từng năm, điền vào để kết quả sát hơn; để trống thì tính bằng 1.</li>
+        <li>Xem số tiền BHXH một lần và phần diễn giải từng bước bên cạnh.</li>
+      </ol>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công thức tính BHXH một lần</h2>
+      <p><strong>Tiền BHXH một lần = 1,5 × Mbq × Số năm đóng trước 2014 + 2 × Mbq × Số năm đóng từ 2014.</strong> Trong đó Mbq là mức bình quân tiền lương tháng đóng BHXH.</p>
+      <ul>
+        <li><strong>Làm tròn tháng lẻ:</strong> từ 1 đến 6 tháng tính là nửa năm, từ 7 đến 11 tháng tính là một năm.</li>
+        <li><strong>Tháng lẻ trước năm 2014</strong> được chuyển sang giai đoạn từ năm 2014 trở đi để tính, nên được hưởng mức 2 tháng lương.</li>
+        <li><strong>Đóng chưa đủ một năm:</strong> nhận bằng số tiền đã đóng (22% tiền lương tháng đóng BHXH nhân số tháng), tối đa 2 tháng lương bình quân.</li>
+        <li><strong>Lương bình quân</strong> là trung bình tiền lương tháng đóng BHXH của cả quá trình, sau khi nhân hệ số điều chỉnh (trượt giá) của từng năm. Người hưởng lương theo bảng lương nhà nước có cách lấy bình quân riêng theo số năm cuối.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Ai được rút BHXH một lần?</h2>
+      <p>Theo Luật Bảo hiểm xã hội 2024 (hiệu lực từ 01/07/2025), các trường hợp thường gặp gồm:</p>
+      <ul>
+        <li>Đủ tuổi nghỉ hưu nhưng chưa đủ 15 năm đóng BHXH và không tiếp tục tham gia.</li>
+        <li>Ra nước ngoài để định cư.</li>
+        <li>Đang mắc một trong các bệnh nguy hiểm đến tính mạng theo danh mục của luật (như ung thư, bại liệt, xơ gan mất bù).</li>
+        <li>Người bắt đầu tham gia BHXH trước 01/07/2025, sau 12 tháng không đóng BHXH bắt buộc lẫn tự nguyện và có dưới 20 năm đóng.</li>
+      </ul>
+      <p>Rút một lần đồng nghĩa với việc thời gian đã đóng bị xóa, không còn được cộng dồn để hưởng lương hưu sau này. Nên cân nhắc kỹ hoặc hỏi cơ quan BHXH nơi cư trú trước khi nộp hồ sơ.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Câu hỏi thường gặp</h2>
+      <dl class="tool-seo-faq">
+        <div class="tool-seo-faq-item"><dt>Đóng BHXH 5 năm rút một lần được bao nhiêu?</dt><dd>Nếu cả 5 năm đều đóng từ 2014 trở đi và lương bình quân 8 triệu đồng: 2 × 8.000.000 × 5 = <strong>80.000.000 đ</strong>, chưa tính hệ số trượt giá.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Đóng 5 năm 5 tháng thì tính là bao nhiêu năm?</dt><dd>5 tháng lẻ nằm trong khoảng 1–6 tháng nên được tính là nửa năm, tức <strong>5,5 năm</strong>. Nếu lẻ từ 7 đến 11 tháng thì làm tròn lên thành một năm.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Đóng chưa đủ 1 năm có được rút không?</dt><dd>Có, nếu thuộc trường hợp được hưởng. Số tiền bằng 22% tiền lương đóng BHXH nhân số tháng đã đóng, tối đa 2 tháng lương bình quân. Ví dụ đóng 8 tháng với lương 6 triệu: 22% × 6.000.000 × 8 = <strong>10.560.000 đ</strong>.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Hệ số trượt giá là gì, lấy ở đâu?</dt><dd>Là hệ số điều chỉnh tiền lương đã đóng BHXH theo mức trượt giá, được công bố hằng năm cho từng năm đóng. Những năm đóng càng xa thì hệ số càng lớn. Bạn có thể hỏi cơ quan BHXH hoặc tra văn bản công bố mới nhất; không điền thì công cụ tính bằng 1.</dd></div>
+      </dl>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công cụ liên quan</h2>
+      <ul class="tool-seo-more">
+        <li><a class="tool-seo-card" href="salary-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">💰</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lương Gross Net</strong><span class="tool-seo-card-sapo">Tiền BHXH, BHYT, BHTN bị trừ mỗi tháng</span></span></a></li>
+        <li><a class="tool-seo-card" href="savings-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🐷</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lãi tiết kiệm</strong><span class="tool-seo-card-sapo">Gửi tiền BHXH vào ngân hàng lãi bao nhiêu</span></span></a></li>
+        <li><a class="tool-seo-card" href="loan-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🏠</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lãi vay trả góp</strong><span class="tool-seo-card-sapo">Lịch trả nợ vay mua nhà, mua xe</span></span></a></li>
+        <li><a class="tool-seo-card" href="lunar-calendar.html"><span class="tool-seo-card-icon" aria-hidden="true">🌙</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Lịch âm hôm nay</strong><span class="tool-seo-card-sapo">Đổi ngày âm dương, ngày tốt</span></span></a></li>
+      </ul>
+    </section>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20261002k"></script>
+<script src="../assets/js/layout.js?v=20261002g"></script>
+<script src="../assets/js/core.js?v=20261002a"></script>
+<script src="../assets/js/site.js?v=20261002c"></script>
+<script src="../assets/js/tools/bhxh-calculator.js?v=20261002a"></script>
+</body>
+</html>

@@ -178,6 +178,10 @@
   els.downloadBtn?.addEventListener("click", () => {
     if (!lastUrl || !lastBlob) return;
     const base = (file && file.name ? file.name.replace(/\.[^.]+$/, "") : "anh") + "-no-bg";
+    if (window.OT && OT.downloadBlob) {
+      OT.downloadBlob(lastBlob, base + ".png");
+      return;
+    }
     const a = document.createElement("a");
     a.href = lastUrl;
     a.download = base + ".png";

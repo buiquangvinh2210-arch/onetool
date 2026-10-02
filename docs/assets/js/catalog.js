@@ -44,11 +44,11 @@ window.OTCatalog = {
       slug: "utilities",
       seo: "cong-cu-tien-ich",
       name: "Tiện ích",
-      desc: "VietQR, đổi tiền tệ, số thành chữ, QR, lịch âm",
+      desc: "VietQR, tính lương Gross Net, số thành chữ, tiền tệ, lịch âm",
       icon: "🔧",
-      seoTitle: "Tiện ích online miễn phí — Đổi tiền tệ, QR, lịch âm, đếm từ | OneTool",
-      seoDescription: "Đổi tiền tệ USD/EUR/VND, tạo mã QR, mã vạch, đổi lịch âm dương, đếm từ, tạo mật khẩu — tiện ích online miễn phí.",
-      seoKeywords: "đổi tiền tệ, usd sang vnd, tạo qr code, tạo mã vạch, đổi lịch âm dương, đếm từ online"
+      seoTitle: "Tiện ích online miễn phí — Tính lương Gross Net, VietQR, lịch âm | OneTool",
+      seoDescription: "Tính lương Gross ↔ Net 2026, tạo VietQR, đổi tiền tệ USD/EUR/VND, số thành chữ, đổi lịch âm dương, tạo mã QR — tiện ích online miễn phí.",
+      seoKeywords: "tính lương gross net, thuế tncn 2026, đổi tiền tệ, usd sang vnd, tạo qr code, tạo mã vạch, đổi lịch âm dương, đếm từ online"
     },
     {
       slug: "file-converter",
@@ -154,10 +154,16 @@ window.OTCatalog = {
 
     /* Tiện ích (gọn) */
     { slug: "vietqr", name: "Tạo mã VietQR", desc: "Tạo QR chuyển khoản NAPAS: ngân hàng, STK, số tiền — tải PNG in/dán shop.", icon: "🏦", cat: "utilities", featured: true, rank: 1 },
-    { slug: "currency-convert", name: "Đổi tiền tệ", desc: "Đổi USD · EUR · VND và 20+ loại tiền — tỷ giá realtime, đảo chiều nhanh.", icon: "💱", cat: "utilities", featured: true, rank: 2 },
+    { slug: "salary-calculator", name: "Tính lương Gross Net", desc: "Đổi lương Gross ↔ Net 2026: BHXH, BHYT, BHTN, thuế TNCN 5 bậc, giảm trừ 15,5 triệu.", icon: "💰", cat: "utilities", featured: true, rank: 2 },
+    { slug: "loan-calculator", name: "Tính lãi vay trả góp", desc: "Vay mua nhà, mua xe mỗi tháng trả bao nhiêu: dư nợ giảm dần, trả đều, lãi phẳng, lịch trả nợ.", icon: "🏠", cat: "utilities", featured: true, rank: 2.5 },
+    { slug: "savings-calculator", name: "Tính lãi tiết kiệm", desc: "Gửi tiết kiệm lãi bao nhiêu: lĩnh lãi cuối kỳ, hàng tháng, tái tục, tích lũy mỗi tháng.", icon: "🐷", cat: "utilities", featured: true, rank: 2.6 },
+    { slug: "bhxh-calculator", name: "Tính BHXH một lần", desc: "Ước tính tiền rút BHXH một lần theo số năm đóng và lương bình quân, có diễn giải từng bước.", icon: "🧾", cat: "utilities", rank: 3.5 },
     { slug: "number-to-words", name: "Số thành chữ", desc: "Đổi số tiền thành chữ tiếng Việt cho hóa đơn, hợp đồng — một triệu hai trăm nghìn đồng.", icon: "🔡", cat: "utilities", featured: true, rank: 3 },
-    { slug: "lunar-calendar", name: "Đổi lịch âm dương", desc: "Dương lịch ↔ Âm lịch Việt Nam — Can Chi, tháng nhuận, ngày trong tuần.", icon: "🌙", cat: "utilities", featured: true, rank: 4 },
-    { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 5 },
+    { slug: "currency-convert", name: "Đổi tiền tệ", desc: "Đổi USD · EUR · VND và 20+ loại tiền — tỷ giá realtime, đảo chiều nhanh.", icon: "💱", cat: "utilities", featured: true, rank: 4 },
+    { slug: "lunar-calendar", name: "Lịch âm hôm nay", desc: "Lịch vạn niên, ngày hoàng đạo, giờ tốt, ngày lễ, đếm ngược Tết — đổi ngày âm dương.", icon: "🌙", cat: "utilities", featured: true, rank: 5 },
+    { slug: "gieo-que", name: "Gieo quẻ online", desc: "Xin quẻ may mắn: lắc điện thoại để nhận 1 trong 36 quẻ có thơ, lời giải công việc, tài lộc, tình duyên.", icon: "🎋", cat: "utilities", featured: true, rank: 5.2 },
+    { slug: "tung-dong-xu", name: "Tung đồng xu online", desc: "Gieo 3 đồng xu cổ xem việc thuận hay chưa, xin âm dương bằng 2 đồng, tung 1 đồng sấp ngửa — lắc điện thoại để gieo.", icon: "🪙", cat: "utilities", featured: true, rank: 5.3 },
+    { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 6 },
     { slug: "word-counter", name: "Đếm từ online", desc: "Đếm từ, ký tự, câu, đoạn — thời gian đọc tiếng Việt, mật độ từ khóa.", icon: "🔢", cat: "utilities", rank: 6 },
     { slug: "barcode-generator", name: "Tạo mã vạch", desc: "Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG.", icon: "🏷️", cat: "utilities", rank: 7 },
     { slug: "password-generator", name: "Tạo mật khẩu", desc: "Tạo mật khẩu mạnh ngẫu nhiên — chữ, số, ký tự đặc biệt, đo độ mạnh.", icon: "🔐", cat: "utilities", rank: 8 },
@@ -319,6 +325,30 @@ window.OTCatalog = {
       title: "Tạo mã VietQR online miễn phí — QR chuyển khoản | OneTool",
       desc: "Tạo VietQR NAPAS: ngân hàng, STK, số tiền, nội dung CK — tải PNG. Miễn phí, không đăng ký."
     },
+    "salary-calculator": {
+      title: "Tính lương Gross sang Net 2026 — thuế TNCN 5 bậc, BHXH mới | OneTool",
+      desc: "Đổi lương Gross ↔ Net theo luật 2026: giảm trừ 15,5 triệu, người phụ thuộc 6,2 triệu, thuế TNCN 5 bậc, trần BHXH 50,6 triệu. Miễn phí, không đăng ký."
+    },
+    "loan-calculator": {
+      title: "Tính lãi vay trả góp ngân hàng — lịch trả nợ | OneTool",
+      desc: "Tính tiền trả góp hàng tháng khi vay mua nhà, mua xe: dư nợ giảm dần, trả đều, lãi phẳng, lãi suất ưu đãi rồi thả nổi. Có lịch trả nợ từng tháng. Miễn phí."
+    },
+    "savings-calculator": {
+      title: "Tính lãi tiết kiệm ngân hàng online 2026 | OneTool",
+      desc: "Tính tiền lãi gửi tiết kiệm theo số tiền, lãi suất, kỳ hạn: lĩnh lãi cuối kỳ, hàng tháng, tái tục gốc lãi hoặc gửi tích lũy mỗi tháng. Miễn phí, không đăng ký."
+    },
+    "bhxh-calculator": {
+      title: "Tính BHXH một lần online — rút được bao nhiêu? | OneTool",
+      desc: "Ước tính tiền rút bảo hiểm xã hội một lần theo số năm đóng và lương bình quân: 1,5 tháng lương cho năm trước 2014, 2 tháng từ 2014, làm tròn tháng lẻ. Miễn phí."
+    },
+    "gieo-que": {
+      title: "Gieo quẻ online miễn phí — Xin quẻ, lắc điện thoại | OneTool",
+      desc: "Xin quẻ online: chọn việc muốn hỏi, lắc điện thoại hoặc chạm ống quẻ để nhận 1 trong 36 quẻ kèm thơ và lời giải công việc, tài lộc, tình duyên, sức khỏe. Miễn phí."
+    },
+    "tung-dong-xu": {
+      title: "Tung đồng xu online — Gieo 3 xu cổ, xin âm dương | OneTool",
+      desc: "Tung đồng xu online miễn phí: gieo 3 đồng xu cổ xem việc thuận hay chưa, xin âm dương bằng 2 đồng, tung 1 đồng sấp ngửa. Lắc điện thoại để gieo, có lời giải và sổ gieo."
+    },
     "number-to-words": {
       title: "Đổi số thành chữ online miễn phí — số tiền bằng chữ | OneTool",
       desc: "Nhập số → ra chữ ngay: 1.250.000 thành Một triệu hai trăm năm mươi nghìn đồng. Viết hóa đơn, hợp đồng — không đăng ký."
@@ -328,8 +358,8 @@ window.OTCatalog = {
       desc: "Tạo QR từ link hoặc văn bản, xem trước, tải PNG in/dán. Miễn phí, không cần đăng ký."
     },
     "lunar-calendar": {
-      title: "Đổi lịch âm dương online miễn phí | OneTool",
-      desc: "Đổi Dương ↔ Âm lịch: ngày âm, Can Chi, tháng nhuận Việt Nam. Miễn phí, không đăng ký."
+      title: "Lịch âm hôm nay - Lịch vạn niên 2026 | OneTool",
+      desc: "Xem lịch âm hôm nay, ngày hoàng đạo, giờ tốt, ngày lễ và đếm ngược Tết. Đổi ngày âm dương nhanh, lưu ngày giỗ hằng năm. Miễn phí."
     },
     "currency-convert": {
       title: "Đổi tiền tệ online — USD sang VND realtime | OneTool",
@@ -404,7 +434,7 @@ window.OTCatalog = {
       desc: "Đổi tiêu hao nhiên liệu L/100km ↔ mpg. Hệ số chuẩn — miễn phí."
     },
     "json-tools": {
-      title: "Format JSON online miễn phí — prettier & minify | OneTool",
+      title: "Format JSON online miễn phí — làm đẹp, minify, kiểm tra | OneTool",
       desc: "Làm đẹp / minify / kiểm tra lỗi JSON online. Miễn phí, không cần đăng ký."
     },
     "regex-tester": {
@@ -424,12 +454,8 @@ window.OTCatalog = {
       desc: "UUID v4, hash SHA-256, slugify tiếng Việt, Unix timestamp online — miễn phí, không đăng ký."
     },
     "blog-index": {
-      title: "Blog OneTool — Hướng dẫn PDF, ảnh, file online miễn phí",
-      desc: "Hướng dẫn ghép PDF, nén PDF gửi Zalo, xóa nền ảnh Shopee và mẹo xử lý file trên trình duyệt — không cần cài phần mềm."
-    },
-    "blog-article": {
-      title: "Blog OneTool — Hướng dẫn công cụ online",
-      desc: "Bài hướng dẫn OneTool: PDF, ảnh, video — miễn phí trên trình duyệt."
+      title: "Blog OneTool — Hướng dẫn PDF, ảnh, TikTok, VietQR, tính lương",
+      desc: "Hướng dẫn tính lương Net 2026, PDF sang Word, HEIC sang JPG, tải TikTok không logo, video sang MP3, VietQR, ký PDF, xóa nền — tool online miễn phí."
     }
   },
 
@@ -1798,6 +1824,196 @@ window.OTCatalog = {
         }
       ]
     },
+    "salary-calculator": {
+      keywords: "tính lương gross sang net, tính lương net sang gross, tính thuế tncn 2026, cách tính lương net, bảo hiểm xã hội 2026, giảm trừ gia cảnh 15,5 triệu, biểu thuế 5 bậc",
+      howto: [
+        "Chọn chiều tính Gross → Net hoặc Net → Gross.",
+        "Nhập mức lương, số người phụ thuộc và vùng nơi công ty hoạt động.",
+        "Xem lương thực nhận, thuế TNCN từng bậc và tổng chi phí doanh nghiệp."
+      ],
+      faqs: [
+        {
+          q: "Lương Gross 20 triệu thì Net bao nhiêu năm 2026?",
+          a: "Không có người phụ thuộc, đóng bảo hiểm trên đủ 20 triệu: bảo hiểm 2,1 triệu, thuế TNCN 120.000 đ — **lương Net khoảng 17.780.000 đ**."
+        },
+        {
+          q: "Lương bao nhiêu thì phải đóng thuế TNCN?",
+          a: "Không có người phụ thuộc và đóng bảo hiểm trên toàn bộ lương: từ khoảng **17,3 triệu/tháng** mới phát sinh thuế. Mỗi người phụ thuộc nâng ngưỡng thêm 6,2 triệu."
+        },
+        {
+          q: "Kết quả có chính xác tuyệt đối không?",
+          a: "Công cụ tính theo quy định chung cho người lao động cư trú. Phụ cấp miễn thuế hoặc chính sách riêng của công ty có thể làm số thực nhận khác đi."
+        }
+      ],
+      sections: [
+        {
+          title: "Công thức tính lương Net 2026",
+          paras: [
+            "**Lương Net = Gross − Bảo hiểm (10,5%) − Thuế TNCN.** Giảm trừ bản thân 15,5 triệu, mỗi người phụ thuộc 6,2 triệu; thuế theo biểu 5 bậc 5% – 35%. Xem [hướng dẫn tính lương Net 2026 có ví dụ](blog/cach-tinh-luong-net-2026.html)."
+          ]
+        }
+      ],
+      related: ["loan-calculator", "bhxh-calculator", "number-to-words"]
+    },
+    "loan-calculator": {
+      keywords: "tính lãi vay ngân hàng, tính lãi vay trả góp, vay mua nhà trả góp, vay mua xe trả góp, lãi suất dư nợ giảm dần, lãi phẳng, lịch trả nợ, vay 1 tỷ trả mỗi tháng bao nhiêu",
+      howto: [
+        "Chọn cách tính lãi: dư nợ giảm dần, trả đều hàng tháng hoặc lãi phẳng.",
+        "Nhập số tiền vay, thời hạn và lãi suất; tick lãi suất ưu đãi nếu có.",
+        "Xem tiền trả tháng đầu, tổng lãi, lịch trả nợ từng tháng và bảng so sánh ba cách tính."
+      ],
+      faqs: [
+        {
+          q: "Vay 1 tỷ trong 20 năm mỗi tháng trả bao nhiêu?",
+          a: "Lãi suất 9%/năm theo dư nợ giảm dần: tháng đầu khoảng **11.666.667 đ** rồi giảm dần. Chọn trả đều thì mỗi tháng khoảng **8.997.000 đ**."
+        },
+        {
+          q: "Nên chọn dư nợ giảm dần hay trả đều?",
+          a: "Gốc chia đều có tổng lãi thấp hơn nhưng những tháng đầu trả nhiều. Trả đều nhẹ hơn lúc đầu nhưng tổng lãi cao hơn."
+        },
+        {
+          q: "Lãi phẳng 1%/tháng tương đương bao nhiêu?",
+          a: "Với khoản vay 12 tháng, lãi phẳng 12%/năm tương đương khoảng **21,5%/năm** tính theo dư nợ giảm dần."
+        }
+      ],
+      sections: [
+        {
+          title: "Công thức tính lãi vay",
+          paras: [
+            "**Dư nợ giảm dần:** gốc mỗi tháng = Tiền vay ÷ Số tháng; lãi = Dư nợ còn lại × Lãi suất ÷ 12. **Trả đều:** mỗi tháng trả Tiền vay × r ÷ (1 − (1 + r)^−n)."
+          ]
+        }
+      ],
+      related: ["savings-calculator", "salary-calculator", "bhxh-calculator"]
+    },
+    "savings-calculator": {
+      keywords: "tính lãi tiết kiệm, tính lãi gửi ngân hàng, gửi tiết kiệm 100 triệu lãi bao nhiêu, lãi suất tiết kiệm, lĩnh lãi hàng tháng, tái tục gốc và lãi, tiết kiệm tích lũy hàng tháng, lãi kép",
+      howto: [
+        "Chọn gửi một lần hoặc tích lũy hàng tháng, nhập số tiền và lãi suất %/năm.",
+        "Chọn kỳ hạn và cách lĩnh lãi: cuối kỳ, hàng tháng hoặc tái tục.",
+        "Xem tiền lãi, tổng nhận và bảng lãi theo tháng, theo kỳ hoặc theo năm."
+      ],
+      faqs: [
+        {
+          q: "Gửi 100 triệu lãi suất 5%/năm kỳ hạn 6 tháng được bao nhiêu?",
+          a: "Tiền lãi là 100.000.000 × 5% × 6 ÷ 12 = **2.500.000 đ**, đáo hạn nhận 102.500.000 đ."
+        },
+        {
+          q: "Gửi 1 tỷ mỗi tháng được bao nhiêu tiền lãi?",
+          a: "Với lãi suất 5%/năm, mỗi tháng khoảng **4.166.667 đ** tiền lãi."
+        },
+        {
+          q: "Tái tục gốc và lãi có lợi hơn rút lãi không?",
+          a: "Có, nếu không cần tiêu tiền lãi: lãi kỳ trước được cộng vào gốc nên kỳ sau sinh lãi nhiều hơn."
+        }
+      ],
+      sections: [
+        {
+          title: "Công thức tính lãi tiết kiệm",
+          paras: [
+            "**Tiền lãi = Số tiền gửi × Lãi suất (%/năm) × Số tháng gửi ÷ 12.** Ngân hàng thường tính theo số ngày thực gửi chia 365 nên có thể chênh vài nghìn đồng."
+          ]
+        }
+      ],
+      related: ["loan-calculator", "salary-calculator", "bhxh-calculator"]
+    },
+    "bhxh-calculator": {
+      keywords: "tính bhxh một lần, rút bhxh một lần được bao nhiêu, cách tính bảo hiểm xã hội một lần, bhxh 1 lần 2026, đóng bhxh 5 năm rút được bao nhiêu, mức bình quân tiền lương đóng bhxh",
+      howto: [
+        "Nhập lương bình quân và thời gian đóng trước, từ năm 2014; hoặc nhập từng giai đoạn đóng.",
+        "Điền hệ số trượt giá nếu biết để kết quả sát hơn.",
+        "Xem số tiền BHXH một lần và diễn giải từng bước."
+      ],
+      faqs: [
+        {
+          q: "Đóng BHXH 5 năm rút một lần được bao nhiêu?",
+          a: "Cả 5 năm đóng từ 2014 trở đi, lương bình quân 8 triệu: 2 × 8.000.000 × 5 = **80.000.000 đ**, chưa tính hệ số trượt giá."
+        },
+        {
+          q: "Tháng lẻ được làm tròn thế nào?",
+          a: "Từ 1 đến 6 tháng tính là nửa năm, từ 7 đến 11 tháng tính là một năm. Tháng lẻ trước 2014 được chuyển sang giai đoạn từ 2014."
+        },
+        {
+          q: "Đóng chưa đủ 1 năm thì được bao nhiêu?",
+          a: "Bằng số tiền đã đóng (22% tiền lương đóng BHXH × số tháng), tối đa 2 tháng lương bình quân."
+        }
+      ],
+      sections: [
+        {
+          title: "Công thức tính BHXH một lần",
+          paras: [
+            "**1,5 tháng lương bình quân cho mỗi năm đóng trước 2014 và 2 tháng cho mỗi năm từ 2014.** Kết quả là ước tính; số chính thức do cơ quan BHXH tính khi giải quyết hồ sơ."
+          ]
+        }
+      ],
+      related: ["salary-calculator", "savings-calculator", "loan-calculator"]
+    },
+    "gieo-que": {
+      keywords: "gieo quẻ, gieo quẻ online, xin quẻ, xin quẻ online, xin xăm online, gieo quẻ đầu năm, bói quẻ, quẻ may mắn, lắc điện thoại xin quẻ, quẻ tình duyên, quẻ công danh",
+      howto: [
+        "Chọn việc muốn hỏi: tổng quát, công việc, tài lộc, tình duyên, gia đạo, sức khỏe, thi cử hoặc xuất hành.",
+        "Tĩnh tâm rồi lắc điện thoại, hoặc bấm “Lắc ống quẻ” trên máy tính, cho đến khi thẻ quẻ rơi ra.",
+        "Đọc thơ quẻ, lời quẻ cho việc bạn hỏi, lời khuyên, số may mắn và giờ hoàng đạo hôm nay."
+      ],
+      faqs: [
+        {
+          q: "Vì sao lắc điện thoại mà không ra quẻ?",
+          a: "Trên iPhone, bấm “Bật lắc điện thoại” rồi chọn Cho phép. Nếu trình duyệt chặn cảm biến, chỉ cần chạm vào ống quẻ."
+        },
+        {
+          q: "Một ngày nên xin mấy quẻ?",
+          a: "Mỗi việc nên xin một quẻ mỗi ngày; bạn vẫn có thể xin cho các việc khác nhau."
+        },
+        {
+          q: "Gặp quẻ Bình hòa có sao không?",
+          a: "Không sao. Bộ quẻ không có quẻ xấu; quẻ Bình hòa chỉ nhắc bạn kiên nhẫn và chuẩn bị kỹ hơn."
+        },
+        {
+          q: "Quẻ mình xin có bị lưu lên mạng không?",
+          a: "Không. Quẻ và điều mong cầu chỉ lưu trong trình duyệt trên máy bạn."
+        }
+      ],
+      sections: [
+        {
+          title: "Ý nghĩa 4 bậc quẻ",
+          paras: [
+            "**Đại cát** (8 quẻ), **Thượng cát** (12 quẻ), **Trung cát** (10 quẻ) và **Bình hòa** (6 quẻ). Thơ và lời giải do OneTool tự soạn."
+          ]
+        }
+      ],
+      related: ["tung-dong-xu", "lunar-calendar", "salary-calculator"]
+    },
+    "tung-dong-xu": {
+      keywords: "tung đồng xu, tung đồng xu online, gieo 3 đồng xu, gieo đồng xu, xin âm dương, xin âm dương online, đồng xu cổ, sấp hay ngửa, tung đồng xu xin quẻ, lắc điện thoại gieo xu",
+      howto: [
+        "Chọn cách gieo: gieo 3 xu, xin âm dương bằng 2 xu hoặc 1 xu sấp ngửa.",
+        "Tĩnh tâm, nghĩ rõ một điều muốn hỏi rồi chạm vào khay, nhấn phím Space hoặc lắc điện thoại.",
+        "Đọc lời giải: số mặt dương, mức cát hung và lời khuyên cho việc bạn hỏi."
+      ],
+      faqs: [
+        {
+          q: "Gieo 3 đồng xu ra 2 dương 1 âm là gì?",
+          a: "Là **Dương thịnh · Cát**: thuận nhiều hơn nghịch, việc có lợi nếu bạn chủ động. Xác suất ra kết quả này là 3/8."
+        },
+        {
+          q: "Xin âm dương một sấp một ngửa nghĩa là gì?",
+          a: "Một sấp một ngửa là âm dương hòa hợp, điều xin được chấp thuận. Hai ngửa nên xin lại, hai sấp là chưa thuận."
+        },
+        {
+          q: "Vì sao lắc điện thoại mà đồng xu không gieo?",
+          a: "Trên iPhone, bấm “Bật lắc điện thoại” rồi chọn Cho phép. Nếu trình duyệt chặn cảm biến, chỉ cần chạm vào khay."
+        }
+      ],
+      sections: [
+        {
+          title: "Đồng xu cổ Cảnh Hưng thông bảo",
+          paras: [
+            "Mặt dương mô phỏng bốn chữ **景興通寶**, tiền đồng thời Lê niên hiệu Cảnh Hưng (1740–1786). Mặt có chữ là ngửa (dương), mặt trơn là sấp (âm)."
+          ]
+        }
+      ],
+      related: ["gieo-que", "password-generator", "lunar-calendar"]
+    },
     "number-to-words": {
       keywords: "đọc số thành chữ, số thành chữ tiếng việt, số tiền bằng chữ, đổi số thành chữ, 1250000 bằng chữ, viết số tiền bằng chữ",
       howto: [
@@ -1823,21 +2039,46 @@ window.OTCatalog = {
           paras: [
             "Gõ hoặc dán số, tick **đồng chẵn** nếu cần, sao chép kết quả. Xử lý trên trình duyệt, không gửi số lên server."
           ]
+        },
+        {
+          title: "Ghi lương bằng chữ trong hợp đồng",
+          paras: [
+            "Hợp đồng lao động thường ghi lương Gross cả bằng số và bằng chữ. Chưa rõ mức thực nhận? Dùng [máy tính lương Gross ↔ Net 2026](cong-cu-tien-ich/salary-calculator.html) để ra số Net sau bảo hiểm và thuế TNCN, rồi đổi sang chữ tại đây."
+          ]
         }
-      ]
+      ],
+      related: ["salary-calculator", "vietqr", "currency-convert"]
     },
     "lunar-calendar": {
-      keywords: "đổi lịch âm dương, dương lịch sang âm lịch, âm lịch việt nam, xem ngày âm, can chi, lịch âm hôm nay, chuyển đổi lịch",
+      keywords: "lịch âm hôm nay, lịch vạn niên 2026, lịch âm 2026, xem ngày âm, ngày hoàng đạo, giờ hoàng đạo, xem ngày tốt xấu, xem ngày tốt khai trương, xem ngày cưới, xem tuổi hôm nay, gieo quẻ đầu ngày, văn khấn mùng 1, văn khấn ngày rằm, văn khấn giỗ, đếm ngược tết, nhắc ngày giỗ âm lịch, đổi lịch âm dương, dương lịch sang âm lịch, can chi, tiết khí",
       howto: [
-        "Chọn Dương → Âm hoặc Âm → Dương.",
-        "Nhập ngày / tháng / năm (tick tháng nhuận nếu cần).",
-        "Bấm Đổi lịch — xem Can Chi và sao chép kết quả."
+        "Mở tab Lịch tháng — hôm nay được tô màu, mỗi ô có cả ngày dương và ngày âm.",
+        "Bấm vào một ngày để xem Can Chi, giờ hoàng đạo, trực ngày và việc nên làm / kiêng kỵ. Chọn việc ở dòng Tìm ngày tốt để lịch tô xanh các ngày hợp.",
+        "Sang tab Xem tuổi & quẻ để nhập năm sinh, xem vận may hôm nay và gieo quẻ đầu ngày; tab Văn khấn có bài khấn điền sẵn ngày âm lịch."
       ],
       sections: [
         {
-          title: "Đổi lịch âm dương là gì?",
+          title: "Lịch âm hôm nay & lịch vạn niên",
           paras: [
-            "Tool **đổi lịch Dương ↔ Âm** giúp xem ngày âm lịch Việt Nam từ ngày dương (hoặc ngược lại), kèm **Can Chi**, con giáp và tháng nhuận — hữu ích cho giỗ, cưới hỏi, Tết."
+            "Trang **lịch âm** hiển thị lịch tháng theo **âm lịch Việt Nam**: mỗi ô có ngày dương, ngày âm, mùng 1 và ngày rằm được đánh dấu, cùng các **ngày lễ** như Tết Nguyên đán, Giỗ Tổ Hùng Vương, Vu Lan, Trung thu, 30/4, 2/9.",
+            "Bấm vào một ngày bất kỳ để xem **Can Chi** của ngày / tháng / năm, **tiết khí** và **giờ hoàng đạo**. Có thể chuyển nhanh sang tab **Đổi ngày** để đổi **Dương ↔ Âm** cho ngày giỗ, cưới hỏi, sinh nhật âm."
+          ]
+        },
+        {
+          title: "Lịch âm 2026 năm Bính Ngọ",
+          paras: [
+            "Năm âm lịch **Bính Ngọ** bắt đầu ngày **17/02/2026**, có 12 tháng, **không có tháng nhuận**. **Tết Đinh Mùi 2027** rơi vào Thứ Bảy **06/02/2027**; tháng Chạp thiếu nên giao thừa là đêm 29 tháng Chạp (05/02/2027).",
+            "Xem bảng [mùng 1, rằm và ngày lễ cả năm 2026](blog/lich-am-2026.html), danh sách [ngày tốt cuối năm 2026](blog/xem-ngay-tot-cuoi-nam-2026.html) và [văn khấn mùng 1, ngày rằm](blog/van-khan-mung-1-ngay-ram.html)."
+          ]
+        },
+        {
+          title: "Xem ngày tốt, xem tuổi, gieo quẻ và văn khấn",
+          list: [
+            { title: "Xem ngày tốt theo việc", text: "chọn cưới hỏi, khai trương, động thổ, về nhà mới, xuất hành, mua xe, ký hợp đồng — lịch lọc ngày hoàng đạo, trực hợp việc, tránh Tam nương, Nguyệt kỵ và ngày xung tuổi." },
+            { title: "Việc nên làm / kiêng kỵ", text: "mỗi ngày có trực (Kiến, Trừ, Mãn…) kèm gợi ý nên làm và nên tránh." },
+            { title: "Xem tuổi hôm nay", text: "chấm sao theo ngũ hành nạp âm, hợp – xung địa chi; kèm màu, con số, giờ tốt và 7 ngày tới." },
+            { title: "Gieo quẻ đầu ngày", text: "mỗi ngày một quẻ với lời thơ, công việc, tài lộc, tình cảm, sức khỏe — có ảnh để chia sẻ." },
+            { title: "Văn khấn", text: "mùng 1, ngày rằm, giỗ gia tiên, Thần Tài, ông Công ông Táo — tự điền ngày âm lịch, tên và địa chỉ." }
           ]
         },
         {
@@ -1853,6 +2094,40 @@ window.OTCatalog = {
           paras: [
             "Hỗ trợ khoảng **1800–2199**. Kết quả mang tính tham khảo; ngày lễ lớn nên đối chiếu thêm nguồn chính thức nếu cần chính xác tuyệt đối."
           ]
+        }
+      ],
+      faqs: [
+        {
+          q: "Hôm nay là ngày bao nhiêu âm lịch?",
+          a: "Mở trang là thấy ngay: ô **hôm nay** được tô màu trên lịch tháng, bảng bên cạnh ghi rõ ngày âm, tháng âm, năm Can Chi và còn bao nhiêu ngày đến mùng 1, rằm, Tết."
+        },
+        {
+          q: "Tết Nguyên đán 2027 là ngày nào?",
+          a: "Mùng 1 Tết Đinh Mùi là **Thứ Bảy 06/02/2027**. Năm Bính Ngọ có tháng Chạp thiếu nên không có ngày 30 Tết — giao thừa là đêm 29 tháng Chạp (05/02/2027). Trang có đồng hồ đếm ngược đến Tết."
+        },
+        {
+          q: "Có lưu được ngày giỗ theo âm lịch không?",
+          a: "Có. Ở mục **Ngày giỗ & sự kiện của tôi**, nhập tên và ngày âm (ví dụ giỗ 25/8 âm lịch) — lịch tự đánh dấu mỗi năm, đếm ngược số ngày còn lại và có nút thêm vào **Google Calendar**. Dữ liệu chỉ lưu trên trình duyệt của bạn."
+        },
+        {
+          q: "Giờ hoàng đạo được tính thế nào?",
+          a: "Theo cách tính truyền thống dựa trên **Chi của ngày**: mỗi ngày có 6 giờ hoàng đạo (mỗi giờ 2 tiếng). Thông tin mang tính tham khảo theo phong tục."
+        },
+        {
+          q: "Đổi ngày âm sang dương có tính tháng nhuận không?",
+          a: "Có. Ở tab **Đổi ngày**, chọn Âm → Dương và tick **tháng nhuận** nếu ngày cần đổi rơi vào tháng nhuận (ví dụ năm 2025 nhuận tháng 6)."
+        },
+        {
+          q: "Lịch âm này có đúng múi giờ Việt Nam không?",
+          a: "Có. Lịch tính theo **múi giờ +7** (thuật toán Hồ Ngọc Đức), nên ngày mùng 1 và Tết khớp với lịch Việt Nam, có thể lệch 1 ngày so với lịch Trung Quốc."
+        },
+        {
+          q: "Làm sao xem ngày tốt để khai trương, cưới hỏi?",
+          a: "Ở tab **Lịch tháng**, chọn việc ở dòng **Tìm ngày tốt** — các ngày hợp được tô xanh và liệt kê bên dưới kèm trực và sao hoàng đạo. Nếu đã nhập năm sinh, lịch tự loại thêm ngày xung tuổi. Nội dung theo phong tục, chỉ mang tính tham khảo."
+        },
+        {
+          q: "Văn khấn mùng 1 và ngày rằm có sẵn ngày âm không?",
+          a: "Có. Tab **Văn khấn** tự điền ngày âm lịch của mùng 1 hoặc rằm sắp tới, bạn chỉ cần thêm tên tín chủ, địa chỉ, rồi bấm **Sao chép**. Có cả văn khấn giỗ gia tiên, Thần Tài và ông Công ông Táo."
         }
       ]
     },
@@ -1883,8 +2158,15 @@ window.OTCatalog = {
           paras: [
             "Đây là tỷ giá **tham khảo** từ nguồn công khai, không phải tỷ giá mua/bán của ngân hàng hay tiệm vàng. Khi giao dịch thật hãy đối chiếu Vietcombank / Techcombank / BIDV."
           ]
+        },
+        {
+          title: "Nhận lương bằng USD?",
+          paras: [
+            "Quy đổi lương USD sang VND ở đây, sau đó nhập số VND vào [máy tính lương Gross ↔ Net](cong-cu-tien-ich/salary-calculator.html) để biết thực nhận sau bảo hiểm và thuế TNCN năm 2026."
+          ]
         }
-      ]
+      ],
+      related: ["salary-calculator", "number-to-words", "vietqr"]
     },
     "barcode-generator": {
       keywords: "tạo mã vạch, barcode generator, code128, ean13, code39, tạo barcode online miễn phí, in tem mã vạch",
@@ -2239,9 +2521,10 @@ window.OTCatalog = {
       ]
     },
     "cong-cu-tien-ich": {
-      intro: "Tiện ích văn phòng gọn: **đổi tiền tệ**, **QR Code**, **mã vạch**, **đổi lịch âm dương**, **tạo mật khẩu** và **chuyển đổi chữ**.",
+      intro: "Tiện ích văn phòng gọn: **tính lương Gross ↔ Net**, **đổi tiền tệ**, **QR Code**, **mã vạch**, **đổi lịch âm dương**, **tạo mật khẩu** và **chuyển đổi chữ**.",
       sections: [
-        { title: "Tiền tệ & lịch", paras: ["**Đổi tiền tệ** USD/EUR/VND tỷ giá tham khảo. **Đổi lịch âm dương** Can Chi, tháng nhuận."] },
+        { title: "Lương & thuế", paras: ["**Tính lương Gross ↔ Net 2026** theo biểu thuế TNCN 5 bậc, giảm trừ 15,5 triệu và trần BHXH mới. **Số thành chữ** viết số tiền cho hợp đồng."] },
+        { title: "Tiền tệ & lịch", paras: ["**Đổi tiền tệ** USD/EUR/VND tỷ giá tham khảo. **Lịch âm hôm nay** — lịch tháng, giờ hoàng đạo, đổi ngày âm dương. **Gieo quẻ online** — lắc điện thoại xin quẻ may mắn. **Tung đồng xu online** — gieo 3 xu cổ, xin âm dương."] },
         { title: "QR, mã vạch & mật khẩu", paras: ["**QR / Barcode** tải PNG. **Password Generator** mật khẩu crypto ngẫu nhiên."] }
       ]
     }
@@ -2280,11 +2563,12 @@ window.OTCatalog = {
     const n = limit || 6;
     const current = this.toolBySlug(slug);
     if (!current) return [];
+    const preferred = (this.seo[slug]?.related || []).map(s => this.toolBySlug(s)).filter(Boolean);
     const same = this.tools.filter(t => t.cat === current.cat && t.slug !== slug);
     const rest = this.tools.filter(t => t.cat !== current.cat && t.slug !== slug && t.featured);
     const out = [];
     const seen = new Set();
-    same.concat(rest).forEach(t => {
+    preferred.concat(same, rest).forEach(t => {
       const key = t.hub || t.slug;
       if (seen.has(key) || out.length >= n) return;
       seen.add(key);

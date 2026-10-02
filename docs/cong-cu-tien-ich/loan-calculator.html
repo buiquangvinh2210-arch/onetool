@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tính lãi vay trả góp ngân hàng — lịch trả nợ | OneTool</title>
+  <meta name="description" content="Tính tiền trả góp hàng tháng khi vay mua nhà, mua xe: dư nợ giảm dần, trả đều, lãi phẳng, lãi suất ưu đãi rồi thả nổi. Có lịch trả nợ từng tháng. Miễn phí." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/loan-calculator.html" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Tính lãi vay trả góp — mỗi tháng trả bao nhiêu?" />
+  <meta property="og:description" content="Nhập số tiền vay, thời hạn, lãi suất là ra số tiền trả mỗi tháng và lịch trả nợ chi tiết." />
+  <meta property="og:image" content="https://onetool.vn/assets/img/og-loan.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/salary-calculator.css?v=20261002a" />
+  <link rel="stylesheet" href="../assets/css/tools/finance-calc.css?v=20261002a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="loan-calculator">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap container" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="sal-page">
+    <header class="sal-intro">
+      <h1>Tính lãi vay trả góp</h1>
+      <p>Biết trước mỗi tháng trả bao nhiêu khi vay mua nhà, mua xe hay vay tiêu dùng. Có lãi suất ưu đãi rồi thả nổi và lịch trả nợ từng tháng.</p>
+    </header>
+
+    <div class="sal-grid">
+      <div class="sal-card">
+        <div class="sal-tabs fin-tabs-3" role="tablist" aria-label="Cách tính lãi">
+          <button type="button" class="sal-tab is-on" role="tab" aria-selected="true" data-ln-method="reducing">Dư nợ giảm dần</button>
+          <button type="button" class="sal-tab" role="tab" aria-selected="false" data-ln-method="annuity">Trả đều</button>
+          <button type="button" class="sal-tab" role="tab" aria-selected="false" data-ln-method="flat">Lãi phẳng</button>
+        </div>
+        <p class="fin-hint" id="lnMethodHint"></p>
+
+        <label class="sal-label" for="lnAmount">Số tiền vay</label>
+        <div class="sal-money">
+          <input id="lnAmount" inputmode="numeric" autocomplete="off" placeholder="Ví dụ: 1.000.000.000" />
+          <span>đ</span>
+        </div>
+        <div class="sal-presets" id="lnPresets" aria-label="Số tiền mẫu">
+          <button type="button" data-amount="50000000">50 triệu</button>
+          <button type="button" data-amount="300000000">300 triệu</button>
+          <button type="button" data-amount="500000000">500 triệu</button>
+          <button type="button" data-amount="1000000000">1 tỷ</button>
+          <button type="button" data-amount="2000000000">2 tỷ</button>
+        </div>
+
+        <label class="sal-label" for="lnTerm">Thời hạn vay</label>
+        <div class="fin-inline">
+          <input id="lnTerm" type="number" min="1" max="600" value="20" inputmode="numeric" aria-label="Thời hạn vay" />
+          <select id="lnTermUnit" aria-label="Đơn vị thời hạn">
+            <option value="12" selected>năm</option>
+            <option value="1">tháng</option>
+          </select>
+        </div>
+
+        <label class="fin-check" id="lnPromoToggle"><input type="checkbox" id="lnPromo" /> Có lãi suất ưu đãi thời gian đầu</label>
+        <div class="fin-sub" id="lnPromoBox" hidden>
+          <div class="sal-row">
+            <div>
+              <label class="sal-label" for="lnPromoRate">Lãi ưu đãi</label>
+              <div class="sal-money fin-unit">
+                <input id="lnPromoRate" inputmode="decimal" autocomplete="off" placeholder="6,5" />
+                <span>%/năm</span>
+              </div>
+            </div>
+            <div>
+              <label class="sal-label" for="lnPromoMonths">Trong</label>
+              <select id="lnPromoMonths">
+                <option value="6">6 tháng đầu</option>
+                <option value="12" selected>12 tháng đầu</option>
+                <option value="18">18 tháng đầu</option>
+                <option value="24">24 tháng đầu</option>
+                <option value="36">36 tháng đầu</option>
+                <option value="60">60 tháng đầu</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <label class="sal-label" id="lnRateLabel" for="lnRate">Lãi suất</label>
+        <div class="sal-money fin-unit">
+          <input id="lnRate" inputmode="decimal" autocomplete="off" placeholder="Ví dụ: 9,5" />
+          <span>%/năm</span>
+        </div>
+        <p class="fin-hint" id="lnRateHint">Lãi suất theo năm ghi trong hợp đồng hoặc bảng niêm yết của ngân hàng.</p>
+
+        <p id="status" class="sal-status">Nhập số tiền vay và lãi suất để tính.</p>
+        <div class="sal-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="lnCopyBtn" disabled>Sao chép kết quả</button>
+        </div>
+      </div>
+
+      <div class="sal-result" aria-live="polite">
+        <div class="sal-summary" id="lnSummary">
+          <div class="sal-stat"><span>Trả tháng đầu</span><strong>—</strong></div>
+          <div class="sal-stat"><span>Trả tháng cuối</span><strong>—</strong></div>
+          <div class="sal-stat"><span>Tổng tiền lãi</span><strong>—</strong></div>
+          <div class="sal-stat sal-stat--net"><span>Tổng gốc + lãi</span><strong>—</strong></div>
+        </div>
+        <div class="fin-bar" id="lnBar" aria-hidden="true"><i style="width:100%"></i><i style="width:0"></i></div>
+        <div class="fin-legend"><span>Tiền gốc</span><span>Tiền lãi</span></div>
+
+        <h2 class="sal-h2">So sánh ba cách tính lãi</h2>
+        <table class="sal-table sal-table--4">
+          <thead><tr><th scope="col">Cách tính</th><th scope="col">Tháng đầu</th><th scope="col">Tháng cuối</th><th scope="col">Tổng lãi</th></tr></thead>
+          <tbody id="lnCompare"></tbody>
+        </table>
+
+        <h2 class="sal-h2">Lịch trả nợ từng tháng</h2>
+        <div class="fin-scroll">
+          <table class="sal-table">
+            <thead><tr><th scope="col">Kỳ</th><th scope="col">Gốc</th><th scope="col">Lãi</th><th scope="col">Phải trả</th><th scope="col">Dư nợ còn</th></tr></thead>
+            <tbody id="lnRows"></tbody>
+          </table>
+        </div>
+        <p class="sal-note">Bảng tính theo tháng với lãi suất bạn nhập. Số tiền thực tế có thể chênh nhẹ do ngân hàng tính lãi theo số ngày, thay đổi lãi suất thả nổi hoặc có phí trả nợ trước hạn, phí bảo hiểm khoản vay.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool-seo" id="toolSeo" data-static="1">
+  <div class="tool-seo-wrap">
+    <section class="tool-seo-block">
+      <h2>Cách dùng Tính lãi vay trả góp</h2>
+      <ol class="tool-seo-howto">
+        <li>Chọn cách tính lãi: dư nợ giảm dần, trả đều hàng tháng hoặc lãi phẳng.</li>
+        <li>Nhập số tiền vay, thời hạn và lãi suất. Nếu có ưu đãi, tick ô lãi suất ưu đãi và nhập số tháng.</li>
+        <li>Xem tiền trả tháng đầu, tổng lãi và lịch trả nợ từng tháng; so sánh ba cách tính ngay bên dưới.</li>
+      </ol>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Ba cách tính lãi vay phổ biến</h2>
+      <ul>
+        <li><strong>Dư nợ giảm dần (gốc chia đều):</strong> mỗi tháng trả gốc = Số tiền vay ÷ Số tháng, cộng lãi = Dư nợ còn lại × Lãi suất ÷ 12. Tháng đầu trả nhiều nhất, sau đó giảm dần. Đây là cách phổ biến khi vay mua nhà, mua xe ở ngân hàng.</li>
+        <li><strong>Trả đều hàng tháng (niên kim):</strong> số tiền trả mỗi tháng cố định = Tiền vay × r ÷ (1 − (1 + r)<sup>−n</sup>), với r là lãi suất tháng và n là số tháng. Dễ lên kế hoạch chi tiêu nhưng tổng lãi cao hơn gốc chia đều.</li>
+        <li><strong>Lãi phẳng:</strong> lãi luôn tính trên số tiền vay ban đầu dù bạn đã trả bớt gốc. Thường gặp ở vay tiêu dùng, mua trả góp. Lãi suất thực tế cao gần gấp đôi con số quảng cáo, công cụ có quy đổi để bạn so sánh.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Câu hỏi thường gặp</h2>
+      <dl class="tool-seo-faq">
+        <div class="tool-seo-faq-item"><dt>Vay 1 tỷ trong 20 năm mỗi tháng trả bao nhiêu?</dt><dd>Với lãi suất 9%/năm theo dư nợ giảm dần, tháng đầu trả khoảng <strong>11.666.667 đ</strong> (gốc 4.166.667 đ + lãi 7.500.000 đ), sau đó giảm dần. Nếu chọn trả đều, mỗi tháng khoảng <strong>8.997.000 đ</strong>.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Lãi suất ưu đãi hết hạn thì tính thế nào?</dt><dd>Sau thời gian ưu đãi, ngân hàng chuyển sang lãi suất thả nổi, thường bằng lãi suất cơ sở cộng biên độ ghi trong hợp đồng. Hãy nhập mức lãi dự kiến sau ưu đãi vào ô Lãi suất để xem số tiền phải trả sau đó.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Nên chọn dư nợ giảm dần hay trả đều?</dt><dd>Gốc chia đều có tổng lãi thấp hơn nhưng những tháng đầu trả nhiều. Trả đều nhẹ hơn lúc đầu nhưng tổng lãi cao hơn. Bảng so sánh trên trang cho thấy chênh lệch cụ thể với khoản vay của bạn.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Lãi phẳng 1%/tháng tương đương bao nhiêu?</dt><dd>Lãi phẳng 12%/năm cho khoản vay 12 tháng tương đương khoảng <strong>21,5%/năm</strong> tính theo dư nợ giảm dần, vì lãi luôn tính trên toàn bộ số tiền vay ban đầu.</dd></div>
+      </dl>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công cụ liên quan</h2>
+      <ul class="tool-seo-more">
+        <li><a class="tool-seo-card" href="savings-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🐷</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lãi tiết kiệm</strong><span class="tool-seo-card-sapo">Gửi bao nhiêu, kỳ hạn nào, lãi bao nhiêu</span></span></a></li>
+        <li><a class="tool-seo-card" href="salary-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">💰</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lương Gross Net</strong><span class="tool-seo-card-sapo">Biết lương thực nhận để tính khả năng trả nợ</span></span></a></li>
+        <li><a class="tool-seo-card" href="bhxh-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🧾</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính BHXH một lần</strong><span class="tool-seo-card-sapo">Ước tính tiền rút bảo hiểm xã hội một lần</span></span></a></li>
+        <li><a class="tool-seo-card" href="number-to-words.html"><span class="tool-seo-card-icon" aria-hidden="true">🔡</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Số thành chữ</strong><span class="tool-seo-card-sapo">Ghi số tiền vay bằng chữ trong hợp đồng</span></span></a></li>
+      </ul>
+    </section>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20261002k"></script>
+<script src="../assets/js/layout.js?v=20261002g"></script>
+<script src="../assets/js/core.js?v=20261002a"></script>
+<script src="../assets/js/site.js?v=20261002c"></script>
+<script src="../assets/js/tools/loan-calculator.js?v=20261002a"></script>
+</body>
+</html>

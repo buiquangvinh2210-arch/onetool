@@ -330,6 +330,69 @@ window.OTLunar = (function () {
     };
   }
 
+  const TIET_KHI = [
+    "Xuân phân", "Thanh minh", "Cốc vũ", "Lập hạ", "Tiểu mãn", "Mang chủng",
+    "Hạ chí", "Tiểu thử", "Đại thử", "Lập thu", "Xử thử", "Bạch lộ",
+    "Thu phân", "Hàn lộ", "Sương giáng", "Lập đông", "Tiểu tuyết", "Đại tuyết",
+    "Đông chí", "Tiểu hàn", "Đại hàn", "Lập xuân", "Vũ thủy", "Kinh trập"
+  ];
+
+  // Bit i = 1: giờ Chi thứ i là giờ hoàng đạo; chọn theo Chi của ngày % 6.
+  const GIO_HD = [
+    "110100101100", "001101001011", "110011010010",
+    "101100110100", "001011001101", "010010110011"
+  ];
+
+  function solarTermIndex(jd) {
+    return INT((SunLongitude(jd - 0.5 - 7 / 24) / PI) * 12);
+  }
+
+  function solarTerm(jd) {
+    return TIET_KHI[solarTermIndex(jd)];
+  }
+
+  function luckyHours(jd) {
+    const pattern = GIO_HD[((jd + 1) % 12) % 6];
+    const out = [];
+    for (let i = 0; i < 12; i++) {
+      if (pattern[i] === "1") out.push({ name: CHI[i], from: (i * 2 + 23) % 24, to: (i * 2 + 1) % 24 });
+    }
+    return out;
+  }
+
+  // Thập nhị thần: vị trí Thanh Long theo tháng âm (Dần Thân gia Tý, Mão Dậu tại Dần...).
+  const THAN = [
+    ["Thanh Long", true], ["Minh Đường", true], ["Thiên Hình", false], ["Chu Tước", false],
+    ["Kim Quỹ", true], ["Kim Đường", true], ["Bạch Hổ", false], ["Ngọc Đường", true],
+    ["Thiên Lao", false], ["Nguyên Vũ", false], ["Tư Mệnh", true], ["Câu Trận", false]
+  ];
+  const HY_THAN = ["Đông Bắc", "Tây Bắc", "Tây Nam", "Chính Nam", "Đông Nam"];
+
+  function dayGuide(jd, lunarMonth) {
+    const chi = (jd + 1) % 12;
+    const can = (jd + 9) % 10;
+    const god = THAN[(chi - ((lunarMonth - 1) % 6) * 2 + 12) % 12];
+    const clash = (chi + 6) % 12;
+    return {
+      god: god[0],
+      good: god[1],
+      hyThan: HY_THAN[can % 5],
+      clash: CHI[clash],
+      clashAnimal: CHI_ANIMAL[clash]
+    };
+  }
+
+  function moonPhase(lunarDay) {
+    if (lunarDay === 1 || lunarDay === 30) return { icon: "🌑", name: "Trăng non" };
+    if (lunarDay <= 6) return { icon: "🌒", name: "Trăng lưỡi liềm" };
+    if (lunarDay <= 8) return { icon: "🌓", name: "Trăng thượng huyền" };
+    if (lunarDay <= 13) return { icon: "🌔", name: "Trăng gần tròn" };
+    if (lunarDay <= 16) return { icon: "🌕", name: "Trăng tròn" };
+    if (lunarDay <= 21) return { icon: "🌖", name: "Trăng bắt đầu khuyết" };
+    if (lunarDay <= 23) return { icon: "🌗", name: "Trăng hạ huyền" };
+    return { icon: "🌘", name: "Trăng tàn" };
+  }
+
   function todayInfo() {
     const now = new Date();
     return convertSolarToLunar(now.getDate(), now.getMonth() + 1, now.getFullYear());
@@ -354,6 +417,11 @@ window.OTLunar = (function () {
     formatSolar,
     formatLunar,
     todayInfo,
-    jdFromDate
+    jdFromDate,
+    solarTerm,
+    solarTermIndex,
+    luckyHours,
+    dayGuide,
+    moonPhase
   };
 })();

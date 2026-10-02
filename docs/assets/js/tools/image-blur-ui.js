@@ -486,12 +486,16 @@
     try {
       const blob = await renderBlur(true);
       showPreviewBlob(blob);
-      const base = (file && file.name ? file.name.replace(/\.[^.]+$/, "") : "anh") + "-blur";
-      const a = document.createElement("a");
-      a.href = lastUrl;
-      a.download = base + "." + extFor(format);
-      a.click();
-      setStatus("Đã tải " + a.download + " · " + fmtSize(blob.size), "ok");
+      const name = (file && file.name ? file.name.replace(/\.[^.]+$/, "") : "anh") + "-blur." + extFor(format);
+      if (window.OT && OT.downloadBlob) {
+        OT.downloadBlob(blob, name);
+      } else {
+        const a = document.createElement("a");
+        a.href = lastUrl;
+        a.download = name;
+        a.click();
+      }
+      setStatus("Đã tải " + name + " · " + fmtSize(blob.size), "ok");
     } catch (e) {
       setStatus(e.message || "Không tải được", "err");
     }

@@ -1,0 +1,344 @@
+/* OneTool — tool gần đây/yêu thích, bước tiếp theo, chia sẻ, cài ứng dụng */
+
+.ot-fav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.25rem 0 0.75rem;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border-strong, rgba(124, 58, 237, 0.18));
+  border-radius: 999px;
+  background: var(--surface, #fff);
+  color: var(--primary, #7c3aed);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.ot-fav-btn:hover {
+  background: var(--primary-light, #ede9fe);
+}
+.ot-fav-btn.is-on {
+  background: var(--primary, #7c3aed);
+  border-color: var(--primary, #7c3aed);
+  color: #fff;
+}
+.ot-fav-ico {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Trang chủ — Tool của bạn */
+.ot-mytools {
+  padding: 1.25rem 0 0.25rem;
+}
+.ot-mytools-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.ot-mytools-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text, #0c0a1d);
+}
+.ot-mytools-clear {
+  border: 0;
+  background: none;
+  color: var(--text-muted, #64748b);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.ot-mytools-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.ot-mytool {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.95rem;
+  border: 1px solid var(--border, rgba(15, 23, 42, 0.08));
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(15, 23, 42, 0.04));
+  color: var(--text, #0c0a1d);
+  font-size: 0.92rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.ot-mytool:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong, rgba(124, 58, 237, 0.18));
+  box-shadow: var(--shadow, 0 4px 24px rgba(15, 23, 42, 0.06));
+}
+.ot-mytool em {
+  font-style: normal;
+  font-size: 1.1rem;
+}
+.ot-mytool-star {
+  color: #f59e0b;
+  font-size: 0.85rem;
+}
+
+/* Trang chủ — lịch âm hôm nay */
+.ot-today {
+  padding: 1.25rem 0 0;
+}
+.ot-today-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "day body more" "day chips chips";
+  align-items: center;
+  gap: 0.35rem 1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border, rgba(15, 23, 42, 0.08));
+  border-radius: 18px;
+  background: var(--surface, #fff);
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(15, 23, 42, 0.04));
+  color: var(--text, #0c0a1d);
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ot-today-card:hover {
+  border-color: var(--border-strong, rgba(124, 58, 237, 0.18));
+  box-shadow: var(--shadow, 0 4px 24px rgba(15, 23, 42, 0.06));
+}
+.ot-today-day {
+  grid-area: day;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #dc2626, #f59e0b);
+  color: #fff;
+  line-height: 1;
+}
+.ot-today-day b {
+  font-size: 1.65rem;
+  font-weight: 800;
+}
+.ot-today-day small {
+  margin-top: 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.92;
+}
+.ot-today-body {
+  grid-area: body;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+.ot-today-label {
+  font-size: 0.78rem;
+  color: var(--text-muted, #64748b);
+}
+.ot-today-body strong {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.ot-today-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted, #64748b);
+}
+.ot-today-chips {
+  grid-area: chips;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.ot-today-chip {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: var(--primary-soft, rgba(124, 58, 237, 0.08));
+  color: var(--text, #0c0a1d);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.ot-today-chip--hot {
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+}
+.ot-today-more {
+  grid-area: more;
+  color: var(--primary, #7c3aed);
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .ot-today-card {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "day body" "chips chips" "more more";
+  }
+}
+
+/* Ô tìm kiếm — nhãn nhóm phụ */
+.tool-search-sublabel {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted, #64748b);
+}
+
+/* Bước tiếp theo */
+.ot-next {
+  margin: 0.9rem 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border-strong, rgba(124, 58, 237, 0.18));
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(6, 182, 212, 0.06)), var(--surface, #fff);
+  color: var(--text, #0c0a1d);
+  animation: ot-next-in 0.3s ease-out;
+}
+@keyframes ot-next-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.ot-next-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+.ot-next-close {
+  border: 0;
+  background: none;
+  color: var(--text-muted, #64748b);
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+.ot-next-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+}
+.ot-next-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border, rgba(15, 23, 42, 0.08));
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  color: var(--text, #0c0a1d);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ot-next-item:hover {
+  border-color: var(--primary, #7c3aed);
+  transform: translateY(-1px);
+}
+.ot-next-item em {
+  font-style: normal;
+  font-size: 1.15rem;
+}
+.ot-next-item span {
+  flex: 1;
+  min-width: 0;
+}
+.ot-next-item i {
+  font-style: normal;
+  color: var(--primary, #7c3aed);
+  font-weight: 800;
+}
+.ot-next-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted, #64748b);
+  word-break: break-word;
+}
+.ot-next-install {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-top: 0.75rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-strong, rgba(124, 58, 237, 0.18));
+  font-size: 0.82rem;
+  color: var(--text-muted, #64748b);
+}
+.ot-next--float {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 300;
+  width: min(380px, calc(100vw - 2rem));
+  margin: 0;
+  box-shadow: var(--shadow-lg, 0 20px 60px rgba(124, 58, 237, 0.14));
+}
+
+/* Chia sẻ */
+.ot-share {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+.ot-share[hidden] {
+  display: none;
+}
+.ot-share-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted, #64748b);
+}
+.ot-share-btn {
+  padding: 0.38rem 0.8rem;
+  border: 1px solid var(--border, rgba(15, 23, 42, 0.08));
+  border-radius: 999px;
+  background: var(--surface, #fff);
+  color: var(--text, #0c0a1d);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.ot-share-btn:hover {
+  border-color: var(--primary, #7c3aed);
+}
+.ot-share-btn--main {
+  background: #0068ff;
+  border-color: #0068ff;
+  color: #fff;
+}
+
+/* Footer — cài ứng dụng */
+.ot-footer-install {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.ot-footer-install[hidden] {
+  display: none;
+}

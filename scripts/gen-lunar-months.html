@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<title>Sinh trang lịch âm từng tháng</title>
+<!--
+  Sinh HTML tĩnh cho docs/lich-am/ (mỗi tháng một trang + trang mục lục).
+  Chạy: static server với root = thư mục repo, mở /scripts/gen-lunar-months.html.
+  Kết quả nằm trong window.__out = { "lich-am/thang-11-2026.html": "<!DOCTYPE html>…", … }.
+  Đổi FROM / TO để thêm tháng.
+-->
+</head>
+<body>
+<pre id="log">Đang sinh…</pre>
+<script src="../docs/assets/js/tools/lunar-calendar.js"></script>
+<script src="../docs/assets/js/tools/lunar-fortune.js"></script>
+<script src="gen-lunar-months.js"></script>
+</body>
+</html>

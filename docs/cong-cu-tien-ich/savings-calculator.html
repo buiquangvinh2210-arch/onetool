@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tính lãi tiết kiệm ngân hàng online 2026 | OneTool</title>
+  <meta name="description" content="Tính tiền lãi gửi tiết kiệm theo số tiền, lãi suất, kỳ hạn: lĩnh lãi cuối kỳ, hàng tháng, tái tục gốc lãi hoặc gửi tích lũy mỗi tháng. Miễn phí, không đăng ký." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/savings-calculator.html" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Tính lãi tiết kiệm ngân hàng — gửi bao nhiêu, lãi bao nhiêu" />
+  <meta property="og:description" content="Nhập số tiền, lãi suất, kỳ hạn là ra tiền lãi. Có lĩnh lãi hàng tháng, tái tục và tích lũy mỗi tháng." />
+  <meta property="og:image" content="https://onetool.vn/assets/img/og-savings.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/salary-calculator.css?v=20261002a" />
+  <link rel="stylesheet" href="../assets/css/tools/finance-calc.css?v=20261002a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="savings-calculator">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap container" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="sal-page">
+    <header class="sal-intro">
+      <h1>Tính lãi tiết kiệm ngân hàng</h1>
+      <p>Nhập số tiền, lãi suất và kỳ hạn là biết ngay tiền lãi. Có lĩnh lãi cuối kỳ, hàng tháng, tái tục gốc lẫn lãi và gửi tích lũy mỗi tháng.</p>
+    </header>
+
+    <div class="sal-grid">
+      <div class="sal-card">
+        <div class="sal-tabs" role="tablist" aria-label="Hình thức gửi">
+          <button type="button" class="sal-tab is-on" role="tab" aria-selected="true" data-sv-mode="once">Gửi một lần</button>
+          <button type="button" class="sal-tab" role="tab" aria-selected="false" data-sv-mode="monthly">Tích lũy hàng tháng</button>
+        </div>
+
+        <label class="sal-label" id="svAmountLabel" for="svAmount">Số tiền gửi</label>
+        <div class="sal-money">
+          <input id="svAmount" inputmode="numeric" autocomplete="off" placeholder="Ví dụ: 100.000.000" />
+          <span>đ</span>
+        </div>
+        <div class="sal-presets" id="svPresets" aria-label="Số tiền mẫu">
+          <button type="button" data-amount="50000000" data-monthly="1000000">50 triệu</button>
+          <button type="button" data-amount="100000000" data-monthly="2000000">100 triệu</button>
+          <button type="button" data-amount="200000000" data-monthly="3000000">200 triệu</button>
+          <button type="button" data-amount="500000000" data-monthly="5000000">500 triệu</button>
+          <button type="button" data-amount="1000000000" data-monthly="10000000">1 tỷ</button>
+        </div>
+
+        <label class="sal-label" for="svRate">Lãi suất</label>
+        <div class="sal-money fin-unit">
+          <input id="svRate" inputmode="decimal" autocomplete="off" placeholder="Ví dụ: 5,5" />
+          <span>%/năm</span>
+        </div>
+        <p class="fin-hint">Xem lãi suất niêm yết của ngân hàng cho đúng kỳ hạn bạn định gửi.</p>
+
+        <div data-sv-show="once">
+          <label class="sal-label" for="svTerm">Kỳ hạn</label>
+          <select id="svTerm">
+            <option value="1">1 tháng</option>
+            <option value="2">2 tháng</option>
+            <option value="3">3 tháng</option>
+            <option value="6">6 tháng</option>
+            <option value="9">9 tháng</option>
+            <option value="12" selected>12 tháng</option>
+            <option value="18">18 tháng</option>
+            <option value="24">24 tháng</option>
+            <option value="36">36 tháng</option>
+          </select>
+
+          <fieldset class="sal-field">
+            <legend class="sal-label">Cách lĩnh lãi</legend>
+            <label class="sal-radio"><input type="radio" name="svPayout" value="end" checked /> Cuối kỳ (nhận gốc + lãi khi đáo hạn)</label>
+            <label class="sal-radio"><input type="radio" name="svPayout" value="monthly" /> Hàng tháng (gốc giữ nguyên)</label>
+            <label class="sal-radio"><input type="radio" name="svPayout" value="roll" /> Tái tục gốc và lãi nhiều kỳ</label>
+          </fieldset>
+
+          <div id="svRollBox" hidden>
+            <label class="sal-label" for="svYears">Gửi tổng cộng</label>
+            <select id="svYears">
+              <option value="12">1 năm</option>
+              <option value="24">2 năm</option>
+              <option value="36" selected>3 năm</option>
+              <option value="60">5 năm</option>
+              <option value="120">10 năm</option>
+              <option value="180">15 năm</option>
+              <option value="240">20 năm</option>
+            </select>
+          </div>
+        </div>
+
+        <div data-sv-show="monthly" hidden>
+          <label class="sal-label" for="svMonths">Thời gian tích lũy</label>
+          <select id="svMonths">
+            <option value="6">6 tháng</option>
+            <option value="12">1 năm</option>
+            <option value="24">2 năm</option>
+            <option value="36">3 năm</option>
+            <option value="60" selected>5 năm</option>
+            <option value="120">10 năm</option>
+            <option value="180">15 năm</option>
+            <option value="240">20 năm</option>
+          </select>
+        </div>
+
+        <p id="status" class="sal-status">Nhập số tiền và lãi suất để tính tiền lãi.</p>
+        <div class="sal-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="svCopyBtn" disabled>Sao chép kết quả</button>
+        </div>
+      </div>
+
+      <div class="sal-result" aria-live="polite">
+        <div class="sal-summary" id="svSummary">
+          <div class="sal-stat"><span>Tiền gửi</span><strong>—</strong></div>
+          <div class="sal-stat"><span>Tiền lãi</span><strong>—</strong></div>
+          <div class="sal-stat"><span>Lãi bình quân mỗi tháng</span><strong>—</strong></div>
+          <div class="sal-stat sal-stat--net"><span>Tổng nhận</span><strong>—</strong></div>
+        </div>
+        <div class="fin-bar" id="svBar" aria-hidden="true"><i style="width:100%"></i><i style="width:0"></i></div>
+        <div class="fin-legend"><span>Tiền gốc</span><span>Tiền lãi</span></div>
+
+        <h2 class="sal-h2">Diễn giải</h2>
+        <table class="sal-table"><tbody id="svBreakdown"></tbody></table>
+
+        <h2 class="sal-h2" id="svScheduleTitle">Lịch nhận lãi</h2>
+        <div class="fin-scroll">
+          <table class="sal-table">
+            <thead id="svHead"></thead>
+            <tbody id="svRows"></tbody>
+          </table>
+        </div>
+        <p class="sal-note">Ngân hàng thường tính lãi theo số ngày thực gửi chia 365, nên tiền lãi thực nhận có thể chênh vài nghìn đồng so với cách tính theo tháng ở đây.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool-seo" id="toolSeo" data-static="1">
+  <div class="tool-seo-wrap">
+    <section class="tool-seo-block">
+      <h2>Cách dùng Tính lãi tiết kiệm</h2>
+      <ol class="tool-seo-howto">
+        <li>Chọn gửi một lần hoặc tích lũy hàng tháng, nhập số tiền và lãi suất %/năm.</li>
+        <li>Chọn kỳ hạn và cách lĩnh lãi: cuối kỳ, hàng tháng hoặc tái tục nhiều kỳ.</li>
+        <li>Xem tiền lãi, tổng nhận và bảng lãi từng tháng, từng kỳ hoặc từng năm.</li>
+      </ol>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công thức tính lãi tiết kiệm</h2>
+      <p><strong>Tiền lãi = Số tiền gửi × Lãi suất (%/năm) × Số tháng gửi ÷ 12.</strong></p>
+      <ul>
+        <li><strong>Lĩnh lãi cuối kỳ:</strong> nhận cả gốc và lãi khi đáo hạn. Gửi 100 triệu, lãi suất 6%/năm, kỳ hạn 12 tháng thì lãi là 100.000.000 × 6% × 12 ÷ 12 = <strong>6.000.000 đ</strong>.</li>
+        <li><strong>Lĩnh lãi hàng tháng:</strong> mỗi tháng nhận Số tiền gửi × Lãi suất ÷ 12, tiền gốc giữ nguyên. Ngân hàng thường áp lãi suất lĩnh hàng tháng thấp hơn một chút so với lĩnh cuối kỳ.</li>
+        <li><strong>Tái tục gốc và lãi:</strong> hết kỳ, lãi được nhập vào gốc để gửi tiếp nên kỳ sau lãi nhiều hơn kỳ trước (lãi kép).</li>
+        <li><strong>Tích lũy hàng tháng:</strong> mỗi tháng gửi thêm một khoản cố định, lãi tính theo tháng và cộng dồn vào số dư.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Câu hỏi thường gặp</h2>
+      <dl class="tool-seo-faq">
+        <div class="tool-seo-faq-item"><dt>Gửi 100 triệu lãi suất 5%/năm kỳ hạn 6 tháng được bao nhiêu?</dt><dd>Tiền lãi là 100.000.000 × 5% × 6 ÷ 12 = <strong>2.500.000 đ</strong>. Đáo hạn bạn nhận 102.500.000 đ nếu lĩnh lãi cuối kỳ.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Gửi 1 tỷ mỗi tháng được bao nhiêu tiền lãi?</dt><dd>Với lãi suất 5%/năm, mỗi tháng lãi khoảng 1.000.000.000 × 5% ÷ 12 ≈ <strong>4.166.667 đ</strong>. Lãi suất càng cao, tiền lãi hàng tháng càng lớn theo đúng tỷ lệ.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Tái tục gốc và lãi có lợi hơn rút lãi không?</dt><dd>Có, nếu bạn không cần tiêu tiền lãi. Tiền lãi kỳ trước được cộng vào gốc nên kỳ sau sinh lãi trên số lớn hơn. Gửi càng lâu, chênh lệch càng rõ.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Rút trước hạn thì tính lãi thế nào?</dt><dd>Đa số ngân hàng chỉ trả lãi suất không kỳ hạn (thường rất thấp) cho số ngày đã gửi khi bạn rút trước hạn. Mỗi ngân hàng có quy định riêng, nên hỏi trước khi gửi.</dd></div>
+      </dl>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công cụ liên quan</h2>
+      <ul class="tool-seo-more">
+        <li><a class="tool-seo-card" href="loan-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🏠</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lãi vay trả góp</strong><span class="tool-seo-card-sapo">Lịch trả nợ vay mua nhà, mua xe từng tháng</span></span></a></li>
+        <li><a class="tool-seo-card" href="salary-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">💰</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lương Gross Net</strong><span class="tool-seo-card-sapo">Lương thực nhận 2026 sau bảo hiểm và thuế</span></span></a></li>
+        <li><a class="tool-seo-card" href="bhxh-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🧾</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính BHXH một lần</strong><span class="tool-seo-card-sapo">Ước tính tiền rút bảo hiểm xã hội một lần</span></span></a></li>
+        <li><a class="tool-seo-card" href="number-to-words.html"><span class="tool-seo-card-icon" aria-hidden="true">🔡</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Số thành chữ</strong><span class="tool-seo-card-sapo">Viết số tiền bằng chữ khi làm giấy tờ</span></span></a></li>
+      </ul>
+    </section>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20261002k"></script>
+<script src="../assets/js/layout.js?v=20261002g"></script>
+<script src="../assets/js/core.js?v=20261002a"></script>
+<script src="../assets/js/site.js?v=20261002c"></script>
+<script src="../assets/js/tools/savings-calculator.js?v=20261002a"></script>
+</body>
+</html>

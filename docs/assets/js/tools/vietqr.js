@@ -177,6 +177,9 @@
       els.downloadBtn.disabled = false;
       els.status.textContent = "Xong — quét thử bằng app ngân hàng trước khi in.";
       els.status.className = "vqr-status is-ok";
+      document.dispatchEvent(new CustomEvent("ot:result", {
+        detail: { blob: lastBlob, fileName: "vietqr.png", title: "Mã VietQR chuyển khoản" }
+      }));
     } catch (e) {
       els.status.textContent = e.message || String(e);
       els.status.className = "vqr-status is-err";

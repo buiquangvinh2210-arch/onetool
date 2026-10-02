@@ -1,0 +1,252 @@
+body[data-tool="salary-calculator"] .tool-workspace {
+  padding: 0 0 2rem !important;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, rgba(16, 185, 129, 0.1), transparent 55%),
+    var(--bg, #f8f7ff) !important;
+}
+
+.sal-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.sal-intro { text-align: center; max-width: 720px; margin: 0 auto 1.35rem; }
+.sal-intro h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.sal-intro p { margin: 0.5rem 0 0; color: var(--text-muted); line-height: 1.6; }
+.sal-intro .ot-fav-btn { margin: 0.6rem auto 0; }
+
+.sal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.sal-card,
+.sal-result {
+  background: var(--surface, #fff);
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05);
+}
+
+.sal-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  padding: 0.3rem;
+  margin-bottom: 1.1rem;
+  border-radius: 12px;
+  background: var(--bg-alt, #f1effe);
+}
+.sal-tab {
+  padding: 0.55rem 0.5rem;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+.sal-tab.is-on {
+  background: var(--surface, #fff);
+  color: var(--primary, #7c3aed);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.sal-label {
+  display: block;
+  margin: 0 0 0.4rem;
+  padding: 0;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.sal-card input,
+.sal-card select {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  border-radius: 12px;
+  background: var(--bg, #fafafa);
+  color: var(--text);
+  font: inherit;
+}
+.sal-card input:disabled { opacity: 0.55; }
+.sal-card select { margin-bottom: 1rem; }
+
+.sal-money { position: relative; }
+.sal-money input {
+  padding-right: 4.8rem;
+  font-size: 1.15rem;
+  font-weight: 750;
+}
+.sal-money span {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.sal-money--sm input { font-size: 0.95rem; padding-right: 2.2rem; }
+
+.sal-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.55rem 0 1.1rem;
+}
+.sal-presets button {
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  background: var(--surface, #fff);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.sal-presets button:hover { border-color: var(--primary, #7c3aed); }
+
+.sal-field {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+}
+.sal-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.45rem;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+.sal-card .sal-radio input { width: auto; }
+
+.sal-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 0.75rem;
+}
+
+.sal-stepper {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr 2.4rem;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+.sal-stepper button {
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  color: var(--primary, #7c3aed);
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.sal-card .sal-stepper input { text-align: center; padding: 0.6rem 0.3rem; }
+
+.sal-status { margin: 0.25rem 0 0.75rem; font-size: 0.88rem; color: var(--text-muted); }
+.sal-status.is-ok { color: #047857; }
+.sal-status.is-err { color: #b91c1c; }
+.sal-status.is-warn { color: #b45309; }
+
+.sal-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.sal-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+}
+.sal-stat {
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  background: var(--bg-alt, #f1effe);
+}
+.sal-stat span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.sal-stat strong {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.sal-stat--net {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+}
+.sal-stat--net span,
+.sal-stat--net strong { color: #fff; }
+.sal-stat--net strong { font-size: 1.25rem; }
+
+.sal-h2 {
+  margin: 1.1rem 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.sal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+.sal-table th,
+.sal-table td {
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--border, rgba(15, 23, 42, 0.08));
+  text-align: right;
+}
+.sal-table th[scope="row"],
+.sal-table thead th:first-child {
+  text-align: left;
+  font-weight: 550;
+  color: var(--text);
+}
+.sal-table thead th {
+  font-size: 0.75rem;
+  font-weight: 750;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sal-table th small { color: var(--text-muted); font-weight: 500; }
+.sal-table tr.is-sub th,
+.sal-table tr.is-sub td { font-weight: 750; background: var(--bg-alt, #f8f7ff); }
+.sal-table tr.is-total th,
+.sal-table tr.is-total td {
+  font-weight: 800;
+  color: var(--primary, #7c3aed);
+  border-bottom: 0;
+}
+.sal-muted { text-align: left !important; color: var(--text-muted); }
+
+.sal-note { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+@media (max-width: 860px) {
+  .sal-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .sal-page { padding: 0 1rem; }
+  .sal-table--4 th:nth-child(3),
+  .sal-table--4 td:nth-child(3) { display: none; }
+}

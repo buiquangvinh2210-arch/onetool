@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tính lương Gross sang Net 2026 — thuế TNCN 5 bậc, BHXH mới | OneTool</title>
+  <meta name="description" content="Đổi lương Gross ↔ Net theo luật 2026: giảm trừ 15,5 triệu, người phụ thuộc 6,2 triệu, thuế TNCN 5 bậc, trần BHXH 50,6 triệu. Miễn phí, không đăng ký." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/salary-calculator.html" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Tính lương Gross ↔ Net 2026 — thuế TNCN 5 bậc mới" />
+  <meta property="og:description" content="Nhập lương, ra ngay thực nhận sau BHXH và thuế TNCN. Giảm trừ 15,5 triệu, miễn phí." />
+  <meta property="og:image" content="https://onetool.vn/assets/img/og-salary.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/salary-calculator.css?v=20261002a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="salary-calculator">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap container" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="sal-page">
+    <header class="sal-intro">
+      <h1>Tính lương Gross ↔ Net 2026</h1>
+      <p>Theo biểu thuế TNCN 5 bậc, giảm trừ gia cảnh 15,5 triệu và trần bảo hiểm mới. Tính ngay trên máy bạn, không gửi số liệu lên server.</p>
+    </header>
+
+    <div class="sal-grid">
+      <div class="sal-card">
+        <div class="sal-tabs" role="tablist" aria-label="Chiều tính">
+          <button type="button" class="sal-tab is-on" role="tab" aria-selected="true" data-sal-mode="gross">Gross → Net</button>
+          <button type="button" class="sal-tab" role="tab" aria-selected="false" data-sal-mode="net">Net → Gross</button>
+        </div>
+
+        <label class="sal-label" id="salAmountLabel" for="salAmount">Lương Gross (trước thuế, bảo hiểm)</label>
+        <div class="sal-money">
+          <input id="salAmount" inputmode="numeric" autocomplete="off" placeholder="Ví dụ: 20.000.000" />
+          <span>đ/tháng</span>
+        </div>
+        <div class="sal-presets" id="salPresets" aria-label="Mức lương mẫu">
+          <button type="button" data-amount="10000000">10 triệu</button>
+          <button type="button" data-amount="15000000">15 triệu</button>
+          <button type="button" data-amount="20000000">20 triệu</button>
+          <button type="button" data-amount="30000000">30 triệu</button>
+          <button type="button" data-amount="50000000">50 triệu</button>
+        </div>
+
+        <fieldset class="sal-field">
+          <legend class="sal-label">Lương đóng bảo hiểm</legend>
+          <label class="sal-radio"><input type="radio" name="salIns" id="salInsFull" checked /> Bằng lương Gross</label>
+          <label class="sal-radio"><input type="radio" name="salIns" id="salInsCustom" /> Mức khác:</label>
+          <div class="sal-money sal-money--sm">
+            <input id="salInsAmount" inputmode="numeric" autocomplete="off" placeholder="Ví dụ: 5.310.000" disabled aria-label="Mức lương đóng bảo hiểm" />
+            <span>đ</span>
+          </div>
+        </fieldset>
+
+        <div class="sal-row">
+          <div>
+            <label class="sal-label" for="salDeps">Người phụ thuộc</label>
+            <div class="sal-stepper">
+              <button type="button" id="salDepMinus" aria-label="Bớt một người">−</button>
+              <input id="salDeps" type="number" min="0" max="20" value="0" inputmode="numeric" />
+              <button type="button" id="salDepPlus" aria-label="Thêm một người">+</button>
+            </div>
+          </div>
+          <div>
+            <label class="sal-label" for="salRegion">Vùng lương tối thiểu</label>
+            <select id="salRegion">
+              <option value="1">Vùng I — 5.310.000 đ</option>
+              <option value="2">Vùng II — 4.730.000 đ</option>
+              <option value="3">Vùng III — 4.140.000 đ</option>
+              <option value="4">Vùng IV — 3.700.000 đ</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="sal-label" for="salPeriod">Kỳ áp dụng</label>
+        <select id="salPeriod">
+          <option value="2026h2">Từ 01/07/2026 — trần BHXH 50,6 triệu</option>
+          <option value="2026h1">01/01 – 30/06/2026 — trần BHXH 46,8 triệu</option>
+        </select>
+
+        <p id="status" class="sal-status">Nhập lương Gross để tính lương Net.</p>
+        <div class="sal-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="salCopyBtn" disabled>Sao chép kết quả</button>
+        </div>
+      </div>
+
+      <div class="sal-result" aria-live="polite">
+        <div class="sal-summary" id="salSummary">
+          <div class="sal-stat"><span>Lương Gross</span><strong>—</strong></div>
+          <div class="sal-stat"><span>Bảo hiểm (NLĐ đóng)</span><strong>—</strong></div>
+          <div class="sal-stat"><span>Thuế TNCN</span><strong>—</strong></div>
+          <div class="sal-stat sal-stat--net"><span>Lương Net thực nhận</span><strong>—</strong></div>
+        </div>
+
+        <h2 class="sal-h2">Diễn giải chi tiết</h2>
+        <table class="sal-table"><tbody id="salBreakdown"></tbody></table>
+
+        <h2 class="sal-h2">Thuế TNCN theo từng bậc</h2>
+        <table class="sal-table sal-table--4">
+          <thead><tr><th scope="col">Bậc</th><th scope="col">Thuế suất</th><th scope="col">Phần thu nhập</th><th scope="col">Tiền thuế</th></tr></thead>
+          <tbody id="salBrackets"></tbody>
+        </table>
+
+        <h2 class="sal-h2">Doanh nghiệp phải trả</h2>
+        <table class="sal-table"><tbody id="salEmployer"></tbody></table>
+        <p class="sal-note">Phần doanh nghiệp đóng chưa gồm kinh phí công đoàn 2%. Tỷ lệ BHXH 17,5% gồm quỹ hưu trí 14%, ốm đau thai sản 3%, tai nạn lao động 0,5%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool-seo" id="toolSeo" data-static="1">
+  <div class="tool-seo-wrap">
+    <section class="tool-seo-block">
+      <h2>Cách dùng Tính lương Gross Net</h2>
+      <ol class="tool-seo-howto">
+        <li>Chọn chiều tính: Gross → Net hoặc Net → Gross.</li>
+        <li>Nhập mức lương, số người phụ thuộc và vùng nơi công ty hoạt động.</li>
+        <li>Xem lương thực nhận, thuế TNCN từng bậc và tổng chi phí doanh nghiệp.</li>
+      </ol>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công thức tính lương Net năm 2026</h2>
+      <p><strong>Lương Net = Lương Gross − Bảo hiểm bắt buộc − Thuế TNCN.</strong></p>
+      <ul>
+        <li><strong>Bảo hiểm người lao động đóng 10,5%:</strong> BHXH 8%, BHYT 1,5%, BHTN 1%. BHXH và BHYT tính tối đa trên 20 lần mức tham chiếu (50,6 triệu từ 01/07/2026); BHTN tối đa 20 lần lương tối thiểu vùng.</li>
+        <li><strong>Giảm trừ gia cảnh:</strong> 15,5 triệu/tháng cho bản thân và 6,2 triệu/tháng cho mỗi người phụ thuộc (Nghị quyết 110/2025/UBTVQH15, áp dụng từ kỳ tính thuế 2026).</li>
+        <li><strong>Thu nhập tính thuế</strong> = Lương Gross − Bảo hiểm − Các khoản giảm trừ.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Biểu thuế TNCN 5 bậc từ 2026</h2>
+      <ul>
+        <li><strong>Bậc 1:</strong> đến 10 triệu/tháng — 5%.</li>
+        <li><strong>Bậc 2:</strong> trên 10 đến 30 triệu — 10%.</li>
+        <li><strong>Bậc 3:</strong> trên 30 đến 60 triệu — 20%.</li>
+        <li><strong>Bậc 4:</strong> trên 60 đến 100 triệu — 30%.</li>
+        <li><strong>Bậc 5:</strong> trên 100 triệu — 35%.</li>
+      </ul>
+      <p>Biểu thuế theo Luật Thuế thu nhập cá nhân 2025; phần quy định về tiền lương, tiền công áp dụng từ kỳ tính thuế năm 2026. Xem thêm <a href="../blog/cach-tinh-luong-net-2026.html">hướng dẫn tính lương Net 2026 có ví dụ và so sánh với 2025</a>.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Câu hỏi thường gặp</h2>
+      <dl class="tool-seo-faq">
+        <div class="tool-seo-faq-item"><dt>Lương Gross 20 triệu thì Net bao nhiêu năm 2026?</dt><dd>Không có người phụ thuộc, đóng bảo hiểm trên đủ 20 triệu: bảo hiểm 2,1 triệu, thu nhập tính thuế 2,4 triệu, thuế TNCN 120.000 đ — <strong>lương Net khoảng 17.780.000 đ</strong>.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Lương bao nhiêu thì phải đóng thuế TNCN?</dt><dd>Với người không có người phụ thuộc và đóng bảo hiểm trên toàn bộ lương, thu nhập từ khoảng <strong>17,3 triệu/tháng</strong> trở lên mới phát sinh thuế. Mỗi người phụ thuộc nâng ngưỡng thêm 6,2 triệu.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Kết quả có chính xác tuyệt đối không?</dt><dd>Công cụ tính theo quy định chung cho người lao động cư trú, hợp đồng từ 3 tháng trở lên. Phụ cấp miễn thuế, thu nhập khác hoặc chính sách riêng của công ty có thể làm số thực nhận khác đi — nên đối chiếu với phòng nhân sự.</dd></div>
+      </dl>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công cụ liên quan</h2>
+      <ul class="tool-seo-more">
+        <li><a class="tool-seo-card" href="loan-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🏠</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lãi vay trả góp</strong><span class="tool-seo-card-sapo">Lương bao nhiêu thì vay mua nhà được</span></span></a></li>
+        <li><a class="tool-seo-card" href="bhxh-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🧾</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính BHXH một lần</strong><span class="tool-seo-card-sapo">Ước tính tiền rút bảo hiểm xã hội một lần</span></span></a></li>
+        <li><a class="tool-seo-card" href="savings-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">🐷</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lãi tiết kiệm</strong><span class="tool-seo-card-sapo">Gửi tiết kiệm mỗi tháng lãi bao nhiêu</span></span></a></li>
+        <li><a class="tool-seo-card" href="number-to-words.html"><span class="tool-seo-card-icon" aria-hidden="true">🔡</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Số thành chữ</strong><span class="tool-seo-card-sapo">Viết số tiền lương bằng chữ cho hợp đồng</span></span></a></li>
+        <li><a class="tool-seo-card" href="currency-convert.html"><span class="tool-seo-card-icon" aria-hidden="true">💱</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Đổi tiền tệ</strong><span class="tool-seo-card-sapo">Quy đổi lương USD sang VND</span></span></a></li>
+        <li><a class="tool-seo-card" href="vietqr.html"><span class="tool-seo-card-icon" aria-hidden="true">🏦</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tạo mã VietQR</strong><span class="tool-seo-card-sapo">QR chuyển khoản nhanh</span></span></a></li>
+      </ul>
+    </section>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20261002k"></script>
+<script src="../assets/js/layout.js?v=20261002g"></script>
+<script src="../assets/js/core.js?v=20261002a"></script>
+<script src="../assets/js/site.js?v=20261002c"></script>
+<script src="../assets/js/tools/salary-calculator.js?v=20261002a"></script>
+</body>
+</html>

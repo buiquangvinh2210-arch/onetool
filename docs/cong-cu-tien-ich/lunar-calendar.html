@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
@@ -16,10 +16,15 @@
 </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Đổi lịch âm dương online miễn phí | OneTool</title>
-  <meta name="description" content="Đổi Dương ↔ Âm lịch: ngày âm, Can Chi, tháng nhuận Việt Nam. Miễn phí, không đăng ký." />
+  <title>Lịch âm hôm nay - Lịch vạn niên 2026 | OneTool</title>
+  <meta name="description" content="Xem lịch âm hôm nay, ngày hoàng đạo, giờ tốt, ngày lễ và đếm ngược Tết. Đổi ngày âm dương nhanh, lưu ngày giỗ hằng năm. Miễn phí." />
   <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/lunar-calendar.html" />
   <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Lịch âm hôm nay — ngày tốt, xem tuổi, văn khấn" />
+  <meta property="og:description" content="Ngày âm, giờ hoàng đạo, việc nên làm, đếm ngược Tết 2027. Xem ngày tốt theo tuổi, gieo quẻ, văn khấn tự điền — miễn phí." />
+  <meta property="og:image" content="https://onetool.vn/assets/img/og-lunar.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
   <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
   <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
@@ -27,7 +32,7 @@
   <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
   <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
   <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
-  <link rel="stylesheet" href="../assets/css/tools/lunar-calendar.css?v=20260828b" />
+  <link rel="stylesheet" href="../assets/css/tools/lunar-calendar.css?v=20261002f" />
   <script>window.OT_BASE = "..";</script>
   <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
 #site-footer{min-height:320px;display:block;contain:layout style}
@@ -41,246 +46,321 @@
 <section class="tool-workspace">
   <div class="ln-page">
     <header class="ln-intro">
-      <h1>Đổi lịch âm dương online</h1>
-      <p>Chuyển Dương lịch ↔ Âm lịch Việt Nam — Can Chi, tháng nhuận, ngày trong tuần. Theo thuật toán Hồ Ngọc Đức.</p>
-      <div class="ln-chips" aria-hidden="true">
-        <span class="ln-chip">Dương ↔ Âm</span>
-        <span class="ln-chip">Can Chi</span>
-        <span class="ln-chip">1800–2199</span>
-      </div>
+      <h1>Lịch âm hôm nay</h1>
+      <p>Xem ngày âm, giờ hoàng đạo, ngày lễ và đổi ngày âm ↔ dương.</p>
     </header>
 
-    <div class="ln-card">
-      <div class="ln-modes" role="tablist" aria-label="Chiều chuyển đổi">
-        <button type="button" class="ln-mode is-on" id="modeSolar" data-mode="solar" role="tab" aria-selected="true">
-          <strong>Dương → Âm</strong>
-          <em>Nhập ngày dương lịch</em>
-        </button>
-        <button type="button" class="ln-mode" id="modeLunar" data-mode="lunar" role="tab" aria-selected="false">
-          <strong>Âm → Dương</strong>
-          <em>Nhập ngày âm lịch</em>
-        </button>
+    <section class="ln-hero" id="lnHero" aria-label="Âm lịch hôm nay"></section>
+
+    <div class="ln-tabs" role="tablist" aria-label="Chế độ">
+      <button type="button" class="ln-tab is-on" id="tabCalendar" data-view="calendar" role="tab" aria-selected="true" aria-controls="viewCalendar">📅 Lịch tháng</button>
+      <button type="button" class="ln-tab" id="tabTuoi" data-view="tuoi" role="tab" aria-selected="false" aria-controls="viewTuoi">🔮 Xem tuổi &amp; quẻ</button>
+      <button type="button" class="ln-tab" id="tabVankhan" data-view="vankhan" role="tab" aria-selected="false" aria-controls="viewVankhan">🙏 Văn khấn</button>
+      <button type="button" class="ln-tab" id="tabConvert" data-view="convert" role="tab" aria-selected="false" aria-controls="viewConvert">🔄 Đổi ngày</button>
+    </div>
+
+    <div class="ln-view" id="viewCalendar" role="tabpanel" aria-labelledby="tabCalendar">
+      <div class="ln-cal-layout">
+        <div class="ln-cal-main">
+          <div class="ln-card ln-cal">
+            <div class="ln-cal-head">
+              <button type="button" class="ln-cal-nav" id="calPrev" aria-label="Tháng trước">‹</button>
+              <div class="ln-cal-title">
+                <div class="ln-cal-pickers">
+                  <select id="calMonth" aria-label="Tháng"></select>
+                  <input type="number" id="calYear" min="1800" max="2199" aria-label="Năm" />
+                </div>
+                <span class="ln-cal-lunar" id="calLunarRange"></span>
+              </div>
+              <button type="button" class="ln-cal-nav" id="calNext" aria-label="Tháng sau">›</button>
+              <button type="button" class="ln-cal-today" id="calToday">Hôm nay</button>
+            </div>
+            <div class="ln-pick" id="pickBar" role="group" aria-label="Tìm ngày tốt theo việc"></div>
+            <div class="ln-cal-week" aria-hidden="true">
+              <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span class="is-sun">CN</span>
+            </div>
+            <div class="ln-cal-grid" id="calGrid"></div>
+            <div class="ln-cal-legend" aria-hidden="true">
+              <span><i class="lg-today"></i>Hôm nay</span>
+              <span><i class="lg-first"></i>Mùng 1 / Rằm</span>
+              <span><i class="lg-good"></i>Ngày hoàng đạo</span>
+              <span><i class="lg-holiday"></i>Ngày lễ</span>
+              <span><i class="lg-mine"></i>Ngày của tôi</span>
+            </div>
+          </div>
+          <div class="ln-lower">
+            <div class="ln-card ln-events ln-pick-card" id="pickCard" hidden>
+              <div class="ln-sec-head">
+                <h2 id="pickTitle">Ngày tốt trong tháng</h2>
+                <span id="pickNote"></span>
+              </div>
+              <ul id="pickList"></ul>
+            </div>
+            <div class="ln-card ln-events">
+              <div class="ln-sec-head">
+                <h2 id="eventsTitle">Ngày lễ trong tháng</h2>
+              </div>
+              <ul id="eventsList"></ul>
+              <a class="ln-month-link" id="monthPageLink" href="../lich-am/index.html">Xem lịch âm từng tháng →</a>
+            </div>
+            <div class="ln-card ln-mine" id="mineCard">
+              <div class="ln-sec-head">
+                <h2>⭐ Ngày giỗ &amp; sự kiện của tôi</h2>
+                <span>Lưu trên trình duyệt này, tự hiện trên lịch hằng năm</span>
+              </div>
+              <form class="ln-mine-form" id="mineForm" autocomplete="off">
+                <input type="text" id="mineName" class="form-control" maxlength="60" placeholder="VD: Giỗ ông nội, sinh nhật mẹ" aria-label="Tên sự kiện" required />
+                <div class="ln-mine-date">
+                  <select id="mineCal" class="form-control" aria-label="Loại lịch">
+                    <option value="lunar">Âm lịch</option>
+                    <option value="solar">Dương lịch</option>
+                  </select>
+                  <input type="number" id="mineDay" class="form-control" min="1" max="31" placeholder="Ngày" aria-label="Ngày" required />
+                  <select id="mineMonth" class="form-control" aria-label="Tháng"></select>
+                  <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+              </form>
+              <ul class="ln-mine-list" id="mineList"></ul>
+            </div>
+          </div>
+        </div>
+        <aside class="ln-card ln-day" id="dayPanel" aria-live="polite"></aside>
       </div>
+    </div>
 
-      <div class="ln-body">
-        <div class="ln-form">
-          <label class="ln-label" id="lnInputLabel">Ngày dương lịch</label>
-          <div class="ln-date-row">
-            <div>
-              <label class="ln-label" for="dayInput">Ngày</label>
-              <input type="number" id="dayInput" class="form-control" min="1" max="31" value="1" />
-            </div>
-            <div>
-              <label class="ln-label" for="monthInput">Tháng</label>
-              <select id="monthInput" class="form-control"></select>
-            </div>
-            <div>
-              <label class="ln-label" for="yearInput">Năm</label>
-              <input type="number" id="yearInput" class="form-control" min="1800" max="2199" value="2026" />
-            </div>
+    <div class="ln-view" id="viewTuoi" role="tabpanel" aria-labelledby="tabTuoi" hidden>
+      <div class="ln-fortune">
+        <div class="ln-card ln-tuoi">
+          <div class="ln-sec-head">
+            <h2>🔮 Vận may theo tuổi</h2>
+            <span>Nhập năm sinh âm lịch (sinh trước Tết thì lấy năm trước) — tự lưu cho lần sau</span>
           </div>
-
-          <label class="ln-check" id="leapWrap" hidden for="leapInput">
-            <input type="checkbox" id="leapInput" />
-            <span>Tháng nhuận (âm lịch)</span>
-          </label>
-
-          <div class="ln-quick">
-            <button type="button" id="todayBtn">Hôm nay</button>
-            <button type="button" id="tetBtn">Mùng 1 Tết (năm nay)</button>
-            <button type="button" id="midBtn">Rằm tháng 8</button>
+          <form class="ln-tuoi-form" id="tuoiForm" autocomplete="off">
+            <input type="number" id="tuoiYear" class="form-control" min="1920" max="2030" placeholder="Năm sinh, VD: 1990" aria-label="Năm sinh" required />
+            <button type="submit" class="btn btn-primary">Xem vận may</button>
+          </form>
+          <div id="tuoiOut"></div>
+        </div>
+        <div class="ln-card ln-que" id="queCard">
+          <div class="ln-sec-head">
+            <h2>🎋 Gieo quẻ đầu ngày</h2>
+            <span>Mỗi ngày một quẻ · mang tính giải trí</span>
           </div>
+          <div id="queBox"></div>
+        </div>
+      </div>
+    </div>
 
-          <div class="ln-actions">
-            <button type="button" class="btn btn-primary" id="runBtn">Đổi lịch</button>
-            <button type="button" class="btn btn-outline" id="copyBtn" disabled>Sao chép</button>
+    <div class="ln-view" id="viewVankhan" role="tabpanel" aria-labelledby="tabVankhan" hidden>
+      <div class="ln-card ln-vk">
+        <div class="ln-sec-head">
+          <h2>🙏 Văn khấn tự điền ngày âm lịch</h2>
+          <span>Chọn loại lễ — ngày tháng âm lịch được điền sẵn, chỉ cần thêm tên và địa chỉ</span>
+        </div>
+        <div class="ln-vk-types" id="vkTypes" role="tablist" aria-label="Loại văn khấn"></div>
+        <div class="ln-vk-layout">
+          <form class="ln-vk-form" id="vkForm" autocomplete="off">
+            <p class="ln-vk-date" id="vkDate"></p>
+            <label class="ln-label" for="vkName">Họ tên tín chủ</label>
+            <input type="text" id="vkName" class="form-control" maxlength="60" placeholder="VD: Nguyễn Văn An" />
+            <label class="ln-label" for="vkAddr">Địa chỉ</label>
+            <input type="text" id="vkAddr" class="form-control" maxlength="120" placeholder="VD: số 12 phố Hàng Bạc, Hoàn Kiếm, Hà Nội" />
+            <label class="ln-label" for="vkFamily">Dòng họ</label>
+            <input type="text" id="vkFamily" class="form-control" maxlength="30" placeholder="VD: Nguyễn" />
+            <div id="vkDeceasedWrap" hidden>
+              <label class="ln-label" for="vkDeceased">Người được giỗ</label>
+              <input type="text" id="vkDeceased" class="form-control" maxlength="80" placeholder="VD: cụ ông Nguyễn Văn Bình" />
+            </div>
+            <p class="ln-vk-offer" id="vkOffer"></p>
+            <button type="button" class="btn btn-primary" id="vkCopy">📋 Sao chép văn khấn</button>
+          </form>
+          <div class="ln-vk-paper">
+            <h3 id="vkTitle">Văn khấn</h3>
+            <pre id="vkText"></pre>
           </div>
-          <p class="ln-note">Múi giờ Việt Nam (UTC+7). Kết quả mang tính tham khảo cho ngày lễ / giỗ.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ln-view" id="viewConvert" role="tabpanel" aria-labelledby="tabConvert" hidden>
+      <div class="ln-card">
+        <div class="ln-modes" role="tablist" aria-label="Chiều chuyển đổi">
+          <button type="button" class="ln-mode is-on" id="modeSolar" data-mode="solar" role="tab" aria-selected="true">
+            <strong>Dương → Âm</strong>
+            <em>Nhập ngày dương lịch</em>
+          </button>
+          <button type="button" class="ln-mode" id="modeLunar" data-mode="lunar" role="tab" aria-selected="false">
+            <strong>Âm → Dương</strong>
+            <em>Nhập ngày âm lịch</em>
+          </button>
         </div>
 
-        <div class="ln-result">
-          <p id="status" class="ln-status">Chọn ngày rồi bấm Đổi lịch — hoặc Hôm nay.</p>
-          <div class="ln-empty" id="lnEmpty">Kết quả Dương / Âm sẽ hiện ở đây.</div>
-          <div class="ln-out" id="lnOut" hidden>
-            <div class="ln-pair">
-              <div class="ln-box">
-                <span>Dương lịch</span>
-                <strong id="outSolar">—</strong>
-                <em id="outWeekday">—</em>
+        <div class="ln-body">
+          <div class="ln-form">
+            <label class="ln-label" id="lnInputLabel">Ngày dương lịch</label>
+            <div class="ln-date-row">
+              <div>
+                <label class="ln-label" for="dayInput">Ngày</label>
+                <input type="number" id="dayInput" class="form-control" min="1" max="31" value="1" />
               </div>
-              <div class="ln-box is-lunar">
-                <span>Âm lịch</span>
-                <strong id="outLunar">—</strong>
-                <em id="outMonthLabel">—</em>
+              <div>
+                <label class="ln-label" for="monthInput">Tháng</label>
+                <select id="monthInput" class="form-control"></select>
+              </div>
+              <div>
+                <label class="ln-label" for="yearInput">Năm</label>
+                <input type="number" id="yearInput" class="form-control" min="1800" max="2199" value="2026" />
               </div>
             </div>
-            <div class="ln-meta">
-              <div><span>Năm Can Chi</span><strong id="outYearCC">—</strong></div>
-              <div><span>Con giáp</span><strong id="outAnimal">—</strong></div>
-              <div><span>Tháng Can Chi</span><strong id="outMonthCC">—</strong></div>
-              <div><span>Ngày Can Chi</span><strong id="outDayCC">—</strong></div>
+
+            <label class="ln-check" id="leapWrap" hidden for="leapInput">
+              <input type="checkbox" id="leapInput" />
+              <span>Tháng nhuận (âm lịch)</span>
+            </label>
+
+            <div class="ln-quick">
+              <button type="button" id="todayBtn">Hôm nay</button>
+              <button type="button" id="tetBtn">Mùng 1 Tết (năm nay)</button>
+              <button type="button" id="midBtn">Rằm tháng 8</button>
+            </div>
+
+            <div class="ln-actions">
+              <button type="button" class="btn btn-primary" id="runBtn">Đổi lịch</button>
+              <button type="button" class="btn btn-outline" id="copyBtn" disabled>Sao chép</button>
+            </div>
+            <p class="ln-note">Múi giờ Việt Nam (UTC+7). Kết quả mang tính tham khảo cho ngày lễ / giỗ.</p>
+          </div>
+
+          <div class="ln-result">
+            <p id="status" class="ln-status">Chọn ngày rồi bấm Đổi lịch — hoặc Hôm nay.</p>
+            <div class="ln-empty" id="lnEmpty">Kết quả Dương / Âm sẽ hiện ở đây.</div>
+            <div class="ln-out" id="lnOut" hidden>
+              <div class="ln-pair">
+                <div class="ln-box">
+                  <span>Dương lịch</span>
+                  <strong id="outSolar">—</strong>
+                  <em id="outWeekday">—</em>
+                </div>
+                <div class="ln-box is-lunar">
+                  <span>Âm lịch</span>
+                  <strong id="outLunar">—</strong>
+                  <em id="outMonthLabel">—</em>
+                </div>
+              </div>
+              <div class="ln-meta">
+                <div><span>Năm Can Chi</span><strong id="outYearCC">—</strong></div>
+                <div><span>Con giáp</span><strong id="outAnimal">—</strong></div>
+                <div><span>Tháng Can Chi</span><strong id="outMonthCC">—</strong></div>
+                <div><span>Ngày Can Chi</span><strong id="outDayCC">—</strong></div>
+              </div>
+              <button type="button" class="ln-link-btn" id="showInCalBtn">Xem ngày này trên lịch tháng →</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <dialog class="ln-dlg" id="shareDlg" aria-labelledby="shareTitle">
+      <div class="ln-dlg-box">
+        <div class="ln-dlg-head">
+          <h2 id="shareTitle">Ảnh lịch để chia sẻ</h2>
+          <button type="button" class="ln-dlg-x" id="shareClose" aria-label="Đóng">✕</button>
+        </div>
+        <img id="shareImg" alt="Ảnh lịch âm để chia sẻ" width="1080" height="1350" />
+        <div class="ln-dlg-actions">
+          <a class="ln-act" id="shareDownload" href="#" download="lich-am-onetool.png">⬇️ Tải ảnh</a>
+          <button type="button" class="ln-act is-main" id="shareNative">📤 Chia sẻ</button>
+        </div>
+        <p class="ln-day-note">Tải ảnh rồi đăng Zalo, Facebook hoặc gửi cho người thân.</p>
+      </div>
+    </dialog>
   </div>
 </section>
-<section class="tool-seo" id="toolSeo"></section>
+<section class="tool-seo" id="toolSeo" data-static="1">
+  <div class="tool-seo-wrap">
+    <section class="tool-seo-block">
+      <h2>Cách dùng Lịch âm hôm nay</h2>
+      <ol class="tool-seo-howto">
+        <li>Mở tab Lịch tháng — hôm nay được tô màu, mỗi ô có cả ngày dương và ngày âm.</li>
+        <li>Bấm vào một ngày để xem Can Chi, giờ hoàng đạo, trực ngày và việc nên làm / kiêng kỵ. Chọn việc ở dòng Tìm ngày tốt để lịch tô xanh các ngày hợp.</li>
+        <li>Sang tab Xem tuổi &amp; quẻ để nhập năm sinh, xem vận may hôm nay và gieo quẻ đầu ngày; tab Văn khấn có bài khấn điền sẵn ngày âm lịch.</li>
+      </ol>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Lịch âm hôm nay &amp; lịch vạn niên</h2>
+      <p>Trang <strong>lịch âm</strong> hiển thị lịch tháng theo <strong>âm lịch Việt Nam</strong>: mỗi ô có ngày dương, ngày âm, mùng 1 và ngày rằm được đánh dấu, cùng các <strong>ngày lễ</strong> như Tết Nguyên đán, Giỗ Tổ Hùng Vương, Vu Lan, Trung thu, 30/4, 2/9.</p>
+      <p>Bấm vào một ngày bất kỳ để xem <strong>Can Chi</strong> của ngày / tháng / năm, <strong>tiết khí</strong> và <strong>giờ hoàng đạo</strong>. Có thể chuyển nhanh sang tab <strong>Đổi ngày</strong> để đổi <strong>Dương ↔ Âm</strong> cho ngày giỗ, cưới hỏi, sinh nhật âm.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Lịch âm 2026 năm Bính Ngọ</h2>
+      <p>Năm âm lịch <strong>Bính Ngọ</strong> bắt đầu ngày <strong>17/02/2026</strong>, có 12 tháng, <strong>không có tháng nhuận</strong>. <strong>Tết Đinh Mùi 2027</strong> rơi vào Thứ Bảy <strong>06/02/2027</strong>; tháng Chạp thiếu nên giao thừa là đêm 29 tháng Chạp (05/02/2027).</p>
+      <ul>
+        <li><strong>Mùng 1 các tháng còn lại:</strong> 10/10, 09/11, 09/12/2026 và 08/01/2027 (mùng 1 tháng Chạp).</li>
+        <li><strong>Rằm các tháng còn lại:</strong> 24/10, 23/11, 23/12/2026 và 22/01/2027.</li>
+        <li><strong>Ông Công ông Táo</strong> (23 tháng Chạp): Thứ Bảy 30/01/2027.</li>
+      </ul>
+      <p>Lịch từng tháng có sẵn ngày tốt theo việc và giờ hoàng đạo mỗi ngày: <a href="../lich-am/thang-10-2026.html">tháng 10/2026</a>, <a href="../lich-am/thang-11-2026.html">tháng 11/2026</a>, <a href="../lich-am/thang-12-2026.html">tháng 12/2026</a>, <a href="../lich-am/thang-1-2027.html">tháng 1/2027</a>, <a href="../lich-am/thang-2-2027.html">tháng 2/2027</a> hoặc <a href="../lich-am/index.html">tất cả các tháng 2026 – 2027</a>.</p>
+      <p>Xem bảng <a href="../blog/lich-am-2026.html">mùng 1, rằm và ngày lễ cả năm 2026</a>, danh sách <a href="../blog/xem-ngay-tot-cuoi-nam-2026.html">ngày tốt cuối năm 2026</a> và <a href="../blog/van-khan-mung-1-ngay-ram.html">văn khấn mùng 1, ngày rằm</a>.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Xem ngày tốt, xem tuổi, gieo quẻ và văn khấn</h2>
+      <ul>
+        <li><strong>Xem ngày tốt theo việc</strong> chọn cưới hỏi, khai trương, động thổ, về nhà mới, xuất hành, mua xe, ký hợp đồng — lịch lọc ngày hoàng đạo, trực hợp việc, tránh Tam nương, Nguyệt kỵ và ngày xung tuổi.</li>
+        <li><strong>Việc nên làm / kiêng kỵ</strong> mỗi ngày có trực (Kiến, Trừ, Mãn…) kèm gợi ý nên làm và nên tránh.</li>
+        <li><strong>Xem tuổi hôm nay</strong> chấm sao theo ngũ hành nạp âm, hợp – xung địa chi; kèm màu, con số, giờ tốt và 7 ngày tới.</li>
+        <li><strong>Gieo quẻ đầu ngày</strong> mỗi ngày một quẻ với lời thơ, công việc, tài lộc, tình cảm, sức khỏe — có ảnh để chia sẻ.</li>
+        <li><strong>Văn khấn</strong> mùng 1, ngày rằm, giỗ gia tiên, Thần Tài, ông Công ông Táo — tự điền ngày âm lịch, tên và địa chỉ.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Âm lịch Việt Nam khác gì?</h2>
+      <ul>
+        <li><strong>Múi giờ +7</strong> tính theo Việt Nam (thuật toán Hồ Ngọc Đức), nên mùng 1 và Tết có thể lệch 1 ngày so với lịch Trung Quốc.</li>
+        <li><strong>Tháng nhuận</strong> một số năm có thêm một tháng âm — nhớ tick đúng nếu đổi Âm → Dương.</li>
+        <li><strong>Can Chi</strong> chu kỳ 60 năm / ngày — năm, tháng, ngày đều có tên Can Chi.</li>
+        <li><strong>Phạm vi</strong> hỗ trợ khoảng 1800–2199. Kết quả mang tính tham khảo.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Câu hỏi thường gặp</h2>
+      <dl class="tool-seo-faq">
+        <div class="tool-seo-faq-item"><dt>Hôm nay là ngày bao nhiêu âm lịch?</dt><dd>Mở trang là thấy ngay: ô <strong>hôm nay</strong> được tô màu trên lịch tháng, bảng bên cạnh ghi rõ ngày âm, tháng âm, năm Can Chi và còn bao nhiêu ngày đến mùng 1, rằm, Tết.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Tết Nguyên đán 2027 là ngày nào?</dt><dd>Mùng 1 Tết Đinh Mùi là <strong>Thứ Bảy 06/02/2027</strong>. Năm Bính Ngọ có tháng Chạp thiếu nên không có ngày 30 Tết — giao thừa là đêm 29 tháng Chạp (05/02/2027). Trang có đồng hồ đếm ngược đến Tết.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Có lưu được ngày giỗ theo âm lịch không?</dt><dd>Có. Ở mục <strong>Ngày giỗ &amp; sự kiện của tôi</strong>, nhập tên và ngày âm (ví dụ giỗ 25/8 âm lịch) — lịch tự đánh dấu mỗi năm, đếm ngược số ngày còn lại và có nút thêm vào <strong>Google Calendar</strong>. Dữ liệu chỉ lưu trên trình duyệt của bạn.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Giờ hoàng đạo được tính thế nào?</dt><dd>Theo cách tính truyền thống dựa trên <strong>Chi của ngày</strong>: mỗi ngày có 6 giờ hoàng đạo (mỗi giờ 2 tiếng). Thông tin mang tính tham khảo theo phong tục.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Đổi ngày âm sang dương có tính tháng nhuận không?</dt><dd>Có. Ở tab <strong>Đổi ngày</strong>, chọn Âm → Dương và tick <strong>tháng nhuận</strong> nếu ngày cần đổi rơi vào tháng nhuận (ví dụ năm 2025 nhuận tháng 6).</dd></div>
+        <div class="tool-seo-faq-item"><dt>Lịch âm này có đúng múi giờ Việt Nam không?</dt><dd>Có. Lịch tính theo <strong>múi giờ +7</strong> (thuật toán Hồ Ngọc Đức), nên ngày mùng 1 và Tết khớp với lịch Việt Nam, có thể lệch 1 ngày so với lịch Trung Quốc.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Làm sao xem ngày tốt để khai trương, cưới hỏi?</dt><dd>Ở tab <strong>Lịch tháng</strong>, chọn việc ở dòng <strong>Tìm ngày tốt</strong> — các ngày hợp được tô xanh và liệt kê bên dưới kèm trực và sao hoàng đạo. Nếu đã nhập năm sinh, lịch tự loại thêm ngày xung tuổi. Nội dung theo phong tục, chỉ mang tính tham khảo.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Văn khấn mùng 1 và ngày rằm có sẵn ngày âm không?</dt><dd>Có. Tab <strong>Văn khấn</strong> tự điền ngày âm lịch của mùng 1 hoặc rằm sắp tới, bạn chỉ cần thêm tên tín chủ, địa chỉ, rồi bấm <strong>Sao chép</strong>. Có cả văn khấn giỗ gia tiên, Thần Tài và ông Công ông Táo.</dd></div>
+      </dl>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Bài viết về lịch âm</h2>
+      <ul>
+        <li><a href="../lich-am/index.html">Lịch âm từng tháng 2026 – 2027: ngày tốt, ngày hoàng đạo</a></li>
+        <li><a href="../blog/lich-am-2026.html">Lịch âm 2026: mùng 1, rằm và ngày lễ cả năm Bính Ngọ</a></li>
+        <li><a href="../blog/xem-ngay-tot-cuoi-nam-2026.html">Xem ngày tốt cuối năm 2026: khai trương, cưới hỏi, về nhà mới</a></li>
+        <li><a href="../blog/van-khan-mung-1-ngay-ram.html">Văn khấn mùng 1 và ngày rằm: lễ vật, giờ cúng, bài khấn</a></li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công cụ liên quan</h2>
+      <ul class="tool-seo-more">
+        <li><a class="tool-seo-card" href="gieo-que.html"><span class="tool-seo-card-icon" aria-hidden="true">🎋</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Gieo quẻ online</strong><span class="tool-seo-card-sapo">Lắc điện thoại xin quẻ may mắn hôm nay</span></span></a></li>
+        <li><a class="tool-seo-card" href="salary-calculator.html"><span class="tool-seo-card-icon" aria-hidden="true">💰</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tính lương Gross Net</strong><span class="tool-seo-card-sapo">Lương thực nhận 2026 sau bảo hiểm và thuế TNCN</span></span></a></li>
+        <li><a class="tool-seo-card" href="number-to-words.html"><span class="tool-seo-card-icon" aria-hidden="true">🔡</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Số thành chữ</strong><span class="tool-seo-card-sapo">Viết số tiền mừng, phong bì bằng chữ</span></span></a></li>
+        <li><a class="tool-seo-card" href="vietqr.html"><span class="tool-seo-card-icon" aria-hidden="true">🏦</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tạo mã VietQR</strong><span class="tool-seo-card-sapo">QR chuyển khoản mừng cưới, lì xì online</span></span></a></li>      </ul>
+    </section>
+  </div>
+</section>
 </main>
 <div id="site-footer"></div>
-<script src="../assets/js/catalog.js?v=20260914b"></script>
-<script src="../assets/js/layout.js?v=20260914b"></script>
-<script src="../assets/js/core.js?v=20260910c"></script>
-<script src="../assets/js/site.js?v=20260910i"></script>
-<script src="../assets/js/tools/lunar-calendar.js?v=20260828a"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  let mode = "solar";
-  let lastText = "";
-
-  const monthInput = document.getElementById("monthInput");
-  for (let i = 1; i <= 12; i++) {
-    const opt = document.createElement("option");
-    opt.value = String(i);
-    opt.textContent = "Tháng " + i;
-    monthInput.appendChild(opt);
-  }
-
-  const els = {
-    day: document.getElementById("dayInput"),
-    month: monthInput,
-    year: document.getElementById("yearInput"),
-    leap: document.getElementById("leapInput"),
-    leapWrap: document.getElementById("leapWrap"),
-    label: document.getElementById("lnInputLabel"),
-    status: document.getElementById("status"),
-    empty: document.getElementById("lnEmpty"),
-    out: document.getElementById("lnOut"),
-    copyBtn: document.getElementById("copyBtn")
-  };
-
-  function setStatus(msg, kind) {
-    els.status.textContent = msg;
-    els.status.className = "ln-status" + (kind ? " is-" + kind : "");
-  }
-
-  function setMode(next) {
-    mode = next;
-    document.getElementById("modeSolar").classList.toggle("is-on", mode === "solar");
-    document.getElementById("modeLunar").classList.toggle("is-on", mode === "lunar");
-    document.getElementById("modeSolar").setAttribute("aria-selected", mode === "solar" ? "true" : "false");
-    document.getElementById("modeLunar").setAttribute("aria-selected", mode === "lunar" ? "true" : "false");
-    els.label.textContent = mode === "solar" ? "Ngày dương lịch" : "Ngày âm lịch";
-    els.leapWrap.hidden = mode !== "lunar";
-  }
-
-  function readInts() {
-    return {
-      d: parseInt(els.day.value, 10),
-      m: parseInt(els.month.value, 10),
-      y: parseInt(els.year.value, 10),
-      leap: !!els.leap.checked
-    };
-  }
-
-  function fillDate(d, m, y, leap) {
-    els.day.value = String(d);
-    els.month.value = String(m);
-    els.year.value = String(y);
-    els.leap.checked = !!leap;
-  }
-
-  function showResult(info) {
-    const solarStr = OTLunar.formatSolar(info.solar.day, info.solar.month, info.solar.year);
-    const lunarStr = OTLunar.formatLunar(
-      info.lunar.day,
-      info.lunar.month,
-      info.lunar.year,
-      info.lunar.leap
-    );
-
-    document.getElementById("outSolar").textContent = solarStr;
-    document.getElementById("outWeekday").textContent = info.weekday;
-    document.getElementById("outLunar").textContent = lunarStr;
-    document.getElementById("outMonthLabel").textContent = info.monthLabel;
-    document.getElementById("outYearCC").textContent = info.yearCanChi;
-    document.getElementById("outAnimal").textContent = info.yearAnimal;
-    document.getElementById("outMonthCC").textContent = info.monthCanChi;
-    document.getElementById("outDayCC").textContent = info.dayCanChi;
-
-    lastText =
-      "Dương lịch: " + solarStr + " (" + info.weekday + ")\n" +
-      "Âm lịch: " + lunarStr + " — " + info.monthLabel + "\n" +
-      "Năm Can Chi: " + info.yearCanChi + " (" + info.yearAnimal + ")\n" +
-      "Tháng Can Chi: " + info.monthCanChi + "\n" +
-      "Ngày Can Chi: " + info.dayCanChi;
-
-    els.empty.hidden = true;
-    els.out.hidden = false;
-    els.copyBtn.disabled = false;
-  }
-
-  function convert() {
-    try {
-      if (!window.OTLunar) throw new Error("Script chưa sẵn sàng — thử Ctrl+F5.");
-      const { d, m, y, leap } = readInts();
-      const info =
-        mode === "solar"
-          ? OTLunar.convertSolarToLunar(d, m, y)
-          : OTLunar.convertLunarToSolar(d, m, y, leap);
-      showResult(info);
-      setStatus("Đã đổi lịch.", "ok");
-    } catch (e) {
-      setStatus(e.message || String(e), "err");
-    }
-  }
-
-  document.getElementById("modeSolar").onclick = function () {
-    setMode("solar");
-  };
-  document.getElementById("modeLunar").onclick = function () {
-    setMode("lunar");
-  };
-
-  document.getElementById("runBtn").onclick = convert;
-
-  document.getElementById("todayBtn").onclick = function () {
-    setMode("solar");
-    const info = OTLunar.todayInfo();
-    fillDate(info.solar.day, info.solar.month, info.solar.year, false);
-    showResult(info);
-    setStatus("Hôm nay.", "ok");
-  };
-
-  document.getElementById("tetBtn").onclick = function () {
-    setMode("lunar");
-    const y = new Date().getFullYear();
-    fillDate(1, 1, y, false);
-    convert();
-  };
-
-  document.getElementById("midBtn").onclick = function () {
-    setMode("lunar");
-    const y = new Date().getFullYear();
-    fillDate(15, 8, y, false);
-    convert();
-  };
-
-  document.getElementById("copyBtn").onclick = async function () {
-    if (!lastText) return;
-    try {
-      await navigator.clipboard.writeText(lastText);
-      setStatus("Đã sao chép kết quả.", "ok");
-    } catch (_) {
-      setStatus("Không sao chép được.", "err");
-    }
-  };
-
-  // Init = hôm nay
-  setMode("solar");
-  document.getElementById("todayBtn").click();
-});
-</script>
+<script src="../assets/js/catalog.js?v=20261002k"></script>
+<script src="../assets/js/layout.js?v=20261002g"></script>
+<script src="../assets/js/core.js?v=20261002a"></script>
+<script src="../assets/js/site.js?v=20261002c"></script>
+<script src="../assets/js/tools/lunar-calendar.js?v=20261002d"></script>
+<script src="../assets/js/tools/lunar-fortune.js?v=20261002e"></script>
+<script src="../assets/js/tools/lunar-calendar-ui.js?v=20261002h"></script>
 </body>
 </html>

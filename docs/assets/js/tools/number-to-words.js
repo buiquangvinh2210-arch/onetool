@@ -97,6 +97,9 @@
       out.value = toWords(input.value, moneyChk.checked);
       status.textContent = "Đã đổi — sao chép vào hợp đồng / hóa đơn.";
       status.className = "ntw-status is-ok";
+      document.dispatchEvent(new CustomEvent("ot:result", {
+        detail: { text: input.value.trim() + ": " + out.value, title: "Số tiền bằng chữ" }
+      }));
     } catch (e) {
       out.value = "";
       status.textContent = e.message || String(e);

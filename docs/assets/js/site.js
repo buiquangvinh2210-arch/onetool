@@ -128,7 +128,8 @@
     "pdf-compress",
     "image-compress",
     "currency-convert",
-    "number-to-words"
+    "number-to-words",
+    "salary-calculator"
   ];
 
   let searchActive = 0;
@@ -173,6 +174,18 @@
     return list.concat(extra).slice(0, 10);
   }
 
+  function defaultSearchList() {
+    const mine = (window.OTEngage?.personalTools?.(5) || []).filter((t) => !t.hub);
+    const mineSlugs = new Set(mine.map((t) => t.slug));
+    const hot = hotTools().filter((t) => !mineSlugs.has(t.slug));
+    return { tools: mine.concat(hot), mineCount: mine.length };
+  }
+
+  function renderDefaultSearch() {
+    const { tools, mineCount } = defaultSearchList();
+    renderSearchList(tools, "hot", mineCount);
+  }
+
   function searchTools(q) {
     const query = foldVi(q).trim();
     if (!query) return hotTools();
@@ -199,13 +212,15 @@
     return scored.slice(0, 12).map((x) => x.t);
   }
 
-  function renderSearchList(tools, mode) {
+  function renderSearchList(tools, mode, mineCount = 0) {
     const list = document.getElementById("toolSearchList");
     const empty = document.getElementById("toolSearchEmpty");
     const label = document.getElementById("toolSearchLabel");
     if (!list) return;
     searchActive = 0;
-    if (label) label.textContent = mode === "hot" ? "Gợi ý nổi bật" : "Kết quả";
+    if (label) {
+      label.textContent = mode !== "hot" ? "Kết quả" : mineCount ? "Dùng gần đây & đã lưu" : "Gợi ý nổi bật";
+    }
     if (!tools.length) {
       list.innerHTML = "";
       if (empty) empty.hidden = false;
@@ -215,10 +230,14 @@
     list.innerHTML = tools
       .map((t, i) => {
         const cat = catName(t);
-        return `<a class="tool-search-item${i === 0 ? " is-active" : ""}" role="option" href="${toolHref(t)}" data-idx="${i}">
+        const sub = mode === "hot" && mineCount && i === mineCount
+          ? `<p class="tool-search-sublabel" role="presentation">Gợi ý nổi bật</p>`
+          : "";
+        const star = t.isFav ? " ★" : "";
+        return `${sub}<a class="tool-search-item${i === 0 ? " is-active" : ""}" role="option" href="${toolHref(t)}" data-idx="${i}">
           <span class="tool-search-item-icon" aria-hidden="true">${t.icon || "⚡"}</span>
           <span class="tool-search-item-body">
-            <strong>${escHtml(t.name)}</strong>
+            <strong>${escHtml(t.name)}${star}</strong>
             <small>${escHtml(cat)}${t.desc ? " · " + escHtml(shortDesc(t.desc)) : ""}</small>
           </span>
           <span class="tool-search-item-go" aria-hidden="true">→</span>
@@ -258,7 +277,7 @@
     modal.removeAttribute("inert");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("tool-search-open");
-    renderSearchList(hotTools(), "hot");
+    renderDefaultSearch();
     if (input) {
       input.value = "";
       requestAnimationFrame(() => input.focus());
@@ -291,7 +310,8 @@
       clearTimeout(timer);
       timer = setTimeout(() => {
         const q = input.value.trim();
-        renderSearchList(searchTools(q), q ? "results" : "hot");
+        if (q) renderSearchList(searchTools(q), "results");
+        else renderDefaultSearch();
       }, 80);
     });
 

@@ -125,6 +125,10 @@
       return { cat: "home", tool: "blog-article" };
     }
 
+    if (/\/lich-am\//i.test(path)) {
+      return { cat: "home", tool: /\/lich-am\/?($|index\.html$)/i.test(path) ? "lunar-months" : "lunar-month" };
+    }
+
     if (file === "cong-cu.html" || /\/cong-cu\/?($|\/?index\.html?$)/i.test(path)) {
       return { cat: "hub", tool: "tools-index" };
     }
@@ -281,14 +285,16 @@
     setMeta("property", "og:description", desc, true);
     setMeta("property", "og:locale", "vi_VN", true);
     setMeta("property", "og:url", url, true);
-    setMeta("property", "og:image", OG_IMAGE, true);
+    const pageImage = document.querySelector('meta[property="og:image"]')?.content;
+    const ogImage = pageImage || OG_IMAGE;
+    setMeta("property", "og:image", ogImage, true);
     setMeta("property", "og:image:width", "1200", true);
     setMeta("property", "og:image:height", "630", true);
-    setMeta("property", "og:image:alt", "OneTool — công cụ file online miễn phí", true);
+    setMeta("property", "og:image:alt", pageImage ? title : "OneTool — công cụ file online miễn phí", true);
     setMeta("name", "twitter:card", "summary_large_image", true);
     setMeta("name", "twitter:title", title, true);
     setMeta("name", "twitter:description", desc, true);
-    setMeta("name", "twitter:image", OG_IMAGE, true);
+    setMeta("name", "twitter:image", ogImage, true);
 
     if (location.protocol !== "file:") {
       const existingCanon = document.querySelector('link[rel="canonical"]');
@@ -308,10 +314,10 @@
       name: "OneTool",
       url: SITE_ORIGIN + "/",
       logo: SITE_ORIGIN + "/assets/img/logo-mark.png",
-      telephone: "+84-982-945-576",
+      email: "onetools27@gmail.com",
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+84-982-945-576",
+        email: "onetools27@gmail.com",
         contactType: "customer support",
         availableLanguage: ["Vietnamese"],
         areaServed: "VN"
@@ -585,8 +591,9 @@
           <a href="${href("cong-cu-media/audio-to-text.html")}">Audio → Text</a>
           <a href="${href("cong-cu-media/text-to-speech.html")}">Văn bản → giọng nói</a>
           <a href="${href("cong-cu-media/video-to-gif.html")}">Video sang GIF</a>
+          <a href="${href("cong-cu-tien-ich/salary-calculator.html")}">Tính lương Gross Net</a>
           <a href="${href("cong-cu-tien-ich/currency-convert.html")}">Đổi tiền tệ</a>
-          <a href="${href("cong-cu-tien-ich/lunar-calendar.html")}">Đổi lịch âm dương</a>
+          <a href="${href("cong-cu-tien-ich/lunar-calendar.html")}">Lịch âm hôm nay</a>
           <a href="${href("cong-cu-pdf/pdf-to-word.html")}">PDF to Word</a>
           <a href="${href("cong-cu-pdf/pdf-to-excel.html")}">PDF sang Excel</a>
           <a href="${href("cong-cu-pdf/image-pdf.html")}">Ảnh ↔ PDF</a>
@@ -601,7 +608,6 @@
         <h4>Liên hệ &amp; Góp ý</h4>
         <div class="footer-links">
           <a href="${href("lien-he.html")}">Gửi góp ý</a>
-          <span class="footer-plain">0982 945 576</span>
           <a href="${href("blog/")}">Blog hướng dẫn</a>
           <a href="${href("about.html")}">Giới thiệu</a>
           <a href="${href("chinh-sach.html")}">Chính sách bảo mật</a>
@@ -628,7 +634,9 @@
   }
 
   function rich(s) {
-    return esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    return esc(s)
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\[([^\]]+)\]\(([a-z0-9\-/.]+\.html)\)/gi, (_, text, path) => `<a href="${href(path)}">${text}</a>`);
   }
 
   function injectToolCrumb() {
@@ -1081,6 +1089,29 @@
     });
   }
 
+  const ENGAGE_VERSION = "20261002e";
+
+  function injectEngage() {
+    if (!document.querySelector('link[rel="manifest"]')) {
+      const manifest = document.createElement("link");
+      manifest.rel = "manifest";
+      manifest.href = "/site.webmanifest";
+      document.head.appendChild(manifest);
+    }
+    if (!document.querySelector('link[href*="engage.css"]')) {
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = asset(`css/engage.css?v=${ENGAGE_VERSION}`);
+      document.head.appendChild(css);
+    }
+    if (!document.querySelector('script[src*="engage.js"]')) {
+      const js = document.createElement("script");
+      js.src = asset(`js/engage.js?v=${ENGAGE_VERSION}`);
+      js.defer = true;
+      document.body.appendChild(js);
+    }
+  }
+
   function injectInAppBanner() {
     if (document.getElementById("otInAppBanner")) return;
     const ua = navigator.userAgent || "";
@@ -1132,6 +1163,11 @@
     injectToolSeoBody();
   } catch (err) {
     console.error("[OneTool layout] extras", err);
+  }
+  try {
+    injectEngage();
+  } catch (err) {
+    console.error("[OneTool layout] engage", err);
   }
   requestAnimationFrame(function () {
     requestAnimationFrame(markChromeReady);

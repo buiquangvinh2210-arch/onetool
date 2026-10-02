@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<title>Sinh ảnh OG công cụ Tiện ích</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+<style>body{margin:0;background:#ddd;font-family:"Plus Jakarta Sans"}canvas{display:block;margin:12px;width:600px;height:315px}</style>
+</head>
+<body>
+<script>
+(async function () {
+  const W = 1200, H = 630, F = '"Plus Jakarta Sans", "Segoe UI", sans-serif';
+  const THEMES = {
+    lavender: {
+      bg: ["#f6f3ff", "#eef6ff"], dot1: "rgba(167,139,250,0.28)", dot2: "rgba(125,211,252,0.3)",
+      pillBg: "rgba(124,58,237,0.12)", pillInk: "#6d28d9", ink: "#1e1b3a", muted: "#475569",
+      grad: ["#7c3aed", "#0ea5e9"], chipLine: "rgba(124,58,237,0.28)", chipInk: "#4c1d95",
+      head: "#7c3aed", rule: "rgba(124,58,237,0.15)", shadow: "rgba(76,29,149,0.16)", foot: "#94a3b8"
+    },
+    red: {
+      bg: ["#fff8ef", "#fdebe0"], dot1: "rgba(251,191,36,0.3)", dot2: "rgba(220,38,38,0.13)",
+      pillBg: "rgba(185,28,28,0.1)", pillInk: "#b91c1c", ink: "#2a1410", muted: "#6b4a3f",
+      grad: ["#c0262d", "#d97706"], chipLine: "rgba(185,28,28,0.28)", chipInk: "#7f1d1d",
+      head: "#b91c1c", rule: "rgba(185,28,28,0.15)", shadow: "rgba(127,29,29,0.18)", foot: "#a8826b"
+    }
+  };
+  const CARDS = {
+    "og-loan": {
+      title: ["Tính lãi vay", "trả góp"],
+      sub: ["Vay mua nhà, mua xe mỗi tháng trả bao nhiêu?", "Có lãi ưu đãi rồi thả nổi, lịch trả nợ từng tháng."],
+      chips: ["Dư nợ giảm dần", "Trả đều", "Miễn phí"],
+      head: "Ví dụ vay 1 tỷ trong 20 năm",
+      rows: [["Lãi suất", "9%/năm", 0], ["Gốc mỗi tháng", "4.166.667", 0], ["Lãi tháng đầu", "+7.500.000", 1]],
+      big: ["Tháng đầu trả", "11.666.667 đ"],
+      foot: "Dư nợ giảm dần · giảm dần mỗi tháng"
+    },
+    "og-savings": {
+      title: ["Tính lãi", "tiết kiệm"],
+      sub: ["Gửi bao nhiêu, kỳ hạn nào, lãi bao nhiêu —", "lĩnh lãi hàng tháng, tái tục hay tích lũy."],
+      chips: ["Lãi kép", "Tích lũy", "Miễn phí"],
+      head: "Ví dụ gửi 100 triệu",
+      rows: [["Lãi suất", "6%/năm", 0], ["Kỳ hạn", "12 tháng", 0], ["Tiền lãi", "+6.000.000", 2]],
+      big: ["Nhận khi đáo hạn", "106.000.000 đ"],
+      foot: "Lĩnh lãi cuối kỳ"
+    },
+    "og-bhxh": {
+      title: ["Tính BHXH", "một lần"],
+      sub: ["Đóng bao nhiêu năm, rút được bao nhiêu —", "diễn giải từng bước theo luật BHXH."],
+      chips: ["Trước & sau 2014", "Tháng lẻ", "Miễn phí"],
+      head: "Ví dụ đóng 5 năm 5 tháng",
+      rows: [["Lương bình quân", "8.000.000", 0], ["Số năm tính", "5,5 năm", 0], ["Mức hưởng", "2 tháng/năm", 0]],
+      big: ["Nhận một lần", "88.000.000 đ"],
+      foot: "Đóng từ 2014 · chưa tính trượt giá"
+    },
+    "og-gieo-que": {
+      theme: "red",
+      title: ["Gieo quẻ", "online"],
+      sub: ["Chọn việc muốn hỏi, lắc điện thoại để thẻ", "quẻ rơi ra — 36 quẻ có thơ và lời giải."],
+      chips: ["Lắc điện thoại", "36 quẻ", "Miễn phí"],
+      head: "Quẻ số 9 · Đại cát",
+      poem: ["Chép vàng vượt sóng vũ môn", "Thác cao chẳng ngại, sóng dồn chẳng lui", "Một mai rạng rỡ niềm vui", "Hóa rồng một sớm, ngọt bùi trời ban"],
+      big: ["Lời quẻ · Thi cử", "Đỗ đạt như ý"],
+      foot: "Cá chép vượt vũ môn"
+    },
+    "og-tung-dong-xu": {
+      theme: "red",
+      title: ["Tung đồng xu", "online"],
+      sub: ["Gieo 3 đồng xu cổ xem việc thuận hay chưa,", "xin âm dương — lắc điện thoại để gieo."],
+      chips: ["Lắc điện thoại", "Xin âm dương", "Miễn phí"],
+      head: "Gieo 3 đồng xu cổ",
+      coins: ["N", "S", "N"],
+      big: ["Kết quả", "Dương thịnh · Cát"],
+      foot: "2 dương · 1 âm — thuận nhiều hơn nghịch"
+    }
+  };
+
+  await document.fonts.load('800 60px "Plus Jakarta Sans"');
+  await document.fonts.load('600 24px "Plus Jakarta Sans"');
+  await document.fonts.load('500 24px "Plus Jakarta Sans"');
+  await document.fonts.load('italic 600 24px "Plus Jakarta Sans"');
+  const logo = new Image();
+  logo.src = "../docs/assets/img/logo-mark.png";
+  await logo.decode();
+
+  function rr(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function draw(c) {
+    const P = THEMES[c.theme || "lavender"];
+    const cv = document.createElement("canvas");
+    cv.width = W;
+    cv.height = H;
+    const ctx = cv.getContext("2d");
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, P.bg[0]);
+    bg.addColorStop(1, P.bg[1]);
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = P.dot1;
+    ctx.beginPath(); ctx.arc(1090, 40, 200, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = P.dot2;
+    ctx.beginPath(); ctx.arc(70, 640, 210, 0, Math.PI * 2); ctx.fill();
+
+    ctx.font = `700 22px ${F}`;
+    const pill = "OneTool · Tiện ích";
+    const pw = ctx.measureText(pill).width + 40;
+    rr(ctx, 70, 64, pw, 46, 23);
+    ctx.fillStyle = P.pillBg;
+    ctx.fill();
+    ctx.fillStyle = P.pillInk;
+    ctx.textBaseline = "middle";
+    ctx.fillText(pill, 90, 88);
+
+    ctx.textBaseline = "alphabetic";
+    ctx.font = `800 68px ${F}`;
+    ctx.fillStyle = P.ink;
+    ctx.fillText(c.title[0], 70, 196);
+    const tg = ctx.createLinearGradient(70, 0, 560, 0);
+    tg.addColorStop(0, P.grad[0]);
+    tg.addColorStop(1, P.grad[1]);
+    ctx.fillStyle = tg;
+    ctx.fillText(c.title[1], 70, 278);
+
+    ctx.font = `500 25px ${F}`;
+    ctx.fillStyle = P.muted;
+    c.sub.forEach((s, i) => ctx.fillText(s, 72, 340 + i * 38));
+
+    ctx.font = `700 21px ${F}`;
+    let x = 72;
+    c.chips.forEach((t) => {
+      const w = ctx.measureText(t).width + 36;
+      rr(ctx, x, 418, w, 44, 22);
+      ctx.fillStyle = "#fff";
+      ctx.fill();
+      ctx.strokeStyle = P.chipLine;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.fillStyle = P.chipInk;
+      ctx.textBaseline = "middle";
+      ctx.fillText(t, x + 18, 441);
+      ctx.textBaseline = "alphabetic";
+      x += w + 12;
+    });
+
+    ctx.save();
+    rr(ctx, 72, 520, 56, 56, 14);
+    ctx.clip();
+    ctx.drawImage(logo, 72, 520, 56, 56);
+    ctx.restore();
+    ctx.font = `800 30px ${F}`;
+    ctx.fillStyle = P.ink;
+    ctx.fillText("onetool.vn", 144, 559);
+
+    const cx = 750, cy = 96, cw = 390, ch = 440;
+    ctx.save();
+    ctx.shadowColor = P.shadow;
+    ctx.shadowBlur = 40;
+    ctx.shadowOffsetY = 14;
+    rr(ctx, cx, cy, cw, ch, 26);
+    ctx.fillStyle = "#fff";
+    ctx.fill();
+    ctx.restore();
+
+    ctx.font = `700 21px ${F}`;
+    ctx.fillStyle = P.head;
+    ctx.fillText(c.head, cx + 30, cy + 52);
+    if (c.coins) {
+      const tx = cx + cw / 2, ty = cy + 172;
+      const tray = ctx.createRadialGradient(tx, ty - 30, 10, tx, ty, 92);
+      tray.addColorStop(0, "#b3222a");
+      tray.addColorStop(0.6, "#84121a");
+      tray.addColorStop(1, "#5c0b10");
+      ctx.fillStyle = tray;
+      ctx.beginPath(); ctx.arc(tx, ty, 92, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#d4a03c";
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(tx, ty, 84, 0, Math.PI * 2); ctx.stroke();
+      const pos = [[tx, ty - 34, -12], [tx - 46, ty + 34, 18], [tx + 46, ty + 34, -24]];
+      c.coins.forEach((side, i) => {
+        const [x, y, rot] = pos[i], r = 40, h = r * 0.26;
+        const yang = side === "N";
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate((rot * Math.PI) / 180);
+        ctx.shadowColor = "rgba(60,10,10,0.3)";
+        ctx.shadowBlur = 16;
+        ctx.shadowOffsetY = 7;
+        const g = ctx.createRadialGradient(-r * 0.4, -r * 0.5, 4, 0, 0, r);
+        g.addColorStop(0, yang ? "#f7dc98" : "#c79a58");
+        g.addColorStop(0.5, yang ? "#c78f34" : "#8d6129");
+        g.addColorStop(1, yang ? "#6a4012" : "#46300f");
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate((rot * Math.PI) / 180);
+        ctx.strokeStyle = yang ? "#e0b158" : "#b08443";
+        ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(0, 0, r - 5, 0, Math.PI * 2); ctx.stroke();
+        ctx.fillStyle = "#8f1820";
+        ctx.fillRect(-h, -h, h * 2, h * 2);
+        ctx.strokeStyle = yang ? "#d9a84c" : "#a87d3d";
+        ctx.lineWidth = 3;
+        ctx.strokeRect(-h - 1.5, -h - 1.5, h * 2 + 3, h * 2 + 3);
+        if (yang) {
+          ctx.font = `700 16px "Noto Serif TC", "SimSun", "MingLiU", serif`;
+          ctx.fillStyle = "#5e360c";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText("景", 0, -r * 0.6);
+          ctx.fillText("興", 0, r * 0.6);
+          ctx.fillText("通", r * 0.6, 0);
+          ctx.fillText("寶", -r * 0.6, 0);
+          ctx.textAlign = "left";
+          ctx.textBaseline = "alphabetic";
+        }
+        ctx.restore();
+      });
+    } else if (c.poem) {
+      ctx.font = `italic 600 20px ${F}`;
+      const widest = Math.max(...c.poem.map((l) => ctx.measureText(l).width));
+      ctx.font = `italic 600 ${Math.min(20, Math.floor((20 * (cw - 60)) / widest))}px ${F}`;
+      ctx.fillStyle = P.muted;
+      c.poem.forEach((line, i) => ctx.fillText(line, cx + 30, cy + 102 + i * 40));
+    } else {
+      c.rows.forEach(([k, v, tone], i) => {
+        const y = cy + 110 + i * 54;
+        ctx.font = `500 21px ${F}`;
+        ctx.fillStyle = P.muted;
+        ctx.textAlign = "left";
+        ctx.fillText(k, cx + 30, y);
+        ctx.font = `800 22px ${F}`;
+        ctx.fillStyle = tone === 1 ? "#ea580c" : tone === 2 ? "#059669" : P.ink;
+        ctx.textAlign = "right";
+        ctx.fillText(v, cx + cw - 30, y);
+        ctx.textAlign = "left";
+      });
+    }
+    ctx.strokeStyle = P.rule;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx + 28, cy + 270);
+    ctx.lineTo(cx + cw - 28, cy + 270);
+    ctx.stroke();
+    ctx.font = `700 22px ${F}`;
+    ctx.fillStyle = P.ink;
+    ctx.fillText(c.big[0], cx + 30, cy + 316);
+    ctx.font = `800 44px ${F}`;
+    ctx.font = `800 ${Math.min(44, Math.floor((44 * (cw - 60)) / ctx.measureText(c.big[1]).width))}px ${F}`;
+    const bgd = ctx.createLinearGradient(cx + 30, 0, cx + cw - 30, 0);
+    bgd.addColorStop(0, P.grad[0]);
+    bgd.addColorStop(1, P.grad[1]);
+    ctx.fillStyle = bgd;
+    ctx.fillText(c.big[1], cx + 30, cy + 372);
+    ctx.font = `500 18px ${F}`;
+    ctx.fillStyle = P.foot;
+    ctx.fillText(c.foot, cx + 30, cy + 412);
+    return cv;
+  }
+
+  const only = new URLSearchParams(location.search).get("only");
+  window.__og = {};
+  for (const [name, c] of Object.entries(CARDS)) {
+    if (only && only !== name) continue;
+    const cv = draw(c);
+    document.body.appendChild(cv);
+    window.__og[name] = cv.toDataURL("image/png");
+  }
+  document.title = "done";
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link rel="icon" href="/assets/img/favicon-96.png" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+  <script>
+(function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gieo quẻ online miễn phí — Xin quẻ, lắc điện thoại | OneTool</title>
+  <meta name="description" content="Xin quẻ online: chọn việc muốn hỏi, lắc điện thoại hoặc chạm ống quẻ để nhận 1 trong 36 quẻ kèm thơ và lời giải công việc, tài lộc, tình duyên, sức khỏe. Miễn phí." />
+  <link rel="canonical" href="https://onetool.vn/cong-cu-tien-ich/gieo-que.html" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Gieo quẻ online — lắc điện thoại xin quẻ may mắn" />
+  <meta property="og:description" content="Thành tâm chọn việc muốn hỏi, lắc điện thoại để thẻ quẻ rơi ra. 36 quẻ có thơ, lời giải chi tiết và lời khuyên." />
+  <meta property="og:image" content="https://onetool.vn/assets/img/og-gieo-que.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <link rel="stylesheet" href="../assets/css/site.css?v=20260826p" />
+  <link rel="stylesheet" href="../assets/css/tool-page.css?v=20260908b" />
+  <link rel="stylesheet" href="../assets/css/shell-critical.css?v=20260826p" />
+  <link rel="preload" href="../assets/css/ot-shell.css?v=20260903a" as="style" />
+  <link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/ot-shell.css?v=20260903a"></noscript>
+  <link rel="preload" href="../assets/css/components.css?v=20260826r" as="style" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=20260826r" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="../assets/css/components.css?v=20260826r"></noscript>
+  <link rel="stylesheet" href="../assets/css/tools/gieo-que.css?v=20261002a" />
+  <script>window.OT_BASE = "..";</script>
+  <style id="ot-fouc">#site-header{min-height:72px;display:block;contain:layout style}
+#site-footer{min-height:320px;display:block;contain:layout style}
+#otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
+@media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
+</head>
+<body data-tool="gieo-que">
+<div id="site-header"></div>
+<main role="main">
+<nav id="otCrumb" class="ot-crumb-wrap container" aria-label="Breadcrumb"></nav>
+<section class="tool-workspace tool-workspace--doc">
+  <div class="gq-page">
+    <header class="gq-intro">
+      <h1>Gieo quẻ online — xin quẻ may mắn</h1>
+      <p>Chọn việc bạn muốn hỏi, tĩnh tâm một chút rồi lắc điện thoại (hoặc chạm vào ống quẻ) cho đến khi thẻ quẻ rơi ra. Mỗi quẻ có thơ, lời giải chi tiết và lời khuyên riêng.</p>
+      <div class="gq-chips"><span>36 quẻ</span><span>8 việc hỏi</span><span>Lắc điện thoại</span><span>Lưu ảnh quẻ</span></div>
+    </header>
+
+    <div class="gq-stage" id="gqStage">
+      <div class="gq-step">
+        <h2 class="gq-h"><span>1</span>Bạn muốn hỏi về việc gì?</h2>
+        <div class="gq-topics" id="gqTopics" role="group" aria-label="Việc muốn hỏi"></div>
+        <p class="gq-today" id="gqToday" hidden></p>
+        <label class="gq-label" for="gqWish">Điều bạn mong cầu <small>(không bắt buộc, chỉ lưu trên máy bạn)</small></label>
+        <input id="gqWish" class="gq-input" maxlength="90" autocomplete="off" placeholder="Ví dụ: Cuối năm nay công việc có thuận lợi không?" />
+      </div>
+
+      <div class="gq-altar">
+        <h2 class="gq-h"><span>2</span>Lắc ống quẻ</h2>
+        <button type="button" class="gq-sound" id="gqSound" aria-pressed="true" title="Tắt tiếng">🔊</button>
+        <div class="gq-cup-wrap">
+          <div class="gq-glow" aria-hidden="true"></div>
+          <div class="gq-cup" id="gqCup" role="button" tabindex="0" aria-label="Ống quẻ — chạm để lắc">
+            <div class="gq-sticks" aria-hidden="true">
+              <i style="--h:96px;--r:-9deg"></i><i style="--h:112px;--r:-6deg"></i><i style="--h:104px;--r:-4deg"></i><i style="--h:120px;--r:-2deg"></i><i style="--h:100px;--r:0deg"></i><i style="--h:116px;--r:1deg"></i><i style="--h:108px;--r:3deg"></i><i style="--h:122px;--r:5deg"></i><i style="--h:98px;--r:7deg"></i><i style="--h:110px;--r:9deg"></i>
+            </div>
+            <div class="gq-tube" aria-hidden="true"><span>Quẻ</span></div>
+          </div>
+          <div class="gq-slip" id="gqSlip" hidden aria-hidden="true"><small>Quẻ</small><b id="gqSlipNo">1</b></div>
+        </div>
+        <div class="gq-meter" aria-hidden="true"><i id="gqMeter"></i></div>
+        <p class="gq-hint" id="gqHint" aria-live="polite">Thành tâm nghĩ về điều muốn hỏi, rồi bấm “Lắc ống quẻ”.</p>
+        <div class="gq-buttons">
+          <button type="button" class="btn btn-primary gq-go" id="gqGo">Lắc ống quẻ</button>
+          <button type="button" class="btn btn-outline" id="gqMotion" hidden>📳 Bật lắc điện thoại</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gq-result" id="gqResult" hidden aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="tool-seo" id="toolSeo" data-static="1">
+  <div class="tool-seo-wrap">
+    <section class="tool-seo-block">
+      <h2>Cách gieo quẻ online</h2>
+      <ol class="tool-seo-howto">
+        <li>Chọn việc muốn hỏi: tổng quát, công việc, tài lộc, tình duyên, gia đạo, sức khỏe, thi cử hoặc xuất hành. Có thể ghi thêm điều mong cầu.</li>
+        <li>Tĩnh tâm nghĩ về điều muốn hỏi. Trên điện thoại, lắc máy vài cái như lắc ống quẻ ở chùa; trên máy tính, bấm “Lắc ống quẻ”.</li>
+        <li>Khi thẻ quẻ rơi ra, đọc thơ quẻ, lời quẻ cho đúng việc bạn hỏi, lời khuyên, số may mắn, màu hợp và giờ hoàng đạo hôm nay.</li>
+      </ol>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Xin quẻ thế nào cho đúng?</h2>
+      <ul>
+        <li><strong>Hỏi một việc rõ ràng.</strong> Câu hỏi càng cụ thể, lời quẻ càng dễ chiêm nghiệm. Ví dụ “Tháng này có nên đổi việc không?” thay vì “Năm nay thế nào?”.</li>
+        <li><strong>Mỗi việc một quẻ mỗi ngày.</strong> Xin lại nhiều lần cho cùng một việc dễ làm lòng rối thêm. Công cụ ghi nhớ quẻ bạn đã xin trong ngày để bạn xem lại.</li>
+        <li><strong>Đọc quẻ như một lời nhắc.</strong> Quẻ tốt là động lực để mạnh dạn hơn; quẻ bình hòa là lời nhắc chậm lại, chuẩn bị kỹ hơn.</li>
+        <li><strong>Giữ tâm thế vui vẻ.</strong> Gieo quẻ đầu năm, đầu tháng, trước kỳ thi hay trước việc lớn là cách hay để tự tiếp thêm niềm tin.</li>
+      </ul>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Ý nghĩa 4 bậc quẻ</h2>
+      <ul>
+        <li><strong>Đại cát (8 quẻ):</strong> rất tốt, thời vận hanh thông, hợp khởi sự việc lớn.</li>
+        <li><strong>Thượng cát (12 quẻ):</strong> tốt, mọi việc thuận lợi, có quý nhân giúp đỡ.</li>
+        <li><strong>Trung cát (10 quẻ):</strong> khá tốt, tiến triển đều, kiên trì sẽ thành.</li>
+        <li><strong>Bình hòa (6 quẻ):</strong> chưa phải lúc bứt phá, nên chậm lại và chuẩn bị; khó khăn chỉ là tạm thời.</li>
+      </ul>
+      <p>Bộ 36 quẻ, thơ lục bát và lời giải trên trang do OneTool tự soạn, lấy cảm hứng từ hình ảnh quen thuộc trong đời sống người Việt như cá chép vượt vũ môn, trúc mai sum họp, lúa vàng đầy đồng.</p>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Câu hỏi thường gặp</h2>
+      <dl class="tool-seo-faq">
+        <div class="tool-seo-faq-item"><dt>Vì sao lắc điện thoại mà không ra quẻ?</dt><dd>Trên iPhone, bấm nút “Bật lắc điện thoại” rồi chọn Cho phép để trình duyệt đọc cảm biến chuyển động. Một số trình duyệt hoặc chế độ tiết kiệm pin chặn cảm biến; khi đó bạn chỉ cần chạm vào ống quẻ.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Một ngày nên xin mấy quẻ?</dt><dd>Mỗi việc nên xin một quẻ mỗi ngày. Bạn vẫn có thể xin quẻ cho các việc khác nhau như công việc, tình duyên, sức khỏe.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Gặp quẻ Bình hòa có sao không?</dt><dd>Không sao cả. Trong bộ quẻ không có quẻ xấu; quẻ Bình hòa chỉ nhắc bạn kiên nhẫn, chuẩn bị kỹ và chờ thời điểm thuận lợi hơn.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Số may mắn, màu hợp được tính thế nào?</dt><dd>Mỗi quẻ gắn với một hành trong ngũ hành để gợi ý màu sắc và hướng; số may mắn cố định theo từng quẻ. Giờ hoàng đạo được tính theo lịch âm của ngày bạn xin quẻ.</dd></div>
+        <div class="tool-seo-faq-item"><dt>Quẻ mình xin có bị lưu lên mạng không?</dt><dd>Không. Quẻ và điều bạn mong cầu chỉ lưu trong trình duyệt trên máy bạn. Khi bấm chia sẻ, link chỉ chứa số quẻ và việc đã hỏi.</dd></div>
+      </dl>
+    </section>
+    <section class="tool-seo-block">
+      <h2>Công cụ và bài viết liên quan</h2>
+      <ul class="tool-seo-more">
+        <li><a class="tool-seo-card" href="lunar-calendar.html"><span class="tool-seo-card-icon" aria-hidden="true">🌙</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Lịch âm hôm nay</strong><span class="tool-seo-card-sapo">Ngày hoàng đạo, giờ tốt, xem ngày theo tuổi</span></span></a></li>
+        <li><a class="tool-seo-card" href="../lich-am/index.html"><span class="tool-seo-card-icon" aria-hidden="true">📅</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Lịch âm từng tháng</strong><span class="tool-seo-card-sapo">Mùng 1, rằm, ngày tốt 2026 – 2027</span></span></a></li>
+        <li><a class="tool-seo-card" href="../blog/xem-ngay-tot-cuoi-nam-2026.html"><span class="tool-seo-card-icon" aria-hidden="true">✨</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Xem ngày tốt cuối năm 2026</strong><span class="tool-seo-card-sapo">Ngày đẹp khai trương, cưới hỏi, chuyển nhà</span></span></a></li>
+        <li><a class="tool-seo-card" href="tung-dong-xu.html"><span class="tool-seo-card-icon" aria-hidden="true">🪙</span><span class="tool-seo-card-body"><strong class="tool-seo-card-title">Tung đồng xu online</strong><span class="tool-seo-card-sapo">Gieo 3 đồng xu cổ, xin âm dương</span></span></a></li>
+      </ul>
+    </section>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/js/catalog.js?v=20261002k"></script>
+<script src="../assets/js/layout.js?v=20261002g"></script>
+<script src="../assets/js/core.js?v=20261002a"></script>
+<script src="../assets/js/site.js?v=20261002c"></script>
+<script src="../assets/js/tools/lunar-calendar.js?v=20261002d"></script>
+<script src="../assets/js/tools/gieo-que-data.js?v=20261002a"></script>
+<script src="../assets/js/tools/gieo-que.js?v=20261002a"></script>
+</body>
+</html>

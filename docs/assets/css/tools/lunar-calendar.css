@@ -1,21 +1,22 @@
 body[data-tool="lunar-calendar"] {
-  --ln-ink: #16121c;
-  --ln-muted: #6b6578;
-  --ln-line: rgba(88, 60, 140, 0.12);
-  --ln-accent: #7c3aed;
-  --ln-accent-soft: rgba(124, 58, 237, 0.08);
+  --ln-ink: #1c1917;
+  --ln-muted: #78716c;
+  --ln-line: rgba(120, 53, 15, 0.12);
+  --ln-accent: #c0262d;
+  --ln-accent-soft: rgba(192, 38, 45, 0.08);
+  --ln-gold-soft: #fdf3dc;
 }
 
 body[data-tool="lunar-calendar"] .tool-workspace {
   padding: 0 0 2.5rem !important;
   background:
-    radial-gradient(ellipse 80% 50% at 10% -5%, rgba(6, 182, 212, 0.1), transparent 55%),
-    radial-gradient(ellipse 55% 45% at 100% 0%, rgba(124, 58, 237, 0.1), transparent 50%),
-    linear-gradient(180deg, #f8f7fc 0%, #f2f8fa 100%) !important;
+    radial-gradient(ellipse 80% 50% at 10% -5%, rgba(251, 191, 36, 0.12), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 100% 0%, rgba(220, 38, 38, 0.08), transparent 50%),
+    linear-gradient(180deg, #fffaf3 0%, #fdf7f2 100%) !important;
 }
 
 body[data-tool="lunar-calendar"] .ln-page {
-  max-width: 920px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 1.25rem;
 }
@@ -63,7 +64,7 @@ body[data-tool="lunar-calendar"] .ln-card {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid var(--ln-line);
   border-radius: 20px;
-  box-shadow: 0 14px 40px rgba(70, 40, 120, 0.07);
+  box-shadow: 0 14px 40px rgba(120, 53, 15, 0.07);
   overflow: hidden;
 }
 
@@ -101,7 +102,7 @@ body[data-tool="lunar-calendar"] .ln-mode em {
 
 body[data-tool="lunar-calendar"] .ln-mode.is-on {
   background: var(--ln-accent-soft);
-  border-color: rgba(124, 58, 237, 0.35);
+  border-color: rgba(192, 38, 45, 0.35);
   color: var(--ln-accent);
 }
 
@@ -146,8 +147,8 @@ body[data-tool="lunar-calendar"] .ln-date-row select {
 body[data-tool="lunar-calendar"] .ln-date-row .form-control:focus,
 body[data-tool="lunar-calendar"] .ln-date-row select:focus {
   outline: none;
-  border-color: rgba(124, 58, 237, 0.4);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  border-color: rgba(192, 38, 45, 0.4);
+  box-shadow: 0 0 0 3px rgba(192, 38, 45, 0.1);
 }
 
 body[data-tool="lunar-calendar"] .ln-check {
@@ -191,7 +192,7 @@ body[data-tool="lunar-calendar"] .ln-quick button {
 }
 
 body[data-tool="lunar-calendar"] .ln-quick button:hover {
-  border-color: rgba(124, 58, 237, 0.4);
+  border-color: rgba(192, 38, 45, 0.4);
   color: var(--ln-accent);
 }
 
@@ -271,7 +272,7 @@ body[data-tool="lunar-calendar"] .ln-box em {
 
 body[data-tool="lunar-calendar"] .ln-box.is-lunar {
   background: var(--ln-accent-soft);
-  border-color: rgba(124, 58, 237, 0.22);
+  border-color: rgba(192, 38, 45, 0.22);
 }
 
 body[data-tool="lunar-calendar"] .ln-box.is-lunar strong {
@@ -340,17 +341,1556 @@ body[data-tool="lunar-calendar"] .ln-empty[hidden] {
   }
 }
 
+
+/* ── Banner hôm nay ── */
+body[data-tool="lunar-calendar"] .ln-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 176px;
+  margin: 0 0 1.15rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 26px;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(253, 230, 138, 0.35), transparent 38%),
+    radial-gradient(circle at 6% 120%, rgba(251, 191, 36, 0.28), transparent 45%),
+    linear-gradient(135deg, #7f1d1d 0%, #b91c1c 48%, #c2410c 100%);
+  box-shadow: 0 22px 50px rgba(127, 29, 29, 0.28);
+}
+
+body[data-tool="lunar-calendar"] .ln-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.2px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero::after {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -60px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 2px solid rgba(253, 230, 138, 0.18);
+  box-shadow: 0 0 0 26px rgba(253, 230, 138, 0.05), 0 0 0 60px rgba(253, 230, 138, 0.04);
+  pointer-events: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-medal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  color: #7f1d1d;
+  background: radial-gradient(circle at 34% 28%, #fffbeb 0%, #fcd980 42%, #d99a1e 100%);
+  box-shadow: 0 0 0 6px rgba(253, 230, 138, 0.22), 0 0 0 12px rgba(253, 230, 138, 0.08), 0 14px 30px rgba(0, 0, 0, 0.28);
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-medal strong {
+  font-size: 3.3rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-medal em {
+  margin-top: 0.15rem;
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-moon {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #fde68a;
+  background: #7f1d1d;
+  font-size: 1.15rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-kicker {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fde68a;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-title {
+  margin: 0.3rem 0 0.75rem;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-chips span {
+  padding: 0.3rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.13);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-chips .is-good {
+  border-color: rgba(253, 230, 138, 0.55);
+  background: rgba(253, 230, 138, 0.22);
+  color: #fef3c7;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-chips .is-bad {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-soon {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.25rem;
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed rgba(253, 230, 138, 0.3);
+  text-align: left;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-soon b {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fde68a;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-soon button {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-soon button:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-soon button.is-mine {
+  background: rgba(253, 230, 138, 0.2);
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-soon button span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-soon small {
+  flex: none;
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-count {
+  width: 290px;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(253, 230, 138, 0.3);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+
+body[data-tool="lunar-calendar"] .ln-count-label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #fde68a;
+}
+
+body[data-tool="lunar-calendar"] .ln-count-date {
+  display: block;
+  margin: 0.15rem 0 0.7rem;
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+
+body[data-tool="lunar-calendar"] .ln-count-boxes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-count-boxes div {
+  padding: 0.5rem 0.2rem 0.4rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+body[data-tool="lunar-calendar"] .ln-count-boxes b {
+  display: block;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-tool="lunar-calendar"] .ln-count-boxes span {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* ── Tabs ── */
+body[data-tool="lunar-calendar"] .ln-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 1.1rem;
+  padding: 0.3rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 18px rgba(127, 29, 29, 0.06);
+}
+
+body[data-tool="lunar-calendar"] .ln-tab {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ln-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-tab:hover {
+  color: var(--ln-accent);
+}
+
+body[data-tool="lunar-calendar"] .ln-tab.is-on {
+  background: linear-gradient(135deg, #b91c1c, #ea580c);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(185, 28, 28, 0.28);
+}
+
+body[data-tool="lunar-calendar"] .ln-view[hidden] {
+  display: none !important;
+}
+
+/* ── Lịch tháng ── */
+body[data-tool="lunar-calendar"] .ln-cal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 1rem;
+  align-items: start;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal {
+  padding: 1.1rem 1.1rem 0.9rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-nav,
+body[data-tool="lunar-calendar"] .ln-cal-today {
+  flex: none;
+  height: 42px;
+  border: 1px solid var(--ln-line);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  color: var(--ln-ink);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-nav {
+  width: 42px;
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-today {
+  padding: 0 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-nav:hover,
+body[data-tool="lunar-calendar"] .ln-cal-today:hover {
+  border-color: rgba(192, 38, 45, 0.4);
+  background: #fff5f5;
+  color: var(--ln-accent);
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-title {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-pickers {
+  display: inline-flex;
+  gap: 0.3rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-pickers select,
+body[data-tool="lunar-calendar"] .ln-cal-pickers input {
+  padding: 0.1rem 0.25rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font: inherit;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--ln-ink);
+  cursor: pointer;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-pickers input {
+  width: 4.3rem;
+  cursor: text;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-pickers select:hover,
+body[data-tool="lunar-calendar"] .ln-cal-pickers input:hover,
+body[data-tool="lunar-calendar"] .ln-cal-pickers select:focus,
+body[data-tool="lunar-calendar"] .ln-cal-pickers input:focus {
+  outline: none;
+  background: var(--ln-accent-soft);
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-lunar {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #b45309;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-week,
+body[data-tool="lunar-calendar"] .ln-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-week {
+  margin-bottom: 0.4rem;
+  border-radius: 12px;
+  background: var(--ln-gold-soft);
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-week span {
+  padding: 0.45rem 0;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: #92400e;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-week .is-sun {
+  color: #c0262d;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-grid.is-swap-next {
+  animation: ln-swap-next 0.28s ease;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-grid.is-swap-prev {
+  animation: ln-swap-prev 0.28s ease;
+}
+
+@keyframes ln-swap-next {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes ln-swap-prev {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: none; }
+}
+
+body[data-tool="lunar-calendar"] .ln-cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 84px;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 14px;
+  background: #fff;
+  font: inherit;
+  text-align: left;
+  color: var(--ln-ink);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell:hover {
+  border-color: rgba(192, 38, 45, 0.35);
+  box-shadow: 0 8px 18px rgba(127, 29, 29, 0.08);
+  transform: translateY(-2px);
+}
+
+body[data-tool="lunar-calendar"] .ln-cell:focus-visible {
+  outline: 2px solid var(--ln-accent);
+  outline-offset: 1px;
+}
+
+body[data-tool="lunar-calendar"] .c-solar {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+body[data-tool="lunar-calendar"] .c-good {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+body[data-tool="lunar-calendar"] .c-lunar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  align-self: flex-end;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .c-lunar i {
+  font-style: normal;
+  font-size: 0.7rem;
+}
+
+body[data-tool="lunar-calendar"] .c-event {
+  display: block;
+  width: 100%;
+  margin-top: 0.15rem;
+  overflow: hidden;
+  font-size: 0.64rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #b45309;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-sun .c-solar {
+  color: #c0262d;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-moon .c-lunar {
+  font-weight: 800;
+  color: #c0262d;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-off {
+  border-color: rgba(234, 88, 12, 0.25);
+  background: linear-gradient(180deg, #fff7ed, #ffedd5);
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-off .c-solar,
+body[data-tool="lunar-calendar"] .ln-cell.is-off .c-event {
+  color: #c0262d;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-mine {
+  box-shadow: inset 0 -3px 0 #a855f7;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-mine .c-event {
+  color: #9333ea;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-out {
+  opacity: 0.35;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-sel {
+  border-color: transparent;
+  background: #fff5f5;
+  box-shadow: 0 0 0 2px var(--ln-accent);
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-today {
+  border-color: transparent;
+  background: linear-gradient(145deg, #b91c1c, #dc2626 55%, #ea580c);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(185, 28, 28, 0.3);
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-today .c-solar,
+body[data-tool="lunar-calendar"] .ln-cell.is-today .c-lunar,
+body[data-tool="lunar-calendar"] .ln-cell.is-today .c-event {
+  color: #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-today .c-good {
+  background: #fde68a;
+  box-shadow: 0 0 0 3px rgba(253, 230, 138, 0.3);
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-today.is-sel {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #b91c1c, 0 10px 22px rgba(185, 28, 28, 0.3);
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.85rem;
+  font-size: 0.75rem;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-cal-legend i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+body[data-tool="lunar-calendar"] .lg-today { background: linear-gradient(135deg, #b91c1c, #ea580c); }
+body[data-tool="lunar-calendar"] .lg-first { border: 2px solid #c0262d; background: #fff; }
+body[data-tool="lunar-calendar"] .ln-cal-legend .lg-good { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; }
+body[data-tool="lunar-calendar"] .lg-holiday { background: #fed7aa; }
+body[data-tool="lunar-calendar"] .lg-mine { background: #a855f7; }
+
+/* ── Tờ lịch chi tiết ── */
+body[data-tool="lunar-calendar"] .ln-day {
+  position: sticky;
+  top: 88px;
+  padding: 0.9rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc {
+  overflow: hidden;
+  border: 1px solid var(--ln-line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(127, 29, 29, 0.1);
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #b91c1c, #dc2626);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-rel {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-body {
+  padding: 0.9rem 1rem 0.85rem;
+  background: linear-gradient(180deg, #fff, #fffaf3);
+  text-align: center;
+  color: #1e3a8a;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-body.is-red {
+  color: #c0262d;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-num {
+  display: block;
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-wd {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-events {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-events span {
+  padding: 0.22rem 0.62rem;
+  border-radius: 999px;
+  background: #fef3c7;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #92400e;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-events .is-off {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-events .is-mine {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-foot {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  border-top: 2px dashed rgba(192, 38, 45, 0.2);
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-lunar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.5rem;
+  border-right: 1px solid var(--ln-line);
+  background: #fef2f2;
+  text-align: center;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-lunar span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #b91c1c;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-lunar strong {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.05;
+  color: #c0262d;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-lunar em {
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-cc {
+  display: grid;
+  align-content: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-cc div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dotted var(--ln-line);
+  font-size: 0.82rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-cc div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-cc dt {
+  font-weight: 600;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-bloc-cc dd {
+  margin: 0;
+  font-weight: 800;
+  color: var(--ln-ink);
+  text-align: right;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-badge {
+  display: flex;
+  flex-direction: column;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 12px;
+  background: #fffaf3;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-badge small {
+  margin-top: 0.1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-badge.is-good {
+  border-color: rgba(22, 163, 74, 0.25);
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+body[data-tool="lunar-calendar"] .ln-badge.is-bad {
+  background: #f8fafc;
+  color: #475569;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-sec h3 {
+  margin: 0.9rem 0 0.45rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-hours {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-hours span {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "i b" "i s";
+  align-items: center;
+  column-gap: 0.3rem;
+  padding: 0.4rem 0.4rem;
+  border: 1px solid rgba(217, 119, 6, 0.15);
+  border-radius: 10px;
+  background: #fffbeb;
+}
+
+body[data-tool="lunar-calendar"] .ln-hours i {
+  grid-area: i;
+  font-style: normal;
+  font-size: 1.15rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-hours b {
+  grid-area: b;
+  font-size: 0.82rem;
+  line-height: 1.1;
+  color: #92400e;
+}
+
+body[data-tool="lunar-calendar"] .ln-hours small {
+  grid-area: s;
+  font-size: 0.68rem;
+  color: var(--ln-muted);
+  white-space: nowrap;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-facts div {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 12px;
+  background: #faf7f5;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-facts span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-day-facts b {
+  font-size: 0.86rem;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-day-next {
+  display: grid;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-next li {
+  display: grid;
+  grid-template-columns: 1.4rem auto 1fr;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--ln-line);
+  font-size: 0.8rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-next li:last-child {
+  border-bottom: 0;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-next i {
+  font-style: normal;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-next span {
+  font-weight: 600;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-day-next b {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ln-ink);
+  text-align: right;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-act {
+  padding: 0.62rem 0.3rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ln-ink);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-act:hover {
+  border-color: rgba(192, 38, 45, 0.4);
+  color: var(--ln-accent);
+  transform: translateY(-1px);
+}
+
+body[data-tool="lunar-calendar"] .ln-act.is-main {
+  border-color: transparent;
+  background: linear-gradient(135deg, #b91c1c, #ea580c);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(185, 28, 28, 0.25);
+}
+
+body[data-tool="lunar-calendar"] .ln-day-note {
+  margin: 0.7rem 0 0;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--ln-muted);
+}
+
+/* ── Ngày lễ & ngày của tôi ── */
+body[data-tool="lunar-calendar"] .ln-cal-main {
+  min-width: 0;
+}
+
+body[data-tool="lunar-calendar"] .ln-lower {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-events,
+body[data-tool="lunar-calendar"] .ln-mine {
+  padding: 1.1rem 1.15rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-sec-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.8rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-sec-head h2 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-sec-head span {
+  font-size: 0.76rem;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-month-link {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  background: var(--ln-accent-soft);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ln-accent);
+  text-align: center;
+  text-decoration: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-month-link:hover {
+  text-decoration: underline;
+}
+
+body[data-tool="lunar-calendar"] .ln-events ul,
+body[data-tool="lunar-calendar"] .ln-mine-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-events button {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.5rem 0.7rem 0.5rem 0.5rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 14px;
+  background: #fff;
+  font: inherit;
+  text-align: left;
+  color: var(--ln-ink);
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-events button:hover {
+  border-color: rgba(192, 38, 45, 0.35);
+  transform: translateX(2px);
+}
+
+body[data-tool="lunar-calendar"] .ln-events button.is-past {
+  opacity: 0.55;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-date {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #fef2f2, #fee2e2);
+  color: #b91c1c;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-date b {
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-date small {
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+body[data-tool="lunar-calendar"] .is-mine .ln-ev-date {
+  background: linear-gradient(160deg, #faf5ff, #f3e8ff);
+  color: #7e22ce;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-lunar {
+  font-size: 0.74rem;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-off,
+body[data-tool="lunar-calendar"] .ln-ev-tag {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #fee2e2;
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #b91c1c;
+  white-space: nowrap;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-tag {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-empty,
+body[data-tool="lunar-calendar"] .ln-mine-list .ln-mine-empty {
+  display: block;
+  padding: 0.9rem;
+  border: 1px dashed var(--ln-line);
+  border-radius: 12px;
+  background: transparent;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-form {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-date {
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr 1.1fr auto;
+  gap: 0.45rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-form .form-control {
+  border-radius: 10px;
+  padding: 0.6rem 0.65rem;
+  font-size: 0.9rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-form .form-control:focus {
+  outline: none;
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12);
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-form .btn {
+  padding: 0.6rem 1.15rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.4rem 0.35rem 0.35rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-main {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0.15rem;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  color: var(--ln-ink);
+  cursor: pointer;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-days {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #faf5ff;
+  color: #7e22ce;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-days b {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-days small {
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-days.is-soon {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-name {
+  overflow: hidden;
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-when {
+  font-size: 0.74rem;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 0.9rem;
+  color: var(--ln-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body[data-tool="lunar-calendar"] .ln-mine-icon:hover {
+  background: #f5f5f4;
+  color: var(--ln-accent);
+}
+
+body[data-tool="lunar-calendar"] .ln-link-btn {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ln-accent);
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  body[data-tool="lunar-calendar"] .ln-hero {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-count {
+    grid-column: 1 / -1;
+    width: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  body[data-tool="lunar-calendar"] .ln-cal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cal-main {
+    display: contents;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-lower {
+    order: 2;
+    margin-top: 0;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-day {
+    position: static;
+    scroll-margin-top: 80px;
+  }
+}
+
+@media (max-width: 560px) {
+  body[data-tool="lunar-calendar"] .ln-page {
+    padding: 0 0.6rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero {
+    gap: 0.9rem 1rem;
+    padding: 1.1rem;
+    border-radius: 22px;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-medal {
+    width: 84px;
+    height: 84px;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-medal strong {
+    font-size: 2.2rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-medal em {
+    font-size: 0.62rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-moon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-kicker {
+    font-size: 0.66rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-title {
+    margin-bottom: 0;
+    font-size: 1.12rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-chips {
+    grid-column: 1 / -1;
+    gap: 0.3rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-chips span {
+    padding: 0.25rem 0.55rem;
+    font-size: 0.7rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-text {
+    display: contents;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-text > .ln-hero-kicker,
+  body[data-tool="lunar-calendar"] .ln-hero-text > .ln-hero-title {
+    grid-column: 2;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-text > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-medal {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-kicker {
+    align-self: end;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-title {
+    align-self: start;
+    margin-top: 0.15rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-hero-count {
+    padding: 0.8rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-count-boxes b {
+    font-size: 1.3rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-tab {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cal {
+    padding: 0.75rem 0.5rem 0.7rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cal-head {
+    flex-wrap: wrap;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cal-title {
+    order: -1;
+    flex-basis: 100%;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cal-nav {
+    flex: 1;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cal-week,
+  body[data-tool="lunar-calendar"] .ln-cal-grid {
+    gap: 0.22rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cell {
+    min-height: 58px;
+    padding: 0.3rem;
+    border-radius: 10px;
+  }
+
+  body[data-tool="lunar-calendar"] .c-solar {
+    font-size: 1rem;
+  }
+
+  body[data-tool="lunar-calendar"] .c-lunar {
+    font-size: 0.68rem;
+  }
+
+  body[data-tool="lunar-calendar"] .c-lunar i {
+    display: none;
+  }
+
+  body[data-tool="lunar-calendar"] .c-good {
+    top: 6px;
+    right: 6px;
+    width: 5px;
+    height: 5px;
+    box-shadow: none;
+  }
+
+  body[data-tool="lunar-calendar"] .c-event {
+    display: none;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cell.has-event::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background: #f59e0b;
+    transform: translateX(-50%);
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cell.is-mine::after {
+    background: #a855f7;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cell.is-mine {
+    box-shadow: none;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-bloc-num {
+    font-size: 5rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-act {
+    font-size: 0.74rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-mine-date {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-mine-date .btn {
+    grid-column: 1 / -1;
+  }
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-tabs,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cal-nav,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cal-today,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-bloc,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-badge,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-day-facts div,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-act,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-events button,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-mine-list li {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cal-pickers select option {
+  color: #111;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cal-week {
+  background: rgba(245, 158, 11, 0.1);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cal-week span,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cal-lunar,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .c-event,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-hours b {
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-sel {
+  background: rgba(248, 113, 113, 0.12);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-off {
+  background: rgba(234, 88, 12, 0.14);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-today {
+  background: linear-gradient(145deg, #b91c1c, #dc2626 55%, #ea580c);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-sun .c-solar,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-moon .c-lunar,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-off .c-solar {
+  color: #f87171;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-today .c-solar,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-today .c-lunar,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-today .c-event {
+  color: #fff;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-bloc-body {
+  background: transparent;
+  color: #93c5fd;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-bloc-body.is-red,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-bloc-lunar strong,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-bloc-lunar span {
+  color: #f87171;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-bloc-lunar {
+  background: rgba(220, 38, 38, 0.12);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-badge.is-good {
+  background: rgba(22, 163, 74, 0.14);
+  color: #4ade80;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-hours span {
+  border-color: rgba(245, 158, 11, 0.18);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-ev-date {
+  background: rgba(220, 38, 38, 0.15);
+  color: #fca5a5;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .is-mine .ln-ev-date,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-mine-days:not(.is-soon) {
+  background: rgba(168, 85, 247, 0.16);
+  color: #d8b4fe;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-mine-icon:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
 html[data-theme="dark"] body[data-tool="lunar-calendar"] {
   --ln-ink: #f1edf8;
   --ln-muted: #94a3b8;
   --ln-line: rgba(255, 255, 255, 0.08);
-  --ln-accent: #a78bfa;
-  --ln-accent-soft: rgba(124, 58, 237, 0.18);
+  --ln-accent: #f87171;
+  --ln-accent-soft: rgba(248, 113, 113, 0.14);
+  --ln-gold-soft: rgba(245, 158, 11, 0.1);
 }
 
 html[data-theme="dark"] body[data-tool="lunar-calendar"] .tool-workspace {
   background:
-    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(124, 58, 237, 0.2), transparent 55%),
+    radial-gradient(ellipse 80% 45% at 10% -10%, rgba(185, 28, 28, 0.22), transparent 55%),
     var(--bg) !important;
 }
 
@@ -372,4 +1912,1072 @@ html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-result {
 html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-mode.is-on,
 html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-box.is-lunar {
   background: var(--ln-accent-soft);
+}
+
+/* ── Banner: nút xem tuổi ── */
+body[data-tool="lunar-calendar"] .ln-hero-chips .ln-hero-cta {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(253, 230, 138, 0.7);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fde68a, #f59e0b);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #7c2d12;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-hero-chips .ln-hero-cta:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Tìm ngày tốt ── */
+body[data-tool="lunar-calendar"] .ln-pick {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: -0.2rem 0 0.8rem;
+  padding-bottom: 0.15rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-pick::-webkit-scrollbar {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body[data-tool="lunar-calendar"] .ln-pick {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+    overflow: visible;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  body[data-tool="lunar-calendar"] .ln-pick {
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+    padding-right: 24px;
+    scroll-snap-type: x proximity;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-pick.is-end {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+body[data-tool="lunar-calendar"] .ln-pick-label {
+  flex: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #b45309;
+}
+
+body[data-tool="lunar-calendar"] .ln-pick button {
+  flex: none;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 999px;
+  background: var(--ln-gold-soft);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--ln-ink);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-pick button:hover {
+  border-color: rgba(22, 163, 74, 0.45);
+}
+
+body[data-tool="lunar-calendar"] .ln-pick button.is-on {
+  border-color: transparent;
+  background: linear-gradient(135deg, #15803d, #16a34a);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(22, 163, 74, 0.28);
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-dim {
+  opacity: 0.38;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-pick:not(.is-today) {
+  border-color: rgba(22, 163, 74, 0.6);
+  background: linear-gradient(160deg, #f0fdf4, #dcfce7);
+  box-shadow: inset 0 0 0 1px rgba(22, 163, 74, 0.35);
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-pick::before {
+  content: "✓";
+  position: absolute;
+  left: 8px;
+  bottom: 4px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #16a34a;
+}
+
+body[data-tool="lunar-calendar"] .ln-cell.is-pick.is-today::before {
+  color: #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-pick-card {
+  border-color: rgba(22, 163, 74, 0.3);
+  background: linear-gradient(180deg, #f7fef9, #fff 40%);
+}
+
+body[data-tool="lunar-calendar"] .ln-pick-card .ln-ev-date {
+  background: linear-gradient(160deg, #f0fdf4, #dcfce7);
+  color: #15803d;
+}
+
+body[data-tool="lunar-calendar"] .ln-ev-good {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #dcfce7;
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #15803d;
+  white-space: nowrap;
+}
+
+/* ── Bảng ngày: nên / kỵ ── */
+body[data-tool="lunar-calendar"] .ln-nenky {
+  margin-top: 0.8rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(180, 83, 9, 0.18);
+  border-radius: 14px;
+  background: var(--ln-gold-soft);
+}
+
+body[data-tool="lunar-calendar"] .ln-nenky-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-nenky-head h3 {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #b45309;
+}
+
+body[data-tool="lunar-calendar"] .ln-nenky-warn {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: #fee2e2;
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #b91c1c;
+}
+
+body[data-tool="lunar-calendar"] .ln-nenky p {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 0.35rem;
+  margin: 0.3rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-nenky p b {
+  align-self: start;
+  padding: 0.05rem 0;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  text-align: center;
+  color: #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-nenky p.is-good b {
+  background: #16a34a;
+}
+
+body[data-tool="lunar-calendar"] .ln-nenky p.is-bad b {
+  background: #dc2626;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.55rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #faf5ff, #fdf4ff);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: left;
+  color: #6b21a8;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-link:hover {
+  border-color: rgba(124, 58, 237, 0.45);
+  transform: translateY(-1px);
+}
+
+body[data-tool="lunar-calendar"] .ln-day-link b {
+  flex: none;
+  color: #d97706;
+  letter-spacing: 0.04em;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-link[data-vk] {
+  border-color: rgba(180, 83, 9, 0.22);
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  color: #92400e;
+}
+
+body[data-tool="lunar-calendar"] .ln-day-link[data-vk] b {
+  font-size: 0.74rem;
+  letter-spacing: 0;
+}
+
+/* ── Xem tuổi & quẻ ── */
+body[data-tool="lunar-calendar"] .ln-fortune {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi,
+body[data-tool="lunar-calendar"] .ln-que,
+body[data-tool="lunar-calendar"] .ln-vk {
+  padding: 1.15rem 1.2rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-form input {
+  flex: 1;
+  min-width: 0;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-form .btn {
+  flex: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-empty {
+  padding: 1.2rem 0.8rem;
+  border: 1px dashed var(--ln-line);
+  border-radius: 16px;
+  text-align: center;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-zodiac {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.4rem;
+  max-width: 300px;
+  margin: 0 auto 0.7rem;
+  font-size: 1.6rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-empty p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #7f1d1d, #b91c1c 55%, #c2410c);
+  color: #fff;
+  box-shadow: 0 14px 30px rgba(127, 29, 29, 0.22);
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 2px solid rgba(253, 230, 138, 0.7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 2.1rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-who strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-who small {
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-who span {
+  font-size: 0.8rem;
+  color: #fde68a;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-score {
+  text-align: right;
+}
+
+body[data-tool="lunar-calendar"] .ln-stars {
+  display: block;
+  font-size: 1.3rem;
+  letter-spacing: 0.06em;
+  color: #fcd34d;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-score b {
+  display: block;
+  font-size: 0.95rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-score small {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-advice {
+  margin: 0.85rem 0 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-reasons {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  list-style: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-reasons li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-reasons i {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 900;
+  color: #fff;
+  background: #a8a29e;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-reasons .is-ok i {
+  background: #16a34a;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-reasons .is-bad i {
+  background: #dc2626;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-grid > div {
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 12px;
+  background: #faf7f5;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-grid span {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-grid b {
+  font-size: 0.9rem;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.6rem;
+  margin: 0;
+}
+
+body[data-tool="lunar-calendar"] .ln-swatches em {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-swatches i {
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+body[data-tool="lunar-calendar"] .ln-tuoi-sub {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-week button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.45rem 0.2rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  color: var(--ln-ink);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+body[data-tool="lunar-calendar"] .ln-week button:hover {
+  transform: translateY(-2px);
+}
+
+body[data-tool="lunar-calendar"] .ln-week small {
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-week b {
+  font-size: 0.78rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-week span {
+  min-height: 0.9em;
+  font-size: 0.6rem;
+  letter-spacing: -0.05em;
+  color: #f59e0b;
+}
+
+body[data-tool="lunar-calendar"] .ln-week .s4,
+body[data-tool="lunar-calendar"] .ln-week .s5 {
+  border-color: rgba(22, 163, 74, 0.4);
+  background: #f0fdf4;
+}
+
+body[data-tool="lunar-calendar"] .ln-week .s1,
+body[data-tool="lunar-calendar"] .ln-week .s2 {
+  background: #fafaf9;
+}
+
+body[data-tool="lunar-calendar"] .ln-week .is-sel {
+  border-color: var(--ln-accent);
+  box-shadow: 0 0 0 2px var(--ln-accent-soft);
+}
+
+/* Quẻ */
+body[data-tool="lunar-calendar"] .ln-que {
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(245, 158, 11, 0.12), transparent 70%),
+    #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-stage {
+  padding: 0.5rem 0 0.3rem;
+  text-align: center;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-stage p {
+  margin: 0.9rem auto;
+  max-width: 280px;
+  font-size: 0.84rem;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-tube {
+  position: relative;
+  width: 92px;
+  height: 170px;
+  margin: 0 auto;
+  transform-origin: 50% 90%;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-sticks {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  display: flex;
+  gap: 4px;
+  transform: translateX(-50%);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-sticks i {
+  width: 7px;
+  height: 80px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, #dc2626 0 14px, #e7c48a 14px);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-sticks i:nth-child(odd) {
+  transform: translateY(8px);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-sticks i:nth-child(3n) {
+  transform: translateY(-4px);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-body {
+  position: absolute;
+  inset: 52px 0 0;
+  display: grid;
+  place-items: center;
+  border: 3px solid #f5c451;
+  border-radius: 14px 14px 22px 22px;
+  background: linear-gradient(90deg, #991b1b, #dc2626 45%, #991b1b);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #fde68a;
+  box-shadow: 0 14px 26px rgba(127, 29, 29, 0.3);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-tube.is-shaking {
+  animation: lnShake 0.25s ease-in-out infinite alternate;
+}
+
+@keyframes lnShake {
+  from { transform: rotate(-14deg) translateY(-2px); }
+  to { transform: rotate(14deg) translateY(2px); }
+}
+
+body[data-tool="lunar-calendar"] .ln-que-result {
+  --lv: #b45309;
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(180, 83, 9, 0.25);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fffbeb, #fff);
+  text-align: center;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-result.lv0,
+body[data-tool="lunar-calendar"] .ln-que-result.lv1 {
+  --lv: #c0262d;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-result.lv4,
+body[data-tool="lunar-calendar"] .ln-que-result.lv5 {
+  --lv: #57534e;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-result.is-reveal {
+  animation: lnReveal 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+@keyframes lnReveal {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+body[data-tool="lunar-calendar"] .ln-que-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-no {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-lv {
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: var(--lv);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-result h3 {
+  margin: 0.7rem 0 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--lv);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-verse {
+  margin: 0 0 0.85rem;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.98rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-aspects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  margin: 0;
+  text-align: left;
+}
+
+body[data-tool="lunar-calendar"] .ln-que-aspects div {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-aspects dt {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-aspects dd {
+  margin: 0.1rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+  font-size: 0.74rem;
+  text-align: left;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-que-foot .ln-act {
+  flex: none;
+  padding: 0.55rem 0.8rem;
+}
+
+/* ── Văn khấn ── */
+body[data-tool="lunar-calendar"] .ln-vk-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-types button {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--ln-line);
+  border-radius: 999px;
+  background: var(--ln-gold-soft);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--ln-ink);
+  cursor: pointer;
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-types button.is-on {
+  border-color: transparent;
+  background: linear-gradient(135deg, #b91c1c, #ea580c);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(185, 28, 28, 0.25);
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  align-items: start;
+  gap: 1.1rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-form {
+  display: grid;
+  gap: 0.35rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-form .ln-label {
+  margin-top: 0.3rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-form [hidden] {
+  display: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-date {
+  margin: 0 0 0.3rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  background: var(--ln-accent-soft);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-date span {
+  color: var(--ln-accent);
+  font-weight: 700;
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-date small {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-offer {
+  margin: 0.5rem 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ln-muted);
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-offer b {
+  color: var(--ln-ink);
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-paper {
+  position: relative;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid rgba(180, 83, 9, 0.25);
+  border-radius: 16px;
+  background:
+    linear-gradient(rgba(180, 83, 9, 0.05) 1px, transparent 1px) 0 0 / 100% 1.9em,
+    #fffaf0;
+  box-shadow: inset 0 0 0 6px #fffaf0, inset 0 0 0 7px rgba(192, 38, 45, 0.25);
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-paper h3 {
+  margin: 0 0 0.8rem;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.2rem;
+  text-align: center;
+  color: #991b1b;
+}
+
+body[data-tool="lunar-calendar"] .ln-vk-paper pre {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #292524;
+}
+
+/* ── Hộp ảnh chia sẻ ── */
+body[data-tool="lunar-calendar"] .ln-dlg {
+  width: min(440px, calc(100vw - 1.5rem));
+  max-height: calc(100vh - 1.5rem);
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: var(--surface, #fff);
+  color: var(--ln-ink);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg::backdrop {
+  background: rgba(28, 25, 23, 0.6);
+  backdrop-filter: blur(3px);
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg-box {
+  padding: 1rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg-head h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg-x {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ln-accent-soft);
+  font-size: 0.9rem;
+  color: var(--ln-accent);
+  cursor: pointer;
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 62vh;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #7f1d1d;
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg-actions .ln-act {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+}
+
+body[data-tool="lunar-calendar"] .ln-dlg-actions [hidden] {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  body[data-tool="lunar-calendar"] .ln-fortune,
+  body[data-tool="lunar-calendar"] .ln-vk-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  body[data-tool="lunar-calendar"] .ln-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    border-radius: 18px;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-tab {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  body[data-tool="lunar-calendar"] .ln-tuoi,
+  body[data-tool="lunar-calendar"] .ln-que,
+  body[data-tool="lunar-calendar"] .ln-vk {
+    padding: 0.95rem 0.85rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-tuoi-hero {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 0.85rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-tuoi-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 1.7rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-tuoi-score {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding-top: 0.55rem;
+    border-top: 1px dashed rgba(253, 230, 138, 0.35);
+    text-align: left;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-tuoi-score small {
+    margin-left: auto;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-tuoi-grid,
+  body[data-tool="lunar-calendar"] .ln-que-aspects {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-week {
+    gap: 0.2rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-week button {
+    padding: 0.4rem 0.05rem;
+    border-radius: 10px;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-week b {
+    font-size: 0.66rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-week span {
+    font-size: 0.5rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-que-foot {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-vk-paper {
+    padding: 1.1rem 1rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-vk-paper pre {
+    font-size: 0.9rem;
+  }
+
+  body[data-tool="lunar-calendar"] .ln-cell.is-pick::before {
+    display: none;
+  }
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-cell.is-pick:not(.is-today) {
+  border-color: rgba(74, 222, 128, 0.45);
+  background: rgba(22, 163, 74, 0.16);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-pick-card,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que {
+  background: var(--surface);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-pick-card .ln-ev-date,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-ev-good {
+  background: rgba(22, 163, 74, 0.16);
+  color: #4ade80;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-pick-label,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-nenky-head h3 {
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-nenky {
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-day-link {
+  border-color: rgba(192, 132, 252, 0.3);
+  background: rgba(168, 85, 247, 0.12);
+  color: #d8b4fe;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-day-link[data-vk] {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.1);
+  color: #fcd34d;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-tuoi-grid > div,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-week button,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-aspects div {
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-week .s4,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-week .s5 {
+  border-color: rgba(74, 222, 128, 0.35);
+  background: rgba(22, 163, 74, 0.12);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-result {
+  border-color: rgba(245, 158, 11, 0.25);
+  background: rgba(245, 158, 11, 0.06);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-result.lv0,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-result.lv1 {
+  --lv: #f87171;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-result.lv2,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-result.lv3 {
+  --lv: #fbbf24;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-result.lv4,
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-result.lv5 {
+  --lv: #a8a29e;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-que-lv {
+  color: #1c1917;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-vk-types button:not(.is-on),
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-pick button:not(.is-on) {
+  border-color: var(--border);
+  background: rgba(245, 158, 11, 0.08);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-vk-paper {
+  border-color: rgba(245, 158, 11, 0.25);
+  background:
+    linear-gradient(rgba(245, 158, 11, 0.06) 1px, transparent 1px) 0 0 / 100% 1.9em,
+    #1f1a17;
+  box-shadow: inset 0 0 0 6px #1f1a17, inset 0 0 0 7px rgba(248, 113, 113, 0.25);
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-vk-paper h3 {
+  color: #fca5a5;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-vk-paper pre {
+  color: #e7e5e4;
+}
+
+html[data-theme="dark"] body[data-tool="lunar-calendar"] .ln-dlg {
+  background: var(--surface);
+  color: var(--text);
 }

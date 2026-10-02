@@ -43,6 +43,10 @@ window.OT = window.OT || {};
   async function downloadBlob(blob, fileName) {
     const name = String(fileName || "download").replace(/[<>:"/\\|?*\x00-\x1f]/g, "_");
 
+    try {
+      document.dispatchEvent(new CustomEvent("ot:download", { detail: { blob, fileName: name } }));
+    } catch (_) {}
+
     if (typeof navigator.msSaveOrOpenBlob === "function") {
       navigator.msSaveOrOpenBlob(blob, name);
       return "ms";
