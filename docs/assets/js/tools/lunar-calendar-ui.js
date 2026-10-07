@@ -438,7 +438,7 @@
     $("eventsList").innerHTML = items.length ? items.join("") : '<li class="ln-ev-empty">Tháng này không có ngày lễ lớn.</li>';
     const link = $("monthPageLink");
     const hasPage = viewYear === 2026 || viewYear === 2027;
-    link.href = hasPage ? "../lich-am/thang-" + viewMonth + "-" + viewYear + ".html" : "../lich-am/index.html";
+    link.href = hasPage ? "../lich-am/thang-" + viewMonth + "-" + viewYear + ".html" : "../lich-am/";
     link.textContent = hasPage ? "Ngày tốt & giờ hoàng đạo cả tháng " + viewMonth + "/" + viewYear + " →" : "Xem lịch âm từng tháng →";
   }
 

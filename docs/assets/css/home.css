@@ -1074,8 +1074,8 @@ body[data-tool="home"] .tool-card-footer .btn {
   72% { transform: translate3d(20px, 10px, 0) scale(0.96) rotate(-4deg); }
 }
 
-/* Hero mobile — ot-shell.css dùng !important nên cần selector mạnh hơn */
-@media (max-width: 560px) {
+/* Hero mobile — ot-shell.css dùng !important tới 768px nên cần selector mạnh hơn */
+@media (max-width: 768px) {
   .home-hero .home-hero-points {
     display: grid !important;
     grid-template-columns: 1fr !important;
