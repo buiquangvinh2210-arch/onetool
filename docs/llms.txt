@@ -1,0 +1,139 @@
+# OneTool
+
+> OneTool (onetool.vn) là bộ công cụ online miễn phí bằng tiếng Việt: xử lý PDF, ảnh, video/audio, chuyển đổi dữ liệu, tiện ích tài chính – lịch âm và công cụ lập trình. Không cần đăng ký, không watermark.
+
+- Công cụ PDF và ảnh xử lý ngay trên trình duyệt, file không rời máy người dùng.
+- Một số công cụ Media/AI (video/audio sang văn bản, tóm tắt AI, tải TikTok) dùng máy chủ xử lý có kiểm soát.
+- Giao diện và hướng dẫn hoàn toàn bằng tiếng Việt; hoạt động trên máy tính và điện thoại.
+- Liên hệ: onetools27@gmail.com
+
+## Công cụ AI
+
+- [Tất cả: Công cụ AI](https://onetool.vn/cong-cu-ai.html): Video/audio → chữ, phụ đề SRT, TTS, Tóm tắt AI
+- [Chuyển giọng nói thành văn bản](https://onetool.vn/cong-cu-media/audio-to-text.html): Audio to text tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.
+- [Tạo phụ đề SRT](https://onetool.vn/cong-cu-media/subtitle-srt.html): Video hoặc MP3 thành phụ đề SRT tiếng Việt — gắn CapCut, YouTube, Premiere.
+- [Văn bản thành giọng nói](https://onetool.vn/cong-cu-media/text-to-speech.html): Text to speech tiếng Việt: chọn giọng nam/nữ, nghe thử, tải WAV — miễn phí.
+- [Tóm tắt AI](https://onetool.vn/cong-cu-media/ai-summarize.html): Rút gọn bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng hoặc TL;DR.
+
+## Công cụ Media
+
+- [Tất cả: Công cụ Media](https://onetool.vn/cong-cu-media.html): TikTok, video sang MP3, nén / cắt video
+- [Tải video TikTok không logo](https://onetool.vn/cong-cu-media/tiktok-download.html): Dán link → tải MP4 HD không dính logo / watermark TikTok.
+- [Video sang MP3](https://onetool.vn/cong-cu-media/video-to-mp3.html): Tách tiếng từ MP4, MOV, MKV thành MP3 192kbps — chạy trên trình duyệt.
+- [Nén video online](https://onetool.vn/cong-cu-media/video-convert.html): Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.
+- [Cắt video online](https://onetool.vn/cong-cu-media/video-trim.html): Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.
+- [Video sang GIF](https://onetool.vn/cong-cu-media/video-to-gif.html): Cắt đoạn MP4/WebM thành GIF — chọn FPS, độ rộng, chất lượng palette.
+
+## Công cụ PDF
+
+- [Tất cả: Công cụ PDF](https://onetool.vn/cong-cu-pdf.html): Gộp, tách, nén, ký PDF, PDF → Word/Excel, khóa mật khẩu
+- [PDF sang Word](https://onetool.vn/cong-cu-pdf/pdf-to-word.html): Chuyển PDF thành Word (DOCX) để chỉnh sửa — kể cả bản scan.
+- [Gộp PDF online](https://onetool.vn/cong-cu-pdf/pdf-merge.html): Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.
+- [Nén PDF online](https://onetool.vn/cong-cu-pdf/pdf-compress.html): Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.
+- [PDF sang Excel](https://onetool.vn/cong-cu-pdf/pdf-to-excel.html): Trích bảng / báo cáo từ PDF thành Excel (XLSX) — OCR bản scan tiếng Việt.
+- [Word sang PDF](https://onetool.vn/cong-cu-pdf/office-to-pdf.html): Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.
+- [Ảnh sang PDF](https://onetool.vn/cong-cu-pdf/image-to-pdf.html): Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.
+- [PDF sang ảnh](https://onetool.vn/cong-cu-pdf/pdf-to-image.html): Xuất từng trang PDF ra PNG / JPG / WebP — xem trước hoặc tải ZIP.
+- [Ảnh ↔ PDF](https://onetool.vn/cong-cu-pdf/image-pdf.html): Hai hướng rõ ràng: ghép ảnh thành PDF, hoặc xuất PDF ra ảnh.
+- [Đặt mật khẩu PDF](https://onetool.vn/cong-cu-pdf/pdf-lock.html): Khóa PDF bằng mật khẩu mở file (AES-256) — bảo vệ hồ sơ trước khi gửi.
+- [Ký PDF online](https://onetool.vn/cong-cu-pdf/pdf-sign.html): Ký tên, đóng dấu ngày, chữ ký tay hoặc ảnh lên PDF — kéo thả, nhiều trang.
+- [Đóng dấu PDF](https://onetool.vn/cong-cu-pdf/pdf-watermark.html): Thêm chữ hoặc logo watermark lên PDF — chỉnh độ trong suốt, góc, vị trí.
+- [Tách PDF online](https://onetool.vn/cong-cu-pdf/pdf-split.html): Tách PDF theo trang hoặc khoảng — tải đúng phần cần dùng.
+- [Xoay PDF / xóa trang](https://onetool.vn/cong-cu-pdf/pdf-pages.html): Xoay trang bị ngược hoặc xóa trang trắng / trang nhầm trước khi gửi.
+- [PDF sang TXT](https://onetool.vn/cong-cu-pdf/pdf-convert.html): Trích chữ từ PDF (text layer + OCR bản scan) ra TXT.
+
+## Công cụ Ảnh
+
+- [Tất cả: Công cụ Ảnh](https://onetool.vn/cong-cu-anh.html): Xóa nền AI, nén, HEIC, OCR, crop MXH
+- [Xóa nền ảnh](https://onetool.vn/cong-cu-anh/remove-background.html): Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.
+- [Nén ảnh online](https://onetool.vn/cong-cu-anh/image-compress.html): Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau.
+- [HEIC sang JPG](https://onetool.vn/cong-cu-anh/heic-convert.html): Chuyển HEIC / HEIF (và JPG PNG) sang JPG · PNG · WebP — nhiều ảnh, tải ZIP.
+- [OCR ảnh → chữ](https://onetool.vn/cong-cu-anh/image-ocr.html): Nhận dạng chữ Việt + Anh trong ảnh: hóa đơn, CCCD, sách, screenshot — copy hoặc tải TXT.
+- [Crop ảnh + preset MXH](https://onetool.vn/cong-cu-anh/image-crop.html): Cắt ảnh theo preset Instagram, TikTok, YouTube, Facebook, Shopee, ảnh thẻ 3×4 — kéo khung, xuất JPG/PNG/WebP.
+- [Đổi định dạng ảnh](https://onetool.vn/cong-cu-anh/image-convert.html): Đổi JPG ↔ PNG ↔ WebP online — kéo thả, chọn format, tải về.
+- [Đổi kích thước ảnh](https://onetool.vn/cong-cu-anh/image-resize.html): Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.
+- [Làm mờ ảnh](https://onetool.vn/cong-cu-anh/image-blur.html): Làm mờ toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.
+- [Nén nhiều ảnh cùng lúc](https://onetool.vn/cong-cu-anh/image-batch.html): Đổi định dạng, resize hoặc nén nhiều ảnh cùng lúc — phù hợp catalog sản phẩm.
+
+## Tiện ích
+
+- [Tất cả: Tiện ích](https://onetool.vn/cong-cu-tien-ich.html): VietQR, tính lương Gross Net, số thành chữ, tiền tệ, lịch âm
+- [Tạo mã VietQR](https://onetool.vn/cong-cu-tien-ich/vietqr.html): Tạo QR chuyển khoản NAPAS: ngân hàng, STK, số tiền — tải PNG in/dán shop.
+- [Tính lương Gross Net](https://onetool.vn/cong-cu-tien-ich/salary-calculator.html): Đổi lương Gross ↔ Net 2026: BHXH, BHYT, BHTN, thuế TNCN 5 bậc, giảm trừ 15,5 triệu.
+- [Tính lãi vay trả góp](https://onetool.vn/cong-cu-tien-ich/loan-calculator.html): Vay mua nhà, mua xe mỗi tháng trả bao nhiêu: dư nợ giảm dần, trả đều, lãi phẳng, lịch trả nợ.
+- [Tính lãi tiết kiệm](https://onetool.vn/cong-cu-tien-ich/savings-calculator.html): Gửi tiết kiệm lãi bao nhiêu: lĩnh lãi cuối kỳ, hàng tháng, tái tục, tích lũy mỗi tháng.
+- [Tính BHXH một lần](https://onetool.vn/cong-cu-tien-ich/bhxh-calculator.html): Ước tính tiền rút BHXH một lần theo số năm đóng và lương bình quân, có diễn giải từng bước.
+- [Số thành chữ](https://onetool.vn/cong-cu-tien-ich/number-to-words.html): Đổi số tiền thành chữ tiếng Việt cho hóa đơn, hợp đồng — một triệu hai trăm nghìn đồng.
+- [Đổi tiền tệ](https://onetool.vn/cong-cu-tien-ich/currency-convert.html): Đổi USD · EUR · VND và 20+ loại tiền — tỷ giá realtime, đảo chiều nhanh.
+- [Lịch âm hôm nay](https://onetool.vn/cong-cu-tien-ich/lunar-calendar.html): Lịch vạn niên, ngày hoàng đạo, giờ tốt, ngày lễ, đếm ngược Tết — đổi ngày âm dương.
+- [Gieo quẻ online](https://onetool.vn/cong-cu-tien-ich/gieo-que.html): Xin quẻ may mắn: lắc điện thoại để nhận 1 trong 36 quẻ có thơ, lời giải công việc, tài lộc, tình duyên.
+- [Tung đồng xu online](https://onetool.vn/cong-cu-tien-ich/tung-dong-xu.html): Gieo 3 đồng xu cổ xem việc thuận hay chưa, xin âm dương bằng 2 đồng, tung 1 đồng sấp ngửa — lắc điện thoại để gieo.
+- [Tạo mã QR](https://onetool.vn/cong-cu-tien-ich/qr-generator.html): Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.
+- [Đếm từ online](https://onetool.vn/cong-cu-tien-ich/word-counter.html): Đếm từ, ký tự, câu, đoạn — thời gian đọc tiếng Việt, mật độ từ khóa.
+- [Tạo mã vạch](https://onetool.vn/cong-cu-tien-ich/barcode-generator.html): Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG.
+- [Tạo mật khẩu](https://onetool.vn/cong-cu-tien-ich/password-generator.html): Tạo mật khẩu mạnh ngẫu nhiên — chữ, số, ký tự đặc biệt, đo độ mạnh.
+- [Bỏ dấu tiếng Việt](https://onetool.vn/cong-cu-tien-ich/text-convert.html): Bỏ dấu, viết hoa/thường, slug URL, dọn dòng — chạy trên máy bạn.
+
+## File & dữ liệu
+
+- [Tất cả: File & dữ liệu](https://onetool.vn/cong-cu-chuyen-doi.html): Excel ↔ CSV/JSON, OCR bảng → Excel, CSV ↔ JSON
+- [Excel sang CSV JSON](https://onetool.vn/cong-cu-chuyen-doi/excel-convert.html): Convert XLSX/XLS sang CSV hoặc JSON — và ngược lại. Chọn sheet, xem trước, tải file.
+- [OCR bảng sang Excel](https://onetool.vn/cong-cu-chuyen-doi/ocr-table.html): Chụp bảng / biên lai → OCR tiếng Việt → chỉnh sửa → tải XLSX/CSV.
+- [CSV to JSON](https://onetool.vn/cong-cu-chuyen-doi/convert-data.html): Dán dữ liệu hoặc mở file — đổi CSV ↔ JSON ngay trên trình duyệt.
+
+## Lập trình
+
+- [Tất cả: Lập trình](https://onetool.vn/cong-cu-lap-trinh.html): JSON, Regex, Base64, URL encode, UUID
+- [Format JSON](https://onetool.vn/cong-cu-lap-trinh/json-tools.html): Làm đẹp, minify và kiểm tra JSON hợp lệ — tiện debug API.
+- [Regex tester](https://onetool.vn/cong-cu-lap-trinh/regex-tester.html): Thử regex realtime — highlight match, flags, replace, nhóm bắt.
+- [Base64 encode decode](https://onetool.vn/cong-cu-lap-trinh/base64-tools.html): Encode/decode Base64 — tiếng Việt, URL-safe, file và ảnh có preview.
+- [URL encode decode](https://onetool.vn/cong-cu-lap-trinh/url-encode.html): Encode/decode URL — encodeURIComponent, encodeURI, form (+), UTF-8 tiếng Việt.
+- [UUID Hash Slugify](https://onetool.vn/cong-cu-lap-trinh/developer-tools.html): UUID, SHA hash, slugify tiếng Việt, Unix timestamp — công cụ dev nhanh.
+
+## Đơn vị
+
+- [Tất cả: Đơn vị](https://onetool.vn/cong-cu-don-vi.html): Khối lượng, chiều dài, nhiệt độ, dung lượng…
+- [Chuyển đổi đơn vị](https://onetool.vn/cong-cu-don-vi/unit-convert.html): Chọn nhóm cần đổi — mỗi tool riêng, hệ số SI/NIST chuẩn.
+- [Đổi khối lượng](https://onetool.vn/cong-cu-don-vi/unit-mass.html): Đổi khối lượng: kg · lb · g. Hệ số chuẩn, kết quả tức thì.
+- [Đổi chiều dài](https://onetool.vn/cong-cu-don-vi/unit-length.html): Đổi chiều dài: m · ft · inch. Hệ số chuẩn, kết quả tức thì.
+- [Đổi nhiệt độ](https://onetool.vn/cong-cu-don-vi/unit-temp.html): Đổi nhiệt độ: °C · °F · K. Hệ số chuẩn, kết quả tức thì.
+- [Đổi dung lượng](https://onetool.vn/cong-cu-don-vi/unit-data.html): Đổi dung lượng: MB · GiB. Hệ số chuẩn, kết quả tức thì.
+- [Đổi thể tích](https://onetool.vn/cong-cu-don-vi/unit-volume.html): Đổi thể tích: L · mL · gallon. Hệ số chuẩn, kết quả tức thì.
+- [Đổi diện tích](https://onetool.vn/cong-cu-don-vi/unit-area.html): Đổi diện tích: m² · ha · acre. Hệ số chuẩn, kết quả tức thì.
+- [Đổi tốc độ](https://onetool.vn/cong-cu-don-vi/unit-speed.html): Đổi tốc độ: km/h · mph. Hệ số chuẩn, kết quả tức thì.
+- [Đổi thời gian](https://onetool.vn/cong-cu-don-vi/unit-time.html): Đổi thời gian: giờ · phút · giây. Hệ số chuẩn, kết quả tức thì.
+- [Đổi năng lượng](https://onetool.vn/cong-cu-don-vi/unit-energy.html): Đổi năng lượng: J · kWh · cal. Hệ số chuẩn, kết quả tức thì.
+- [Đổi áp suất](https://onetool.vn/cong-cu-don-vi/unit-pressure.html): Đổi áp suất: Pa · bar · atm. Hệ số chuẩn, kết quả tức thì.
+- [Đổi công suất](https://onetool.vn/cong-cu-don-vi/unit-power.html): Đổi công suất: W · kW · HP. Hệ số chuẩn, kết quả tức thì.
+- [Đổi góc](https://onetool.vn/cong-cu-don-vi/unit-angle.html): Đổi góc: độ · radian. Hệ số chuẩn, kết quả tức thì.
+- [Đổi tiêu hao nhiên liệu](https://onetool.vn/cong-cu-don-vi/unit-fuel.html): Đổi tiêu hao nhiên liệu: L/100km · mpg. Hệ số chuẩn, kết quả tức thì.
+
+## Lịch âm và gieo quẻ
+
+- [Lịch âm theo tháng](https://onetool.vn/lich-am/): Lịch âm các tháng 2026, 2027: mùng 1, rằm, ngày tốt
+- [Ý nghĩa 36 quẻ](https://onetool.vn/gieo-que/): Ý nghĩa 36 quẻ: thơ quẻ và lời giải từng quẻ
+
+## Hướng dẫn
+
+- [Lịch âm 2026: mùng 1, rằm và ngày lễ cả năm Bính Ngọ](https://onetool.vn/blog/lich-am-2026.html)
+- [Xem ngày tốt cuối năm 2026: khai trương, cưới hỏi, về nhà mới](https://onetool.vn/blog/xem-ngay-tot-cuoi-nam-2026.html)
+- [Văn khấn mùng 1 và ngày rằm: lễ vật, giờ cúng, bài khấn](https://onetool.vn/blog/van-khan-mung-1-ngay-ram.html)
+- [Cách tính lương Net 2026: thuế TNCN 5 bậc, giảm trừ 15,5 triệu](https://onetool.vn/blog/cach-tinh-luong-net-2026.html)
+- [PDF sang Word online miễn phí — chuyển PDF to DOCX](https://onetool.vn/blog/pdf-sang-word-online.html)
+- [Tải video TikTok không logo / không watermark miễn phí](https://onetool.vn/blog/tai-tiktok-khong-logo.html)
+- [HEIC sang JPG online — đổi ảnh iPhone miễn phí](https://onetool.vn/blog/heic-sang-jpg-iphone.html)
+- [Cách tách nhạc từ video sang MP3 — MP4, MOV trên máy tính](https://onetool.vn/blog/video-sang-mp3.html)
+- [Tạo mã VietQR online miễn phí — QR chuyển khoản NAPAS](https://onetool.vn/blog/tao-ma-vietqr.html)
+- [Cách ký PDF bằng chữ ký tay — không cần in, không cần cài app](https://onetool.vn/blog/ky-pdf-online.html)
+- [Cách chuyển ảnh sang PDF trên điện thoại và máy tính (JPG, PNG)](https://onetool.vn/blog/anh-sang-pdf.html)
+- [Chuyển giọng nói thành văn bản tiếng Việt — audio to text](https://onetool.vn/blog/chuyen-giong-noi-thanh-van-ban.html)
+- [Cách ghép PDF online không cần phần mềm — miễn phí](https://onetool.vn/blog/ghep-pdf-khong-can-phan-mem.html)
+- [Nén PDF gửi Zalo / email — giảm dung lượng miễn phí](https://onetool.vn/blog/nen-pdf-gui-zalo.html)
+- [Xóa nền ảnh Shopee bằng AI — PNG trong suốt miễn phí](https://onetool.vn/blog/xoa-nen-anh-shopee.html)
+
+## Optional
+
+- [Giới thiệu](https://onetool.vn/about.html)
+- [Chính sách bảo mật](https://onetool.vn/chinh-sach.html)
+- [Điều khoản sử dụng](https://onetool.vn/dieu-khoan.html)
+- [Sitemap](https://onetool.vn/sitemap.xml)

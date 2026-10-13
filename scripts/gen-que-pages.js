@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   const PUBLISHED = "2026-10-02";
-  const V = { catalog: "20261002k", layout: "20261002h", core: "20261002a", site: "20261002c", blog: "20261002b", gq: "20261002c" };
+  const V = { catalog: "20261002k", layout: "20261013a", core: "20261002a", site: "20261002c", blog: "20261002b", gq: "20261002c" };
   const ORIGIN = "https://onetool.vn";
   const DATA = window.OTQueData || [];
 

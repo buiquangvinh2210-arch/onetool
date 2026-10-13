@@ -211,6 +211,9 @@
   }
 
   function applyPageMeta() {
+    // Title/description viết sẵn trong HTML là bản chuẩn (bot không chạy JS cũng đọc); pageMeta chỉ bù khi thiếu.
+    const staticDesc = document.querySelector('meta[name="description"]')?.getAttribute("content") || "";
+    if (document.title.trim() && staticDesc.trim()) return;
     const tool = window.OTCatalog?.toolBySlug?.(meta.tool);
     let pack = window.OTCatalog?.pageMeta?.[meta.tool];
     if (!pack && tool) {
@@ -467,9 +470,10 @@
     const megaLinks = buildMegaMenu();
     const drawerBody = buildDrawerMenu();
     const toolCount = window.OTCatalog?.tools?.filter((t) => !t.hub)?.length || 55;
+    const chromeHtml = (window.OTChromeHtml = {});
 
     if (headerHost) {
-      headerHost.outerHTML = `
+      headerHost.outerHTML = chromeHtml.header = `
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
     <div class="container header-inner">
@@ -558,7 +562,7 @@
     }
 
     if (footerHost) {
-      footerHost.outerHTML = `
+      footerHost.outerHTML = chromeHtml.footer = `
 <footer class="site-footer">
   <div class="footer-cta-band">
     <div class="container footer-cta-inner">

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<title>Prerender HTML tĩnh</title>
+<!--
+  Ghi sẵn vào HTML những phần layout.js / site.js dựng bằng JS (header, footer, breadcrumb,
+  JSON-LD, danh sách tool ở trang chủ + trang danh mục) để bot không chạy JS vẫn đọc được.
+  Chạy lại sau mỗi lần sửa catalog.js, menu/footer trong layout.js, hoặc sau khi sinh lại
+  trang bằng gen-que-pages / gen-lunar-months.
+  Chạy: static server với root = thư mục repo, mở /scripts/prerender.html (tắt cache trình duyệt).
+  Kết quả: window.__out = { "cong-cu-anh.html": "<!DOCTYPE html>…", … } (chỉ trang có thay đổi),
+  window.__report = danh sách trang có title/description khác giữa HTML và bản JS.
+-->
+</head>
+<body>
+<pre id="log">Đang chạy…</pre>
+<script src="prerender.js"></script>
+</body>
+</html>
