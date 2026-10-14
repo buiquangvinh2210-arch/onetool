@@ -60,7 +60,7 @@
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}" />
   <link rel="canonical" href="${url(path)}" />
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content="noindex,follow" />
   <meta property="og:title" content="${esc(ogTitle)}" />
   <meta property="og:description" content="${esc(ogDesc || desc)}" />
   <meta property="og:url" content="${url(path)}" />
