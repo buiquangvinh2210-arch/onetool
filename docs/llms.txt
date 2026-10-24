@@ -66,8 +66,6 @@
 - [Số thành chữ](https://onetool.vn/cong-cu-tien-ich/number-to-words.html): Đổi số tiền thành chữ tiếng Việt cho hóa đơn, hợp đồng — một triệu hai trăm nghìn đồng.
 - [Đổi tiền tệ](https://onetool.vn/cong-cu-tien-ich/currency-convert.html): Đổi USD · EUR · VND và 20+ loại tiền — tỷ giá realtime, đảo chiều nhanh.
 - [Lịch âm hôm nay](https://onetool.vn/cong-cu-tien-ich/lunar-calendar.html): Lịch vạn niên, ngày hoàng đạo, giờ tốt, ngày lễ, đếm ngược Tết — đổi ngày âm dương.
-- [Gieo quẻ online](https://onetool.vn/cong-cu-tien-ich/gieo-que.html): Xin quẻ may mắn: lắc điện thoại để nhận 1 trong 36 quẻ có thơ, lời giải công việc, tài lộc, tình duyên.
-- [Tung đồng xu online](https://onetool.vn/cong-cu-tien-ich/tung-dong-xu.html): Gieo 3 đồng xu cổ xem việc thuận hay chưa, xin âm dương bằng 2 đồng, tung 1 đồng sấp ngửa — lắc điện thoại để gieo.
 - [Tạo mã QR](https://onetool.vn/cong-cu-tien-ich/qr-generator.html): Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.
 - [Đếm từ online](https://onetool.vn/cong-cu-tien-ich/word-counter.html): Đếm từ, ký tự, câu, đoạn — thời gian đọc tiếng Việt, mật độ từ khóa.
 - [Tạo mã vạch](https://onetool.vn/cong-cu-tien-ich/barcode-generator.html): Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG.
@@ -108,16 +106,8 @@
 - [Đổi góc](https://onetool.vn/cong-cu-don-vi/unit-angle.html): Đổi góc: độ · radian. Hệ số chuẩn, kết quả tức thì.
 - [Đổi tiêu hao nhiên liệu](https://onetool.vn/cong-cu-don-vi/unit-fuel.html): Đổi tiêu hao nhiên liệu: L/100km · mpg. Hệ số chuẩn, kết quả tức thì.
 
-## Lịch âm và gieo quẻ
-
-- [Lịch âm theo tháng](https://onetool.vn/lich-am/): Lịch âm các tháng 2026, 2027: mùng 1, rằm, ngày tốt
-- [Ý nghĩa 36 quẻ](https://onetool.vn/gieo-que/): Ý nghĩa 36 quẻ: thơ quẻ và lời giải từng quẻ
-
 ## Hướng dẫn
 
-- [Lịch âm 2026: mùng 1, rằm và ngày lễ cả năm Bính Ngọ](https://onetool.vn/blog/lich-am-2026.html)
-- [Xem ngày tốt cuối năm 2026: khai trương, cưới hỏi, về nhà mới](https://onetool.vn/blog/xem-ngay-tot-cuoi-nam-2026.html)
-- [Văn khấn mùng 1 và ngày rằm: lễ vật, giờ cúng, bài khấn](https://onetool.vn/blog/van-khan-mung-1-ngay-ram.html)
 - [Cách tính lương Net 2026: thuế TNCN 5 bậc, giảm trừ 15,5 triệu](https://onetool.vn/blog/cach-tinh-luong-net-2026.html)
 - [PDF sang Word online miễn phí — chuyển PDF to DOCX](https://onetool.vn/blog/pdf-sang-word-online.html)
 - [Tải video TikTok không logo / không watermark miễn phí](https://onetool.vn/blog/tai-tiktok-khong-logo.html)

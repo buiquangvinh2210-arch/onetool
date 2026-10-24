@@ -125,14 +125,6 @@
       return { cat: "home", tool: "blog-article" };
     }
 
-    if (/\/lich-am\//i.test(path)) {
-      return { cat: "home", tool: /\/lich-am\/?($|index\.html$)/i.test(path) ? "lunar-months" : "lunar-month" };
-    }
-
-    if (/\/gieo-que\//i.test(path)) {
-      return { cat: "home", tool: /\/gieo-que\/?($|index\.html$)/i.test(path) ? "que-index" : "que-page" };
-    }
-
     if (file === "cong-cu.html" || /\/cong-cu\/?($|\/?index\.html?$)/i.test(path)) {
       return { cat: "hub", tool: "tools-index" };
     }
