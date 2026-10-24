@@ -161,8 +161,6 @@ window.OTCatalog = {
     { slug: "number-to-words", name: "Số thành chữ", desc: "Đổi số tiền thành chữ tiếng Việt cho hóa đơn, hợp đồng — một triệu hai trăm nghìn đồng.", icon: "🔡", cat: "utilities", featured: true, rank: 3 },
     { slug: "currency-convert", name: "Đổi tiền tệ", desc: "Đổi USD · EUR · VND và 20+ loại tiền — tỷ giá realtime, đảo chiều nhanh.", icon: "💱", cat: "utilities", featured: true, rank: 4 },
     { slug: "lunar-calendar", name: "Lịch âm hôm nay", desc: "Lịch vạn niên, ngày hoàng đạo, giờ tốt, ngày lễ, đếm ngược Tết — đổi ngày âm dương.", icon: "🌙", cat: "utilities", featured: true, rank: 5 },
-    { slug: "gieo-que", name: "Gieo quẻ online", desc: "Xin quẻ may mắn: lắc điện thoại để nhận 1 trong 36 quẻ có thơ, lời giải công việc, tài lộc, tình duyên.", icon: "🎋", cat: "utilities", featured: true, rank: 5.2 },
-    { slug: "tung-dong-xu", name: "Tung đồng xu online", desc: "Gieo 3 đồng xu cổ xem việc thuận hay chưa, xin âm dương bằng 2 đồng, tung 1 đồng sấp ngửa — lắc điện thoại để gieo.", icon: "🪙", cat: "utilities", featured: true, rank: 5.3 },
     { slug: "qr-generator", name: "Tạo mã QR", desc: "Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.", icon: "📱", cat: "utilities", featured: true, rank: 6 },
     { slug: "word-counter", name: "Đếm từ online", desc: "Đếm từ, ký tự, câu, đoạn — thời gian đọc tiếng Việt, mật độ từ khóa.", icon: "🔢", cat: "utilities", rank: 6 },
     { slug: "barcode-generator", name: "Tạo mã vạch", desc: "Tạo Barcode CODE128, EAN-13, CODE39, UPC… xem trước và tải PNG.", icon: "🏷️", cat: "utilities", rank: 7 },
@@ -340,14 +338,6 @@ window.OTCatalog = {
     "bhxh-calculator": {
       title: "Tính BHXH một lần online — rút được bao nhiêu? | OneTool",
       desc: "Ước tính tiền rút bảo hiểm xã hội một lần theo số năm đóng và lương bình quân: 1,5 tháng lương cho năm trước 2014, 2 tháng từ 2014, làm tròn tháng lẻ. Miễn phí."
-    },
-    "gieo-que": {
-      title: "Gieo quẻ online miễn phí — Xin quẻ, lắc điện thoại | OneTool",
-      desc: "Xin quẻ online: chọn việc muốn hỏi, lắc điện thoại hoặc chạm ống quẻ để nhận 1 trong 36 quẻ kèm thơ và lời giải công việc, tài lộc, tình duyên, sức khỏe. Miễn phí."
-    },
-    "tung-dong-xu": {
-      title: "Tung đồng xu online — Gieo 3 xu cổ, xin âm dương | OneTool",
-      desc: "Tung đồng xu online miễn phí: gieo 3 đồng xu cổ xem việc thuận hay chưa, xin âm dương bằng 2 đồng, tung 1 đồng sấp ngửa. Lắc điện thoại để gieo, có lời giải và sổ gieo."
     },
     "number-to-words": {
       title: "Đổi số thành chữ online miễn phí — số tiền bằng chữ | OneTool",
@@ -1948,72 +1938,6 @@ window.OTCatalog = {
       ],
       related: ["salary-calculator", "savings-calculator", "loan-calculator"]
     },
-    "gieo-que": {
-      keywords: "gieo quẻ, gieo quẻ online, xin quẻ, xin quẻ online, xin xăm online, gieo quẻ đầu năm, bói quẻ, quẻ may mắn, lắc điện thoại xin quẻ, quẻ tình duyên, quẻ công danh",
-      howto: [
-        "Chọn việc muốn hỏi: tổng quát, công việc, tài lộc, tình duyên, gia đạo, sức khỏe, thi cử hoặc xuất hành.",
-        "Tĩnh tâm rồi lắc điện thoại, hoặc bấm “Lắc ống quẻ” trên máy tính, cho đến khi thẻ quẻ rơi ra.",
-        "Đọc thơ quẻ, lời quẻ cho việc bạn hỏi, lời khuyên, số may mắn và giờ hoàng đạo hôm nay."
-      ],
-      faqs: [
-        {
-          q: "Vì sao lắc điện thoại mà không ra quẻ?",
-          a: "Trên iPhone, bấm “Bật lắc điện thoại” rồi chọn Cho phép. Nếu trình duyệt chặn cảm biến, chỉ cần chạm vào ống quẻ."
-        },
-        {
-          q: "Một ngày nên xin mấy quẻ?",
-          a: "Mỗi việc nên xin một quẻ mỗi ngày; bạn vẫn có thể xin cho các việc khác nhau."
-        },
-        {
-          q: "Gặp quẻ Bình hòa có sao không?",
-          a: "Không sao. Bộ quẻ không có quẻ xấu; quẻ Bình hòa chỉ nhắc bạn kiên nhẫn và chuẩn bị kỹ hơn."
-        },
-        {
-          q: "Quẻ mình xin có bị lưu lên mạng không?",
-          a: "Không. Quẻ và điều mong cầu chỉ lưu trong trình duyệt trên máy bạn."
-        }
-      ],
-      sections: [
-        {
-          title: "Ý nghĩa 4 bậc quẻ",
-          paras: [
-            "**Đại cát** (8 quẻ), **Thượng cát** (12 quẻ), **Trung cát** (10 quẻ) và **Bình hòa** (6 quẻ). Thơ và lời giải do OneTool tự soạn."
-          ]
-        }
-      ],
-      related: ["tung-dong-xu", "lunar-calendar", "salary-calculator"]
-    },
-    "tung-dong-xu": {
-      keywords: "tung đồng xu, tung đồng xu online, gieo 3 đồng xu, gieo đồng xu, xin âm dương, xin âm dương online, đồng xu cổ, sấp hay ngửa, tung đồng xu xin quẻ, lắc điện thoại gieo xu",
-      howto: [
-        "Chọn cách gieo: gieo 3 xu, xin âm dương bằng 2 xu hoặc 1 xu sấp ngửa.",
-        "Tĩnh tâm, nghĩ rõ một điều muốn hỏi rồi chạm vào khay, nhấn phím Space hoặc lắc điện thoại.",
-        "Đọc lời giải: số mặt dương, mức cát hung và lời khuyên cho việc bạn hỏi."
-      ],
-      faqs: [
-        {
-          q: "Gieo 3 đồng xu ra 2 dương 1 âm là gì?",
-          a: "Là **Dương thịnh · Cát**: thuận nhiều hơn nghịch, việc có lợi nếu bạn chủ động. Xác suất ra kết quả này là 3/8."
-        },
-        {
-          q: "Xin âm dương một sấp một ngửa nghĩa là gì?",
-          a: "Một sấp một ngửa là âm dương hòa hợp, điều xin được chấp thuận. Hai ngửa nên xin lại, hai sấp là chưa thuận."
-        },
-        {
-          q: "Vì sao lắc điện thoại mà đồng xu không gieo?",
-          a: "Trên iPhone, bấm “Bật lắc điện thoại” rồi chọn Cho phép. Nếu trình duyệt chặn cảm biến, chỉ cần chạm vào khay."
-        }
-      ],
-      sections: [
-        {
-          title: "Đồng xu cổ Cảnh Hưng thông bảo",
-          paras: [
-            "Mặt dương mô phỏng bốn chữ **景興通寶**, tiền đồng thời Lê niên hiệu Cảnh Hưng (1740–1786). Mặt có chữ là ngửa (dương), mặt trơn là sấp (âm)."
-          ]
-        }
-      ],
-      related: ["gieo-que", "password-generator", "lunar-calendar"]
-    },
     "number-to-words": {
       keywords: "đọc số thành chữ, số thành chữ tiếng việt, số tiền bằng chữ, đổi số thành chữ, 1250000 bằng chữ, viết số tiền bằng chữ",
       howto: [
@@ -2050,11 +1974,11 @@ window.OTCatalog = {
       related: ["salary-calculator", "vietqr", "currency-convert"]
     },
     "lunar-calendar": {
-      keywords: "lịch âm hôm nay, lịch vạn niên 2026, lịch âm 2026, xem ngày âm, ngày hoàng đạo, giờ hoàng đạo, xem ngày tốt xấu, xem ngày tốt khai trương, xem ngày cưới, xem tuổi hôm nay, gieo quẻ đầu ngày, văn khấn mùng 1, văn khấn ngày rằm, văn khấn giỗ, đếm ngược tết, nhắc ngày giỗ âm lịch, đổi lịch âm dương, dương lịch sang âm lịch, can chi, tiết khí",
+      keywords: "lịch âm hôm nay, lịch vạn niên 2026, lịch âm 2026, xem ngày âm, ngày hoàng đạo, giờ hoàng đạo, xem ngày tốt xấu, xem ngày tốt khai trương, xem ngày cưới, đếm ngược tết, nhắc ngày giỗ âm lịch, đổi lịch âm dương, dương lịch sang âm lịch, can chi, tiết khí",
       howto: [
         "Mở tab Lịch tháng — hôm nay được tô màu, mỗi ô có cả ngày dương và ngày âm.",
         "Bấm vào một ngày để xem Can Chi, giờ hoàng đạo, trực ngày và việc nên làm / kiêng kỵ. Chọn việc ở dòng Tìm ngày tốt để lịch tô xanh các ngày hợp.",
-        "Sang tab Xem tuổi & quẻ để nhập năm sinh, xem vận may hôm nay và gieo quẻ đầu ngày; tab Văn khấn có bài khấn điền sẵn ngày âm lịch."
+        "Sang tab Đổi ngày để đổi Dương ↔ Âm cho ngày giỗ, sinh nhật âm — có tính tháng nhuận."
       ],
       sections: [
         {
@@ -2067,18 +1991,14 @@ window.OTCatalog = {
         {
           title: "Lịch âm 2026 năm Bính Ngọ",
           paras: [
-            "Năm âm lịch **Bính Ngọ** bắt đầu ngày **17/02/2026**, có 12 tháng, **không có tháng nhuận**. **Tết Đinh Mùi 2027** rơi vào Thứ Bảy **06/02/2027**; tháng Chạp thiếu nên giao thừa là đêm 29 tháng Chạp (05/02/2027).",
-            "Xem bảng [mùng 1, rằm và ngày lễ cả năm 2026](blog/lich-am-2026.html), danh sách [ngày tốt cuối năm 2026](blog/xem-ngay-tot-cuoi-nam-2026.html) và [văn khấn mùng 1, ngày rằm](blog/van-khan-mung-1-ngay-ram.html)."
+            "Năm âm lịch **Bính Ngọ** bắt đầu ngày **17/02/2026**, có 12 tháng, **không có tháng nhuận**. **Tết Đinh Mùi 2027** rơi vào Thứ Bảy **06/02/2027**; tháng Chạp thiếu nên giao thừa là đêm 29 tháng Chạp (05/02/2027)."
           ]
         },
         {
-          title: "Xem ngày tốt, xem tuổi, gieo quẻ và văn khấn",
+          title: "Xem ngày tốt theo việc",
           list: [
             { title: "Xem ngày tốt theo việc", text: "chọn cưới hỏi, khai trương, động thổ, về nhà mới, xuất hành, mua xe, ký hợp đồng — lịch lọc ngày hoàng đạo, trực hợp việc, tránh Tam nương, Nguyệt kỵ và ngày xung tuổi." },
-            { title: "Việc nên làm / kiêng kỵ", text: "mỗi ngày có trực (Kiến, Trừ, Mãn…) kèm gợi ý nên làm và nên tránh." },
-            { title: "Xem tuổi hôm nay", text: "chấm sao theo ngũ hành nạp âm, hợp – xung địa chi; kèm màu, con số, giờ tốt và 7 ngày tới." },
-            { title: "Gieo quẻ đầu ngày", text: "mỗi ngày một quẻ với lời thơ, công việc, tài lộc, tình cảm, sức khỏe — có ảnh để chia sẻ." },
-            { title: "Văn khấn", text: "mùng 1, ngày rằm, giỗ gia tiên, Thần Tài, ông Công ông Táo — tự điền ngày âm lịch, tên và địa chỉ." }
+            { title: "Việc nên làm / kiêng kỵ", text: "mỗi ngày có trực (Kiến, Trừ, Mãn…) kèm gợi ý nên làm và nên tránh." }
           ]
         },
         {
@@ -2123,11 +2043,7 @@ window.OTCatalog = {
         },
         {
           q: "Làm sao xem ngày tốt để khai trương, cưới hỏi?",
-          a: "Ở tab **Lịch tháng**, chọn việc ở dòng **Tìm ngày tốt** — các ngày hợp được tô xanh và liệt kê bên dưới kèm trực và sao hoàng đạo. Nếu đã nhập năm sinh, lịch tự loại thêm ngày xung tuổi. Nội dung theo phong tục, chỉ mang tính tham khảo."
-        },
-        {
-          q: "Văn khấn mùng 1 và ngày rằm có sẵn ngày âm không?",
-          a: "Có. Tab **Văn khấn** tự điền ngày âm lịch của mùng 1 hoặc rằm sắp tới, bạn chỉ cần thêm tên tín chủ, địa chỉ, rồi bấm **Sao chép**. Có cả văn khấn giỗ gia tiên, Thần Tài và ông Công ông Táo."
+          a: "Ở tab **Lịch tháng**, chọn việc ở dòng **Tìm ngày tốt** — các ngày hợp được tô xanh và liệt kê bên dưới kèm trực và sao hoàng đạo. Nội dung theo phong tục, chỉ mang tính tham khảo."
         }
       ]
     },
@@ -2524,7 +2440,7 @@ window.OTCatalog = {
       intro: "Tiện ích văn phòng gọn: **tính lương Gross ↔ Net**, **đổi tiền tệ**, **QR Code**, **mã vạch**, **đổi lịch âm dương**, **tạo mật khẩu** và **chuyển đổi chữ**.",
       sections: [
         { title: "Lương & thuế", paras: ["**Tính lương Gross ↔ Net 2026** theo biểu thuế TNCN 5 bậc, giảm trừ 15,5 triệu và trần BHXH mới. **Số thành chữ** viết số tiền cho hợp đồng."] },
-        { title: "Tiền tệ & lịch", paras: ["**Đổi tiền tệ** USD/EUR/VND tỷ giá tham khảo. **Lịch âm hôm nay** — lịch tháng, giờ hoàng đạo, đổi ngày âm dương. **Gieo quẻ online** — lắc điện thoại xin quẻ may mắn. **Tung đồng xu online** — gieo 3 xu cổ, xin âm dương."] },
+        { title: "Tiền tệ & lịch", paras: ["**Đổi tiền tệ** USD/EUR/VND tỷ giá tham khảo. **Lịch âm hôm nay** — lịch tháng, giờ hoàng đạo, đổi ngày âm dương."] },
         { title: "QR, mã vạch & mật khẩu", paras: ["**QR / Barcode** tải PNG. **Password Generator** mật khẩu crypto ngẫu nhiên."] }
       ]
     }

@@ -53,11 +53,7 @@
 
   const F = window.OTFortune;
   const STORE_KEY = "ot-lunar-mine";
-  const BIRTH_KEY = "ot-lunar-birth";
-  const QUE_KEY = "ot-lunar-que";
-  const VK_KEY = "ot-lunar-vk";
   let mine = loadMine();
-  let birthYear = parseInt(readStore(BIRTH_KEY), 10) || null;
   let pickAct = null;
 
   function readStore(key) {
@@ -225,7 +221,6 @@
           <span class="${info.guide.good ? "is-good" : "is-bad"}">${info.guide.good ? "✦ Hoàng đạo" : "Hắc đạo"} · ${esc(info.guide.god)}</span>
           <span>Tiết ${esc(term)}</span>
           <span>${moon.icon} ${esc(moon.name)}</span>
-          ${heroTuoiChip(info)}
         </div>
       </div>
       <div class="ln-hero-count">
@@ -264,21 +259,7 @@
     countdownTimer = setInterval(tick, 1000);
   }
 
-  function heroTuoiChip(info) {
-    if (!F) return "";
-    if (!birthYear) return '<button type="button" class="ln-hero-cta" data-go="tuoi">🔮 Xem vận may tuổi bạn →</button>';
-    const t = F.tuoiDay(birthYear, info.jd, info.lunar.month);
-    return `<button type="button" class="ln-hero-cta" data-go="tuoi">🔮 Tuổi ${esc(t.chiName)}: ${starText(t.stars)} ${esc(t.label)}</button>`;
-  }
-
-  const starText = (n) => "★".repeat(n) + "☆".repeat(5 - n);
-
   $("lnHero").addEventListener("click", (e) => {
-    if (e.target.closest("[data-go='tuoi']")) {
-      setView("tuoi");
-      $("tabTuoi").scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
     const b = e.target.closest("button[data-date]");
     if (!b) return;
     setView("calendar");
@@ -352,7 +333,7 @@
     renderPick(first, dim);
   }
 
-  const birthChi = () => (birthYear ? (birthYear + 8) % 12 : null);
+  const birthChi = () => null;
 
   function renderPickBar() {
     if (!F) return;
@@ -390,7 +371,7 @@
     $("pickTitle").textContent = act.icon + " Ngày tốt để " + act.name.toLowerCase() + " — tháng " + viewMonth + "/" + viewYear;
     $("pickNote").textContent =
       "Đã lọc: ngày hoàng đạo, trực hợp việc, tránh Tam nương & Nguyệt kỵ" +
-      (birthYear ? ", không xung tuổi " + L.CHI[birthChi()] + " của bạn." : ". Nhập năm sinh ở tab Xem tuổi để lọc thêm ngày hợp tuổi.");
+      ".";
     $("pickList").innerHTML = items.length
       ? items.join("")
       : '<li class="ln-ev-empty">Tháng này không có ngày thật đẹp cho việc này — thử xem tháng sau.</li>';
@@ -436,10 +417,6 @@
       });
     }
     $("eventsList").innerHTML = items.length ? items.join("") : '<li class="ln-ev-empty">Tháng này không có ngày lễ lớn.</li>';
-    const link = $("monthPageLink");
-    const hasPage = viewYear === 2026 || viewYear === 2027;
-    link.href = hasPage ? "../lich-am/thang-" + viewMonth + "-" + viewYear + ".html" : "../lich-am/";
-    link.textContent = hasPage ? "Ngày tốt & giờ hoàng đạo cả tháng " + viewMonth + "/" + viewYear + " →" : "Xem lịch âm từng tháng →";
   }
 
   function findNext(fromDate, lunarDay) {
@@ -475,18 +452,6 @@
     const red = info.date.getDay() === 0 || info.events.some((e) => e.off);
     const dayChi = (info.jd + 1) % 12;
     const advice = F ? F.dayAdvice(info.jd, info.lunar) : null;
-    const tuoi = F && birthYear ? F.tuoiDay(birthYear, info.jd, info.lunar.month) : null;
-    const vkId = !F
-      ? ""
-      : info.events.some((e) => e.mine)
-        ? "gio"
-        : info.lunar.month === 12 && info.lunar.day === 23
-          ? "tao-quan"
-          : info.lunar.day === 1
-            ? "mung1"
-            : info.lunar.day === 15
-              ? "ram"
-              : "";
 
     $("dayPanel").innerHTML = `
       <div class="ln-bloc">
@@ -534,8 +499,6 @@
         <div><span>⚡ Tuổi xung</span><b>${esc(g.clash)} (${esc(g.clashAnimal)})</b></div>
       </div>
 
-      ${tuoi ? `<button type="button" class="ln-day-link" data-go="tuoi"><span>🔮 Tuổi ${esc(tuoi.chiName)} của bạn hôm nay</span><b>${starText(tuoi.stars)}</b></button>` : ""}
-      ${vkId ? `<button type="button" class="ln-day-link" data-vk="${vkId}"><span>🙏 Văn khấn ${esc(F.VAN_KHAN.find((v) => v.id === vkId).name.toLowerCase())}</span><b>Xem bài →</b></button>` : ""}
 
       <ul class="ln-day-next">
         ${nextFirst ? `<li><i>🌑</i><span>Mùng 1 tới</span><b>${fmtNext(nextFirst)}</b></li>` : ""}
@@ -587,20 +550,6 @@
     $("dayShare").addEventListener("click", () => openShare(info));
   }
 
-  $("dayPanel").addEventListener("click", (e) => {
-    if (e.target.closest("[data-go='tuoi']")) {
-      setView("tuoi");
-      $("tabTuoi").scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-    const vk = e.target.closest("[data-vk]");
-    if (vk) {
-      vkType = vk.dataset.vk;
-      setView("vankhan");
-      $("tabVankhan").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
-
   function selectDate(date, keepFocus) {
     selected = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     let dir = 0;
@@ -611,8 +560,6 @@
     }
     renderCalendar(dir);
     renderDay();
-    if (!$("viewTuoi").hidden) renderTuoi();
-    if (!$("viewVankhan").hidden) renderVkText();
     if (keepFocus) grid.querySelector(".is-sel")?.focus();
   }
 
@@ -866,234 +813,6 @@
     if (!lastSolar) return;
     setView("calendar");
     selectDate(lastSolar);
-  });
-
-  /* ── Xem tuổi ── */
-  function renderTuoi() {
-    const out = $("tuoiOut");
-    if (!F) return;
-    if (!birthYear) {
-      out.innerHTML = `<div class="ln-tuoi-empty">
-        <div class="ln-tuoi-zodiac" aria-hidden="true">${CHI_ICON.map((c) => `<span>${c}</span>`).join("")}</div>
-        <p>Nhập năm sinh để xem ngày hợp tuổi, màu sắc, con số và giờ tốt riêng cho bạn.</p>
-      </div>`;
-      return;
-    }
-    const info = dayInfo(selected);
-    const t = F.tuoiDay(birthYear, info.jd, info.lunar.month);
-    const week = [];
-    for (let i = 0; i < 7; i++) {
-      const w = dayInfo(addDays(today, i));
-      const s = F.tuoiDay(birthYear, w.jd, w.lunar.month).stars;
-      week.push(
-        `<button type="button" data-date="${w.y}-${w.m}-${w.d}" class="s${s}${w.jd === info.jd ? " is-sel" : ""}" aria-label="${esc(L.weekdayName(w.jd))} ${w.d}/${w.m}: ${s} sao">
-          <small>${i === 0 ? "Nay" : wdShort(w.date)}</small><b>${pad(w.d)}/${pad(w.m)}</b><span>${"★".repeat(s)}</span>
-        </button>`
-      );
-    }
-    out.innerHTML = `
-      <div class="ln-tuoi-hero s${t.stars}">
-        <span class="ln-tuoi-icon" aria-hidden="true">${CHI_ICON[t.chi]}</span>
-        <div class="ln-tuoi-who">
-          <strong>Tuổi ${esc(t.canChi)} <small>(${birthYear})</small></strong>
-          <span>Mệnh ${esc(t.napAm.name)} · hành ${esc(t.napAm.element)}</span>
-        </div>
-        <div class="ln-tuoi-score">
-          <span class="ln-stars" aria-label="${t.stars} trên 5 sao">${starText(t.stars)}</span>
-          <b>${esc(t.label)}</b>
-          <small>${esc(relLabel(info.jd))} · ${esc(L.weekdayName(info.jd))} ${pad(info.d)}/${pad(info.m)}</small>
-        </div>
-      </div>
-      <p class="ln-tuoi-advice">${esc(t.advice)}</p>
-      <ul class="ln-tuoi-reasons">${t.reasons
-        .map((r) => `<li class="${r.ok === true ? "is-ok" : r.ok === false ? "is-bad" : "is-mid"}"><i aria-hidden="true">${r.ok === true ? "✓" : r.ok === false ? "✕" : "•"}</i>${esc(r.text)}</li>`)
-        .join("")}</ul>
-      <div class="ln-tuoi-grid">
-        <div><span>🎨 Màu hợp mệnh</span><p class="ln-swatches">${t.colors.map(([n, h]) => `<em><i style="background:${h}"></i>${esc(n)}</em>`).join("")}</p></div>
-        <div><span>🔢 Con số may mắn</span><b>${t.numbers.join(" · ")}</b></div>
-        <div><span>⏰ Giờ tốt cho bạn</span><b>${t.hours.map((h) => esc(h.name)).join(", ")}</b></div>
-        <div><span>🧭 Xuất hành</span><b>Hướng ${esc(t.hyThan)}</b></div>
-      </div>
-      <h3 class="ln-tuoi-sub">7 ngày tới của tuổi ${esc(t.chiName)}</h3>
-      <div class="ln-week">${week.join("")}</div>
-      <p class="ln-day-note">Tính theo ngũ hành nạp âm, hợp – xung địa chi và ngày hoàng đạo. Chỉ mang tính tham khảo, giải trí.</p>`;
-  }
-
-  $("tuoiYear").value = birthYear ? String(birthYear) : "";
-  $("tuoiForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const y = parseInt($("tuoiYear").value, 10);
-    if (!(y >= 1920 && y <= 2030)) {
-      $("tuoiYear").focus();
-      return;
-    }
-    birthYear = y;
-    writeStore(BIRTH_KEY, String(y));
-    track("lunar_tuoi", { chi: (y + 8) % 12 });
-    refreshAll();
-    renderTuoi();
-  });
-  $("tuoiOut").addEventListener("click", (e) => {
-    const b = e.target.closest("button[data-date]");
-    if (b) selectDate(parseDateAttr(b.dataset.date));
-  });
-
-  /* ── Gieo quẻ đầu ngày ── */
-  const QUE_LEVELS = ["Đại cát", "Thượng cát", "Trung cát", "Tiểu cát", "Bình", "Hạ"];
-  let queShaking = false;
-
-  function todayQue() {
-    try {
-      const s = JSON.parse(readStore(QUE_KEY) || "null");
-      return s && s.day === todayJd && F.QUE[s.idx] ? s.idx : null;
-    } catch (_) {
-      return null;
-    }
-  }
-
-  function renderQue(reveal) {
-    if (!F) return;
-    const idx = todayQue();
-    const box = $("queBox");
-    if (idx === null) {
-      box.innerHTML = `
-        <div class="ln-que-stage">
-          <div class="ln-que-tube" id="queTube" aria-hidden="true">
-            <span class="ln-que-sticks">${"<i></i>".repeat(7)}</span>
-            <span class="ln-que-body">Quẻ</span>
-          </div>
-          <p>Thành tâm nghĩ về điều bạn mong muốn hôm nay, rồi lắc ống quẻ.</p>
-          <button type="button" class="btn btn-primary" id="queShake">🎋 Lắc quẻ</button>
-        </div>`;
-      return;
-    }
-    const q = F.QUE[idx];
-    box.innerHTML = `
-      <div class="ln-que-result lv${QUE_LEVELS.indexOf(q.level)}${reveal ? " is-reveal" : ""}">
-        <div class="ln-que-top"><span class="ln-que-no">Quẻ số ${pad(idx + 1)}</span><span class="ln-que-lv">${esc(q.level)}</span></div>
-        <h3>${esc(q.title)}</h3>
-        <p class="ln-que-verse">${q.verse.map(esc).join("<br>")}</p>
-        <dl class="ln-que-aspects">
-          <div><dt>💼 Công việc</dt><dd>${esc(q.work)}</dd></div>
-          <div><dt>💰 Tài lộc</dt><dd>${esc(q.money)}</dd></div>
-          <div><dt>❤️ Tình cảm</dt><dd>${esc(q.love)}</dd></div>
-          <div><dt>🌿 Sức khỏe</dt><dd>${esc(q.health)}</dd></div>
-        </dl>
-        <div class="ln-que-foot">
-          <span>Đã gieo quẻ hôm nay — quay lại ngày mai để gieo quẻ mới.</span>
-          <button type="button" class="ln-act is-main" id="queShare">🖼️ Ảnh chia sẻ</button>
-        </div>
-      </div>`;
-  }
-
-  $("queBox").addEventListener("click", (e) => {
-    if (e.target.closest("#queShare")) {
-      const idx = todayQue();
-      openShare(dayInfo(today), idx === null ? null : F.QUE[idx]);
-      return;
-    }
-    if (!e.target.closest("#queShake") || queShaking) return;
-    queShaking = true;
-    $("queTube").classList.add("is-shaking");
-    $("queShake").disabled = true;
-    $("queShake").textContent = "Đang lắc…";
-    const wait = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 200 : 1500;
-    setTimeout(() => {
-      const idx = Math.floor(Math.random() * F.QUE.length);
-      writeStore(QUE_KEY, JSON.stringify({ day: todayJd, idx }));
-      queShaking = false;
-      renderQue(true);
-      track("lunar_que", { level: F.QUE[idx].level });
-    }, wait);
-  });
-
-  /* ── Văn khấn ── */
-  let vkType = null;
-  let vkValues = {};
-  try {
-    vkValues = JSON.parse(readStore(VK_KEY) || "{}") || {};
-  } catch (_) {}
-  ["vkName", "vkAddr", "vkFamily", "vkDeceased"].forEach((id) => {
-    $(id).value = vkValues[id] || "";
-    $(id).addEventListener("input", () => {
-      vkValues[id] = $(id).value;
-      writeStore(VK_KEY, JSON.stringify(vkValues));
-      renderVkText();
-    });
-  });
-
-  function nextLunarDay(lunarDay) {
-    for (let i = 0; i <= 31; i++) {
-      const d = addDays(today, i);
-      if (lunarOf(d).day === lunarDay) return d;
-    }
-    return today;
-  }
-
-  function vkDateOf(id) {
-    if (id === "mung1") return nextLunarDay(1);
-    if (id === "ram") return nextLunarDay(15);
-    if (id === "tao-quan") {
-      for (const ly of [todayLunar.year, todayLunar.year + 1]) {
-        const s = L.lunarToSolar(23, 12, ly, false, 7);
-        if (s && L.jdFromDate(s.day, s.month, s.year) >= todayJd) return new Date(s.year, s.month - 1, s.day);
-      }
-    }
-    return selected;
-  }
-
-  function renderVk() {
-    if (!F) return;
-    if (!vkType) vkType = nextLunarDay(1) <= nextLunarDay(15) ? "mung1" : "ram";
-    $("vkTypes").innerHTML = F.VAN_KHAN.map(
-      (v) => `<button type="button" role="tab" data-vk="${v.id}" class="${v.id === vkType ? "is-on" : ""}" aria-selected="${v.id === vkType}">${v.icon} ${esc(v.name)}</button>`
-    ).join("");
-    renderVkText();
-  }
-
-  function renderVkText() {
-    const vk = F.VAN_KHAN.find((v) => v.id === vkType);
-    if (!vk) return;
-    const date = vkDateOf(vk.id);
-    const info = dayInfo(date);
-    const diff = info.jd - todayJd;
-    const lunarDay = info.lunar.day <= 10 ? "mùng " + info.lunar.day : String(info.lunar.day);
-    const dateText =
-      "ngày " + lunarDay + " " + lowerFirst(lunarMonthName(info.lunar)) + " năm " + L.yearCanChi(info.lunar.year) +
-      " (tức ngày " + fmtDate(date) + " dương lịch)";
-    const val = (id) => ($(id).value.trim() || "……………");
-    $("vkDeceasedWrap").hidden = vk.id !== "gio";
-    $("vkDate").innerHTML =
-      `📅 <b>${esc(L.weekdayName(info.jd))}, ${fmtDate(date)}</b> — ${esc(lunarDay)} ${esc(lowerFirst(lunarMonthName(info.lunar)))} âm lịch` +
-      (diff > 0 ? ` <span>(còn ${diff} ngày)</span>` : diff === 0 ? " <span>(hôm nay)</span>" : "") +
-      (vk.id === "gio" || vk.id === "than-tai" ? '<small>Theo ngày đang chọn trên lịch tháng.</small>' : "");
-    $("vkOffer").innerHTML = "<b>Lễ vật:</b> " + esc(vk.offerings);
-    $("vkTitle").textContent = "Văn khấn " + vk.name.toLowerCase();
-    $("vkText").textContent = vk.body({
-      family: val("vkFamily"),
-      name: val("vkName"),
-      address: val("vkAddr"),
-      deceased: val("vkDeceased"),
-      date: dateText
-    });
-  }
-
-  $("vkTypes").addEventListener("click", (e) => {
-    const b = e.target.closest("button[data-vk]");
-    if (!b) return;
-    vkType = b.dataset.vk;
-    renderVk();
-    track("lunar_vankhan", { type: vkType });
-  });
-  $("vkCopy").addEventListener("click", async () => {
-    const text = $("vkTitle").textContent + "\n\n" + $("vkText").textContent;
-    try {
-      await (window.OT?.copyText ? OT.copyText(text) : navigator.clipboard.writeText(text));
-      $("vkCopy").textContent = "✓ Đã sao chép";
-      setTimeout(() => ($("vkCopy").textContent = "📋 Sao chép văn khấn"), 1800);
-    } catch (_) {
-      $("vkCopy").textContent = "Không chép được";
-    }
   });
 
   /* ── Ảnh chia sẻ ── */
@@ -1352,8 +1071,6 @@
   /* ── Chuyển chế độ ── */
   const VIEWS = {
     calendar: ["tabCalendar", "viewCalendar", ""],
-    tuoi: ["tabTuoi", "viewTuoi", "#xem-tuoi"],
-    vankhan: ["tabVankhan", "viewVankhan", "#van-khan"],
     convert: ["tabConvert", "viewConvert", "#doi-ngay"]
   };
 
@@ -1365,11 +1082,6 @@
       $(tab).classList.toggle("is-on", on);
       $(tab).setAttribute("aria-selected", on ? "true" : "false");
     });
-    if (view === "tuoi") {
-      renderTuoi();
-      renderQue();
-    }
-    if (view === "vankhan") renderVk();
     const hash = VIEWS[view][2];
     if (location.hash !== hash) history.replaceState(null, "", location.pathname + location.search + hash);
   }
