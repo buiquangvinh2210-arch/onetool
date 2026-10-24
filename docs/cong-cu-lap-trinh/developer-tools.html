@@ -9,7 +9,7 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
 
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
@@ -33,7 +33,7 @@
 #site-footer{min-height:320px;display:block;contain:layout style}
 #otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
 @media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
-  <script type="application/ld+json" id="ot-jsonld">{"@context":"https://schema.org","@type":"WebApplication","name":"UUID Hash Slugify","url":"https://onetool.vn/cong-cu-lap-trinh/developer-tools.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"VND"},"description":"UUID v4, SHA-256/384/512, slug tiếng Việt, Unix timestamp online miễn phí.","inLanguage":"vi","publisher":{"@type":"Organization","name":"OneTool","url":"https://onetool.vn/","logo":"https://onetool.vn/assets/img/logo-mark.png","email":"onetools27@gmail.com","contactPoint":{"@type":"ContactPoint","email":"onetools27@gmail.com","contactType":"customer support","availableLanguage":["Vietnamese"],"areaServed":"VN"}},"isAccessibleForFree":true}</script>
+  <script type="application/ld+json" id="ot-jsonld">{"@context":"https://schema.org","@type":"WebApplication","name":"UUID Hash Slugify","url":"https://onetool.vn/cong-cu-lap-trinh/developer-tools.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"VND"},"description":"UUID v4, SHA-256/384/512, slug tiếng Việt, Unix timestamp online miễn phí.","inLanguage":"vi","publisher":{"@type":"Organization","name":"OneTool","url":"https://onetool.vn/","logo":"https://onetool.vn/assets/img/logo-mark-512.png","email":"onetools27@gmail.com","contactPoint":{"@type":"ContactPoint","email":"onetools27@gmail.com","contactType":"customer support","availableLanguage":["Vietnamese"],"areaServed":"VN"}},"isAccessibleForFree":true}</script>
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://onetool.vn/"},{"@type":"ListItem","position":2,"name":"Công cụ","item":"https://onetool.vn/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Lập trình","item":"https://onetool.vn/cong-cu-lap-trinh.html"},{"@type":"ListItem","position":4,"name":"UUID Hash Slugify","item":"https://onetool.vn/cong-cu-lap-trinh/developer-tools.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"Cách dùng UUID Hash Slugify","description":"Bộ tiện ích cho lập trình viên: tạo UUID v4, băm SHA-256/384/512/1 (UTF-8), slugify tiêu đề tiếng Việt và chuyển đổi Unix timestamp.","inLanguage":"vi","step":[{"@type":"HowToStep","position":1,"text":"Chọn tab UUID, Hash, Slugify hoặc Timestamp."},{"@type":"HowToStep","position":2,"text":"Nhập dữ liệu (nếu cần) và bấm chạy."},{"@type":"HowToStep","position":3,"text":"Sao chép hoặc tải kết quả."}]}</script></head>
 <body data-tool="developer-tools">
@@ -42,7 +42,7 @@
   <div class="header-shell">
     <div class="container header-inner">
       <a class="logo logo--rich" href="../" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark.png?v=20260826f" width="46" height="46" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark-96.png?v=20261024a" width="46" height="46" alt="" /></span>
         <span class="logo-stack">
           <span class="logo-text">OneTool</span>
           <span class="logo-tag">67 công cụ · Miễn phí</span>
@@ -134,7 +134,7 @@
   <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
     <div class="nav-drawer-head">
       <a class="logo" href="../" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark.png?v=20260826f" width="36" height="36" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark-96.png?v=20261024a" width="36" height="36" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <button type="button" class="nav-drawer-close" id="navDrawerClose" aria-label="Đóng menu">✕</button>
@@ -439,21 +439,56 @@
   </div>
 </section>
 <section class="tool-seo" id="toolSeo">
-  <div class="tool-seo-wrap">
-    <section class="tool-seo-block">
-      <h2>Cách dùng UUID Hash Slugify</h2>
-      <ol class="tool-seo-howto">
-        <li>Chọn tab UUID, Hash, Slugify hoặc Timestamp.</li>
-        <li>Nhập dữ liệu cần xử lý.</li>
-        <li>Sao chép kết quả.</li>
-      </ol>
-    </section>
-    <section class="tool-seo-block">
-      <h2>Dev Tools dùng để làm gì?</h2>
-      <p>Bộ <strong>UUID, Hash, Slugify, Timestamp</strong> phục vụ lập trình viên khi debug và tạo định danh.</p>
-    </section>
-  </div>
-</section>
+      <div class="tool-seo-wrap">
+        <section class="tool-seo-block"><h2>Cách dùng UUID Hash Slugify</h2>
+          <ol class="tool-seo-howto"><li>Chọn tab UUID, Hash, Slugify hoặc Timestamp.</li><li>Nhập dữ liệu (nếu cần) và bấm chạy.</li><li>Sao chép hoặc tải kết quả.</li></ol></section>
+        <section class="tool-seo-block"><h2>Developer Tools gồm những gì?</h2><p>Bộ tiện ích cho lập trình viên: tạo <strong>UUID v4</strong>, băm <strong>SHA-256/384/512/1</strong> (UTF-8), <strong>slugify</strong> tiêu đề tiếng Việt và chuyển đổi <strong>Unix timestamp</strong>.</p></section><section class="tool-seo-block"><h2>Hash và slug chuẩn</h2><p>Hash dùng Web Crypto API và TextEncoder UTF-8 — đúng chuẩn với Node.js/crypto. Slug bỏ dấu NFD, xử lý đ/Đ, gạch ngang hoặc gạch dưới.</p></section>
+        
+        <section class="tool-seo-block"><h2>Vì sao dùng OneTool?</h2>
+        <ul>
+          <li><strong>Miễn phí</strong> — không bắt buộc đăng ký hay trả phí ẩn.</li>
+          <li><strong>Riêng tư</strong> — nhiều công cụ xử lý ngay trên trình duyệt, file không gửi lên server OneTool.</li>
+          <li><strong>Nhanh</strong> — kéo thả, xem trước, tải kết quả trong vài bước.</li>
+        </ul></section>
+        <section class="tool-seo-block"><h2>Công cụ liên quan</h2>
+          <ul class="tool-seo-more"><li><a class="tool-seo-card" href="../cong-cu-lap-trinh/json-tools.html" aria-label="Mở Format JSON">
+          <span class="tool-seo-card-icon" aria-hidden="true">{ }</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Format JSON</strong>
+            <span class="tool-seo-card-sapo">Làm đẹp, minify và kiểm tra JSON hợp lệ — tiện debug API.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-lap-trinh/regex-tester.html" aria-label="Mở Regex tester">
+          <span class="tool-seo-card-icon" aria-hidden="true">.*</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Regex tester</strong>
+            <span class="tool-seo-card-sapo">Thử regex realtime — highlight match, flags, replace, nhóm bắt.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-lap-trinh/base64-tools.html" aria-label="Mở Base64 encode decode">
+          <span class="tool-seo-card-icon" aria-hidden="true">🔤</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Base64 encode decode</strong>
+            <span class="tool-seo-card-sapo">Encode/decode Base64 — tiếng Việt, URL-safe, file và ảnh có preview.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-lap-trinh/url-encode.html" aria-label="Mở URL encode decode">
+          <span class="tool-seo-card-icon" aria-hidden="true">🔗</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">URL encode decode</strong>
+            <span class="tool-seo-card-sapo">Encode/decode URL — encodeURIComponent, encodeURI, form (+), UTF-8 tiếng Việt.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-media/tiktok-download.html" aria-label="Mở Tải video TikTok không logo">
+          <span class="tool-seo-card-icon" aria-hidden="true">🎵</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Tải video TikTok không logo</strong>
+            <span class="tool-seo-card-sapo">Dán link → tải MP4 HD không dính logo / watermark TikTok.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-media/video-to-mp3.html" aria-label="Mở Video sang MP3">
+          <span class="tool-seo-card-icon" aria-hidden="true">🎧</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Video sang MP3</strong>
+            <span class="tool-seo-card-sapo">Tách tiếng từ MP4, MOV, MKV thành MP3 192kbps — chạy trên trình duyệt.</span>
+          </span>
+        </a></li></ul></section>
+      </div></section>
 </main>
 <div id="site-footer">
 <footer class="site-footer">
@@ -469,7 +504,7 @@
   <div class="container footer-inner">
     <div class="footer-brand">
       <a class="logo footer-logo" href="../" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark.png?v=20260826f" width="40" height="40" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark-96.png?v=20261024a" width="40" height="40" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <p class="footer-brand-desc">Công cụ file online cho người Việt — nhanh, riêng tư, miễn phí.</p>
@@ -524,8 +559,8 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../assets/js/catalog.js?v=20261024a"></script>
-<script src="../assets/js/layout.js?v=20261024a"></script>
+<script src="../assets/js/catalog.js?v=20261024b"></script>
+<script src="../assets/js/layout.js?v=20261024b"></script>
 <script src="../assets/js/core.js?v=20261002a"></script>
 <script src="../assets/js/site.js?v=20261002c"></script>
 <script src="../assets/js/tools/dev-crypto.js?v=20260824a" defer></script>

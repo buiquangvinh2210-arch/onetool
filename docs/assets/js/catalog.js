@@ -368,60 +368,60 @@ window.OTCatalog = {
       desc: "Bỏ dấu tiếng Việt, viết hoa/thường, Title Case, slug URL. Miễn phí, không cần đăng ký."
     },
     "unit-convert": {
-      title: "Đổi đơn vị online miễn phí — kg, mét, °C, MB | OneTool",
-      desc: "Chuyển đổi khối lượng, chiều dài, nhiệt độ, dung lượng… Hệ số SI chuẩn — miễn phí."
+      title: "Đổi đơn vị online — kg, inch, độ C, MB, ha, psi | OneTool",
+      desc: "Chuyển đổi 13 nhóm đơn vị: khối lượng, chiều dài, nhiệt độ, dung lượng, diện tích, áp suất… Hệ số chuẩn quốc tế, kết quả tức thì, miễn phí."
     },
     "unit-mass": {
-      title: "Đổi kg sang lb online miễn phí | OneTool",
-      desc: "Đổi khối lượng: kg, lb, g, oz… Hệ số SI chuẩn, kết quả tức thì — miễn phí."
+      title: "Đổi kg sang lb, pound sang kg online | OneTool",
+      desc: "1 kg = 2,2046 lb, 1 lb = 0,4536 kg. Đổi kg, pound, ounce, gram, tấn, carat tức thì, kèm bảng quy đổi thường dùng. Miễn phí."
     },
     "unit-length": {
-      title: "Đổi mét sang feet online miễn phí | OneTool",
-      desc: "Đổi chiều dài: m, ft, inch, cm… Hệ số chuẩn — miễn phí, không đăng ký."
+      title: "Đổi inch sang cm, feet sang mét online | OneTool",
+      desc: "1 inch = 2,54 cm, 1 ft = 30,48 cm. Đổi chiều cao feet sang cm, inch màn hình, dặm sang km tức thì, có bảng quy đổi."
     },
     "unit-area": {
-      title: "Đổi m² sang ha online miễn phí | OneTool",
-      desc: "Đổi diện tích: m², ha, acre… Hệ số chuẩn — miễn phí."
+      title: "Đổi m² sang hecta, acre online — sào, mẫu | OneTool",
+      desc: "1 ha = 10.000 m², 1 acre ≈ 4.047 m², 1 sào Bắc Bộ = 360 m². Đổi diện tích m², ha, km², ft² tức thì."
     },
     "unit-volume": {
-      title: "Đổi lít sang gallon online miễn phí | OneTool",
-      desc: "Đổi thể tích: L, mL, gallon… Hệ số chuẩn — miễn phí."
+      title: "Đổi lít sang ml, gallon, m³ online | OneTool",
+      desc: "1 m³ = 1.000 lít, 1 gallon Mỹ = 3,785 L, 1 cup = 236,6 mL. Đổi thể tích lít, mL, muỗng, fl oz tức thì."
     },
     "unit-temp": {
-      title: "Đổi °C sang °F online miễn phí | OneTool",
-      desc: "Đổi nhiệt độ: °C ↔ °F, Kelvin. Công thức chuẩn — miễn phí."
+      title: "Đổi độ C sang độ F online — công thức °C ↔ °F | OneTool",
+      desc: "°F = °C × 1,8 + 32. Đổi độ C, độ F, Kelvin tức thì: 37 °C = 98,6 °F, 350 °F ≈ 177 °C. Có bảng mốc nhiệt độ thường gặp."
     },
     "unit-speed": {
-      title: "Đổi km/h sang mph online miễn phí | OneTool",
-      desc: "Đổi tốc độ km/h ↔ mph. Hệ số chuẩn — miễn phí."
+      title: "Đổi km/h sang m/s, mph, knot online | OneTool",
+      desc: "1 m/s = 3,6 km/h, 1 mph = 1,609 km/h, 1 knot = 1,852 km/h. Đổi tốc độ tức thì, có bảng quy đổi."
     },
     "unit-time": {
-      title: "Đổi giờ phút giây online miễn phí | OneTool",
-      desc: "Đổi thời gian: giờ, phút, giây. Tính nhanh — miễn phí."
+      title: "Đổi giờ, phút, giây online — 1 ngày bao nhiêu giây | OneTool",
+      desc: "Đổi giây, phút, giờ, ngày, tuần, mili giây tức thì. 1 ngày = 86.400 giây, 1,5 giờ = 90 phút."
     },
     "unit-data": {
-      title: "Đổi MB sang GB online miễn phí | OneTool",
-      desc: "Đổi dung lượng MB/GB/GiB/KB — phân biệt SI/IEC. Miễn phí."
+      title: "Đổi MB sang GB, GB sang TB online — MB và MiB | OneTool",
+      desc: "1 GB = 1.000 MB, 1 GiB = 1.024 MiB. Vì sao ổ 1 TB chỉ hiện 931 GB? Đổi byte, KB, MB, GB, TB tức thì."
     },
     "unit-energy": {
-      title: "Đổi kWh sang cal online miễn phí | OneTool",
-      desc: "Đổi năng lượng J, kWh, cal… Hệ số chuẩn — miễn phí."
+      title: "Đổi kWh sang kcal, joule, BTU online | OneTool",
+      desc: "1 kWh = 3,6 MJ ≈ 860 kcal, 1 kcal = 4,184 kJ. Đổi năng lượng J, kWh, calo, BTU tức thì."
     },
     "unit-pressure": {
-      title: "Đổi bar sang atm online miễn phí | OneTool",
-      desc: "Đổi áp suất Pa, bar, atm… Hệ số chuẩn — miễn phí."
+      title: "Đổi psi sang bar, atm, Pa online — áp suất lốp | OneTool",
+      desc: "1 bar ≈ 14,5 psi, 1 atm = 101.325 Pa. Đổi áp suất psi, bar, atm, kPa, mmHg tức thì, có bảng áp suất lốp."
     },
     "unit-power": {
-      title: "Đổi kW sang HP online miễn phí | OneTool",
-      desc: "Đổi công suất W, kW, HP… Hệ số chuẩn — miễn phí."
+      title: "Đổi kW sang mã lực HP online — BTU/h | OneTool",
+      desc: "1 HP = 745,7 W, 1 kW ≈ 1,341 HP. Đổi W, kW, mã lực, BTU/h tức thì; điều hòa 9.000 BTU là bao nhiêu kW."
     },
     "unit-angle": {
-      title: "Đổi độ sang radian online miễn phí | OneTool",
-      desc: "Đổi góc độ ↔ radian. Hệ số chuẩn — miễn phí."
+      title: "Đổi độ sang radian online — công thức độ ↔ rad | OneTool",
+      desc: "rad = độ × π/180, 1 rad ≈ 57,3°. Đổi độ, radian, grad, phút giây cung tức thì."
     },
     "unit-fuel": {
-      title: "Đổi L/100km sang mpg online miễn phí | OneTool",
-      desc: "Đổi tiêu hao nhiên liệu L/100km ↔ mpg. Hệ số chuẩn — miễn phí."
+      title: "Đổi L/100km sang mpg, km/lít online | OneTool",
+      desc: "mpg (Mỹ) = 235,215 ÷ L/100km. Đổi lít/100 km, km/lít, mpg Mỹ và Anh tức thì, có ví dụ xe máy, ô tô."
     },
     "json-tools": {
       title: "Format JSON online miễn phí — làm đẹp, minify, kiểm tra | OneTool",
@@ -2177,85 +2177,454 @@ window.OTCatalog = {
       ]
     },
     "unit-convert": {
-      keywords: "chuyển đổi đơn vị, đổi kg sang lb, đổi mét sang feet, đổi độ c sang f",
+      keywords: "chuyển đổi đơn vị, đổi đơn vị online, đổi kg sang lb, đổi mét sang feet, đổi độ c sang f, đổi mb sang gb, bảng quy đổi đơn vị",
       howto: [
-        "Mở hub Chuyển đổi đơn vị và chọn nhóm (khối lượng, chiều dài…).",
-        "Hoặc vào thẳng tool: Đổi khối lượng, Đổi nhiệt độ…",
-        "Nhập số, chọn đơn vị — kết quả hiện ngay."
+        "Chọn nhóm đơn vị: khối lượng, chiều dài, nhiệt độ, dung lượng…",
+        "Nhập số và chọn đơn vị gốc — kết quả hiện ngay khi gõ.",
+        "Đổi đơn vị đích hoặc xem bảng quy đổi sang mọi đơn vị trong nhóm."
       ],
       sections: [
         {
           title: "Chuyển đổi đơn vị là gì?",
           paras: [
-            "**Chuyển đổi đơn vị** quy đổi giữa hệ mét (SI) và hệ Anh–Mỹ. OneTool tách từng nhóm thành tool riêng để dễ tìm và SEO rõ ràng."
+            "**Chuyển đổi đơn vị** là quy đổi một đại lượng giữa hệ mét (SI) mà Việt Nam dùng và hệ Anh–Mỹ hay gặp trên hàng nhập khẩu, thông số máy móc, công thức nấu ăn. OneTool tách mỗi nhóm thành một trang riêng, dùng hệ số chuẩn quốc tế nên kết quả khớp với tài liệu kỹ thuật."
           ]
+        },
+        {
+          title: "Các phép đổi hay dùng nhất",
+          list: [
+            { title: "Khối lượng:", text: "1 kg = 2,2046 lb · 1 lb = 453,59 g · 1 oz = 28,35 g — xem [Đổi khối lượng](cong-cu-don-vi/unit-mass.html)." },
+            { title: "Chiều dài:", text: "1 inch = 2,54 cm · 1 ft = 30,48 cm · 1 dặm = 1,609 km — xem [Đổi chiều dài](cong-cu-don-vi/unit-length.html)." },
+            { title: "Nhiệt độ:", text: "°F = °C × 1,8 + 32 · 37 °C = 98,6 °F — xem [Đổi nhiệt độ](cong-cu-don-vi/unit-temp.html)." },
+            { title: "Dung lượng:", text: "1 GB = 1.000.000.000 byte, còn 1 GiB = 1.073.741.824 byte — xem [Đổi dung lượng](cong-cu-don-vi/unit-data.html)." },
+            { title: "Diện tích:", text: "1 ha = 10.000 m² · 1 acre ≈ 4.047 m² — xem [Đổi diện tích](cong-cu-don-vi/unit-area.html)." },
+            { title: "Áp suất:", text: "1 bar ≈ 14,5 psi · 1 atm = 101.325 Pa — xem [Đổi áp suất](cong-cu-don-vi/unit-pressure.html)." }
+          ]
+        },
+        {
+          title: "Hệ số dùng để tính",
+          paras: [
+            "Mỗi đơn vị được quy về một đơn vị gốc (kg, m, m², lít, giây, byte, joule, pascal, watt…) rồi đổi sang đơn vị đích, nên đổi qua lại nhiều lần vẫn không lệch. Hệ số lấy theo định nghĩa chính thức, ví dụ 1 lb = 0,45359237 kg và 1 inch = 0,0254 m là giá trị chính xác theo thỏa thuận quốc tế năm 1959."
+          ]
+        }
+      ],
+      faqs: [
+        {
+          q: "Có những nhóm đơn vị nào?",
+          a: "13 nhóm: khối lượng, chiều dài, diện tích, thể tích, nhiệt độ, tốc độ, thời gian, dung lượng, năng lượng, áp suất, công suất, góc và tiêu hao nhiên liệu."
+        },
+        {
+          q: "Kết quả có chính xác không?",
+          a: "Tính bằng hệ số chuẩn SI/NIST với độ chính xác của số thực máy tính (khoảng 15 chữ số). Phần hiển thị được làm tròn cho dễ đọc; bấm sao chép để lấy đủ số."
         }
       ]
     },
     "unit-mass": {
-      keywords: "đổi kg sang lb, đổi khối lượng, kilogram pound",
-      howto: ["Nhập khối lượng.", "Chọn đơn vị nguồn và đích.", "Sao chép kết quả hoặc xem bảng tất cả đơn vị."],
-      sections: [{ title: "Đổi khối lượng online", paras: ["Đổi **kg ↔ lb**, gram, ounce, tấn theo hệ số NIST: 1 lb = 0,45359237 kg."] }]
+      keywords: "đổi kg sang lb, 1 kg bằng bao nhiêu pound, đổi pound sang kg, 1 lb bằng bao nhiêu kg, đổi ounce sang gram, đổi khối lượng online",
+      howto: ["Nhập khối lượng cần đổi.", "Chọn đơn vị gốc, ví dụ Kilogram hoặc Pound.", "Chọn đơn vị đích hoặc xem bảng quy đổi sang tất cả đơn vị."],
+      sections: [
+        {
+          title: "1 kg bằng bao nhiêu pound?",
+          paras: [
+            "**1 kg = 2,20462 lb** và ngược lại **1 lb = 0,45359237 kg** (khoảng 453,6 g). Muốn nhẩm nhanh: kg × 2,2 ra pound, pound × 0,45 ra kg. Pound hay gặp trên cân sức khỏe, tạ tập gym, hành lý hàng không và hàng order từ Mỹ."
+          ]
+        },
+        {
+          title: "Bảng đổi kg ↔ lb thường dùng",
+          list: [
+            { title: "1 kg", text: "= 2,205 lb · 5 kg = 11,023 lb · 10 kg = 22,046 lb" },
+            { title: "50 kg", text: "= 110,23 lb · 100 kg = 220,46 lb" },
+            { title: "1 lb", text: "= 0,454 kg · 10 lb = 4,536 kg · 100 lb = 45,36 kg" },
+            { title: "1 oz", text: "= 28,35 g · 16 oz = 1 lb" },
+            { title: "1 stone", text: "= 14 lb = 6,35 kg (hay gặp ở Anh)" }
+          ]
+        },
+        {
+          title: "Các đơn vị khác có trong công cụ",
+          paras: [
+            "Tấn (1 t = 1.000 kg), gram, milligram, microgram cho thuốc và thực phẩm chức năng; **carat** cho đá quý (1 ct = 0,2 g); grain dùng trong dược và đạn; slug dùng trong cơ học hệ Anh. Đơn vị dân gian Việt Nam như **lạng** (100 g) hay **yến** (10 kg) có thể quy qua gram và kilogram."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 kg bằng bao nhiêu lb?", a: "1 kg = 2,20462 lb. Ví dụ 60 kg ≈ 132,3 lb." },
+        { q: "1 pound bằng bao nhiêu kg?", a: "1 pound (lb) = 0,45359237 kg, tức khoảng 453,6 gram." },
+        { q: "Ounce (oz) và fluid ounce (fl oz) có giống nhau không?", a: "Không. Ounce là khối lượng (28,35 g); fluid ounce là thể tích (khoảng 29,57 mL ở Mỹ). Muốn đổi fl oz hãy dùng công cụ [Đổi thể tích](cong-cu-don-vi/unit-volume.html)." }
+      ]
     },
     "unit-length": {
-      keywords: "đổi mét sang feet, đổi inch sang cm, chiều dài online",
-      howto: ["Nhập chiều dài.", "Chọn m, cm, inch, ft…", "Xem kết quả live."],
-      sections: [{ title: "Đổi chiều dài online", paras: ["Chuẩn SI: **1 inch = 25,4 mm**. Hỗ trợ km, mile, hải lý."] }]
+      keywords: "đổi inch sang cm, 1 inch bằng bao nhiêu cm, đổi feet sang mét, đổi mét sang feet, đổi dặm sang km, đổi chiều cao feet sang cm",
+      howto: ["Nhập chiều dài cần đổi.", "Chọn đơn vị gốc: m, cm, inch, ft, dặm…", "Chọn đơn vị đích hoặc xem bảng quy đổi."],
+      sections: [
+        {
+          title: "1 inch bằng bao nhiêu cm?",
+          paras: [
+            "**1 inch = 2,54 cm** (chính xác). **1 foot = 12 inch = 30,48 cm**, **1 yard = 0,9144 m**, **1 dặm = 1,609344 km**, **1 hải lý = 1.852 m**. Chiều ngược lại: 1 m ≈ 3,281 ft ≈ 39,37 inch."
+          ]
+        },
+        {
+          title: "Bảng đổi hay dùng",
+          list: [
+            { title: "Chiều cao:", text: "5 ft = 152,4 cm · 5 ft 5 in = 165,1 cm · 5 ft 8 in = 172,7 cm · 6 ft = 182,9 cm" },
+            { title: "Màn hình (đường chéo):", text: "15,6 inch = 39,6 cm · 27 inch = 68,6 cm · 55 inch = 139,7 cm" },
+            { title: "Quãng đường:", text: "1 dặm = 1,609 km · 10 km = 6,214 dặm · marathon 42,195 km = 26,2 dặm" },
+            { title: "Đi biển:", text: "1 hải lý = 1,852 km; tốc độ tàu đo bằng knot (hải lý/giờ)" }
+          ]
+        },
+        {
+          title: "Đổi chiều cao dạng feet và inch",
+          paras: [
+            "Chiều cao kiểu Mỹ ghi 5′7″ nghĩa là 5 feet 7 inch. Đổi hết ra inch (5 × 12 + 7 = 67 inch) rồi nhân 2,54 ra **170,2 cm**. Trong công cụ, có thể nhập 5,583 ft hoặc 67 inch đều ra cùng kết quả."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 inch bằng bao nhiêu cm?", a: "1 inch = 2,54 cm, đây là giá trị chính xác theo định nghĩa quốc tế." },
+        { q: "1 feet bằng bao nhiêu mét?", a: "1 foot (ft) = 0,3048 m = 30,48 cm. Nhiều người viết feet cho cả số ít." },
+        { q: "Tivi 55 inch là bao nhiêu cm?", a: "55 inch là đường chéo màn hình, bằng khoảng 139,7 cm." }
+      ]
     },
     "unit-temp": {
-      keywords: "đổi độ c sang f, celsius fahrenheit kelvin",
-      howto: ["Nhập nhiệt độ.", "Chọn °C, °F hoặc K.", "Kết quả theo công thức chuẩn."],
-      sections: [{ title: "Đổi nhiệt độ online", paras: ["Công thức qua Kelvin — chính xác °C ↔ °F ↔ K ↔ °R."] }]
+      keywords: "đổi độ c sang độ f, đổi độ f sang độ c, công thức đổi độ c sang f, 37 độ c bằng bao nhiêu độ f, celsius fahrenheit kelvin",
+      howto: ["Nhập nhiệt độ cần đổi (có thể là số âm).", "Chọn thang gốc: °C, °F, K hoặc °R.", "Xem kết quả ở thang đích và bảng các thang còn lại."],
+      sections: [
+        {
+          title: "Công thức đổi độ C sang độ F",
+          paras: [
+            "**°F = °C × 9/5 + 32** và **°C = (°F − 32) × 5/9**. Kelvin dùng trong khoa học: **K = °C + 273,15**. Khác với các đơn vị khác, nhiệt độ có điểm 0 lệch nhau nên không thể nhân một hệ số duy nhất — công cụ tự áp dụng đúng công thức."
+          ]
+        },
+        {
+          title: "Các mốc nhiệt độ quen thuộc",
+          list: [
+            { title: "0 °C", text: "= 32 °F — nước đóng băng" },
+            { title: "25 °C", text: "= 77 °F — nhiệt độ phòng" },
+            { title: "37 °C", text: "= 98,6 °F — thân nhiệt bình thường; sốt 38,5 °C = 101,3 °F" },
+            { title: "100 °C", text: "= 212 °F — nước sôi ở áp suất thường" },
+            { title: "180 °C", text: "= 356 °F — nhiệt độ nướng bánh phổ biến; công thức Mỹ ghi 350 °F ≈ 177 °C" },
+            { title: "−40 °C", text: "= −40 °F — điểm hai thang bằng nhau" }
+          ]
+        }
+      ],
+      faqs: [
+        { q: "37 độ C bằng bao nhiêu độ F?", a: "37 °C = 37 × 1,8 + 32 = 98,6 °F." },
+        { q: "350 độ F là bao nhiêu độ C?", a: "(350 − 32) × 5/9 ≈ 176,7 °C, thường làm tròn thành 175–180 °C khi chỉnh lò nướng." },
+        { q: "Rankine là gì?", a: "Thang tuyệt đối dùng độ chia của °F: °R = °F + 459,67. Hiếm gặp, chủ yếu trong kỹ thuật nhiệt ở Mỹ." }
+      ]
     },
     "unit-data": {
-      keywords: "đổi mb sang gib, kilobyte mebibyte",
-      howto: ["Nhập dung lượng.", "Chọn KB/MB (SI) hoặc KiB/MiB (IEC).", "Sao chép kết quả."],
-      sections: [{ title: "Đổi dung lượng online", paras: ["Phân biệt rõ **MB (10⁶)** và **MiB (2²⁰)** — đúng chuẩn máy tính."] }]
+      keywords: "đổi mb sang gb, 1gb bằng bao nhiêu mb, đổi gb sang tb, ổ cứng 1tb còn bao nhiêu, mb và mib khác nhau, đổi byte bit",
+      howto: ["Nhập dung lượng cần đổi.", "Chọn đơn vị gốc: KB/MB/GB (thập phân) hoặc KiB/MiB/GiB (nhị phân).", "Xem kết quả và bảng quy đổi."],
+      sections: [
+        {
+          title: "1 GB bằng bao nhiêu MB?",
+          paras: [
+            "Theo chuẩn SI mà nhà sản xuất ổ cứng, nhà mạng dùng: **1 GB = 1.000 MB**, 1 MB = 1.000 KB. Theo chuẩn nhị phân mà Windows hiển thị: **1 GiB = 1.024 MiB**, 1 MiB = 1.024 KiB. Hai cách tính lệch nhau khoảng 7% ở mức GB và gần 10% ở mức TB."
+          ]
+        },
+        {
+          title: "Vì sao ổ 1 TB chỉ hiện 931 GB?",
+          paras: [
+            "Ổ 1 TB chứa 1.000.000.000.000 byte. Windows chia cho 1.024³ và ghi là GB (thực chất là GiB) nên ra **931,3 GB**. Dung lượng không bị mất — chỉ khác cách đếm."
+          ],
+          list: [
+            { title: "128 GB", text: "= 119,2 GiB" },
+            { title: "256 GB", text: "= 238,4 GiB" },
+            { title: "500 GB", text: "= 465,7 GiB" },
+            { title: "1 TB", text: "= 931,3 GiB" }
+          ]
+        },
+        {
+          title: "Bit và byte",
+          paras: [
+            "**1 byte = 8 bit.** Tốc độ mạng đo bằng bit/giây (Mbps), còn tốc độ tải file đo bằng byte/giây (MB/s). Gói mạng 100 Mbps tải tối đa khoảng 12,5 MB/s."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 GB bằng bao nhiêu MB?", a: "1 GB = 1.000 MB theo chuẩn SI; 1 GiB = 1.024 MiB theo chuẩn nhị phân." },
+        { q: "MB và MiB khác nhau thế nào?", a: "MB = 10⁶ byte, MiB = 2²⁰ = 1.048.576 byte. Windows hiển thị MiB nhưng ghi là MB." },
+        { q: "Mạng 100 Mbps tải được bao nhiêu MB mỗi giây?", a: "Chia cho 8: khoảng 12,5 MB/s, thực tế thấp hơn một chút do giao thức." }
+      ]
     },
     "unit-volume": {
-      keywords: "đổi lít sang gallon, thể tích online",
-      howto: ["Nhập giá trị thể tích.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi thể tích online là gì?","paras":["Đổi lít, mL, mét khối, gallon Mỹ/Anh."]}]
+      keywords: "đổi lít sang ml, 1 khối bằng bao nhiêu lít, đổi gallon sang lít, 1 cup bằng bao nhiêu ml, đổi muỗng canh sang ml, đổi fl oz sang ml",
+      howto: ["Nhập thể tích cần đổi.", "Chọn đơn vị gốc: lít, mL, m³, gallon, cup, muỗng…", "Chọn đơn vị đích hoặc xem bảng quy đổi."],
+      sections: [
+        {
+          title: "Quy đổi lít, mL và mét khối",
+          paras: [
+            "**1 lít = 1.000 mL = 1 dm³**. **1 m³ (1 khối) = 1.000 lít** — đồng hồ nước tính theo khối, nên 1 khối nước đúng bằng 1.000 lít. 1 mL bằng 1 cm³ (cc), đơn vị hay ghi trên ống tiêm và dung tích xi-lanh xe máy."
+          ]
+        },
+        {
+          title: "Đơn vị nấu ăn và hàng nhập khẩu",
+          list: [
+            { title: "1 cup (Mỹ)", text: "= 236,6 mL" },
+            { title: "1 muỗng canh (tbsp)", text: "= 14,8 mL · 1 muỗng cà phê (tsp) = 4,93 mL" },
+            { title: "1 fl oz (Mỹ)", text: "= 29,57 mL — chai nước 16,9 fl oz ≈ 500 mL" },
+            { title: "1 gallon Mỹ", text: "= 3,785 L · 1 gallon Anh = 4,546 L" },
+            { title: "1 thùng dầu (bbl)", text: "= 158,99 L — đơn vị báo giá dầu thô" }
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 khối nước bằng bao nhiêu lít?", a: "1 m³ = 1.000 lít." },
+        { q: "1 gallon bằng bao nhiêu lít?", a: "Gallon Mỹ = 3,785 L, gallon Anh = 4,546 L. Công thức và giá xăng ở Mỹ dùng gallon Mỹ." },
+        { q: "1 cup bằng bao nhiêu ml?", a: "Cup Mỹ = 236,6 mL; nhiều công thức làm tròn thành 240 mL. Cup hệ mét (Úc) là 250 mL." }
+      ]
     },
     "unit-area": {
-      keywords: "đổi m2 sang hecta, diện tích online",
-      howto: ["Nhập giá trị diện tích.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi diện tích online là gì?","paras":["Đổi mét vuông, hecta, acre, feet vuông."]}]
+      keywords: "đổi m2 sang hecta, 1 ha bằng bao nhiêu m2, 1 sào bằng bao nhiêu m2, đổi acre sang m2, đổi feet vuông sang m2, đổi km2",
+      howto: ["Nhập diện tích cần đổi.", "Chọn đơn vị gốc: m², ha, km², acre, ft²…", "Chọn đơn vị đích hoặc xem bảng quy đổi."],
+      sections: [
+        {
+          title: "1 hecta bằng bao nhiêu m²?",
+          paras: [
+            "**1 ha = 10.000 m² = 100 a** (are, còn gọi là sào tây). **1 km² = 100 ha = 1.000.000 m²**. Diện tích đất nông nghiệp, rừng và dự án thường ghi bằng hecta; sổ đỏ ghi bằng m²."
+          ]
+        },
+        {
+          title: "Sào, mẫu và đơn vị nước ngoài",
+          list: [
+            { title: "1 sào Bắc Bộ", text: "= 360 m² · 1 mẫu Bắc Bộ = 10 sào = 3.600 m²" },
+            { title: "1 sào Trung Bộ", text: "= 500 m² · 1 mẫu Trung Bộ = 5.000 m²" },
+            { title: "1 acre", text: "= 4.046,86 m² ≈ 0,405 ha" },
+            { title: "1 ft²", text: "= 0,0929 m² — 1 m² ≈ 10,76 ft² (căn hộ nước ngoài hay ghi sq ft)" }
+          ]
+        },
+        {
+          title: "Lưu ý khi đổi sào, mẫu",
+          paras: [
+            "Sào và mẫu là đơn vị truyền thống, khác nhau theo vùng nên công cụ không đưa vào danh sách. Hãy đổi về m² theo bảng trên rồi nhập m² để quy sang ha, acre hoặc ft²."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 ha bằng bao nhiêu m²?", a: "1 hecta = 10.000 m²." },
+        { q: "1 sào bằng bao nhiêu m²?", a: "360 m² ở Bắc Bộ và 500 m² ở Trung Bộ. Miền Nam thường dùng công: 1 công = 1.000 m² (công tầm cấy có nơi tính 1.296 m²)." },
+        { q: "1 acre bằng bao nhiêu hecta?", a: "1 acre ≈ 0,4047 ha, tức 4.046,86 m²." }
+      ]
     },
     "unit-speed": {
-      keywords: "đổi km/h sang mph online",
-      howto: ["Nhập giá trị tốc độ.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi tốc độ online là gì?","paras":["Đổi km/h, m/s, mph, knot."]}]
+      keywords: "đổi km/h sang m/s, đổi mph sang km/h, 1 knot bằng bao nhiêu km/h, đổi m/s sang km/h, 100 km/h bằng bao nhiêu mph",
+      howto: ["Nhập tốc độ cần đổi.", "Chọn đơn vị gốc: km/h, m/s, mph, knot…", "Chọn đơn vị đích hoặc xem bảng quy đổi."],
+      sections: [
+        {
+          title: "Đổi km/h, m/s và mph",
+          paras: [
+            "**1 m/s = 3,6 km/h** — muốn đổi km/h sang m/s thì chia 3,6. **1 mph = 1,609344 km/h**, **1 knot = 1,852 km/h**. Bài tập vật lý dùng m/s, biển báo Việt Nam dùng km/h, xe Mỹ và Anh dùng mph, tàu thuyền và máy bay dùng knot."
+          ]
+        },
+        {
+          title: "Bảng đổi hay dùng",
+          list: [
+            { title: "50 km/h", text: "= 13,89 m/s = 31,07 mph" },
+            { title: "100 km/h", text: "= 27,78 m/s = 62,14 mph" },
+            { title: "60 mph", text: "= 96,56 km/h" },
+            { title: "10 knot", text: "= 18,52 km/h" }
+          ]
+        }
+      ],
+      faqs: [
+        { q: "Đổi km/h sang m/s thế nào?", a: "Chia cho 3,6. Ví dụ 72 km/h = 20 m/s." },
+        { q: "100 km/h bằng bao nhiêu mph?", a: "Khoảng 62,14 mph." },
+        { q: "Knot là gì?", a: "Knot (nút) là hải lý/giờ, bằng 1,852 km/h, dùng cho tàu biển, máy bay và tốc độ gió." }
+      ]
     },
     "unit-time": {
-      keywords: "đổi giờ phút giây online",
-      howto: ["Nhập giá trị thời gian.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi thời gian online là gì?","paras":["Đổi giây, phút, giờ, ngày, tuần."]}]
+      keywords: "đổi giờ sang phút, đổi phút sang giây, 1 ngày bao nhiêu giây, đổi giây sang giờ phút, đổi ms sang giây",
+      howto: ["Nhập khoảng thời gian cần đổi.", "Chọn đơn vị gốc: giây, phút, giờ, ngày, tuần…", "Chọn đơn vị đích hoặc xem bảng quy đổi."],
+      sections: [
+        {
+          title: "Quy đổi thời gian cơ bản",
+          list: [
+            { title: "1 phút", text: "= 60 giây · 1 giờ = 60 phút = 3.600 giây" },
+            { title: "1 ngày", text: "= 24 giờ = 1.440 phút = 86.400 giây" },
+            { title: "1 tuần", text: "= 7 ngày = 168 giờ = 604.800 giây" },
+            { title: "1 giây", text: "= 1.000 ms = 1.000.000 µs" }
+          ]
+        },
+        {
+          title: "Tháng và năm được tính thế nào?",
+          paras: [
+            "Tháng và năm có độ dài thay đổi, nên công cụ quy ước **1 tháng = 30 ngày** và **1 năm = 365 ngày** để đổi nhanh. Khi cần đếm chính xác số ngày giữa hai mốc lịch, hãy tính theo ngày thực tế."
+          ]
+        },
+        {
+          title: "Đổi số thập phân ra giờ phút",
+          paras: [
+            "1,5 giờ là 1 giờ 30 phút (0,5 × 60). 2,25 giờ là 2 giờ 15 phút. Ngược lại 45 phút = 0,75 giờ — cách tính hay dùng khi chấm công, tính lương theo giờ."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 ngày có bao nhiêu giây?", a: "86.400 giây (24 × 60 × 60)." },
+        { q: "1,5 giờ là bao nhiêu phút?", a: "90 phút." },
+        { q: "Tháng trong công cụ có bao nhiêu ngày?", a: "Quy ước 30 ngày; năm quy ước 365 ngày." }
+      ]
     },
     "unit-energy": {
-      keywords: "đổi joule kWh calo online",
-      howto: ["Nhập giá trị năng lượng.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi năng lượng online là gì?","paras":["Đổi joule, kWh, calo, BTU."]}]
+      keywords: "đổi kwh sang joule, đổi kcal sang kj, 1 kwh bằng bao nhiêu kcal, đổi calo sang joule, đổi btu sang kwh, 1 số điện là gì",
+      howto: ["Nhập năng lượng cần đổi.", "Chọn đơn vị gốc: J, kJ, kWh, kcal, BTU…", "Chọn đơn vị đích hoặc xem bảng quy đổi."],
+      sections: [
+        {
+          title: "kWh, joule và calo",
+          paras: [
+            "**1 kWh = 3,6 MJ = 3.600.000 J**. Hóa đơn điện tính theo kWh — **1 số điện = 1 kWh**, tức năng lượng một thiết bị 1.000 W chạy trong 1 giờ. **1 kcal = 4,184 kJ**; nhãn thực phẩm ghi Calo (viết hoa) chính là kcal."
+          ]
+        },
+        {
+          title: "Bảng đổi hay dùng",
+          list: [
+            { title: "1 kWh", text: "≈ 860 kcal ≈ 3.412 BTU" },
+            { title: "1 kcal", text: "= 4.184 J = 4,184 kJ" },
+            { title: "1 BTU", text: "≈ 1.055 J — đơn vị hay gặp ở điều hòa, lò sưởi" },
+            { title: "1 eV", text: "= 1,602 × 10⁻¹⁹ J — dùng trong vật lý hạt nhân, bán dẫn" }
+          ]
+        },
+        {
+          title: "Tính điện năng tiêu thụ",
+          paras: [
+            "Điện năng (kWh) = công suất (kW) × số giờ dùng. Ví dụ bình nóng lạnh 2.500 W bật 1 giờ mỗi ngày dùng 2,5 kWh/ngày, khoảng 75 kWh/tháng. Đổi W sang kW bằng công cụ [Đổi công suất](cong-cu-don-vi/unit-power.html)."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 số điện bằng bao nhiêu?", a: "1 số điện = 1 kWh = 3.600.000 joule." },
+        { q: "1 kcal bằng bao nhiêu kJ?", a: "1 kcal = 4,184 kJ." },
+        { q: "Calo trên nhãn thực phẩm là cal hay kcal?", a: "Là kcal (kilocalo), thường viết Calo hoặc Cal. 1 kcal = 1.000 cal." }
+      ]
     },
     "unit-pressure": {
-      keywords: "đổi pa bar atm psi online",
-      howto: ["Nhập giá trị áp suất.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi áp suất online là gì?","paras":["Đổi Pa, bar, atm, psi."]}]
+      keywords: "đổi psi sang bar, đổi bar sang psi, đổi atm sang pa, đổi mmhg sang kpa, áp suất lốp xe psi bar, đổi mpa sang bar",
+      howto: ["Nhập áp suất cần đổi.", "Chọn đơn vị gốc: Pa, kPa, bar, atm, psi, mmHg…", "Chọn đơn vị đích hoặc xem bảng quy đổi."],
+      sections: [
+        {
+          title: "Đổi bar, psi, atm và Pa",
+          paras: [
+            "**1 bar = 100.000 Pa = 100 kPa ≈ 14,5 psi**. **1 atm = 101.325 Pa ≈ 1,013 bar ≈ 14,7 psi = 760 mmHg**. **1 psi ≈ 6.895 Pa ≈ 0,069 bar**. **1 MPa = 10 bar** — đơn vị hay ghi trên ống nước, bình gas, máy nén khí."
+          ]
+        },
+        {
+          title: "Áp suất lốp xe",
+          paras: ["Đồng hồ bơm thường có cả psi và bar. Một số mức hay gặp:"],
+          list: [
+            { title: "29 psi", text: "≈ 2,0 bar" },
+            { title: "32 psi", text: "≈ 2,2 bar" },
+            { title: "35 psi", text: "≈ 2,4 bar" },
+            { title: "2,5 bar", text: "≈ 36,3 psi" }
+          ]
+        },
+        {
+          title: "mmHg và Torr",
+          paras: [
+            "Huyết áp đo bằng **mmHg** (milimét thủy ngân); 1 mmHg ≈ 1 Torr ≈ 133,3 Pa. Huyết áp 120 mmHg ≈ 16 kPa."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 bar bằng bao nhiêu psi?", a: "1 bar ≈ 14,504 psi." },
+        { q: "30 psi bằng bao nhiêu bar?", a: "Khoảng 2,07 bar." },
+        { q: "1 atm bằng bao nhiêu Pa?", a: "1 atm = 101.325 Pa (giá trị chuẩn)." }
+      ]
     },
     "unit-power": {
-      keywords: "đổi watt sang mã lực HP",
-      howto: ["Nhập giá trị công suất.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi công suất online là gì?","paras":["Đổi W, kW, mã lực (HP)."]}]
+      keywords: "đổi kw sang hp, 1 mã lực bằng bao nhiêu kw, đổi hp sang kw, đổi w sang kw, đổi btu/h sang kw, điều hòa 1 ngựa bao nhiêu btu",
+      howto: ["Nhập công suất cần đổi.", "Chọn đơn vị gốc: W, kW, HP, PS, BTU/giờ…", "Chọn đơn vị đích hoặc xem bảng quy đổi."],
+      sections: [
+        {
+          title: "1 mã lực bằng bao nhiêu kW?",
+          paras: [
+            "Có hai loại mã lực: **mã lực cơ (HP) = 745,7 W** dùng ở Mỹ, Anh và **mã lực metric (PS, CV) = 735,5 W** dùng ở châu Âu, Nhật. Ngược lại **1 kW ≈ 1,341 HP ≈ 1,36 PS**. Thông số xe máy, ô tô, máy bơm có thể ghi một trong hai, nên cần xem kỹ ký hiệu."
+          ]
+        },
+        {
+          title: "Bảng đổi hay dùng",
+          list: [
+            { title: "1 kW", text: "= 1.000 W ≈ 1,341 HP" },
+            { title: "100 HP", text: "≈ 74,6 kW" },
+            { title: "100 PS", text: "≈ 73,5 kW" },
+            { title: "1 kW", text: "≈ 3.412 BTU/giờ" }
+          ]
+        },
+        {
+          title: "Điều hòa \"1 ngựa\" là bao nhiêu?",
+          paras: [
+            "Ở Việt Nam, điều hòa 1 HP (1 ngựa) thường chỉ **công suất làm lạnh khoảng 9.000 BTU/h** (≈ 2,6 kW lạnh), 1,5 HP ≈ 12.000 BTU/h, 2 HP ≈ 18.000 BTU/h. Đây là quy ước của ngành điện lạnh, không phải mức điện tiêu thụ — điện năng thực tế ghi trên nhãn năng lượng."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 HP bằng bao nhiêu kW?", a: "1 HP (mã lực cơ) ≈ 0,7457 kW; 1 PS (mã lực metric) ≈ 0,7355 kW." },
+        { q: "1 kW bằng bao nhiêu mã lực?", a: "Khoảng 1,341 HP hoặc 1,36 PS." },
+        { q: "9000 BTU là bao nhiêu kW?", a: "9.000 BTU/h ≈ 2,64 kW (công suất làm lạnh)." }
+      ]
     },
     "unit-angle": {
-      keywords: "đổi độ sang radian online",
-      howto: ["Nhập giá trị góc.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi góc online là gì?","paras":["Đổi độ ↔ radian và đơn vị góc liên quan."]}]
+      keywords: "đổi độ sang radian, đổi radian sang độ, 1 radian bằng bao nhiêu độ, công thức đổi độ sang rad, đổi độ phút giây",
+      howto: ["Nhập số đo góc.", "Chọn đơn vị gốc: độ, radian, grad, phút cung, giây cung, vòng.", "Xem kết quả và bảng quy đổi."],
+      sections: [
+        {
+          title: "Công thức đổi độ sang radian",
+          paras: [
+            "**180° = π rad**, nên **rad = độ × π / 180** và **độ = rad × 180 / π**. 1 rad ≈ 57,2958°, 1° ≈ 0,0174533 rad. Máy tính khoa học và hàm sin, cos trong lập trình thường dùng radian."
+          ]
+        },
+        {
+          title: "Các góc thường gặp",
+          list: [
+            { title: "30°", text: "= π/6 ≈ 0,5236 rad" },
+            { title: "45°", text: "= π/4 ≈ 0,7854 rad" },
+            { title: "90°", text: "= π/2 ≈ 1,5708 rad" },
+            { title: "180°", text: "= π ≈ 3,1416 rad · 360° = 2π = 1 vòng" }
+          ]
+        },
+        {
+          title: "Độ, phút, giây và grad",
+          paras: [
+            "1° = 60 phút cung (′) = 3.600 giây cung (″) — cách ghi tọa độ GPS dạng 21°01′42″. **Grad (gon)** chia vòng tròn thành 400 phần, 1 grad = 0,9°, dùng trong trắc địa."
+          ]
+        }
+      ],
+      faqs: [
+        { q: "1 radian bằng bao nhiêu độ?", a: "1 rad ≈ 57,2958°." },
+        { q: "90 độ bằng bao nhiêu radian?", a: "90° = π/2 ≈ 1,5708 rad." },
+        { q: "Đổi độ thập phân sang độ phút giây thế nào?", a: "Phần lẻ × 60 ra phút, phần lẻ của phút × 60 ra giây. Ví dụ 21,0283° ≈ 21°01′42″." }
+      ]
     },
     "unit-fuel": {
-      keywords: "đổi L/100km sang mpg",
-      howto: ["Nhập giá trị tiêu hao.","Chọn đơn vị nguồn và đích.","Sao chép kết quả hoặc xem bảng quy đổi."],
-      sections: [{"title":"Đổi tiêu hao nhiên liệu online là gì?","paras":["Đổi L/100km ↔ mpg (Mỹ/Anh)."]}]
+      keywords: "đổi l/100km sang mpg, đổi mpg sang l/100km, đổi km/l sang l/100km, mức tiêu hao nhiên liệu, xe tốn bao nhiêu lít 100km",
+      howto: ["Nhập mức tiêu hao nhiên liệu.", "Chọn đơn vị gốc: L/100 km, km/L, mpg Mỹ hoặc mpg Anh.", "Xem kết quả ở các đơn vị còn lại."],
+      sections: [
+        {
+          title: "L/100 km, km/L và mpg",
+          paras: [
+            "Việt Nam và châu Âu ghi **lít/100 km** (càng nhỏ càng tiết kiệm). Một số nơi dùng **km/lít** hoặc **mpg** — số dặm đi được với 1 gallon (càng lớn càng tiết kiệm). Vì hai cách ngược chiều nhau nên phép đổi là nghịch đảo, không phải nhân hệ số."
+          ]
+        },
+        {
+          title: "Công thức",
+          list: [
+            { title: "km/L", text: "= 100 ÷ (L/100 km)" },
+            { title: "mpg (Mỹ)", text: "= 235,215 ÷ (L/100 km)" },
+            { title: "mpg (Anh)", text: "= 282,481 ÷ (L/100 km)" }
+          ]
+        },
+        {
+          title: "Ví dụ",
+          list: [
+            { title: "Xe máy 2 L/100 km", text: "= 50 km/L ≈ 117,6 mpg Mỹ" },
+            { title: "Ô tô 6 L/100 km", text: "≈ 16,7 km/L ≈ 39,2 mpg Mỹ ≈ 47,1 mpg Anh" },
+            { title: "Ô tô 8 L/100 km", text: "= 12,5 km/L ≈ 29,4 mpg Mỹ" }
+          ]
+        }
+      ],
+      faqs: [
+        { q: "30 mpg bằng bao nhiêu lít/100 km?", a: "Với mpg Mỹ: 235,215 ÷ 30 ≈ 7,84 L/100 km." },
+        { q: "mpg Mỹ và mpg Anh khác gì?", a: "Gallon Anh lớn hơn gallon Mỹ (4,546 L so với 3,785 L), nên cùng một xe sẽ có mpg Anh cao hơn khoảng 20%." },
+        { q: "Xe tốn 5 lít/100 km là bao nhiêu km/lít?", a: "100 ÷ 5 = 20 km/lít." }
+      ]
     },
     "json-tools": {
       keywords: "format json, minify json, validate json online",

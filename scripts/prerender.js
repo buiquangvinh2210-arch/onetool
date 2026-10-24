@@ -30,6 +30,10 @@
         .sort((a, b) => a.id.localeCompare(b.id))
         .map((s) => s.outerHTML.replace(/https:\/\/onetool\.vn\/docs\//g, "https://onetool.vn/")),
       catSeo: d.getElementById("catSeo")?.outerHTML || "",
+      toolSeo: (() => {
+        const el = d.getElementById("toolSeo");
+        return el && el.dataset.static !== "1" ? el.outerHTML : "";
+      })(),
       lead: d.querySelector(".cat-hero-lead")?.innerHTML ?? null,
       count: d.querySelector(".cat-hero-count")?.outerHTML || "",
       title: d.title,
@@ -77,6 +81,10 @@
     for (const [id, inner] of Object.entries(cap.grids)) {
       const re = new RegExp(`(<div[^>]*id="${id}"[^>]*>)(?:[\\s\\S]*?</div><!--/${id}-->|</div>)`);
       h = h.replace(re, (_, open) => `${open}\n${inner.trim()}\n</div><!--/${id}-->`);
+    }
+
+    if (cap.toolSeo) {
+      h = h.replace(/<section class="tool-seo" id="toolSeo"(?![^>]*data-static)[^>]*>[\s\S]*?<\/section>(\s*<\/main>)/, (_, end) => cap.toolSeo + end);
     }
 
     h = h.replace(/\s*<section class="cat-seo" id="catSeo">[\s\S]*?<\/section><!--\/catSeo-->/, "");

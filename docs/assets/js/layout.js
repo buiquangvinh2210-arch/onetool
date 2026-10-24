@@ -312,7 +312,7 @@
       "@type": "Organization",
       name: "OneTool",
       url: SITE_ORIGIN + "/",
-      logo: SITE_ORIGIN + "/assets/img/logo-mark.png",
+      logo: SITE_ORIGIN + "/assets/img/logo-mark-512.png",
       email: "onetools27@gmail.com",
       contactPoint: {
         "@type": "ContactPoint",
@@ -470,7 +470,7 @@
   <div class="header-shell">
     <div class="container header-inner">
       <a class="logo logo--rich" href="${homeHref()}" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark.png")}?v=20260826f" width="46" height="46" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark-96.png")}?v=20261024a" width="46" height="46" alt="" /></span>
         <span class="logo-stack">
           <span class="logo-text">OneTool</span>
           <span class="logo-tag">${toolCount} công cụ · Miễn phí</span>
@@ -530,7 +530,7 @@
   <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
     <div class="nav-drawer-head">
       <a class="logo" href="${homeHref()}" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark.png")}?v=20260826f" width="36" height="36" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark-96.png")}?v=20261024a" width="36" height="36" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <button type="button" class="nav-drawer-close" id="navDrawerClose" aria-label="Đóng menu">✕</button>
@@ -568,7 +568,7 @@
   <div class="container footer-inner">
     <div class="footer-brand">
       <a class="logo footer-logo" href="${homeHref()}" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark.png")}?v=20260826f" width="40" height="40" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark-96.png")}?v=20261024a" width="40" height="40" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <p class="footer-brand-desc">Công cụ file online cho người Việt — nhanh, riêng tư, miễn phí.</p>

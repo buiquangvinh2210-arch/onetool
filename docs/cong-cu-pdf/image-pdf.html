@@ -9,7 +9,7 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
 
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
@@ -32,7 +32,7 @@
 #site-footer{min-height:320px;display:block;contain:layout style}
 #otCrumb,.ot-crumb-wrap{min-height:48px;display:block}
 @media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}}</style>
-  <script type="application/ld+json" id="ot-jsonld">{"@context":"https://schema.org","@type":"WebApplication","name":"Ảnh ↔ PDF","url":"https://onetool.vn/cong-cu-pdf/image-pdf.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"VND"},"description":"Ghép JPG/PNG thành PDF hoặc xuất PDF ra ảnh. Không upload server — miễn phí, không đăng ký.","inLanguage":"vi","publisher":{"@type":"Organization","name":"OneTool","url":"https://onetool.vn/","logo":"https://onetool.vn/assets/img/logo-mark.png","email":"onetools27@gmail.com","contactPoint":{"@type":"ContactPoint","email":"onetools27@gmail.com","contactType":"customer support","availableLanguage":["Vietnamese"],"areaServed":"VN"}},"isAccessibleForFree":true}</script>
+  <script type="application/ld+json" id="ot-jsonld">{"@context":"https://schema.org","@type":"WebApplication","name":"Ảnh ↔ PDF","url":"https://onetool.vn/cong-cu-pdf/image-pdf.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"VND"},"description":"Ghép JPG/PNG thành PDF hoặc xuất PDF ra ảnh. Không upload server — miễn phí, không đăng ký.","inLanguage":"vi","publisher":{"@type":"Organization","name":"OneTool","url":"https://onetool.vn/","logo":"https://onetool.vn/assets/img/logo-mark-512.png","email":"onetools27@gmail.com","contactPoint":{"@type":"ContactPoint","email":"onetools27@gmail.com","contactType":"customer support","availableLanguage":["Vietnamese"],"areaServed":"VN"}},"isAccessibleForFree":true}</script>
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://onetool.vn/"},{"@type":"ListItem","position":2,"name":"Công cụ","item":"https://onetool.vn/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Công cụ PDF","item":"https://onetool.vn/cong-cu-pdf.html"},{"@type":"ListItem","position":4,"name":"Ảnh ↔ PDF","item":"https://onetool.vn/cong-cu-pdf/image-pdf.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"Cách dùng Ảnh ↔ PDF","description":"Hub gom hai nhu cầu phổ biến: ghép ảnh thành PDF (hồ sơ, scan điện thoại) và xuất PDF ra ảnh (PNG/JPG/WebP) để đăng web hoặc chỉnh sửa.","inLanguage":"vi","step":[{"@type":"HowToStep","position":1,"text":"Chọn hướng: Ảnh → PDF hoặc PDF → Ảnh."},{"@type":"HowToStep","position":2,"text":"Upload file và chỉnh tùy chọn."},{"@type":"HowToStep","position":3,"text":"Tải kết quả."}]}</script>
 </head>
@@ -42,7 +42,7 @@
   <div class="header-shell">
     <div class="container header-inner">
       <a class="logo logo--rich" href="../" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark.png?v=20260826f" width="46" height="46" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark-96.png?v=20261024a" width="46" height="46" alt="" /></span>
         <span class="logo-stack">
           <span class="logo-text">OneTool</span>
           <span class="logo-tag">67 công cụ · Miễn phí</span>
@@ -134,7 +134,7 @@
   <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
     <div class="nav-drawer-head">
       <a class="logo" href="../" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark.png?v=20260826f" width="36" height="36" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark-96.png?v=20261024a" width="36" height="36" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <button type="button" class="nav-drawer-close" id="navDrawerClose" aria-label="Đóng menu">✕</button>
@@ -389,21 +389,56 @@
   </div>
 </section>
 <section class="tool-seo" id="toolSeo">
-  <div class="tool-seo-wrap">
-    <section class="tool-seo-block">
-      <h2>Cách dùng Ảnh ↔ PDF</h2>
-      <ol class="tool-seo-howto">
-        <li>Chọn hướng Ảnh → PDF hoặc PDF → Ảnh.</li>
-        <li>Tải file lên và chỉnh tùy chọn.</li>
-        <li>Tải kết quả về máy.</li>
-      </ol>
-    </section>
-    <section class="tool-seo-block">
-      <h2>Ảnh ↔ PDF là gì?</h2>
-      <p>Hub <strong>Ảnh ↔ PDF</strong> gom hai hướng chuyển đổi phổ biến: ảnh thành PDF và PDF thành ảnh.</p>
-    </section>
-  </div>
-</section>
+      <div class="tool-seo-wrap">
+        <section class="tool-seo-block"><h2>Cách dùng Ảnh ↔ PDF</h2>
+          <ol class="tool-seo-howto"><li>Chọn hướng: Ảnh → PDF hoặc PDF → Ảnh.</li><li>Upload file và chỉnh tùy chọn.</li><li>Tải kết quả.</li></ol></section>
+        <section class="tool-seo-block"><h2>Ảnh ↔ PDF là gì?</h2><p>Hub gom hai nhu cầu phổ biến: <strong>ghép ảnh thành PDF</strong> (hồ sơ, scan điện thoại) và <strong>xuất PDF ra ảnh</strong> (PNG/JPG/WebP) để đăng web hoặc chỉnh sửa.</p></section><section class="tool-seo-block"><h2>Chọn đúng hướng</h2><ul><li><strong>Ảnh → PDF</strong> nhiều JPG/PNG thành một file gửi email hoặc in.</li><li><strong>PDF → Ảnh</strong> từng trang ra PNG/JPG/WebP hoặc ZIP.</li></ul></section>
+        
+        <section class="tool-seo-block"><h2>Vì sao dùng OneTool?</h2>
+        <ul>
+          <li><strong>Miễn phí</strong> — không bắt buộc đăng ký hay trả phí ẩn.</li>
+          <li><strong>Riêng tư</strong> — nhiều công cụ xử lý ngay trên trình duyệt, file không gửi lên server OneTool.</li>
+          <li><strong>Nhanh</strong> — kéo thả, xem trước, tải kết quả trong vài bước.</li>
+        </ul></section>
+        <section class="tool-seo-block"><h2>Công cụ liên quan</h2>
+          <ul class="tool-seo-more"><li><a class="tool-seo-card" href="../cong-cu-pdf/pdf-to-word.html" aria-label="Mở PDF sang Word">
+          <span class="tool-seo-card-icon" aria-hidden="true">📄</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">PDF sang Word</strong>
+            <span class="tool-seo-card-sapo">Chuyển PDF thành Word (DOCX) để chỉnh sửa — kể cả bản scan.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-pdf/pdf-merge.html" aria-label="Mở Gộp PDF online">
+          <span class="tool-seo-card-icon" aria-hidden="true">📎</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Gộp PDF online</strong>
+            <span class="tool-seo-card-sapo">Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-pdf/pdf-compress.html" aria-label="Mở Nén PDF online">
+          <span class="tool-seo-card-icon" aria-hidden="true">🗜️</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Nén PDF online</strong>
+            <span class="tool-seo-card-sapo">Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-pdf/pdf-to-excel.html" aria-label="Mở PDF sang Excel">
+          <span class="tool-seo-card-icon" aria-hidden="true">📊</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">PDF sang Excel</strong>
+            <span class="tool-seo-card-sapo">Trích bảng / báo cáo từ PDF thành Excel (XLSX) — OCR bản scan tiếng Việt.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-pdf/office-to-pdf.html" aria-label="Mở Word sang PDF">
+          <span class="tool-seo-card-icon" aria-hidden="true">📑</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Word sang PDF</strong>
+            <span class="tool-seo-card-sapo">Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.</span>
+          </span>
+        </a></li><li><a class="tool-seo-card" href="../cong-cu-pdf/image-to-pdf.html" aria-label="Mở Ảnh sang PDF">
+          <span class="tool-seo-card-icon" aria-hidden="true">🖼️</span>
+          <span class="tool-seo-card-body">
+            <strong class="tool-seo-card-title">Ảnh sang PDF</strong>
+            <span class="tool-seo-card-sapo">Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.</span>
+          </span>
+        </a></li></ul></section>
+      </div></section>
 </main>
 <div id="site-footer">
 <footer class="site-footer">
@@ -419,7 +454,7 @@
   <div class="container footer-inner">
     <div class="footer-brand">
       <a class="logo footer-logo" href="../" aria-label="OneTool — Về trang chủ">
-        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark.png?v=20260826f" width="40" height="40" alt="" /></span>
+        <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="../assets/img/logo-mark-96.png?v=20261024a" width="40" height="40" alt="" /></span>
         <span class="logo-text">OneTool</span>
       </a>
       <p class="footer-brand-desc">Công cụ file online cho người Việt — nhanh, riêng tư, miễn phí.</p>
@@ -474,8 +509,8 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../assets/js/catalog.js?v=20261024a"></script>
-<script src="../assets/js/layout.js?v=20261024a"></script>
+<script src="../assets/js/catalog.js?v=20261024b"></script>
+<script src="../assets/js/layout.js?v=20261024b"></script>
 <script src="../assets/js/core.js?v=20261002a"></script>
 <script src="../assets/js/site.js?v=20261002c"></script>
 </body>
