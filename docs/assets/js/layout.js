@@ -897,12 +897,16 @@
       description: cat.seoDescription || cat.desc,
       inLanguage: "vi",
       url: canonicalUrl(),
-      hasPart: tools.map((t) => ({
-        "@type": "WebApplication",
-        name: t.name,
-        description: t.desc,
-        url: SITE_ORIGIN + "/" + OTCatalog.pathFor(t)
-      }))
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: tools.length,
+        itemListElement: tools.map((t, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: t.name,
+          url: SITE_ORIGIN + "/" + OTCatalog.pathFor(t)
+        }))
+      }
     });
     document.head.appendChild(ld);
   }
