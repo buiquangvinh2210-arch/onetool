@@ -36,7 +36,7 @@ window.OTCatalog = {
       name: "Công cụ Ảnh",
       desc: "Xóa nền AI, nén, HEIC, OCR, crop MXH",
       icon: "🖼️",
-      seoTitle: "Công cụ ảnh online — OCR, crop MXH, convert, blur, resize, xóa nền | OneTool",
+      seoTitle: "Công cụ ảnh online — xóa nền, nén, resize, OCR | OneTool",
       seoDescription: "OCR ảnh sang chữ tiếng Việt, crop preset Instagram TikTok Shopee, đổi JPG PNG WebP, làm mờ, resize, xóa nền AI — miễn phí trên trình duyệt.",
       seoKeywords: "ocr ảnh tiếng việt, crop ảnh online, crop instagram, convert ảnh, làm mờ ảnh, resize ảnh, xóa nền ảnh miễn phí"
     },
@@ -46,7 +46,7 @@ window.OTCatalog = {
       name: "Tiện ích",
       desc: "VietQR, tính lương Gross Net, số thành chữ, tiền tệ, lịch âm",
       icon: "🔧",
-      seoTitle: "Tiện ích online miễn phí — Tính lương Gross Net, VietQR, lịch âm | OneTool",
+      seoTitle: "Tiện ích online — tính lương Gross Net, VietQR, lịch âm | OneTool",
       seoDescription: "Tính lương Gross ↔ Net 2026, tạo VietQR, đổi tiền tệ USD/EUR/VND, số thành chữ, đổi lịch âm dương, tạo mã QR — tiện ích online miễn phí.",
       seoKeywords: "tính lương gross net, thuế tncn 2026, đổi tiền tệ, usd sang vnd, tạo qr code, tạo mã vạch, đổi lịch âm dương, đếm từ online"
     },
@@ -324,7 +324,7 @@ window.OTCatalog = {
       desc: "Tạo VietQR NAPAS: ngân hàng, STK, số tiền, nội dung CK — tải PNG. Miễn phí, không đăng ký."
     },
     "salary-calculator": {
-      title: "Tính lương Gross sang Net 2026 — thuế TNCN 5 bậc, BHXH mới | OneTool",
+      title: "Tính lương Gross sang Net 2026 — thuế TNCN, BHXH | OneTool",
       desc: "Đổi lương Gross ↔ Net theo luật 2026: giảm trừ 15,5 triệu, người phụ thuộc 6,2 triệu, thuế TNCN 5 bậc, trần BHXH 50,6 triệu. Miễn phí, không đăng ký."
     },
     "loan-calculator": {

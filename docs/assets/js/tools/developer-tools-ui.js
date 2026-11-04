@@ -18,7 +18,7 @@
     clear: "Xóa",
     openFile: "Hash file",
     modeAria: "Chế độ",
-    pageTitle: "UUID Hash Slugify online — SHA-256, timestamp tiếng Việt | OneTool",
+    pageTitle: "Tạo UUID, hash SHA-256, slugify online | OneTool",
     pageDesc: "UUID v4, SHA-256/384/512, slug tiếng Việt, Unix timestamp online miễn phí.",
     runUuid: "Tạo UUID",
     runHash: "Tính Hash",
