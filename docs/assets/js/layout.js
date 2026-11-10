@@ -1191,7 +1191,7 @@
     });
   }
 
-  const ENGAGE_VERSION = "20261002e";
+  const ENGAGE_VERSION = "20261110a";
 
   function injectEngage() {
     if (!document.querySelector('link[rel="manifest"]')) {
