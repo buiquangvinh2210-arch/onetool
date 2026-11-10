@@ -80,5 +80,7 @@
  "<0>📱</0>HEIC sang JPG": "<0>📱</0>HEIC to JPG",
  "0đ": "$0",
  "đ": "=",
- "· Âm lịch hôm nay</span> <strong>": "· Lunar date today</span> <strong>"
+ "· Âm lịch hôm nay</span> <strong>": "· Lunar date today</span> <strong>",
+ "<span class=\"footer-tagline\">Miễn phí · 🇻🇳 Việt Nam</span> </div> </div> </footer> <div id=\"toastContainer\" class=\"toast-container\"></div>": "<span class=\"footer-tagline\">Free · Made in 🇻🇳 Vietnam</span> </div> </div> </footer> <div id=\"toastContainer\" class=\"toast-container\"></div>",
+ "\" role=\"group\" aria-label=\"Language / Ngôn ngữ\">": "="
 }

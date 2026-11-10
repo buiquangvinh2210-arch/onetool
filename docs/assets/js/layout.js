@@ -626,6 +626,7 @@
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">&copy; ${new Date().getFullYear()} OneTool</p>
+      ${languageSwitchHtml("footer")}
       <span class="footer-tagline">Miễn phí · 🇻🇳 Việt Nam</span>
     </div>
   </div>
@@ -957,16 +958,39 @@
     return { vi: rootPath + rest + tail, en: rootPath + "en/" + rest + tail };
   }
 
-  function languageSwitchHtml() {
+  const GLOBE_SVG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>';
+
+  // Nút đổi ngôn ngữ: viên trượt (thumb) chạy qua lại giữa VI và EN.
+  // variant "footer" hiện tên đầy đủ (Tiếng Việt / English) kèm biểu tượng quả địa cầu.
+  function languageSwitchHtml(variant) {
     const urls = languageUrls();
-    const item = (code, label, title) =>
-      `<a class="lang-switch-opt${LANG === code ? " is-active" : ""}" href="${esc(urls[code])}" hreflang="${code}" lang="${code}" data-lang="${code}" title="${title}"${LANG === code ? ' aria-current="true"' : ""}>${label}</a>`;
-    return `<div class="lang-switch" role="group" aria-label="Language">${item("vi", "VI", "Tiếng Việt")}${item("en", "EN", "English")}</div>`;
+    const footer = variant === "footer";
+    const label = { vi: footer ? "Tiếng Việt" : "VI", en: footer ? "English" : "EN" };
+    const item = (code, title) =>
+      `<a class="lang-switch-opt${LANG === code ? " is-active" : ""}" href="${esc(urls[code])}" hreflang="${code}" lang="${code}" data-lang="${code}" title="${title}"${LANG === code ? ' aria-current="page"' : ""}>${label[code]}</a>`;
+    return `<div class="lang-switch${footer ? " lang-switch--footer" : ""}" data-active="${LANG}" role="group" aria-label="Language / Ngôn ngữ">` +
+      (footer ? `<span class="lang-switch-globe">${GLOBE_SVG}</span>` : "") +
+      `<span class="lang-switch-track"><span class="lang-switch-thumb" aria-hidden="true"></span>${item("vi", "Tiếng Việt")}${item("en", "English")}</span></div>`;
   }
 
+  // Bấm: trượt viên thumb trước rồi mới chuyển trang để cảm giác mượt.
   function bindLanguageSwitch() {
     document.querySelectorAll(".lang-switch-opt").forEach((a) => {
-      a.addEventListener("click", () => setLanguageChoice(a.dataset.lang));
+      if (a.dataset.bound) return;
+      a.dataset.bound = "1";
+      a.addEventListener("click", (e) => {
+        const target = a.dataset.lang;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+        e.preventDefault();
+        if (target === LANG) return;
+        setLanguageChoice(target);
+        document.querySelectorAll(".lang-switch").forEach((sw) => {
+          sw.dataset.active = target;
+          sw.querySelectorAll(".lang-switch-opt").forEach((o) => o.classList.toggle("is-active", o.dataset.lang === target));
+        });
+        const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        setTimeout(() => { location.href = a.href; }, reduce ? 0 : 280);
+      });
     });
   }
 
@@ -995,42 +1019,94 @@
       .lang-switch {
         display: inline-flex;
         align-items: center;
-        gap: 2px;
-        padding: 3px;
-        border-radius: 999px;
-        background: #f1f2f6;
-        border: 1px solid rgba(15, 23, 42, 0.08);
+        gap: 0.4rem;
         flex-shrink: 0;
+        font-family: inherit;
       }
+      .lang-switch-track {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        height: 40px;
+        padding: 4px;
+        border-radius: 999px;
+        background: var(--surface, #fff);
+        border: 1px solid var(--border, rgba(15, 23, 42, 0.1));
+        box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .lang-switch-track:hover {
+        border-color: var(--border-strong, rgba(124, 58, 237, 0.35));
+        box-shadow: 0 2px 10px rgba(124, 58, 237, 0.12);
+      }
+      .lang-switch-thumb {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 4px;
+        width: calc(50% - 4px);
+        border-radius: 999px;
+        background: var(--gradient-brand, linear-gradient(135deg, #7c3aed, #4f46e5));
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+        transition: transform 0.32s cubic-bezier(0.34, 1.3, 0.5, 1), box-shadow 0.2s;
+        will-change: transform;
+      }
+      .lang-switch[data-active="en"] .lang-switch-thumb { transform: translateX(100%); }
       .lang-switch-opt {
-        display: inline-flex;
+        position: relative;
+        z-index: 1;
+        display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 2.1rem;
-        height: 1.75rem;
-        padding: 0 0.55rem;
+        min-width: 2.35rem;
+        height: 100%;
+        padding: 0 0.6rem;
         border-radius: 999px;
         font-size: 0.78rem;
         font-weight: 700;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.04em;
         line-height: 1;
-        color: #64748b;
-        text-decoration: none;
-        transition: background 0.15s, color 0.15s;
+        color: var(--text-muted, #64748b);
+        text-decoration: none !important;
+        transition: color 0.25s ease;
+        -webkit-tap-highlight-color: transparent;
       }
-      .lang-switch-opt:hover { color: #0f172a; }
-      .lang-switch-opt.is-active {
-        background: #0f172a;
-        color: #fff;
-        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.25);
-      }
-      html[data-theme="dark"] .lang-switch {
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.1);
+      .lang-switch-opt:hover { color: var(--primary, #7c3aed); }
+      .lang-switch-opt.is-active,
+      .lang-switch-opt.is-active:hover { color: #fff; }
+      .lang-switch-opt:focus-visible { outline: 2px solid var(--primary, #7c3aed); outline-offset: 2px; }
+      html[data-theme="dark"] .lang-switch-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.12);
       }
       html[data-theme="dark"] .lang-switch-opt { color: #a1a1aa; }
-      html[data-theme="dark"] .lang-switch-opt:hover { color: #fff; }
-      html[data-theme="dark"] .lang-switch-opt.is-active { background: #f4f4f5; color: #18181b; }
+      html[data-theme="dark"] .lang-switch-opt.is-active { color: #fff; }
+      /* Footer (dark background) */
+      .lang-switch--footer { color: rgba(255, 255, 255, 0.55); }
+      .lang-switch--footer .lang-switch-globe { display: inline-flex; }
+      .lang-switch--footer .lang-switch-track {
+        height: 36px;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: none;
+      }
+      .lang-switch--footer .lang-switch-track:hover { border-color: rgba(167, 139, 250, 0.5); }
+      .lang-switch--footer .lang-switch-opt {
+        min-width: 5.6rem;
+        font-size: 0.8rem;
+        letter-spacing: 0;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .lang-switch--footer .lang-switch-opt:hover { color: #fff; }
+      .logo-tag { white-space: nowrap; }
+      @media (prefers-reduced-motion: reduce) {
+        .lang-switch-thumb, .lang-switch-opt { transition: none; }
+      }
+      @media (max-width: 1360px) and (min-width: 1025px) {
+        .site-header .logo-tag { display: none; }
+      }
       .ot-language-banner {
         position: relative;
         z-index: 190;
@@ -1073,7 +1149,9 @@
         color: #c7d2fe;
       }
       @media (max-width: 640px) {
-        .lang-switch-opt { min-width: 1.9rem; height: 1.6rem; padding: 0 0.45rem; font-size: 0.72rem; }
+        .site-header .lang-switch-track { height: 36px; padding: 3px; }
+        .site-header .lang-switch-thumb { top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); }
+        .site-header .lang-switch-opt { min-width: 2rem; padding: 0 0.45rem; font-size: 0.72rem; }
         .ot-language-banner { padding: 0.55rem 0.75rem; text-align: center; }
       }
     `;
