@@ -1,0 +1,14 @@
+{
+  "name": "onetool-i18n",
+  "private": true,
+  "type": "module",
+  "description": "Build English (/en/) version of onetool.vn from the Vietnamese pages",
+  "scripts": {
+    "extract": "node extract.mjs",
+    "build": "node build-en.mjs"
+  },
+  "devDependencies": {
+    "acorn": "^8.14.0",
+    "parse5": "^7.2.1"
+  }
+}

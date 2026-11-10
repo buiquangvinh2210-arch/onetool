@@ -241,6 +241,7 @@ window.OTLunar = (function () {
   }
 
   function monthNameVi(month, leap) {
+    if (window.OT_LANG === "en") return (leap ? "Leap month " : "Month ") + month;
     const base = MONTH_VI[month] || String(month);
     return leap ? "Nhuận " + base : "Tháng " + base;
   }

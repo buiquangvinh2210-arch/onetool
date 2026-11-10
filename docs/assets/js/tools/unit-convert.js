@@ -485,6 +485,8 @@ window.OTUnitConvert = (function () {
     const statusEl = document.getElementById("status");
     const precision = document.getElementById("precision");
     const optVi = document.getElementById("optVi");
+    // Bản tiếng Anh: mặc định dùng định dạng số quốc tế (1,234.5)
+    if (optVi && window.OT_LANG === "en") optVi.checked = false;
     const panelTitle = document.getElementById("panelTitle");
     const hintText = document.getElementById("hintText");
     if (!fromValue || !fromUnit || !toUnit) return;
@@ -593,7 +595,7 @@ window.OTUnitConvert = (function () {
     if (sibNav) {
       const base =
         opts?.sibBase ||
-        (window.OT_BASE ? String(window.OT_BASE).replace(/\/$/, "") + "/cong-cu-don-vi" : ".");
+        (window.OT_BASE ? String(window.OT_BASE).replace(/\/$/, "") + (window.OT_LANG === "en" ? "/en" : "") + "/cong-cu-don-vi" : ".");
       sibNav.innerHTML = siblingHtml(catId, base);
     }
 
@@ -618,7 +620,7 @@ window.OTUnitConvert = (function () {
               const base =
                 opts?.sibBase ||
                 (window.OT_BASE
-                  ? String(window.OT_BASE).replace(/\/$/, "") + "/cong-cu-don-vi"
+                  ? String(window.OT_BASE).replace(/\/$/, "") + (window.OT_LANG === "en" ? "/en" : "") + "/cong-cu-don-vi"
                   : ".");
               sibNav.innerHTML = siblingHtml(c.id, base);
             }

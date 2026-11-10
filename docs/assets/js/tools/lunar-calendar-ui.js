@@ -134,10 +134,19 @@
   }
 
   function lunarMonthName(lunar) {
+    if (window.OT_LANG === "en") return (lunar.leap ? "Leap month " : "Month ") + lunar.month;
     return (lunar.leap ? "Tháng nhuận " : "Tháng ") + L.MONTH_VI[lunar.month];
   }
 
   const lowerFirst = (s) => s.charAt(0).toLowerCase() + s.slice(1);
+  // Bản EN (/en/) ghép ngày âm theo kiểu tiếng Anh: "Day 2, month 10, Bính Ngọ"
+  const EN = window.OT_LANG === "en";
+  const YEAR_SEP = EN ? ", " : " năm ";
+  function lunarDateText(l, yearCC) {
+    return EN
+      ? "Day " + l.day + ", " + lowerFirst(lunarMonthName(l)) + ", " + yearCC
+      : "Ngày " + l.day + " " + lowerFirst(lunarMonthName(l)) + " năm " + yearCC;
+  }
   const fmtDate = (date) => pad(date.getDate()) + "/" + pad(date.getMonth() + 1) + "/" + date.getFullYear();
   const wdShort = (date) => (date.getDay() === 0 ? "CN" : "T" + (date.getDay() + 1));
 
@@ -215,7 +224,7 @@
       </div>
       <div class="ln-hero-text">
         <span class="ln-hero-kicker">Hôm nay · ${esc(full.weekday)}, ${fmtDate(today)}</span>
-        <h2 class="ln-hero-title">Ngày ${info.lunar.day} ${esc(lowerFirst(lunarMonthName(info.lunar)))} năm ${esc(full.yearCanChi)} <span aria-hidden="true">${CHI_ICON[yearChi]}</span></h2>
+        <h2 class="ln-hero-title">${esc(lunarDateText(info.lunar, full.yearCanChi))} <span aria-hidden="true">${CHI_ICON[yearChi]}</span></h2>
         <div class="ln-hero-chips">
           <span>Ngày ${esc(full.dayCanChi)}</span>
           <span class="${info.guide.good ? "is-good" : "is-bad"}">${info.guide.good ? "✦ Hoàng đạo" : "Hắc đạo"} · ${esc(info.guide.god)}</span>
@@ -325,8 +334,8 @@
     const range =
       a.year === b.year
         ? (a.month === b.month && a.leap === b.leap ? lunarMonthName(a) : lunarMonthName(a) + " – " + lowerFirst(lunarMonthName(b))) +
-          " năm " + L.yearCanChi(a.year)
-        : lunarMonthName(a) + " năm " + L.yearCanChi(a.year) + " – " + lowerFirst(lunarMonthName(b)) + " năm " + L.yearCanChi(b.year);
+          YEAR_SEP + L.yearCanChi(a.year)
+        : lunarMonthName(a) + YEAR_SEP + L.yearCanChi(a.year) + " – " + lowerFirst(lunarMonthName(b)) + YEAR_SEP + L.yearCanChi(b.year);
     $("calLunarRange").textContent = "Âm lịch: " + range;
 
     renderEvents(first, dim);
@@ -516,7 +525,7 @@
 
     dayText =
       "Dương lịch: " + full.weekday + ", " + pad(info.d) + "/" + pad(info.m) + "/" + info.y + "\n" +
-      "Âm lịch: ngày " + info.lunar.day + " " + lowerFirst(lunarMonthName(info.lunar)) + " năm " + full.yearCanChi + "\n" +
+      "Âm lịch: " + lowerFirst(lunarDateText(info.lunar, full.yearCanChi)) + "\n" +
       "Ngày " + full.dayCanChi + ", tháng " + full.monthCanChi + ", năm " + full.yearCanChi + "\n" +
       (g.good ? "Ngày hoàng đạo (" : "Ngày hắc đạo (") + g.god + ") · Tiết khí: " + term + "\n" +
       "Giờ hoàng đạo: " + hours.map((h) => h.name + " (" + h.from + "h–" + h.to + "h)").join(", ") + "\n" +

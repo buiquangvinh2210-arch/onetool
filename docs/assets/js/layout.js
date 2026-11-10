@@ -11,9 +11,14 @@
   } catch (_) {}
 
   const base = (window.OT_BASE || ".").replace(/\/$/, "");
-  const href = (p) => (base === "." || base === "" ? p : `${base}/${p}`);
-  const homeHref = () => (base === "." || base === "" ? "./" : `${base}/`);
-  const asset = (p) => href(`assets/${p}`);
+  // Ngôn ngữ trang: bản tiếng Anh nằm trong /en/ (cùng đường dẫn), đặt window.OT_LANG = "en".
+  // OT_BASE luôn trỏ về gốc site (nơi có assets/), link trang tự thêm "en/" khi là bản EN.
+  const LANG = window.OT_LANG === "en" ? "en" : "vi";
+  const LANG_PREFIX = LANG === "en" ? "en/" : "";
+  const rootHref = (p) => (base === "." || base === "" ? p : `${base}/${p}`);
+  const href = (p) => rootHref(LANG_PREFIX + p);
+  const homeHref = () => rootHref(LANG_PREFIX) || "./";
+  const asset = (p) => rootHref(`assets/${p}`);
 
   // Google Analytics 4 — ID từ analytics.google.com (onetool.vn)
   // Có thể ghi đè bằng OT_CONFIG.gaMeasurementId nếu đã nạp ot-config.js
@@ -151,6 +156,8 @@
   document.body.dataset.tool = meta.tool;
 
   const SITE_ORIGIN = "https://onetool.vn";
+  // Gốc URL của trang theo ngôn ngữ (https://onetool.vn hoặc https://onetool.vn/en)
+  const PAGE_ORIGIN = SITE_ORIGIN + (LANG === "en" ? "/en" : "");
   const OG_IMAGE = SITE_ORIGIN + "/assets/img/og-share.jpg";
   const ADSENSE_CLIENT = "ca-pub-9591869402965389";
 
@@ -282,7 +289,8 @@
     setMeta("property", "og:site_name", "OneTool", true);
     setMeta("property", "og:title", title, true);
     setMeta("property", "og:description", desc, true);
-    setMeta("property", "og:locale", "vi_VN", true);
+    setMeta("property", "og:locale", LANG === "en" ? "en_US" : "vi_VN", true);
+    setMeta("property", "og:locale:alternate", LANG === "en" ? "vi_VN" : "en_US", true);
     setMeta("property", "og:url", url, true);
     const pageImage = document.querySelector('meta[property="og:image"]')?.content;
     const ogImage = pageImage || OG_IMAGE;
@@ -318,7 +326,7 @@
         "@type": "ContactPoint",
         email: "onetools27@gmail.com",
         contactType: "customer support",
-        availableLanguage: ["Vietnamese"],
+        availableLanguage: ["Vietnamese", "English"],
         areaServed: "VN"
       }
     };
@@ -332,9 +340,9 @@
             applicationCategory: "UtilitiesApplication",
             operatingSystem: "Any",
             browserRequirements: "Requires JavaScript",
-            offers: { "@type": "Offer", price: "0", priceCurrency: "VND" },
+            offers: { "@type": "Offer", price: "0", priceCurrency: LANG === "en" ? "USD" : "VND" },
             description: desc,
-            inLanguage: "vi",
+            inLanguage: LANG,
             publisher: org,
             isAccessibleForFree: true
           }
@@ -345,9 +353,9 @@
               {
                 "@type": "WebSite",
                 name: "OneTool",
-                url: SITE_ORIGIN + "/",
+                url: PAGE_ORIGIN + "/",
                 description: desc,
-                inLanguage: "vi",
+                inLanguage: LANG,
                 publisher: org
               }
             ]
@@ -366,7 +374,7 @@
         "@type": "HowTo",
         name: "Cách dùng " + (tool?.name || title),
         description: String(firstPara).replace(/\*\*/g, ""),
-        inLanguage: "vi",
+        inLanguage: LANG,
         step: seoCopy.howto.map((text, i) => ({
           "@type": "HowToStep",
           position: i + 1,
@@ -406,10 +414,10 @@
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Trang chủ", item: SITE_ORIGIN + "/" },
-          { "@type": "ListItem", position: 2, name: "Công cụ", item: SITE_ORIGIN + "/cong-cu.html" },
+          { "@type": "ListItem", position: 1, name: "Trang chủ", item: PAGE_ORIGIN + "/" },
+          { "@type": "ListItem", position: 2, name: "Công cụ", item: PAGE_ORIGIN + "/cong-cu.html" },
           cat
-            ? { "@type": "ListItem", position: 3, name: cat.name, item: SITE_ORIGIN + "/" + cat.seo + ".html" }
+            ? { "@type": "ListItem", position: 3, name: cat.name, item: PAGE_ORIGIN + "/" + cat.seo + ".html" }
             : null,
           { "@type": "ListItem", position: cat ? 4 : 3, name: tool?.name || title, item: url }
         ].filter(Boolean)
@@ -492,6 +500,7 @@
         <a href="${href("lien-he.html")}" data-nav="contact">Liên hệ</a>
       </nav>
       <div class="header-actions">
+        ${languageSwitchHtml()}
         <button type="button" class="btn-icon" id="toolSearchBtn" aria-label="Tìm công cụ" aria-haspopup="dialog" aria-controls="toolSearchModal" title="Tìm kiếm (Ctrl+K)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
         </button>
@@ -895,7 +904,7 @@
       "@type": "CollectionPage",
       name: cat.name,
       description: cat.seoDescription || cat.desc,
-      inLanguage: "vi",
+      inLanguage: LANG,
       url: canonicalUrl(),
       mainEntity: {
         "@type": "ItemList",
@@ -904,13 +913,15 @@
           "@type": "ListItem",
           position: i + 1,
           name: t.name,
-          url: SITE_ORIGIN + "/" + OTCatalog.pathFor(t)
+          url: PAGE_ORIGIN + "/" + OTCatalog.pathFor(t)
         }))
       }
     });
     document.head.appendChild(ld);
   }
 
+  // ---------- Ngôn ngữ: nút VI | EN + gợi ý cho khách dùng trình duyệt tiếng Anh ----------
+  // Bản EN là trang tĩnh thật trong /en/ (Google index được), không dùng Google Translate.
   const LANGUAGE_CHOICE_KEY = "ot-language-choice";
 
   function getLanguageChoice() {
@@ -932,11 +943,94 @@
     return !/^vi(?:-|$)/i.test(String(languages[0] || ""));
   }
 
+  // URL của trang hiện tại ở ngôn ngữ kia: /x/y.html <-> /en/x/y.html (giữ ?query và #hash)
+  function languageUrls() {
+    let rootPath = "/";
+    try {
+      rootPath = new URL((base === "." || base === "" ? "." : base) + "/", location.href).pathname;
+    } catch (_) {}
+    let rest = location.pathname.startsWith(rootPath)
+      ? location.pathname.slice(rootPath.length)
+      : location.pathname.replace(/^\//, "");
+    rest = rest.replace(/^en(\/|$)/, "");
+    const tail = location.search + location.hash;
+    return { vi: rootPath + rest + tail, en: rootPath + "en/" + rest + tail };
+  }
+
+  function languageSwitchHtml() {
+    const urls = languageUrls();
+    const item = (code, label, title) =>
+      `<a class="lang-switch-opt${LANG === code ? " is-active" : ""}" href="${esc(urls[code])}" hreflang="${code}" lang="${code}" data-lang="${code}" title="${title}"${LANG === code ? ' aria-current="true"' : ""}>${label}</a>`;
+    return `<div class="lang-switch" role="group" aria-label="Language">${item("vi", "VI", "Tiếng Việt")}${item("en", "EN", "English")}</div>`;
+  }
+
+  function bindLanguageSwitch() {
+    document.querySelectorAll(".lang-switch-opt").forEach((a) => {
+      a.addEventListener("click", () => setLanguageChoice(a.dataset.lang));
+    });
+  }
+
+  // Thẻ hreflang (bản tĩnh đã có sẵn từ build; đây chỉ bù khi thiếu)
+  function injectHreflang() {
+    if (location.protocol === "file:") return;
+    if (/noindex/i.test(document.querySelector('meta[name="robots"]')?.content || "")) return;
+    if (document.querySelector('link[rel="alternate"][hreflang]')) return;
+    const path = sitePath().replace(/^\/en(\/|$)/, "/");
+    const viUrl = SITE_ORIGIN + path;
+    const enUrl = SITE_ORIGIN + "/en" + path;
+    [["vi", viUrl], ["en", enUrl], ["x-default", viUrl]].forEach(([lang, url]) => {
+      const l = document.createElement("link");
+      l.rel = "alternate";
+      l.hreflang = lang;
+      l.href = url;
+      document.head.appendChild(l);
+    });
+  }
+
   function ensureLanguageStyles() {
     if (document.getElementById("ot-language-styles")) return;
     const style = document.createElement("style");
     style.id = "ot-language-styles";
     style.textContent = `
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        padding: 3px;
+        border-radius: 999px;
+        background: #f1f2f6;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        flex-shrink: 0;
+      }
+      .lang-switch-opt {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2.1rem;
+        height: 1.75rem;
+        padding: 0 0.55rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 1;
+        color: #64748b;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+      }
+      .lang-switch-opt:hover { color: #0f172a; }
+      .lang-switch-opt.is-active {
+        background: #0f172a;
+        color: #fff;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.25);
+      }
+      html[data-theme="dark"] .lang-switch {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      html[data-theme="dark"] .lang-switch-opt { color: #a1a1aa; }
+      html[data-theme="dark"] .lang-switch-opt:hover { color: #fff; }
+      html[data-theme="dark"] .lang-switch-opt.is-active { background: #f4f4f5; color: #18181b; }
       .ot-language-banner {
         position: relative;
         z-index: 190;
@@ -952,13 +1046,9 @@
         font-size: 0.86rem;
         line-height: 1.4;
       }
-      .ot-language-banner strong {
-        font-weight: 750;
-      }
-      .ot-language-actions {
-        display: inline-flex;
-        gap: 0.4rem;
-      }
+      .ot-language-banner strong { font-weight: 750; }
+      .ot-language-actions { display: inline-flex; gap: 0.4rem; }
+      .ot-language-actions a,
       .ot-language-actions button {
         border: 1px solid rgba(79, 70, 229, 0.25);
         border-radius: 999px;
@@ -969,23 +1059,9 @@
         font-size: 0.8rem;
         font-weight: 700;
         cursor: pointer;
+        text-decoration: none;
       }
-      .ot-language-actions button:first-child {
-        color: #fff;
-        border-color: #4f46e5;
-        background: #4f46e5;
-      }
-      .ot-language-actions button:hover {
-        filter: brightness(0.97);
-      }
-      .ot-google-translate {
-        position: absolute !important;
-        left: -10000px !important;
-        top: auto !important;
-        width: 1px !important;
-        height: 1px !important;
-        overflow: hidden !important;
-      }
+      .ot-language-actions a { color: #fff; border-color: #4f46e5; background: #4f46e5; }
       html[data-theme="dark"] .ot-language-banner {
         background: linear-gradient(90deg, #1e1b4b, #083344);
         border-bottom-color: rgba(165, 180, 252, 0.2);
@@ -996,97 +1072,41 @@
         border-color: rgba(165, 180, 252, 0.3);
         color: #c7d2fe;
       }
-      html[data-theme="dark"] .ot-language-actions button:first-child {
-        background: #6366f1;
-        border-color: #6366f1;
-        color: #fff;
-      }
       @media (max-width: 640px) {
-        .ot-language-banner {
-          padding: 0.55rem 0.75rem;
-          text-align: center;
-        }
+        .lang-switch-opt { min-width: 1.9rem; height: 1.6rem; padding: 0 0.45rem; font-size: 0.72rem; }
+        .ot-language-banner { padding: 0.55rem 0.75rem; text-align: center; }
       }
     `;
     document.head.appendChild(style);
   }
+  ensureLanguageStyles();
 
-  function applyEnglishTranslation() {
-    const select = document.querySelector(".goog-te-combo");
-    if (!select) return false;
-    select.value = "en";
-    select.dispatchEvent(new Event("change"));
-    return true;
-  }
-
-  function loadEnglishTranslation() {
-    ensureLanguageStyles();
-    let host = document.getElementById("otGoogleTranslate");
-    if (!host) {
-      host = document.createElement("div");
-      host.id = "otGoogleTranslate";
-      host.className = "ot-google-translate";
-      document.body.appendChild(host);
-    }
-
-    window.otOneToolTranslateInit = function () {
-      if (window.__OT_TRANSLATE_INITIALIZED || !window.google?.translate?.TranslateElement) return;
-      window.__OT_TRANSLATE_INITIALIZED = true;
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: "vi",
-          includedLanguages: "en",
-          autoDisplay: false,
-          multilanguagePage: true
-        },
-        "otGoogleTranslate"
-      );
-      window.setTimeout(applyEnglishTranslation, 250);
-      window.setTimeout(applyEnglishTranslation, 900);
-    };
-
-    if (window.google?.translate?.TranslateElement) {
-      window.otOneToolTranslateInit();
-      return;
-    }
-    if (document.getElementById("ot-google-translate-script")) return;
-
-    const script = document.createElement("script");
-    script.id = "ot-google-translate-script";
-    script.src = "https://translate.google.com/translate_a/element.js?cb=otOneToolTranslateInit";
-    script.async = true;
-    document.head.appendChild(script);
-  }
-
+  // Khách có trình duyệt tiếng Anh vào trang tiếng Việt: mời sang bản EN. Không tự chuyển hướng —
+  // Googlebot cũng dùng tiếng Anh, tự redirect sẽ làm Google không index được bản tiếng Việt.
   function injectLanguagePrompt() {
+    bindLanguageSwitch();
+    injectHreflang();
+    if (LANG === "en") return;
     const choice = getLanguageChoice();
-    if (choice === "en") {
-      loadEnglishTranslation();
-      return;
-    }
-    if (choice || !prefersEnglish() || document.getElementById("otLanguageBanner")) return;
+    if (choice === "vi" || !prefersEnglish() || document.getElementById("otLanguageBanner")) return;
 
-    ensureLanguageStyles();
     const banner = document.createElement("section");
     banner.id = "otLanguageBanner";
     banner.className = "ot-language-banner";
     banner.setAttribute("aria-label", "Language preference");
+    banner.setAttribute("lang", "en");
     banner.innerHTML = `
-      <strong>🌐 View OneTool in English?</strong>
+      <strong>🌐 This page is available in English</strong>
       <span class="ot-language-actions">
-        <button type="button" id="otEnglishBtn">English</button>
-        <button type="button" id="otVietnameseBtn">Tiếng Việt</button>
+        <a href="${esc(languageUrls().en)}" id="otEnglishBtn" hreflang="en">View in English</a>
+        <button type="button" id="otVietnameseBtn" lang="vi">Tiếng Việt</button>
       </span>`;
 
     const header = document.getElementById("siteHeader");
     if (header?.parentNode) header.insertAdjacentElement("afterend", banner);
     else document.body.prepend(banner);
 
-    document.getElementById("otEnglishBtn")?.addEventListener("click", () => {
-      setLanguageChoice("en");
-      banner.remove();
-      loadEnglishTranslation();
-    });
+    document.getElementById("otEnglishBtn")?.addEventListener("click", () => setLanguageChoice("en"));
     document.getElementById("otVietnameseBtn")?.addEventListener("click", () => {
       setLanguageChoice("vi");
       banner.remove();

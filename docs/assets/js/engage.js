@@ -4,7 +4,7 @@
   if (window.OTEngage) return;
 
   const base = (window.OT_BASE || ".").replace(/\/$/, "");
-  const href = (p) => (base === "." || base === "" ? p : `${base}/${p}`);
+  const href = (p) => { p = (window.OT_LANG === "en" ? "en/" : "") + p; return base === "." || base === "" ? p : `${base}/${p}`; };
   const SITE_ORIGIN = "https://onetool.vn";
 
   const RECENT_KEY = "ot-recent-tools";
@@ -221,10 +221,10 @@
     section.innerHTML = `
       <div class="container">
         <a class="ot-today-card" href="${href("cong-cu-tien-ich/lunar-calendar.html")}">
-          <span class="ot-today-day" aria-hidden="true"><b>${lunar.day}</b><small>${esc(lunar.leap ? "Nhuận " + lunar.month : "Th " + lunar.month)}</small></span>
+          <span class="ot-today-day" aria-hidden="true"><b>${lunar.day}</b><small>${esc(lunar.leap ? "Nhuận " + lunar.month : (window.OT_LANG === "en" ? "Mo " : "Th ") + lunar.month)}</small></span>
           <span class="ot-today-body">
             <span class="ot-today-label">${esc(info.weekday)}, ${fmt(now)}/${now.getFullYear()} · Âm lịch hôm nay</span>
-            <strong>Ngày ${lunar.day} tháng ${esc((lunar.leap ? "nhuận " : "") + L.MONTH_VI[lunar.month])} năm ${esc(info.yearCanChi)}</strong>
+            <strong>${window.OT_LANG === "en" ? `Day ${lunar.day}, ${lunar.leap ? "leap " : ""}month ${lunar.month}, ${esc(info.yearCanChi)}` : `Ngày ${lunar.day} tháng ${esc((lunar.leap ? "nhuận " : "") + L.MONTH_VI[lunar.month])} năm ${esc(info.yearCanChi)}`}</strong>
             <span class="ot-today-sub">Ngày ${esc(info.dayCanChi)} · tháng ${esc(info.monthCanChi)}</span>
           </span>
           <span class="ot-today-chips">${chips.join("")}</span>

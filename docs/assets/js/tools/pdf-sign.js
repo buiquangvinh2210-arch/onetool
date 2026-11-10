@@ -109,6 +109,10 @@ window.OTPdfSign = (function () {
     const month = pad2(d.getMonth() + 1);
     const year = d.getFullYear();
     const monthName = MONTHS_VI[d.getMonth()];
+    if (window.OT_LANG === "en" && (fmt === "long" || fmt === "legal")) {
+      const en = d.toLocaleDateString("en-US", { month: "long" });
+      return fmt === "long" ? `${en} ${d.getDate()}, ${year}` : `Dated ${en} ${d.getDate()}, ${year}`;
+    }
     switch (fmt) {
       case "iso":
         return `${year}-${month}-${day}`;

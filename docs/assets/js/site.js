@@ -135,6 +135,7 @@
   let searchActive = 0;
 
   function assetHref(p) {
+    p = (window.OT_LANG === "en" ? "en/" : "") + p;
     const base = (window.OT_BASE || ".").replace(/\/$/, "");
     return base === "." || base === "" ? p : `${base}/${p}`;
   }
@@ -400,7 +401,7 @@
   window.renderCategoryChips = function (container, activeSeo) {
     if (!container || !window.OTCatalog) return;
     const base = (window.OT_BASE || ".").replace(/\/$/, "");
-    const href = (p) => (base === "." || base === "" ? p : `${base}/${p}`);
+    const href = (p) => { p = (window.OT_LANG === "en" ? "en/" : "") + p; return base === "." || base === "" ? p : `${base}/${p}`; };
     const chips = [
       `<a class="chip ${!activeSeo ? "chip--active" : ""}" href="${href("cong-cu.html")}">✨ Tất cả</a>`
     ];
@@ -414,7 +415,7 @@
   window.renderHomeShowcase = function (container, { limit = 3 } = {}) {
     if (!container || !window.OTCatalog) return;
     const base = (window.OT_BASE || ".").replace(/\/$/, "");
-    const href = (p) => (base === "." || base === "" ? p : `${base}/${p}`);
+    const href = (p) => { p = (window.OT_LANG === "en" ? "en/" : "") + p; return base === "." || base === "" ? p : `${base}/${p}`; };
 
     function toolHref(t) {
       return href(OTCatalog.hrefFor(t));
@@ -479,7 +480,7 @@
   window.renderToolGrid = function (container, { categorySeo, featuredOnly, limitPerCategory, variant } = {}) {
     if (!container || !window.OTCatalog) return;
     const base = (window.OT_BASE || ".").replace(/\/$/, "");
-    const href = (p) => (base === "." || base === "" ? p : `${base}/${p}`);
+    const href = (p) => { p = (window.OT_LANG === "en" ? "en/" : "") + p; return base === "." || base === "" ? p : `${base}/${p}`; };
     const isHome = variant === "home";
     if (isHome) return;
 

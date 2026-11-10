@@ -17,3 +17,8 @@ workers/package-lock.json
 workers/.deploy-paths.json
 .env
 .env.*
+
+# i18n build tool deps
+scripts/i18n/node_modules/
+scripts/i18n/todo/
+scripts/i18n/missing.json
