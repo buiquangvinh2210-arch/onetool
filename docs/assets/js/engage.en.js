@@ -138,6 +138,7 @@
     btn.type = "button";
     btn.id = "otFavBtn";
     btn.className = "ot-fav-btn";
+    btn.setAttribute("data-nosnippet", ""); // không để Google lấy chữ nút vào đoạn mô tả
     paintFavBtn(btn, isFav(slug));
     btn.addEventListener("click", () => {
       const on = toggleFav(slug);
@@ -363,6 +364,7 @@
     const card = document.createElement("section");
     card.id = "otNextStep";
     card.className = "ot-next";
+    card.setAttribute("data-nosnippet", "");
     card.setAttribute("aria-label", "Next step");
     const carry = blob.size <= HANDOFF_MAX_BYTES;
     card.innerHTML = `
@@ -480,6 +482,7 @@
       const canNative = isMobile() && typeof navigator.share === "function";
       panel = document.createElement("div");
       panel.className = "ot-share";
+      panel.setAttribute("data-nosnippet", "");
       panel.id = "otShare";
       panel.innerHTML = `
         <span class="ot-share-label">Share:</span>

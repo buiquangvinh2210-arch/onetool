@@ -2,7 +2,7 @@
  * Trang & asset cùng origin: network-first (deploy mới luôn được dùng ngay), cache chỉ để chạy offline.
  * Thư viện CDN có version cố định (@x.y.z): cache-first vì nội dung không đổi.
  */
-const VERSION = "20261110a";
+const VERSION = "20261113a";
 const PAGE_CACHE = "ot-pages-" + VERSION;
 const ASSET_CACHE = "ot-assets-" + VERSION;
 const CDN_CACHE = "ot-cdn-v1";

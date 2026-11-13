@@ -4,8 +4,9 @@
 // listed in missing.json (run extract.mjs to get them as todo chunks).
 import fs from "node:fs";
 import path from "node:path";
+import { execSync } from "node:child_process";
 import {
-  HERE, DOCS, htmlFiles, jsFiles, rel, loadDict, lookup, hasVN, parseHtml, serializeHtml,
+  HERE, ROOT, DOCS, htmlFiles, jsFiles, rel, loadDict, lookup, hasVN, parseHtml, serializeHtml,
   visitUnits, runKey, applyRun, jsStrings, encodeJs, isDataString
 } from "./lib.mjs";
 
@@ -299,11 +300,35 @@ let sm = fs.readFileSync(smPath, "utf8");
 const entries = [...sm.matchAll(/<url>([\s\S]*?)<\/url>/g)]
   .map((x) => x[1])
   .filter((body) => !/<loc>https:\/\/onetool\.vn\/en\//.test(body));
+// lastmod thật: ngày commit gần nhất của file trang (hoặc hôm nay nếu file đang sửa chưa commit).
+// Google chỉ tin lastmod khi nó chính xác — ngày cũ khiến Google không quay lại đọc trang đã đổi.
+const lastmodOf = (() => {
+  const today = new Date().toISOString().slice(0, 10);
+  const dates = new Map();
+  try {
+    const log = execSync('git log --format=@%ad --date=short --name-only -- docs', { cwd: ROOT, encoding: "utf8", maxBuffer: 64 << 20 });
+    let d = "";
+    for (const line of log.split(/\r?\n/)) {
+      if (line.startsWith("@")) d = line.slice(1);
+      else if (line && !dates.has(line)) dates.set(line, d);
+    }
+    const dirty = execSync("git status --porcelain -- docs", { cwd: ROOT, encoding: "utf8" });
+    for (const line of dirty.split(/\r?\n/)) if (line.trim()) dates.set(line.slice(3).trim().replace(/^"|"$/g, ""), today);
+  } catch (e) {
+    console.warn("  ! git not available, keeping existing lastmod");
+  }
+  return (p) => {
+    const file = "docs/" + (p === "" || p.endsWith("/") ? p + "index.html" : p);
+    return dates.get(file) || null;
+  };
+})();
 const smOut = [];
 for (const body of entries) {
   const loc = body.match(/<loc>([^<]*)<\/loc>/)[1];
   const p = loc.replace(ORIGIN + "/", "");
-  const rest = body.replace(/\s*<xhtml:link[^>]*\/>/g, "").replace(/<loc>[^<]*<\/loc>/, "").trim();
+  let rest = body.replace(/\s*<xhtml:link[^>]*\/>/g, "").replace(/<loc>[^<]*<\/loc>/, "").trim();
+  const lm = lastmodOf(p);
+  if (lm) rest = rest.replace(/<lastmod>[^<]*<\/lastmod>/, `<lastmod>${lm}</lastmod>`);
   const alts = `<xhtml:link rel="alternate" hreflang="vi" href="${ORIGIN}/${p}"/><xhtml:link rel="alternate" hreflang="en" href="${ORIGIN}/en/${p}"/><xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${p}"/>`;
   smOut.push(`  <url><loc>${ORIGIN}/${p}</loc>${rest}${alts}</url>`);
   smOut.push(`  <url><loc>${ORIGIN}/en/${p}</loc>${rest}${alts}</url>`);

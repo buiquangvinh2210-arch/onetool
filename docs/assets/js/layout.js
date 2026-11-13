@@ -1167,12 +1167,15 @@
     if (LANG === "en") return;
     const choice = getLanguageChoice();
     if (choice === "vi" || !prefersEnglish() || document.getElementById("otLanguageBanner")) return;
+    // Bot tìm kiếm (Googlebot dùng tiếng Anh) không cần banner — tránh lẫn vào nội dung trang tiếng Việt
+    if (/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent || "")) return;
 
     const banner = document.createElement("section");
     banner.id = "otLanguageBanner";
     banner.className = "ot-language-banner";
     banner.setAttribute("aria-label", "Language preference");
     banner.setAttribute("lang", "en");
+    banner.setAttribute("data-nosnippet", "");
     banner.innerHTML = `
       <strong>🌐 This page is available in English</strong>
       <span class="ot-language-actions">
@@ -1191,7 +1194,7 @@
     });
   }
 
-  const ENGAGE_VERSION = "20261110a";
+  const ENGAGE_VERSION = "20261113a";
 
   function injectEngage() {
     if (!document.querySelector('link[rel="manifest"]')) {
@@ -1225,6 +1228,7 @@
     const el = document.createElement("div");
     el.id = "otInAppBanner";
     el.className = "ot-inapp-banner";
+    el.setAttribute("data-nosnippet", "");
     el.setAttribute("role", "status");
     el.innerHTML =
       "<strong>Đang mở trong app</strong> — tải file dễ lỗi trên Facebook/Zalo. " +
