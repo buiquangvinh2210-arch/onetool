@@ -9,7 +9,6 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
 
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
@@ -37,11 +36,15 @@
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://onetool.vn/"},{"@type":"ListItem","position":2,"name":"Công cụ","item":"https://onetool.vn/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Công cụ Media","item":"https://onetool.vn/cong-cu-media.html"},{"@type":"ListItem","position":4,"name":"Video sang MP3","item":"https://onetool.vn/cong-cu-media/video-to-mp3.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Chuyển video sang MP3 có miễn phí không?","acceptedAnswer":{"@type":"Answer","text":"Có. OneTool tách MP3 từ MP4/MOV/MKV ngay trên trình duyệt — không cần đăng ký, không watermark."}},{"@type":"Question","name":"Video có bị upload lên server không?","acceptedAnswer":{"@type":"Answer","text":"Không. FFmpeg chạy trong trình duyệt — file video không gửi lên server OneTool."}}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"Cách dùng Video sang MP3","description":"Video → MP3 tách phần âm thanh khỏi clip thành file MP3 192kbps. Dùng khi chỉ cần nhạc / lời thoại, không cần hình.","inLanguage":"vi","step":[{"@type":"HowToStep","position":1,"text":"Thả file video (MP4, MOV, MKV, WebM…)."},{"@type":"HowToStep","position":2,"text":"Bấm Tách MP3 — trình duyệt lấy audio, bỏ hình."},{"@type":"HowToStep","position":3,"text":"Nghe thử rồi tải file MP3 192kbps về máy."}]}</script>
+  <link rel="stylesheet" href="../assets/css/illus.css?v=20261118b" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../assets/css/theme.css?v=20261118s" />
+  <link rel="stylesheet" href="../assets/css/editorial.css?v=20261118s" />
   <link rel="alternate" hreflang="vi" href="https://onetool.vn/cong-cu-media/video-to-mp3.html" />
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/cong-cu-media/video-to-mp3.html" />
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/cong-cu-media/video-to-mp3.html" />
   <meta property="og:locale:alternate" content="en_US" /></head>
-<body data-tool="video-to-mp3">
+<body data-tool="video-to-mp3" data-tone="media">
 <div id="site-header">
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
@@ -433,7 +436,9 @@
       <div class="tool-seo-wrap">
         <section class="tool-seo-block"><h2>Cách dùng Video sang MP3</h2>
           <ol class="tool-seo-howto"><li>Thả file video (MP4, MOV, MKV, WebM…).</li><li>Bấm Tách MP3 — trình duyệt lấy audio, bỏ hình.</li><li>Nghe thử rồi tải file MP3 192kbps về máy.</li></ol></section>
-        <section class="tool-seo-block"><h2>Video sang MP3 là gì?</h2><p><strong>Video → MP3</strong> tách phần âm thanh khỏi clip thành file <strong>MP3 192kbps</strong>. Dùng khi chỉ cần nhạc / lời thoại, không cần hình.</p></section><section class="tool-seo-block"><h2>Cách tách MP3 từ video online</h2><p>Thả MP4, MOV, MKV hoặc WebM, bấm <strong>Tách MP3</strong>. Lần đầu trình duyệt tải bộ xử lý (~25 MB); lần sau cache sẵn. Nghe thử rồi tải file về máy.</p></section><section class="tool-seo-block"><h2>Khi nào nên tách MP3</h2><ul><li><strong>Nhạc / podcast</strong> lấy audio từ video YouTube đã tải về máy (khi bạn có quyền).</li><li><strong>Học tập</strong> nghe lại bài giảng, bỏ phần hình để tiết kiệm dung lượng.</li><li><strong>Nén video</strong> nếu cần giảm dung lượng cả hình, dùng công cụ <strong>Nén video online</strong>.</li></ul></section>
+        <section class="tool-seo-block"><h2>Video sang MP3 là gì?</h2>
+      <img class="ot-illus tool-seo-art" src="../assets/img/illus/media.svg" alt="Minh họa công cụ media: video, nhạc và file MP3" width="480" height="320" loading="lazy" decoding="async" />
+      <p><strong>Video → MP3</strong> tách phần âm thanh khỏi clip thành file <strong>MP3 192kbps</strong>. Dùng khi chỉ cần nhạc / lời thoại, không cần hình.</p></section><section class="tool-seo-block"><h2>Cách tách MP3 từ video online</h2><p>Thả MP4, MOV, MKV hoặc WebM, bấm <strong>Tách MP3</strong>. Lần đầu trình duyệt tải bộ xử lý (~25 MB); lần sau cache sẵn. Nghe thử rồi tải file về máy.</p></section><section class="tool-seo-block"><h2>Khi nào nên tách MP3</h2><ul><li><strong>Nhạc / podcast</strong> lấy audio từ video YouTube đã tải về máy (khi bạn có quyền).</li><li><strong>Học tập</strong> nghe lại bài giảng, bỏ phần hình để tiết kiệm dung lượng.</li><li><strong>Nén video</strong> nếu cần giảm dung lượng cả hình, dùng công cụ <strong>Nén video online</strong>.</li></ul></section>
         <section class="tool-seo-block"><h2>Câu hỏi thường gặp</h2>
           <dl class="tool-seo-faq"><div class="tool-seo-faq-item"><dt>Chuyển video sang MP3 có miễn phí không?</dt><dd>Có. OneTool <strong>tách MP3</strong> từ MP4/MOV/MKV ngay trên trình duyệt — không cần đăng ký, không watermark.</dd></div><div class="tool-seo-faq-item"><dt>Video có bị upload lên server không?</dt><dd>Không. FFmpeg chạy trong trình duyệt — file video <strong>không gửi lên server</strong> OneTool.</dd></div></dl></section>
         <section class="tool-seo-block"><h2>Vì sao dùng OneTool?</h2>
@@ -551,10 +556,10 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../assets/js/catalog.js?v=20261024b"></script>
+<script src="../assets/js/catalog.js?v=20261118f"></script>
 <script src="../assets/js/layout.js?v=20261113a"></script>
 <script src="../assets/js/core.js?v=20261002a"></script>
-<script src="../assets/js/site.js?v=20261110a"></script>
+<script src="../assets/js/site.js?v=20261118i"></script>
 <script type="module" src="../assets/js/tools/video-convert-ui.js?v=20260910a"></script>
 </body>
 </html>

@@ -9,7 +9,6 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
 </script>
@@ -40,12 +39,16 @@
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://onetool.vn/"},{"@type":"ListItem","position":2,"name":"Công cụ","item":"https://onetool.vn/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Tiện ích","item":"https://onetool.vn/cong-cu-tien-ich.html"},{"@type":"ListItem","position":4,"name":"Tính lương Gross Net","item":"https://onetool.vn/cong-cu-tien-ich/salary-calculator.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Lương Gross 20 triệu thì Net bao nhiêu năm 2026?","acceptedAnswer":{"@type":"Answer","text":"Không có người phụ thuộc, đóng bảo hiểm trên đủ 20 triệu: bảo hiểm 2,1 triệu, thuế TNCN 120.000 đ — lương Net khoảng 17.780.000 đ."}},{"@type":"Question","name":"Lương bao nhiêu thì phải đóng thuế TNCN?","acceptedAnswer":{"@type":"Answer","text":"Không có người phụ thuộc và đóng bảo hiểm trên toàn bộ lương: từ khoảng 17,3 triệu/tháng mới phát sinh thuế. Mỗi người phụ thuộc nâng ngưỡng thêm 6,2 triệu."}},{"@type":"Question","name":"Kết quả có chính xác tuyệt đối không?","acceptedAnswer":{"@type":"Answer","text":"Công cụ tính theo quy định chung cho người lao động cư trú. Phụ cấp miễn thuế hoặc chính sách riêng của công ty có thể làm số thực nhận khác đi."}}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"Cách dùng Tính lương Gross Net","description":"Lương Net = Gross − Bảo hiểm (10,5%) − Thuế TNCN. Giảm trừ bản thân 15,5 triệu, mỗi người phụ thuộc 6,2 triệu; thuế theo biểu 5 bậc 5% – 35%. Xem [hướng dẫn tính lương Net 2026 có ví dụ](blog/cach-tinh-luong-net-2026.html).","inLanguage":"vi","step":[{"@type":"HowToStep","position":1,"text":"Chọn chiều tính Gross → Net hoặc Net → Gross."},{"@type":"HowToStep","position":2,"text":"Nhập mức lương, số người phụ thuộc và vùng nơi công ty hoạt động."},{"@type":"HowToStep","position":3,"text":"Xem lương thực nhận, thuế TNCN từng bậc và tổng chi phí doanh nghiệp."}]}</script>
+  <link rel="stylesheet" href="../assets/css/illus.css?v=20261118b" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../assets/css/theme.css?v=20261118s" />
+  <link rel="stylesheet" href="../assets/css/editorial.css?v=20261118s" />
   <link rel="alternate" hreflang="vi" href="https://onetool.vn/cong-cu-tien-ich/salary-calculator.html" />
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/cong-cu-tien-ich/salary-calculator.html" />
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/cong-cu-tien-ich/salary-calculator.html" />
   <meta property="og:locale:alternate" content="en_US" />
 </head>
-<body data-tool="salary-calculator">
+<body data-tool="salary-calculator" data-tone="utility">
 <div id="site-header">
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
@@ -465,6 +468,7 @@
     </section>
     <section class="tool-seo-block">
       <h2>Công thức tính lương Net năm 2026</h2>
+      <img class="ot-illus tool-seo-art" src="../assets/img/illus/utility.svg" alt="Minh họa tiện ích: máy tính, mã QR và lịch" width="480" height="320" loading="lazy" decoding="async" />
       <p><strong>Lương Net = Lương Gross − Bảo hiểm bắt buộc − Thuế TNCN.</strong></p>
       <ul>
         <li><strong>Bảo hiểm người lao động đóng 10,5%:</strong> BHXH 8%, BHYT 1,5%, BHTN 1%. BHXH và BHYT tính tối đa trên 20 lần mức tham chiếu (50,6 triệu từ 01/07/2026); BHTN tối đa 20 lần lương tối thiểu vùng.</li>
@@ -574,10 +578,10 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../assets/js/catalog.js?v=20261024b"></script>
+<script src="../assets/js/catalog.js?v=20261118f"></script>
 <script src="../assets/js/layout.js?v=20261113a"></script>
 <script src="../assets/js/core.js?v=20261002a"></script>
-<script src="../assets/js/site.js?v=20261110a"></script>
+<script src="../assets/js/site.js?v=20261118i"></script>
 <script src="../assets/js/tools/salary-calculator.js?v=20261002a"></script>
 </body>
 </html>

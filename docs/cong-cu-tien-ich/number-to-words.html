@@ -9,7 +9,6 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
 </script>
@@ -35,12 +34,16 @@
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://onetool.vn/"},{"@type":"ListItem","position":2,"name":"Công cụ","item":"https://onetool.vn/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Tiện ích","item":"https://onetool.vn/cong-cu-tien-ich.html"},{"@type":"ListItem","position":4,"name":"Số thành chữ","item":"https://onetool.vn/cong-cu-tien-ich/number-to-words.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"1.250.000 đọc thành chữ như thế nào?","acceptedAnswer":{"@type":"Answer","text":"Một triệu hai trăm năm mươi nghìn đồng chẵn — đúng kiểu hóa đơn, hợp đồng tiếng Việt."}}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"Cách dùng Số thành chữ","description":"Tool đọc số (kể cả số tiền) thành chữ: dùng trong hóa đơn, hợp đồng, ủy nhiệm chi để tránh sửa số.","inLanguage":"vi","step":[{"@type":"HowToStep","position":1,"text":"Nhập số (có thể dùng dấu chấm ngăn cách nghìn)."},{"@type":"HowToStep","position":2,"text":"Bật “đồng chẵn” nếu dùng cho hóa đơn."},{"@type":"HowToStep","position":3,"text":"Sao chép câu chữ vào Word / PDF."}]}</script>
+  <link rel="stylesheet" href="../assets/css/illus.css?v=20261118b" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../assets/css/theme.css?v=20261118s" />
+  <link rel="stylesheet" href="../assets/css/editorial.css?v=20261118s" />
   <link rel="alternate" hreflang="vi" href="https://onetool.vn/cong-cu-tien-ich/number-to-words.html" />
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/cong-cu-tien-ich/number-to-words.html" />
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/cong-cu-tien-ich/number-to-words.html" />
   <meta property="og:locale:alternate" content="en_US" />
 </head>
-<body data-tool="number-to-words">
+<body data-tool="number-to-words" data-tone="utility">
 <div id="site-header">
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
@@ -384,7 +387,9 @@
 <div class="tool-seo-wrap">
   <section class="tool-seo-block"><h2>Cách dùng Số thành chữ</h2>
   <ol class="tool-seo-howto"><li>Nhập số (có thể dùng dấu chấm ngăn cách nghìn).</li><li>Bật “đồng chẵn” nếu dùng cho hóa đơn.</li><li>Sao chép câu chữ vào Word / PDF.</li></ol></section>
-  <section class="tool-seo-block"><h2>Đổi số thành chữ tiếng Việt là gì?</h2><p>Tool đọc số (kể cả số tiền) thành chữ: dùng trong <strong>hóa đơn, hợp đồng, ủy nhiệm chi</strong> để tránh sửa số.</p></section><section class="tool-seo-block"><h2>Cách dùng</h2><p>Gõ hoặc dán số, tick <strong>đồng chẵn</strong> nếu cần, sao chép kết quả. Xử lý trên trình duyệt, không gửi số lên server.</p></section><section class="tool-seo-block"><h2>Ghi lương bằng chữ trong hợp đồng</h2><p>Hợp đồng lao động thường ghi lương Gross cả bằng số và bằng chữ. Chưa rõ mức thực nhận? Dùng <a href="../cong-cu-tien-ich/salary-calculator.html">máy tính lương Gross ↔ Net 2026</a> để ra số Net sau bảo hiểm và thuế TNCN, rồi đổi sang chữ tại đây.</p></section>
+  <section class="tool-seo-block"><h2>Đổi số thành chữ tiếng Việt là gì?</h2>
+      <img class="ot-illus tool-seo-art" src="../assets/img/illus/utility.svg" alt="Minh họa tiện ích: máy tính, mã QR và lịch" width="480" height="320" loading="lazy" decoding="async" />
+      <p>Tool đọc số (kể cả số tiền) thành chữ: dùng trong <strong>hóa đơn, hợp đồng, ủy nhiệm chi</strong> để tránh sửa số.</p></section><section class="tool-seo-block"><h2>Cách dùng</h2><p>Gõ hoặc dán số, tick <strong>đồng chẵn</strong> nếu cần, sao chép kết quả. Xử lý trên trình duyệt, không gửi số lên server.</p></section><section class="tool-seo-block"><h2>Ghi lương bằng chữ trong hợp đồng</h2><p>Hợp đồng lao động thường ghi lương Gross cả bằng số và bằng chữ. Chưa rõ mức thực nhận? Dùng <a href="../cong-cu-tien-ich/salary-calculator.html">máy tính lương Gross ↔ Net 2026</a> để ra số Net sau bảo hiểm và thuế TNCN, rồi đổi sang chữ tại đây.</p></section>
   <section class="tool-seo-block"><h2>Câu hỏi thường gặp</h2>
   <dl class="tool-seo-faq"><div class="tool-seo-faq-item"><dt>1.250.000 đọc thành chữ như thế nào?</dt><dd><strong>Một triệu hai trăm năm mươi nghìn đồng chẵn</strong> — đúng kiểu hóa đơn, hợp đồng tiếng Việt.</dd></div></dl></section>
   <section class="tool-seo-block"><h2>Vì sao dùng OneTool?</h2>
@@ -503,10 +508,10 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../assets/js/catalog.js?v=20261024b"></script>
+<script src="../assets/js/catalog.js?v=20261118f"></script>
 <script src="../assets/js/layout.js?v=20261113a"></script>
 <script src="../assets/js/core.js?v=20261002a"></script>
-<script src="../assets/js/site.js?v=20261110a"></script>
+<script src="../assets/js/site.js?v=20261118i"></script>
 <script src="../assets/js/tools/number-to-words.js?v=20261002a"></script>
 </body>
 </html>

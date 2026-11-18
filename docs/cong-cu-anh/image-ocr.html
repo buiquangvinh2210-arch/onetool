@@ -21,7 +21,6 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
 
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
@@ -49,12 +48,16 @@
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://onetool.vn/"},{"@type":"ListItem","position":2,"name":"Công cụ","item":"https://onetool.vn/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Công cụ Ảnh","item":"https://onetool.vn/cong-cu-anh.html"},{"@type":"ListItem","position":4,"name":"OCR ảnh → chữ","item":"https://onetool.vn/cong-cu-anh/image-ocr.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"OCR ảnh online có miễn phí không?","acceptedAnswer":{"@type":"Answer","text":"Có. OneTool OCR ảnh → chữ miễn phí, đọc tiếng Việt (có dấu) và tiếng Anh (kể cả lẫn trong cùng ảnh), không cần đăng ký."}},{"@type":"Question","name":"Ảnh có bị upload lên server không?","acceptedAnswer":{"@type":"Answer","text":"Ảnh được gửi tạm thời tới dịch vụ AI (cùng hạ tầng Tóm tắt AI / Audio → Text) để đọc chữ cho chính xác — OneTool không lưu ảnh. Không cần đăng ký."}},{"@type":"Question","name":"OCR được CCCD, hóa đơn, sách không?","acceptedAnswer":{"@type":"Answer","text":"Được với ảnh rõ, thẳng, đủ sáng. AI đọc cả tiếng Việt và tiếng Anh, giữ dấu thanh. Có thể kéo vùng chọn nếu chỉ cần một phần. Số liệu quan trọng nên rà lại."}},{"@type":"Question","name":"Muốn xuất bảng Excel thì sao?","acceptedAnswer":{"@type":"Answer","text":"Dùng tool OCR bảng → Excel nếu ảnh là bảng / biên lai nhiều cột. Tool này xuất văn bản thuần (TXT)."}}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"Cách dùng OCR ảnh → chữ","description":"OCR (Optical Character Recognition) đọc chữ trong ảnh rồi biến thành văn bản có thể copy, tìm kiếm, chỉnh sửa — hóa đơn, CCCD, ghi chú, screenshot, trang sách. Hỗ trợ tiếng Việt có dấu và tiếng Anh trong cùng một ảnh.","inLanguage":"vi","step":[{"@type":"HowToStep","position":1,"text":"Tải hoặc dán ảnh có chữ (JPG / PNG / WebP)."},{"@type":"HowToStep","position":2,"text":"Chọn ngôn ngữ (Việt + Anh mặc định, đọc cả hai) rồi bấm Nhận dạng chữ."},{"@type":"HowToStep","position":3,"text":"Sửa văn bản nếu cần, rồi sao chép hoặc tải file TXT."}]}</script>
+  <link rel="stylesheet" href="../assets/css/illus.css?v=20261118b" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../assets/css/theme.css?v=20261118s" />
+  <link rel="stylesheet" href="../assets/css/editorial.css?v=20261118s" />
   <link rel="alternate" hreflang="vi" href="https://onetool.vn/cong-cu-anh/image-ocr.html" />
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/cong-cu-anh/image-ocr.html" />
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/cong-cu-anh/image-ocr.html" />
   <meta property="og:locale:alternate" content="en_US" />
 </head>
-<body data-tool="image-ocr">
+<body data-tool="image-ocr" data-tone="image">
 <div id="site-header">
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
@@ -475,7 +478,9 @@
 <div class="tool-seo-wrap">
   <section class="tool-seo-block"><h2>Cách dùng OCR ảnh → chữ</h2>
   <ol class="tool-seo-howto"><li>Tải hoặc dán ảnh có chữ (JPG / PNG / WebP).</li><li>Chọn ngôn ngữ (Việt + Anh mặc định, đọc cả hai) rồi bấm Nhận dạng chữ.</li><li>Sửa văn bản nếu cần, rồi sao chép hoặc tải file TXT.</li></ol></section>
-  <section class="tool-seo-block"><h2>OCR ảnh sang chữ là gì?</h2><p><strong>OCR (Optical Character Recognition)</strong> đọc chữ trong ảnh rồi biến thành văn bản có thể copy, tìm kiếm, chỉnh sửa — hóa đơn, CCCD, ghi chú, screenshot, trang sách. Hỗ trợ <strong>tiếng Việt có dấu</strong> và <strong>tiếng Anh</strong> trong cùng một ảnh.</p></section><section class="tool-seo-block"><h2>Mẹo nhận dạng chính xác hơn</h2><ul><li><strong>Ảnh rõ</strong> chụp thẳng, đủ sáng, tránh bóng và nghiêng.</li><li><strong>Vùng chọn</strong> chỉ OCR phần cần thiết nếu ảnh có nhiều nhiễu.</li><li><strong>Xoay ảnh</strong> xoay đúng chiều trước khi nhận dạng.</li></ul></section>
+  <section class="tool-seo-block"><h2>OCR ảnh sang chữ là gì?</h2>
+      <img class="ot-illus tool-seo-art" src="../assets/img/illus/image.svg" alt="Minh họa công cụ ảnh: cắt, nén và đổi định dạng ảnh" width="480" height="320" loading="lazy" decoding="async" />
+      <p><strong>OCR (Optical Character Recognition)</strong> đọc chữ trong ảnh rồi biến thành văn bản có thể copy, tìm kiếm, chỉnh sửa — hóa đơn, CCCD, ghi chú, screenshot, trang sách. Hỗ trợ <strong>tiếng Việt có dấu</strong> và <strong>tiếng Anh</strong> trong cùng một ảnh.</p></section><section class="tool-seo-block"><h2>Mẹo nhận dạng chính xác hơn</h2><ul><li><strong>Ảnh rõ</strong> chụp thẳng, đủ sáng, tránh bóng và nghiêng.</li><li><strong>Vùng chọn</strong> chỉ OCR phần cần thiết nếu ảnh có nhiều nhiễu.</li><li><strong>Xoay ảnh</strong> xoay đúng chiều trước khi nhận dạng.</li></ul></section>
   <section class="tool-seo-block"><h2>Câu hỏi thường gặp</h2>
   <dl class="tool-seo-faq"><div class="tool-seo-faq-item"><dt>OCR ảnh online có miễn phí không?</dt><dd>Có. OneTool <strong>OCR ảnh → chữ miễn phí</strong>, đọc <strong>tiếng Việt (có dấu)</strong> và <strong>tiếng Anh</strong> (kể cả lẫn trong cùng ảnh), không cần đăng ký.</dd></div><div class="tool-seo-faq-item"><dt>Ảnh có bị upload lên server không?</dt><dd>Ảnh được gửi <strong>tạm thời</strong> tới dịch vụ AI (cùng hạ tầng Tóm tắt AI / Audio → Text) để đọc chữ cho chính xác — OneTool không lưu ảnh. Không cần đăng ký.</dd></div><div class="tool-seo-faq-item"><dt>OCR được CCCD, hóa đơn, sách không?</dt><dd>Được với ảnh rõ, thẳng, đủ sáng. AI đọc <strong>cả tiếng Việt và tiếng Anh</strong>, giữ dấu thanh. Có thể <strong>kéo vùng chọn</strong> nếu chỉ cần một phần. Số liệu quan trọng nên rà lại.</dd></div><div class="tool-seo-faq-item"><dt>Muốn xuất bảng Excel thì sao?</dt><dd>Dùng tool <strong>OCR bảng → Excel</strong> nếu ảnh là bảng / biên lai nhiều cột. Tool này xuất <strong>văn bản thuần</strong> (TXT).</dd></div></dl></section>
   <section class="tool-seo-block"><h2>Vì sao dùng OneTool?</h2>
@@ -595,10 +600,10 @@
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
 <script src="../assets/js/ot-config.js?v=20260907e"></script>
-<script src="../assets/js/catalog.js?v=20261024b"></script>
+<script src="../assets/js/catalog.js?v=20261118f"></script>
 <script src="../assets/js/layout.js?v=20261113a"></script>
 <script src="../assets/js/core.js?v=20261002a"></script>
-<script src="../assets/js/site.js?v=20261110a"></script>
+<script src="../assets/js/site.js?v=20261118i"></script>
 <script src="../assets/js/tools/image-ocr.js?v=20260907k"></script>
 <script src="../assets/js/tools/image-ocr-ui.js?v=20260907h"></script>
 </body>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbfbfd"/><stop offset="1" stop-color="#f2f2f6"/></linearGradient>
+  <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fecdd3" stop-opacity=".9"/><stop offset="1" stop-color="#fecdd3" stop-opacity="0"/></radialGradient>
+  <linearGradient id="face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fb7185"/><stop offset=".55" stop-color="#e11d48"/><stop offset="1" stop-color="#9f1239"/></linearGradient>
+  <linearGradient id="side" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9f1239"/><stop offset="1" stop-color="#9f1239" stop-opacity=".85"/></linearGradient>
+  <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <linearGradient id="alt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fda4af"/><stop offset="1" stop-color="#f43f5e"/></linearGradient>
+  <radialGradient id="ball" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="#fda4af"/><stop offset="1" stop-color="#f43f5e"/></radialGradient>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+  <filter id="gs" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#9f1239" flood-opacity=".45"/></filter>
+</defs>
+<rect width="480" height="320" fill="url(#bg)"/>
+<circle cx="240" cy="160" r="150" fill="url(#glow)"/>
+<circle cx="240" cy="160" r="118" fill="none" stroke="#e11d48" stroke-opacity=".08"/>
+<circle cx="240" cy="160" r="146" fill="none" stroke="#e11d48" stroke-opacity=".05"/>
+<ellipse cx="240" cy="254" rx="74" ry="10" fill="#9f1239" opacity=".35" filter="url(#soft)"/>
+<rect x="172" y="98" width="136" height="136" rx="36" fill="url(#side)"/>
+<rect x="172" y="86" width="136" height="136" rx="36" fill="url(#face)"/>
+<path d="M208 86 h64 a36 36 0 0 1 36 36 v8 c-40 -14 -96 -14 -136 6 v-14 a36 36 0 0 1 36 -36z" fill="url(#gloss)"/>
+<rect x="172.75" y="86.75" width="134.5" height="134.5" rx="35.25" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/>
+<g filter="url(#gs)" transform="translate(0 -2)"><path d="M214 116 h32 l24 24 v56 a8 8 0 0 1 -8 8 h-48 a8 8 0 0 1 -8 -8 v-72 a8 8 0 0 1 8 -8z" fill="#fff"/>
+      <path d="M246 116 v16 a8 8 0 0 0 8 8 h16z" fill="#ffe4e6"/>
+      <rect x="218" y="156" width="44" height="18" rx="5" fill="#e11d48"/>
+      <text x="240" y="170" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing=".5">PDF</text>
+      <rect x="218" y="182" width="30" height="5" rx="2.5" fill="#fecdd3"/></g>
+<g transform="rotate(14 336 92)"><rect x="318" y="80" width="36" height="36" rx="11" fill="#f43f5e" opacity=".9"/><rect x="318" y="74" width="36" height="36" rx="11" fill="url(#alt)"/><rect x="324" y="78" width="24" height="8" rx="4" fill="#fff" opacity=".35"/></g>
+<circle cx="146" cy="214" r="15" fill="url(#ball)"/>
+<circle cx="124" cy="104" r="5" fill="#e11d48" opacity=".25"/><circle cx="364" cy="214" r="4" fill="#e11d48" opacity=".3"/>
+</svg>

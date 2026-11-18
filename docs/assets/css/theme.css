@@ -1,0 +1,438 @@
+/* OneTool — giao diện tối giản (nạp sau cùng, ghi đè các lớp cũ).
+   Nền trắng sạch, viền mảnh 1px, ít bóng, chữ đậm; tím chỉ làm điểm nhấn. */
+
+:root,
+html[data-theme="light"] {
+  --primary: #6d28d9;
+  --primary-dark: #5b21b6;
+  --primary-light: #f3f0ff;
+  --primary-glow: rgba(109, 40, 217, 0.18);
+  --bg: #f5f5f7;
+  --bg-alt: #fafafb;
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --surface-glass: rgba(255, 255, 255, 0.86);
+  --text: #0a0a0b;
+  --text-muted: #55555f;
+  --text-soft: #8b8b96;
+  --border: #ebebef;
+  --border-strong: #d6d6de;
+  --shadow-sm: 0 1px 2px rgba(10, 10, 11, 0.04);
+  --shadow: 0 1px 2px rgba(10, 10, 11, 0.04);
+  --shadow-lg: 0 1px 2px rgba(10, 10, 11, 0.04), 0 12px 32px -16px rgba(10, 10, 11, 0.14);
+  --shadow-hover: 0 1px 2px rgba(10, 10, 11, 0.05), 0 16px 36px -18px rgba(10, 10, 11, 0.22);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-xs: 8px;
+  --gradient-brand: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  --gradient-brand-hover: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+  --gradient-text: linear-gradient(120deg, #7c3aed 0%, #4f46e5 100%);
+  --gradient-hero: #ffffff;
+  --ot-ink: #0a0a0b;
+  --ot-ink-fg: #ffffff;
+  --ot-grid: rgba(10, 10, 11, 0.045);
+}
+
+html[data-theme="dark"] {
+  --primary: #a78bfa;
+  --primary-dark: #8b5cf6;
+  --primary-light: rgba(167, 139, 250, 0.12);
+  --bg: #09090b;
+  --bg-alt: #0f0f12;
+  --surface: #141418;
+  --surface-2: #111114;
+  --surface-glass: rgba(9, 9, 11, 0.86);
+  --text: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-soft: #71717a;
+  --border: #222228;
+  --border-strong: #34343c;
+  --shadow-sm: none;
+  --shadow: none;
+  --shadow-lg: 0 16px 40px -20px rgba(0, 0, 0, 0.8);
+  --shadow-hover: 0 16px 40px -20px rgba(0, 0, 0, 0.9);
+  --gradient-hero: #09090b;
+  --gradient-text: linear-gradient(120deg, #c4b5fd 0%, #a5b4fc 100%);
+  --ot-ink: #f4f4f5;
+  --ot-ink-fg: #09090b;
+  --ot-grid: rgba(255, 255, 255, 0.04);
+}
+
+html body { background: var(--bg) !important; color: var(--text); }
+html body h1, html body h2, html body h3 { letter-spacing: -0.025em; }
+::selection { background: rgba(109, 40, 217, 0.16); }
+
+/* ── Header ── */
+html body .site-header::before {
+  background: var(--surface-glass) !important;
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: none !important;
+}
+html body .site-header.is-scrolled::before { box-shadow: 0 1px 0 var(--border) !important; }
+html body .logo--rich .logo-icon { box-shadow: none !important; border-radius: 10px; }
+html body .main-nav a { font-weight: 600; }
+html body .btn-icon {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+}
+html body .btn-icon:hover { border-color: var(--border-strong) !important; }
+
+html body .ot-language-banner {
+  background: var(--bg-alt) !important;
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: none !important;
+}
+
+/* ── Nút ── */
+html body .btn { border-radius: 10px; box-shadow: none !important; font-weight: 650; }
+html body .btn-primary,
+html body .btn-primary.btn-glow {
+  background: var(--ot-ink) !important;
+  color: var(--ot-ink-fg) !important;
+  border: 1px solid var(--ot-ink) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+}
+html body .btn-primary::before, html body .btn-glow::after { display: none !important; }
+html body .btn-primary:hover:not(:disabled) { opacity: 0.86; transform: translateY(-1px); }
+html body .btn-primary:disabled { opacity: 0.4; }
+html body .btn-outline,
+html body .btn-secondary,
+html body .btn-ghost {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border-strong) !important;
+}
+html body .btn-outline:hover,
+html body .btn-secondary:hover { background: var(--bg-alt) !important; }
+
+/* ── Trang chủ: hero ── */
+html body .home-hero {
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 0%, rgba(124, 58, 237, 0.07), transparent 70%),
+    var(--bg) !important;
+  position: relative;
+}
+html body .home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--ot-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ot-grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 20%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 20%, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+html body .home-hero-inner { position: relative; z-index: 1; }
+html body .home-hero-orbs, html body .cat-hero-orbs { display: none !important; }
+html body .home-hero h1 { font-weight: 800; letter-spacing: -0.04em; line-height: 1.08; }
+html body .home-badge {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+  color: var(--text-muted) !important;
+  font-weight: 600;
+}
+html body .home-hero-lead { color: var(--text-muted) !important; }
+html body .home-hero-points li {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding-left: 0 !important;
+  color: var(--text-muted) !important;
+}
+html body .home-visual .home-tile {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+html body .home-visual .home-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+html body .home-visual .home-tile em {
+  background: var(--bg-alt) !important;
+  border: 1px solid var(--border);
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+html body .home-visual .home-tile--accent {
+  background: var(--ot-ink) !important;
+  border-color: var(--ot-ink) !important;
+  color: var(--ot-ink-fg) !important;
+}
+html body .home-visual .home-tile--accent strong,
+html body .home-visual .home-tile--accent small { color: inherit !important; opacity: 0.92; }
+html body .home-stats {
+  background: transparent !important;
+  border: 0 !important;
+  border-top: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+html body .home-stat strong { color: var(--text) !important; -webkit-text-fill-color: currentColor; background: none !important; }
+
+/* ── Thẻ công cụ (trang chủ, danh mục, liên quan) ── */
+html body .tool-card,
+html body .home-showcase .home-cat-row-grid .tool-card,
+html:root body.cat-page .cat-tools-section .tool-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+html body .tool-card::before, html body .tool-card::after { display: none !important; }
+html body a.tool-card:hover,
+html body .home-showcase .home-cat-row-grid a.tool-card:hover,
+html:root body.cat-page .cat-tools-section a.tool-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--border-strong) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+html body .tool-card-icon,
+html:root body.cat-page .cat-tools-section .tool-card-icon {
+  background: var(--bg-alt) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+html body .tool-card-category {
+  color: var(--text-soft) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+}
+html body .tool-card-title { color: var(--text) !important; font-weight: 700 !important; }
+html body .tool-card-desc { color: var(--text-muted) !important; }
+html body .credit-badge.badge-free {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  color: #15803d !important;
+  box-shadow: none !important;
+}
+html[data-theme="dark"] body .credit-badge.badge-free { color: #4ade80 !important; }
+html body .tool-card-footer .btn-primary {
+  background: transparent !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border-strong) !important;
+  box-shadow: none !important;
+}
+html body a.tool-card:hover .tool-card-footer .btn-primary {
+  background: var(--ot-ink) !important;
+  color: var(--ot-ink-fg) !important;
+  border-color: var(--ot-ink) !important;
+  opacity: 1;
+  transform: none;
+}
+
+/* Hàng danh mục trang chủ */
+html body .home-showcase { background: var(--bg) !important; }
+html body .home-cat-row-head {
+  border-bottom: 1px solid var(--border) !important;
+  padding-bottom: 0.75rem !important;
+}
+html body .home-cat-row-title,
+html body .home-cat-row-title-link {
+  color: var(--text) !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.01em !important;
+  -webkit-text-fill-color: currentColor;
+  background: none !important;
+}
+html body .home-cat-row-all { color: var(--text-muted) !important; font-weight: 600; }
+html body .home-cat-row-all:hover { color: var(--text) !important; }
+
+/* ── Các khối trang chủ khác ── */
+html body .home-section,
+html body .home-section--alt,
+html body .home-guides,
+html body .home-cta,
+html body .ot-today,
+html body .ot-mytools { background: var(--bg) !important; }
+html body .home-step,
+html body .home-trust-item,
+html body .home-guide,
+html body .ot-today-card,
+html body .ot-mytool,
+html body .blog-card,
+html body .blog-cta,
+html body .tool-seo-block,
+html body .cat-seo-block,
+html body .doc-hero-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+html body .home-guide:hover,
+html body .ot-today-card:hover,
+html body .ot-mytool:hover,
+html body .blog-card:hover {
+  border-color: var(--border-strong) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+html body .home-step-num {
+  background: var(--ot-ink) !important;
+  color: var(--ot-ink-fg) !important;
+  box-shadow: none !important;
+}
+html body .home-cta-box {
+  background: var(--ot-ink) !important;
+  color: var(--ot-ink-fg) !important;
+  border: 0 !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+}
+html body .home-cta-box h2, html body .home-cta-box p { color: inherit !important; }
+html body .home-cta-box .btn {
+  background: var(--ot-ink-fg) !important;
+  color: var(--ot-ink) !important;
+  border: 0 !important;
+}
+
+/* ── Trang danh mục ── */
+html body.cat-page,
+html body.cat-page main,
+html body .cat-tools-section,
+html body .cat-seo { background: var(--bg) !important; }
+html body .cat-hero {
+  background:
+    radial-gradient(ellipse 55% 60% at 85% 10%, rgba(124, 58, 237, 0.06), transparent 70%),
+    var(--bg) !important;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem !important;
+}
+html body .cat-hero-eyebrow {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+  color: var(--text-muted) !important;
+}
+html body .cat-hero h1 { font-weight: 800; letter-spacing: -0.035em; }
+html:root body.cat-page .chip {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+  color: var(--text-muted) !important;
+  transform: none !important;
+}
+html:root body.cat-page .chip:hover { border-color: var(--border-strong) !important; color: var(--text) !important; }
+html:root body.cat-page .chip.chip--active,
+html:root body.cat-page .chip--active {
+  background: var(--ot-ink) !important;
+  color: var(--ot-ink-fg) !important;
+  border-color: var(--ot-ink) !important;
+}
+
+/* ── Trang công cụ ── */
+html body .tool-workspace,
+html body[data-cat] .tool-workspace { background: var(--bg) !important; }
+html body .tool-panel {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+html body .tool-panel-header {
+  background: transparent !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+html body .tool-panel-badge {
+  background: var(--bg-alt) !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+}
+html body .upload-zone {
+  background: var(--bg-alt) !important;
+  border: 1.5px dashed var(--border-strong) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+html body .upload-zone:hover,
+html body .upload-zone.is-dragover,
+html body .upload-zone.dragover { border-color: var(--primary) !important; background: var(--primary-light) !important; }
+html body .doc-hero .eyebrow, html body .tool-workspace .eyebrow { color: var(--text-soft) !important; }
+html body .doc-pills span {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+}
+html body .ot-fav-btn {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+  color: var(--text-muted) !important;
+}
+html body .tool-seo { background: var(--bg) !important; border-top: 1px solid var(--border); }
+html body .ot-crumb-wrap { background: transparent !important; border: 0 !important; }
+
+/* ── Blog ── */
+html body.blog-page { background: var(--bg) !important; }
+html body .blog-hero { background: var(--bg) !important; }
+
+/* ── Chân trang: nền mực tối, phẳng ── */
+html body .site-footer {
+  background: #0a0a0b !important;
+  border-top: 1px solid var(--border) !important;
+}
+html body .site-footer::after { display: none !important; }
+html body .footer-cta-band {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── Ảnh minh họa ── */
+html body .ot-illus {
+  border: 1px solid var(--border);
+  box-shadow: none !important;
+  background: #f6f6f9;
+}
+html body .cat-hero-art { animation: none; }
+html body .home-cat-row-art {
+  width: 34px !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+html[data-theme="dark"] body .ot-illus { filter: none; border-color: var(--border); }
+
+/* ── Trang công cụ: ghi đè các luật body[data-tool] (độ ưu tiên cao) ── */
+html:root body[data-tool]:not([data-tool$="-index"]) .tool-workspace,
+html:root body[data-tool]:not([data-tool$="-index"]) .tool-workspace--doc {
+  background: var(--bg) !important;
+  background-image: none !important;
+}
+html:root body[data-tool]:not([data-tool$="-index"]) .tool-panel {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+html:root body[data-tool]:not([data-tool$="-index"]) .tool-panel-badge {
+  background: var(--bg-alt) !important;
+  color: var(--text-muted) !important;
+  -webkit-text-fill-color: currentColor;
+  border: 1px solid var(--border) !important;
+  letter-spacing: 0.04em;
+}
+html:root body .doc-hero-card::before { display: none !important; }
+html:root body .doc-hero-card h2 { color: var(--text-soft) !important; }
+html:root body .home-cat-row-all,
+html[data-theme="dark"]:root body .home-cat-row-all { color: var(--text-muted) !important; }
+html:root body .home-cat-row-all:hover { color: var(--text) !important; }
+html:root body .site-footer .btn-primary {
+  background: #ffffff !important;
+  color: #0a0a0b !important;
+  border-color: #ffffff !important;
+}
+html:root body .site-footer .container { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }

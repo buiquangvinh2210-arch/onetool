@@ -10,7 +10,6 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
 
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
@@ -63,6 +62,10 @@
 @media(max-width:1024px){#site-header{min-height:56px}#site-footer{min-height:400px}.home-hero{min-height:360px}}
 </style>
   <script type="application/ld+json" id="ot-jsonld">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"OneTool","url":"https://onetool.vn/","logo":"https://onetool.vn/assets/img/logo-mark-512.png","email":"onetools27@gmail.com","contactPoint":{"@type":"ContactPoint","email":"onetools27@gmail.com","contactType":"customer support","availableLanguage":["Vietnamese"],"areaServed":"VN"}},{"@type":"WebSite","name":"OneTool","url":"https://onetool.vn/","description":"Bộ công cụ online miễn phí: xóa nền ảnh, nén PDF, gộp PDF, HEIC sang JPG, nén video, audio to text. Xử lý trên trình duyệt, không cần đăng ký.","inLanguage":"vi","publisher":{"@type":"Organization","name":"OneTool","url":"https://onetool.vn/","logo":"https://onetool.vn/assets/img/logo-mark-512.png","email":"onetools27@gmail.com","contactPoint":{"@type":"ContactPoint","email":"onetools27@gmail.com","contactType":"customer support","availableLanguage":["Vietnamese"],"areaServed":"VN"}}}]}</script>
+  <link rel="stylesheet" href="assets/css/illus.css?v=20261118b" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="assets/css/theme.css?v=20261118s" />
+  <link rel="stylesheet" href="assets/css/editorial.css?v=20261118s" />
   <link rel="alternate" hreflang="vi" href="https://onetool.vn/" />
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/" />
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/" />
@@ -373,406 +376,187 @@
 </div><!--/site-header-->
 <main role="main">
 
-<section class="home-hero">
-  <div class="home-hero-orbs" aria-hidden="true">
-    <span class="home-orb home-orb--a"></span>
-    <span class="home-orb home-orb--b"></span>
-    <span class="home-orb home-orb--c"></span>
-  </div>
-  <div class="container home-hero-inner">
-    <div class="home-hero-copy">
-      <p class="home-badge"><span class="home-badge-dot"></span> Bộ công cụ file online — dành cho người Việt</p>
-      <h1>Xử lý PDF, ảnh &amp; video<br /><span class="gradient-text">ngay trên trình duyệt</span></h1>
-      <p class="home-hero-lead">Convert, gộp, nén video, xóa nền hay chuyển giọng nói thành văn bản — mở trang là dùng, không cần đăng ký. PDF &amp; ảnh xử lý trên máy; một số tool Media/AI dùng xử lý đám mây có kiểm soát.</p>
-      <ul class="home-hero-points">
-        <li>🔒 PDF &amp; ảnh chạy trên máy bạn</li>
-        <li>⚡ Kết quả trong vài giây</li>
-        <li>💜 Miễn phí, không watermark</li>
-      </ul>
-      <div class="home-actions">
-        <a href="cong-cu-media/audio-to-text.html" class="btn btn-primary btn-lg btn-glow">Video / audio → văn bản</a>
-        <a href="cong-cu-pdf/pdf-to-word.html" class="btn btn-outline btn-lg">PDF sang Word</a>
-      </div>
-      <div class="home-stats">
-        <div class="home-stat"><strong id="otToolCount">67</strong><span>Công cụ</span></div>
-        <div class="home-stat"><strong>0</strong><span>Đăng ký</span></div>
-        <div class="home-stat"><strong>0đ</strong><span>Miễn phí</span></div>
-      </div>
-    </div>
-    <div class="home-visual">
-      <a class="home-tile" href="cong-cu-media/audio-to-text.html"><em>🎙️</em>Video → văn bản</a>
-      <a class="home-tile" href="cong-cu-media/subtitle-srt.html"><em>💬</em>Phụ đề SRT</a>
-      <a class="home-tile" href="cong-cu-pdf/pdf-to-word.html"><em>📄</em>PDF sang Word</a>
-      <a class="home-tile" href="cong-cu-anh/remove-background.html"><em>✂️</em>Xóa nền ảnh</a>
-      <a class="home-tile" href="cong-cu-media/video-to-mp3.html"><em>🎧</em>Video sang MP3</a>
-      <a class="home-tile" href="cong-cu-tien-ich/vietqr.html"><em>🏦</em>Tạo mã VietQR</a>
-      <a class="home-tile" href="cong-cu-anh/heic-convert.html"><em>📱</em>HEIC sang JPG</a>
-      <a class="home-tile home-tile--accent" href="cong-cu.html">
-        <em>✨</em>
-        <div><strong>Khám phá tất cả công cụ</strong><small>AI · PDF · Ảnh · Media · Tiện ích · Lập trình</small></div>
-      </a>
-    </div>
+<section class="hx-hero">
+  <div class="container hx-inner">
+    <p class="hx-badge"><span class="hx-dot"></span><span><b id="otToolCount">67</b> công cụ miễn phí · không cần đăng ký</span></p>
+    <h1>Mọi công cụ file bạn cần,<br /><em>ngay trên trình duyệt.</em></h1>
+    <p class="hx-lead">PDF, ảnh, video và AI tiếng Việt trong một nơi. Mở trang là dùng — không cài đặt, không tài khoản, không watermark.</p>
+    <button type="button" class="hx-search" data-open-search><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="hx-search-text">Tìm công cụ — ví dụ: gộp PDF, xóa nền…</span><span class="hx-search-go"><span>Tìm</span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></button>
+    <p class="hx-popular">Phổ biến:<a data-tone="image" href="cong-cu-anh/heic-convert.html">HEIC sang JPG</a><a data-tone="utility" href="cong-cu-tien-ich/vietqr.html">Tạo mã VietQR</a><a data-tone="image" href="cong-cu-anh/image-compress.html">Nén ảnh online</a></p>
   </div>
 </section>
+<div class="container">
+<section class="hx-top" aria-label="Được dùng nhiều">
+  <div class="hx-top-h"><span>Được dùng nhiều</span></div>
+  <div class="hx-top-grid">
+    <a class="hx-card" data-tone="pdf" href="cong-cu-pdf/pdf-to-word.html"><span class="hx-card-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span><b>PDF sang Word</b><small>Chuyển PDF thành Word (DOCX) để chỉnh sửa — kể cả bản scan.</small></a>
+    <a class="hx-card" data-tone="image" href="cong-cu-anh/remove-background.html"><span class="hx-card-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L13 19"/><path d="M22 21H7M5 11l9 9"/></svg></span><b>Xóa nền ảnh</b><small>Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.</small></a>
+    <a class="hx-card" data-tone="ai" href="cong-cu-media/audio-to-text.html"><span class="hx-card-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4"/></svg></span><b>Chuyển giọng nói thành văn bản</b><small>Audio to text tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.</small></a>
+    <a class="hx-card" data-tone="pdf" href="cong-cu-pdf/pdf-merge.html"><span class="hx-card-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span><b>Gộp PDF online</b><small>Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.</small></a>
+    <a class="hx-card" data-tone="media" href="cong-cu-media/tiktok-download.html"><span class="hx-card-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span><b>Tải video TikTok không logo</b><small>Dán link → tải MP4 HD không dính logo / watermark TikTok.</small></a>
+    <a class="hx-card hx-card--all" href="cong-cu.html"><span class="hx-card-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span><b>Tất cả công cụ</b><small>AI · PDF · Ảnh · Media · Tiện ích · Lập trình</small></a>
+  </div>
+</section>
+<nav class="ed-strip" aria-label="Danh mục công cụ">
+  <a data-tone="ai" href="cong-cu-ai.html"><span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M21 5h-4"/></svg></span>AI</a>
+  <a data-tone="media" href="cong-cu-media.html"><span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3z"/></svg></span>Media</a>
+  <a data-tone="pdf" href="cong-cu-pdf.html"><span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8"/></svg></span>PDF</a>
+  <a data-tone="image" href="cong-cu-anh.html"><span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></span>Ảnh</a>
+  <a data-tone="utility" href="cong-cu-tien-ich.html"><span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>Tiện ích</a>
+  <a data-tone="data" href="cong-cu-chuyen-doi.html"><span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>File &amp; dữ liệu</a>
+  <a data-tone="dev" href="cong-cu-lap-trinh.html"><span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg></span>Lập trình</a>
+  <a data-tone="units" href="cong-cu-don-vi.html"><span><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4 3 8l4 4"/><path d="M3 8h18"/><path d="m17 20 4-4-4-4"/><path d="M21 16H3"/></svg></span>Đơn vị</a>
+</nav>
+<div class="ed-pillars">
+  <div data-tone="data"><span class="n">i.</span><h3>Riêng tư</h3><p>PDF và ảnh được xử lý ngay trong trình duyệt. File của bạn không rời khỏi máy.</p></div>
+  <div data-tone="pdf"><span class="n">ii.</span><h3>Tức thì</h3><p>Kéo thả, xử lý, tải về. Phần lớn công việc xong trong vài giây.</p></div>
+  <div data-tone="ai"><span class="n">iii.</span><h3>Miễn phí</h3><p>Không đăng ký, không watermark, không giới hạn ẩn.</p></div>
+</div>
+</div>
 
 <section class="home-showcase">
   <div class="container">
-    <div id="homeToolRows">
-<section class="home-cat-row">
-        <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">
-            <a class="home-cat-row-title-link" href="cong-cu-ai.html" aria-label="Xem danh mục Công cụ AI">1. CÔNG CỤ AI</a>
-          </h2>
-          <a class="home-cat-row-all" href="cong-cu-ai.html" aria-label="Xem tất cả Công cụ AI">Xem tất cả ›</a>
-        </div>
-        <div class="home-cat-row-grid"><a class="tool-card home-tool-card" href="cong-cu-media/audio-to-text.html" aria-label="Mở Chuyển giọng nói thành văn bản">
-        <div class="tool-card-icon" aria-hidden="true">🎙️</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">✨ Công cụ AI</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Chuyển giọng nói thành văn bản</h3>
-          <p class="tool-card-desc">Audio to text tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-media/subtitle-srt.html" aria-label="Mở Tạo phụ đề SRT">
-        <div class="tool-card-icon" aria-hidden="true">💬</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">✨ Công cụ AI</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Tạo phụ đề SRT</h3>
-          <p class="tool-card-desc">Video hoặc MP3 thành phụ đề SRT tiếng Việt — gắn CapCut, YouTube, Premiere.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-media/text-to-speech.html" aria-label="Mở Văn bản thành giọng nói">
-        <div class="tool-card-icon" aria-hidden="true">🔊</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">✨ Công cụ AI</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Văn bản thành giọng nói</h3>
-          <p class="tool-card-desc">Text to speech tiếng Việt: chọn giọng nam/nữ, nghe thử, tải WAV — miễn phí.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a></div>
-      </section><section class="home-cat-row">
-        <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">
-            <a class="home-cat-row-title-link" href="cong-cu-media.html" aria-label="Xem danh mục Công cụ Media">2. CÔNG CỤ MEDIA</a>
-          </h2>
-          <a class="home-cat-row-all" href="cong-cu-media.html" aria-label="Xem tất cả Công cụ Media">Xem tất cả ›</a>
-        </div>
-        <div class="home-cat-row-grid"><a class="tool-card home-tool-card" href="cong-cu-media/tiktok-download.html" aria-label="Mở Tải video TikTok không logo">
-        <div class="tool-card-icon" aria-hidden="true">🎵</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🎬 Công cụ Media</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Tải video TikTok không logo</h3>
-          <p class="tool-card-desc">Dán link → tải MP4 HD không dính logo / watermark TikTok.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-media/video-to-mp3.html" aria-label="Mở Video sang MP3">
-        <div class="tool-card-icon" aria-hidden="true">🎧</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🎬 Công cụ Media</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Video sang MP3</h3>
-          <p class="tool-card-desc">Tách tiếng từ MP4, MOV, MKV thành MP3 192kbps — chạy trên trình duyệt.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-media/video-convert.html" aria-label="Mở Nén video online">
-        <div class="tool-card-icon" aria-hidden="true">🎬</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🎬 Công cụ Media</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Nén video online</h3>
-          <p class="tool-card-desc">Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a></div>
-      </section><section class="home-cat-row">
-        <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">
-            <a class="home-cat-row-title-link" href="cong-cu-pdf.html" aria-label="Xem danh mục Công cụ PDF">3. CÔNG CỤ PDF</a>
-          </h2>
-          <a class="home-cat-row-all" href="cong-cu-pdf.html" aria-label="Xem tất cả Công cụ PDF">Xem tất cả ›</a>
-        </div>
-        <div class="home-cat-row-grid"><a class="tool-card home-tool-card" href="cong-cu-pdf/pdf-to-word.html" aria-label="Mở PDF sang Word">
-        <div class="tool-card-icon" aria-hidden="true">📄</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">📄 Công cụ PDF</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">PDF sang Word</h3>
-          <p class="tool-card-desc">Chuyển PDF thành Word (DOCX) để chỉnh sửa — kể cả bản scan.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-pdf/pdf-merge.html" aria-label="Mở Gộp PDF online">
-        <div class="tool-card-icon" aria-hidden="true">📎</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">📄 Công cụ PDF</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Gộp PDF online</h3>
-          <p class="tool-card-desc">Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-pdf/pdf-compress.html" aria-label="Mở Nén PDF online">
-        <div class="tool-card-icon" aria-hidden="true">🗜️</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">📄 Công cụ PDF</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Nén PDF online</h3>
-          <p class="tool-card-desc">Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a></div>
-      </section><section class="home-cat-row">
-        <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">
-            <a class="home-cat-row-title-link" href="cong-cu-anh.html" aria-label="Xem danh mục Công cụ Ảnh">4. CÔNG CỤ ẢNH</a>
-          </h2>
-          <a class="home-cat-row-all" href="cong-cu-anh.html" aria-label="Xem tất cả Công cụ Ảnh">Xem tất cả ›</a>
-        </div>
-        <div class="home-cat-row-grid"><a class="tool-card home-tool-card" href="cong-cu-anh/remove-background.html" aria-label="Mở Xóa nền ảnh">
-        <div class="tool-card-icon" aria-hidden="true">✂️</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🖼️ Công cụ Ảnh</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Xóa nền ảnh</h3>
-          <p class="tool-card-desc">Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-anh/image-compress.html" aria-label="Mở Nén ảnh online">
-        <div class="tool-card-icon" aria-hidden="true">🗜️</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🖼️ Công cụ Ảnh</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Nén ảnh online</h3>
-          <p class="tool-card-desc">Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-anh/heic-convert.html" aria-label="Mở HEIC sang JPG">
-        <div class="tool-card-icon" aria-hidden="true">📱</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🖼️ Công cụ Ảnh</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">HEIC sang JPG</h3>
-          <p class="tool-card-desc">Chuyển HEIC / HEIF (và JPG PNG) sang JPG · PNG · WebP — nhiều ảnh, tải ZIP.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a></div>
-      </section><section class="home-cat-row">
-        <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">
-            <a class="home-cat-row-title-link" href="cong-cu-tien-ich.html" aria-label="Xem danh mục Tiện ích">5. TIỆN ÍCH</a>
-          </h2>
-          <a class="home-cat-row-all" href="cong-cu-tien-ich.html" aria-label="Xem tất cả Tiện ích">Xem tất cả ›</a>
-        </div>
-        <div class="home-cat-row-grid"><a class="tool-card home-tool-card" href="cong-cu-tien-ich/vietqr.html" aria-label="Mở Tạo mã VietQR">
-        <div class="tool-card-icon" aria-hidden="true">🏦</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🔧 Tiện ích</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Tạo mã VietQR</h3>
-          <p class="tool-card-desc">Tạo QR chuyển khoản NAPAS: ngân hàng, STK, số tiền — tải PNG in/dán shop.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-tien-ich/salary-calculator.html" aria-label="Mở Tính lương Gross Net">
-        <div class="tool-card-icon" aria-hidden="true">💰</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🔧 Tiện ích</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Tính lương Gross Net</h3>
-          <p class="tool-card-desc">Đổi lương Gross ↔ Net 2026: BHXH, BHYT, BHTN, thuế TNCN 5 bậc, giảm trừ 15,5 triệu.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-tien-ich/loan-calculator.html" aria-label="Mở Tính lãi vay trả góp">
-        <div class="tool-card-icon" aria-hidden="true">🏠</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🔧 Tiện ích</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Tính lãi vay trả góp</h3>
-          <p class="tool-card-desc">Vay mua nhà, mua xe mỗi tháng trả bao nhiêu: dư nợ giảm dần, trả đều, lãi phẳng, lịch trả nợ.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a></div>
-      </section><section class="home-cat-row">
-        <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">
-            <a class="home-cat-row-title-link" href="cong-cu-chuyen-doi.html" aria-label="Xem danh mục File &amp; dữ liệu">6. FILE &amp; DỮ LIỆU</a>
-          </h2>
-          <a class="home-cat-row-all" href="cong-cu-chuyen-doi.html" aria-label="Xem tất cả File &amp; dữ liệu">Xem tất cả ›</a>
-        </div>
-        <div class="home-cat-row-grid"><a class="tool-card home-tool-card" href="cong-cu-chuyen-doi/excel-convert.html" aria-label="Mở Excel sang CSV JSON">
-        <div class="tool-card-icon" aria-hidden="true">📗</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">📊 File &amp; dữ liệu</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Excel sang CSV JSON</h3>
-          <p class="tool-card-desc">Convert XLSX/XLS sang CSV hoặc JSON — và ngược lại. Chọn sheet, xem trước, tải file.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-chuyen-doi/ocr-table.html" aria-label="Mở OCR bảng sang Excel">
-        <div class="tool-card-icon" aria-hidden="true">📋</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">📊 File &amp; dữ liệu</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">OCR bảng sang Excel</h3>
-          <p class="tool-card-desc">Chụp bảng / biên lai → OCR tiếng Việt → chỉnh sửa → tải XLSX/CSV.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-chuyen-doi/convert-data.html" aria-label="Mở CSV to JSON">
-        <div class="tool-card-icon" aria-hidden="true">📊</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">📊 File &amp; dữ liệu</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">CSV to JSON</h3>
-          <p class="tool-card-desc">Dán dữ liệu hoặc mở file — đổi CSV ↔ JSON ngay trên trình duyệt.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a></div>
-      </section><section class="home-cat-row">
-        <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">
-            <a class="home-cat-row-title-link" href="cong-cu-lap-trinh.html" aria-label="Xem danh mục Lập trình">7. LẬP TRÌNH</a>
-          </h2>
-          <a class="home-cat-row-all" href="cong-cu-lap-trinh.html" aria-label="Xem tất cả Lập trình">Xem tất cả ›</a>
-        </div>
-        <div class="home-cat-row-grid"><a class="tool-card home-tool-card" href="cong-cu-lap-trinh/json-tools.html" aria-label="Mở Format JSON">
-        <div class="tool-card-icon" aria-hidden="true">{ }</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🛠️ Lập trình</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Format JSON</h3>
-          <p class="tool-card-desc">Làm đẹp, minify và kiểm tra JSON hợp lệ — tiện debug API.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-lap-trinh/regex-tester.html" aria-label="Mở Regex tester">
-        <div class="tool-card-icon" aria-hidden="true">.*</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🛠️ Lập trình</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Regex tester</h3>
-          <p class="tool-card-desc">Thử regex realtime — highlight match, flags, replace, nhóm bắt.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a><a class="tool-card home-tool-card" href="cong-cu-lap-trinh/base64-tools.html" aria-label="Mở Base64 encode decode">
-        <div class="tool-card-icon" aria-hidden="true">🔤</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">🛠️ Lập trình</span>
-            <span class="credit-badge badge-free">Miễn phí</span>
-          </div>
-          <h3 class="tool-card-title">Base64 encode decode</h3>
-          <p class="tool-card-desc">Encode/decode Base64 — tiếng Việt, URL-safe, file và ảnh có preview.</p>
-          <div class="tool-card-footer">
-            <span class="btn btn-primary btn-sm">Mở tool →</span>
-          </div>
-        </div>
-      </a></div>
-      </section>
-</div><!--/homeToolRows-->
-  </div>
-</section>
-
-<section class="home-section">
-  <div class="container">
-    <div class="home-section-head">
-      <div><span class="home-eyebrow">Cách hoạt động</span><h2>3 bước là xong</h2></div>
+    <div class="ed-sec-h">
+      <div><span class="ed-kicker">Danh mục</span><h2>Tám bộ công cụ,<br /><em>một</em> nơi duy nhất.</h2></div>
+      <a class="btn btn-outline btn-lg" href="cong-cu.html">Tất cả công cụ</a>
     </div>
-    <div class="home-steps">
-      <article class="home-step"><span class="home-step-num">1</span><h3>Chọn công cụ</h3><p>PDF, ảnh, audio hay tiện ích — mở tool phù hợp việc bạn cần.</p></article>
-      <article class="home-step"><span class="home-step-num">2</span><h3>Thả file hoặc dán nội dung</h3><p>Kéo thả, chọn từ máy hoặc dán text — xử lý ngay trên trình duyệt.</p></article>
-      <article class="home-step"><span class="home-step-num">3</span><h3>Tải về hoặc sao chép</h3><p>Kết quả sẵn sàng trong vài giây, không watermark.</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="home-section home-section--alt">
-  <div class="container">
-    <div class="home-trust">
-      <div class="home-trust-item"><em>⚡</em><strong>Nhanh</strong><span>Kéo thả → xử lý → tải về</span></div>
-      <div class="home-trust-item"><em>🔒</em><strong>Riêng tư</strong><span>File ở máy bạn</span></div>
-      <div class="home-trust-item"><em>💜</em><strong>Miễn phí</strong><span>Không tài khoản</span></div>
-      <div class="home-trust-item"><em>🇻🇳</em><strong>Tiếng Việt</strong><span>Giao diện & hướng dẫn VN</span></div>
-    </div>
+    <section class="ed-cat" data-tone="ai">
+      <div class="ed-cat-l">
+        <span class="ed-cat-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M21 5h-4"/></svg></span>
+        <span class="n">01</span>
+        <h3><a href="cong-cu-ai.html">Công cụ AI</a></h3>
+        <p>Video/audio → chữ, phụ đề SRT, TTS, Tóm tắt AI</p>
+        <a class="ed-cat-all" href="cong-cu-ai.html">Xem tất cả ›</a>
+      </div>
+      <div class="ed-rows">
+        <a class="ed-row" href="cong-cu-media/audio-to-text.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4"/></svg></span><span class="ed-row-tx"><b>Chuyển giọng nói thành văn bản</b><span>Audio to text tiếng Việt từ MP3, WAV, MP4 — xuất TXT và phụ đề SRT.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-media/subtitle-srt.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/></svg></span><span class="ed-row-tx"><b>Tạo phụ đề SRT</b><span>Video hoặc MP3 thành phụ đề SRT tiếng Việt — gắn CapCut, YouTube, Premiere.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-media/text-to-speech.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg></span><span class="ed-row-tx"><b>Văn bản thành giọng nói</b><span>Text to speech tiếng Việt: chọn giọng nam/nữ, nghe thử, tải WAV — miễn phí.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-media/ai-summarize.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M21 5h-4"/></svg></span><span class="ed-row-tx"><b>Tóm tắt AI</b><span>Rút gọn bài viết, biên bản, email bằng AI — đoạn văn, gạch đầu dòng hoặc TL;DR.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      </div>
+    </section>
+    <section class="ed-cat" data-tone="media">
+      <div class="ed-cat-l">
+        <span class="ed-cat-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4z"/></svg></span>
+        <span class="n">02</span>
+        <h3><a href="cong-cu-media.html">Công cụ Media</a></h3>
+        <p>TikTok, video sang MP3, nén / cắt video</p>
+        <a class="ed-cat-all" href="cong-cu-media.html">Xem tất cả ›</a>
+      </div>
+      <div class="ed-rows">
+        <a class="ed-row" href="cong-cu-media/tiktok-download.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span><span class="ed-row-tx"><b>Tải video TikTok không logo</b><span>Dán link → tải MP4 HD không dính logo / watermark TikTok.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-media/video-to-mp3.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><span class="ed-row-tx"><b>Video sang MP3</b><span>Tách tiếng từ MP4, MOV, MKV thành MP3 192kbps — chạy trên trình duyệt.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-media/video-convert.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4z"/></svg></span><span class="ed-row-tx"><b>Nén video online</b><span>Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-media/video-trim.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></span><span class="ed-row-tx"><b>Cắt video online</b><span>Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-media/video-to-gif.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg></span><span class="ed-row-tx"><b>Video sang GIF</b><span>Cắt đoạn MP4/WebM thành GIF — chọn FPS, độ rộng, chất lượng palette.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      </div>
+    </section>
+    <section class="ed-cat" data-tone="pdf">
+      <div class="ed-cat-l">
+        <span class="ed-cat-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+        <span class="n">03</span>
+        <h3><a href="cong-cu-pdf.html">Công cụ PDF</a></h3>
+        <p>Gộp, tách, nén, ký PDF, PDF → Word/Excel, khóa mật khẩu</p>
+        <a class="ed-cat-all" href="cong-cu-pdf.html">Xem tất cả ›</a>
+      </div>
+      <div class="ed-rows">
+        <a class="ed-row" href="cong-cu-pdf/pdf-to-word.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span><span class="ed-row-tx"><b>PDF sang Word</b><span>Chuyển PDF thành Word (DOCX) để chỉnh sửa — kể cả bản scan.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-pdf/pdf-merge.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span><span class="ed-row-tx"><b>Gộp PDF online</b><span>Ghép nhiều file PDF thành một tài liệu, sắp xếp thứ tự rồi tải về — miễn phí.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-pdf/pdf-compress.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg></span><span class="ed-row-tx"><b>Nén PDF online</b><span>Giảm dung lượng PDF để gửi email, Zalo hoặc nộp hồ sơ — xem % tiết kiệm rồi tải về.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-pdf/pdf-to-excel.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span><span class="ed-row-tx"><b>PDF sang Excel</b><span>Trích bảng / báo cáo từ PDF thành Excel (XLSX) — OCR bản scan tiếng Việt.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-pdf/office-to-pdf.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="ed-row-tx"><b>Word sang PDF</b><span>Convert DOCX hoặc XLSX thành PDF sạch để gửi, in hoặc nộp hồ sơ.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-pdf/image-to-pdf.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M3 15V5a2 2 0 0 1 2-2h10"/><path d="m21 17-3-3-5 5"/></svg></span><span class="ed-row-tx"><b>Ảnh sang PDF</b><span>Ghép một hoặc nhiều ảnh thành PDF — sắp xếp thứ tự, chọn khổ trang.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-pdf/pdf-to-image.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></span><span class="ed-row-tx"><b>PDF sang ảnh</b><span>Xuất từng trang PDF ra PNG / JPG / WebP — xem trước hoặc tải ZIP.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-pdf/image-pdf.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 3 4 4-4 4M20 7H4M8 21l-4-4 4-4M4 17h16"/></svg></span><span class="ed-row-tx"><b>Ảnh ↔ PDF</b><span>Hai hướng rõ ràng: ghép ảnh thành PDF, hoặc xuất PDF ra ảnh.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      </div>
+    </section>
+    <section class="ed-cat" data-tone="image">
+      <div class="ed-cat-l">
+        <span class="ed-cat-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></span>
+        <span class="n">04</span>
+        <h3><a href="cong-cu-anh.html">Công cụ Ảnh</a></h3>
+        <p>Xóa nền AI, nén, HEIC, OCR, crop MXH</p>
+        <a class="ed-cat-all" href="cong-cu-anh.html">Xem tất cả ›</a>
+      </div>
+      <div class="ed-rows">
+        <a class="ed-row" href="cong-cu-anh/remove-background.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L13 19"/><path d="M22 21H7M5 11l9 9"/></svg></span><span class="ed-row-tx"><b>Xóa nền ảnh</b><span>Tách nền ảnh bằng AI, xem preview, xuất PNG trong suốt — miễn phí.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-anh/image-compress.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg></span><span class="ed-row-tx"><b>Nén ảnh online</b><span>Giảm dung lượng JPG / PNG / WebP — xem % tiết kiệm, so sánh trước/sau.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-anh/heic-convert.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span class="ed-row-tx"><b>HEIC sang JPG</b><span>Chuyển HEIC / HEIF (và JPG PNG) sang JPG · PNG · WebP — nhiều ảnh, tải ZIP.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-anh/image-ocr.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8h10M7 12h10M7 16h6"/></svg></span><span class="ed-row-tx"><b>OCR ảnh → chữ</b><span>Nhận dạng chữ Việt + Anh trong ảnh: hóa đơn, CCCD, sách, screenshot — copy hoặc tải TXT.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-anh/image-crop.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg></span><span class="ed-row-tx"><b>Crop ảnh + preset MXH</b><span>Cắt ảnh theo preset Instagram, TikTok, YouTube, Facebook, Shopee, ảnh thẻ 3×4 — kéo khung, xuất JPG/PNG/WebP.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-anh/image-convert.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 3 4 4-4 4M20 7H4M8 21l-4-4 4-4M4 17h16"/></svg></span><span class="ed-row-tx"><b>Đổi định dạng ảnh</b><span>Đổi JPG ↔ PNG ↔ WebP online — kéo thả, chọn format, tải về.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-anh/image-resize.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span><span class="ed-row-tx"><b>Đổi kích thước ảnh</b><span>Đổi kích thước ảnh theo pixel hoặc preset — giữ tỉ lệ, xuất JPG/PNG/WebP.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-anh/image-blur.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.7 6.3 9a8 8 0 1 0 11.4 0z"/></svg></span><span class="ed-row-tx"><b>Làm mờ ảnh</b><span>Làm mờ toàn ảnh hoặc vùng chọn — ẩn thông tin nhạy cảm, xuất JPG/PNG/WebP.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      </div>
+    </section>
+    <section class="ed-cat" data-tone="utility">
+      <div class="ed-cat-l">
+        <span class="ed-cat-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <span class="n">05</span>
+        <h3><a href="cong-cu-tien-ich.html">Tiện ích</a></h3>
+        <p>VietQR, tính lương Gross Net, số thành chữ, tiền tệ, lịch âm</p>
+        <a class="ed-cat-all" href="cong-cu-tien-ich.html">Xem tất cả ›</a>
+      </div>
+      <div class="ed-rows">
+        <a class="ed-row" href="cong-cu-tien-ich/vietqr.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/></svg></span><span class="ed-row-tx"><b>Tạo mã VietQR</b><span>Tạo QR chuyển khoản NAPAS: ngân hàng, STK, số tiền — tải PNG in/dán shop.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-tien-ich/salary-calculator.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20M16 15h2"/></svg></span><span class="ed-row-tx"><b>Tính lương Gross Net</b><span>Đổi lương Gross ↔ Net 2026: BHXH, BHYT, BHTN, thuế TNCN 5 bậc, giảm trừ 15,5 triệu.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-tien-ich/loan-calculator.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span><span class="ed-row-tx"><b>Tính lãi vay trả góp</b><span>Vay mua nhà, mua xe mỗi tháng trả bao nhiêu: dư nợ giảm dần, trả đều, lãi phẳng, lịch trả nợ.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-tien-ich/savings-calculator.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M18.1 10.4A6 6 0 1 1 10.3 18M7 6h1v4"/></svg></span><span class="ed-row-tx"><b>Tính lãi tiết kiệm</b><span>Gửi tiết kiệm lãi bao nhiêu: lĩnh lãi cuối kỳ, hàng tháng, tái tục, tích lũy mỗi tháng.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-tien-ich/number-to-words.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg></span><span class="ed-row-tx"><b>Số thành chữ</b><span>Đổi số tiền thành chữ tiếng Việt cho hóa đơn, hợp đồng — một triệu hai trăm nghìn đồng.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-tien-ich/currency-convert.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 3 4 4-4 4M20 7H4M8 21l-4-4 4-4M4 17h16"/></svg></span><span class="ed-row-tx"><b>Đổi tiền tệ</b><span>Đổi USD · EUR · VND và 20+ loại tiền — tỷ giá realtime, đảo chiều nhanh.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-tien-ich/lunar-calendar.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span class="ed-row-tx"><b>Lịch âm hôm nay</b><span>Lịch vạn niên, ngày hoàng đạo, giờ tốt, ngày lễ, đếm ngược Tết — đổi ngày âm dương.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-tien-ich/qr-generator.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/></svg></span><span class="ed-row-tx"><b>Tạo mã QR</b><span>Tạo mã QR từ link hoặc chữ, xem trước và tải PNG.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      </div>
+    </section>
+    <section class="ed-cat" data-tone="data">
+      <div class="ed-cat-l">
+        <span class="ed-cat-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
+        <span class="n">06</span>
+        <h3><a href="cong-cu-chuyen-doi.html">File &amp; dữ liệu</a></h3>
+        <p>Excel ↔ CSV/JSON, OCR bảng → Excel, CSV ↔ JSON</p>
+        <a class="ed-cat-all" href="cong-cu-chuyen-doi.html">Xem tất cả ›</a>
+      </div>
+      <div class="ed-rows">
+        <a class="ed-row" href="cong-cu-chuyen-doi/excel-convert.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span><span class="ed-row-tx"><b>Excel sang CSV JSON</b><span>Convert XLSX/XLS sang CSV hoặc JSON — và ngược lại. Chọn sheet, xem trước, tải file.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-chuyen-doi/ocr-table.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8h10M7 12h10M7 16h6"/></svg></span><span class="ed-row-tx"><b>OCR bảng sang Excel</b><span>Chụp bảng / biên lai → OCR tiếng Việt → chỉnh sửa → tải XLSX/CSV.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-chuyen-doi/convert-data.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span class="ed-row-tx"><b>CSV to JSON</b><span>Dán dữ liệu hoặc mở file — đổi CSV ↔ JSON ngay trên trình duyệt.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      </div>
+    </section>
+    <section class="ed-cat" data-tone="dev">
+      <div class="ed-cat-l">
+        <span class="ed-cat-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+        <span class="n">07</span>
+        <h3><a href="cong-cu-lap-trinh.html">Lập trình</a></h3>
+        <p>JSON, Regex, Base64, URL encode, UUID</p>
+        <a class="ed-cat-all" href="cong-cu-lap-trinh.html">Xem tất cả ›</a>
+      </div>
+      <div class="ed-rows">
+        <a class="ed-row" href="cong-cu-lap-trinh/json-tools.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/></svg></span><span class="ed-row-tx"><b>Format JSON</b><span>Làm đẹp, minify và kiểm tra JSON hợp lệ — tiện debug API.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-lap-trinh/regex-tester.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v12M17.2 9 6.8 15M6.8 9l10.4 6"/></svg></span><span class="ed-row-tx"><b>Regex tester</b><span>Thử regex realtime — highlight match, flags, replace, nhóm bắt.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-lap-trinh/base64-tools.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4M14 10h4M6 14h2v6M14 4h2v6"/></svg></span><span class="ed-row-tx"><b>Base64 encode decode</b><span>Encode/decode Base64 — tiếng Việt, URL-safe, file và ảnh có preview.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-lap-trinh/url-encode.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span class="ed-row-tx"><b>URL encode decode</b><span>Encode/decode URL — encodeURIComponent, encodeURI, form (+), UTF-8 tiếng Việt.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-lap-trinh/developer-tools.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span><span class="ed-row-tx"><b>UUID Hash Slugify</b><span>UUID, SHA hash, slugify tiếng Việt, Unix timestamp — công cụ dev nhanh.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      </div>
+    </section>
+    <section class="ed-cat" data-tone="units">
+      <div class="ed-cat-l">
+        <span class="ed-cat-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2M11.5 9.5l2-2M8.5 6.5l2-2M17.5 15.5l2-2"/></svg></span>
+        <span class="n">08</span>
+        <h3><a href="cong-cu-don-vi.html">Đơn vị</a></h3>
+        <p>Khối lượng, chiều dài, nhiệt độ, dung lượng…</p>
+        <a class="ed-cat-all" href="cong-cu-don-vi.html">Xem tất cả ›</a>
+      </div>
+      <div class="ed-rows">
+        <a class="ed-row" href="cong-cu-don-vi/unit-convert.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2M11.5 9.5l2-2M8.5 6.5l2-2M17.5 15.5l2-2"/></svg></span><span class="ed-row-tx"><b>Chuyển đổi đơn vị</b><span>Chọn nhóm cần đổi — mỗi tool riêng, hệ số SI/NIST chuẩn.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-don-vi/unit-mass.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg></span><span class="ed-row-tx"><b>Đổi khối lượng</b><span>Đổi khối lượng: kg · lb · g. Hệ số chuẩn, kết quả tức thì.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-don-vi/unit-length.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2M11.5 9.5l2-2M8.5 6.5l2-2M17.5 15.5l2-2"/></svg></span><span class="ed-row-tx"><b>Đổi chiều dài</b><span>Đổi chiều dài: m · ft · inch. Hệ số chuẩn, kết quả tức thì.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-don-vi/unit-temp.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/></svg></span><span class="ed-row-tx"><b>Đổi nhiệt độ</b><span>Đổi nhiệt độ: °C · °F · K. Hệ số chuẩn, kết quả tức thì.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-don-vi/unit-data.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12H2M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.1zM6 16h.01M10 16h.01"/></svg></span><span class="ed-row-tx"><b>Đổi dung lượng</b><span>Đổi dung lượng: MB · GiB. Hệ số chuẩn, kết quả tức thì.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-don-vi/unit-volume.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span><span class="ed-row-tx"><b>Đổi thể tích</b><span>Đổi thể tích: L · mL · gallon. Hệ số chuẩn, kết quả tức thì.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-don-vi/unit-area.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h6V3"/></svg></span><span class="ed-row-tx"><b>Đổi diện tích</b><span>Đổi diện tích: m² · ha · acre. Hệ số chuẩn, kết quả tức thì.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        <a class="ed-row" href="cong-cu-don-vi/unit-speed.html"><span class="ed-row-ic"><svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.3 19a10 10 0 1 1 17.4 0"/></svg></span><span class="ed-row-tx"><b>Đổi tốc độ</b><span>Đổi tốc độ: km/h · mph. Hệ số chuẩn, kết quả tức thì.</span></span><svg class="ed-i ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      </div>
+    </section>
   </div>
 </section>
 
@@ -827,17 +611,16 @@
   </div>
 </section>
 
-<section class="home-cta">
-  <div class="container">
-    <div class="home-cta-box">
-      <div>
-        <h2>Sẵn sàng xử lý file?</h2>
-        <p>Chọn công cụ và bắt đầu ngay — không cần cài đặt.</p>
-      </div>
-      <a href="cong-cu.html" class="btn btn-lg">Khám phá công cụ →</a>
-    </div>
+<div class="container">
+  <div class="ed-quote">
+    <p>Công cụ tốt là công cụ bạn quên mất mình đang dùng — chỉ thấy việc đã xong.</p>
+    <small>Tinh thần OneTool</small>
   </div>
-</section>
+  <section class="ed-cta">
+    <h2>Bắt đầu với <em>một file</em><br />bất kỳ.</h2>
+    <a class="btn btn-lg" href="cong-cu.html">Khám phá công cụ →</a>
+  </section>
+</div>
 
 </main>
 <div id="site-footer">
@@ -910,13 +693,14 @@
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
 <script src="assets/js/tools/lunar-calendar.js?v=20261110a"></script>
-<script src="assets/js/catalog.js?v=20261024b"></script>
+<script src="assets/js/catalog.js?v=20261118f"></script>
 <script src="assets/js/layout.js?v=20261113a"></script>
 <script src="assets/js/core.js?v=20261002a"></script>
-<script src="assets/js/site.js?v=20261110a"></script>
+<script src="assets/js/site.js?v=20261118i"></script>
 <script>(function () {
   if (window.OTCatalog && typeof renderHomeShowcase === "function") renderHomeShowcase(document.getElementById("homeToolRows"));
   if (typeof initHomeMotion === "function") initHomeMotion();
+  document.querySelectorAll("[data-open-search]").forEach((b) => b.addEventListener("click", () => document.getElementById("toolSearchBtn")?.click()));
 })();</script>
 </body>
 </html>

@@ -366,23 +366,21 @@
       path.includes("/cong-cu-") ||
       /\/cong-cu\.html$/i.test(path);
 
-    mainNav.querySelectorAll("a").forEach((link) => {
+    // Mỗi trang chỉ đánh dấu đúng một mục menu
+    const section = onTools ? "tools"
+      : path.includes("/blog") ? "blog"
+      : path.includes("about") ? "about"
+      : path.includes("lien-he") ? "contact"
+      : /\/(en\/)?(index\.html)?$/.test(path) ? "home" : "";
+    mainNav.querySelectorAll(":scope > a").forEach((link) => {
       const href = link.getAttribute("href")?.toLowerCase() || "";
-      const isHomeLink = !href.includes("cong-cu") && !href.includes("about");
-      const isToolsLink = href.includes("cong-cu");
-      const isAboutLink = href.includes("about");
-
-      if (isHomeLink && !onTools && !path.includes("about")) {
-        link.classList.add("is-active");
-        return;
-      }
-      if (isToolsLink && onTools) {
-        link.classList.add("is-active");
-        document.querySelector(".nav-mega-trigger")?.classList.add("is-active");
-        return;
-      }
-      if (isAboutLink && path.includes("about")) link.classList.add("is-active");
+      const kind = href.includes("cong-cu") ? "tools"
+        : href.includes("blog") ? "blog"
+        : href.includes("about") ? "about"
+        : href.includes("lien-he") ? "contact" : "home";
+      link.classList.toggle("is-active", kind === section);
     });
+    if (section === "tools") document.querySelector(".nav-mega-trigger")?.classList.add("is-active");
   }
 
   window.showToast = function (message, type = "success") {
@@ -404,65 +402,67 @@
     const base = (window.OT_BASE || ".").replace(/\/$/, "");
     const href = (p) => { p = (window.OT_LANG === "en" ? "en/" : "") + p; return base === "." || base === "" ? p : `${base}/${p}`; };
     const chips = [
-      `<a class="chip ${!activeSeo ? "chip--active" : ""}" href="${href("cong-cu.html")}">✨ All</a>`
+      `<a class="chip ${!activeSeo ? "chip--active" : ""}" href="${href("cong-cu.html")}">All</a>`
     ];
     OTCatalog.categories.forEach(c => {
       const active = c.seo === activeSeo ? " chip--active" : "";
-      chips.push(`<a class="chip${active}" href="${href(c.seo + ".html")}">${c.icon} ${c.name}</a>`);
+      chips.push(`<a class="chip${active}" href="${href(c.seo + ".html")}">${c.name}</a>`);
     });
     container.innerHTML = chips.join("");
   };
 
-  window.renderHomeShowcase = function (container, { limit = 3 } = {}) {
+  // Màu/ảnh theo danh mục (khớp assets/img/illus/*.svg và theme.css [data-tone])
+  const TONE = { ai: "ai", media: "media", "pdf-tools": "pdf", images: "image", utilities: "utility", "file-converter": "data", developer: "dev", units: "units" };
+  window.OT_TONE = TONE;
+  // icon nét mảnh theo danh mục (thay emoji trên thẻ công cụ)
+  const TONE_ICON = {
+    pdf: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8"/>',
+    image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
+    media: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3z"/>',
+    ai: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M21 5h-4"/>',
+    utility: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+    data: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+    dev: '<path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/>',
+    units: '<path d="M7 4 3 8l4 4"/><path d="M3 8h18"/><path d="m17 20 4-4-4-4"/><path d="M21 16H3"/>'
+  };
+  const toneIcon = (cat) => `<svg class="ed-i" viewBox="0 0 24 24">${TONE_ICON[TONE[cat] || "ai"]}</svg>`;
+
+  window.renderHomeShowcase = function (container, { limit = 6 } = {}) {
     if (!container || !window.OTCatalog) return;
     const base = (window.OT_BASE || ".").replace(/\/$/, "");
     const href = (p) => { p = (window.OT_LANG === "en" ? "en/" : "") + p; return base === "." || base === "" ? p : `${base}/${p}`; };
+    const assetBase = base === "." || base === "" ? "" : base + "/";
+    const esc = (s) => String(s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+    const rank = (t) => (Number.isFinite(t.rank) ? t.rank : 999);
 
-    function toolHref(t) {
-      return href(OTCatalog.hrefFor(t));
+    function pickTools(slug) {
+      const list = OTCatalog.tools
+        .filter((t) => t.cat === slug && !t.hub && t.featured)
+        .sort((a, b) => rank(a) - rank(b) || String(a.name).localeCompare(String(b.name), "vi"))
+        .slice(0, limit);
+      // lưới 4 cột: đủ 6 tool thì lấp 2 hàng, ít hơn thì lấy 3 cho 1 hàng (không để ô trống)
+      return list.length >= limit ? list : list.slice(0, 3);
     }
 
-    function escAttr(s) {
-      return String(s || "")
-        .replace(/&/g, "&amp;")
-        .replace(/"/g, "&quot;")
-        .replace(/</g, "&lt;");
-    }
-
-    function sortTools(list) {
-      return list.slice().sort((a, b) => {
-        const ra = Number.isFinite(a.rank) ? a.rank : 999;
-        const rb = Number.isFinite(b.rank) ? b.rank : 999;
-        if (ra !== rb) return ra - rb;
-        return String(a.name || "").localeCompare(String(b.name || ""), "vi");
-      });
-    }
-
-    function pickTools(catSlug) {
-      const items = OTCatalog.tools.filter(t => t.cat === catSlug && !t.hub && t.featured);
-      return sortTools(items).slice(0, limit);
-    }
-
-    function toolCard(t) {
-      const cat = OTCatalog.catBySlug(t.cat);
-      return `<a class="tool-card home-tool-card" href="${toolHref(t)}" aria-label="Open ${escAttr(t.name)}">
-        <div class="tool-card-icon" aria-hidden="true">${t.icon}</div>
-        <div class="tool-card-body">
-          <div class="tool-card-top">
-            <span class="tool-card-category">${cat.icon} ${cat.name}</span> <span class="credit-badge badge-free">Free</span> </div> <h3 class="tool-card-title">${t.name}</h3>
-          <p class="tool-card-desc">${t.desc}</p> <div class="tool-card-footer"> <span class="btn btn-primary btn-sm">Open tool →</span> </div> </div> </a>`;
-    }
+    const tile = (t) => `<a class="bento-tool" data-tone="${TONE[t.cat] || "ai"}" href="${href(OTCatalog.hrefFor(t))}" aria-label="Open ${esc(t.name)}">
+          <span class="bento-tool-ico" aria-hidden="true">${t.icon}</span>
+          <h3>${t.name}</h3>
+          <p>${t.desc}</p>
+          <span class="bento-tool-go" aria-hidden="true">→</span>
+        </a>`;
 
     container.innerHTML = OTCatalog.categories.map((cat, i) => {
       const tools = pickTools(cat.slug);
       if (!tools.length) return "";
-      const catUrl = href(cat.seo + ".html");
-      return `<section class="home-cat-row">
-        <div class="home-cat-row-head">
-          <h2 class="home-cat-row-title">
-            <a class="home-cat-row-title-link" href="${catUrl}" aria-label="View category ${escAttr(cat.name)}">${i + 1}. ${escAttr(String(cat.name || "").toUpperCase())}</a>
-          </h2>
-          <a class="home-cat-row-all" href="${catUrl}" aria-label="See all ${escAttr(cat.name)}">See all ›</a> </div> <div class="home-cat-row-grid">${tools.map(toolCard).join("")}</div>
+      const tone = TONE[cat.slug] || "ai";
+      const total = OTCatalog.tools.filter((t) => t.cat === cat.slug && !t.hub).length;
+      return `<section class="bento-cat${i % 2 ? " is-flip" : ""}${tools.length <= 3 ? " is-short" : ""}" data-tone="${tone}">
+        <a class="bento-cat-tile" href="${href(cat.seo + ".html")}" aria-label="View category ${esc(cat.name)}">
+          <img class="bento-cat-icon" src="${assetBase}assets/img/illus/${tone}-icon.svg" alt="" width="144" height="156" loading="lazy" decoding="async" />
+          <span class="bento-cat-num">${String(i + 1).padStart(2, "0")} · ${total}</span>
+          <h2>${esc(cat.name)}</h2>
+          <p>${esc(cat.desc)}</p> <span class="bento-cat-more">See all ›</span> </a>
+        ${tools.map(tile).join("")}
       </section>`;
     }).join("");
     container.style.minHeight = "0";
@@ -519,11 +519,11 @@
 
     function card(t) {
       const cat = OTCatalog.catBySlug(t.cat);
-      return `<a class="tool-card" href="${toolHref(t)}" aria-label="Open ${escAttr(t.name)}">
-        <div class="tool-card-icon" aria-hidden="true">${t.icon}</div>
+      return `<a class="tool-card" data-tone="${TONE[t.cat] || "ai"}" href="${toolHref(t)}" aria-label="Open ${escAttr(t.name)}">
+        <div class="tool-card-icon" aria-hidden="true">${window.OTToolIcon ? OTToolIcon(t.slug, t.cat) : toneIcon(t.cat)}</div>
         <div class="tool-card-body">
           <div class="tool-card-top">
-            <span class="tool-card-category">${cat.icon} ${cat.name}</span> <span class="credit-badge badge-free">Free</span> </div> <h3 class="tool-card-title">${t.name}</h3>
+            <span class="tool-card-category">${cat.name}</span> <span class="credit-badge badge-free">Free</span> </div> <h3 class="tool-card-title">${t.name}</h3>
           <p class="tool-card-desc">${t.desc}</p> <div class="tool-card-footer"> <span class="btn btn-primary btn-sm">Open tool →</span> </div> </div> </a>`;
     }
 
@@ -537,7 +537,7 @@
       if (!categorySeo) {
         html += `<div class="tool-category-block reveal">
           <div class="tool-category-head">
-            <h2>${cat.icon} ${cat.name}</h2>
+            <h2>${cat.name}</h2>
             <a href="${href(cat.seo + ".html")}" class="hint">View category →</a> </div> <div class="tool-grid">${items.map(card).join("")}</div>
         </div>`;
       } else {
@@ -572,7 +572,7 @@
   }
 
   window.initHomeMotion = function () {
-    const els = document.querySelectorAll(".home-cat-row, .home-step, .home-trust-item, .home-cta-box, .home-section-head");
+    const els = document.querySelectorAll(".home-cat-row, .bento-cat, .home-step, .home-trust-item, .home-cta-box, .home-section-head");
     els.forEach((el) => el.classList.add("is-in"));
 
     const count = document.getElementById("otToolCount");

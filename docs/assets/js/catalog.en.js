@@ -2863,3 +2863,85 @@ window.OTCatalog = {
     return out;
   }
 };
+
+/* Icon nét mảnh riêng cho từng công cụ (thẻ công cụ, trang chủ). OTToolIcon(slug, cat) → <svg> */
+(function () {
+  const I = {
+    file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
+    fileText: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>',
+    layers: '<path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/>',
+    scissors: '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/>',
+    shrink: '<path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/>',
+    lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    pen: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+    stamp: '<path d="M5 22h14M19.3 14H4.7a1.7 1.7 0 0 0-1.7 1.7V18h18v-2.3a1.7 1.7 0 0 0-1.7-1.7zM15 14V9.5a3 3 0 1 0-6 0V14"/>',
+    pages: '<rect x="8" y="2" width="13" height="16" rx="2"/><path d="M16 22H5a2 2 0 0 1-2-2V7"/>',
+    swap: '<path d="m16 3 4 4-4 4M20 7H4M8 21l-4-4 4-4M4 17h16"/>',
+    table: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/>',
+    image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
+    images: '<rect x="7" y="7" width="14" height="14" rx="2"/><path d="M3 15V5a2 2 0 0 1 2-2h10"/><path d="m21 17-3-3-5 5"/>',
+    crop: '<path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/>',
+    expand: '<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>',
+    scan: '<path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8h10M7 12h10M7 16h6"/>',
+    droplet: '<path d="M12 2.7 6.3 9a8 8 0 1 0 11.4 0z"/>',
+    eraser: '<path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L13 19"/><path d="M22 21H7M5 11l9 9"/>',
+    phone: '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>',
+    video: '<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4z"/>',
+    music: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+    film: '<rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/>',
+    download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+    mic: '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4"/>',
+    captions: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/>',
+    volume: '<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>',
+    sparkles: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M21 5h-4"/>',
+    qr: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/>',
+    barcode: '<path d="M3 5v14M7 5v14M11 5v14M14 5v14M18 5v14M21 5v14"/>',
+    wallet: '<rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20M16 15h2"/>',
+    percent: '<path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>',
+    coins: '<circle cx="8" cy="8" r="6"/><path d="M18.1 10.4A6 6 0 1 1 10.3 18M7 6h1v4"/>',
+    shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+    hash: '<path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/>',
+    calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+    key: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/>',
+    type: '<path d="M4 7V4h16v3M9 20h6M12 4v16"/>',
+    braces: '<path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>',
+    code: '<path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/>',
+    asterisk: '<path d="M12 6v12M17.2 9 6.8 15M6.8 9l10.4 6"/>',
+    link: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+    binary: '<rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4M14 10h4M6 14h2v6M14 4h2v6"/>',
+    ruler: '<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2M11.5 9.5l2-2M8.5 6.5l2-2M17.5 15.5l2-2"/>',
+    thermo: '<path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/>',
+    scale: '<path d="M12 3v18M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/>',
+    gauge: '<path d="m12 14 4-4"/><path d="M3.3 19a10 10 0 1 1 17.4 0"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    zap: '<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>',
+    drive: '<path d="M22 12H2M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.1zM6 16h.01M10 16h.01"/>',
+    area: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h6V3"/>',
+    fuel: '<path d="M3 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18M3 22h12M3 10h12M15 13h2a2 2 0 0 1 2 2v3a1 1 0 0 0 2 0V9l-3-3"/>',
+    angle: '<path d="M3 20h18M3 20 15 4M8 20a6 6 0 0 0-1.5-4"/>',
+    box: '<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/>',
+    grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+    database: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>'
+  };
+  const BY_SLUG = {
+    "tiktok-download": "download", "video-to-mp3": "music", "video-convert": "video", "video-trim": "scissors", "video-to-gif": "film",
+    "audio-to-text": "mic", "subtitle-srt": "captions", "text-to-speech": "volume", "ai-summarize": "sparkles",
+    "pdf-to-word": "fileText", "pdf-merge": "layers", "pdf-compress": "shrink", "pdf-to-excel": "table", "office-to-pdf": "file",
+    "image-to-pdf": "images", "pdf-to-image": "image", "image-pdf": "swap", "pdf-lock": "lock", "pdf-sign": "pen",
+    "pdf-watermark": "stamp", "pdf-split": "scissors", "pdf-pages": "pages", "pdf-convert": "swap",
+    "remove-background": "eraser", "image-compress": "shrink", "heic-convert": "phone", "image-ocr": "scan", "image-crop": "crop",
+    "image-convert": "swap", "image-resize": "expand", "image-blur": "droplet", "image-batch": "images",
+    "excel-convert": "table", "ocr-table": "scan", "convert-data": "database",
+    "unit-convert": "ruler", "unit-mass": "scale", "unit-length": "ruler", "unit-temp": "thermo", "unit-data": "drive",
+    "unit-volume": "box", "unit-area": "area", "unit-speed": "gauge", "unit-time": "clock", "unit-energy": "zap",
+    "unit-pressure": "gauge", "unit-power": "zap", "unit-angle": "angle", "unit-fuel": "fuel",
+    "json-tools": "braces", "regex-tester": "asterisk", "base64-tools": "binary", "url-encode": "link", "developer-tools": "code",
+    "vietqr": "qr", "salary-calculator": "wallet", "loan-calculator": "percent", "savings-calculator": "coins",
+    "bhxh-calculator": "shield", "number-to-words": "hash", "currency-convert": "swap", "lunar-calendar": "calendar",
+    "qr-generator": "qr", "word-counter": "type", "barcode-generator": "barcode", "password-generator": "key", "text-convert": "type"
+  };
+  const BY_CAT = { ai: "sparkles", media: "video", "pdf-tools": "file", images: "image", utilities: "grid", "file-converter": "database", developer: "code", units: "ruler" };
+  const wrap = (k) => '<svg class="ed-i" viewBox="0 0 24 24" aria-hidden="true">' + I[k] + "</svg>";
+  window.OTToolIcon = function (slug, cat) { return wrap(BY_SLUG[slug] || BY_CAT[cat] || "grid"); };
+  window.OTCatIcon = function (cat) { return wrap(BY_CAT[cat] || "grid"); };
+})();

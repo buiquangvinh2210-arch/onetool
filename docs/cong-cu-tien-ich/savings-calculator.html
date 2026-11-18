@@ -9,7 +9,6 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
 </script>
@@ -41,12 +40,16 @@
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://onetool.vn/"},{"@type":"ListItem","position":2,"name":"Công cụ","item":"https://onetool.vn/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Tiện ích","item":"https://onetool.vn/cong-cu-tien-ich.html"},{"@type":"ListItem","position":4,"name":"Tính lãi tiết kiệm","item":"https://onetool.vn/cong-cu-tien-ich/savings-calculator.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Gửi 100 triệu lãi suất 5%/năm kỳ hạn 6 tháng được bao nhiêu?","acceptedAnswer":{"@type":"Answer","text":"Tiền lãi là 100.000.000 × 5% × 6 ÷ 12 = 2.500.000 đ, đáo hạn nhận 102.500.000 đ."}},{"@type":"Question","name":"Gửi 1 tỷ mỗi tháng được bao nhiêu tiền lãi?","acceptedAnswer":{"@type":"Answer","text":"Với lãi suất 5%/năm, mỗi tháng khoảng 4.166.667 đ tiền lãi."}},{"@type":"Question","name":"Tái tục gốc và lãi có lợi hơn rút lãi không?","acceptedAnswer":{"@type":"Answer","text":"Có, nếu không cần tiêu tiền lãi: lãi kỳ trước được cộng vào gốc nên kỳ sau sinh lãi nhiều hơn."}}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"Cách dùng Tính lãi tiết kiệm","description":"Tiền lãi = Số tiền gửi × Lãi suất (%/năm) × Số tháng gửi ÷ 12. Ngân hàng thường tính theo số ngày thực gửi chia 365 nên có thể chênh vài nghìn đồng.","inLanguage":"vi","step":[{"@type":"HowToStep","position":1,"text":"Chọn gửi một lần hoặc tích lũy hàng tháng, nhập số tiền và lãi suất %/năm."},{"@type":"HowToStep","position":2,"text":"Chọn kỳ hạn và cách lĩnh lãi: cuối kỳ, hàng tháng hoặc tái tục."},{"@type":"HowToStep","position":3,"text":"Xem tiền lãi, tổng nhận và bảng lãi theo tháng, theo kỳ hoặc theo năm."}]}</script>
+  <link rel="stylesheet" href="../assets/css/illus.css?v=20261118b" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../assets/css/theme.css?v=20261118s" />
+  <link rel="stylesheet" href="../assets/css/editorial.css?v=20261118s" />
   <link rel="alternate" hreflang="vi" href="https://onetool.vn/cong-cu-tien-ich/savings-calculator.html" />
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/cong-cu-tien-ich/savings-calculator.html" />
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/cong-cu-tien-ich/savings-calculator.html" />
   <meta property="og:locale:alternate" content="en_US" />
 </head>
-<body data-tool="savings-calculator">
+<body data-tool="savings-calculator" data-tone="utility">
 <div id="site-header">
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
@@ -487,6 +490,7 @@
     </section>
     <section class="tool-seo-block">
       <h2>Công thức tính lãi tiết kiệm</h2>
+      <img class="ot-illus tool-seo-art" src="../assets/img/illus/utility.svg" alt="Minh họa tiện ích: máy tính, mã QR và lịch" width="480" height="320" loading="lazy" decoding="async" />
       <p><strong>Tiền lãi = Số tiền gửi × Lãi suất (%/năm) × Số tháng gửi ÷ 12.</strong></p>
       <ul>
         <li><strong>Lĩnh lãi cuối kỳ:</strong> nhận cả gốc và lãi khi đáo hạn. Gửi 100 triệu, lãi suất 6%/năm, kỳ hạn 12 tháng thì lãi là 100.000.000 × 6% × 12 ÷ 12 = <strong>6.000.000 đ</strong>.</li>
@@ -585,10 +589,10 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../assets/js/catalog.js?v=20261024b"></script>
+<script src="../assets/js/catalog.js?v=20261118f"></script>
 <script src="../assets/js/layout.js?v=20261113a"></script>
 <script src="../assets/js/core.js?v=20261002a"></script>
-<script src="../assets/js/site.js?v=20261110a"></script>
+<script src="../assets/js/site.js?v=20261118i"></script>
 <script src="../assets/js/tools/savings-calculator.js?v=20261002a"></script>
 </body>
 </html>

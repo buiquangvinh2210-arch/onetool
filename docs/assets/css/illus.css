@@ -1,0 +1,100 @@
+/* Ảnh minh họa (assets/img/illus/*.svg) — danh mục, trang công cụ, blog */
+.ot-illus {
+  display: block;
+  height: auto;
+  border-radius: 22px;
+  box-shadow: 0 18px 40px -18px rgba(76, 29, 149, 0.35);
+  background: #f5f3ff;
+}
+
+/* Trang danh mục: ảnh nằm bên phải phần giới thiệu */
+.cat-hero-art {
+  float: right;
+  width: clamp(240px, 30vw, 340px);
+  margin: 0.25rem 0 1rem 2rem;
+  animation: ot-illus-float 6s ease-in-out infinite;
+}
+
+/* Trang công cụ: ảnh trong phần "Cách dùng / giới thiệu" */
+.tool-seo-art {
+  float: right;
+  width: min(300px, 38%);
+  margin: 0.2rem 0 1rem 1.75rem;
+}
+.tool-seo-block::after { content: ""; display: table; clear: both; }
+
+/* Blog: ảnh bìa bài viết + ảnh nhỏ trong danh sách */
+.blog-cover {
+  margin: 0.25rem 0 1.75rem;
+}
+.blog-cover .ot-illus {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  max-height: 340px;
+  object-fit: cover;
+}
+.blog-card.has-thumb {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  grid-template-rows: auto auto 1fr;
+  column-gap: 1.15rem;
+  align-items: start;
+}
+.blog-card.has-thumb .blog-card-thumb {
+  grid-row: 1 / span 3;
+  width: 148px;
+  aspect-ratio: 3 / 2;
+  border-radius: 14px;
+  box-shadow: none;
+  transition: transform 0.25s ease;
+}
+.blog-card.has-thumb:hover .blog-card-thumb { transform: scale(1.04) rotate(-1deg); }
+
+html[data-theme="dark"] .ot-illus {
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+  filter: saturate(0.95) brightness(0.92);
+}
+
+@keyframes ot-illus-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cat-hero-art { animation: none; }
+}
+
+@media (max-width: 760px) {
+  .cat-hero-art {
+    float: none;
+    width: min(320px, 82%);
+    margin: 0.25rem auto 1rem;
+  }
+  .tool-seo-art {
+    float: none;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 1rem;
+  }
+  .blog-card.has-thumb { grid-template-columns: 96px 1fr; column-gap: 0.85rem; }
+  .blog-card.has-thumb .blog-card-thumb { width: 96px; }
+}
+
+/* Trang chủ: ảnh nhỏ cạnh tiêu đề nhóm công cụ */
+.home-cat-row-head { display: flex; align-items: center; gap: 0.9rem; }
+.home-cat-row-head .home-cat-row-title { flex: 1; min-width: 0; }
+.home-cat-row-art {
+  width: 72px;
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px -10px rgba(76, 29, 149, 0.45);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.home-cat-row:hover .home-cat-row-art { transform: rotate(-3deg) scale(1.06); }
+
+/* Giới thiệu */
+.about-art { width: 100%; margin-bottom: 1rem; }
+
+@media (max-width: 760px) {
+  .home-cat-row-art { width: 56px; border-radius: 10px; }
+}

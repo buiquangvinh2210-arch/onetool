@@ -9,7 +9,6 @@
   <meta charset="utf-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
 </script>
@@ -40,12 +39,16 @@
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://onetool.vn/"},{"@type":"ListItem","position":2,"name":"Công cụ","item":"https://onetool.vn/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Tiện ích","item":"https://onetool.vn/cong-cu-tien-ich.html"},{"@type":"ListItem","position":4,"name":"Tạo mã VietQR","item":"https://onetool.vn/cong-cu-tien-ich/vietqr.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"VietQR khác mã QR thường thế nào?","acceptedAnswer":{"@type":"Answer","text":"VietQR theo chuẩn NAPAS: app ngân hàng đọc BIN + STK + số tiền. QR text thường chỉ mở link web."}},{"@type":"Question","name":"Có cần điền số tiền không?","acceptedAnswer":{"@type":"Answer","text":"Không. Để trống thì người chuyển tự nhập số tiền trên app. Điền sẵn thì quét xong ra đúng số."}}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"Cách dùng Tạo mã VietQR","description":"VietQR là mã QR chuyển khoản liên ngân hàng Việt Nam. Khách quét bằng app (MB, Vietcombank, MoMo ngân hàng…) là ra đúng STK, không gõ tay.","inLanguage":"vi","step":[{"@type":"HowToStep","position":1,"text":"Chọn ngân hàng nhận tiền (mã BIN NAPAS)."},{"@type":"HowToStep","position":2,"text":"Nhập số tài khoản, tuỳ chọn số tiền và nội dung CK không dấu."},{"@type":"HowToStep","position":3,"text":"Tạo mã, quét thử bằng app ngân hàng, rồi tải PNG."}]}</script>
+  <link rel="stylesheet" href="../assets/css/illus.css?v=20261118b" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../assets/css/theme.css?v=20261118s" />
+  <link rel="stylesheet" href="../assets/css/editorial.css?v=20261118s" />
   <link rel="alternate" hreflang="vi" href="https://onetool.vn/cong-cu-tien-ich/vietqr.html" />
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/cong-cu-tien-ich/vietqr.html" />
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/cong-cu-tien-ich/vietqr.html" />
   <meta property="og:locale:alternate" content="en_US" />
 </head>
-<body data-tool="vietqr">
+<body data-tool="vietqr" data-tone="utility">
 <div id="site-header">
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
@@ -398,7 +401,9 @@
 <div class="tool-seo-wrap">
   <section class="tool-seo-block"><h2>Cách dùng Tạo mã VietQR</h2>
   <ol class="tool-seo-howto"><li>Chọn ngân hàng nhận tiền (mã BIN NAPAS).</li><li>Nhập số tài khoản, tuỳ chọn số tiền và nội dung CK không dấu.</li><li>Tạo mã, quét thử bằng app ngân hàng, rồi tải PNG.</li></ol></section>
-  <section class="tool-seo-block"><h2>VietQR là gì?</h2><p><strong>VietQR</strong> là mã QR chuyển khoản liên ngân hàng Việt Nam. Khách quét bằng app (MB, Vietcombank, MoMo ngân hàng…) là ra đúng STK, không gõ tay.</p></section><section class="tool-seo-block"><h2>Cách tạo mã VietQR miễn phí</h2><p>Chọn ngân hàng, nhập STK, bấm <strong>Tạo VietQR</strong>, quét thử một lần rồi in hoặc gửi ảnh. Số tiền và nội dung CK là tuỳ chọn.</p></section>
+  <section class="tool-seo-block"><h2>VietQR là gì?</h2>
+      <img class="ot-illus tool-seo-art" src="../assets/img/illus/utility.svg" alt="Minh họa tiện ích: máy tính, mã QR và lịch" width="480" height="320" loading="lazy" decoding="async" />
+      <p><strong>VietQR</strong> là mã QR chuyển khoản liên ngân hàng Việt Nam. Khách quét bằng app (MB, Vietcombank, MoMo ngân hàng…) là ra đúng STK, không gõ tay.</p></section><section class="tool-seo-block"><h2>Cách tạo mã VietQR miễn phí</h2><p>Chọn ngân hàng, nhập STK, bấm <strong>Tạo VietQR</strong>, quét thử một lần rồi in hoặc gửi ảnh. Số tiền và nội dung CK là tuỳ chọn.</p></section>
   <section class="tool-seo-block"><h2>Câu hỏi thường gặp</h2>
   <dl class="tool-seo-faq"><div class="tool-seo-faq-item"><dt>VietQR khác mã QR thường thế nào?</dt><dd><strong>VietQR</strong> theo chuẩn NAPAS: app ngân hàng đọc BIN + STK + số tiền. QR text thường chỉ mở link web.</dd></div><div class="tool-seo-faq-item"><dt>Có cần điền số tiền không?</dt><dd>Không. Để trống thì người chuyển tự nhập số tiền trên app. Điền sẵn thì quét xong ra đúng số.</dd></div></dl></section>
   <section class="tool-seo-block"><h2>Vì sao dùng OneTool?</h2>
@@ -517,10 +522,10 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../assets/js/catalog.js?v=20261024b"></script>
+<script src="../assets/js/catalog.js?v=20261118f"></script>
 <script src="../assets/js/layout.js?v=20261113a"></script>
 <script src="../assets/js/core.js?v=20261002a"></script>
-<script src="../assets/js/site.js?v=20261110a"></script>
+<script src="../assets/js/site.js?v=20261118i"></script>
 <script src="../assets/js/tools/utils.js?v=20260824a"></script>
 <script src="../assets/js/tools/vietqr.js?v=20261002a"></script>
 </body>

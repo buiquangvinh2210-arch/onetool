@@ -8,7 +8,6 @@
   <meta charset="utf-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
 
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
@@ -36,6 +35,10 @@
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://onetool.vn/en/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://onetool.vn/en/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Unit Converter","item":"https://onetool.vn/en/cong-cu-don-vi.html"},{"@type":"ListItem","position":4,"name":"Fuel Economy Converter","item":"https://onetool.vn/en/cong-cu-don-vi/unit-fuel.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is 30 mpg in liters/100 km?","acceptedAnswer":{"@type":"Answer","text":"For US mpg: 235.215 ÷ 30 ≈ 7.84 L/100 km."}},{"@type":"Question","name":"What's the difference between US and UK mpg?","acceptedAnswer":{"@type":"Answer","text":"The UK gallon is larger than the US gallon (4.546 L vs 3.785 L), so the same car shows about 20% higher UK mpg."}},{"@type":"Question","name":"How many km/liter is 5 liters/100 km?","acceptedAnswer":{"@type":"Answer","text":"100 ÷ 5 = 20 km/liter."}}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"How to use the Fuel Economy Converter","description":"Europe and Vietnam use liters/100 km (lower is more efficient). Some places use km/liter or mpg — miles per gallon (higher is more efficient). Because the two run in opposite directions, the conversion is a reciprocal, not a simple multiplication.","inLanguage":"en","step":[{"@type":"HowToStep","position":1,"text":"Enter the fuel consumption."},{"@type":"HowToStep","position":2,"text":"Choose the source unit: L/100 km, km/L, US mpg or UK mpg."},{"@type":"HowToStep","position":3,"text":"See the result in the other units."}]}</script>
+  <link rel="stylesheet" href="../../assets/css/illus.css?v=20261118b">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=20261118s">
+  <link rel="stylesheet" href="../../assets/css/editorial.css?v=20261118s">
   
   
   
@@ -45,7 +48,7 @@
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/cong-cu-don-vi/unit-fuel.html">
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/cong-cu-don-vi/unit-fuel.html">
   <meta property="og:locale:alternate" content="vi_VN"></head>
-<body data-tool="unit-fuel" data-unit-cat="fuel">
+<body data-tool="unit-fuel" data-unit-cat="fuel" data-tone="units">
 <div id="site-header">
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
@@ -446,7 +449,9 @@
       <div class="tool-seo-wrap">
         <section class="tool-seo-block"><h2>How to use the Fuel Economy Converter</h2>
           <ol class="tool-seo-howto"><li>Enter the fuel consumption.</li><li>Choose the source unit: L/100 km, km/L, US mpg or UK mpg.</li><li>See the result in the other units.</li></ol></section>
-        <section class="tool-seo-block"><h2>L/100 km, km/L and mpg</h2><p>Europe and Vietnam use <strong>liters/100 km</strong> (lower is more efficient). Some places use <strong>km/liter</strong> or <strong>mpg</strong> — miles per gallon (higher is more efficient). Because the two run in opposite directions, the conversion is a reciprocal, not a simple multiplication.</p></section><section class="tool-seo-block"><h2>Formulas</h2><ul><li><strong>km/L</strong> = 100 ÷ (L/100 km)</li><li><strong>mpg (US)</strong> = 235.215 ÷ (L/100 km)</li><li><strong>mpg (Anh)</strong> = 282,481 ÷ (L/100 km)</li></ul></section><section class="tool-seo-block"><h2>Examples</h2><ul><li><strong>Motorbike at 2 L/100 km</strong> = 50 km/L ≈ 117.6 US mpg</li><li><strong>Car at 6 L/100 km</strong> ≈ 16.7 km/L ≈ 39.2 US mpg ≈ 47.1 UK mpg</li><li><strong>Car at 8 L/100 km</strong> = 12.5 km/L ≈ 29.4 US mpg</li></ul></section>
+        <section class="tool-seo-block"><h2>L/100 km, km/L and mpg</h2>
+      <img class="ot-illus tool-seo-art" src="../../assets/img/illus/units.svg" alt="Illustration of unit converters: weight, temperature, length" width="480" height="320" loading="lazy" decoding="async">
+      <p>Europe and Vietnam use <strong>liters/100 km</strong> (lower is more efficient). Some places use <strong>km/liter</strong> or <strong>mpg</strong> — miles per gallon (higher is more efficient). Because the two run in opposite directions, the conversion is a reciprocal, not a simple multiplication.</p></section><section class="tool-seo-block"><h2>Formulas</h2><ul><li><strong>km/L</strong> = 100 ÷ (L/100 km)</li><li><strong>mpg (US)</strong> = 235.215 ÷ (L/100 km)</li><li><strong>mpg (Anh)</strong> = 282,481 ÷ (L/100 km)</li></ul></section><section class="tool-seo-block"><h2>Examples</h2><ul><li><strong>Motorbike at 2 L/100 km</strong> = 50 km/L ≈ 117.6 US mpg</li><li><strong>Car at 6 L/100 km</strong> ≈ 16.7 km/L ≈ 39.2 US mpg ≈ 47.1 UK mpg</li><li><strong>Car at 8 L/100 km</strong> = 12.5 km/L ≈ 29.4 US mpg</li></ul></section>
         <section class="tool-seo-block"><h2>Frequently asked questions</h2>
           <dl class="tool-seo-faq"><div class="tool-seo-faq-item"><dt>What is 30 mpg in liters/100 km?</dt><dd>For US mpg: 235.215 ÷ 30 ≈ 7.84 L/100 km.</dd></div><div class="tool-seo-faq-item"><dt>What's the difference between US and UK mpg?</dt><dd>The UK gallon is larger than the US gallon (4.546 L vs 3.785 L), so the same car shows about 20% higher UK mpg.</dd></div><div class="tool-seo-faq-item"><dt>How many km/liter is 5 liters/100 km?</dt><dd>100 ÷ 5 = 20 km/liter.</dd></div></dl></section>
         <section class="tool-seo-block"><h2>Why use OneTool?</h2>
@@ -564,10 +569,10 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../../assets/js/catalog.en.js?v=20261024b"></script>
+<script src="../../assets/js/catalog.en.js?v=20261118f"></script>
 <script src="../../assets/js/layout.en.js?v=20261113a"></script>
 <script src="../../assets/js/core.en.js?v=20261002a"></script>
-<script src="../../assets/js/site.en.js?v=20261110a"></script>
+<script src="../../assets/js/site.en.js?v=20261118i"></script>
 <script src="../../assets/js/tools/unit-convert.en.js?v=20261110a"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {

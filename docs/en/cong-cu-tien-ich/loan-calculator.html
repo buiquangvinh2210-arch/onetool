@@ -8,7 +8,6 @@
   <meta charset="utf-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
   <script>
 (function(){try{var t=localStorage.getItem("lamai-theme");var r=document.documentElement;if(t)r.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)r.setAttribute("data-theme","dark");}catch(e){}})();
 </script>
@@ -40,6 +39,10 @@
   <script type="application/ld+json" id="ot-jsonld-crumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://onetool.vn/en/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://onetool.vn/en/cong-cu.html"},{"@type":"ListItem","position":3,"name":"Utilities","item":"https://onetool.vn/en/cong-cu-tien-ich.html"},{"@type":"ListItem","position":4,"name":"Loan Calculator","item":"https://onetool.vn/en/cong-cu-tien-ich/loan-calculator.html"}]}</script>
   <script type="application/ld+json" id="ot-jsonld-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the monthly payment on a 1 billion VND loan over 20 years?","acceptedAnswer":{"@type":"Answer","text":"At 9%/year on a declining balance: the first month is about 11,666,667 VND, then it decreases. With equal payments it's about 8,997,000 VND a month."}},{"@type":"Question","name":"Declining balance or equal payments?","acceptedAnswer":{"@type":"Answer","text":"Equal principal has lower total interest but higher payments early on. Equal payments are lighter at first but cost more interest overall."}},{"@type":"Question","name":"What is a 1%/month flat rate really worth?","acceptedAnswer":{"@type":"Answer","text":"For a 12-month loan, a 12%/year flat rate equals about 21.5%/year on a declining-balance basis."}}]}</script>
   <script type="application/ld+json" id="ot-jsonld-howto">{"@context":"https://schema.org","@type":"HowTo","name":"How to use the Loan Calculator","description":"Declining balance: monthly principal = Loan ÷ Months; interest = Remaining balance × Rate ÷ 12. Equal payments: each month you pay Loan × r ÷ (1 − (1 + r)^−n).","inLanguage":"en","step":[{"@type":"HowToStep","position":1,"text":"Choose the interest method: declining balance, equal monthly payments or flat rate."},{"@type":"HowToStep","position":2,"text":"Enter the loan amount, term and rate; tick the promotional rate box if applicable."},{"@type":"HowToStep","position":3,"text":"See the first payment, total interest, the monthly schedule and a comparison of the three methods."}]}</script>
+  <link rel="stylesheet" href="../../assets/css/illus.css?v=20261118b">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=20261118s">
+  <link rel="stylesheet" href="../../assets/css/editorial.css?v=20261118s">
   
   
   
@@ -49,7 +52,7 @@
   <link rel="alternate" hreflang="en" href="https://onetool.vn/en/cong-cu-tien-ich/loan-calculator.html">
   <link rel="alternate" hreflang="x-default" href="https://onetool.vn/cong-cu-tien-ich/loan-calculator.html">
   <meta property="og:locale:alternate" content="vi_VN"></head>
-<body data-tool="loan-calculator">
+<body data-tool="loan-calculator" data-tone="utility">
 <div id="site-header">
 <header class="site-header" id="siteHeader">
   <div class="header-shell">
@@ -479,6 +482,7 @@
     </section>
     <section class="tool-seo-block">
       <h2>Three common ways to calculate loan interest</h2>
+      <img class="ot-illus tool-seo-art" src="../../assets/img/illus/utility.svg" alt="Illustration of utilities: calculator, QR code and calendar" width="480" height="320" loading="lazy" decoding="async">
       <ul>
         <li><strong>Declining balance (equal principal):</strong> each month you pay principal = Loan ÷ Months, plus interest = Remaining balance × Rate ÷ 12. The first payment is the largest, then it decreases. This is the most common method for bank home and car loans in Vietnam.</li>
         <li><strong>Equal monthly payments (annuity):</strong> a fixed monthly payment = Loan × r ÷ (1 − (1 + r)<sup>−n</sup>), where r is the monthly rate and n the number of months. Easy to budget for, but total interest is higher than equal principal.</li>
@@ -575,10 +579,10 @@
 </footer>
 <div id="toastContainer" class="toast-container"></div>
 </div><!--/site-footer-->
-<script src="../../assets/js/catalog.en.js?v=20261024b"></script>
+<script src="../../assets/js/catalog.en.js?v=20261118f"></script>
 <script src="../../assets/js/layout.en.js?v=20261113a"></script>
 <script src="../../assets/js/core.en.js?v=20261002a"></script>
-<script src="../../assets/js/site.en.js?v=20261110a"></script>
+<script src="../../assets/js/site.en.js?v=20261118i"></script>
 <script src="../../assets/js/tools/loan-calculator.en.js?v=20261002a"></script>
 
 
