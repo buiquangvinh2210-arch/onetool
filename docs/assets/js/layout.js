@@ -161,8 +161,13 @@
   const OG_IMAGE = SITE_ORIGIN + "/assets/img/og-share.jpg";
   const ADSENSE_CLIENT = "ca-pub-9591869402965389";
 
+  // Trang có <meta name="ot-ads" content="off"> không chạy AdSense (kể cả script).
+  function adsDisabled() {
+    return !!document.querySelector('meta[name="ot-ads"][content="off"]');
+  }
+
   function injectAdSense() {
-    if (location.protocol === "file:") return;
+    if (location.protocol === "file:" || adsDisabled()) return;
     setMeta("name", "google-adsense-account", ADSENSE_CLIENT, false);
     if (document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) {
       return;
@@ -172,6 +177,15 @@
     s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + ADSENSE_CLIENT;
     s.crossOrigin = "anonymous";
     document.head.appendChild(s);
+  }
+
+  function injectAdSlots() {
+    if (location.protocol === "file:" || adsDisabled()) return;
+    if (document.querySelector('script[src*="js/ads.js"]')) return;
+    const js = document.createElement("script");
+    js.src = asset("js/ads.js?v=20261127a");
+    js.defer = true;
+    document.body.appendChild(js);
   }
 
   function sitePath() {
@@ -440,7 +454,7 @@
     const cats = window.OTCatalog?.categories || [];
     const tools = window.OTCatalog?.tools || [];
     return cats.map((cat) => {
-      let items = tools.filter((t) => t.cat === cat.slug && !t.hub);
+      let items = tools.filter((t) => t.cat === cat.slug && !t.hub && !t.unlisted);
       items = items.slice().sort((a, b) => {
         const ra = Number.isFinite(a.rank) ? a.rank : 999;
         const rb = Number.isFinite(b.rank) ? b.rank : 999;
@@ -457,7 +471,7 @@
       return `
         <div class="nav-drawer-group">
           <a class="nav-drawer-cat" href="${href(`${cat.seo}.html`)}" aria-label="${esc(cat.name)}">
-            <span aria-hidden="true">${cat.icon}</span> ${esc(cat.name)} <span>${tools.filter((t) => t.cat === cat.slug && !t.hub).length} tool</span>
+            <span aria-hidden="true">${cat.icon}</span> ${esc(cat.name)} <span>${tools.filter((t) => t.cat === cat.slug && !t.hub && !t.unlisted).length} tool</span>
           </a>
           <div class="nav-drawer-tools">${toolLinks}</div>
         </div>`;
@@ -596,7 +610,6 @@
       <div class="footer-col">
         <h4>Phổ biến</h4>
         <div class="footer-links">
-          <a href="${href("cong-cu-media/tiktok-download.html")}">Tải TikTok không logo</a>
           <a href="${href("cong-cu-media/audio-to-text.html")}">Audio → Text</a>
           <a href="${href("cong-cu-media/text-to-speech.html")}">Văn bản → giọng nói</a>
           <a href="${href("cong-cu-media/video-to-gif.html")}">Video sang GIF</a>
@@ -1267,6 +1280,7 @@
     injectCategorySeoBody();
     injectCategoryJsonLd();
     injectToolSeoBody();
+    injectAdSlots();
   } catch (err) {
     console.error("[OneTool layout] extras", err);
   }

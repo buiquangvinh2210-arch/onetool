@@ -15,11 +15,11 @@ window.OTCatalog = {
       slug: "media",
       seo: "cong-cu-media",
       name: "Media Tools",
-      desc: "TikTok, video to MP3, compress / trim video",
+      desc: "Video to MP3, compress / trim video, GIF",
       icon: "🎬",
-      seoTitle: "Free Online Media Tools — TikTok Downloader, Compress & Trim Video, MP3 | OneTool",
-      seoDescription: "Download TikTok without watermark, compress MP4, extract MP3 and trim video in your browser. Free.",
-      seoKeywords: "tiktok downloader no watermark, compress video online, video to mp3, trim video online"
+      seoTitle: "Online Media Tools — Compress, Trim Video, Video to MP3 | OneTool",
+      seoDescription: "Compress MP4, extract MP3, trim video and make GIFs right in your browser. Free.",
+      seoKeywords: "compress video online, video to mp3, trim video online"
     },
     {
       slug: "pdf-tools",
@@ -84,7 +84,7 @@ window.OTCatalog = {
   ],
   tools: [
     /* Media — TikTok đầu hàng Media trên trang chủ */
-    { slug: "tiktok-download", name: "TikTok Downloader (No Watermark)", desc: "Paste a link → download HD MP4 without the TikTok logo / watermark.", icon: "🎵", cat: "media", featured: true, rank: 1 },
+    { slug: "tiktok-download", name: "TikTok Downloader (No Watermark)", desc: "Paste a link → download HD MP4 without the TikTok logo / watermark.", icon: "🎵", cat: "media", featured: false, rank: 99, unlisted: true },
     { slug: "video-to-mp3", name: "Video to MP3", desc: "Extract audio from MP4, MOV or MKV as 192 kbps MP3 — runs in your browser.", icon: "🎧", cat: "media", featured: true, rank: 2 },
     { slug: "video-convert", name: "Compress Video Online", desc: "Compress MP4, convert to WebM or extract MP3 — runs in your browser.", icon: "🎬", cat: "media", featured: true, rank: 3 },
     { slug: "video-trim", name: "Trim Video Online", desc: "Pick a start–end range, preview it, then cut — fast, on your device.", icon: "✂️", cat: "media", rank: 4 },
@@ -2758,9 +2758,8 @@ window.OTCatalog = {
 
   categorySeo: {
     "cong-cu-media": {
-      intro: "**Media tools**: download TikTok in HD, compress/trim MP4, video to GIF. Compressing and trimming run on your device; TikTok uses cloud processing.",
+      intro: "The **Media tools** set: compress/trim MP4, video to MP3, video to GIF — all running on your own device.",
       sections: [
-        { title: "TikTok download", paras: ["**TikTok Download** gets an HD MP4 without watermark from a link (cloud processing). Only use it for content you have rights to."] },
         { title: "Compress, trim & GIF", paras: ["**Compress video** shrinks MP4 files or converts to WebM. **Trim video** cuts a start–end range. **Video to GIF** exports a short clip."] }
       ]
     },
@@ -2849,8 +2848,8 @@ window.OTCatalog = {
     const n = limit || 6;
     const current = this.toolBySlug(slug);
     if (!current) return [];
-    const preferred = (this.seo[slug]?.related || []).map(s => this.toolBySlug(s)).filter(Boolean);
-    const same = this.tools.filter(t => t.cat === current.cat && t.slug !== slug);
+    const preferred = (this.seo[slug]?.related || []).map(s => this.toolBySlug(s)).filter(t => t && !t.unlisted);
+    const same = this.tools.filter(t => t.cat === current.cat && t.slug !== slug && !t.unlisted);
     const rest = this.tools.filter(t => t.cat !== current.cat && t.slug !== slug && t.featured);
     const out = [];
     const seen = new Set();

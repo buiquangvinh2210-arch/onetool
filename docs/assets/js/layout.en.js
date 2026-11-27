@@ -162,8 +162,13 @@
   const OG_IMAGE = SITE_ORIGIN + "/assets/img/og-share.jpg";
   const ADSENSE_CLIENT = "ca-pub-9591869402965389";
 
+  // Trang có <meta name="ot-ads" content="off"> không chạy AdSense (kể cả script).
+  function adsDisabled() {
+    return !!document.querySelector('meta[name="ot-ads"][content="off"]');
+  }
+
   function injectAdSense() {
-    if (location.protocol === "file:") return;
+    if (location.protocol === "file:" || adsDisabled()) return;
     setMeta("name", "google-adsense-account", ADSENSE_CLIENT, false);
     if (document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) {
       return;
@@ -173,6 +178,15 @@
     s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + ADSENSE_CLIENT;
     s.crossOrigin = "anonymous";
     document.head.appendChild(s);
+  }
+
+  function injectAdSlots() {
+    if (location.protocol === "file:" || adsDisabled()) return;
+    if (document.querySelector('script[src*="js/ads.js"]')) return;
+    const js = document.createElement("script");
+    js.src = asset("js/ads.js?v=20261127a");
+    js.defer = true;
+    document.body.appendChild(js);
   }
 
   function sitePath() {
@@ -441,7 +455,7 @@
     const cats = window.OTCatalog?.categories || [];
     const tools = window.OTCatalog?.tools || [];
     return cats.map((cat) => {
-      let items = tools.filter((t) => t.cat === cat.slug && !t.hub);
+      let items = tools.filter((t) => t.cat === cat.slug && !t.hub && !t.unlisted);
       items = items.slice().sort((a, b) => {
         const ra = Number.isFinite(a.rank) ? a.rank : 999;
         const rb = Number.isFinite(b.rank) ? b.rank : 999;
@@ -458,7 +472,7 @@
       return `
         <div class="nav-drawer-group">
           <a class="nav-drawer-cat" href="${href(`${cat.seo}.html`)}" aria-label="${esc(cat.name)}">
-            <span aria-hidden="true">${cat.icon}</span> ${esc(cat.name)} <span>${tools.filter((t) => t.cat === cat.slug && !t.hub).length} tool</span>
+            <span aria-hidden="true">${cat.icon}</span> ${esc(cat.name)} <span>${tools.filter((t) => t.cat === cat.slug && !t.hub && !t.unlisted).length} tool</span>
           </a>
           <div class="nav-drawer-tools">${toolLinks}</div>
         </div>`;
@@ -496,7 +510,7 @@
       footerHost.outerHTML = chromeHtml.footer = `
 <footer class="site-footer"> <div class="footer-cta-band"> <div class="container footer-cta-inner"> <div class="footer-cta-copy"> <h3>Help make OneTool better</h3> <p class="footer-cta-desc">Report a bug or suggest a feature — send feedback on the Contact page.</p> </div> <a class="btn btn-primary btn-glow footer-cta-btn" href="${href("lien-he.html")}">Send feedback</a> </div> </div> <div class="container footer-inner"> <div class="footer-brand"> <a class="logo footer-logo" href="${homeHref()}" aria-label="OneTool — Go to homepage"> <span class="logo-icon" aria-hidden="true"><img class="logo-mark" src="${asset("img/logo-mark-96.png")}?v=20261024a" width="40" height="40" alt="" /></span> <span class="logo-text">OneTool</span> </a> <p class="footer-brand-desc">Free online file tools — fast, private and free.</p> <div class="footer-social"> <a href="${href("cong-cu.html")}" aria-label="All tools">⚡</a> <a href="${href("about.html")}" aria-label="About">ℹ</a> </div> </div> <div class="footer-nav"> <div class="footer-col"> <h4>Categories</h4> <div class="footer-links">
           ${OTCatalog.categories.map((c) => `<a href="${href(`${c.seo}.html`)}">${esc(c.name)}</a>`).join("")}
-        </div> </div> <div class="footer-col"> <h4>Popular</h4> <div class="footer-links"> <a href="${href("cong-cu-media/tiktok-download.html")}">TikTok Downloader (No Watermark)</a> <a href="${href("cong-cu-media/audio-to-text.html")}">Audio → Text</a>
+        </div> </div> <div class="footer-col"> <h4>Popular</h4> <div class="footer-links"> <a href="${href("cong-cu-media/audio-to-text.html")}">Audio → Text</a>
           <a href="${href("cong-cu-media/text-to-speech.html")}">Text to Speech</a> <a href="${href("cong-cu-media/video-to-gif.html")}">Video to GIF</a> <a href="${href("cong-cu-tien-ich/salary-calculator.html")}">Gross to Net Salary</a> <a href="${href("cong-cu-tien-ich/currency-convert.html")}">Currency Converter</a> <a href="${href("cong-cu-tien-ich/lunar-calendar.html")}">Lunar Calendar Today</a> <a href="${href("cong-cu-pdf/pdf-to-word.html")}">PDF to Word</a>
           <a href="${href("cong-cu-pdf/pdf-to-excel.html")}">PDF to Excel</a> <a href="${href("cong-cu-pdf/image-pdf.html")}">Image ↔ PDF</a> <a href="${href("cong-cu-anh/image-ocr.html")}">Image OCR</a> <a href="${href("cong-cu-anh/image-crop.html")}">Crop Image</a> <a href="${href("cong-cu-anh/image-compress.html")}">Compress Image</a> <a href="${href("cong-cu-pdf/pdf-merge.html")}">Merge PDF</a> <a href="${href("cong-cu-anh/remove-background.html")}">Remove Background</a> </div> </div> <div class="footer-col footer-col--contact"> <h4>Contact &amp; Feedback</h4> <div class="footer-links"> <a href="${href("lien-he.html")}">Send feedback</a> <a href="${href("blog/")}">How-to blog</a> <a href="${href("about.html")}">About</a> <a href="${href("chinh-sach.html")}">Privacy Policy</a> <a href="${href("dieu-khoan.html")}">Terms &amp; Copyright</a> </div> </div> </div> <div class="footer-bottom"> <p class="footer-copy">&copy; ${new Date().getFullYear()} OneTool</p>
       ${languageSwitchHtml("footer")}
@@ -1121,6 +1135,7 @@
     injectCategorySeoBody();
     injectCategoryJsonLd();
     injectToolSeoBody();
+    injectAdSlots();
   } catch (err) {
     console.error("[OneTool layout] extras", err);
   }

@@ -18,7 +18,6 @@
 ## Công cụ Media
 
 - [Tất cả: Công cụ Media](https://onetool.vn/cong-cu-media.html): TikTok, video sang MP3, nén / cắt video
-- [Tải video TikTok không logo](https://onetool.vn/cong-cu-media/tiktok-download.html): Dán link → tải MP4 HD không dính logo / watermark TikTok.
 - [Video sang MP3](https://onetool.vn/cong-cu-media/video-to-mp3.html): Tách tiếng từ MP4, MOV, MKV thành MP3 192kbps — chạy trên trình duyệt.
 - [Nén video online](https://onetool.vn/cong-cu-media/video-convert.html): Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.
 - [Cắt video online](https://onetool.vn/cong-cu-media/video-trim.html): Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.
@@ -110,7 +109,6 @@
 
 - [Cách tính lương Net 2026: thuế TNCN 5 bậc, giảm trừ 15,5 triệu](https://onetool.vn/blog/cach-tinh-luong-net-2026.html)
 - [PDF sang Word online miễn phí — chuyển PDF to DOCX](https://onetool.vn/blog/pdf-sang-word-online.html)
-- [Tải video TikTok không logo / không watermark miễn phí](https://onetool.vn/blog/tai-tiktok-khong-logo.html)
 - [HEIC sang JPG online — đổi ảnh iPhone miễn phí](https://onetool.vn/blog/heic-sang-jpg-iphone.html)
 - [Cách tách nhạc từ video sang MP3 — MP4, MOV trên máy tính](https://onetool.vn/blog/video-sang-mp3.html)
 - [Tạo mã VietQR online miễn phí — QR chuyển khoản NAPAS](https://onetool.vn/blog/tao-ma-vietqr.html)

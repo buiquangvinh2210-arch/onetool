@@ -14,11 +14,11 @@ window.OTCatalog = {
       slug: "media",
       seo: "cong-cu-media",
       name: "Công cụ Media",
-      desc: "TikTok, video sang MP3, nén / cắt video",
+      desc: "Video sang MP3, nén / cắt video, GIF",
       icon: "🎬",
-      seoTitle: "Công cụ Media online — Tải TikTok, nén cắt video, MP3 | OneTool",
-      seoDescription: "Tải TikTok không logo, nén MP4, tách MP3, cắt video trên trình duyệt. Miễn phí.",
-      seoKeywords: "tải video tiktok, nén video online, video sang mp3, cắt video"
+      seoTitle: "Công cụ Media online — nén, cắt video, video sang MP3 | OneTool",
+      seoDescription: "Nén MP4, tách MP3, cắt video, video sang GIF ngay trên trình duyệt. Miễn phí.",
+      seoKeywords: "nén video online, video sang mp3, cắt video"
     },
     {
       slug: "pdf-tools",
@@ -83,7 +83,7 @@ window.OTCatalog = {
   ],
   tools: [
     /* Media — TikTok đầu hàng Media trên trang chủ */
-    { slug: "tiktok-download", name: "Tải video TikTok không logo", desc: "Dán link → tải MP4 HD không dính logo / watermark TikTok.", icon: "🎵", cat: "media", featured: true, rank: 1 },
+    { slug: "tiktok-download", name: "Tải video TikTok không logo", desc: "Dán link → tải MP4 HD không dính logo / watermark TikTok.", icon: "🎵", cat: "media", featured: false, rank: 99, unlisted: true },
     { slug: "video-to-mp3", name: "Video sang MP3", desc: "Tách tiếng từ MP4, MOV, MKV thành MP3 192kbps — chạy trên trình duyệt.", icon: "🎧", cat: "media", featured: true, rank: 2 },
     { slug: "video-convert", name: "Nén video online", desc: "Nén MP4, đổi WebM hoặc tách MP3 — chạy trên trình duyệt.", icon: "🎬", cat: "media", featured: true, rank: 3 },
     { slug: "video-trim", name: "Cắt video online", desc: "Chọn đoạn start–end, xem trước rồi cắt — nhanh trên máy bạn.", icon: "✂️", cat: "media", rank: 4 },
@@ -328,8 +328,8 @@ window.OTCatalog = {
       desc: "Đổi lương Gross ↔ Net theo luật 2026: giảm trừ 15,5 triệu, người phụ thuộc 6,2 triệu, thuế TNCN 5 bậc, trần BHXH 50,6 triệu. Miễn phí, không đăng ký."
     },
     "loan-calculator": {
-      title: "Tính lãi vay trả góp ngân hàng — lịch trả nợ | OneTool",
-      desc: "Tính tiền trả góp hàng tháng khi vay mua nhà, mua xe: dư nợ giảm dần, trả đều, lãi phẳng, lãi suất ưu đãi rồi thả nổi. Có lịch trả nợ từng tháng. Miễn phí."
+      title: "Bảng tính lãi suất vay ngân hàng — trả góp hàng tháng | OneTool",
+      desc: "Bảng tính lãi suất vay ngân hàng, vay tiêu dùng, mua nhà, mua xe: dư nợ giảm dần, trả đều, lãi phẳng, ưu đãi rồi thả nổi. Có lịch trả nợ từng tháng. Miễn phí."
     },
     "savings-calculator": {
       title: "Tính lãi tiết kiệm ngân hàng online 2026 | OneTool",
@@ -340,8 +340,8 @@ window.OTCatalog = {
       desc: "Ước tính tiền rút bảo hiểm xã hội một lần theo số năm đóng và lương bình quân: 1,5 tháng lương cho năm trước 2014, 2 tháng từ 2014, làm tròn tháng lẻ. Miễn phí."
     },
     "number-to-words": {
-      title: "Đổi số thành chữ online miễn phí — số tiền bằng chữ | OneTool",
-      desc: "Nhập số → ra chữ ngay: 1.250.000 thành Một triệu hai trăm năm mươi nghìn đồng. Viết hóa đơn, hợp đồng — không đăng ký."
+      title: "Đọc số thành chữ online — đổi số tiền bằng chữ | OneTool",
+      desc: "Đọc số thành chữ, đổi số tiền bằng chữ tiếng Việt ngay khi nhập: 1.250.000 → Một triệu hai trăm năm mươi nghìn đồng. Dùng cho hóa đơn, hợp đồng — miễn phí."
     },
     "qr-generator": {
       title: "Tạo mã QR online miễn phí — QR code từ link | OneTool",
@@ -2757,9 +2757,8 @@ window.OTCatalog = {
 
   categorySeo: {
     "cong-cu-media": {
-      intro: "Bộ **công cụ Media**: tải TikTok HD, nén/cắt MP4, video sang GIF. Nén & cắt chạy trên máy; TikTok dùng xử lý đám mây.",
+      intro: "Bộ **công cụ Media**: nén/cắt MP4, video sang MP3, video sang GIF — chạy ngay trên máy bạn.",
       sections: [
-        { title: "Tải TikTok", paras: ["**TikTok Download** lấy MP4 HD không watermark từ link (xử lý đám mây). Chỉ dùng khi bạn có quyền nội dung."] },
         { title: "Nén, cắt & GIF", paras: ["**Nén video** giảm dung lượng MP4 hoặc đổi WebM. **Cắt video** chọn đoạn start–end. **Video sang GIF** xuất đoạn ngắn."] }
       ]
     },
@@ -2848,8 +2847,8 @@ window.OTCatalog = {
     const n = limit || 6;
     const current = this.toolBySlug(slug);
     if (!current) return [];
-    const preferred = (this.seo[slug]?.related || []).map(s => this.toolBySlug(s)).filter(Boolean);
-    const same = this.tools.filter(t => t.cat === current.cat && t.slug !== slug);
+    const preferred = (this.seo[slug]?.related || []).map(s => this.toolBySlug(s)).filter(t => t && !t.unlisted);
+    const same = this.tools.filter(t => t.cat === current.cat && t.slug !== slug && !t.unlisted);
     const rest = this.tools.filter(t => t.cat !== current.cat && t.slug !== slug && t.featured);
     const out = [];
     const seen = new Set();

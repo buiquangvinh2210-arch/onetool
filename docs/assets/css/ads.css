@@ -1,0 +1,65 @@
+/* OneTool — ad slot containers (see assets/js/ads.js) */
+
+.ot-ad {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding-top: 1.25rem; /* room for the label */
+  clear: both;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Keep the first slot well clear of the tool's action buttons (accidental clicks). */
+.ot-ad[data-slot="toolAfter"] { margin-top: 3rem; }
+
+/* Reserve height so the page does not jump when the ad loads (CLS). */
+.ot-ad--display { min-height: 280px; }
+.ot-ad--inArticle { min-height: 200px; }
+.ot-ad--multiplex { min-height: 320px; }
+
+.ot-ad::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted, #6b7280);
+  content: "Quảng cáo";
+}
+html[lang="en"] .ot-ad::before { content: "Advertisement"; }
+
+/* Inside the blog body and the tool guide, follow the column width. */
+.blog-prose + .ot-ad,
+.blog-prose .ot-ad,
+.tool-seo-wrap .ot-ad { margin: 1.5rem 0; max-width: none; }
+
+/* No fill (or ad blocker): collapse the space instead of showing a hole. */
+.ot-ad:has(ins.adsbygoogle[data-ad-status="unfilled"]) { display: none; }
+
+/* ?ads=preview */
+.ot-ad--preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border-strong, #c4b5fd);
+  border-radius: var(--radius-sm, 8px);
+  background: var(--bg-alt, #f5f3ff);
+}
+.ot-ad-preview-name {
+  font: 600 0.85rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--primary, #7c3aed);
+}
+
+@media (max-width: 640px) {
+  .ot-ad { margin: 1.5rem auto; }
+  .ot-ad--display { min-height: 250px; }
+}
+
+@media print {
+  .ot-ad { display: none !important; }
+}
