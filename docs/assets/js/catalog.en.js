@@ -1970,6 +1970,13 @@ window.OTCatalog = {
           paras: [
             "Vietnamese employment contracts usually state the gross salary in both figures and words. Not sure of your take-home pay? Use the [Gross ↔ Net salary calculator 2026](cong-cu-tien-ich/salary-calculator.html) to get the net amount after insurance and income tax, then spell it out here."
           ]
+        },
+        {
+          title: "Number-reading rules to remember",
+          paras: [
+            "The tool applies Vietnamese number-reading rules correctly: **mốt** (21 → hai mươi mốt), **tư** (24 → hai mươi tư), **lăm** (15 → mười lăm), **lẻ** (105 → một trăm lẻ năm) and **không trăm** (1.050.000 → một triệu không trăm năm mươi nghìn).",
+            "See the full rules, example table and common mistakes in our guide [how to write amounts in words in Vietnamese](blog/cach-doc-so-tien-bang-chu.html)."
+          ]
         }
       ],
       related: ["salary-calculator", "vietqr", "currency-convert"]

@@ -1969,6 +1969,13 @@ window.OTCatalog = {
           paras: [
             "Hợp đồng lao động thường ghi lương Gross cả bằng số và bằng chữ. Chưa rõ mức thực nhận? Dùng [máy tính lương Gross ↔ Net 2026](cong-cu-tien-ich/salary-calculator.html) để ra số Net sau bảo hiểm và thuế TNCN, rồi đổi sang chữ tại đây."
           ]
+        },
+        {
+          title: "Quy tắc đọc số cần nhớ",
+          paras: [
+            "Tool áp dụng đúng quy tắc đọc số tiếng Việt: **mốt** (21 → hai mươi mốt), **tư** (24 → hai mươi tư), **lăm** (15 → mười lăm), **lẻ** (105 → một trăm lẻ năm) và **không trăm** (1.050.000 → một triệu không trăm năm mươi nghìn).",
+            "Xem đủ quy tắc, bảng ví dụ và lỗi hay gặp trong bài [cách đọc số tiền bằng chữ tiếng Việt](blog/cach-doc-so-tien-bang-chu.html)."
+          ]
         }
       ],
       related: ["salary-calculator", "vietqr", "currency-convert"]
